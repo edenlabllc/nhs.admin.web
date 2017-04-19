@@ -6,21 +6,22 @@ import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
 
-import { getDictionaries } from 'reducers';
+import { getDictionary } from 'reducers';
 
 import { fetchDictionaries } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
 @provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchDictionaries()),
+  fetch: ({ dispatch, params: { name } }) => dispatch(fetchDictionaries({ name })),
 })
-@connect(state => ({
-  dictionaries: getDictionaries(state, state.data.dictionaries),
+@connect((state, params) => ({
+  dictionary: getDictionary(state, params.params.name),
 }))
 export default class DictionariesPage extends React.Component {
   render() {
-    const { dictionaries = [] } = this.props;
+    const { dictionary, params } = this.props;
+    console.log(dictionary, params);
     return (
       <div id="dictionaries-page">
         <H1>Dictionaries</H1>
@@ -28,20 +29,18 @@ export default class DictionariesPage extends React.Component {
         <div id="templates-table" className={styles.table}>
           <Table
             columns={[
-              { key: 'name', title: 'Dictionary Name' },
-              { key: 'edit', title: 'Edit' },
+              { key: 'name', title: 'Name' },
+              { key: 'value', title: 'Value' },
+              { edit: 'edit', title: 'Edit' },
             ]}
-            data={Object.keys(dictionaries).map(dictionary => ({
+            data={Object.keys(dictionary).map(i => ({
               name: <div className={styles.name}>
-                { dictionary }
+                {i}
               </div>,
-              edit: (<Button
-                id={`edit-template-button-${dictionary}`}
-                theme="link"
-                to={`/dictionaries/${dictionary}`}
-              >
-                Edit&nbsp;Dictionary
-              </Button>),
+              value: <div>
+                {dictionary[i]}
+              </div>,
+              edit: <Button id={`edit-template-button-${i}`} theme="link" to={`/dictionaries/${i}`}>Edit&nbsp;Dictionary</Button>,
             }))}
           />
         </div>
@@ -49,3 +48,4 @@ export default class DictionariesPage extends React.Component {
     );
   }
 }
+
