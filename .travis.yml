@@ -10,6 +10,7 @@ env:
   - RELEASE_BRANCH="master"
   - DOCKER_HUB_ACCOUNT="nebo15"
   - MAIN_BRANCHES="master develop"
+  - secure: yRUZMD2435VKAJyqqbsVTmEI8oPFth8P6jOl2dWT0iGsFPwypgSfQbLlRhO3iDgh831FSagRvFcURRug6o7AljEACGkwIEGRUoqw2+hmU/2V3ua//2ek8CcbOLkMu2ezq5tfJ2mRKNW7ULkuKm//eawx4RAdBso9fxqJkaM/VrmA45CfYx8/154S7hT3lhSBuPNOkc+tl/rtY7u0YESuQHJSkFqe2kIOrpBoqG2xFY0N8dW3v9ZJRFLPheYMVdnpUDspsoYHsrx/StXbqdxnIm4l7xeBB07FQYPUD6sW3OYP1om+G4f3Loy8h868lLMGLNEtU9+m++mMsYURbXd11Psn/iSYeVhqs0eMCxApJ40NoWhJXyUpMbknBkS7oxiXPoFbFNnka3Au/V97tHsto9Nh2NZ7LO0AXBnSsq8BUlygPD7H30WVmINe4X+02bZsouEWKk9jpYSIS/1I0NlGb13oYqU4PWzGnCAmaCAMO+7dWLS4GiIXaKS2xnST2kGXAxelaHi+KbRZo+KyDFS9PDMsO3wcVe5Y27ktR7YmbijCaRyhuooubcF2bz6+kayT8HUmixBykJE7zzITNXNEsjBOgzdH7FMhlwds5iBPED2cUJfet7Vt7ypZ+9hB/KD8k3cGMWB1PiaAvsGcJwcNwQLHBUZrpXa+37OtAIe6jms=
 node_js:
 - 7.5.0
 before_install:
@@ -24,8 +25,8 @@ script:
 - sleep 5
 - docker ps
 - RUNNING_CONTAINERS=`docker ps | wc -l`; if [ "${RUNNING_CONTAINERS//[[:space:]]/}"
-  == "1" ]; then echo "[E] Container is not started\!"; docker logs nhs.admin.web --details
-  --since 5h; exit 1; fi;
+  == "1" ]; then echo "[E] Container is not started\!"; docker logs nhs.admin.web
+  --details --since 5h; exit 1; fi;
 - npm run nightwatch -- -e travis
 - sleep 5
 after_success:
