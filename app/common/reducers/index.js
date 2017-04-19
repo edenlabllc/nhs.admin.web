@@ -8,6 +8,7 @@ import loading from 'redux/loading';
 
 import labels from 'redux/labels';
 import templates from 'redux/templates';
+import dictionaries from 'redux/dictionaries';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -24,6 +25,7 @@ const pages = combineReducers({
 const data = combineReducers({
   labels,
   templates,
+  dictionaries,
 });
 
 export default combineReducers({
@@ -41,3 +43,6 @@ export const getForm = (state, formName) => state.form[formName];
 
 export const getTemplate = (state, id) => denormalize(id, schemas.template, state.data);
 export const getTemplates = (state, ids) => denormalize(ids, [schemas.template], state.data);
+
+export const getDictionary = (state, ids) => denormalize(ids, schemas.dictionary, state.data);
+export const getDictionaries = (state, ids) => denormalize(ids, [schemas.dictionary], state.data);
