@@ -16,35 +16,40 @@ import styles from './styles.scss';
   fetch: ({ dispatch }) => dispatch(fetchDictionaries()),
 })
 @connect(state => ({
-  dictionaries: getDictionaries(state, state.data.dictionaries),
+  dictionaries: getDictionaries(state),
 }))
 export default class DictionariesPage extends React.Component {
   render() {
     const { dictionaries = [] } = this.props;
+
     return (
       <div id="dictionaries-page">
         <H1>Dictionaries</H1>
-        <p>Select dictionary to edit</p>
-        <div id="templates-table" className={styles.table}>
-          <Table
-            columns={[
-              { key: 'name', title: 'Dictionary Name' },
-              { key: 'edit', title: 'Edit' },
-            ]}
-            data={Object.keys(dictionaries).map(dictionary => ({
-              name: <div className={styles.name}>
-                { dictionary }
-              </div>,
-              edit: (<Button
-                id={`edit-template-button-${dictionary}`}
-                theme="link"
-                to={`/dictionaries/${dictionary}`}
-              >
-                Edit&nbsp;Dictionary
-              </Button>),
-            }))}
-          />
-        </div>
+        {
+          <div>
+            <p>Select dictionary to edit</p>
+            <div id="templates-table" className={styles.table}>
+              <Table
+                columns={[
+                  { key: 'name', title: 'Dictionary Name' },
+                  { key: 'edit', title: 'Edit' },
+                ]}
+                data={Object.keys(dictionaries).map(dictionary => ({
+                  name: <div className={styles.name}>
+                    { dictionary }
+                  </div>,
+                  edit: (<Button
+                    id={`edit-template-button-${dictionary}`}
+                    theme="link"
+                    to={`/dictionaries/${dictionary}`}
+                  >
+                    View&nbsp;Dictionary
+                  </Button>),
+                }))}
+              />
+            </div>
+          </div>
+        }
       </div>
     );
   }

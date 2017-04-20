@@ -44,5 +44,6 @@ export const getForm = (state, formName) => state.form[formName];
 export const getTemplate = (state, id) => denormalize(id, schemas.template, state.data);
 export const getTemplates = (state, ids) => denormalize(ids, [schemas.template], state.data);
 
-export const getDictionary = (state, name) => state.data.dictionaries[name];
-export const getDictionaries = (state, ids) => denormalize(ids, [schemas.dictionary], state.data);
+export const getDictionary = (state, name) => denormalize(name, schemas.dictionary, state.data);
+export const getDictionaries = state => state.data.dictionaries;
+
