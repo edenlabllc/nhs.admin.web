@@ -1,5 +1,5 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { DICTIONARY_HOST } from 'config';
+import { API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { dictionary } from 'schemas';
 import { createUrl } from 'helpers/url';
@@ -28,7 +28,7 @@ const DATA = [
 ];
 
 export const fetchDictionaries = options => invoke({
-  endpoint: createUrl(`${DICTIONARY_HOST}/dictionaries`, options),
+  endpoint: createUrl(`${API_URL}/dictionaries`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -42,7 +42,7 @@ export const fetchDictionaries = options => invoke({
 });
 
 export const updateDictionary = (name, body) => invoke({
-  endpoint: `${DICTIONARY_HOST}/dictionaries/${body.id}`,
+  endpoint: `${API_URL}/dictionaries/${body.id}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
