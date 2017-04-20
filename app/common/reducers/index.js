@@ -7,23 +7,25 @@ import * as schemas from 'schemas';
 import loading from 'redux/loading';
 
 import labels from 'redux/labels';
-import templates from 'redux/templates';
+import clinics from 'redux/clinics';
 
 import Aside from 'containers/blocks/Aside/redux';
 
-import TemplateListPage from 'containers/pages/TemplateListPage/redux';
+import ClinicsListPage from 'containers/pages/ClinicsListPage/redux';
+import ClinicDetailPage from 'containers/pages/ClinicDetailPage/redux';
 
 const blocks = combineReducers({
   Aside,
 });
 
 const pages = combineReducers({
-  TemplateListPage,
+  ClinicsListPage,
+  ClinicDetailPage,
 });
 
 const data = combineReducers({
   labels,
-  templates,
+  clinics,
 });
 
 export default combineReducers({
@@ -39,5 +41,5 @@ export default combineReducers({
 export const getLocation = state => state.routing.locationBeforeTransitions;
 export const getForm = (state, formName) => state.form[formName];
 
-export const getTemplate = (state, id) => denormalize(id, schemas.template, state.data);
-export const getTemplates = (state, ids) => denormalize(ids, [schemas.template], state.data);
+export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
+export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);

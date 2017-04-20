@@ -22,7 +22,7 @@ export default class Aside extends React.Component {
     return (
       <aside className={styles.aside}>
         { /* eslint-disable jsx-a11y/anchor-has-content */ }
-        <Link className={styles.logo} to="/">{'{ mán }'}</Link>
+        <Link className={styles.logo} to="/">{'{ NHS }'}</Link>
         <hr className={styles.line} />
 
         <Link to="/templates/create" className={styles.add}>
