@@ -28,7 +28,7 @@ export default class Nav extends React.Component {
       <nav className={classnames(styles.nav, isOpen && styles.open)}>
         <ul>
           <NavItem to="templates" activeClassName={styles.active}>
-            <Link id="templates-nav" to="/templates">Templates</Link>
+            <Link id="clinics-nav" to="/clinics">Clinics</Link>
           </NavItem>
           <NavItem to="dictionaries">
             <Link id="dictionaries-nav" to="/dictionaries">Dictionaries</Link>
@@ -36,7 +36,7 @@ export default class Nav extends React.Component {
         </ul>
         <ul className={styles.down}>
           <li>
-            <a href="http://docs.man2.apiary.io" rel="noopener noreferrer" target="__blank">
+            <a href="http://docs.ehealthapi1.apiary.io" rel="noopener noreferrer" target="__blank">
               <Icon name="doc" />
               Documentation
             </a>
