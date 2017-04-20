@@ -10,7 +10,7 @@ import { FormButtons } from 'components/Form';
 
 import { getDictionary } from 'reducers';
 
-import { fetchDictionaries } from './redux';
+import { fetchDictionaries, updateDictionary } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
@@ -19,7 +19,9 @@ import styles from './styles.scss';
 })
 @connect((state, params) => ({
   dictionary: getDictionary(state, params.params.name),
-}))
+}), {
+  updateDictionary,
+})
 export default class DictionariesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -36,10 +38,13 @@ export default class DictionariesPage extends React.Component {
     });
   }
   onSave(values) {
+    const { updateDictionary } = this.props;
     console.log('submit', values, this.transformFromForm(values));
+
     this.setState({
       isEdit: false,
     });
+    updateDictionary(values);
   }
   transformToForm(dictionary) {
     return {

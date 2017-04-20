@@ -5,3 +5,10 @@ export const fetchDictionaries = options => dispatch =>
   .then((action) => {
     if (action.error) throw action;
   });
+
+
+export const updateDictionary = values => dispatch =>
+  dispatch(fromDictionaries.updateDictionary(values))
+    .then((action) => {
+      if (action.error) throw action;
+    });
