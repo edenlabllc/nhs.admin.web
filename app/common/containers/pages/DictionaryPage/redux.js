@@ -8,7 +8,7 @@ export const fetchDictionaries = options => dispatch =>
 
 
 export const updateDictionary = values => dispatch =>
-  dispatch(fromDictionaries.updateDictionary(values))
+  dispatch(fromDictionaries.updateDictionary(values.id, values))
     .then((action) => {
       if (action.error) throw action;
     });

@@ -41,7 +41,7 @@ export const fetchDictionaries = options => invoke({
   }, 'dictionaries/FETCH_DICTIONARIES_FAILURE'],
 });
 
-export const updateDictionary = body => invoke({
+export const updateDictionary = (name, body) => invoke({
   endpoint: `${DICTIONARY_HOST}/dictionaries/${body.id}`,
   method: 'PATCH',
   headers: {
