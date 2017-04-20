@@ -11,7 +11,7 @@ export const fetchClinic = id => dispatch =>
     return dispatch(showClinic(action.payload.result));
   });
 
-const clinic = handleAction(showClinic, (state, action) => action.payload, []);
+const clinic = handleAction(showClinic, (state, action) => action.payload, { });
 
 export default combineReducers({
   clinic,
