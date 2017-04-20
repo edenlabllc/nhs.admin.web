@@ -8,7 +8,6 @@ import loading from 'redux/loading';
 
 import labels from 'redux/labels';
 
-import templates from 'redux/templates';
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 
@@ -28,7 +27,6 @@ const pages = combineReducers({
 
 const data = combineReducers({
   labels,
-  templates,
   dictionaries,
   clinics,
 });
