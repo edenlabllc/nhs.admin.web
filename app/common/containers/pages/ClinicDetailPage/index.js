@@ -123,7 +123,7 @@ export default class ClinicDetailPage extends React.Component {
           {licenses.map((item, i) => (
             <li key={i}>
               <u className={styles.upper}>{item.license_number}</u>, KVED {item.kved}
-              <p>{item.what_licensed}</p>
+              <p className={styles.gray}>{item.what_licensed}</p>
               <div>
                 Issued: {item.issued_date}, expiry: {item.expiry_date}
               </div>
