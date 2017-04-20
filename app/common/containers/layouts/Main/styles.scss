@@ -1,50 +1,23 @@
 /* stylelint-disable */
 
 @font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 200;
-  src: url('/fonts/montserratultralight.eot');
-  src: url('/fonts/montserratultralight.eot') format('embedded-opentype'),
-  url('/fonts/montserratultralight.woff2') format('woff2'),
-  url('/fonts/montserratultralight.woff') format('woff'),
-  url('/fonts/montserratultralight.ttf') format('truetype'),
-  url('/fonts/montserratultralight.svg#Montserrat') format('svg');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  src: url('/fonts/montserratlight.eot');
-  src: url('/fonts/montserratlight.eot') format('embedded-opentype'),
-  url('/fonts/montserratlight.woff2') format('woff2'),
-  url('/fonts/montserratlight.woff') format('woff'),
-  url('/fonts/montserratlight.ttf') format('truetype'),
-  url('/fonts/montserratlight.svg#Montserrat') format('svg');
-}
-
-@font-face {
-  font-family: 'Montserrat';
+  font-family: 'Geometria';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/montserratregular.eot');
-  src: url('/fonts/montserratregular.eot') format('embedded-opentype'),
-  url('/fonts/montserratregular.woff2') format('woff2'),
-  url('/fonts/montserratregular.woff') format('woff'),
-  url('/fonts/montserratregular.ttf') format('truetype'),
-  url('/fonts/montserratregular.svg#Montserrat') format('svg');
+  src: url('/fonts/Geometria.eot');
+  src: url('/fonts/Geometria.eot') format('embedded-opentype'),
+  url('/fonts/Geometria.woff2') format('woff2'),
+  url('/fonts/Geometria.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Montserrat';
+  font-family: 'Geometria';
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/montserratbold.eot');
-  src: url('/fonts/montserratbold.eot') format('embedded-opentype'),
-  url('/fonts/montserratbold.woff2') format('woff2'),
-  url('/fonts/montserratbold.woff') format('woff'),
-  url('/fonts/montserratbold.ttf') format('truetype'),
-  url('/fonts/montserratbold.svg#Montserrat') format('svg');
+  src: url('/fonts/Geometria-Bold.eot');
+  src: url('/fonts/Geometria-Bold.eot') format('embedded-opentype'),
+  url('/fonts/Geometria-Bold.woff2') format('woff2'),
+  url('/fonts/Geometria-Bold.woff') format('woff');
 }
 
 html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5,
@@ -72,7 +45,7 @@ body {
 }
 
 textarea, input, body {
-  font: 400 12px/140% 'Montserrat', sans-serif;
+  font: 400 12px/140% 'Geometria', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -105,7 +78,7 @@ button {
 }
 
 button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Geometria', sans-serif;
   -webkit-appearance: none;
   background: none;
   display: inline-block;
