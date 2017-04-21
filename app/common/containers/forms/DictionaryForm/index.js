@@ -3,8 +3,8 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import { reduxFormValidate, collectionOf } from 'react-nebo15-validate';
 
 import Form, { FormRow, FormBlock, FormButtons, FormColumn } from 'components/Form';
-import FieldInput from 'components/reduxForm/FieldInput';
 import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
+import FieldInput from 'components/reduxForm/FieldInput';
 import Button, { ButtonsGroup } from 'components/Button';
 
 
@@ -14,6 +14,7 @@ import Button, { ButtonsGroup } from 'components/Button';
     values: collectionOf({
       key: {
         required: true,
+        // unique: true,
       },
       value: {
         required: true,

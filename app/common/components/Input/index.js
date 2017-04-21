@@ -22,6 +22,7 @@ export const Component = ({
   postfix,
   prefix,
   disabled,
+  readOnly,
   required, // eslint-disable-line
   active,
   value,
@@ -69,7 +70,7 @@ export const Component = ({
           styles['group-input'],
           styles[`theme-${theme}`],
           error && styles.error,
-          active && styles.active,
+          active && !readOnly && styles.active,
           disabled && styles.disabled
         )}
       >
