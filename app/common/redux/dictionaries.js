@@ -42,7 +42,7 @@ export const fetchDictionaries = options => invoke({
 });
 
 export const updateDictionary = (name, body) => invoke({
-  endpoint: `${API_URL}/dictionaries/${body.id}`,
+  endpoint: `${API_URL}/dictionaries/${name}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',

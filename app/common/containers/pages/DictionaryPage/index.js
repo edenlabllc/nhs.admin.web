@@ -40,7 +40,7 @@ export default class DictionariesPage extends React.Component {
   onSave(values) {
     const { updateDictionary } = this.props;
     console.log('submit', values, this.transformFromForm(values));
-    updateDictionary(values).then((resp) => {
+    updateDictionary(values.name, values).then((resp) => {
       this.setState({
         isEdit: false,
       });
