@@ -10,7 +10,7 @@ import { FormButtons } from 'components/Form';
 
 import { getDictionary } from 'reducers';
 
-import { fetchDictionaries, updateDictionary } from './redux';
+import { fetchDictionaries, updateDictionary } from 'redux/dictionaries';
 import styles from './styles.scss';
 
 @withStyles(styles)
@@ -40,11 +40,12 @@ export default class DictionariesPage extends React.Component {
   onSave(values) {
     const { updateDictionary } = this.props;
     console.log('submit', values, this.transformFromForm(values));
-
-    this.setState({
-      isEdit: false,
+    updateDictionary(values).then((resp) => {
+      this.setState({
+        isEdit: false,
+      });
+      console.log(resp);
     });
-    updateDictionary(values);
   }
   transformToForm(dictionary) {
     return {

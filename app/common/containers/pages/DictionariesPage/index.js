@@ -8,7 +8,7 @@ import Button from 'components/Button';
 
 import { getDictionaries } from 'reducers';
 
-import { fetchDictionaries } from './redux';
+import { fetchDictionaries } from 'redux/dictionaries';
 import styles from './styles.scss';
 
 @withStyles(styles)
@@ -34,14 +34,14 @@ export default class DictionariesPage extends React.Component {
                   { key: 'name', title: 'Dictionary Name' },
                   { key: 'edit', title: 'Edit' },
                 ]}
-                data={Object.keys(dictionaries).map(dictionary => ({
+                data={Object.keys(dictionaries).map(dictionaryName => ({
                   name: <div className={styles.name}>
-                    { dictionary }
+                    { dictionaryName }
                   </div>,
                   edit: (<Button
-                    id={`edit-template-button-${dictionary}`}
+                    id={`edit-template-button-${dictionaryName}`}
                     theme="link"
-                    to={`/dictionaries/${dictionary}`}
+                    to={`/dictionaries/${dictionaryName}`}
                   >
                     View&nbsp;Dictionary
                   </Button>),

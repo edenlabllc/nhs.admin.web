@@ -20,9 +20,6 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
         <Route path="/">
           <Route path="dictionaries" component={DictionariesPage} />
           <Route path="dictionaries/:name" component={DictionaryPage} />
-          {
-            // <Route path="dictionaries/:name/update" component={TemplateEditPage} />
-          }
           <Route path="clinics" component={ClinicsListPage} />
           <Route path="clinics/:id" component={ClinicDetailPage} />
           <Route path="*" component={NotFoundPage} />
