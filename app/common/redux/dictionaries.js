@@ -5,28 +5,6 @@ import { dictionary } from 'schemas';
 import { createUrl } from 'helpers/url';
 import { invoke } from './api';
 
-// const DATA = [
-//   {
-//     id: 'GENDER',
-//     values: {
-//       MALE: 'Чоловік',
-//       FEMALE: 'Жінка',
-//     },
-//     labels: ['SYSTEM', 'EXTERNAL'],
-//     is_active: true,
-//   }, {
-//     id: 'DOCUMENT_TYPE',
-//     values: {
-//       PASSPORT: 'Паспорт',
-//       NATIONAL_ID: 'Біометричний паспорт',
-//       BIRTH_CERTIFICATE: 'Свідоцтво про народження',
-//       TEMPORARY_CERTIFICATE: 'Тимчасовий паспорт',
-//     },
-//     labels: ['SYSTEM', 'EXTERNAL'],
-//     is_active: true,
-//   },
-// ];
-
 export const fetchDictionaries = options => invoke({
   endpoint: createUrl(`${API_URL}/dictionaries`, options),
   method: 'GET',
