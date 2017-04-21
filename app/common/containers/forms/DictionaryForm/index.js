@@ -1,20 +1,13 @@
 import React from 'react';
-
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import { reduxForm, Field, FieldArray } from 'redux-form';
-
-import Form, { FormRow, FormBlock, FormButtons, FormColumn } from 'components/Form';
-
-import FieldInput from 'components/reduxForm/FieldInput';
-import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
-
-import Button, { ButtonsGroup } from 'components/Button';
-
 import { reduxFormValidate, collectionOf } from 'react-nebo15-validate';
 
-import styles from './styles.scss';
+import Form, { FormRow, FormBlock, FormButtons, FormColumn } from 'components/Form';
+import FieldInput from 'components/reduxForm/FieldInput';
+import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
+import Button, { ButtonsGroup } from 'components/Button';
 
-@withStyles(styles)
+
 @reduxForm({
   form: 'dictionary-form',
   validate: reduxFormValidate({
