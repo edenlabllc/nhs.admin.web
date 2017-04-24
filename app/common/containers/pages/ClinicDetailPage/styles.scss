@@ -44,32 +44,6 @@
   }
 }
 
-.line-list {
-  display: inline-block;
-
-  li {
-    display: inline-block;
-    padding-right: 5px;
-  }
-}
-
-dl {
-  dt {
-    display: inline-block;
-    min-width: 90px;
-  }
-
-  dd {
-    display: inline;
-
-    &::after {
-      content: '';
-      display: block;
-      margin-bottom: 5px;
-    }
-  }
-}
-
 .upper {
   text-decoration: none;
   text-transform: uppercase;

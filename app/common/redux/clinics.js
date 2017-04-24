@@ -6,7 +6,7 @@ import { clinic } from 'schemas';
 import { invoke } from './api';
 
 export const fetchClinics = options => invoke({
-  endpoint: createUrl(`${API_URL}/legal_entities`, options),
+  endpoint: createUrl(`${API_URL}/api/legal_entities`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchClinics = options => invoke({
 });
 
 export const fetchClinic = id => invoke({
-  endpoint: createUrl(`${API_URL}/legal_entities/${id}`),
+  endpoint: createUrl(`${API_URL}/api/legal_entities/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',

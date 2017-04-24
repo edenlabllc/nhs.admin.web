@@ -7,8 +7,10 @@ import Main from 'containers/layouts/Main';
 import ClinicsListPage from 'containers/pages/ClinicsListPage';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
 
-import NotFoundPage from 'containers/pages/NotFoundPage';
+import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
+import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
 
+import NotFoundPage from 'containers/pages/NotFoundPage';
 
 export const configureRoutes = ({ store }) => { // eslint-disable-line
   return (
@@ -17,6 +19,10 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
         <Route path="/">
           <Route path="clinics" component={ClinicsListPage} />
           <Route path="clinics/:id" component={ClinicDetailPage} />
+
+          <Route path="declarations" component={DeclarationsListPage} />
+          <Route path="declarations/:id" component={DeclarationDetailPage} />
+
           <Route path="*" component={NotFoundPage} />
         </Route>
       </Route>

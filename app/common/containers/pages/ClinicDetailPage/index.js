@@ -5,6 +5,10 @@ import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import { H1, H3 } from 'components/Title';
 import Line from 'components/Line';
+import DataList from 'components/DataList';
+import InlineList from 'components/InlineList';
+
+import AddressesList from 'containers/blocks/AddressesList';
 
 import { getClinic } from 'reducers';
 
@@ -37,28 +41,13 @@ export default class ClinicDetailPage extends React.Component {
         <Line />
         <H3>Addresses:</H3>
 
-        <ul className={styles.list}>
-          {clinic.addresses.map((item, i) => (
-            <li key={i}>
-              {item.settlement}, {item.street} {item.building},
-              ap. {item.apartment} ({item.zip})
-
-              <span>
-                Area: {item.area}, region: {item.region}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <AddressesList list={clinic.addresses} />
 
         <Line />
 
         <H3>KVEDs:</H3>
 
-        <ul className={styles['line-list']}>
-          {clinic.kved.map((name, i) => (
-            <li key={i}>{name}{i !== (clinic.kved.length - 1) && ','}</li>
-          ))}
-        </ul>
+        <InlineList list={clinic.kved} />
 
         <Line />
 
@@ -66,52 +55,61 @@ export default class ClinicDetailPage extends React.Component {
           <div>
             <H3>Accreditation</H3>
 
-            <dl>
-              <dt>Order No.</dt>
-              <dd>
-                <u className={styles.upper}>{accreditation.order_no}</u>
-              </dd>
-
-              <dt>Category</dt>
-              <dd>{accreditation.category}</dd>
-
-              <dt>Expiry date</dt>
-              <dd>{accreditation.expiry_date}</dd>
-
-              <dt>Issued date</dt>
-              <dd>{accreditation.issued_date}</dd>
-
-              <dt>Order date</dt>
-              <dd>{accreditation.order_date}</dd>
-            </dl>
+            <DataList
+              list={[
+                {
+                  name: 'Order No.',
+                  value: (
+                    <u className={styles.upper}>{accreditation.order_no}</u>
+                  ),
+                }, {
+                  name: 'Category',
+                  value: accreditation.category,
+                }, {
+                  name: 'Expiry date',
+                  value: accreditation.expiry_date,
+                }, {
+                  name: 'Issued date',
+                  value: accreditation.issued_date,
+                }, {
+                  name: 'Order date',
+                  value: accreditation.order_date,
+                },
+              ]}
+            />
           </div>
           <div>
             <H3>Contacts</H3>
 
-            <dl>
-              <dt>Phones</dt>
-              <dd>
-                <ul className={styles['line-list']}>
-                  {clinic.phones.map((phone, i) => (
-                    <li key={i}>{phone.number}{i !== (clinic.phones.length - 1) && ','}</li>
-                  ))}
-                </ul>
-              </dd>
-              <dt>Emails</dt>
-              <dd>none</dd>
-            </dl>
+            <DataList
+              list={[
+                {
+                  name: 'Email',
+                  value: 'none',
+                }, {
+                  name: 'Phones',
+                  value: <InlineList list={clinic.phones.map(item => item.number)} />,
+                },
+              ]}
+            />
           </div>
           <div>
             <H3>Other</H3>
 
-            <dl>
-              <dt>Active</dt>
-              <dd>{clinic.active ? 'Yes' : 'No'}</dd>
-              <dt>Type</dt>
-              <dd>{clinic.type}</dd>
-              <dt>Status</dt>
-              <dd>{clinic.status}</dd>
-            </dl>
+            <DataList
+              list={[
+                {
+                  name: 'Active',
+                  value: clinic.active ? 'Yes' : 'No',
+                }, {
+                  name: 'Type',
+                  value: clinic.type,
+                }, {
+                  name: 'Status',
+                  value: clinic.status,
+                },
+              ]}
+            />
           </div>
         </div>
 
@@ -140,22 +138,32 @@ export default class ClinicDetailPage extends React.Component {
           <div>
             <H3>Inserted</H3>
 
-            <dl>
-              <dt>User</dt>
-              <dd>{clinic.inserted_by}</dd>
-              <dt>Date</dt>
-              <dd>{format(clinic.inserted_at, 'DD.MM.YYYY hh:mm')}</dd>
-            </dl>
+            <DataList
+              list={[
+                {
+                  name: 'User',
+                  value: clinic.inserted_by,
+                }, {
+                  name: 'Date',
+                  value: format(clinic.inserted_at, 'DD.MM.YYYY hh:mm'),
+                },
+              ]}
+            />
           </div>
           <div>
             <H3>Updated</H3>
 
-            <dl>
-              <dt>User</dt>
-              <dd>{clinic.updated_by}</dd>
-              <dt>Date</dt>
-              <dd>{format(clinic.updated_at, 'DD.MM.YYYY hh:mm')}</dd>
-            </dl>
+            <DataList
+              list={[
+                {
+                  name: 'User',
+                  value: clinic.updated_by,
+                }, {
+                  name: 'Date',
+                  value: format(clinic.updated_at, 'DD.MM.YYYY hh:mm'),
+                },
+              ]}
+            />
           </div>
         </div>
       </div>

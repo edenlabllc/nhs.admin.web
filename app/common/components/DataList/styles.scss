@@ -1,0 +1,17 @@
+.list {
+  dt {
+    display: inline-block;
+    min-width: 90px;
+  }
+
+  dd {
+    display: inline;
+    padding-left: 10px;
+
+    &::after {
+      content: '';
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}
