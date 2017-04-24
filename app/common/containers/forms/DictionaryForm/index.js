@@ -7,18 +7,18 @@ import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button, { ButtonsGroup } from 'components/Button';
 
-
 @reduxForm({
   form: 'dictionary-form',
   validate: reduxFormValidate({
     values: collectionOf({
       key: {
         required: true,
-        // unique: true,
       },
       value: {
         required: true,
       },
+    }, {
+      uniqueKey: 'key',
     }),
   }),
 })
