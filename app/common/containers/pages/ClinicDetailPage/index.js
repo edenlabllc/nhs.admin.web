@@ -3,6 +3,9 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+
+import { YesNo } from 'helpers/text';
+
 import { H1, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
@@ -100,7 +103,7 @@ export default class ClinicDetailPage extends React.Component {
               list={[
                 {
                   name: 'Active',
-                  value: clinic.active ? 'Yes' : 'No',
+                  value: YesNo(clinic.active),
                 }, {
                   name: 'Type',
                   value: clinic.type,

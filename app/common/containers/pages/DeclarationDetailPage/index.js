@@ -3,6 +3,9 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+
+import { YesNo } from 'helpers/text';
+
 import { H1, H2, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
@@ -37,7 +40,7 @@ export default class DeclarationDetailPage extends React.Component {
           Dates: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
 
           <p>
-            Active: <b>{declaration.active ? 'Yes' : 'No'}</b>,
+            Active: <b>{YesNo(declaration.active)}</b>,
             scope: <b>{declaration.scope}</b>
           </p>
         </div>
@@ -202,16 +205,16 @@ export default class DeclarationDetailPage extends React.Component {
           list={[
             {
               name: 'Process data consent',
-              value: declaration.person.process_data_consent ? 'Yes' : 'No',
+              value: YesNo(declaration.person.process_data_consent),
             }, {
               name: 'Renewal consent',
-              value: declaration.person.renewal_consent ? 'Yes' : 'No',
+              value: YesNo(declaration.person.renewal_consent),
             }, {
               name: 'Patient signed',
-              value: declaration.person.patient_signed ? 'Yes' : 'No',
+              value: YesNo(declaration.person.patient_signed),
             }, {
               name: 'Disclosure consent',
-              value: declaration.person.disclosure_consent ? 'Yes' : 'No',
+              value: YesNo(declaration.person.disclosure_consent),
             },
           ]}
         />
