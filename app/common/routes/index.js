@@ -10,7 +10,6 @@ import ClinicsListPage from 'containers/pages/ClinicsListPage';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
 
 
-import NotFoundPage from 'containers/pages/NotFoundPage';
 import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
 import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
 

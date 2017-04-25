@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field, FieldArray } from 'redux-form';
-import { reduxFormValidate, collectionOf } from 'react-nebo15-validate';
+import { collectionOf, reduxFormValidate } from 'react-nebo15-validate';
 
 import Form, { FormRow, FormBlock, FormButtons, FormColumn } from 'components/Form';
 import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
@@ -18,6 +18,8 @@ import Button, { ButtonsGroup } from 'components/Button';
         required: true,
       },
     }, {
+      required: true,
+      minLength: 1,
       uniqueKey: 'key',
     }),
   }),
@@ -51,8 +53,11 @@ export default class DictionaryForm extends React.Component {
   }
 }
 
-const renderFields = ({ fields, readOnly }) => (
+const renderFields = ({ fields, readOnly, meta }) => (
   <FormBlock title="Values">
+    {
+      console.log(meta)
+    }
     {fields.map((item, index) =>
       <FormRow key={index}>
         <FormColumn>
@@ -71,6 +76,9 @@ const renderFields = ({ fields, readOnly }) => (
             readOnly={readOnly}
           />
         </FormColumn>
+        {
+          // <ErrorMessage when="uniqueKey">Not unique</ErrorMessage>
+        }
         {
           !readOnly && (
             <FormColumn>
