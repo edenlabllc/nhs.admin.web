@@ -11,7 +11,13 @@ import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
 
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
+import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
+import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
 
+import EmployeesListPage from 'containers/pages/EmployeesListPage';
+import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage';
+
+import NotFoundPage from 'containers/pages/NotFoundPage';
 
 export const configureRoutes = ({ store }) => { // eslint-disable-line
   return (
@@ -22,6 +28,13 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="dictionaries/:name" component={DictionaryPage} />
           <Route path="clinics" component={ClinicsListPage} />
           <Route path="clinics/:id" component={ClinicDetailPage} />
+
+          <Route path="declarations" component={DeclarationsListPage} />
+          <Route path="declarations/:id" component={DeclarationDetailPage} />
+
+          <Route path="employees" component={EmployeesListPage} />
+          <Route path="employees/:id" component={EmployeeDetailPage} />
+
           <Route path="*" component={NotFoundPage} />
         </Route>
       </Route>

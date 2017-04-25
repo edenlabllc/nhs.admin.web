@@ -1,0 +1,22 @@
+.sub {
+  color: #929499;
+  margin-top: -10px;
+}
+
+.boxes {
+  display: flex;
+  flex-flow: row nowrap;
+
+  & > div {
+    margin-right: 100px;
+
+    &:last-child {
+      margin-right: 0;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.gray {
+  color: #929499;
+}

@@ -27,11 +27,14 @@ export default class Nav extends React.Component {
     return (
       <nav className={classnames(styles.nav, isOpen && styles.open)}>
         <ul>
-          <NavItem to="templates" activeClassName={styles.active}>
+          <NavItem to="clinics" activeClassName={styles.active}>
             <Link id="clinics-nav" to="/clinics">Clinics</Link>
           </NavItem>
-          <NavItem to="dictionaries">
-            <Link id="dictionaries-nav" to="/dictionaries">Dictionaries</Link>
+          <NavItem to="declarations" activeClassName={styles.active}>
+            <Link id="declarations-nav" to="/declarations">Declarations</Link>
+          </NavItem>
+          <NavItem to="employees" activeClassName={styles.active}>
+            <Link id="employees-nav" to="/employees">Employees</Link>
           </NavItem>
         </ul>
         <ul className={styles.down}>

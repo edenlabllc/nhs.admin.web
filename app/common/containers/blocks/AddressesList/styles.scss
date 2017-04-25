@@ -1,0 +1,14 @@
+.list {
+  font-size: 13px;
+
+  li > span {
+    display: block;
+    color: #929499;
+    font-size: 12px;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 20px 10px 0;
+  }
+}

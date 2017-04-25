@@ -10,11 +10,18 @@ import labels from 'redux/labels';
 
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
+import declarations from 'redux/declarations';
+import employees from 'redux/employees';
 
 import Aside from 'containers/blocks/Aside/redux';
 
 import ClinicsListPage from 'containers/pages/ClinicsListPage/redux';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage/redux';
+
+import DeclarationsListPage from 'containers/pages/DeclarationsListPage/redux';
+import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage/redux';
+
+import EmployeesListPage from 'containers/pages/EmployeesListPage/redux';
 
 const blocks = combineReducers({
   Aside,
@@ -23,12 +30,17 @@ const blocks = combineReducers({
 const pages = combineReducers({
   ClinicsListPage,
   ClinicDetailPage,
+  DeclarationsListPage,
+  DeclarationDetailPage,
+  EmployeesListPage,
 });
 
 const data = combineReducers({
   labels,
   dictionaries,
   clinics,
+  declarations,
+  employees,
 });
 
 export default combineReducers({
@@ -53,3 +65,9 @@ export const getDictionaries = state => state.data.dictionaries;
 
 export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
 export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);
+
+export const getDeclarations = (state, ids) => denormalize(ids, [schemas.declaration], state.data);
+export const getDeclaration = (state, id) => denormalize(id, schemas.declaration, state.data);
+
+export const getEmployees = (state, ids) => denormalize(ids, [schemas.employee], state.data);
+export const getEmployee = (state, id) => denormalize(id, schemas.employee, state.data);
