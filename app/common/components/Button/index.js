@@ -19,7 +19,7 @@ const Button = (props) => {
     block = false,
     inheritColor = false,
     type = 'button',
-    to, children, onClick, id, icon, name,
+    to, children, onClick, id, icon, name, ...rest,
   } = props;
 
   const className = classnames(
@@ -42,21 +42,21 @@ const Button = (props) => {
 
   if (to === undefined) {
     return (
-      <button name={name} id={id} onClick={onClick} type={type} className={className}>
+      <button name={name} id={id} onClick={onClick} type={type} className={className} {...rest}>
         {content}
       </button>
     );
   }
   if (URL_TEST_REG_EXP.test(to)) {
     return (
-      <a id={id} href={to} onClick={onClick} className={className}>
+      <a id={id} href={to} onClick={onClick} className={className} {...rest}>
         {content}
       </a>
     );
   }
 
   return (
-    <Link id={id} to={to} onClick={onClick} className={className}>{content}</Link>
+    <Link id={id} to={to} onClick={onClick} className={className} {...rest}>{content}</Link>
   );
 };
 

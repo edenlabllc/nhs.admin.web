@@ -26,6 +26,7 @@ export default class ClinicsListPage extends React.Component {
     return (
       <div id="clinics-list-page">
         <H1>Clinics</H1>
+        <p>Select dictionary to edit</p>
         <div id="clinics-table" className={styles.table}>
           <Table
             columns={[

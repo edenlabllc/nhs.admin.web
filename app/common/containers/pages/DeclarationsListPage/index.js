@@ -27,6 +27,7 @@ export default class DeclarationsListPage extends React.Component {
     return (
       <div id="declarations-list-page">
         <H1>Declarations</H1>
+        <p>Select declaration to edit</p>
         <div id="declarations-table" className={styles.table}>
           <Table
             columns={[
