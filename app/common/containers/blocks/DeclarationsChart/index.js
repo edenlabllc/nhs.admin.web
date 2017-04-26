@@ -38,8 +38,8 @@ export default class Chart extends React.Component {
           <Tooltip formatter={value => Math.abs(value)} />
           <CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
           <ReferenceLine y={0} stroke="#000" />
-          <Bar name="Closed" dataKey="closed" stackId="a" barSize={20} fill="#fc0f1b" />
-          <Bar name="Open" dataKey="open" stackId="a" barSize={20} fill="#17af55" />
+          <Bar name="Closed" dataKey="closed" stackId="a" barSize={20} fill="#fc0f1b" isAnimationActive={false} />
+          <Bar name="Open" dataKey="open" stackId="a" barSize={20} fill="#17af55" isAnimationActive={false} />
           <Line name="Total" type="monotone" dataKey="all" stroke="#72ab4e" strokeWidth={3} label={<CustomizedLabel />} />
           <Legend />
         </ComposedChart>

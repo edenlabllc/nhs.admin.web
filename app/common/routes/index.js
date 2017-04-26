@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRedirect } from 'react-router';
 
 import App from 'containers/layouts/App';
 import Main from 'containers/layouts/Main';
@@ -22,7 +22,9 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     <Route component={App}>
       <Route component={Main}>
         <Route path="/">
-          <IndexRoute component={DashboardPage} />
+          <IndexRedirect to="/dashboard" />
+
+          <Route path="dashboard" component={DashboardPage} />
 
           <Route path="clinics" component={ClinicsListPage} />
           <Route path="clinics/:id" component={ClinicDetailPage} />
