@@ -6,7 +6,7 @@ import Icon from 'components/Icon';
 import styles from './styles.scss';
 
 const FormComponent = props =>
-  <form className={classnames(styles.form)} {...props} />;
+  <form className={classnames(styles.form)} noValidate {...props} />;
 
 export default withStyles(styles)(FormComponent);
 
