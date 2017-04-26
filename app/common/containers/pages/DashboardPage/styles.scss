@@ -1,0 +1,38 @@
+.global {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  & > div {
+    flex: 5 0 0;
+    padding: 20px;
+    color: #fff;
+    font-size: 14px;
+
+    .count {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    &:nth-child(1) {
+      background-color: #45d0e8;
+    }
+
+    &:nth-child(2) {
+      background-color: #f8cb00;
+    }
+
+    &:nth-child(3) {
+      background-color: #65ce56;
+    }
+
+    &:nth-child(4) {
+      background-color: #f8752e;
+    }
+
+    &:nth-child(5) {
+      background-color: #34baa0;
+    }
+  }
+}

@@ -12,8 +12,11 @@ import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
+import { globalStat, detailStat, declarationsStat } from 'redux/reports';
 
 import Aside from 'containers/blocks/Aside/redux';
+
+import DashboardPage from 'containers/pages/DashboardPage/redux';
 
 import ClinicsListPage from 'containers/pages/ClinicsListPage/redux';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage/redux';
@@ -28,6 +31,7 @@ const blocks = combineReducers({
 });
 
 const pages = combineReducers({
+  DashboardPage,
   ClinicsListPage,
   ClinicDetailPage,
   DeclarationsListPage,
@@ -41,6 +45,9 @@ const data = combineReducers({
   clinics,
   declarations,
   employees,
+  globalStat,
+  detailStat,
+  declarationsStat,
 });
 
 export default combineReducers({
@@ -71,3 +78,10 @@ export const getDeclaration = (state, id) => denormalize(id, schemas.declaration
 
 export const getEmployees = (state, ids) => denormalize(ids, [schemas.employee], state.data);
 export const getEmployee = (state, id) => denormalize(id, schemas.employee, state.data);
+
+export const getGlobalSatistic = state => state.data.globalStat;
+export const getDetailStatistic = (state, ids) => (
+  denormalize(ids, [schemas.detailStat], state.data)
+);
+
+export const getDeclarationsStatByArea = (state, id) => state.data.declarationsStat[id];

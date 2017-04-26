@@ -1,14 +1,17 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 
 import App from 'containers/layouts/App';
 import Main from 'containers/layouts/Main';
 
+import DashboardPage from 'containers/pages/DashboardPage';
+
 import DictionariesPage from 'containers/pages/DictionariesPage';
 import DictionaryPage from 'containers/pages/DictionaryPage';
+
 import ClinicsListPage from 'containers/pages/ClinicsListPage';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
-
 
 import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
 import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
@@ -23,6 +26,10 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     <Route component={App}>
       <Route component={Main}>
         <Route path="/">
+          <IndexRedirect to="/dashboard" />
+
+          <Route path="dashboard" component={DashboardPage} />
+
           <Route path="dictionaries">
             <IndexRoute component={DictionariesPage} />
             <Route path=":name" component={DictionaryPage} />
