@@ -43,6 +43,7 @@ class FoldingRow extends React.Component {
   };
   onOpen() {
     this.setState({ isOpened: true });
+    this.props.onOpen(this.props.data);
   }
   onClose() {
     this.setState({ isOpened: false });
@@ -67,6 +68,7 @@ const FoldingTable = ({
   detailsColumn = {},
   component,
   keyColumn,
+  onOpen = () => {},
   ...rest,
 }) => (
   <Table
@@ -82,6 +84,7 @@ const FoldingTable = ({
         key={item[keyColumn] || key}
         data={item}
         component={component}
+        onOpen={onOpen}
       />
     ))}
   </Table>
