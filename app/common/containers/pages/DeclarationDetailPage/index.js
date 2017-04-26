@@ -2,24 +2,23 @@ import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import { YesNo } from 'helpers/text';
 
-import { H1, H2, H3 } from 'components/Title';
+import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Button from 'components/Button';
 
 import AddressesList from 'containers/blocks/AddressesList';
+import HeaderWithSub from 'containers/blocks/HeaderWithSub';
+import Boxes from 'containers/blocks/Boxes';
 
 import { getDeclaration } from 'reducers';
 
 import { fetchDeclaration } from './redux';
-import styles from './styles.scss';
 
-@withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchDeclaration(id)),
 })
@@ -32,20 +31,14 @@ export default class DeclarationDetailPage extends React.Component {
 
     return (
       <div id="declaration-detail-page">
-        <H1>
-          Declaration #{declaration.id}
-        </H1>
-
-        <div className={styles.sub}>
+        <HeaderWithSub title={`Declaration #${declaration.id}`}>
           Dates: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
 
           <p>
             Active: <b>{YesNo(declaration.active)}</b>,
             scope: <b>{declaration.scope}</b>
           </p>
-        </div>
-
-        <Line />
+        </HeaderWithSub>
 
         <H2>Division</H2>
 
@@ -55,7 +48,7 @@ export default class DeclarationDetailPage extends React.Component {
 
         <br />
 
-        <div className={styles.boxes}>
+        <Boxes>
           <div>
             <H3>Contacts:</H3>
 
@@ -94,7 +87,7 @@ export default class DeclarationDetailPage extends React.Component {
               ]}
             />
           </div>
-        </div>
+        </Boxes>
 
         <Line />
 
@@ -157,7 +150,7 @@ export default class DeclarationDetailPage extends React.Component {
 
         <br />
 
-        <div className={styles.boxes}>
+        <Boxes>
           <div>
             <H3>Contacts:</H3>
 
@@ -195,7 +188,7 @@ export default class DeclarationDetailPage extends React.Component {
               }))}
             />
           </div>
-        </div>
+        </Boxes>
 
         <br />
 

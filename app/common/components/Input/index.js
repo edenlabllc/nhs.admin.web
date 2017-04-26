@@ -22,6 +22,7 @@ export const Component = ({
   postfix,
   prefix,
   disabled,
+  readOnly,
   required, // eslint-disable-line
   active,
   value,
@@ -52,6 +53,7 @@ export const Component = ({
     type,
     disabled,
     placeholder,
+    readOnly,
     value,
     name,
     onChange,
@@ -61,15 +63,15 @@ export const Component = ({
 
   return (<span>
     <label className={styles['label-wrapper']}>
-      <div className={styles['label-text']}>
+      { labelText && <div className={styles['label-text']}>
         { labelText }
-      </div>
+      </div>}
       <span
         className={classnames(
           styles['group-input'],
           styles[`theme-${theme}`],
           error && styles.error,
-          active && styles.active,
+          active && !readOnly && styles.active,
           disabled && styles.disabled
         )}
       >

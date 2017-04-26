@@ -6,12 +6,17 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import { YesNo } from 'helpers/text';
 
-import { H1, H3 } from 'components/Title';
+import { H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
+import Upper from 'components/Upper';
 
 import AddressesList from 'containers/blocks/AddressesList';
+import HeaderWithSub from 'containers/blocks/HeaderWithSub';
+import Boxes from 'containers/blocks/Boxes';
+import BlocksList from 'containers/blocks/BlocksList';
+import ColoredText from 'components/ColoredText';
 
 import { getClinic } from 'reducers';
 
@@ -32,16 +37,17 @@ export default class ClinicDetailPage extends React.Component {
 
     return (
       <div id="clinic-detail-page">
-        <H1>
-          { clinic.name } ({ clinic.short_name })
-          <span className={styles.edrpou}>edrpou: {clinic.edrpou}</span>
-        </H1>
-
-        <div className={styles.sub}>
+        <HeaderWithSub
+          title={(
+            <div>
+              { clinic.name } ({ clinic.short_name })
+              <span className={styles.edrpou}>edrpou: {clinic.edrpou}</span>
+            </div>
+          )}
+        >
           {clinic.legal_form}
-        </div>
+        </HeaderWithSub>
 
-        <Line />
         <H3>Addresses:</H3>
 
         <AddressesList list={clinic.addresses} />
@@ -54,7 +60,7 @@ export default class ClinicDetailPage extends React.Component {
 
         <Line />
 
-        <div className={styles.boxes}>
+        <Boxes>
           <div>
             <H3>Accreditation</H3>
 
@@ -63,7 +69,7 @@ export default class ClinicDetailPage extends React.Component {
                 {
                   name: 'Order No.',
                   value: (
-                    <u className={styles.upper}>{accreditation.order_no}</u>
+                    <Upper>{accreditation.order_no}</Upper>
                   ),
                 }, {
                   name: 'Category',
@@ -114,30 +120,34 @@ export default class ClinicDetailPage extends React.Component {
               ]}
             />
           </div>
-        </div>
+        </Boxes>
 
         <Line />
 
         <H3>Licenses</H3>
 
-        <ul className={styles.list}>
+        <BlocksList>
           {licenses.map((item, i) => (
             <li key={i}>
-              <u className={styles.upper}>{item.license_number}</u>, KVED {item.kved}
-              <p className={styles.gray}>{item.what_licensed}</p>
+              <Upper>{item.license_number}</Upper>, KVED {item.kved}
+              <p>
+                <ColoredText color="gray">
+                  {item.what_licensed}
+                </ColoredText>
+              </p>
               <div>
                 Issued: {item.issued_date}, expiry: {item.expiry_date}
               </div>
-              <span>
+              <ColoredText color="gray">
                 {item.issued_by}
-              </span>
+              </ColoredText>
             </li>
           ))}
-        </ul>
+        </BlocksList>
 
         <Line />
 
-        <div className={styles.boxes}>
+        <Boxes>
           <div>
             <H3>Inserted</H3>
 
@@ -168,7 +178,7 @@ export default class ClinicDetailPage extends React.Component {
               ]}
             />
           </div>
-        </div>
+        </Boxes>
       </div>
     );
   }

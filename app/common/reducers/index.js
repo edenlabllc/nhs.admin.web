@@ -7,6 +7,8 @@ import * as schemas from 'schemas';
 import loading from 'redux/loading';
 
 import labels from 'redux/labels';
+
+import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
@@ -39,6 +41,7 @@ const pages = combineReducers({
 
 const data = combineReducers({
   labels,
+  dictionaries,
   clinics,
   declarations,
   employees,
@@ -59,6 +62,13 @@ export default combineReducers({
 
 export const getLocation = state => state.routing.locationBeforeTransitions;
 export const getForm = (state, formName) => state.form[formName];
+
+export const getTemplate = (state, id) => denormalize(id, schemas.template, state.data);
+export const getTemplates = (state, ids) => denormalize(ids, [schemas.template], state.data);
+
+export const getDictionary = (state, name) => denormalize(name, schemas.dictionary, state.data);
+export const getDictionaries = state => state.data.dictionaries;
+
 
 export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
 export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);

@@ -2,22 +2,25 @@ import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import { YesNo } from 'helpers/text';
 
-import { H1, H2, H3 } from 'components/Title';
+import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Button from 'components/Button';
+import Upper from 'components/Upper';
+import ColoredText from 'components/ColoredText';
+
+import HeaderWithSub from 'containers/blocks/HeaderWithSub';
+import Boxes from 'containers/blocks/Boxes';
+import BlocksList from 'containers/blocks/BlocksList';
 
 import { getEmployee } from 'reducers';
 
 import { fetchEmployee } from './redux';
-import styles from './styles.scss';
 
-@withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
 })
@@ -30,11 +33,7 @@ export default class EmployeeDetailPage extends React.Component {
 
     return (
       <div id="employee-detail-page">
-        <H1>
-          {employee.party.last_name} {employee.party.first_name} {employee.party.second_name}
-        </H1>
-
-        <div className={styles.sub}>
+        <HeaderWithSub title={`${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`}>
           Dates: <b>{format(employee.start_date, 'DD.MM.YYYY hh:mm')} - {format(employee.end_date, 'DD.MM.YYYY hh:mm')}</b>
           <p>
             Position: <b>{employee.position}</b>,
@@ -43,11 +42,9 @@ export default class EmployeeDetailPage extends React.Component {
           <p>
             Birth date: <b>{format(employee.party.birth_date, 'DD.MM.YYYY')}</b>
           </p>
-        </div>
+        </HeaderWithSub>
 
-        <Line />
-
-        <div className={styles.boxes}>
+        <Boxes>
           <div>
             <H3>Contacts:</H3>
 
@@ -70,7 +67,7 @@ export default class EmployeeDetailPage extends React.Component {
               list={[
                 {
                   name: 'ID',
-                  value: <span className={styles.upper}>{employee.division.id}</span>,
+                  value: <Upper>{employee.division.id}</Upper>,
                 }, {
                   name: 'Type',
                   value: employee.division.type,
@@ -99,71 +96,79 @@ export default class EmployeeDetailPage extends React.Component {
               {employee.legal_entity.name}
             </Button>
           </div>
-        </div>
+        </Boxes>
 
         <Line />
 
         <H2>Educations</H2>
 
-        <ul className={styles.list}>
+        <BlocksList>
           {employee.doctor.educations.map((item, index) => (
             <li key={index}>
               <div>
                 {item.issued_date}, {item.institution_name}
               </div>
-              <div className={styles.gray}>
-                {item.country}, {item.city}
+              <div>
+                <ColoredText color="gray">{item.country}, {item.city}</ColoredText>
               </div>
               {item.speciality}
-              <div className={styles.gray}>
-                {item.degree}, diploma: {item.diploma_number}
+              <div>
+                <ColoredText color="gray">
+                  {item.degree}, diploma: {item.diploma_number}
+                </ColoredText>
               </div>
             </li>
           ))}
-        </ul>
+        </BlocksList>
 
         <Line />
 
         <H2>Qualifications</H2>
 
-        <ul className={styles.list}>
+        <BlocksList>
           {employee.doctor.qualifications.map((item, index) => (
             <li key={index}>
               <div>
                 {item.issued_date}, {item.institution_name}
               </div>
               {item.speciality}
-              <div className={styles.gray}>
-                {item.type}, certificate: {item.certificate_number}
+              <div>
+                <ColoredText color="gray">
+                  {item.type}, certificate: {item.certificate_number}
+                </ColoredText>
               </div>
             </li>
           ))}
-        </ul>
+        </BlocksList>
 
         <Line />
 
         <H2>Specialities</H2>
 
-        <ul className={styles.list}>
+        <BlocksList>
           {employee.doctor.specialities.map((item, index) => (
             <li key={index}>
               <div>
                 {item.speciality}
               </div>
-              <div className={styles.gray}>
-                {item.attestation_name}
+              <div>
+                <ColoredText color="gray">
+                  {item.attestation_name}
+                </ColoredText>
               </div>
               {item.qualification_type}, {item.level}
-              <div className={styles.gray}>
-                {item.attestation_date} - {item.valid_to_date},
-                certificate: {item.certificate_number}
-                <br />
+              <div>
+                <ColoredText color="gray">
+                  {item.attestation_date} - {item.valid_to_date},
+                  certificate: {item.certificate_number}
+                  <br />
 
-                Speciality officio: {YesNo(item.speciality_officio)}
+                  Speciality officio: {YesNo(item.speciality_officio)}
+                </ColoredText>
               </div>
             </li>
           ))}
-        </ul>
+        </BlocksList>
 
         <Line />
 
