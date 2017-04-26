@@ -65,5 +65,6 @@ server.listen(server.get('port'), (err) => {
     return;
   }
 
+  /* eslint-disable no-console */
   console.log(`Listening at http://localhost: ${server.get('port')}`);
 });

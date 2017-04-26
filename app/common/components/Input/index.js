@@ -53,6 +53,7 @@ export const Component = ({
     type,
     disabled,
     placeholder,
+    readOnly,
     value,
     name,
     onChange,

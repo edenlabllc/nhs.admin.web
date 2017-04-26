@@ -27,6 +27,7 @@ export default class EmployeesListPage extends React.Component {
     return (
       <div id="employees-list-page">
         <H1>Employees</H1>
+        <p>Select dictionary to edit</p>
         <div id="employees-table" className={styles.table}>
           <Table
             columns={[

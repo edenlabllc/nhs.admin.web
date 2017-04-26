@@ -44,8 +44,15 @@ const sizeToClassName = (size) => {
   return styles[`column_${part}-${count}`];
 };
 
-const FormColumnComponent = ({ size, ...rest }) =>
-  <div className={classnames(styles.column, size && sizeToClassName(size))} {...rest} />;
+const FormColumnComponent = ({ size, align = 'top', ...rest }) =>
+  <div
+    className={classnames(
+      styles.column,
+      size && sizeToClassName(size),
+      align & styles[`column_align-${align}`],
+    )}
+    {...rest}
+  />;
 
 export const FormColumn = withStyles(styles)(FormColumnComponent);
 
@@ -67,3 +74,8 @@ const FormIconComponent = ({ icon = 'add', color = 'green', children, ...rest })
   </a>;
 
 export const FormIcon = withStyles(styles)(FormIconComponent);
+
+
+const FormErrorComponent = props => <div {...props} className={styles.error} />;
+
+export const FormError = withStyles(styles)(FormErrorComponent);

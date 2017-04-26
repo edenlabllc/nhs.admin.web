@@ -2,11 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import Button, { ButtonsGroup } from 'components/Button';
 import FormPageWrapper from 'containers/blocks/FormPageWrapper';
 
 import DictionaryForm from 'containers/forms/DictionaryForm';
-import { FormButtons } from 'components/Form';
 
 import { getDictionary } from 'reducers';
 
@@ -26,26 +24,10 @@ export default class DictionariesPage extends React.Component {
   constructor(props) {
     super(props);
     this.onSave = this.onSave.bind(this);
-    this.onEdit = this.onEdit.bind(this);
-  }
-  state = {
-    isEdit: false,
-  };
-
-  onEdit() {
-    this.setState({
-      isEdit: true,
-    });
   }
   onSave(values) {
     const { updateDictionary } = this.props;
-    console.log('submit', values, this.transformFromForm(values));
-    updateDictionary(values.name, values).then((resp) => {
-      this.setState({
-        isEdit: false,
-      });
-      console.log(resp);
-    });
+    return updateDictionary(values.name, values);
   }
   transformToForm(dictionary) {
     return {
@@ -70,20 +52,11 @@ export default class DictionariesPage extends React.Component {
     const { dictionary, params } = this.props;
     return (
       <FormPageWrapper id="dictionary-edit-page" title={`Edit ${params.name} dictionary`} back="/dictionaries">
-        <div id="templates-table" className={styles.table}>
-          <DictionaryForm
-            initialValues={this.transformToForm(dictionary)}
-            onSubmit={this.onSave}
-            readOnly={!this.state.isEdit}
-          />
-        </div>
-        <FormButtons>
-          <ButtonsGroup>
-            { !this.state.isEdit && <Button id="edit-dictionary-button" onClick={this.onEdit}>Edit</Button> }
-          </ButtonsGroup>
-        </FormButtons>
+        <DictionaryForm
+          initialValues={this.transformToForm(dictionary)}
+          onSubmit={this.onSave}
+        />
       </FormPageWrapper>
     );
   }
 }
-

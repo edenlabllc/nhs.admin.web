@@ -36,7 +36,7 @@ export default class Nav extends React.Component {
           <NavItem to="employees" activeClassName={styles.active}>
             <Link id="employees-nav" to="/employees">Employees</Link>
           </NavItem>
-          <NavItem to="dictionaries">
+          <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">Dictionaries</Link>
           </NavItem>
         </ul>

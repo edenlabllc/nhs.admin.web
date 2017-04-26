@@ -28,7 +28,7 @@ export const updateDictionary = (name, body) => invoke({
   types: ['dictionaries/UPDATE_DICTIONARY_REQUEST', {
     type: 'dictionaries/UPDATE_DICTIONARY_SUCCESS',
     payload: (action, state, res) => res.json().then(
-      resp => normalize(resp, dictionary)
+      resp => normalize(resp.data, [dictionary])
     ),
   }, 'dictionaries/UPDATE_DICTIONARY_FAILURE'],
   body,

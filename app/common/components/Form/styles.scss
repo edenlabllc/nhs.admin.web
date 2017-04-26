@@ -43,7 +43,6 @@
 
 .column {
   display: table-cell;
-  vertical-align: top;
   width: 2%;
 
   & + & {
@@ -88,6 +87,20 @@
 
   &_4-5 {
     width: 80%;
+  }
+}
+
+.column_align {
+  &--bottom {
+    vertical-align: bottom;
+  }
+
+  &--top {
+    vertical-align: top;
+  }
+
+  &--middle {
+    vertical-align: top;
   }
 }
 
@@ -137,4 +150,10 @@
     margin-top: 10px;
     margin-bottom: 38px;
   }
+}
+
+.error {
+  margin-top: 20px;
+  border: 1px solid #ff1f44;
+  padding: 10px;
 }

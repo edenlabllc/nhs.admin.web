@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 import App from 'containers/layouts/App';
 import Main from 'containers/layouts/Main';
@@ -23,16 +23,25 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     <Route component={App}>
       <Route component={Main}>
         <Route path="/">
-          <Route path="dictionaries" component={DictionariesPage} />
-          <Route path="dictionaries/:name" component={DictionaryPage} />
-          <Route path="clinics" component={ClinicsListPage} />
-          <Route path="clinics/:id" component={ClinicDetailPage} />
+          <Route path="dictionaries">
+            <IndexRoute component={DictionariesPage} />
+            <Route path=":name" component={DictionaryPage} />
+          </Route>
 
-          <Route path="declarations" component={DeclarationsListPage} />
-          <Route path="declarations/:id" component={DeclarationDetailPage} />
+          <Route path="clinics">
+            <IndexRoute component={ClinicsListPage} />
+            <Route path=":id" component={ClinicDetailPage} />
+          </Route>
 
-          <Route path="employees" component={EmployeesListPage} />
-          <Route path="employees/:id" component={EmployeeDetailPage} />
+          <Route path="declarations">
+            <IndexRoute component={DeclarationsListPage} />
+            <Route path=":id" component={DeclarationDetailPage} />
+          </Route>
+
+          <Route path="employees">
+            <IndexRoute component={EmployeesListPage} />
+            <Route path=":id" component={EmployeeDetailPage} />
+          </Route>
 
           <Route path="*" component={NotFoundPage} />
         </Route>
