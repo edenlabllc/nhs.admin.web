@@ -69,7 +69,7 @@ export default class ApiForm extends React.Component {
             <Field type="number" name="adult_age" labelText={t('Adult age')} component={FieldInput} />
           </div>
           <div>
-            <Field type="number" name="billing_date" labelText={t('Billing date')} component={FieldInput} />
+            <Field min="1" max="28" type="number" name="billing_date" labelText={t('Billing date')} component={FieldInput} />
           </div>
           <div>
             <Button type="submit" disabled={!this.isChanged || submitting}>
