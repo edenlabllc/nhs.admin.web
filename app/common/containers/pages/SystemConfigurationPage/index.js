@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import { H1 } from 'components/Title';
@@ -14,6 +15,7 @@ import { fetchConfiguration } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchConfiguration()),
 })
@@ -22,11 +24,11 @@ import styles from './styles.scss';
 }), { updateConfiguration })
 export default class SystemConfigurationPage extends React.Component {
   render() {
-    const { configuration = {} } = this.props;
+    const { configuration = {}, t } = this.props;
 
     return (
       <div id="system-configuration-page">
-        <H1>System configuration</H1>
+        <H1>{ t('System configuration') }</H1>
 
         <SystemConfigurationForm
           initialValues={configuration}

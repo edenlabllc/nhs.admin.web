@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-04-27T08:31:14.991Z\n"
-"PO-Revision-Date: 2017-04-27T08:31:14.991Z\n"
+"POT-Creation-Date: 2017-04-27T11:59:33.642Z\n"
+"PO-Revision-Date: 2017-04-27T11:59:33.642Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -30,6 +30,12 @@ msgid "Card with such number already exist"
 msgstr ""
 
 msgid "Support only {{types}} cards"
+msgstr ""
+
+msgid "Minimal value is <%= params %>"
+msgstr ""
+
+msgid "Maximum value is <%= params %>"
 msgstr ""
 
 msgid "Yes"
@@ -80,6 +86,9 @@ msgstr ""
 msgid "Dictionaries"
 msgstr ""
 
+msgid "System configuration"
+msgstr ""
+
 msgid "Documentation"
 msgstr ""
 
@@ -120,6 +129,27 @@ msgid "Add Item"
 msgstr ""
 
 msgid "You have not unique values in key: <%= params %>"
+msgstr ""
+
+msgid "Declaration term"
+msgstr ""
+
+msgid "Declaration request expiration"
+msgstr ""
+
+msgid "Employ request expiration"
+msgstr ""
+
+msgid "Verification request expiration"
+msgstr ""
+
+msgid "Adult age"
+msgstr ""
+
+msgid "Billing date"
+msgstr ""
+
+msgid "Save config"
 msgstr ""
 
 msgid "edrpou"

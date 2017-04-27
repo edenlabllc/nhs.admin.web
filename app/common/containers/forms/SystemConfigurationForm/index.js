@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
 import { reduxForm, Field, getFormValues } from 'redux-form';
 
@@ -11,6 +12,7 @@ import { reduxFormValidate } from 'react-nebo15-validate';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @reduxForm({
   form: 'system-configuration-form',
   validate: reduxFormValidate({
@@ -46,32 +48,32 @@ export default class ApiForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, onSubmit, submitting } = this.props;
+    const { handleSubmit, onSubmit, submitting, t } = this.props;
 
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
           <div>
-            <Field name="declaration_term" labelText="Declaration term" component={FieldInput} />
+            <Field name="declaration_term" labelText={t('Declaration term')} component={FieldInput} />
           </div>
           <div>
-            <Field name="declaration_request_expiration" labelText="Declaration request expiration" component={FieldInput} />
+            <Field name="declaration_request_expiration" labelText={t('Declaration request expiration')} component={FieldInput} />
           </div>
           <div>
-            <Field name="employ_request_expiration" labelText="Employ request expiration" component={FieldInput} />
+            <Field name="employ_request_expiration" labelText={t('Employ request expiration')} component={FieldInput} />
           </div>
           <div>
-            <Field name="verification_request_expiration" labelText="Verification request expiration" component={FieldInput} />
+            <Field name="verification_request_expiration" labelText={t('Verification request expiration')} component={FieldInput} />
           </div>
           <div>
-            <Field type="number" name="adult_age" labelText="Adult age" component={FieldInput} />
+            <Field type="number" name="adult_age" labelText={t('Adult age')} component={FieldInput} />
           </div>
           <div>
-            <Field type="number" name="billing_date" labelText="Billing date" component={FieldInput} />
+            <Field type="number" name="billing_date" labelText={t('Billing date')} component={FieldInput} />
           </div>
           <div>
             <Button type="submit" disabled={!this.isChanged || submitting}>
-              { submitting ? 'Saving...' : 'Save config' }
+              { submitting ? t('Saving...') : t('Save config') }
             </Button>
           </div>
         </div>
