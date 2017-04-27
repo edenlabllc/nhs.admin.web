@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
 import { collectionOf, reduxFormValidate, ErrorMessages, ErrorMessage } from 'react-nebo15-validate';
 
@@ -10,6 +11,7 @@ import Button, { ButtonsGroup } from 'components/Button';
 
 const getValues = getFormValues('dictionary-form');
 
+@translate()
 @reduxForm({
   form: 'dictionary-form',
   validate: reduxFormValidate({
@@ -66,20 +68,20 @@ export default class DictionaryForm extends React.Component {
     return JSON.stringify(values) !== JSON.stringify(this.state.savedValues);
   }
   render() {
-    const { handleSubmit, readOnly, submitting } = this.props;
+    const { handleSubmit, readOnly, submitting, t } = this.props;
 
     return (
       <Form onSubmit={handleSubmit(this.onSubmit)}>
-        <FormBlock title="General">
+        <FormBlock title={t('General')}>
           <FormRow>
-            <Field name="is_active" labelText="Is active" component={FieldCheckbox} readOnly={readOnly} />
+            <Field name="is_active" labelText={t('Is active')} component={FieldCheckbox} readOnly={readOnly} />
           </FormRow>
         </FormBlock>
         <FieldArray name="values" component={renderFields} readOnly={readOnly} />
         <FormButtons>
           <ButtonsGroup>
             <Button type="submit" disabled={!this.isChanged}>{
-              submitting ? 'Saving...' : (this.isChanged ? 'Save Dictionary' : 'Saved')
+              submitting ? t('Saving...') : (this.isChanged ? t('Save Dictionary') : t('Saved'))
             }</Button>
           </ButtonsGroup>
         </FormButtons>
@@ -88,32 +90,34 @@ export default class DictionaryForm extends React.Component {
   }
 }
 
-const renderFields = ({ fields, readOnly, meta }) => (
-  <FormBlock title="Values">
+const renderFields = translate()(({ fields, readOnly, meta, t }) => (
+  <FormBlock title={t('Values')}>
     {fields.map((item, index) =>
       <FormRow key={index}>
         <FormColumn>
           <Field
             name={`${item}.key`}
-            labelText={index === 0 && 'Key'}
+            labelText={index === 0 && t('Key')}
             component={FieldInput}
-            placeholder="Item key"
+            placeholder={t('Item key')}
             readOnly={readOnly}
           />
         </FormColumn>
         <FormColumn>
           <Field
             name={`${item}.value`}
-            labelText={index === 0 && 'Description'}
+            labelText={index === 0 && t('Description')}
             component={FieldInput}
-            placeholder="Item description"
+            placeholder={t('Item description')}
             readOnly={readOnly}
           />
         </FormColumn>
         {
           !readOnly && (
             <FormColumn align="bottom">
-              <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>Remove</Button>
+              <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
+                { t('Remove') }
+              </Button>
             </FormColumn>
           )
         }
@@ -122,16 +126,18 @@ const renderFields = ({ fields, readOnly, meta }) => (
     {
       !readOnly && (
         <FormButtons>
-          <Button type="button" color="blue" size="small" onClick={() => fields.push({})}>Add Item</Button>
+          <Button type="button" color="blue" size="small" onClick={() => fields.push({})}>
+            {t('Add Item')}
+          </Button>
         </FormButtons>
       )
     }
     { meta.error && (
       <FormError>
         <ErrorMessages error={meta.error}>
-          <ErrorMessage when="uniqueKey">{'You have not unique values in key: <%= params %>'}</ErrorMessage>
+          <ErrorMessage when="uniqueKey">{ t('You have not unique values in key: <%= params %>') }</ErrorMessage>
         </ErrorMessages>
       </FormError>
     )}
   </FormBlock>
-);
+));

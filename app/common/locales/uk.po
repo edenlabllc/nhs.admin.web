@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-04-11 23:28+0200\n"
-"PO-Revision-Date: 2017-04-11 23:28+0200\n"
+"POT-Creation-Date: 2017-04-27 11:31+0300\n"
+"PO-Revision-Date: 2017-04-27 11:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,4 +11,334 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "Required field"
+msgstr "Обов'язкове поле"
+
+msgid "Invalid email format"
+msgstr "Невірний формат Email"
+
+msgid "Invalid surname"
+msgstr "Невірне прізвище"
+
+msgid "Length must be less than <%= params %>"
+msgstr "Довжина має бути менше ніж <%= params %>"
+
+msgid "Invalid card number"
+msgstr "Невірний номер карти"
+
+msgid "Card with such names already exist"
+msgstr "Карта з такою назвою вже існує"
+
+msgid "Card with such number already exist"
+msgstr "Карта з таким номером вже існує"
+
+msgid "Support only {{types}} cards"
+msgstr "Ми підтримуємо тільки картки {{types}}"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "ap."
+msgstr "вул."
+
+msgid "Area"
+msgstr "Зона"
+
+msgid "region"
+msgstr "область"
+
+msgid "You have unsaved changes"
+msgstr "У вас є незбережені зміни"
+
+msgid "Are you sure want to leave this page?"
+msgstr "Ви впевнені, що хочете залишити цю сторінку?"
+
+msgid "Closed"
+msgstr "Закрито"
+
+msgid "Open"
+msgstr "Відкрито"
+
+msgid "Total"
+msgstr "Всього"
+
+msgid "Loading..."
+msgstr "Завантаження..."
+
+msgid "Dashboard"
+msgstr "Статистика"
+
+msgid "Clinics"
+msgstr "Клініки"
+
+msgid "Declarations"
+msgstr "Декларації"
+
+msgid "Employees"
+msgstr "Співробітники"
+
+msgid "Dictionaries"
+msgstr "Словники"
+
+msgid "Documentation"
+msgstr "Документація"
+
+msgid "General"
+msgstr "Загальне"
+
+msgid "Is active"
+msgstr "Активний"
+
+msgid "Saving..."
+msgstr "Збереження…"
+
+msgid "Save Dictionary"
+msgstr "Зберегти словник"
+
+msgid "Saved"
+msgstr "Збережено"
+
+msgid "Values"
+msgstr "Значення"
+
+msgid "Key"
+msgstr "Ключ"
+
+msgid "Item key"
+msgstr "Ключ елемента"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Item description"
+msgstr "Опис елемента"
+
+msgid "Remove"
+msgstr "Видалити"
+
+msgid "Add Item"
+msgstr "Додати"
+
+msgid "You have not unique values in key: <%= params %>"
+msgstr "Не унікальні значення в ключі: <%= params %>"
+
+msgid "edrpou"
+msgstr "ЕДРПОУ"
+
+msgid "Addresses"
+msgstr "Адреси"
+
+msgid "KVEDs"
+msgstr "КВЕДи"
+
+msgid "Accreditation"
+msgstr "Акредитація"
+
+msgid "Order No."
+msgstr "Номер замовлення"
+
+msgid "Category"
+msgstr "Категорія"
+
+msgid "Expiry date"
+msgstr "Термін придатності"
+
+msgid "Issued date"
+msgstr "Випущено"
+
+msgid "Order date"
+msgstr "Дата замовлення"
+
+msgid "Contacts"
+msgstr "Контакти"
+
+msgid "Phones"
+msgstr "Телефони"
+
+msgid "Other"
+msgstr "Інше"
+
+msgid "Active"
+msgstr "Активно"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Licenses"
+msgstr "Ліцензії"
+
+msgid "Issued"
+msgstr "Виданий"
+
+msgid "Inserted"
+msgstr "Вставлений"
+
+msgid "User"
+msgstr "Користувач"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Updated"
+msgstr "Оновлено"
+
+msgid "Select dictionary to edit"
+msgstr "Виберіть словник для редагування"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Action"
+msgstr "Дії"
+
+msgid "Details"
+msgstr "Детально"
+
+msgid "Declarations signed"
+msgstr "Підписані декларації"
+
+msgid "Declarations terminated"
+msgstr "Припинені декларації"
+
+msgid "Doctors"
+msgstr "Лікарі"
+
+msgid "Medical system providers"
+msgstr "Провайдери медичної системи"
+
+msgid "By regions"
+msgstr "По областям"
+
+msgid "Region"
+msgstr "Область"
+
+msgid "Declaration"
+msgstr "Декларація"
+
+msgid "Dates"
+msgstr "Дати"
+
+msgid "scope"
+msgstr "можливості"
+
+msgid "Division"
+msgstr "Відділення"
+
+msgid "Mountain"
+msgstr "Гірська група"
+
+msgid "Clinic Detail"
+msgstr "Детально про клініку"
+
+msgid "Employee"
+msgstr "Співробітник"
+
+msgid "Position"
+msgstr "Позиція"
+
+msgid "Person"
+msgstr "Людина"
+
+msgid "Birth"
+msgstr "Народжений"
+
+msgid "in"
+msgstr "в"
+
+msgid "Documents"
+msgstr "Документи"
+
+msgid "Authentication methods"
+msgstr "Методи перевірки"
+
+msgid "Process data consent"
+msgstr "Процес погодження данних"
+
+msgid "Renewal consent"
+msgstr "Погодження поновлення"
+
+msgid "Patient signed"
+msgstr "Пацієнт підписав"
+
+msgid "Disclosure consent"
+msgstr "Погодження розкриття"
+
+msgid "Select declaration to edit"
+msgstr "Виберіть декларацію для редагування"
+
+msgid "Legal entity"
+msgstr "Юридична особа"
+
+msgid "EDRPOU"
+msgstr "ЕДРПОУ"
+
+msgid "Dictionary Name"
+msgstr "Назва словника"
+
+msgid "Edit"
+msgstr "Редагувати"
+
+msgid "View Dictionary"
+msgstr "Переглянути словник"
+
+msgid "Edit {{name}} dictionary"
+msgstr "Редагувати {{name}} словник"
+
+msgid "status"
+msgstr "статус"
+
+msgid "Birth date"
+msgstr "Дата народження"
+
+msgid "Educations"
+msgstr "Освіта"
+
+msgid "diploma"
+msgstr "диплом"
+
+msgid "Qualifications"
+msgstr "Кваліфікація"
+
+msgid "certificate"
+msgstr "сертифікат"
+
+msgid "Specialities"
+msgstr "Спеціальність"
+
+msgid "Speciality officio"
+msgstr "Посада"
+
+msgid "Science degree"
+msgstr "Науковий ступінь"
+
+msgid "Degree"
+msgstr "ступінь"
+
+msgid "Diploma"
+msgstr "Диплом"
+
+msgid "Location"
+msgstr "Місцезнаходження"
+
+msgid "Speciality"
+msgstr "Спеціальність"
+
+msgid "Page Not Found"
+msgstr "Сторінка не знайдена"
+
+msgid "Requested page not found. Maybe you are looking for"
+msgstr "Запитувана сторінка не знайдена."
+
+msgid "Go to dashboard"
+msgstr "Перейти на головну"
+
+#~ msgid "dictionary"
+#~ msgstr "словник"

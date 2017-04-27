@@ -1,8 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { translate } from 'react-i18next';
 
 import { Confirm } from 'components/Popup';
 
+@translate()
 @withRouter
 export default class ConfirmFormChanges extends React.Component {
   state = {
@@ -36,16 +38,18 @@ export default class ConfirmFormChanges extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <Confirm
-        title="You have unsaved changes"
+        title={t('You have unsaved changes')}
         active={this.state.showConfirm}
         theme="error"
         confirm="Ok"
         id="confirm-leave"
         onCancel={() => this.setState({ showConfirm: false })}
         onConfirm={() => this.confirmLocation()}
-      >Are you sure want to leave this page?</Confirm>
+      >{ t('Are you sure want to leave this page?') }</Confirm>
     );
   }
 }

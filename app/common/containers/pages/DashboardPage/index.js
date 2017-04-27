@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
@@ -26,58 +27,59 @@ import styles from './styles.scss';
   globalStatistic: getGlobalSatistic(state),
   detailStatistic: getDetailStatistic(state, state.pages.DashboardPage.detailStat),
 }), { fetchDeclarationsStat })
+@translate()
 export default class DashboardPage extends React.Component {
   render() {
-    const { globalStatistic, detailStatistic } = this.props;
+    const { globalStatistic, detailStatistic, t } = this.props;
 
     return (
       <div id="dashboard-page">
-        <H1>Dashboard</H1>
+        <H1>{ t('Dashboard') }</H1>
 
         <div className={styles.global}>
           <div>
             <div className={styles.count}>
               {globalStatistic.declarations}
             </div>
-            Declarations
+            { t('Declarations') }
           </div>
           <div>
             <div className={styles.count}>
               {globalStatistic.declarations_signed}
             </div>
-            Declarations signed
+            { t('Declarations signed') }
           </div>
           <div>
             <div className={styles.count}>
               {globalStatistic.declarations_terminated}
             </div>
-            Declarations terminated
+            { t('Declarations terminated') }
           </div>
           <div>
             <div className={styles.count}>
               {globalStatistic.doctors}
             </div>
-            Doctors
+            { t('Doctors') }
           </div>
           <div>
             <div className={styles.count}>
               {globalStatistic.medical_system_providers}
             </div>
-            Medical system providers
+            { t('Medical system providers') }
           </div>
         </div>
 
-        <H3>By regions</H3>
+        <H3>{ t('By regions') }</H3>
 
         <div className={styles.detail}>
           <FoldingTable
             columns={[
-              { key: 'region_name', title: 'Region' },
-              { key: 'declarations', title: 'Declarations' },
-              { key: 'declarations_signed', title: 'Declarations signed' },
-              { key: 'declarations_terminated', title: 'Declarations terminated' },
-              { key: 'doctors', title: 'Doctors' },
-              { key: 'medical_system_providers', title: 'Medical system providers' },
+              { key: 'region_name', title: t('Region') },
+              { key: 'declarations', title: t('Declarations') },
+              { key: 'declarations_signed', title: t('Declarations signed') },
+              { key: 'declarations_terminated', title: t('Declarations terminated') },
+              { key: 'doctors', title: t('Doctors') },
+              { key: 'medical_system_providers', title: t('Medical system providers') },
             ]}
             data={detailStatistic}
             component={DeclarationsChartRow}

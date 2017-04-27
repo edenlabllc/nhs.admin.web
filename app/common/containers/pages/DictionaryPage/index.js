@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import FormPageWrapper from 'containers/blocks/FormPageWrapper';
@@ -12,6 +13,7 @@ import { fetchDictionaries, updateDictionary } from 'redux/dictionaries';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { name } }) => dispatch(fetchDictionaries({ name })),
 })
@@ -49,9 +51,10 @@ export default class DictionariesPage extends React.Component {
   }
 
   render() {
-    const { dictionary, params } = this.props;
+    const { dictionary, params, t } = this.props;
+
     return (
-      <FormPageWrapper id="dictionary-edit-page" title={`Edit ${params.name} dictionary`} back="/dictionaries">
+      <FormPageWrapper id="dictionary-edit-page" title={t('Edit {{name}} dictionary', { name: params.name })} back="/dictionaries">
         <DictionaryForm
           initialValues={this.transformToForm(dictionary)}
           onSubmit={this.onSave}

@@ -1,15 +1,15 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-
-import { YesNo } from 'helpers/text';
 
 import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Button from 'components/Button';
+import YesNo from 'components/YesNo';
 
 import AddressesList from 'containers/blocks/AddressesList';
 import HeaderWithSub from 'containers/blocks/HeaderWithSub';
@@ -19,6 +19,7 @@ import { getDeclaration } from 'reducers';
 
 import { fetchDeclaration } from './redux';
 
+@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchDeclaration(id)),
 })
@@ -27,20 +28,20 @@ import { fetchDeclaration } from './redux';
 }))
 export default class DeclarationDetailPage extends React.Component {
   render() {
-    const { declaration = { } } = this.props;
+    const { declaration = { }, t } = this.props;
 
     return (
       <div id="declaration-detail-page">
-        <HeaderWithSub title={`Declaration #${declaration.id}`}>
-          Dates: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
+        <HeaderWithSub title={`${t('Declaration')} #${declaration.id}`}>
+          { t('Dates') }: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
 
           <p>
-            Active: <b>{YesNo(declaration.active)}</b>,
-            scope: <b>{declaration.scope}</b>
+            { t('Active') }: <b><YesNo bool={declaration.active} /></b>,
+            { t('scope') }: <b>{declaration.scope}</b>
           </p>
         </HeaderWithSub>
 
-        <H2>Division</H2>
+        <H2>{ t('Division') }</H2>
 
         <p>
           <b>{declaration.division.name}</b>
@@ -50,7 +51,7 @@ export default class DeclarationDetailPage extends React.Component {
 
         <Boxes>
           <div>
-            <H3>Contacts:</H3>
+            <H3>{ t('Contacts') }:</H3>
 
             <DataList
               list={[
@@ -58,19 +59,19 @@ export default class DeclarationDetailPage extends React.Component {
                   name: 'Email',
                   value: declaration.division.email,
                 }, {
-                  name: 'Phones',
+                  name: t('Phones'),
                   value: <InlineList list={declaration.division.phones.map(item => item.number)} />,
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Addresses:</H3>
+            <H3>{ t('Addresses') }:</H3>
 
             <AddressesList list={declaration.division.addresses} />
           </div>
           <div>
-            <H3>Other:</H3>
+            <H3>{ t('Other') }:</H3>
 
             <DataList
               list={[
@@ -78,10 +79,10 @@ export default class DeclarationDetailPage extends React.Component {
                   name: 'ID',
                   value: declaration.division.id,
                 }, {
-                  name: 'Type',
+                  name: t('Type'),
                   value: declaration.division.type,
                 }, {
-                  name: 'Mountain',
+                  name: t('Mountain'),
                   value: declaration.division.mountain_group,
                 },
               ]}
@@ -92,12 +93,12 @@ export default class DeclarationDetailPage extends React.Component {
         <Line />
 
         <Button theme="link" to={`/clinics/${declaration.legal_entity.id}`}>
-          Clinic Detail
+          { t('Clinic Detail') }
         </Button>
 
         <Line />
 
-        <H2>Employee</H2>
+        <H2>{ t('Employee') }</H2>
 
         <p>
           <b>
@@ -110,12 +111,12 @@ export default class DeclarationDetailPage extends React.Component {
         </p>
 
         <p>
-          Position: <b>{declaration.employee.position}</b>
+          { t('Position') }: <b>{declaration.employee.position}</b>
         </p>
 
         <br />
 
-        <H3>Contacts:</H3>
+        <H3>{ t('Contacts') }:</H3>
 
         <DataList
           list={[
@@ -123,7 +124,7 @@ export default class DeclarationDetailPage extends React.Component {
               name: 'Email',
               value: declaration.employee.party.email,
             }, {
-              name: 'Phones',
+              name: t('Phones'),
               value: <InlineList
                 list={declaration.employee.party.phones.map(item => item.number)}
               />,
@@ -133,7 +134,7 @@ export default class DeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <H2>Person</H2>
+        <H2>{ t('Person') }</H2>
 
         <p>
           <b>
@@ -145,14 +146,14 @@ export default class DeclarationDetailPage extends React.Component {
           </b>
         </p>
         <p>
-          Birth: {format(declaration.person.birth_date, 'DD.MM.YYYY')} in {declaration.person.birth_place}
+          { t('Birth') }: {format(declaration.person.birth_date, 'DD.MM.YYYY')} { t('in') } {declaration.person.birth_place}
         </p>
 
         <br />
 
         <Boxes>
           <div>
-            <H3>Contacts:</H3>
+            <H3>{ t('Contacts') }:</H3>
 
             <DataList
               list={[
@@ -160,7 +161,7 @@ export default class DeclarationDetailPage extends React.Component {
                   name: 'Email',
                   value: declaration.person.email,
                 }, {
-                  name: 'Phones',
+                  name: t('Phones'),
                   value: <InlineList
                     list={declaration.person.phones.map(item => item.number)}
                   />,
@@ -169,7 +170,7 @@ export default class DeclarationDetailPage extends React.Component {
             />
           </div>
           <div>
-            <H3>Documents:</H3>
+            <H3>{ t('Documents') }:</H3>
 
             <DataList
               list={declaration.person.documents.map(item => ({
@@ -179,7 +180,7 @@ export default class DeclarationDetailPage extends React.Component {
             />
           </div>
           <div>
-            <H3>Authentication methods</H3>
+            <H3>{ t('Authentication methods') }</H3>
 
             <DataList
               list={declaration.person.authentication_methods.map(item => ({
@@ -192,22 +193,22 @@ export default class DeclarationDetailPage extends React.Component {
 
         <br />
 
-        <H3>Other</H3>
+        <H3>{ t('Other') }</H3>
 
         <DataList
           list={[
             {
-              name: 'Process data consent',
-              value: YesNo(declaration.person.process_data_consent),
+              name: t('Process data consent'),
+              value: <YesNo bool={declaration.person.process_data_consent} />,
             }, {
-              name: 'Renewal consent',
-              value: YesNo(declaration.person.renewal_consent),
+              name: t('Renewal consent'),
+              value: <YesNo bool={declaration.person.renewal_consent} />,
             }, {
-              name: 'Patient signed',
-              value: YesNo(declaration.person.patient_signed),
+              name: t('Patient signed'),
+              value: <YesNo bool={declaration.person.patient_signed} />,
             }, {
-              name: 'Disclosure consent',
-              value: YesNo(declaration.person.disclosure_consent),
+              name: t('Disclosure consent'),
+              value: <YesNo bool={declaration.person.disclosure_consent} />,
             },
           ]}
         />

@@ -1,6 +1,7 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 
 import { YesNo } from 'helpers/text';
@@ -21,6 +22,7 @@ import { getEmployee } from 'reducers';
 
 import { fetchEmployee } from './redux';
 
+@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
 })
@@ -29,24 +31,24 @@ import { fetchEmployee } from './redux';
 }))
 export default class EmployeeDetailPage extends React.Component {
   render() {
-    const { employee = { } } = this.props;
+    const { employee = { }, t } = this.props;
 
     return (
       <div id="employee-detail-page">
         <HeaderWithSub title={`${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`}>
-          Dates: <b>{format(employee.start_date, 'DD.MM.YYYY hh:mm')} - {format(employee.end_date, 'DD.MM.YYYY hh:mm')}</b>
+          { t('Dates') }: <b>{format(employee.start_date, 'DD.MM.YYYY hh:mm')} - {format(employee.end_date, 'DD.MM.YYYY hh:mm')}</b>
           <p>
-            Position: <b>{employee.position}</b>,
-            status: <b>{employee.status}</b>
+            { t('Position') }: <b>{employee.position}</b>,
+            { t('status') }: <b>{employee.status}</b>
           </p>
           <p>
-            Birth date: <b>{format(employee.party.birth_date, 'DD.MM.YYYY')}</b>
+            { t('Birth date') }: <b>{format(employee.party.birth_date, 'DD.MM.YYYY')}</b>
           </p>
         </HeaderWithSub>
 
         <Boxes>
           <div>
-            <H3>Contacts:</H3>
+            <H3>{ t('Contacts') }:</H3>
 
             <DataList
               list={[
@@ -54,14 +56,14 @@ export default class EmployeeDetailPage extends React.Component {
                   name: 'Email',
                   value: employee.party.email,
                 }, {
-                  name: 'Phones',
+                  name: t('Phones'),
                   value: <InlineList list={employee.party.phones.map(item => item.number)} />,
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Division:</H3>
+            <H3>{ t('Division') }:</H3>
 
             <DataList
               list={[
@@ -69,17 +71,17 @@ export default class EmployeeDetailPage extends React.Component {
                   name: 'ID',
                   value: <Upper>{employee.division.id}</Upper>,
                 }, {
-                  name: 'Type',
+                  name: t('Type'),
                   value: employee.division.type,
                 }, {
-                  name: 'Mountain',
+                  name: t('Mountain'),
                   value: employee.division.mountain_group,
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Documents:</H3>
+            <H3>{ t('Documents') }:</H3>
 
             <DataList
               list={employee.party.documents.map(item => ({
@@ -100,7 +102,7 @@ export default class EmployeeDetailPage extends React.Component {
 
         <Line />
 
-        <H2>Educations</H2>
+        <H2>{ t('Educations') }</H2>
 
         <BlocksList>
           {employee.doctor.educations.map((item, index) => (
@@ -114,7 +116,7 @@ export default class EmployeeDetailPage extends React.Component {
               {item.speciality}
               <div>
                 <ColoredText color="gray">
-                  {item.degree}, diploma: {item.diploma_number}
+                  {item.degree}, { t('diploma') }: {item.diploma_number}
                 </ColoredText>
               </div>
             </li>
@@ -123,7 +125,7 @@ export default class EmployeeDetailPage extends React.Component {
 
         <Line />
 
-        <H2>Qualifications</H2>
+        <H2>{ t('Qualifications') }</H2>
 
         <BlocksList>
           {employee.doctor.qualifications.map((item, index) => (
@@ -134,7 +136,7 @@ export default class EmployeeDetailPage extends React.Component {
               {item.speciality}
               <div>
                 <ColoredText color="gray">
-                  {item.type}, certificate: {item.certificate_number}
+                  {item.type}, { t('certificate') }: {item.certificate_number}
                 </ColoredText>
               </div>
             </li>
@@ -143,7 +145,7 @@ export default class EmployeeDetailPage extends React.Component {
 
         <Line />
 
-        <H2>Specialities</H2>
+        <H2>{ t('Specialities') }</H2>
 
         <BlocksList>
           {employee.doctor.specialities.map((item, index) => (
@@ -160,10 +162,10 @@ export default class EmployeeDetailPage extends React.Component {
               <div>
                 <ColoredText color="gray">
                   {item.attestation_date} - {item.valid_to_date},
-                  certificate: {item.certificate_number}
+                  { t('certificate') }: {item.certificate_number}
                   <br />
 
-                  Speciality officio: {YesNo(item.speciality_officio)}
+                  { t('Speciality officio') }: {YesNo(item.speciality_officio)}
                 </ColoredText>
               </div>
             </li>
@@ -172,24 +174,24 @@ export default class EmployeeDetailPage extends React.Component {
 
         <Line />
 
-        <H2>Science degree</H2>
+        <H2>{ t('Science degree') }</H2>
 
         <DataList
           list={[
             {
-              name: 'Degree',
+              name: t('Degree'),
               value: employee.doctor.science_degree.degree,
             }, {
-              name: 'Diploma',
+              name: t('Diploma'),
               value: employee.doctor.science_degree.diploma_number,
             }, {
-              name: 'Location',
+              name: t('Location'),
               value: `${employee.doctor.science_degree.country}, ${employee.doctor.science_degree.city}, ${employee.doctor.science_degree.institution_name}`,
             }, {
-              name: 'Date',
+              name: t('Date'),
               value: employee.doctor.science_degree.issued_date,
             }, {
-              name: 'Speciality',
+              name: t('Speciality'),
               value: employee.doctor.science_degree.speciality,
             },
           ]}
