@@ -54,7 +54,7 @@ export default class DictionariesPage extends React.Component {
     const { dictionary, params, t } = this.props;
 
     return (
-      <FormPageWrapper id="dictionary-edit-page" title={`${t('Edit')} ${params.name} ${t('dictionary')}`} back="/dictionaries">
+      <FormPageWrapper id="dictionary-edit-page" title={t('Edit {{name}} dictionary', { name: params.name })} back="/dictionaries">
         <DictionaryForm
           initialValues={this.transformToForm(dictionary)}
           onSubmit={this.onSave}

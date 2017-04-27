@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-04-27 10:05+0300\n"
-"PO-Revision-Date: 2017-04-27 10:06+0300\n"
+"POT-Creation-Date: 2017-04-27 11:31+0300\n"
+"PO-Revision-Date: 2017-04-27 11:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -289,8 +289,8 @@ msgstr "Редагувати"
 msgid "View Dictionary"
 msgstr "Переглянути словник"
 
-msgid "dictionary"
-msgstr "словник"
+msgid "Edit {{name}} dictionary"
+msgstr "Редагувати {{name}} словник"
 
 msgid "status"
 msgstr "статус"
@@ -339,3 +339,6 @@ msgstr "Запитувана сторінка не знайдена."
 
 msgid "Go to dashboard"
 msgstr "Перейти на головну"
+
+#~ msgid "dictionary"
+#~ msgstr "словник"
