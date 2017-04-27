@@ -1,5 +1,6 @@
 import React from 'react';
 import withStyles from 'withStyles';
+import { translate } from 'react-i18next';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 
 import styles from './styles.scss';
@@ -15,9 +16,10 @@ const CustomizedLabel = ({ x, y, stroke, value }) => (
 );
 
 @withStyles(styles)
+@translate()
 export default class Chart extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, t } = this.props;
 
     return (
       <div className={styles.chart}>
@@ -38,9 +40,9 @@ export default class Chart extends React.Component {
           <Tooltip formatter={value => Math.abs(value)} />
           <CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
           <ReferenceLine y={0} stroke="#000" />
-          <Bar name="Closed" dataKey="closed" stackId="a" barSize={20} fill="#fc0f1b" isAnimationActive={false} />
-          <Bar name="Open" dataKey="open" stackId="a" barSize={20} fill="#17af55" isAnimationActive={false} />
-          <Line name="Total" type="monotone" dataKey="all" stroke="#72ab4e" strokeWidth={3} label={<CustomizedLabel />} />
+          <Bar name={t('Closed')} dataKey="closed" stackId="a" barSize={20} fill="#fc0f1b" isAnimationActive={false} />
+          <Bar name={t('Open')} dataKey="open" stackId="a" barSize={20} fill="#17af55" isAnimationActive={false} />
+          <Line name={t('Total')} type="monotone" dataKey="all" stroke="#72ab4e" strokeWidth={3} label={<CustomizedLabel />} />
           <Legend />
         </ComposedChart>
       </div>

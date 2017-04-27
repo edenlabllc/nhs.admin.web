@@ -1,16 +1,16 @@
 import React from 'react';
 import format from 'date-fns/format';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-
-import { YesNo } from 'helpers/text';
 
 import { H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Upper from 'components/Upper';
+import YesNo from 'components/YesNo';
 
 import AddressesList from 'containers/blocks/AddressesList';
 import HeaderWithSub from 'containers/blocks/HeaderWithSub';
@@ -24,6 +24,7 @@ import { fetchClinic } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchClinic(id)),
 })
@@ -32,7 +33,7 @@ import styles from './styles.scss';
 }))
 export default class ClinicDetailPage extends React.Component {
   render() {
-    const { clinic = { } } = this.props;
+    const { clinic = { }, t } = this.props;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
     return (
@@ -41,20 +42,20 @@ export default class ClinicDetailPage extends React.Component {
           title={(
             <div>
               { clinic.name } ({ clinic.short_name })
-              <span className={styles.edrpou}>edrpou: {clinic.edrpou}</span>
+              <span className={styles.edrpou}>{ t('edrpou') }: {clinic.edrpou}</span>
             </div>
           )}
         >
           {clinic.legal_form}
         </HeaderWithSub>
 
-        <H3>Addresses:</H3>
+        <H3>{ t('Addresses') }:</H3>
 
         <AddressesList list={clinic.addresses} />
 
         <Line />
 
-        <H3>KVEDs:</H3>
+        <H3>{ t('KVEDs') }:</H3>
 
         <InlineList list={clinic.kved} />
 
@@ -62,33 +63,33 @@ export default class ClinicDetailPage extends React.Component {
 
         <Boxes>
           <div>
-            <H3>Accreditation</H3>
+            <H3>{ t('Accreditation') }</H3>
 
             <DataList
               list={[
                 {
-                  name: 'Order No.',
+                  name: t('Order No.'),
                   value: (
                     <Upper>{accreditation.order_no}</Upper>
                   ),
                 }, {
-                  name: 'Category',
+                  name: t('Category'),
                   value: accreditation.category,
                 }, {
-                  name: 'Expiry date',
+                  name: t('Expiry date'),
                   value: accreditation.expiry_date,
                 }, {
-                  name: 'Issued date',
+                  name: t('Issued date'),
                   value: accreditation.issued_date,
                 }, {
-                  name: 'Order date',
+                  name: t('Order date'),
                   value: accreditation.order_date,
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Contacts</H3>
+            <H3>{ t('Contacts') }</H3>
 
             <DataList
               list={[
@@ -96,25 +97,25 @@ export default class ClinicDetailPage extends React.Component {
                   name: 'Email',
                   value: 'none',
                 }, {
-                  name: 'Phones',
+                  name: t('Phones'),
                   value: <InlineList list={clinic.phones.map(item => item.number)} />,
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Other</H3>
+            <H3>{ t('Other') }</H3>
 
             <DataList
               list={[
                 {
-                  name: 'Active',
-                  value: YesNo(clinic.active),
+                  name: t('Active'),
+                  value: <YesNo bool={clinic.active} />,
                 }, {
-                  name: 'Type',
+                  name: t('Type'),
                   value: clinic.type,
                 }, {
-                  name: 'Status',
+                  name: t('Status'),
                   value: clinic.status,
                 },
               ]}
@@ -124,7 +125,7 @@ export default class ClinicDetailPage extends React.Component {
 
         <Line />
 
-        <H3>Licenses</H3>
+        <H3>{ t('Licenses') }</H3>
 
         <BlocksList>
           {licenses.map((item, i) => (
@@ -136,7 +137,7 @@ export default class ClinicDetailPage extends React.Component {
                 </ColoredText>
               </p>
               <div>
-                Issued: {item.issued_date}, expiry: {item.expiry_date}
+                { t('Issued') }: {item.issued_date}, expiry: {item.expiry_date}
               </div>
               <ColoredText color="gray">
                 {item.issued_by}
@@ -149,30 +150,30 @@ export default class ClinicDetailPage extends React.Component {
 
         <Boxes>
           <div>
-            <H3>Inserted</H3>
+            <H3>{ t('Inserted') }</H3>
 
             <DataList
               list={[
                 {
-                  name: 'User',
+                  name: t('User'),
                   value: clinic.inserted_by,
                 }, {
-                  name: 'Date',
+                  name: t('Date'),
                   value: format(clinic.inserted_at, 'DD.MM.YYYY hh:mm'),
                 },
               ]}
             />
           </div>
           <div>
-            <H3>Updated</H3>
+            <H3>{ t('Updated') }</H3>
 
             <DataList
               list={[
                 {
-                  name: 'User',
+                  name: t('User'),
                   value: clinic.updated_by,
                 }, {
-                  name: 'Date',
+                  name: t('Date'),
                   value: format(clinic.updated_at, 'DD.MM.YYYY hh:mm'),
                 },
               ]}

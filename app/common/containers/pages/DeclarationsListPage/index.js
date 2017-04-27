@@ -1,6 +1,7 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import { H1 } from 'components/Title';
@@ -13,6 +14,7 @@ import { fetchDeclarations } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchDeclarations()),
 })
@@ -22,20 +24,21 @@ import styles from './styles.scss';
 }))
 export default class DeclarationsListPage extends React.Component {
   render() {
-    const { declarations = [] } = this.props;
+    const { declarations = [], t } = this.props;
 
     return (
       <div id="declarations-list-page">
-        <H1>Declarations</H1>
-        <p>Select declaration to edit</p>
+        <H1>{ t('Declarations') }</H1>
+        <p>{ t('Select declaration to edit') }</p>
+
         <div id="declarations-table" className={styles.table}>
           <Table
             columns={[
               { key: 'id', title: 'ID' },
-              { key: 'person', title: 'Person' },
-              { key: 'legalEntity', title: 'Legal entity' },
-              { key: 'dates', title: 'Dates', width: 150 },
-              { key: 'action', title: 'Action', width: 100 },
+              { key: 'person', title: t('Person') },
+              { key: 'legalEntity', title: t('Legal entity') },
+              { key: 'dates', title: t('Dates'), width: 150 },
+              { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={declarations.map(item => ({
               id: item.id,
@@ -48,11 +51,11 @@ export default class DeclarationsListPage extends React.Component {
               legalEntity: (
                 <div>
                   {item.legal_entity.name}
-                  <div className={styles.gray}>EDRPOU: {item.legal_entity.edrpou}</div>
+                  <div className={styles.gray}>{t('EDRPOU')}: {item.legal_entity.edrpou}</div>
                 </div>
               ),
               dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} ${format(item.end_date, 'DD.MM.YYYY hh:mm')}`,
-              action: (<Button id={`show-declaration-detail-button-${item.id}`} theme="link" to={`/declarations/${item.id}`}>Details</Button>),
+              action: (<Button id={`show-declaration-detail-button-${item.id}`} theme="link" to={`/declarations/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />
         </div>

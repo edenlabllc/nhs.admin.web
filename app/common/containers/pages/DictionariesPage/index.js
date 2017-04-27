@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import { H1 } from 'components/Title';
@@ -12,6 +13,7 @@ import { fetchDictionaries } from 'redux/dictionaries';
 import styles from './styles.scss';
 
 @withStyles(styles)
+@translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchDictionaries()),
 })
@@ -20,19 +22,19 @@ import styles from './styles.scss';
 }))
 export default class DictionariesPage extends React.Component {
   render() {
-    const { dictionaries = [] } = this.props;
+    const { dictionaries = [], t } = this.props;
 
     return (
       <div id="dictionaries-page">
-        <H1>Dictionaries</H1>
+        <H1>{ t('Dictionaries') }</H1>
         {
           <div>
-            <p>Select dictionary to edit</p>
+            <p>{ t('Select dictionary to edit') }</p>
             <div id="templates-table" className={styles.table}>
               <Table
                 columns={[
-                  { key: 'name', title: 'Dictionary Name' },
-                  { key: 'edit', title: 'Edit' },
+                  { key: 'name', title: t('Dictionary Name') },
+                  { key: 'edit', title: t('Edit') },
                 ]}
                 data={Object.keys(dictionaries).map(dictionaryName => ({
                   name: <div className={styles.name}>
@@ -43,7 +45,7 @@ export default class DictionariesPage extends React.Component {
                     theme="link"
                     to={`/dictionaries/${dictionaryName}`}
                   >
-                    View&nbsp;Dictionary
+                    { t('View Dictionary') }
                   </Button>),
                 }))}
               />
