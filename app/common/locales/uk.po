@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-04-27 11:31+0300\n"
-"PO-Revision-Date: 2017-04-27 11:31+0300\n"
+"POT-Creation-Date: 2017-04-27 14:59+0300\n"
+"PO-Revision-Date: 2017-04-27 15:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -36,6 +36,12 @@ msgstr "Карта з таким номером вже існує"
 
 msgid "Support only {{types}} cards"
 msgstr "Ми підтримуємо тільки картки {{types}}"
+
+msgid "Minimal value is <%= params %>"
+msgstr "Мінімальне значення <%= params %>"
+
+msgid "Maximum value is <%= params %>"
+msgstr "Максимальне значення <%= params %>"
 
 msgid "Yes"
 msgstr "Так"
@@ -85,6 +91,9 @@ msgstr "Співробітники"
 msgid "Dictionaries"
 msgstr "Словники"
 
+msgid "System configuration"
+msgstr "Конфігурація системи"
+
 msgid "Documentation"
 msgstr "Документація"
 
@@ -126,6 +135,27 @@ msgstr "Додати"
 
 msgid "You have not unique values in key: <%= params %>"
 msgstr "Не унікальні значення в ключі: <%= params %>"
+
+msgid "Declaration term"
+msgstr "Термін декларації"
+
+msgid "Declaration request expiration"
+msgstr "Термін дії запиту декларації"
+
+msgid "Employ request expiration"
+msgstr "Термін дії запиту співробітників"
+
+msgid "Verification request expiration"
+msgstr "Термін дії запиту перевірки"
+
+msgid "Adult age"
+msgstr "Дорослий вік"
+
+msgid "Billing date"
+msgstr "Дата рахунку"
+
+msgid "Save config"
+msgstr "Зберегти конфігурацію"
 
 msgid "edrpou"
 msgstr "ЕДРПОУ"

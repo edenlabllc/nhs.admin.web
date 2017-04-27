@@ -19,6 +19,8 @@ export default class ErrorMessagesTranslated extends React.Component {
         <ErrorMessage when="cardType">
           {t('Support only {{types}} cards', { types: this.props.error.cardType && this.props.error.cardType.join(', ') })}
         </ErrorMessage>
+        <ErrorMessage when="min">{t('Minimal value is <%= params %>')}</ErrorMessage>
+        <ErrorMessage when="max">{t('Maximum value is <%= params %>')}</ErrorMessage>
       </ErrorMessages>
     );
   }
