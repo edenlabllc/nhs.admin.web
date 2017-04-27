@@ -19,6 +19,8 @@ import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
 import EmployeesListPage from 'containers/pages/EmployeesListPage';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage';
 
+import SystemConfigurationPage from 'containers/pages/SystemConfigurationPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 
 export const configureRoutes = ({ store }) => { // eslint-disable-line
@@ -49,6 +51,8 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={EmployeesListPage} />
             <Route path=":id" component={EmployeeDetailPage} />
           </Route>
+
+          <Route path="configuration" component={SystemConfigurationPage} />
 
           <Route path="*" component={NotFoundPage} />
         </Route>
