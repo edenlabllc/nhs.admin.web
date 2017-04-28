@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-04-27T11:59:33.642Z\n"
-"PO-Revision-Date: 2017-04-27T11:59:33.642Z\n"
+"POT-Creation-Date: 2017-04-28T08:19:04.087Z\n"
+"PO-Revision-Date: 2017-04-28T08:19:04.087Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -59,6 +59,75 @@ msgstr ""
 msgid "Are you sure want to leave this page?"
 msgstr ""
 
+msgid "Declaration"
+msgstr ""
+
+msgid "Dates"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "scope"
+msgstr ""
+
+msgid "Division"
+msgstr ""
+
+msgid "Contacts"
+msgstr ""
+
+msgid "Phones"
+msgstr ""
+
+msgid "Addresses"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Mountain"
+msgstr ""
+
+msgid "Clinic Detail"
+msgstr ""
+
+msgid "Employee"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Birth"
+msgstr ""
+
+msgid "in"
+msgstr ""
+
+msgid "Documents"
+msgstr ""
+
+msgid "Authentication methods"
+msgstr ""
+
+msgid "Process data consent"
+msgstr ""
+
+msgid "Renewal consent"
+msgstr ""
+
+msgid "Patient signed"
+msgstr ""
+
+msgid "Disclosure consent"
+msgstr ""
+
 msgid "Closed"
 msgstr ""
 
@@ -78,6 +147,9 @@ msgid "Clinics"
 msgstr ""
 
 msgid "Declarations"
+msgstr ""
+
+msgid "Pending declarations"
 msgstr ""
 
 msgid "Employees"
@@ -155,9 +227,6 @@ msgstr ""
 msgid "edrpou"
 msgstr ""
 
-msgid "Addresses"
-msgstr ""
-
 msgid "KVEDs"
 msgstr ""
 
@@ -177,21 +246,6 @@ msgid "Issued date"
 msgstr ""
 
 msgid "Order date"
-msgstr ""
-
-msgid "Contacts"
-msgstr ""
-
-msgid "Phones"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
-msgid "Type"
 msgstr ""
 
 msgid "Status"
@@ -243,57 +297,6 @@ msgid "By regions"
 msgstr ""
 
 msgid "Region"
-msgstr ""
-
-msgid "Declaration"
-msgstr ""
-
-msgid "Dates"
-msgstr ""
-
-msgid "scope"
-msgstr ""
-
-msgid "Division"
-msgstr ""
-
-msgid "Mountain"
-msgstr ""
-
-msgid "Clinic Detail"
-msgstr ""
-
-msgid "Employee"
-msgstr ""
-
-msgid "Position"
-msgstr ""
-
-msgid "Person"
-msgstr ""
-
-msgid "Birth"
-msgstr ""
-
-msgid "in"
-msgstr ""
-
-msgid "Documents"
-msgstr ""
-
-msgid "Authentication methods"
-msgstr ""
-
-msgid "Process data consent"
-msgstr ""
-
-msgid "Renewal consent"
-msgstr ""
-
-msgid "Patient signed"
-msgstr ""
-
-msgid "Disclosure consent"
 msgstr ""
 
 msgid "Select declaration to edit"
@@ -363,4 +366,13 @@ msgid "Requested page not found. Maybe you are looking for"
 msgstr ""
 
 msgid "Go to dashboard"
+msgstr ""
+
+msgid "Scans"
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Reject"
 msgstr ""

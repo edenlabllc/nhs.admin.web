@@ -15,6 +15,8 @@ import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
 
 import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
 import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage';
+import PendingDeclarationsListPage from 'containers/pages/PendingDeclarationsListPage';
+import PendingDeclarationDetailPage from 'containers/pages/PendingDeclarationDetailPage';
 
 import EmployeesListPage from 'containers/pages/EmployeesListPage';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage';
@@ -45,6 +47,11 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="declarations">
             <IndexRoute component={DeclarationsListPage} />
             <Route path=":id" component={DeclarationDetailPage} />
+          </Route>
+
+          <Route path="pending-declarations">
+            <IndexRoute component={PendingDeclarationsListPage} />
+            <Route path=":id" component={PendingDeclarationDetailPage} />
           </Route>
 
           <Route path="employees">

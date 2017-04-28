@@ -6,7 +6,7 @@ import { declaration } from 'schemas';
 import { invoke } from './api';
 
 export const fetchDeclarations = options => invoke({
-  endpoint: createUrl(`${API_URL}/api/declarations`, options),
+  endpoint: createUrl(`${API_URL}/nhs_portal/declarations`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchDeclarations = options => invoke({
 });
 
 export const fetchDeclaration = id => invoke({
-  endpoint: createUrl(`${API_URL}/api/declarations/${id}`),
+  endpoint: createUrl(`${API_URL}/nhs_portal/declarations/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -31,6 +31,21 @@ export const fetchDeclaration = id => invoke({
       json => normalize(json.data, declaration)
     ),
   }, 'declarations/FETCH_DETAILS_FAILURE'],
+});
+
+export const updateDeclaration = (id, body) => invoke({
+  endpoint: `${API_URL}/nhs_portal/declarations/${id}`,
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['dictionaries/UPDATE_REQUEST', {
+    type: 'dictionaries/UPDATE_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      resp => normalize(resp.data, declaration)
+    ),
+  }, 'dictionaries/UPDATE_FAILURE'],
+  body,
 });
 
 export default handleAction(

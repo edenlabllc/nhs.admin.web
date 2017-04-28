@@ -38,6 +38,9 @@ export default class Nav extends React.Component {
           <NavItem to="declarations" activeClassName={styles.active}>
             <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
           </NavItem>
+          <NavItem to="pending-declarations" activeClassName={styles.active}>
+            <Link id="pending-declarations-nav" to="/pending-declarations">{ t('Pending declarations') }</Link>
+          </NavItem>
           <NavItem to="employees" activeClassName={styles.active}>
             <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
           </NavItem>
@@ -50,7 +53,7 @@ export default class Nav extends React.Component {
         </ul>
         <ul className={styles.down}>
           <li>
-            <a href="http://docs.ehealthapi1.apiary.io" rel="noopener noreferrer" target="__blank">
+            <a href="http://docs.ehealthapi1.apiary.io" rel="noopener noreferrer" target="_blank">
               <Icon name="doc" />
               { t('Documentation') }
             </a>
