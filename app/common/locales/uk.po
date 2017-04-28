@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-04-27 14:59+0300\n"
-"PO-Revision-Date: 2017-04-27 15:00+0300\n"
+"POT-Creation-Date: 2017-04-28 11:21+0300\n"
+"PO-Revision-Date: 2017-04-28 11:23+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -64,6 +64,75 @@ msgstr "У вас є незбережені зміни"
 msgid "Are you sure want to leave this page?"
 msgstr "Ви впевнені, що хочете залишити цю сторінку?"
 
+msgid "Declaration"
+msgstr "Декларація"
+
+msgid "Dates"
+msgstr "Дати"
+
+msgid "Active"
+msgstr "Активно"
+
+msgid "scope"
+msgstr "можливості"
+
+msgid "Division"
+msgstr "Відділення"
+
+msgid "Contacts"
+msgstr "Контакти"
+
+msgid "Phones"
+msgstr "Телефони"
+
+msgid "Addresses"
+msgstr "Адреси"
+
+msgid "Other"
+msgstr "Інше"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Mountain"
+msgstr "Гірська група"
+
+msgid "Clinic Detail"
+msgstr "Детально про клініку"
+
+msgid "Employee"
+msgstr "Співробітник"
+
+msgid "Position"
+msgstr "Позиція"
+
+msgid "Person"
+msgstr "Людина"
+
+msgid "Birth"
+msgstr "Народжений"
+
+msgid "in"
+msgstr "в"
+
+msgid "Documents"
+msgstr "Документи"
+
+msgid "Authentication methods"
+msgstr "Методи перевірки"
+
+msgid "Process data consent"
+msgstr "Процес погодження данних"
+
+msgid "Renewal consent"
+msgstr "Погодження поновлення"
+
+msgid "Patient signed"
+msgstr "Пацієнт підписав"
+
+msgid "Disclosure consent"
+msgstr "Погодження розкриття"
+
 msgid "Closed"
 msgstr "Закрито"
 
@@ -84,6 +153,9 @@ msgstr "Клініки"
 
 msgid "Declarations"
 msgstr "Декларації"
+
+msgid "Pending declarations"
+msgstr "Декларації в очікуванні"
 
 msgid "Employees"
 msgstr "Співробітники"
@@ -160,9 +232,6 @@ msgstr "Зберегти конфігурацію"
 msgid "edrpou"
 msgstr "ЕДРПОУ"
 
-msgid "Addresses"
-msgstr "Адреси"
-
 msgid "KVEDs"
 msgstr "КВЕДи"
 
@@ -183,21 +252,6 @@ msgstr "Випущено"
 
 msgid "Order date"
 msgstr "Дата замовлення"
-
-msgid "Contacts"
-msgstr "Контакти"
-
-msgid "Phones"
-msgstr "Телефони"
-
-msgid "Other"
-msgstr "Інше"
-
-msgid "Active"
-msgstr "Активно"
-
-msgid "Type"
-msgstr "Тип"
 
 msgid "Status"
 msgstr "Статус"
@@ -249,57 +303,6 @@ msgstr "По областям"
 
 msgid "Region"
 msgstr "Область"
-
-msgid "Declaration"
-msgstr "Декларація"
-
-msgid "Dates"
-msgstr "Дати"
-
-msgid "scope"
-msgstr "можливості"
-
-msgid "Division"
-msgstr "Відділення"
-
-msgid "Mountain"
-msgstr "Гірська група"
-
-msgid "Clinic Detail"
-msgstr "Детально про клініку"
-
-msgid "Employee"
-msgstr "Співробітник"
-
-msgid "Position"
-msgstr "Позиція"
-
-msgid "Person"
-msgstr "Людина"
-
-msgid "Birth"
-msgstr "Народжений"
-
-msgid "in"
-msgstr "в"
-
-msgid "Documents"
-msgstr "Документи"
-
-msgid "Authentication methods"
-msgstr "Методи перевірки"
-
-msgid "Process data consent"
-msgstr "Процес погодження данних"
-
-msgid "Renewal consent"
-msgstr "Погодження поновлення"
-
-msgid "Patient signed"
-msgstr "Пацієнт підписав"
-
-msgid "Disclosure consent"
-msgstr "Погодження розкриття"
 
 msgid "Select declaration to edit"
 msgstr "Виберіть декларацію для редагування"
@@ -369,6 +372,15 @@ msgstr "Запитувана сторінка не знайдена."
 
 msgid "Go to dashboard"
 msgstr "Перейти на головну"
+
+msgid "Scans"
+msgstr "Скани документів"
+
+msgid "Accept"
+msgstr "Прийняти"
+
+msgid "Reject"
+msgstr "Відхилити"
 
 #~ msgid "dictionary"
 #~ msgstr "словник"

@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 
-import { YesNo } from 'helpers/text';
-
 import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
@@ -13,6 +11,7 @@ import InlineList from 'components/InlineList';
 import Button from 'components/Button';
 import Upper from 'components/Upper';
 import ColoredText from 'components/ColoredText';
+import YseNo from 'components/YesNo';
 
 import HeaderWithSub from 'containers/blocks/HeaderWithSub';
 import Boxes from 'containers/blocks/Boxes';
@@ -165,7 +164,7 @@ export default class EmployeeDetailPage extends React.Component {
                   { t('certificate') }: {item.certificate_number}
                   <br />
 
-                  { t('Speciality officio') }: {YesNo(item.speciality_officio)}
+                  { t('Speciality officio') }: <YseNo bool={item.speciality_officio} />
                 </ColoredText>
               </div>
             </li>
