@@ -69,11 +69,11 @@ export default class PendingDeclarationDetailPage extends React.Component {
         <Line />
 
         <ButtonsGroup>
-          <Button onClick={() => this.updateStatus('accept')} color="green">
-            { t('Accept') }
-          </Button>
           <Button onClick={() => this.updateStatus('reject')} color="red">
             { t('Reject') }
+          </Button>
+          <Button onClick={() => this.updateStatus('accept')} color="green">
+            { t('Accept') }
           </Button>
         </ButtonsGroup>
 
@@ -82,6 +82,8 @@ export default class PendingDeclarationDetailPage extends React.Component {
             src: image,
           }))}
           currentImage={this.state.currentImage}
+          onClickPrev={() => this.setState({ currentImage: this.state.currentImage - 1 })}
+          onClickNext={() => this.setState({ currentImage: this.state.currentImage + 1 })}
           isOpen={this.state.lightboxIsOpen}
           onClose={() => this.setState({ lightboxIsOpen: false })}
         />
