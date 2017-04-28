@@ -5,11 +5,10 @@ import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 
-import Lightbox from 'react-images';
-
 import { H2 } from 'components/Title';
 import Line from 'components/Line';
 import Button, { ButtonsGroup } from 'components/Button';
+import Gallery from 'components/Gallery';
 
 import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 
@@ -56,15 +55,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <H2>{ t('Scans') }</H2>
 
-        <ul className={styles.scans}>
-          {
-            declaration.media_content.map((image, i) => (
-              <li onClick={() => this.openImage(i)} key={i}>
-                <img src={image} role="presentation" />
-              </li>
-            ))
-          }
-        </ul>
+        <Gallery images={declaration.media_content} />
 
         <Line />
 
@@ -76,17 +67,6 @@ export default class PendingDeclarationDetailPage extends React.Component {
             { t('Accept') }
           </Button>
         </ButtonsGroup>
-
-        <Lightbox
-          images={declaration.media_content.map(image => ({
-            src: image,
-          }))}
-          currentImage={this.state.currentImage}
-          onClickPrev={() => this.setState({ currentImage: this.state.currentImage - 1 })}
-          onClickNext={() => this.setState({ currentImage: this.state.currentImage + 1 })}
-          isOpen={this.state.lightboxIsOpen}
-          onClose={() => this.setState({ lightboxIsOpen: false })}
-        />
       </div>
     );
   }
