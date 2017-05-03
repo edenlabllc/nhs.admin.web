@@ -34,7 +34,7 @@ export const fetchDeclaration = id => invoke({
 });
 
 export const updateDeclaration = (id, body) => invoke({
-  endpoint: `${API_URL}/nhs_portal/declarations/${id}`,
+  endpoint: `${API_URL}/declaration/${id}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
