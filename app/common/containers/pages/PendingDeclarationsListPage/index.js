@@ -34,14 +34,12 @@ export default class PendingDeclarationsListPage extends React.Component {
         <div id="declarations-table" className={styles.table}>
           <Table
             columns={[
-              { key: 'id', title: 'ID' },
               { key: 'person', title: t('Person') },
               { key: 'legalEntity', title: t('Legal entity') },
               { key: 'dates', title: t('Dates'), width: 150 },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={declarations.map(item => ({
-              id: item.id,
               person: (
                 <div>
                   {`${item.person.last_name} ${item.person.first_name}`}

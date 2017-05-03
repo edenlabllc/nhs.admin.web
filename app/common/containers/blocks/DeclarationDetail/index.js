@@ -17,10 +17,15 @@ import Boxes from 'containers/blocks/Boxes';
 export default class DeclarationDetailPage extends React.Component {
   render() {
     const { declaration = { }, t } = this.props;
+    const fullName = [
+      declaration.person.last_name,
+      declaration.person.first_name,
+      declaration.person.second_name,
+    ].join(' ');
 
     return (
       <div>
-        <HeaderWithSub title={`${t('Declaration')} #${declaration.id}`}>
+        <HeaderWithSub title={`${t('Declaration')} ${fullName}`}>
           { t('Dates') }: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
 
           <p>
@@ -126,11 +131,7 @@ export default class DeclarationDetailPage extends React.Component {
 
         <p>
           <b>
-            {[
-              declaration.person.last_name,
-              declaration.person.first_name,
-              declaration.person.second_name,
-            ].join(' ')}
+            {fullName}
           </b>
         </p>
         <p>
