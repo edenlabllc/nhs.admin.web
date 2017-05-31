@@ -19,7 +19,7 @@ export const AUTH_COOKIE_NAME = process.env.AUTH_COOKIE_NAME || 'token';
 export const API_PROXY_PATH = '/api';
 export const MOCK_API_PROXY_PATH = '/mock-api';
 
-export const CLIENT_ID = process.env.CLIENT_ID || 'e2e1d2c8-9bac-43c6-adef-83239940b30a';
+export const CLIENT_ID = process.env.CLIENT_ID || 'e32e51ac-f720-4e42-adb3-67d504f3ad30';
 
 // for internal app usage. for example for XHR requests or server side rendering
 export const API_URL = typeof window !== 'undefined' ? API_PROXY_PATH : API_HOST;
