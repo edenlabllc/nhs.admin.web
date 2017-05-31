@@ -1,12 +1,12 @@
 import { handleAction } from 'redux-actions';
-import { API_URL } from 'config';
+import { MOCK_API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import * as schemas from 'schemas';
 import { invoke } from './api';
 
 export const fetchGlobalStat = options => invoke({
-  endpoint: createUrl(`${API_URL}/reports/stats`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/reports/stats`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchGlobalStat = options => invoke({
 });
 
 export const fetchDetailStat = options => invoke({
-  endpoint: createUrl(`${API_URL}/reports/detailedstats`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/reports/detailedstats`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -34,7 +34,7 @@ export const fetchDetailStat = options => invoke({
 });
 
 export const fetchDeclarationsStat = options => invoke({
-  endpoint: createUrl(`${API_URL}/reports/declarations`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/reports/declarations`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',

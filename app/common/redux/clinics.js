@@ -1,12 +1,12 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
+import { MOCK_API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import { clinic } from 'schemas';
 import { invoke } from './api';
 
 export const fetchClinics = options => invoke({
-  endpoint: createUrl(`${API_URL}/api/legal_entities`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/api/legal_entities`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchClinics = options => invoke({
 });
 
 export const fetchClinic = id => invoke({
-  endpoint: createUrl(`${API_URL}/api/legal_entities/${id}`),
+  endpoint: createUrl(`${MOCK_API_URL}/api/legal_entities/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',

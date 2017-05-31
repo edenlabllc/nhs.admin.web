@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-04-28T08:19:04.087Z\n"
-"PO-Revision-Date: 2017-04-28T08:19:04.087Z\n"
+"POT-Creation-Date: 2017-05-31T12:17:34.816Z\n"
+"PO-Revision-Date: 2017-05-31T12:17:34.816Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -36,6 +36,9 @@ msgid "Minimal value is <%= params %>"
 msgstr ""
 
 msgid "Maximum value is <%= params %>"
+msgstr ""
+
+msgid "Account, password combination is mismatch"
 msgstr ""
 
 msgid "Yes"
@@ -201,6 +204,12 @@ msgid "Add Item"
 msgstr ""
 
 msgid "You have not unique values in key: <%= params %>"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Enter"
 msgstr ""
 
 msgid "Declaration term"
@@ -371,8 +380,11 @@ msgstr ""
 msgid "Scans"
 msgstr ""
 
+msgid "Reject"
+msgstr ""
+
 msgid "Accept"
 msgstr ""
 
-msgid "Reject"
+msgid "Please, enter your data"
 msgstr ""

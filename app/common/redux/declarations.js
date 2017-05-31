@@ -1,12 +1,12 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
+import { MOCK_API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import { declaration } from 'schemas';
 import { invoke } from './api';
 
 export const fetchDeclarations = options => invoke({
-  endpoint: createUrl(`${API_URL}/nhs_portal/declarations`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/nhs_portal/declarations`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchDeclarations = options => invoke({
 });
 
 export const fetchDeclaration = id => invoke({
-  endpoint: createUrl(`${API_URL}/nhs_portal/declarations/${id}`),
+  endpoint: createUrl(`${MOCK_API_URL}/nhs_portal/declarations/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -34,7 +34,7 @@ export const fetchDeclaration = id => invoke({
 });
 
 export const updateDeclaration = (id, body) => invoke({
-  endpoint: `${API_URL}/declaration/${id}`,
+  endpoint: `${MOCK_API_URL}/declaration/${id}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
