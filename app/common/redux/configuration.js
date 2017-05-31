@@ -1,10 +1,10 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
+import { MOCK_API_URL } from 'config';
 import { createUrl } from 'helpers/url';
 import { invoke } from './api';
 
 export const fetchConfiguration = options => invoke({
-  endpoint: createUrl(`${API_URL}/global_parameters`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/global_parameters`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -18,7 +18,7 @@ export const fetchConfiguration = options => invoke({
 });
 
 export const updateConfiguration = body => invoke({
-  endpoint: `${API_URL}/global_parameters`,
+  endpoint: `${MOCK_API_URL}/global_parameters`,
   method: 'PUT',
   headers: {
     'content-type': 'application/json',

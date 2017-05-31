@@ -21,6 +21,8 @@ export default class ErrorMessagesTranslated extends React.Component {
         </ErrorMessage>
         <ErrorMessage when="min">{t('Minimal value is <%= params %>')}</ErrorMessage>
         <ErrorMessage when="max">{t('Maximum value is <%= params %>')}</ErrorMessage>
+
+        <ErrorMessage when="accountPasswordMismatch">{t('Account, password combination is mismatch')}</ErrorMessage>
       </ErrorMessages>
     );
   }

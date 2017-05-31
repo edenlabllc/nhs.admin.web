@@ -1,12 +1,12 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
+import { MOCK_API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { dictionary } from 'schemas';
 import { createUrl } from 'helpers/url';
 import { invoke } from './api';
 
 export const fetchDictionaries = options => invoke({
-  endpoint: createUrl(`${API_URL}/dictionaries`, options),
+  endpoint: createUrl(`${MOCK_API_URL}/dictionaries`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -20,7 +20,7 @@ export const fetchDictionaries = options => invoke({
 });
 
 export const updateDictionary = (name, body) => invoke({
-  endpoint: `${API_URL}/dictionaries/${name}`,
+  endpoint: `${MOCK_API_URL}/dictionaries/${name}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',

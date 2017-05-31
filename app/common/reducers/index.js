@@ -8,6 +8,9 @@ import loading from 'redux/loading';
 
 import labels from 'redux/labels';
 
+import session from 'redux/session';
+import user from 'redux/user';
+
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
@@ -42,6 +45,7 @@ const pages = combineReducers({
 
 const data = combineReducers({
   labels,
+  user,
   dictionaries,
   clinics,
   declarations,
@@ -54,6 +58,7 @@ const data = combineReducers({
 
 export default combineReducers({
   blocks,
+  session,
   pages,
   data,
   // external libraries
@@ -61,6 +66,9 @@ export default combineReducers({
   routing,
   loading,
 });
+
+export const getToken = state => state.session.token;
+export const getUser = state => state.data.user;
 
 export const getLocation = state => state.routing.locationBeforeTransitions;
 export const getForm = (state, formName) => state.form[formName];

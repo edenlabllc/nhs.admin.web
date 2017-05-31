@@ -42,6 +42,7 @@ server.use(cookieParser());
 server.use(i18nextMiddleware.handle(i18next));
 
 server.use(config.API_PROXY_PATH, proxy(config.API_HOST));
+server.use(config.MOCK_API_PROXY_PATH, proxy(config.MOCK_API_HOST));
 
 server.use(Express.static(path.join(__dirname, '../../public')));
 server.use('/static', Express.static(path.join(__dirname, '../../static')));

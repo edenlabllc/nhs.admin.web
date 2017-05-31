@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-05-03 15:38+0300\n"
-"PO-Revision-Date: 2017-05-03 15:40+0300\n"
+"POT-Creation-Date: 2017-05-31 15:19+0300\n"
+"PO-Revision-Date: 2017-05-31 15:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -42,6 +42,9 @@ msgstr "Мінімальне значення <%= params %>"
 
 msgid "Maximum value is <%= params %>"
 msgstr "Максимальне значення <%= params %>"
+
+msgid "Account, password combination is mismatch"
+msgstr "Невірний e-mail або пароль"
 
 msgid "Yes"
 msgstr "Так"
@@ -207,6 +210,12 @@ msgstr "Додати"
 
 msgid "You have not unique values in key: <%= params %>"
 msgstr "Не унікальні значення в ключі: <%= params %>"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Enter"
+msgstr "Увійти"
 
 msgid "Declaration term"
 msgstr "Термін декларації"
@@ -376,11 +385,14 @@ msgstr "Перейти на головну"
 msgid "Scans"
 msgstr "Скани документів"
 
+msgid "Reject"
+msgstr "Відхилити"
+
 msgid "Accept"
 msgstr "Прийняти"
 
-msgid "Reject"
-msgstr "Відхилити"
+msgid "Please, enter your data"
+msgstr "Будь ласка, введіть свої дані"
 
 #~ msgid "dictionary"
 #~ msgstr "словник"
