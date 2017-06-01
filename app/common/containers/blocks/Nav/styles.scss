@@ -79,6 +79,14 @@ $nav-breakpoint: 860px;
     }
   }
 
+  .logout {
+    cursor: pointer;
+
+    i {
+      margin-right: 8px;
+    }
+  }
+
   li {
     line-height: 32px;
 
