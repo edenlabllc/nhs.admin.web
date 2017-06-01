@@ -20,7 +20,7 @@ import styles from './styles.scss';
 })
 @connect(state => ({
   dictionaries: getDictionaries(state),
-  names: [{ name: null, title: 'All' }, ...getDictionariesNames(state)],
+  names: getDictionariesNames(state),
   labels: getDictionariesLabels(state),
 }), { fetchDictionaries })
 export default class DictionariesPage extends React.Component {
@@ -39,14 +39,14 @@ export default class DictionariesPage extends React.Component {
           <div className={styles.filter}>
             <div>
               <Select
-                placeholder="Filter by name"
-                options={names}
+                placeholder={t('Filter by name')}
+                options={[{ name: null, title: t('All') }, ...names]}
                 onChange={name => this.setState({ name })}
               />
             </div>
             <div>
               <Select
-                placeholder="Filter by label"
+                placeholder={t('Filter by label')}
                 options={labels.map(name => ({ name, title: name }))}
                 multiple
                 onChange={label => this.setState({ label })}
