@@ -17,6 +17,7 @@ class Select extends React.Component {
     ]),
     labelText: PropTypes.string,
     open: PropTypes.bool,
+    multiple: PropTypes.bool,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     options: PropTypes.arrayOf(
@@ -31,6 +32,7 @@ class Select extends React.Component {
 
   static defaultProps = {
     open: false,
+    multiple: false,
   };
 
   state = {
@@ -47,6 +49,22 @@ class Select extends React.Component {
   }
 
   onSelect(item = {}) {
+    if (this.props.multiple) {
+      const active = Array.isArray(this.state.active) ? this.state.active : [];
+
+      if (~active.indexOf(item.name)) {
+        active.splice(active.indexOf(item.name), 1);
+      } else {
+        active.push(item.name);
+      }
+
+      this.setState({ active, open: false });
+
+      this.props.onChange && this.props.onChange(active);
+
+      return;
+    }
+
     this.setState({ active: item, open: false });
     this.props.onChange && this.props.onChange(item.name);
   }
@@ -82,14 +100,16 @@ class Select extends React.Component {
       placeholder,
       disabled,
       labelText,
+      multiple,
     } = this.props;
 
-    const activeItem = this.state.active || {};
+    const activeItem = this.state.active || (multiple ? [] : {});
     const classNames = classnames(
       styles.select,
       this.state.open && styles[this.position],
       this.state.open && styles.open,
       disabled && styles.disabled,
+      multiple && styles.multiple,
     );
 
     return (
@@ -97,10 +117,21 @@ class Select extends React.Component {
         <section ref={ref => (this.selectNode = ref)} className={classNames}>
           <div className={styles.label}>{labelText}</div>
           <div onClick={() => this.setState({ open: !this.state.open })} className={styles.control}>
-            <span hidden={activeItem.title} className={styles.placeholder}>{placeholder}</span>
-            <span hidden={!activeItem.title}>
-              {activeItem && activeItem.title}
-            </span>
+            {
+              multiple || <div>
+                <span hidden={activeItem.title} className={styles.placeholder}>{placeholder}</span>
+                <span hidden={!activeItem.title}>
+                  {activeItem && activeItem.title}
+                </span>
+              </div>
+            }
+            {
+              multiple && <div>
+                {activeItem.length ? <ul className={styles['multiple-list']}>
+                  {activeItem.map(name => <li key={`${name}-key`}>{name}</li>)}
+                </ul> : <span className={styles.placeholder}>{placeholder}</span>}
+              </div>
+            }
             <span className={styles.arrow} />
           </div>
           <ul ref={ref => (this.listNode = ref)} className={styles.list}>
@@ -109,13 +140,15 @@ class Select extends React.Component {
                 <li
                   onClick={() => !item.disabled && this.onSelect(item)}
                   className={classnames(
-                    item.name === activeItem.name && styles.active,
+                    (Array.isArray(activeItem) ?
+                      ~activeItem.indexOf(item.name) :
+                      item.name === activeItem.name) && styles.active,
                     item.disabled && styles.disabled
                   )}
                   key={item.name}
                 >
                   {item.title}
-                  {item.name === activeItem.name && <span className={styles.icon}><Icon name="check-right" /></span>}
+                  {(Array.isArray(activeItem) ? ~activeItem.indexOf(item.name) : item.name === activeItem.name) ? <span className={styles.icon}><Icon name="check-right" /></span> : null}
                 </li>
               ))
             }

@@ -1,4 +1,3 @@
-
 .table {
   margin-top: 30px;
 
@@ -17,6 +16,21 @@
       font-size: 11px;
       line-height: 1.1;
       color: #929499;
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  & > div {
+    flex: 1 1 50%;
+
+    &:first-of-type {
+      margin-right: 20px;
     }
   }
 }
