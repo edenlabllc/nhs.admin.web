@@ -8,7 +8,7 @@ import Table from 'components/Table';
 import Button from 'components/Button';
 import Select from 'components/Select';
 
-import { getDictionaries } from 'reducers';
+import { getDictionaries, getDictionariesNames, getDictionariesLabels } from 'reducers';
 
 import { fetchDictionaries } from 'redux/dictionaries';
 import styles from './styles.scss';
@@ -20,6 +20,8 @@ import styles from './styles.scss';
 })
 @connect(state => ({
   dictionaries: getDictionaries(state),
+  names: [{ name: null, title: 'All' }, ...getDictionariesNames(state)],
+  labels: getDictionariesLabels(state),
 }), { fetchDictionaries })
 export default class DictionariesPage extends React.Component {
   state = {
@@ -28,20 +30,7 @@ export default class DictionariesPage extends React.Component {
   };
 
   render() {
-    const { dictionaries = {}, t } = this.props;
-
-    const nameFilter = Object.keys(dictionaries).map(name => ({ name, title: name }));
-    nameFilter.unshift({ name: null, title: 'All' });
-
-    const labels = Object.keys(dictionaries).reduce((target, name) => {
-      dictionaries[name].labels.forEach((label) => {
-        if (target.indexOf(label) === -1) {
-          target.push(label);
-        }
-      });
-
-      return target;
-    }, []);
+    const { dictionaries = {}, names = [], labels = [], t } = this.props;
 
     return (
       <div id="dictionaries-page">
@@ -51,7 +40,7 @@ export default class DictionariesPage extends React.Component {
             <div>
               <Select
                 placeholder="Filter by name"
-                options={nameFilter}
+                options={names}
                 onChange={name => this.setState({ name })}
               />
             </div>
