@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-06-01T15:42:52.970Z\n"
-"PO-Revision-Date: 2017-06-01T15:42:52.970Z\n"
+"POT-Creation-Date: 2017-06-02T12:41:39.028Z\n"
+"PO-Revision-Date: 2017-06-02T12:41:39.028Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -185,6 +185,21 @@ msgstr ""
 msgid "Saved"
 msgstr ""
 
+msgid "Labels"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Label name"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Add Item"
+msgstr ""
+
 msgid "Values"
 msgstr ""
 
@@ -198,12 +213,6 @@ msgid "Description"
 msgstr ""
 
 msgid "Item description"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Add Item"
 msgstr ""
 
 msgid "You have not unique values in key: <%= params %>"
@@ -282,9 +291,6 @@ msgid "Updated"
 msgstr ""
 
 msgid "Select dictionary to edit"
-msgstr ""
-
-msgid "Name"
 msgstr ""
 
 msgid "Action"

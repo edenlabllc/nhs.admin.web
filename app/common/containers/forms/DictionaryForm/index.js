@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
-import { collectionOf, reduxFormValidate, ErrorMessages, ErrorMessage } from 'react-nebo15-validate';
+import { collectionOf, reduxFormValidate, ErrorMessages, ErrorMessage, arrayOf } from 'react-nebo15-validate';
 
 import Form, { FormRow, FormBlock, FormButtons, FormColumn, FormError } from 'components/Form';
 import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
@@ -27,6 +27,11 @@ const getValues = getFormValues('dictionary-form');
       minLength: 1,
       uniqueKey: 'key',
     }),
+  }),
+  labels: arrayOf({
+    required: true,
+  }, {
+    unique: true,
   }),
 })
 @connect(state => ({
@@ -78,6 +83,7 @@ export default class DictionaryForm extends React.Component {
           </FormRow>
         </FormBlock>
         <FieldArray name="values" component={renderFields} readOnly={readOnly} />
+        <FieldArray name="labels" component={labelFields} readOnly={readOnly} />
         <FormButtons>
           <ButtonsGroup>
             <Button type="submit" disabled={!this.isChanged}>{
@@ -89,6 +95,42 @@ export default class DictionaryForm extends React.Component {
     );
   }
 }
+
+const labelFields = translate()(({ fields, readOnly, t }) => (
+  <FormBlock title={t('Labels')}>
+    {fields.map((item, index) => (
+      <FormRow key={index}>
+        <FormColumn>
+          <Field
+            name={item}
+            labelText={index === 0 && t('Name')}
+            component={FieldInput}
+            placeholder={t('Label name')}
+            readOnly={readOnly}
+          />
+        </FormColumn>
+        {
+          !readOnly && (
+            <FormColumn align="bottom">
+              <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
+                { t('Remove') }
+              </Button>
+            </FormColumn>
+          )
+        }
+      </FormRow>
+    ))}
+    {
+      !readOnly && (
+        <FormButtons>
+          <Button type="button" color="blue" size="small" onClick={() => fields.push()}>
+            {t('Add Item')}
+          </Button>
+        </FormButtons>
+      )
+    }
+  </FormBlock>
+));
 
 const renderFields = translate()(({ fields, readOnly, meta, t }) => (
   <FormBlock title={t('Values')}>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-06-01 18:43+0300\n"
-"PO-Revision-Date: 2017-06-01 18:43+0300\n"
+"POT-Creation-Date: 2017-06-02 15:41+0300\n"
+"PO-Revision-Date: 2017-06-02 15:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -190,6 +190,21 @@ msgstr "Зберегти словник"
 msgid "Saved"
 msgstr "Збережено"
 
+msgid "Labels"
+msgstr "Мітки"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Label name"
+msgstr "Назва  тегу"
+
+msgid "Remove"
+msgstr "Видалити"
+
+msgid "Add Item"
+msgstr "Додати"
+
 msgid "Values"
 msgstr "Значення"
 
@@ -204,12 +219,6 @@ msgstr "Опис"
 
 msgid "Item description"
 msgstr "Опис елемента"
-
-msgid "Remove"
-msgstr "Видалити"
-
-msgid "Add Item"
-msgstr "Додати"
 
 msgid "You have not unique values in key: <%= params %>"
 msgstr "Не унікальні значення в ключі: <%= params %>"
@@ -288,9 +297,6 @@ msgstr "Оновлено"
 
 msgid "Select dictionary to edit"
 msgstr "Виберіть словник для редагування"
-
-msgid "Name"
-msgstr "Назва"
 
 msgid "Action"
 msgstr "Дії"
