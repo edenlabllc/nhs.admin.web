@@ -8,13 +8,15 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import NavItem from 'components/NavItem';
 import Icon from 'components/Icon';
 
+import { logOut } from './redux';
+
 import styles from './styles.scss';
 
 @withStyles(styles)
 @translate()
 @connect(state => ({
   location: state.routing,
-}))
+}), { logOut })
 export default class Nav extends React.Component {
   componentWillReceiveProps(props) {
     if (props.isOpen) {
@@ -57,6 +59,10 @@ export default class Nav extends React.Component {
               <Icon name="doc" />
               { t('Documentation') }
             </a>
+          </li>
+          <li className={styles.logout} onClick={() => this.props.logOut()}>
+            <Icon name="exit" />
+            { t('Logout') }
           </li>
         </ul>
       </nav>
