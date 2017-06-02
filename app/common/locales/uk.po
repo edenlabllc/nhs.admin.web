@@ -172,6 +172,9 @@ msgstr "Конфігурація системи"
 msgid "Documentation"
 msgstr "Документація"
 
+msgid "Logout"
+msgstr "Вихід"
+
 msgid "General"
 msgstr "Загальне"
 
