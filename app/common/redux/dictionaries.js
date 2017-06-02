@@ -37,7 +37,6 @@ export const updateDictionary = (name, body) => invoke({
 export default handleAction(
   combineActions(
     'dictionaries/FETCH_DICTIONARIES_SUCCESS',
-    'dictionaries/UPDATE_DICTIONARY_SUCCESS',
   ),
   (state, action) => ({
     ...state,

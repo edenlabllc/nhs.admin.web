@@ -48,14 +48,14 @@ class Select extends React.Component {
     }
   }
 
-  onSelect(item = {}) {
+  onSelect(name) {
     if (this.props.multiple) {
       const active = Array.isArray(this.state.active) ? this.state.active : [];
 
-      if (~active.indexOf(item.name)) {
-        active.splice(active.indexOf(item.name), 1);
+      if (~active.indexOf(name)) {
+        active.splice(active.indexOf(name), 1);
       } else {
-        active.push(item.name);
+        active.push(name);
       }
 
       this.setState({ active, open: false });
@@ -65,8 +65,8 @@ class Select extends React.Component {
       return;
     }
 
-    this.setState({ active: item, open: false });
-    this.props.onChange && this.props.onChange(item.name);
+    this.setState({ active: [name], open: false });
+    this.props.onChange && this.props.onChange(name);
   }
 
   /**
@@ -103,7 +103,7 @@ class Select extends React.Component {
       multiple,
     } = this.props;
 
-    const activeItem = this.state.active || (multiple ? [] : {});
+    const activeItem = this.state.active || [];
     const classNames = classnames(
       styles.select,
       this.state.open && styles[this.position],
@@ -119,10 +119,14 @@ class Select extends React.Component {
           <div onClick={() => this.setState({ open: !this.state.open })} className={styles.control}>
             {
               multiple || <div>
-                <span hidden={activeItem.title} className={styles.placeholder}>{placeholder}</span>
-                <span hidden={!activeItem.title}>
-                  {activeItem && activeItem.title}
-                </span>
+                <span hidden={activeItem.length} className={styles.placeholder}>{placeholder}</span>
+                {
+                  activeItem.length ? <span hidden={!activeItem.length}>
+                    {options.filter(({ name }) => (
+                      name === activeItem[0]
+                    ))[0].title}
+                  </span> : null
+                }
               </div>
             }
             {
@@ -138,9 +142,9 @@ class Select extends React.Component {
             {
               options.map(item => (
                 <li
-                  onClick={() => !item.disabled && this.onSelect(item)}
+                  onClick={() => !item.disabled && this.onSelect(item.name)}
                   className={classnames(
-                    (Array.isArray(activeItem) ?
+                    (activeItem.length ?
                       ~activeItem.indexOf(item.name) :
                       item.name === activeItem.name) && styles.active,
                     item.disabled && styles.disabled
@@ -148,7 +152,7 @@ class Select extends React.Component {
                   key={item.name}
                 >
                   {item.title}
-                  {(Array.isArray(activeItem) ? ~activeItem.indexOf(item.name) : item.name === activeItem.name) ? <span className={styles.icon}><Icon name="check-right" /></span> : null}
+                  {(activeItem.length ? ~activeItem.indexOf(item.name) : item.name === activeItem.name) ? <span className={styles.icon}><Icon name="check-right" /></span> : null}
                 </li>
               ))
             }
