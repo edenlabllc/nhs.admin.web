@@ -167,6 +167,9 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
+msgid "Logout"
+msgstr ""
+
 msgid "General"
 msgstr ""
 
