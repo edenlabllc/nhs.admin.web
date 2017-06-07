@@ -17,6 +17,7 @@ class Select extends React.Component {
     ]),
     labelText: PropTypes.string,
     open: PropTypes.bool,
+    multiple: PropTypes.bool,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     options: PropTypes.arrayOf(
@@ -31,6 +32,7 @@ class Select extends React.Component {
 
   static defaultProps = {
     open: false,
+    multiple: false,
   };
 
   state = {
@@ -46,9 +48,25 @@ class Select extends React.Component {
     }
   }
 
-  onSelect(item = {}) {
-    this.setState({ active: item, open: false });
-    this.props.onChange && this.props.onChange(item.name);
+  onSelect(name) {
+    if (this.props.multiple) {
+      const active = Array.isArray(this.state.active) ? this.state.active : [];
+
+      if (~active.indexOf(name)) {
+        active.splice(active.indexOf(name), 1);
+      } else {
+        active.push(name);
+      }
+
+      this.setState({ active, open: false });
+
+      this.props.onChange && this.props.onChange(active);
+
+      return;
+    }
+
+    this.setState({ active: [name], open: false });
+    this.props.onChange && this.props.onChange(name);
   }
 
   /**
@@ -82,14 +100,16 @@ class Select extends React.Component {
       placeholder,
       disabled,
       labelText,
+      multiple,
     } = this.props;
 
-    const activeItem = this.state.active || {};
+    const activeItem = this.state.active || [];
     const classNames = classnames(
       styles.select,
       this.state.open && styles[this.position],
       this.state.open && styles.open,
       disabled && styles.disabled,
+      multiple && styles.multiple,
     );
 
     return (
@@ -97,25 +117,42 @@ class Select extends React.Component {
         <section ref={ref => (this.selectNode = ref)} className={classNames}>
           <div className={styles.label}>{labelText}</div>
           <div onClick={() => this.setState({ open: !this.state.open })} className={styles.control}>
-            <span hidden={activeItem.title} className={styles.placeholder}>{placeholder}</span>
-            <span hidden={!activeItem.title}>
-              {activeItem && activeItem.title}
-            </span>
+            {
+              multiple || <div>
+                <span hidden={activeItem.length} className={styles.placeholder}>{placeholder}</span>
+                {
+                  activeItem.length ? <span hidden={!activeItem.length}>
+                    {options.filter(({ name }) => (
+                      name === activeItem[0]
+                    ))[0].title}
+                  </span> : null
+                }
+              </div>
+            }
+            {
+              multiple && <div>
+                {activeItem.length ? <ul className={styles['multiple-list']}>
+                  {activeItem.map(name => <li key={`${name}-key`}>{name}</li>)}
+                </ul> : <span className={styles.placeholder}>{placeholder}</span>}
+              </div>
+            }
             <span className={styles.arrow} />
           </div>
           <ul ref={ref => (this.listNode = ref)} className={styles.list}>
             {
               options.map(item => (
                 <li
-                  onClick={() => !item.disabled && this.onSelect(item)}
+                  onClick={() => !item.disabled && this.onSelect(item.name)}
                   className={classnames(
-                    item.name === activeItem.name && styles.active,
+                    (activeItem.length ?
+                      ~activeItem.indexOf(item.name) :
+                      item.name === activeItem.name) && styles.active,
                     item.disabled && styles.disabled
                   )}
                   key={item.name}
                 >
                   {item.title}
-                  {item.name === activeItem.name && <span className={styles.icon}><Icon name="check-right" /></span>}
+                  {(activeItem.length ? ~activeItem.indexOf(item.name) : item.name === activeItem.name) ? <span className={styles.icon}><Icon name="check-right" /></span> : null}
                 </li>
               ))
             }

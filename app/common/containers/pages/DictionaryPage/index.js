@@ -29,8 +29,10 @@ export default class DictionariesPage extends React.Component {
   }
   onSave(values) {
     const { updateDictionary } = this.props;
-    return updateDictionary(values.name, values);
+
+    return updateDictionary(values.name, this.transformFromForm(values));
   }
+
   transformToForm(dictionary) {
     return {
       ...dictionary,
@@ -40,6 +42,7 @@ export default class DictionariesPage extends React.Component {
       })),
     };
   }
+
   transformFromForm(dictionary) {
     return {
       ...dictionary,

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-06-01T15:42:52.970Z\n"
-"PO-Revision-Date: 2017-06-01T15:42:52.970Z\n"
+"POT-Creation-Date: 2017-06-01T13:54:46.379Z\n"
+"PO-Revision-Date: 2017-06-01T13:54:46.379Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -318,6 +318,15 @@ msgid "Legal entity"
 msgstr ""
 
 msgid "EDRPOU"
+msgstr ""
+
+msgid "Filter by name"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Filter by label"
 msgstr ""
 
 msgid "Dictionary Name"
