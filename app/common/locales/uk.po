@@ -331,6 +331,15 @@ msgstr "Юридична особа"
 msgid "EDRPOU"
 msgstr "ЕДРПОУ"
 
+msgid "Filter by name"
+msgstr "Фільтрувати за назвою"
+
+msgid "All"
+msgstr "Усі"
+
+msgid "Filter by label"
+msgstr "Фільтрувати за тегом"
+
 msgid "Dictionary Name"
 msgstr "Назва словника"
 

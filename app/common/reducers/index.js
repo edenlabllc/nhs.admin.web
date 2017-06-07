@@ -78,7 +78,21 @@ export const getTemplates = (state, ids) => denormalize(ids, [schemas.template],
 
 export const getDictionary = (state, name) => denormalize(name, schemas.dictionary, state.data);
 export const getDictionaries = state => state.data.dictionaries;
+export const getDictionariesNames = state => (
+  Object.keys(getDictionaries(state)).map(name => ({ name, title: name }))
+);
+export const getDictionariesLabels = (state) => {
+  const dictionaries = getDictionaries(state);
+  return Object.keys(dictionaries).reduce((target, name) => {
+    dictionaries[name].labels.forEach((label) => {
+      if (target.indexOf(label) === -1) {
+        target.push(label);
+      }
+    });
 
+    return target;
+  }, []);
+};
 
 export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
 export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);

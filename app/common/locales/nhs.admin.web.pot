@@ -326,6 +326,15 @@ msgstr ""
 msgid "EDRPOU"
 msgstr ""
 
+msgid "Filter by name"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Filter by label"
+msgstr ""
+
 msgid "Dictionary Name"
 msgstr ""
 
