@@ -61,7 +61,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
         <Route path="/">
 
           <Route onEnter={requireAuth}>
-            <IndexRedirect to="/dashboard" />
+            <IndexRedirect to="/dictionaries" />
 
             <Route path="dashboard" component={DashboardPage} />
 
