@@ -31,21 +31,26 @@ export default class Nav extends React.Component {
     return (
       <nav className={classnames(styles.nav, isOpen && styles.open)}>
         <ul>
-          <NavItem to="/dashboard" activeClassName={styles.active}>
-            <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
-          </NavItem>
-          <NavItem to="clinics" activeClassName={styles.active}>
-            <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>
-          </NavItem>
-          <NavItem to="declarations" activeClassName={styles.active}>
-            <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
-          </NavItem>
-          <NavItem to="pending-declarations" activeClassName={styles.active}>
-            <Link id="pending-declarations-nav" to="/pending-declarations">{ t('Pending declarations') }</Link>
-          </NavItem>
-          <NavItem to="employees" activeClassName={styles.active}>
-            <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
-          </NavItem>
+          {
+            //
+            //  <NavItem to="/dashboard" activeClassName={styles.active}>
+            //    <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
+            //  </NavItem>
+            //  <NavItem to="clinics" activeClassName={styles.active}>
+            //    <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>
+            //  </NavItem>
+            //  <NavItem to="declarations" activeClassName={styles.active}>
+            //    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
+            //  </NavItem>
+            //  <NavItem to="pending-declarations" activeClassName={styles.active}>
+            //    <Link id="pending-declarations-nav" to="/pending-declarations">
+            //    { t('Pending declarations') }</Link>
+            //  </NavItem>
+            //  <NavItem to="employees" activeClassName={styles.active}>
+            //    <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
+            //  </NavItem>
+            //
+          }
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">{ t('Dictionaries') }</Link>
           </NavItem>
