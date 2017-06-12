@@ -20,9 +20,7 @@ export default class SignInPage extends React.Component {
       <section className={styles.main} id="sign-in-page">
         <div className={styles.main__content}>
           <header className={styles.header}>
-            {
-              // <img src="/images/logo-login.svg" alt="Logo" />
-            }
+            <img src="/images/logo-login.svg" alt="Logo" />
           </header>
           <article className={styles.form}>
             <SignInForm onSubmit={onSubmit} />
