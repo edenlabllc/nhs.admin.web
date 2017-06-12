@@ -13,8 +13,9 @@ router.use((req, res, next) => {
   const { pathname, search } = Url.parse(req.url);
   const hasSlash = pathname.charAt(pathname.length - 1) === '/';
   if (search && hasSlash) return res.redirect(301, `${pathname.slice(0, -1)}${search}`);
-  if (!search && hasSlash) return next();
-  return res.redirect(301, `${pathname}/${search || ''}`);
+  if (!search && !hasSlash) return res.redirect(301, `${pathname}/`);
+
+  return next();
 });
 
 router.use('/home', (req, res) => {

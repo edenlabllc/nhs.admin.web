@@ -11,7 +11,7 @@ dispatch(createSessionToken({
   email,
   password,
   client_id: CLIENT_ID,
-  scope: 'app:authorize',
+  scope: 'app:authorize legal_entity:read',
 })).then((action) => {
   if (action.error) {
     throw new SubmissionError({

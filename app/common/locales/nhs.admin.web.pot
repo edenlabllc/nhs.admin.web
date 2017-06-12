@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-06-02T12:41:39.028Z\n"
-"PO-Revision-Date: 2017-06-02T12:41:39.028Z\n"
+"POT-Creation-Date: 2017-06-12T00:31:49.601Z\n"
+"PO-Revision-Date: 2017-06-12T00:31:49.601Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -218,6 +218,12 @@ msgstr ""
 msgid "You have not unique values in key: <%= params %>"
 msgstr ""
 
+msgid "edrpou"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
 msgid "Password"
 msgstr ""
 
@@ -243,9 +249,6 @@ msgid "Billing date"
 msgstr ""
 
 msgid "Save config"
-msgstr ""
-
-msgid "edrpou"
 msgstr ""
 
 msgid "KVEDs"
@@ -290,7 +293,31 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-msgid "Select dictionary to edit"
+msgid "Filter by type"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Filter by status"
+msgstr ""
+
+msgid "Verified"
+msgstr ""
+
+msgid "Not verified"
+msgstr ""
+
+msgid "Filter by owner type"
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Filter by legal form"
 msgstr ""
 
 msgid "Action"
@@ -329,10 +356,10 @@ msgstr ""
 msgid "Filter by name"
 msgstr ""
 
-msgid "All"
+msgid "Filter by label"
 msgstr ""
 
-msgid "Filter by label"
+msgid "Select dictionary to edit"
 msgstr ""
 
 msgid "Dictionary Name"

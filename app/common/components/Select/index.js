@@ -37,15 +37,11 @@ class Select extends React.Component {
 
   state = {
     open: this.props.open,
-    active: (() => this.props.options.filter(item => item.name === this.props.active)[0])(),
+    active: [],
   };
 
-  componentWillReceiveProps(props) {
-    if (props.active) {
-      this.setState({
-        active: this.props.options.filter(item => item.name === props.active)[0],
-      });
-    }
+  componentWillMount() {
+    this.props.active && this.setState({ active: [this.props.active] });
   }
 
   onSelect(name) {
@@ -115,7 +111,7 @@ class Select extends React.Component {
     return (
       <OuterClick onClick={() => this.setState({ open: false })}>
         <section ref={ref => (this.selectNode = ref)} className={classNames}>
-          <div className={styles.label}>{labelText}</div>
+          {labelText && <div className={styles.label}>{labelText}</div>}
           <div onClick={() => this.setState({ open: !this.state.open })} className={styles.control}>
             {
               multiple || <div>

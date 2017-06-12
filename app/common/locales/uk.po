@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-06-02 15:41+0300\n"
-"PO-Revision-Date: 2017-06-02 15:42+0300\n"
+"POT-Creation-Date: 2017-06-12 03:32+0300\n"
+"PO-Revision-Date: 2017-06-12 03:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -223,6 +223,12 @@ msgstr "Опис елемента"
 msgid "You have not unique values in key: <%= params %>"
 msgstr "Не унікальні значення в ключі: <%= params %>"
 
+msgid "edrpou"
+msgstr "ЕДРПОУ"
+
+msgid "Search"
+msgstr "Пошук"
+
 msgid "Password"
 msgstr "Пароль"
 
@@ -249,9 +255,6 @@ msgstr "Дата розрахунку"
 
 msgid "Save config"
 msgstr "Зберегти конфігурацію"
-
-msgid "edrpou"
-msgstr "ЕДРПОУ"
 
 msgid "KVEDs"
 msgstr "КВЕДи"
@@ -295,8 +298,32 @@ msgstr "Дата"
 msgid "Updated"
 msgstr "Оновлено"
 
-msgid "Select dictionary to edit"
-msgstr "Виберіть словник для редагування"
+msgid "Filter by type"
+msgstr "Фільтр по типу"
+
+msgid "All"
+msgstr "Усі"
+
+msgid "Filter by status"
+msgstr "Фільтр по статусу"
+
+msgid "Verified"
+msgstr "Підтверджено"
+
+msgid "Not verified"
+msgstr "Не підтверджено"
+
+msgid "Filter by owner type"
+msgstr "Фільтрувати за типом власника"
+
+msgid "State"
+msgstr "Регіональні"
+
+msgid "Private"
+msgstr "Приватні"
+
+msgid "Filter by legal form"
+msgstr "Фільтрувати за організаційно-правовою формою"
 
 msgid "Action"
 msgstr "Дії"
@@ -334,11 +361,11 @@ msgstr "ЕДРПОУ"
 msgid "Filter by name"
 msgstr "Фільтрувати за назвою"
 
-msgid "All"
-msgstr "Усі"
-
 msgid "Filter by label"
 msgstr "Фільтрувати за тегом"
+
+msgid "Select dictionary to edit"
+msgstr "Виберіть словник для редагування"
 
 msgid "Dictionary Name"
 msgstr "Назва словника"
