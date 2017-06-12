@@ -71,6 +71,10 @@ textarea.input {
   padding: 5px 10px 6px;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
 .prefix-wrapper {
   position: relative;
   padding: 0 11px;

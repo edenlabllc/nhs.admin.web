@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Слой_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 299.2 104.1"
+	 enable-background="new 0 0 299.2 104.1" xml:space="preserve">
+<metadata>
+	<sfw>
+		<slices></slices>
+		<sliceSourceBounds  width="298.6" height="103.6" y="-299.5" x="316.2" bottomLeftOrigin="true"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<g>
+	<path fill="#FFFFFF" d="M48.5,81.5L5.3,46v57.6H0v-69l48.5,40l48.5-40v69h-5.3V46L48.5,81.5z M4.9,4l3.4-4l40.3,33L88.8,0l3.4,4
+		L48.5,40.1L4.9,4z"/>
+	<path fill="#FFFFFF" d="M122.8,21.6l-8-19.7l4.9-1.9l6.7,16.3h59.3L192.2,0l4.9,1.9l-8,19.7H122.8z M155.2,103.6l-21.3-54.5H178
+		l-21.3,54.5H155.2z M170.2,54.5h-28.4L156,91.8L170.2,54.5z"/>
+	<path fill="#FFFFFF" d="M293.8,99.4l-3.4,4.1L220.2,46v57.6h-5.3v-69L293.8,99.4z M219.8,4.1l3.4-4.1l70.1,57.6V0h5.3v69L219.8,4.1
+		z"/>
+</g>
+</svg>

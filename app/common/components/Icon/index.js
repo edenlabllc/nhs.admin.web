@@ -14,6 +14,9 @@ export const icons = [
   'trash',
   'nebo15',
   'exit',
+  'close',
+  'envelope',
+  'lock',
 ];
 
 const Icon = ({ name }) => React.createElement('i', {
