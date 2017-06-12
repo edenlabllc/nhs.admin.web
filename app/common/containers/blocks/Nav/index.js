@@ -36,9 +36,6 @@ export default class Nav extends React.Component {
             //  <NavItem to="/dashboard" activeClassName={styles.active}>
             //    <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
             //  </NavItem>
-            //  <NavItem to="clinics" activeClassName={styles.active}>
-            //    <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>
-            //  </NavItem>
             //  <NavItem to="declarations" activeClassName={styles.active}>
             //    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
             //  </NavItem>
@@ -51,6 +48,9 @@ export default class Nav extends React.Component {
             //  </NavItem>
             //
           }
+          <NavItem to="clinics" activeClassName={styles.active}>
+            <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>
+          </NavItem>
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">{ t('Dictionaries') }</Link>
           </NavItem>

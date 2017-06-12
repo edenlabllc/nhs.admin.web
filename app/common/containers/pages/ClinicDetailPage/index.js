@@ -3,7 +3,8 @@ import format from 'date-fns/format';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 import { H3 } from 'components/Title';
 import Line from 'components/Line';
@@ -38,6 +39,12 @@ export default class ClinicDetailPage extends React.Component {
 
     return (
       <div id="clinic-detail-page">
+        <Helmet
+          title={clinic.name}
+          meta={[
+            { property: 'og:title', content: clinic.name },
+          ]}
+        />
         <HeaderWithSub
           title={(
             <div>

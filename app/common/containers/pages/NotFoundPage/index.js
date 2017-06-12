@@ -1,6 +1,7 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 
 import { H1 } from 'components/Title';
@@ -16,6 +17,12 @@ export default class NotFoundPage extends React.Component {
 
     return (
       <section className={styles.error} id="not-found-page">
+        <Helmet
+          title={t('Page Not Found')}
+          meta={[
+            { property: 'og:title', content: t('Page Not Found') },
+          ]}
+        />
         <div className={styles.error__main}>
           <H1>{ t('Page Not Found') }</H1>
           <p>

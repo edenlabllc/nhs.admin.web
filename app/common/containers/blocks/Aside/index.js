@@ -20,7 +20,9 @@ export default class Aside extends React.Component {
     return (
       <aside className={styles.aside}>
         { /* eslint-disable jsx-a11y/anchor-has-content */ }
-        <Link className={styles.logo} to="/">{'NHS Admin'}</Link>
+        <Link className={styles.logo} to="/">
+          <img src="/images/nhs-logo.svg" alt="Logo" />
+        </Link>
         <hr className={styles.line} />
 
         <Nav isOpen={active} />

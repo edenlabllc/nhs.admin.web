@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
+
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
@@ -34,6 +36,12 @@ export default class DictionariesPage extends React.Component {
 
     return (
       <div id="dictionaries-page">
+        <Helmet
+          title={t('Dictionaries')}
+          meta={[
+            { property: 'og:title', content: t('Dictionaries') },
+          ]}
+        />
         <H1>{ t('Dictionaries') }</H1>
         <div>
           <div className={styles.filter}>

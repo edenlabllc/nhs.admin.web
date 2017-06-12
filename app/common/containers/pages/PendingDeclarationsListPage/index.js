@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
@@ -29,6 +30,13 @@ export default class PendingDeclarationsListPage extends React.Component {
 
     return (
       <div id="pending-declarations-list-page">
+        <Helmet
+          title={t('Pending declarations')}
+          meta={[
+            { property: 'og:title', content: t('Pending declarations') },
+          ]}
+        />
+
         <H1>{ t('Pending declarations') }</H1>
 
         <div id="declarations-table" className={styles.table}>
