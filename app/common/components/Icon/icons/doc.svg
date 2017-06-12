@@ -1,7 +1,4 @@
-<svg id="SvgjsSvg1008" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-     xmlns:svgjs="http://svgjs.com/svgjs" width="10" height="15" viewBox="0 0 10 15">
-    <title>Фигура 7 копия 2</title>
-    <desc>Created with Avocode.</desc>
+<svg id="SvgjsSvg1008" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="15" viewBox="0 0 10 15">
     <defs id="SvgjsDefs1009">
         <filter id="SvgjsFilter1011" width="200%" height="200%" x="-50%" y="-50%">
             <feMorphology id="SvgjsFeMorphology1012" operator="dilate" radius="0" result="SvgjsFeMorphology1012Out"
