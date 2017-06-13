@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
-import { H1 } from 'components/Title';
+import Helmet from 'react-helmet';
 
+import { H1 } from 'components/Title';
 import SystemConfigurationForm from 'containers/forms/SystemConfigurationForm';
 
 import { getConfiguration } from 'reducers';
@@ -28,6 +29,13 @@ export default class SystemConfigurationPage extends React.Component {
 
     return (
       <div id="system-configuration-page">
+        <Helmet
+          title={t('System configuration')}
+          meta={[
+            { property: 'og:title', content: t('System configuration') },
+          ]}
+        />
+
         <H1>{ t('System configuration') }</H1>
 
         <SystemConfigurationForm

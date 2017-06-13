@@ -1,6 +1,7 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { translate } from 'react-i18next';
+import Helmet from 'react-helmet';
 
 import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
@@ -25,6 +26,13 @@ export default class DeclarationDetailPage extends React.Component {
 
     return (
       <div>
+        <Helmet
+          title={`${t('Declaration')} ${declaration.fullName}`}
+          meta={[
+            { property: 'og:title', content: `${t('Declaration')} ${declaration.fullName}` },
+          ]}
+        />
+
         <HeaderWithSub title={`${t('Declaration')} ${fullName}`}>
           { t('Dates') }: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
 

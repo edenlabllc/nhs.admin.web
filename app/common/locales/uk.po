@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-06-12 03:32+0300\n"
-"PO-Revision-Date: 2017-06-12 03:38+0300\n"
+"POT-Creation-Date: 2017-06-12 13:57+0300\n"
+"PO-Revision-Date: 2017-06-12 13:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -151,9 +151,6 @@ msgstr "Завантаження..."
 msgid "Dashboard"
 msgstr "Статистика"
 
-msgid "Clinics"
-msgstr "Клініки"
-
 msgid "Declarations"
 msgstr "Декларації"
 
@@ -162,6 +159,9 @@ msgstr "Декларації на розгляді"
 
 msgid "Employees"
 msgstr "Співробітники"
+
+msgid "Clinics"
+msgstr "Клініки"
 
 msgid "Dictionaries"
 msgstr "Словники"
@@ -255,6 +255,18 @@ msgstr "Дата розрахунку"
 
 msgid "Save config"
 msgstr "Зберегти конфігурацію"
+
+msgid "head-default-title"
+msgstr "Панель управління"
+
+msgid "head-description"
+msgstr "NHS - Панель управління"
+
+msgid "head-og-title"
+msgstr "Панель управління"
+
+msgid "head-og-description"
+msgstr "NHS - Панель управління"
 
 msgid "KVEDs"
 msgstr "КВЕДи"
@@ -436,8 +448,11 @@ msgstr "Відхилити"
 msgid "Accept"
 msgstr "Прийняти"
 
-msgid "Please, enter your data"
-msgstr "Будь ласка, введіть свої дані"
+msgid "Sign in"
+msgstr "Вхід"
+
+#~ msgid "Please, enter your data"
+#~ msgstr "Будь ласка, введіть свої дані"
 
 #~ msgid "dictionary"
 #~ msgstr "словник"

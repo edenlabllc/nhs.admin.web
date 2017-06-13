@@ -3,7 +3,9 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import Helmet from 'react-helmet';
+import withStyles from 'withStyles';
+
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
@@ -28,6 +30,13 @@ export default class DeclarationsListPage extends React.Component {
 
     return (
       <div id="declarations-list-page">
+        <Helmet
+          title={t('Declarations')}
+          meta={[
+            { property: 'og:title', content: t('Declarations') },
+          ]}
+        />
+
         <H1>{ t('Declarations') }</H1>
         <p>{ t('Select declaration to edit') }</p>
 

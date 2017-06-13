@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import FormPageWrapper from 'containers/blocks/FormPageWrapper';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
+import FormPageWrapper from 'containers/blocks/FormPageWrapper';
 import DictionaryForm from 'containers/forms/DictionaryForm';
 
 import { getDictionary } from 'reducers';
@@ -58,6 +59,12 @@ export default class DictionariesPage extends React.Component {
 
     return (
       <FormPageWrapper id="dictionary-edit-page" title={t('Edit {{name}} dictionary', { name: params.name })} back="/dictionaries">
+        <Helmet
+          title={t('Edit {{name}} dictionary', { name: params.name })}
+          meta={[
+            { property: 'og:title', content: t('Edit {{name}} dictionary', { name: params.name }) },
+          ]}
+        />
         <DictionaryForm
           initialValues={this.transformToForm(dictionary)}
           onSubmit={this.onSave}

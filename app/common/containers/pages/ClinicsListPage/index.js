@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
@@ -61,6 +62,13 @@ export default class ClinicsListPage extends React.Component {
 
     return (
       <div id="clinics-list-page">
+        <Helmet
+          title={t('Clinics')}
+          meta={[
+            { property: 'og:title', content: t('Clinics') },
+          ]}
+        />
+
         <H1>{ t('Clinics') }</H1>
         <div className={styles.filter}>
           <div>

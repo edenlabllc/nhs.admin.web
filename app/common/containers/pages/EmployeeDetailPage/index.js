@@ -3,6 +3,7 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
+import Helmet from 'react-helmet';
 
 import { H2, H3 } from 'components/Title';
 import Line from 'components/Line';
@@ -31,10 +32,18 @@ import { fetchEmployee } from './redux';
 export default class EmployeeDetailPage extends React.Component {
   render() {
     const { employee = { }, t } = this.props;
+    const fullName = `${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`;
 
     return (
       <div id="employee-detail-page">
-        <HeaderWithSub title={`${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`}>
+        <Helmet
+          title={`${t('Employee')} - ${fullName}`}
+          meta={[
+            { property: 'og:title', content: `${t('Employee')} - ${fullName}` },
+          ]}
+        />
+
+        <HeaderWithSub title={fullName}>
           { t('Dates') }: <b>{format(employee.start_date, 'DD.MM.YYYY hh:mm')} - {format(employee.end_date, 'DD.MM.YYYY hh:mm')}</b>
           <p>
             { t('Position') }: <b>{employee.position}</b>,

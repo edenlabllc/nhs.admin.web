@@ -3,7 +3,8 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
@@ -29,6 +30,12 @@ export default class EmployeesListPage extends React.Component {
 
     return (
       <div id="employees-list-page">
+        <Helmet
+          title={t('Employees')}
+          meta={[
+            { property: 'og:title', content: t('Employees') },
+          ]}
+        />
         <H1>{ t('Employees') }</H1>
         <p>{ t('Select dictionary to edit') }</p>
         <div id="employees-table" className={styles.table}>

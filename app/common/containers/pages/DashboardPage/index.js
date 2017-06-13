@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from 'withStyles';
+import Helmet from 'react-helmet';
 
 import { H1, H3 } from 'components/Title';
 import FoldingTable from 'components/FoldingTable';
@@ -34,6 +35,13 @@ export default class DashboardPage extends React.Component {
 
     return (
       <div id="dashboard-page">
+        <Helmet
+          title={t('Dashboard')}
+          meta={[
+            { property: 'og:title', content: t('Dashboard') },
+          ]}
+        />
+
         <H1>{ t('Dashboard') }</H1>
 
         <div className={styles.global}>
