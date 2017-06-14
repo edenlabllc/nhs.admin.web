@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-06-12T10:57:39.334Z\n"
-"PO-Revision-Date: 2017-06-12T10:57:39.334Z\n"
+"POT-Creation-Date: 2017-06-14T10:07:09.750Z\n"
+"PO-Revision-Date: 2017-06-14T10:07:09.750Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -444,4 +444,10 @@ msgid "Accept"
 msgstr ""
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Auth error {{code}}"
+msgstr ""
+
+msgid "Enter with EHEALTH"
 msgstr ""

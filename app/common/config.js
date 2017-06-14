@@ -20,6 +20,11 @@ export const API_PROXY_PATH = '/api';
 export const MOCK_API_PROXY_PATH = '/mock-api';
 
 export const CLIENT_ID = process.env.CLIENT_ID || 'e32e51ac-f720-4e42-adb3-67d504f3ad30';
+export const CLIENT_SECRET = process.env.CLIENT_SECRET || 'ZzluaHd0V01lU1IwTnd4VkdBcUZHUT09';
+export const SCOPES = process.env.SCOPES || 'app:authorize legal_entity:read';
+export const OAUTH_URL = process.env.OAUTH_URL || 'http://auth.dev.ehealth.world/sign-in';
+export const OAUTH_REDIRECT_PATH = process.env.OAUTH_REDIRECT_PATH || '/auth/redirect';
+export const OAUTH_REDIRECT_URL = `${HOSTNAME}${OAUTH_REDIRECT_PATH}`;
 
 // for internal app usage. for example for XHR requests or server side rendering
 export const API_URL = typeof window !== 'undefined' ? API_PROXY_PATH : API_HOST;

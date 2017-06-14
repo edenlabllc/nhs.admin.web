@@ -9,6 +9,7 @@ import i18nextMiddleware from 'i18next-express-middleware';
 import page from './page'; // eslint-disable-line import/no-unresolved
 import seo from './seo';
 import sitemap from './sitemap';
+import auth from './auth';
 
 
 import i18next from '../common/services/i18next';
@@ -48,8 +49,11 @@ server.use(Express.static(path.join(__dirname, '../../public')));
 server.use('/static', Express.static(path.join(__dirname, '../../static')));
 server.use('/fonts', Express.static(path.join(__dirname, '../../assets/fonts')));
 server.get('/api/not-found', (req, res) => res.status(404).send()); // for test
+
 server.use(sitemap);
 server.use(seo);
+server.use(auth);
+
 server.get('*', page());
 
 server.use((err, req, res) => {
