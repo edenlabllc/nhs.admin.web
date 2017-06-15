@@ -1,6 +1,7 @@
 import Express from 'express';
 
 import * as config from '../common/config';
+import { CLIENT_SECRET } from './config';
 
 const router = new Express.Router();
 
@@ -11,7 +12,7 @@ const createSessionToken = code => fetch(`${config.API_HOST}/oauth/tokens`, {
     token: {
       grant_type: 'authorization_code',
       client_id: config.CLIENT_ID,
-      client_secret: config.CLIENT_SECRET,
+      client_secret: CLIENT_SECRET,
       redirect_uri: config.OAUTH_REDIRECT_URL,
       scope: config.SCOPES,
       code,
