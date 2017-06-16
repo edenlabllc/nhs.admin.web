@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-06-12 13:57+0300\n"
-"PO-Revision-Date: 2017-06-12 13:59+0300\n"
+"POT-Creation-Date: 2017-06-14 13:07+0300\n"
+"PO-Revision-Date: 2017-06-14 14:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -450,6 +450,12 @@ msgstr "Прийняти"
 
 msgid "Sign in"
 msgstr "Вхід"
+
+msgid "Auth error {{code}}"
+msgstr "Помилка отримання токена"
+
+msgid "Enter with EHEALTH"
+msgstr "Увійти за допомогою EHEALTH"
 
 #~ msgid "Please, enter your data"
 #~ msgstr "Будь ласка, введіть свої дані"
