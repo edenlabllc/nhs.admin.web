@@ -1,0 +1,31 @@
+.back {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 24px;
+
+  &__icon {
+    font-size: 16px;
+    color: #5691f0;
+  }
+
+  &__content {
+    display: inline-block;
+    padding-left: 16px;
+    vertical-align: middle;
+    color: #18253a;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  &_icon_right {
+    .back__icon {
+      float: right;
+      transform: rotate(180deg);
+    }
+
+    .back__content {
+      padding: 0 16px 0 0;
+    }
+  }
+}

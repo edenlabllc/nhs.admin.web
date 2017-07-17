@@ -17,6 +17,7 @@ export const icons = [
   'close',
   'envelope',
   'lock',
+  'back',
 ];
 
 const Icon = ({ name }) => React.createElement('i', {

@@ -7,12 +7,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: bottom;
-
-    p {
-      font-size: 11px;
-      line-height: 1.1;
-      color: #929499;
-    }
   }
 }
 
@@ -31,6 +25,14 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+.status {
+  color: #22a4ff;
+
+  &_verified {
+    color: #13db63;
   }
 }
 

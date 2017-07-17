@@ -16,7 +16,7 @@ export const fetchClinics = options => invoke({
     payload: (action, state, res) => res.clone().json().then(
       json => normalize(json.data, [clinic])
     ),
-    meta: (action, state, res) => res.clone().json().then(json => json.paging),
+    meta: (action, state, res) => res.clone().json().then(json => json.paging || { cursors: {} }),
   }, 'clinics/FETCH_LIST_FAILURE'],
 });
 

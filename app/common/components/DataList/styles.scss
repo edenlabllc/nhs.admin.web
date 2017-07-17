@@ -1,16 +1,45 @@
 .list {
+  display: block;
+  line-height: 22px;
+  font-size: 16px;
+
   dt {
-    display: inline-block;
-    min-width: 90px;
+    width: 150px;
   }
 
   dd {
-    display: inline;
-    padding-left: 10px;
+    margin-bottom: 26px;
 
-    &::after {
-      content: '';
-      display: block;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  dt,
+  dd {
+    float: left;
+  }
+
+  dd + dt,
+  dd + dd {
+    clear: left;
+  }
+
+  dd + dd {
+    float: none;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+
+  &_theme_min {
+    font-size: 14px;
+
+    dd {
       margin-bottom: 5px;
     }
   }

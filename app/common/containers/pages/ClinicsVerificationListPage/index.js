@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H1, H2 } from 'components/Title';
+import { H1 } from 'components/Title';
 import Pagination from 'components/CursorPagination';
+import Icon from 'components/Icon';
 
 import ClinicsList from 'containers/blocks/ClinicsList';
 import ShowBy from 'containers/blocks/ShowBy';
-
-import SearchForm from 'containers/forms/SearchForm';
 
 import { getClinics } from 'reducers';
 
@@ -23,13 +22,15 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchClinics(query)),
+  fetch: ({ dispatch, location: { query } }) => dispatch(
+    fetchClinics({ ...query, nhs_verified: false })
+  ),
 })
 @connect(state => ({
   ...state.pages.ClinicsListPage,
   clinics: getClinics(state, state.pages.ClinicsListPage.clinics),
 }), { fetchClinics })
-export default class ClinicsListPage extends React.Component {
+export default class ClinicsVerificationListPage extends React.Component {
   filterClinics(filter) {
     const newFilter = {
       ...this.props.location.query,
@@ -54,34 +55,21 @@ export default class ClinicsListPage extends React.Component {
     const { clinics = [], t, paging, location } = this.props;
 
     return (
-      <div id="clinics-list-page">
+      <div id="clinics-verification-list-page">
         <Helmet
-          title={t('Clinics')}
+          title={t('Verification clinics')}
           meta={[
-            { property: 'og:title', content: t('Clinics') },
+            { property: 'og:title', content: t('Verification clinics') },
           ]}
         />
 
-        <H1>{ t('Clinics') }</H1>
-
-        <div className={styles.search}>
-          <H2>{ t('Search clinic') }</H2>
-          <SearchForm
-            active="edrpou"
-            placeholder={t('Find clinic')}
-            items={[
-              { name: 'edrpou', title: t('By edrpou') },
-              { name: 'legal_entity_id', title: t('By legal entity') },
-              { name: 'settlement_id', title: t('By settlement id') },
-            ]}
-            onSubmit={values => this.filterClinics({
-              edrpou: null,
-              legal_entity_id: null,
-              settlement_id: null,
-              ...values,
-            })}
-          />
+        <div className={styles.back}>
+          <Link to="/clinics-verification">
+            <Icon name="back" /> Back to search page
+          </Link>
         </div>
+
+        <H1>{ t('Verification clinics') }</H1>
 
         <ShowBy
           active={Number(location.query.limit) || 5}

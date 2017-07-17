@@ -1,24 +1,31 @@
 import React from 'react';
 import format from 'date-fns/format';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
+import filter from 'helpers/filter';
+
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
+
+import ShowBy from 'containers/blocks/ShowBy';
+import SearchForm from 'containers/forms/SearchForm';
 
 import { getEmployees } from 'reducers';
 
 import { fetchEmployees } from './redux';
 import styles from './styles.scss';
 
+@withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchEmployees()),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchEmployees(query)),
 })
 @connect(state => ({
   ...state.pages.EmployeesListPage,
@@ -26,7 +33,7 @@ import styles from './styles.scss';
 }))
 export default class EmployeesListPage extends React.Component {
   render() {
-    const { employees = [], t } = this.props;
+    const { employees = [], t, location } = this.props;
 
     return (
       <div id="employees-list-page">
@@ -37,7 +44,29 @@ export default class EmployeesListPage extends React.Component {
           ]}
         />
         <H1>{ t('Employees') }</H1>
-        <p>{ t('Select dictionary to edit') }</p>
+
+        <SearchForm
+          active="tax_id"
+          placeholder={t('Find employee')}
+          items={[
+            { name: 'tax_id', title: t('By tax id') },
+            { name: 'party_id', title: t('By party id') },
+            { name: 'edrpou', title: t('By edrpou') },
+            { name: 'legal_entity_id', title: t('By legal entity') },
+          ]}
+          onSubmit={(values) => {
+            this.props.router.push({
+              pathname: location.pathname,
+              query: values,
+            });
+          }}
+        />
+
+        <ShowBy
+          active={Number(location.query.limit) || 5}
+          onChange={limit => filter({ limit }, this.props)}
+        />
+
         <div id="employees-table" className={styles.table}>
           <Table
             columns={[
