@@ -11,6 +11,7 @@ import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import ColoredText from 'components/ColoredText';
+import Button from 'components/Button';
 
 import BlocksList from 'containers/blocks/BlocksList';
 import BackLink from 'containers/blocks/BackLink';
@@ -176,6 +177,12 @@ export default class EmployeeDetailPage extends React.Component {
               },
             ]}
           />
+
+          <div className={styles.buttons}>
+            <Button onClick={() => this.props.history.goBack()} theme="border" color="blue" icon="back" block>
+              { t('Back to list') }
+            </Button>
+          </div>
         </div>
       </div>
     );
