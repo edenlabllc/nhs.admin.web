@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-07-18T13:14:50.878Z\n"
-"PO-Revision-Date: 2017-07-18T13:14:50.880Z\n"
+"POT-Creation-Date: 2017-07-18T14:31:36.342Z\n"
+"PO-Revision-Date: 2017-07-18T14:31:36.342Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -74,9 +74,6 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-msgid "area"
-msgstr ""
-
 msgid "Verified"
 msgstr ""
 
@@ -90,6 +87,9 @@ msgid "You have unsaved changes"
 msgstr ""
 
 msgid "Ok"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Are you sure want to leave this page?"
@@ -314,6 +314,9 @@ msgstr ""
 msgid "Registration address"
 msgstr ""
 
+msgid "area"
+msgstr ""
+
 msgid "city"
 msgstr ""
 
@@ -365,6 +368,12 @@ msgstr ""
 msgid "Issued"
 msgstr ""
 
+msgid "Owner"
+msgstr ""
+
+msgid "Tax id"
+msgstr ""
+
 msgid "Back to list"
 msgstr ""
 
@@ -372,6 +381,12 @@ msgid "Approve clinic"
 msgstr ""
 
 msgid "Cancel verification"
+msgstr ""
+
+msgid "Verify clinic {{name}}?"
+msgstr ""
+
+msgid "Deactivate clinic {{name}}?"
 msgstr ""
 
 msgid "Search clinic"
@@ -455,13 +470,31 @@ msgstr ""
 msgid "Edit {{name}} dictionary"
 msgstr ""
 
-msgid "status"
+msgid "Back to employees list"
+msgstr ""
+
+msgid "User ID"
+msgstr ""
+
+msgid "Tax ID"
 msgstr ""
 
 msgid "Birth date"
 msgstr ""
 
-msgid "Clinic"
+msgid "Sex"
+msgstr ""
+
+msgid "Employee ID"
+msgstr ""
+
+msgid "Start work date"
+msgstr ""
+
+msgid "End work date"
+msgstr ""
+
+msgid "Education and qualifications"
 msgstr ""
 
 msgid "Educations"
@@ -476,30 +509,6 @@ msgstr ""
 msgid "certificate"
 msgstr ""
 
-msgid "Specialities"
-msgstr ""
-
-msgid "Speciality officio"
-msgstr ""
-
-msgid "Science degree"
-msgstr ""
-
-msgid "Degree"
-msgstr ""
-
-msgid "Diploma"
-msgstr ""
-
-msgid "Location"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Speciality"
-msgstr ""
-
 msgid "Find employee"
 msgstr ""
 
@@ -507,6 +516,12 @@ msgid "By tax id"
 msgstr ""
 
 msgid "By party id"
+msgstr ""
+
+msgid "Date registration"
+msgstr ""
+
+msgid "Employee name"
 msgstr ""
 
 msgid "Page Not Found"

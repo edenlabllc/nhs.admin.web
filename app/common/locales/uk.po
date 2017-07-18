@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-07-18 16:15+0200\n"
-"PO-Revision-Date: 2017-07-18 16:18+0200\n"
+"POT-Creation-Date: 2017-07-18 17:32+0200\n"
+"PO-Revision-Date: 2017-07-18 17:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -79,9 +79,6 @@ msgstr "Статус"
 msgid "Action"
 msgstr "Дії"
 
-msgid "area"
-msgstr "область"
-
 msgid "Verified"
 msgstr "Підтверджено"
 
@@ -96,6 +93,9 @@ msgstr "У вас є незбережені зміни"
 
 msgid "Ok"
 msgstr "Добре"
+
+msgid "Cancel"
+msgstr "Скасувати"
 
 msgid "Are you sure want to leave this page?"
 msgstr "Ви впевнені, що хочете залишити цю сторінку?"
@@ -319,6 +319,9 @@ msgstr "Повне Ім’я"
 msgid "Registration address"
 msgstr "Адреса регістрації"
 
+msgid "area"
+msgstr "область"
+
 msgid "city"
 msgstr "місто"
 
@@ -370,6 +373,12 @@ msgstr "Ліцензії"
 msgid "Issued"
 msgstr "Виданий"
 
+msgid "Owner"
+msgstr "Власник"
+
+msgid "Tax id"
+msgstr "ІНН"
+
 msgid "Back to list"
 msgstr "Повернутися до списку"
 
@@ -378,6 +387,12 @@ msgstr "Підтвердити клініку"
 
 msgid "Cancel verification"
 msgstr "Скасувати підтвердження"
+
+msgid "Verify clinic {{name}}?"
+msgstr "Підтвердити клініку \"{{name}}\"?"
+
+msgid "Deactivate clinic {{name}}?"
+msgstr "Деактивувати клініку {{name}}?"
 
 msgid "Search clinic"
 msgstr "Шукати клініку"
@@ -460,14 +475,32 @@ msgstr "Переглянути словник"
 msgid "Edit {{name}} dictionary"
 msgstr "Редагувати {{name}} словник"
 
-msgid "status"
-msgstr "статус"
+msgid "Back to employees list"
+msgstr "Повернутися до списку співробітників"
+
+msgid "User ID"
+msgstr "Ідентифікатор користувача"
+
+msgid "Tax ID"
+msgstr "ІНН"
 
 msgid "Birth date"
 msgstr "Дата народження"
 
-msgid "Clinic"
-msgstr "Клініка"
+msgid "Sex"
+msgstr "Стать"
+
+msgid "Employee ID"
+msgstr "Ідентифікатор працівника"
+
+msgid "Start work date"
+msgstr "Дата початку роботи"
+
+msgid "End work date"
+msgstr "Дата завершення роботи"
+
+msgid "Education and qualifications"
+msgstr "Навчання та кваліфікація"
 
 msgid "Educations"
 msgstr "Освіта"
@@ -481,30 +514,6 @@ msgstr "Кваліфікація"
 msgid "certificate"
 msgstr "сертифікат"
 
-msgid "Specialities"
-msgstr "Спеціальність"
-
-msgid "Speciality officio"
-msgstr "Посада"
-
-msgid "Science degree"
-msgstr "Науковий ступінь"
-
-msgid "Degree"
-msgstr "ступінь"
-
-msgid "Diploma"
-msgstr "Диплом"
-
-msgid "Location"
-msgstr "Місцезнаходження"
-
-msgid "Date"
-msgstr "Дата"
-
-msgid "Speciality"
-msgstr "Спеціальність"
-
 msgid "Find employee"
 msgstr "Знайти співробітника"
 
@@ -513,6 +522,12 @@ msgstr "За ИНН"
 
 msgid "By party id"
 msgstr "За party ID"
+
+msgid "Date registration"
+msgstr "Дата реєстрації"
+
+msgid "Employee name"
+msgstr "Ім'я працівника"
 
 msgid "Page Not Found"
 msgstr "Сторінка не знайдена"
@@ -540,6 +555,36 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+#~ msgid "status"
+#~ msgstr "статус"
+
+#~ msgid "Clinic"
+#~ msgstr "Клініка"
+
+#~ msgid "Specialities"
+#~ msgstr "Спеціальність"
+
+#~ msgid "Speciality officio"
+#~ msgstr "Посада"
+
+#~ msgid "Science degree"
+#~ msgstr "Науковий ступінь"
+
+#~ msgid "Degree"
+#~ msgstr "ступінь"
+
+#~ msgid "Diploma"
+#~ msgstr "Диплом"
+
+#~ msgid "Location"
+#~ msgstr "Місцезнаходження"
+
+#~ msgid "Date"
+#~ msgstr "Дата"
+
+#~ msgid "Speciality"
+#~ msgstr "Спеціальність"
 
 #~ msgid "Inserted"
 #~ msgstr "Вставлений"

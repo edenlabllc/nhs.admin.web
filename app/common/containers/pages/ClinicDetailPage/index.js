@@ -252,22 +252,24 @@ export default class ClinicDetailPage extends React.Component {
         </div>}
 
         <Confirm
-          title={t('Verify clinic?')}
+          title={t('Verify clinic {{name}}?', { name: clinic.name })}
           active={this.state.showVerifyConfirm}
           theme="success"
-          confirm="Yes"
+          cancel={t('Cancel')}
+          confirm={t('Yes')}
           onCancel={() => this.setState({ showVerifyConfirm: false })}
           onConfirm={() => this.verifyClinic()}
-        ><b>{clinic.name}</b></Confirm>
+        />
 
         <Confirm
-          title={t('Deactivate clinic?')}
+          title={t('Deactivate clinic {{name}}?', { name: clinic.name })}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          confirm="Yes"
+          cancel={t('Cancel')}
+          confirm={t('Yes')}
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateClinic()}
-        ><b>{clinic.name}</b></Confirm>
+        />
       </div>
     );
   }
