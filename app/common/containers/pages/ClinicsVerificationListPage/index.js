@@ -65,7 +65,7 @@ export default class ClinicsVerificationListPage extends React.Component {
 
         <div className={styles.back}>
           <Link to="/clinics-verification">
-            <Icon name="back" /> Back to search page
+            <Icon name="back" /> {t('Back to search page')}
           </Link>
         </div>
 

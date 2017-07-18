@@ -40,7 +40,7 @@ export default class ClinicsList extends React.Component {
             ),
             status: (
               <span className={classnames(styles.status, i.nhs_verified && styles.status_verified)}>
-                {t(i.nhs_verified ? 'Verified' : 'Not verified')}
+                {i.nhs_verified ? t('Verified') : t('Not verified')}
               </span>
             ),
             edrpou: i.edrpou,

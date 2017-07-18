@@ -62,10 +62,12 @@ export default class EmployeesListPage extends React.Component {
           }}
         />
 
-        <ShowBy
-          active={Number(location.query.limit) || 5}
-          onChange={limit => filter({ limit }, this.props)}
-        />
+        <div className={styles.showBy}>
+          <ShowBy
+            active={Number(location.query.limit) || 5}
+            onChange={limit => filter({ limit }, this.props)}
+          />
+        </div>
 
         <div id="employees-table" className={styles.table}>
           <Table

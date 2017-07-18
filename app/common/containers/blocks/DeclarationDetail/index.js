@@ -77,7 +77,7 @@ export default class DeclarationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: 'ID',
+                  name: t('ID'),
                   value: declaration.division.id,
                 }, {
                   name: t('Type'),

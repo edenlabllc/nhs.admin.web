@@ -85,7 +85,7 @@ export default class ClinicDetailPage extends React.Component {
                     <p>
                       {clinic.addresses[0].street}, {clinic.addresses[0].building}
                     </p>
-                    <small>Фактична адреса співпадає з адресою реєстрації</small>
+                    <small>{t('Residense address is equal to registration address')}</small>
                   </div>
                 ),
               }, {

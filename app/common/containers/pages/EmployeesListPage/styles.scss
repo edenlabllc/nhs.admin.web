@@ -1,7 +1,15 @@
+@import "variables.scss";
+
 .gray {
   color: #929499;
 }
 
 .table {
   margin-top: 30px;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .showBy {
+    margin-top: 20px;
+  }
 }

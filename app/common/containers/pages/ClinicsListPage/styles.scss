@@ -40,3 +40,9 @@
   margin-top: 43px;
   text-align: center;
 }
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .showBy {
+    margin-top: 20px;
+  }
+}

@@ -45,7 +45,7 @@ export default class ConfirmFormChanges extends React.Component {
         title={t('You have unsaved changes')}
         active={this.state.showConfirm}
         theme="error"
-        confirm="Ok"
+        confirm={t('Ok')}
         id="confirm-leave"
         onCancel={() => this.setState({ showConfirm: false })}
         onConfirm={() => this.confirmLocation()}

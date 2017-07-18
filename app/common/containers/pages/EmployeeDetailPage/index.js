@@ -61,7 +61,7 @@ export default class EmployeeDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: 'Email',
+                  name: t('Email'),
                   value: employee.party.email,
                 }, {
                   name: t('Phones'),
@@ -100,7 +100,7 @@ export default class EmployeeDetailPage extends React.Component {
           </div>
 
           <div>
-            <H3>Clinic:</H3>
+            <H3>{t('Clinic')}:</H3>
 
             <Button theme="link" to={`/clinic/${employee.legal_entity.id}`}>
               {employee.legal_entity.name}

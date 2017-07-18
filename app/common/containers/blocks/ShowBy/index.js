@@ -1,9 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import withStyles from 'withStyles';
+import { translate } from 'react-i18next';
 
 import styles from './styles.scss';
 
+@translate()
 @withStyles(styles)
 export default class ShowBy extends React.Component {
   static defaultProps = {
@@ -28,13 +30,13 @@ export default class ShowBy extends React.Component {
   }
 
   render() {
-    const { counts } = this.props;
+    const { counts, t } = this.props;
     const { active } = this.state;
 
     return (
       <div className={styles.main}>
         <span className={styles.text}>
-          Виводити по
+          {t('Show by')}
         </span>
         { counts.map(item => (
           <button

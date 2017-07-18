@@ -77,8 +77,10 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
               <Route path=":id" component={ClinicDetailPage} />
             </Route>
 
-            <Route path="clinics-verification" component={ClinicsSearchPage} />
-            <Route path="clinics-verification/list" component={ClinicsVerificationListPage} />
+            <Route path="clinics-verification">
+              <IndexRoute component={ClinicsSearchPage} />
+              <Route path="list" component={ClinicsVerificationListPage} />
+            </Route>
 
             <Route path="declarations">
               <IndexRoute component={DeclarationsListPage} />

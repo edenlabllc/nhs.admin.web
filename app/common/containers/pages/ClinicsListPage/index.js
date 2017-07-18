@@ -83,10 +83,12 @@ export default class ClinicsListPage extends React.Component {
           />
         </div>
 
-        <ShowBy
-          active={Number(location.query.limit) || 5}
-          onChange={limit => this.filterClinics({ limit })}
-        />
+        <div className={styles.showBy}>
+          <ShowBy
+            active={Number(location.query.limit) || 5}
+            onChange={limit => this.filterClinics({ limit })}
+          />
+        </div>
 
         <ClinicsList clinics={clinics} />
 
