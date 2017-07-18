@@ -34,6 +34,34 @@ export const fetchClinic = id => invoke({
   }, 'clinics/FETCH_DETAILS_FAILURE'],
 });
 
+export const verifyClinic = id => invoke({
+  endpoint: createUrl(`${API_URL}/api/legal_entities/${id}/actions/nhs_verify`),
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['clinics/VERIFY_REQUEST', {
+    type: 'clinics/VERIFY_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      json => normalize(json.data, clinic)
+    ),
+  }, 'clinics/VERIFY_FAILURE'],
+});
+
+export const deactivateClinic = id => invoke({
+  endpoint: createUrl(`${API_URL}/api/legal_entities/${id}/actions/deactivate`),
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['clinics/DEACTIVATE_REQUEST', {
+    type: 'clinics/DEACTIVATE_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      json => normalize(json.data, clinic)
+    ),
+  }, 'clinics/DEACTIVATE_FAILURE'],
+});
+
 export default handleAction(
   combineActions(
     'clinics/FETCH_LIST_SUCCESS',

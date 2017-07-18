@@ -7,9 +7,9 @@ import Icon from 'components/Icon';
 
 import styles from './styles.scss';
 
-export default withStyles(styles)(({ children, to, iconPosition = 'left' }) => (
+export default withStyles(styles)(({ children, to, iconPosition = 'left', onClick }) => (
   <div className={classnames(styles.back, styles[`back_icon_${iconPosition}`])}>
-    <Link to={to}>
+    <Link onClick={onClick} to={to}>
       <span className={styles.back__icon}>
         <Icon name="back" />
       </span>

@@ -6,6 +6,8 @@ import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
+import filter from 'helpers/filter';
+
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/CursorPagination';
 
@@ -19,39 +21,27 @@ import { getClinics } from 'reducers';
 import { fetchClinics } from './redux';
 import styles from './styles.scss';
 
+const FILTER_PARAMS = ['edrpou', 'legal_entity_id', 'settlement_id'];
+
 @withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchClinics(query)),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchClinics({ limit: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.ClinicsListPage,
   clinics: getClinics(state, state.pages.ClinicsListPage.clinics),
 }), { fetchClinics })
 export default class ClinicsListPage extends React.Component {
-  filterClinics(filter) {
-    const newFilter = {
-      ...this.props.location.query,
-      ...filter,
-    };
-
-    const query = Object.keys(newFilter).reduce((target, key) => {
-      if (newFilter[key]) {
-        target[key] = newFilter[key]; // eslint-disable-line
-      }
-
-      return target;
-    }, { });
-
-    this.props.router.push({
-      ...this.props.location,
-      query,
-    });
+  get activeFilter() {
+    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
+      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    return FILTER_PARAMS[index !== -1 ? index : 0];
   }
-
   render() {
     const { clinics = [], t, paging, location } = this.props;
+    const activeFilter = this.activeFilter;
 
     return (
       <div id="clinics-list-page">
@@ -67,26 +57,29 @@ export default class ClinicsListPage extends React.Component {
         <div className={styles.search}>
           <H2>{ t('Search clinic') }</H2>
           <SearchForm
-            active="edrpou"
+            ctive={activeFilter}
             placeholder={t('Find clinic')}
             items={[
               { name: 'edrpou', title: t('By edrpou') },
               { name: 'legal_entity_id', title: t('By legal entity') },
               { name: 'settlement_id', title: t('By settlement id') },
             ]}
-            onSubmit={values => this.filterClinics({
+            initialValues={{
+              [activeFilter]: location.query[activeFilter],
+            }}
+            onSubmit={values => filter({
               edrpou: null,
               legal_entity_id: null,
               settlement_id: null,
               ...values,
-            })}
+            }, this.props)}
           />
         </div>
 
         <div className={styles.showBy}>
           <ShowBy
             active={Number(location.query.limit) || 5}
-            onChange={limit => this.filterClinics({ limit })}
+            onChange={limit => filter({ limit }, this.props)}
           />
         </div>
 

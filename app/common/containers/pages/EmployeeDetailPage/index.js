@@ -3,35 +3,56 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
+import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H2, H3 } from 'components/Title';
+import { H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
-import Button from 'components/Button';
-import Upper from 'components/Upper';
 import ColoredText from 'components/ColoredText';
-import YseNo from 'components/YesNo';
+import Button from 'components/Button';
 
-import HeaderWithSub from 'containers/blocks/HeaderWithSub';
-import Boxes from 'containers/blocks/Boxes';
 import BlocksList from 'containers/blocks/BlocksList';
+import BackLink from 'containers/blocks/BackLink';
+import ShowMore from 'containers/blocks/ShowMore';
 
-import { getEmployee } from 'reducers';
+import { getEmployee, getDictionaryValues } from 'reducers';
+
+import { fetchDictionaries } from 'redux/dictionaries';
 
 import { fetchEmployee } from './redux';
 
+import styles from './style.scss';
+
+const getDictionaryValue = (dictionary, name) =>
+  (dictionary.filter(({ key }) => name === key)[0] || {}).value;
+
+@withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
+  fetch: ({ dispatch, params: { id } }) => Promise.all([
+    dispatch(fetchEmployee(id)),
+    dispatch(fetchDictionaries()),
+  ]),
 })
 @connect((state, { params: { id } }) => ({
   employee: getEmployee(state, id),
+  gender: getDictionaryValues(state, 'GENDER'),
+  documentTypes: getDictionaryValues(state, 'DOCUMENT_TYPE'),
+  statuses: getDictionaryValues(state, 'EMPLOYEE_STATUS'),
+  positions: getDictionaryValues(state, 'POSITION'),
+  degree: getDictionaryValues(state, 'EDUCATION_DEGREE'),
+  qualifications: getDictionaryValues(state, 'QUALIFICATION_TYPE'),
 }))
 export default class EmployeeDetailPage extends React.Component {
   render() {
-    const { employee = { }, t } = this.props;
+    const {
+      employee = { },
+      t, gender, documentTypes, statuses,
+      positions, degree, qualifications,
+    } = this.props;
+
     const fullName = `${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`;
 
     return (
@@ -43,167 +64,126 @@ export default class EmployeeDetailPage extends React.Component {
           ]}
         />
 
-        <HeaderWithSub title={fullName}>
-          { t('Dates') }: <b>{format(employee.start_date, 'DD.MM.YYYY hh:mm')} - {format(employee.end_date, 'DD.MM.YYYY hh:mm')}</b>
-          <p>
-            { t('Position') }: <b>{employee.position}</b>,
-            { t('status') }: <b>{employee.status}</b>
-          </p>
-          <p>
-            { t('Birth date') }: <b>{format(employee.party.birth_date, 'DD.MM.YYYY')}</b>
-          </p>
-        </HeaderWithSub>
+        <BackLink to="/employees">{ t('Back to employees list') }</BackLink>
 
-        <Boxes>
-          <div>
-            <H3>{ t('Contacts') }:</H3>
+        <Line />
 
+        <div className={styles.main}>
+          <DataList
+            list={[
+              { name: t('User ID'), value: employee.id },
+            ]}
+          />
+
+          <Line />
+
+          <div className={styles.strong}>
             <DataList
+              theme="small"
               list={[
-                {
-                  name: t('Email'),
-                  value: employee.party.email,
-                }, {
-                  name: t('Phones'),
-                  value: <InlineList list={employee.party.phones.map(item => item.number)} />,
-                },
+                { name: t('Full name'), value: fullName },
+                { name: t('Tax ID'), value: employee.party.tax_id },
               ]}
             />
           </div>
-          <div>
-            <H3>{ t('Division') }:</H3>
 
-            <DataList
-              list={[
-                {
-                  name: 'ID',
-                  value: <Upper>{employee.division.id}</Upper>,
-                }, {
-                  name: t('Type'),
-                  value: employee.division.type,
-                }, {
-                  name: t('Mountain'),
-                  value: employee.division.mountain_group,
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <H3>{ t('Documents') }:</H3>
+          <Line />
 
-            <DataList
-              list={employee.party.documents.map(item => ({
-                name: item.type,
-                value: item.number,
-              }))}
-            />
-          </div>
+          <DataList
+            theme="min"
+            list={[
+              { name: t('Birth date'), value: format(employee.party.birth_date, 'DD/MM/YYYY') },
+              { name: t('Sex'), value: gender.filter(({ key }) => key === employee.party.gender)[0].value },
+            ]}
+          />
 
-          <div>
-            <H3>{t('Clinic')}:</H3>
+          <Line />
 
-            <Button theme="link" to={`/clinic/${employee.legal_entity.id}`}>
-              {employee.legal_entity.name}
+          <DataList
+            theme="min"
+            list={[
+              {
+                name: t('Phones'),
+                value: <InlineList list={employee.party.phones.map(item => item.number)} />,
+              },
+              {
+                name: t('Documents'),
+                value: <ul className={styles.docs}>
+                  {employee.party.documents.map(item => (
+                    <li key={item.number}>
+                      {documentTypes.filter(({ key }) => key === item.type)[0].value}
+                      &nbsp; № {item.number}
+                    </li>
+                  ))}
+                </ul>,
+              },
+            ]}
+          />
+
+          <Line />
+
+          <DataList
+            theme="min"
+            list={[
+              { name: t('Employee ID'), value: employee.party.id },
+              { name: t('Status'), value: (statuses.filter(({ key }) => employee.status === key)[0] || {}).value },
+              { name: t('Start work date'), value: format(employee.start_date, 'DD/MM/YYYY') },
+              { name: t('End work date'), value: format(employee.end_date, 'DD/MM/YYYY') },
+              { name: t('Position'), value: positions.filter(({ key }) => employee.position === key)[0].value },
+              {
+                name: t('Education and qualifications'),
+                value: <ShowMore name={t('Show documents')}>
+                  <H3>{ t('Educations') }</H3>
+
+                  <BlocksList>
+                    {employee.doctor.educations.map((item, index) => (
+                      <li key={index}>
+                        <div>
+                          {item.issued_date}, {item.institution_name}
+                        </div>
+                        <div>
+                          <ColoredText color="gray">{item.country}, {item.city}</ColoredText>
+                        </div>
+                        {item.speciality}
+                        <div>
+                          <ColoredText color="gray">
+                            {getDictionaryValue(degree, item.degree)}, { t('diploma') }: {item.diploma_number}
+                          </ColoredText>
+                        </div>
+                      </li>
+                    ))}
+                  </BlocksList>
+
+                  <Line />
+
+                  <H3>{ t('Qualifications') }</H3>
+
+                  <BlocksList>
+                    {employee.doctor.qualifications.map((item, index) => (
+                      <li key={index}>
+                        <div>
+                          {item.issued_date}, {item.institution_name}
+                        </div>
+                        {item.speciality}
+                        <div>
+                          <ColoredText color="gray">
+                            {getDictionaryValue(qualifications, item.type)}, { t('certificate') }: {item.certificate_number}
+                          </ColoredText>
+                        </div>
+                      </li>
+                    ))}
+                  </BlocksList>
+                </ShowMore>,
+              },
+            ]}
+          />
+
+          <div className={styles.buttons}>
+            <Button onClick={() => this.props.history.goBack()} theme="border" color="blue" icon="back" block>
+              { t('Back to list') }
             </Button>
           </div>
-        </Boxes>
-
-        <Line />
-
-        <H2>{ t('Educations') }</H2>
-
-        <BlocksList>
-          {employee.doctor.educations.map((item, index) => (
-            <li key={index}>
-              <div>
-                {item.issued_date}, {item.institution_name}
-              </div>
-              <div>
-                <ColoredText color="gray">{item.country}, {item.city}</ColoredText>
-              </div>
-              {item.speciality}
-              <div>
-                <ColoredText color="gray">
-                  {item.degree}, { t('diploma') }: {item.diploma_number}
-                </ColoredText>
-              </div>
-            </li>
-          ))}
-        </BlocksList>
-
-        <Line />
-
-        <H2>{ t('Qualifications') }</H2>
-
-        <BlocksList>
-          {employee.doctor.qualifications.map((item, index) => (
-            <li key={index}>
-              <div>
-                {item.issued_date}, {item.institution_name}
-              </div>
-              {item.speciality}
-              <div>
-                <ColoredText color="gray">
-                  {item.type}, { t('certificate') }: {item.certificate_number}
-                </ColoredText>
-              </div>
-            </li>
-          ))}
-        </BlocksList>
-
-        <Line />
-
-        <H2>{ t('Specialities') }</H2>
-
-        <BlocksList>
-          {employee.doctor.specialities.map((item, index) => (
-            <li key={index}>
-              <div>
-                {item.speciality}
-              </div>
-              <div>
-                <ColoredText color="gray">
-                  {item.attestation_name}
-                </ColoredText>
-              </div>
-              {item.qualification_type}, {item.level}
-              <div>
-                <ColoredText color="gray">
-                  {item.attestation_date} - {item.valid_to_date},
-                  { t('certificate') }: {item.certificate_number}
-                  <br />
-
-                  { t('Speciality officio') }: <YseNo bool={item.speciality_officio} />
-                </ColoredText>
-              </div>
-            </li>
-          ))}
-        </BlocksList>
-
-        <Line />
-
-        <H2>{ t('Science degree') }</H2>
-
-        <DataList
-          list={[
-            {
-              name: t('Degree'),
-              value: employee.doctor.science_degree.degree,
-            }, {
-              name: t('Diploma'),
-              value: employee.doctor.science_degree.diploma_number,
-            }, {
-              name: t('Location'),
-              value: `${employee.doctor.science_degree.country}, ${employee.doctor.science_degree.city}, ${employee.doctor.science_degree.institution_name}`,
-            }, {
-              name: t('Date'),
-              value: employee.doctor.science_degree.issued_date,
-            }, {
-              name: t('Speciality'),
-              value: employee.doctor.science_degree.speciality,
-            },
-          ]}
-        />
+        </div>
       </div>
     );
   }

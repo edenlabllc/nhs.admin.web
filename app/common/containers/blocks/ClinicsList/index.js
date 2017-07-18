@@ -35,7 +35,7 @@ export default class ClinicsList extends React.Component {
             address: (
               <div>
                 <div>{i.addresses[0].settlement}</div>
-                {i.addresses[0].area} {t('area')}
+                {i.addresses[0].area}
               </div>
             ),
             status: (
