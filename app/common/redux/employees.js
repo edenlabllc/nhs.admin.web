@@ -13,9 +13,10 @@ export const fetchEmployees = options => invoke({
   },
   types: ['employees/FETCH_LIST_REQUEST', {
     type: 'employees/FETCH_LIST_SUCCESS',
-    payload: (action, state, res) => res.json().then(
+    payload: (action, state, res) => res.clone().json().then(
       json => normalize(json.data, [employee])
     ),
+    meta: (action, state, res) => res.clone().json().then(json => json.paging || { cursors: {} }),
   }, 'employees/FETCH_LIST_FAILURE'],
 });
 
@@ -43,6 +44,7 @@ export default handleAction(
   (state, action) => ({
     ...state,
     ...action.payload.entities.employees,
+    ...action.meta,
   }),
   {}
 );

@@ -14,6 +14,7 @@ import styles from './styles.scss';
 @translate()
 @reduxForm({
   form: 'search-form',
+  enableReinitialize: true,
 })
 @connect(state => ({
   values: getFormValues('search-form')(state),

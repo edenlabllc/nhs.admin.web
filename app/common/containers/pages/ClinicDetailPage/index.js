@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -11,13 +10,18 @@ import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Upper from 'components/Upper';
+import { Confirm } from 'components/Popup';
 
 import Button from 'components/Button';
 import BlocksList from 'containers/blocks/BlocksList';
 import BackLink from 'containers/blocks/BackLink';
 import ColoredText from 'components/ColoredText';
+import ShowMore from 'containers/blocks/ShowMore';
 
-import { getClinic } from 'reducers';
+import { getClinic, getClinicOwner } from 'reducers';
+
+import { fetchEmployees } from 'redux/employees';
+import { verifyClinic, deactivateClinic } from 'redux/clinics';
 
 import { fetchClinic } from './redux';
 import styles from './styles.scss';
@@ -25,20 +29,36 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => dispatch(fetchClinic(id)),
+  fetch: ({ dispatch, params: { id } }) => Promise.all([
+    dispatch(fetchClinic(id)),
+    dispatch(fetchEmployees({ legal_entity_id: id })),
+  ]),
 })
 @connect((state, { params: { id } }) => ({
   clinic: getClinic(state, id),
-}))
+  owner: getClinicOwner(state),
+}), { verifyClinic, deactivateClinic })
 export default class ClinicDetailPage extends React.Component {
   state = {
-    showDocuments: false,
+    showVerifyConfirm: false,
+    showDeactivateConfirm: false,
   };
 
+  verifyClinic() {
+    this.props.verifyClinic(this.props.params.id).then(() => {
+      this.props.history.goBack();
+    });
+  }
+
+  deactivateClinic() {
+    this.props.deactivateClinic(this.props.params.id).then(() => {
+      this.props.history.goBack();
+    });
+  }
+
   render() {
-    const { clinic = { }, t } = this.props;
+    const { clinic = { }, owner = { }, t } = this.props;
     const { accreditation, licenses } = clinic.medical_service_provider;
-    const { showDocuments } = this.state;
 
     return (
       <div id="clinic-detail-page">
@@ -49,7 +69,7 @@ export default class ClinicDetailPage extends React.Component {
           ]}
         />
 
-        <BackLink to="/clinics">{ t('Back to clinics list') }</BackLink>
+        <BackLink onClick={() => this.props.history.goBack()}>{ t('Back to clinics list') }</BackLink>
 
         <Line />
 
@@ -137,65 +157,74 @@ export default class ClinicDetailPage extends React.Component {
           list={[
             {
               name: t('License and accreditation'),
-              value: <div>
-                <button
-                  onClick={() => this.setState({ showDocuments: !showDocuments })}
-                  className={classnames(styles.button, showDocuments && styles.button_active)}
-                >
-                  { t('Show documents') } <span>▾</span>
-                </button>
+              value: <ShowMore name={t('Show documents')}>
+                <H3>{ t('Accreditation') }</H3>
 
-                {showDocuments && <div className={styles.documents}>
-                  <H3>{ t('Accreditation') }</H3>
+                <DataList
+                  theme="min"
+                  list={[
+                    {
+                      name: t('Order No.'),
+                      value: (
+                        <Upper>{accreditation.order_no}</Upper>
+                      ),
+                    }, {
+                      name: t('Category'),
+                      value: accreditation.category,
+                    }, {
+                      name: t('Expiry date'),
+                      value: accreditation.expiry_date,
+                    }, {
+                      name: t('Issued date'),
+                      value: accreditation.issued_date,
+                    }, {
+                      name: t('Order date'),
+                      value: accreditation.order_date,
+                    },
+                  ]}
+                />
 
-                  <DataList
-                    theme="min"
-                    list={[
-                      {
-                        name: t('Order No.'),
-                        value: (
-                          <Upper>{accreditation.order_no}</Upper>
-                        ),
-                      }, {
-                        name: t('Category'),
-                        value: accreditation.category,
-                      }, {
-                        name: t('Expiry date'),
-                        value: accreditation.expiry_date,
-                      }, {
-                        name: t('Issued date'),
-                        value: accreditation.issued_date,
-                      }, {
-                        name: t('Order date'),
-                        value: accreditation.order_date,
-                      },
-                    ]}
-                  />
+                <Line />
 
-                  <Line />
+                <H3>{ t('Licenses') }</H3>
 
-                  <H3>{ t('Licenses') }</H3>
-
-                  <BlocksList>
-                    {licenses.map((item, i) => (
-                      <li key={i}>
-                        <Upper>{item.license_number}</Upper>, KVED {item.kved}
-                        <p>
-                          <ColoredText color="gray">
-                            {item.what_licensed}
-                          </ColoredText>
-                        </p>
-                        <div>
-                          { t('Issued') }: {item.issued_date}, expiry: {item.expiry_date}
-                        </div>
+                <BlocksList>
+                  {licenses.map((item, i) => (
+                    <li key={i}>
+                      <Upper>{item.license_number}</Upper>, KVED {item.kved}
+                      <p>
                         <ColoredText color="gray">
-                          {item.issued_by}
+                          {item.what_licensed}
                         </ColoredText>
-                      </li>
-                    ))}
-                  </BlocksList>
-                </div>}
-              </div>,
+                      </p>
+                      <div>
+                        { t('Issued') }: {item.issued_date}, expiry: {item.expiry_date}
+                      </div>
+                      <ColoredText color="gray">
+                        {item.issued_by}
+                      </ColoredText>
+                    </li>
+                  ))}
+                </BlocksList>
+              </ShowMore>,
+            },
+          ]}
+        />
+
+        <Line width={630} />
+
+        <DataList
+          theme="min"
+          list={[
+            {
+              name: t('Owner'),
+              value: `${owner.party.last_name} ${owner.party.first_name} ${owner.party.second_name}`,
+            }, {
+              name: t('Tax id'),
+              value: owner.party.tax_id,
+            }, {
+              name: t('Phones'),
+              value: <InlineList list={owner.party.phones.map(item => item.number)} />,
             },
           ]}
         />
@@ -208,19 +237,37 @@ export default class ClinicDetailPage extends React.Component {
               </Button>
             </div>
             <div className={styles.buttons__column}>
-              <Button theme="fill" color="green" icon="check-right" block>
+              <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
                 { t('Approve clinic') }
               </Button>
             </div>
           </div>
           <div className={styles.buttons__row}>
             <div className={styles.buttons__column}>
-              <Button theme="border" color="red" icon="close" block>
+              <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
                 { t('Cancel verification') }
               </Button>
             </div>
           </div>
         </div>}
+
+        <Confirm
+          title={t('Verify clinic?')}
+          active={this.state.showVerifyConfirm}
+          theme="success"
+          confirm="Yes"
+          onCancel={() => this.setState({ showVerifyConfirm: false })}
+          onConfirm={() => this.verifyClinic()}
+        ><b>{clinic.name}</b></Confirm>
+
+        <Confirm
+          title={t('Deactivate clinic?')}
+          active={this.state.showDeactivateConfirm}
+          theme="error"
+          confirm="Yes"
+          onCancel={() => this.setState({ showDeactivateConfirm: false })}
+          onConfirm={() => this.deactivateClinic()}
+        ><b>{clinic.name}</b></Confirm>
       </div>
     );
   }
