@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-06-14 13:07+0300\n"
-"PO-Revision-Date: 2017-06-14 14:04+0300\n"
+"POT-Creation-Date: 2017-07-18 17:32+0200\n"
+"PO-Revision-Date: 2017-07-18 17:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.1\n"
 
 msgid "Required field"
 msgstr "Обов'язкове поле"
@@ -61,8 +61,41 @@ msgstr "Зона"
 msgid "region"
 msgstr "область"
 
+msgid "Created date"
+msgstr "Дата створення"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "edrpou"
+msgstr "ЕДРПОУ"
+
+msgid "address"
+msgstr "Адреса"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Action"
+msgstr "Дії"
+
+msgid "Verified"
+msgstr "Підтверджено"
+
+msgid "Not verified"
+msgstr "Не підтверджено"
+
+msgid "Details"
+msgstr "Детально"
+
 msgid "You have unsaved changes"
 msgstr "У вас є незбережені зміни"
+
+msgid "Ok"
+msgstr "Добре"
+
+msgid "Cancel"
+msgstr "Скасувати"
 
 msgid "Are you sure want to leave this page?"
 msgstr "Ви впевнені, що хочете залишити цю сторінку?"
@@ -93,6 +126,9 @@ msgstr "Адреси"
 
 msgid "Other"
 msgstr "Інше"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Type"
 msgstr "Тип"
@@ -163,6 +199,9 @@ msgstr "Співробітники"
 msgid "Clinics"
 msgstr "Клініки"
 
+msgid "Clinics verification"
+msgstr "Підтвердження клініки"
+
 msgid "Dictionaries"
 msgstr "Словники"
 
@@ -174,6 +213,9 @@ msgstr "Документація"
 
 msgid "Logout"
 msgstr "Вихід"
+
+msgid "Show by"
+msgstr "Показати по"
 
 msgid "General"
 msgstr "Загальне"
@@ -192,9 +234,6 @@ msgstr "Збережено"
 
 msgid "Labels"
 msgstr "Мітки"
-
-msgid "Name"
-msgstr "Назва"
 
 msgid "Label name"
 msgstr "Назва  тегу"
@@ -222,9 +261,6 @@ msgstr "Опис елемента"
 
 msgid "You have not unique values in key: <%= params %>"
 msgstr "Не унікальні значення в ключі: <%= params %>"
-
-msgid "edrpou"
-msgstr "ЕДРПОУ"
 
 msgid "Search"
 msgstr "Пошук"
@@ -268,8 +304,50 @@ msgstr "Панель управління"
 msgid "head-og-description"
 msgstr "NHS - Панель управління"
 
+msgid "Back to clinics list"
+msgstr "Повернутися до списку клініки"
+
+msgid "Clinic ID"
+msgstr "Ідентифікатор клініки"
+
+msgid "Go to clinic employees list"
+msgstr "Перейти до списку співробітників клініки"
+
+msgid "Full name"
+msgstr "Повне Ім’я"
+
+msgid "Registration address"
+msgstr "Адреса регістрації"
+
+msgid "area"
+msgstr "область"
+
+msgid "city"
+msgstr "місто"
+
+msgid "Residense address is equal to registration address"
+msgstr "Фактична адреса співпадає з адресою реєстрації"
+
 msgid "KVEDs"
 msgstr "КВЕДи"
+
+msgid "Short name"
+msgstr "Скорочена назва"
+
+msgid "Public name"
+msgstr "Публічна назва"
+
+msgid "Property type"
+msgstr "Тип властності"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "License and accreditation"
+msgstr "Ліцензії та акредитації"
+
+msgid "Show documents"
+msgstr "Показати документи"
 
 msgid "Accreditation"
 msgstr "Акредитація"
@@ -289,59 +367,62 @@ msgstr "Випущено"
 msgid "Order date"
 msgstr "Дата замовлення"
 
-msgid "Status"
-msgstr "Статус"
-
 msgid "Licenses"
 msgstr "Ліцензії"
 
 msgid "Issued"
 msgstr "Виданий"
 
-msgid "Inserted"
-msgstr "Вставлений"
+msgid "Owner"
+msgstr "Власник"
 
-msgid "User"
-msgstr "Користувач"
+msgid "Tax id"
+msgstr "ІНН"
 
-msgid "Date"
-msgstr "Дата"
+msgid "Back to list"
+msgstr "Повернутися до списку"
 
-msgid "Updated"
-msgstr "Оновлено"
+msgid "Approve clinic"
+msgstr "Підтвердити клініку"
 
-msgid "Filter by type"
-msgstr "Фільтр по типу"
+msgid "Cancel verification"
+msgstr "Скасувати підтвердження"
 
-msgid "All"
-msgstr "Усі"
+msgid "Verify clinic {{name}}?"
+msgstr "Підтвердити клініку \"{{name}}\"?"
 
-msgid "Filter by status"
-msgstr "Фільтр по статусу"
+msgid "Deactivate clinic {{name}}?"
+msgstr "Деактивувати клініку {{name}}?"
 
-msgid "Verified"
-msgstr "Підтверджено"
+msgid "Search clinic"
+msgstr "Шукати клініку"
 
-msgid "Not verified"
-msgstr "Не підтверджено"
+msgid "Find clinic"
+msgstr "Знайти клініку"
 
-msgid "Filter by owner type"
-msgstr "Фільтрувати за типом власника"
+msgid "By edrpou"
+msgstr "За ЄДРПОУ"
 
-msgid "State"
-msgstr "Регіональні"
+msgid "By legal entity"
+msgstr "За ID юридичної особи"
 
-msgid "Private"
-msgstr "Приватні"
+msgid "By settlement id"
+msgstr "За ID міста"
 
-msgid "Filter by legal form"
-msgstr "Фільтрувати за організаційно-правовою формою"
+msgid "Clinics verification search"
+msgstr "Пошук клініки для перевірки"
 
-msgid "Action"
-msgstr "Дії"
+msgid "Search clinic for verification"
+msgstr "Пошук клініки для перевірки"
 
-msgid "Details"
-msgstr "Детально"
+msgid "Go to clinics list"
+msgstr "Перейти до списку клінік"
+
+msgid "Verification clinics"
+msgstr "Перевірка клінік"
+
+msgid "Back to search page"
+msgstr "Повернутися до сторінки пошуку"
 
 msgid "Declarations signed"
 msgstr "Підписані декларації"
@@ -373,6 +454,9 @@ msgstr "ЕДРПОУ"
 msgid "Filter by name"
 msgstr "Фільтрувати за назвою"
 
+msgid "All"
+msgstr "Усі"
+
 msgid "Filter by label"
 msgstr "Фільтрувати за тегом"
 
@@ -391,11 +475,32 @@ msgstr "Переглянути словник"
 msgid "Edit {{name}} dictionary"
 msgstr "Редагувати {{name}} словник"
 
-msgid "status"
-msgstr "статус"
+msgid "Back to employees list"
+msgstr "Повернутися до списку співробітників"
+
+msgid "User ID"
+msgstr "Ідентифікатор користувача"
+
+msgid "Tax ID"
+msgstr "ІНН"
 
 msgid "Birth date"
 msgstr "Дата народження"
+
+msgid "Sex"
+msgstr "Стать"
+
+msgid "Employee ID"
+msgstr "Ідентифікатор працівника"
+
+msgid "Start work date"
+msgstr "Дата початку роботи"
+
+msgid "End work date"
+msgstr "Дата завершення роботи"
+
+msgid "Education and qualifications"
+msgstr "Навчання та кваліфікація"
 
 msgid "Educations"
 msgstr "Освіта"
@@ -409,26 +514,20 @@ msgstr "Кваліфікація"
 msgid "certificate"
 msgstr "сертифікат"
 
-msgid "Specialities"
-msgstr "Спеціальність"
+msgid "Find employee"
+msgstr "Знайти співробітника"
 
-msgid "Speciality officio"
-msgstr "Посада"
+msgid "By tax id"
+msgstr "За ИНН"
 
-msgid "Science degree"
-msgstr "Науковий ступінь"
+msgid "By party id"
+msgstr "За party ID"
 
-msgid "Degree"
-msgstr "ступінь"
+msgid "Date registration"
+msgstr "Дата реєстрації"
 
-msgid "Diploma"
-msgstr "Диплом"
-
-msgid "Location"
-msgstr "Місцезнаходження"
-
-msgid "Speciality"
-msgstr "Спеціальність"
+msgid "Employee name"
+msgstr "Ім'я працівника"
 
 msgid "Page Not Found"
 msgstr "Сторінка не знайдена"
@@ -456,6 +555,63 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+#~ msgid "status"
+#~ msgstr "статус"
+
+#~ msgid "Clinic"
+#~ msgstr "Клініка"
+
+#~ msgid "Specialities"
+#~ msgstr "Спеціальність"
+
+#~ msgid "Speciality officio"
+#~ msgstr "Посада"
+
+#~ msgid "Science degree"
+#~ msgstr "Науковий ступінь"
+
+#~ msgid "Degree"
+#~ msgstr "ступінь"
+
+#~ msgid "Diploma"
+#~ msgstr "Диплом"
+
+#~ msgid "Location"
+#~ msgstr "Місцезнаходження"
+
+#~ msgid "Date"
+#~ msgstr "Дата"
+
+#~ msgid "Speciality"
+#~ msgstr "Спеціальність"
+
+#~ msgid "Inserted"
+#~ msgstr "Вставлений"
+
+#~ msgid "User"
+#~ msgstr "Користувач"
+
+#~ msgid "Updated"
+#~ msgstr "Оновлено"
+
+#~ msgid "Filter by type"
+#~ msgstr "Фільтр по типу"
+
+#~ msgid "Filter by status"
+#~ msgstr "Фільтр по статусу"
+
+#~ msgid "Filter by owner type"
+#~ msgstr "Фільтрувати за типом власника"
+
+#~ msgid "State"
+#~ msgstr "Регіональні"
+
+#~ msgid "Private"
+#~ msgstr "Приватні"
+
+#~ msgid "Filter by legal form"
+#~ msgstr "Фільтрувати за організаційно-правовою формою"
 
 #~ msgid "Please, enter your data"
 #~ msgstr "Будь ласка, введіть свої дані"

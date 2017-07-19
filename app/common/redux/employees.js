@@ -1,26 +1,27 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { MOCK_API_URL } from 'config';
+import { API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import { employee } from 'schemas';
 import { invoke } from './api';
 
 export const fetchEmployees = options => invoke({
-  endpoint: createUrl(`${MOCK_API_URL}/api/employees`, options),
+  endpoint: createUrl(`${API_URL}/api/employees`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
   },
   types: ['employees/FETCH_LIST_REQUEST', {
     type: 'employees/FETCH_LIST_SUCCESS',
-    payload: (action, state, res) => res.json().then(
+    payload: (action, state, res) => res.clone().json().then(
       json => normalize(json.data, [employee])
     ),
+    meta: (action, state, res) => res.clone().json().then(json => json.paging || { cursors: {} }),
   }, 'employees/FETCH_LIST_FAILURE'],
 });
 
 export const fetchEmployee = id => invoke({
-  endpoint: createUrl(`${MOCK_API_URL}/api/employees/${id}`),
+  endpoint: createUrl(`${API_URL}/api/employees/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -43,6 +44,7 @@ export default handleAction(
   (state, action) => ({
     ...state,
     ...action.payload.entities.employees,
+    ...action.meta,
   }),
   {}
 );

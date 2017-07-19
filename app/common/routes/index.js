@@ -13,6 +13,8 @@ import DictionariesPage from 'containers/pages/DictionariesPage';
 import DictionaryPage from 'containers/pages/DictionaryPage';
 
 import ClinicsListPage from 'containers/pages/ClinicsListPage';
+import ClinicsSearchPage from 'containers/pages/ClinicsSearchPage';
+import ClinicsVerificationListPage from 'containers/pages/ClinicsVerificationListPage';
 import ClinicDetailPage from 'containers/pages/ClinicDetailPage';
 
 import DeclarationsListPage from 'containers/pages/DeclarationsListPage';
@@ -73,6 +75,11 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <Route path="clinics">
               <IndexRoute component={ClinicsListPage} />
               <Route path=":id" component={ClinicDetailPage} />
+            </Route>
+
+            <Route path="clinics-verification">
+              <IndexRoute component={ClinicsSearchPage} />
+              <Route path="list" component={ClinicsVerificationListPage} />
             </Route>
 
             <Route path="declarations">

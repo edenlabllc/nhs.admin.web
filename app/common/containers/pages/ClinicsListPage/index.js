@@ -6,59 +6,42 @@ import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H1 } from 'components/Title';
-import Table from 'components/Table';
-import Button from 'components/Button';
-import YesNo from 'components/YesNo';
-import Select from 'components/Select';
+import filter from 'helpers/filter';
+
+import { H1, H2 } from 'components/Title';
 import Pagination from 'components/CursorPagination';
 
-import EdrpouFilterForm from 'containers/forms/EdrpouFilterForm';
+import ClinicsList from 'containers/blocks/ClinicsList';
+import ShowBy from 'containers/blocks/ShowBy';
 
-import { fetchDictionaries } from 'redux/dictionaries';
+import SearchForm from 'containers/forms/SearchForm';
 
-import { getClinics, getDictionaryValues } from 'reducers';
+import { getClinics } from 'reducers';
 
 import { fetchClinics } from './redux';
 import styles from './styles.scss';
+
+const FILTER_PARAMS = ['edrpou', 'legal_entity_id', 'settlement_id'];
 
 @withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => Promise.all([
-    dispatch(fetchClinics(query)),
-    dispatch(fetchDictionaries({ name: 'LEGAL_FORM' })),
-  ]),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchClinics({ limit: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.ClinicsListPage,
   clinics: getClinics(state, state.pages.ClinicsListPage.clinics),
-  legalForms: getDictionaryValues(state, 'LEGAL_FORM'),
 }), { fetchClinics })
 export default class ClinicsListPage extends React.Component {
-  filterClinics(filter) {
-    const newFilter = {
-      ...this.props.location.query,
-      ...filter,
-    };
-
-    const query = Object.keys(newFilter).reduce((target, key) => {
-      if (newFilter[key]) {
-        target[key] = newFilter[key]; // eslint-disable-line
-      }
-
-      return target;
-    }, { });
-
-    this.props.router.push({
-      ...this.props.location,
-      query,
-    });
+  get activeFilter() {
+    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
+      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    return FILTER_PARAMS[index !== -1 ? index : 0];
   }
-
   render() {
-    const { clinics = [], legalForms, t, paging, location } = this.props;
+    const { clinics = [], t, paging, location } = this.props;
+    const activeFilter = this.activeFilter;
 
     return (
       <div id="clinics-list-page">
@@ -70,83 +53,37 @@ export default class ClinicsListPage extends React.Component {
         />
 
         <H1>{ t('Clinics') }</H1>
-        <div className={styles.filter}>
-          <div>
-            <Select
-              placeholder={t('Filter by type')}
-              active={location.query.type}
-              options={[
-                { title: t('All'), name: null },
-                { name: 'MSP', title: 'MSP' },
-              ]}
-              onChange={type => this.filterClinics({ type })}
-            />
-          </div>
-          <div>
-            <Select
-              placeholder={t('Filter by status')}
-              active={location.query.status}
-              options={[
-                { title: t('All'), name: null },
-                { title: t('Verified'), name: 'VERIFIED' },
-                { title: t('Not verified'), name: 'NOT_VERIFIED' },
-              ]}
-              onChange={status => this.filterClinics({ status })}
-            />
-          </div>
-          <div>
-            <Select
-              placeholder={t('Filter by owner type')}
-              active={location.query.owner_property_type}
-              options={[
-                { title: t('All'), name: null },
-                { title: t('State'), name: 'STATE' },
-                { title: t('Private'), name: 'PRIVATE' },
-              ]}
-              onChange={owner_property_type => this.filterClinics({ owner_property_type })}
-            />
-          </div>
-        </div>
-        <div className={styles.filter}>
-          <div>
-            <Select
-              placeholder={t('Filter by legal form')}
-              active={location.query.legal_form}
-              options={[
-                { title: t('All'), name: null },
-                ...legalForms.map(item => ({ name: item.key, title: item.value })),
-              ]}
-              onChange={legal_form => this.filterClinics({ legal_form })}
-            />
-          </div>
-          <div>
-            <EdrpouFilterForm
-              initialValues={{ edrpou: location.query.edrpou }}
-              onSubmit={({ edrpou }) => this.filterClinics({ edrpou })}
-            />
-          </div>
-        </div>
-        <div id="clinics-table" className={styles.table}>
-          <Table
-            columns={[
-              { key: 'name', title: t('Name') },
-              { key: 'type', title: t('Type') },
-              { key: 'status', title: t('Status') },
-              { key: 'active', title: t('Active'), width: 100 },
-              { key: 'action', title: t('Action'), width: 100 },
+
+        <div className={styles.search}>
+          <H2>{ t('Search clinic') }</H2>
+          <SearchForm
+            ctive={activeFilter}
+            placeholder={t('Find clinic')}
+            items={[
+              { name: 'edrpou', title: t('By edrpou') },
+              { name: 'legal_entity_id', title: t('By legal entity') },
+              { name: 'settlement_id', title: t('By settlement id') },
             ]}
-            data={clinics.map(i => ({
-              name: <div className={styles.name}>
-                {i.name}
-                <p>{i.legal_form}</p>
-              </div>,
-              status: i.status,
-              type: i.type,
-              active: <YesNo bool={i.active} />,
-              action: (<Button id={`show-clinic-detail-button-${i.name}`} theme="link" to={`/clinics/${i.id}`}>{ t('Details') }</Button>),
-            }))}
+            initialValues={{
+              [activeFilter]: location.query[activeFilter],
+            }}
+            onSubmit={values => filter({
+              edrpou: null,
+              legal_entity_id: null,
+              settlement_id: null,
+              ...values,
+            }, this.props)}
           />
         </div>
+
+        <div className={styles.showBy}>
+          <ShowBy
+            active={Number(location.query.limit) || 5}
+            onChange={limit => filter({ limit }, this.props)}
+          />
+        </div>
+
+        <ClinicsList clinics={clinics} />
 
         <div className={styles.pagination}>
           <Pagination

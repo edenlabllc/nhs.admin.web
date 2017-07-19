@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-06-14T10:07:09.750Z\n"
-"PO-Revision-Date: 2017-06-14T10:07:09.750Z\n"
+"POT-Creation-Date: 2017-07-18T14:31:36.342Z\n"
+"PO-Revision-Date: 2017-07-18T14:31:36.342Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -56,7 +56,40 @@ msgstr ""
 msgid "region"
 msgstr ""
 
+msgid "Created date"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "edrpou"
+msgstr ""
+
+msgid "address"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Verified"
+msgstr ""
+
+msgid "Not verified"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
 msgid "You have unsaved changes"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Are you sure want to leave this page?"
@@ -87,6 +120,9 @@ msgid "Addresses"
 msgstr ""
 
 msgid "Other"
+msgstr ""
+
+msgid "ID"
 msgstr ""
 
 msgid "Type"
@@ -158,6 +194,9 @@ msgstr ""
 msgid "Clinics"
 msgstr ""
 
+msgid "Clinics verification"
+msgstr ""
+
 msgid "Dictionaries"
 msgstr ""
 
@@ -168,6 +207,9 @@ msgid "Documentation"
 msgstr ""
 
 msgid "Logout"
+msgstr ""
+
+msgid "Show by"
 msgstr ""
 
 msgid "General"
@@ -186,9 +228,6 @@ msgid "Saved"
 msgstr ""
 
 msgid "Labels"
-msgstr ""
-
-msgid "Name"
 msgstr ""
 
 msgid "Label name"
@@ -216,9 +255,6 @@ msgid "Item description"
 msgstr ""
 
 msgid "You have not unique values in key: <%= params %>"
-msgstr ""
-
-msgid "edrpou"
 msgstr ""
 
 msgid "Search"
@@ -263,7 +299,49 @@ msgstr ""
 msgid "head-og-description"
 msgstr ""
 
+msgid "Back to clinics list"
+msgstr ""
+
+msgid "Clinic ID"
+msgstr ""
+
+msgid "Go to clinic employees list"
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "Registration address"
+msgstr ""
+
+msgid "area"
+msgstr ""
+
+msgid "city"
+msgstr ""
+
+msgid "Residense address is equal to registration address"
+msgstr ""
+
 msgid "KVEDs"
+msgstr ""
+
+msgid "Short name"
+msgstr ""
+
+msgid "Public name"
+msgstr ""
+
+msgid "Property type"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "License and accreditation"
+msgstr ""
+
+msgid "Show documents"
 msgstr ""
 
 msgid "Accreditation"
@@ -284,58 +362,61 @@ msgstr ""
 msgid "Order date"
 msgstr ""
 
-msgid "Status"
-msgstr ""
-
 msgid "Licenses"
 msgstr ""
 
 msgid "Issued"
 msgstr ""
 
-msgid "Inserted"
+msgid "Owner"
 msgstr ""
 
-msgid "User"
+msgid "Tax id"
 msgstr ""
 
-msgid "Date"
+msgid "Back to list"
 msgstr ""
 
-msgid "Updated"
+msgid "Approve clinic"
 msgstr ""
 
-msgid "Filter by type"
+msgid "Cancel verification"
 msgstr ""
 
-msgid "All"
+msgid "Verify clinic {{name}}?"
 msgstr ""
 
-msgid "Filter by status"
+msgid "Deactivate clinic {{name}}?"
 msgstr ""
 
-msgid "Verified"
+msgid "Search clinic"
 msgstr ""
 
-msgid "Not verified"
+msgid "Find clinic"
 msgstr ""
 
-msgid "Filter by owner type"
+msgid "By edrpou"
 msgstr ""
 
-msgid "State"
+msgid "By legal entity"
 msgstr ""
 
-msgid "Private"
+msgid "By settlement id"
 msgstr ""
 
-msgid "Filter by legal form"
+msgid "Clinics verification search"
 msgstr ""
 
-msgid "Action"
+msgid "Search clinic for verification"
 msgstr ""
 
-msgid "Details"
+msgid "Go to clinics list"
+msgstr ""
+
+msgid "Verification clinics"
+msgstr ""
+
+msgid "Back to search page"
 msgstr ""
 
 msgid "Declarations signed"
@@ -368,6 +449,9 @@ msgstr ""
 msgid "Filter by name"
 msgstr ""
 
+msgid "All"
+msgstr ""
+
 msgid "Filter by label"
 msgstr ""
 
@@ -386,10 +470,31 @@ msgstr ""
 msgid "Edit {{name}} dictionary"
 msgstr ""
 
-msgid "status"
+msgid "Back to employees list"
+msgstr ""
+
+msgid "User ID"
+msgstr ""
+
+msgid "Tax ID"
 msgstr ""
 
 msgid "Birth date"
+msgstr ""
+
+msgid "Sex"
+msgstr ""
+
+msgid "Employee ID"
+msgstr ""
+
+msgid "Start work date"
+msgstr ""
+
+msgid "End work date"
+msgstr ""
+
+msgid "Education and qualifications"
 msgstr ""
 
 msgid "Educations"
@@ -404,25 +509,19 @@ msgstr ""
 msgid "certificate"
 msgstr ""
 
-msgid "Specialities"
+msgid "Find employee"
 msgstr ""
 
-msgid "Speciality officio"
+msgid "By tax id"
 msgstr ""
 
-msgid "Science degree"
+msgid "By party id"
 msgstr ""
 
-msgid "Degree"
+msgid "Date registration"
 msgstr ""
 
-msgid "Diploma"
-msgstr ""
-
-msgid "Location"
-msgstr ""
-
-msgid "Speciality"
+msgid "Employee name"
 msgstr ""
 
 msgid "Page Not Found"

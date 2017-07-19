@@ -20,7 +20,7 @@ export const API_PROXY_PATH = '/api';
 export const MOCK_API_PROXY_PATH = '/mock-api';
 
 export const CLIENT_ID = process.env.CLIENT_ID || 'e32e51ac-f720-4e42-adb3-67d504f3ad30';
-export const SCOPES = process.env.SCOPES || 'app:authorize legal_entity:read';
+export const SCOPES = process.env.SCOPES || 'legal_entity:read employee:read employee_request:write employee_request:read legal_entity:nhs_verify legal_entity:deactivate global_parameters:read global_parameters:write';
 export const OAUTH_URL = process.env.OAUTH_URL || 'http://auth.dev.ehealth.world/sign-in';
 export const OAUTH_REDIRECT_PATH = process.env.OAUTH_REDIRECT_PATH || '/auth/redirect';
 export const OAUTH_REDIRECT_URL = `${HOSTNAME}${OAUTH_REDIRECT_PATH}`;
