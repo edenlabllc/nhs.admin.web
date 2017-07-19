@@ -18,13 +18,17 @@ import BackLink from 'containers/blocks/BackLink';
 import ColoredText from 'components/ColoredText';
 import ShowMore from 'containers/blocks/ShowMore';
 
-import { getClinic, getClinicOwner } from 'reducers';
+import { getClinic, getClinicOwner, getDictionaryValues } from 'reducers';
 
 import { fetchEmployees } from 'redux/employees';
+import { fetchDictionaries } from 'redux/dictionaries';
 import { verifyClinic, deactivateClinic } from 'redux/clinics';
 
 import { fetchClinic } from './redux';
 import styles from './styles.scss';
+
+const getDictionaryValue = (dictionary, name) =>
+  (dictionary.filter(({ key }) => name === key)[0] || {}).value;
 
 @withStyles(styles)
 @translate()
@@ -32,11 +36,15 @@ import styles from './styles.scss';
   fetch: ({ dispatch, params: { id } }) => Promise.all([
     dispatch(fetchClinic(id)),
     dispatch(fetchEmployees({ legal_entity_id: id })),
+    dispatch(fetchDictionaries()),
   ]),
 })
 @connect((state, { params: { id } }) => ({
   clinic: getClinic(state, id),
   owner: getClinicOwner(state),
+  kveds: getDictionaryValues(state, 'KVEDS'),
+  propertyTypes: getDictionaryValues(state, 'OWNER_PROPERTY_TYPE'),
+  accreditationList: getDictionaryValues(state, 'ACCREDITATION_CATEGORY'),
 }), { verifyClinic, deactivateClinic })
 export default class ClinicDetailPage extends React.Component {
   state = {
@@ -57,7 +65,7 @@ export default class ClinicDetailPage extends React.Component {
   }
 
   render() {
-    const { clinic = { }, owner = { }, t } = this.props;
+    const { clinic = { }, owner = { }, t, propertyTypes, kveds, accreditationList } = this.props;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
     return (
@@ -112,7 +120,7 @@ export default class ClinicDetailPage extends React.Component {
                 name: t('KVEDs'),
                 value: (
                   <div>
-                    {clinic.kveds.map(name => <p>{name}</p>)}
+                    {clinic.kveds.map(name => <p>{getDictionaryValue(kveds, name)}</p>)}
                   </div>
                 ),
               },
@@ -135,7 +143,7 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Property type'), value: clinic.owner_property_type },
+            { name: t('Property type'), value: getDictionaryValue(propertyTypes, clinic.owner_property_type) },
             { name: t('Type'), value: clinic.type },
           ]}
         />
@@ -170,7 +178,7 @@ export default class ClinicDetailPage extends React.Component {
                       ),
                     }, {
                       name: t('Category'),
-                      value: accreditation.category,
+                      value: getDictionaryValue(accreditationList, accreditation.category),
                     }, {
                       name: t('Expiry date'),
                       value: accreditation.expiry_date,
@@ -191,7 +199,7 @@ export default class ClinicDetailPage extends React.Component {
                 <BlocksList>
                   {licenses.map((item, i) => (
                     <li key={i}>
-                      <Upper>{item.license_number}</Upper>, KVED {item.kved}
+                      <Upper>{item.license_number}</Upper>
                       <p>
                         <ColoredText color="gray">
                           {item.what_licensed}
