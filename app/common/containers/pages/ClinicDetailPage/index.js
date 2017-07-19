@@ -82,7 +82,7 @@ export default class ClinicDetailPage extends React.Component {
             />
           </div>
           <div className={styles.right}>
-            <BackLink iconPosition="right" to={`/employees?legal_enyity_id=${clinic.id}`}>
+            <BackLink iconPosition="right" to={`/employees?legal_entity_id=${clinic.id}`}>
               { t('Go to clinic employees list') }
             </BackLink>
           </div>

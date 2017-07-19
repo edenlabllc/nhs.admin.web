@@ -8,10 +8,13 @@ export const pagingEmployees = createAction('employeesListPage/ADD_PAGING');
 export const fetchEmployees = options => dispatch =>
   dispatch(fromEmployees.fetchEmployees(options))
   .then((action) => {
-    if (action.error) throw action;
+    if (action.error && action.payload.status !== 422) {
+      throw action;
+    }
+
     return [
-      dispatch(showEmployees(action.payload.result)),
-      dispatch(pagingEmployees(action.meta)),
+      dispatch(showEmployees(action.payload.result || [])),
+      dispatch(pagingEmployees(action.meta || {})),
     ];
   });
 

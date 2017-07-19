@@ -78,13 +78,13 @@ export default class ClinicsVerificationListPage extends React.Component {
 
         <ClinicsList clinics={clinics} />
 
-        <div className={styles.pagination}>
+        {paging.cursors && <div className={styles.pagination}>
           <Pagination
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
           />
-        </div>
+        </div>}
       </div>
     );
   }
