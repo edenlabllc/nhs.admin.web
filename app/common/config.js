@@ -23,7 +23,7 @@ export const CLIENT_ID = config.CLIENT_ID || process.env.CLIENT_ID || 'e32e51ac-
 export const SCOPES = config.SCOPES || process.env.SCOPES || 'legal_entity:read employee:read employee_request:write employee_request:read legal_entity:nhs_verify legal_entity:deactivate global_parameters:read global_parameters:write';
 export const OAUTH_URL = config.OAUTH_URL || process.env.OAUTH_URL || 'http://auth.dev.ehealth.world/sign-in';
 export const OAUTH_REDIRECT_PATH = config.OAUTH_REDIRECT_PATH || process.env.OAUTH_REDIRECT_PATH || '/auth/redirect';
-export const OAUTH_REDIRECT_URL = config.OAUTH_REDIRECT_URL || `${HOSTNAME}${OAUTH_REDIRECT_PATH}`;
+export const OAUTH_REDIRECT_URL = config.OAUTH_REDIRECT_URL || process.env.OAUTH_REDIRECT_URL || `${HOSTNAME}${OAUTH_REDIRECT_PATH}`;
 
 // for internal app usage. for example for XHR requests or server side rendering
 export const API_URL = typeof window !== 'undefined' ? API_PROXY_PATH : API_HOST;
