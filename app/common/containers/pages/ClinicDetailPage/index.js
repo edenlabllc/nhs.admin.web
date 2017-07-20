@@ -11,12 +11,13 @@ import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 import Upper from 'components/Upper';
 import { Confirm } from 'components/Popup';
-
 import Button from 'components/Button';
+
 import BlocksList from 'containers/blocks/BlocksList';
 import BackLink from 'containers/blocks/BackLink';
 import ColoredText from 'components/ColoredText';
 import ShowMore from 'containers/blocks/ShowMore';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import { getClinic, getClinicOwner } from 'reducers';
 
@@ -82,7 +83,7 @@ export default class ClinicDetailPage extends React.Component {
             />
           </div>
           <div className={styles.right}>
-            <BackLink iconPosition="right" to={`/employees?legal_enyity_id=${clinic.id}`}>
+            <BackLink iconPosition="right" to={`/employees?legal_entity_id=${clinic.id}`}>
               { t('Go to clinic employees list') }
             </BackLink>
           </div>
@@ -112,7 +113,7 @@ export default class ClinicDetailPage extends React.Component {
                 name: t('KVEDs'),
                 value: (
                   <div>
-                    {clinic.kveds.map(name => <p>{name}</p>)}
+                    {clinic.kveds.map(name => <p>{<DictionaryValue dictionary="KVEDS" value={name} />}</p>)}
                   </div>
                 ),
               },
@@ -135,7 +136,7 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Property type'), value: clinic.owner_property_type },
+            { name: t('Property type'), value: <DictionaryValue dictionary="OWNER_PROPERTY_TYPE" value={clinic.owner_property_type} /> },
             { name: t('Type'), value: clinic.type },
           ]}
         />
@@ -170,7 +171,7 @@ export default class ClinicDetailPage extends React.Component {
                       ),
                     }, {
                       name: t('Category'),
-                      value: accreditation.category,
+                      value: <DictionaryValue dictionary="ACCREDITATION_CATEGORY" value={accreditation.category} />,
                     }, {
                       name: t('Expiry date'),
                       value: accreditation.expiry_date,
@@ -191,14 +192,14 @@ export default class ClinicDetailPage extends React.Component {
                 <BlocksList>
                   {licenses.map((item, i) => (
                     <li key={i}>
-                      <Upper>{item.license_number}</Upper>, KVED {item.kved}
+                      <Upper>{item.license_number}</Upper>
                       <p>
                         <ColoredText color="gray">
                           {item.what_licensed}
                         </ColoredText>
                       </p>
                       <div>
-                        { t('Issued') }: {item.issued_date}, expiry: {item.expiry_date}
+                        { t('Issued') }: {item.issued_date}, { t('expiry') }: {item.expiry_date}
                       </div>
                       <ColoredText color="gray">
                         {item.issued_by}

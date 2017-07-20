@@ -8,11 +8,13 @@ export const pagingClinics = createAction('clinicsListPage/ADD_PAGING');
 export const fetchClinics = options => dispatch =>
   dispatch(fromClinics.fetchClinics(options))
   .then((action) => {
-    if (action.error) throw action;
+    if (action.error && action.payload.status !== 400) {
+      throw action;
+    }
 
     return [
-      dispatch(showClinics(action.payload.result)),
-      dispatch(pagingClinics(action.meta)),
+      dispatch(showClinics(action.payload.result || [])),
+      dispatch(pagingClinics(action.meta || {})),
     ];
   });
 

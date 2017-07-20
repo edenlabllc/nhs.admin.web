@@ -48,7 +48,7 @@ export default class EmployeesListPage extends React.Component {
   }
 
   render() {
-    const { employees = [], t, location, positions, paging } = this.props;
+    const { employees = [], t, location, positions, paging = {} } = this.props;
     const activeFilter = this.activeFilter;
 
     return (
@@ -59,6 +59,7 @@ export default class EmployeesListPage extends React.Component {
             { property: 'og:title', content: t('Employees') },
           ]}
         />
+
         <H1>{ t('Employees') }</H1>
 
         <SearchForm
@@ -108,7 +109,7 @@ export default class EmployeesListPage extends React.Component {
                   <div>{item.party.second_name}</div>
                 </div>
               ),
-              position: positions.filter(({ key }) => key === item.position)[0].value,
+              position: (positions.filter(({ key }) => key === item.position)[0] || {}).value,
               legalEntity: <div>
                 <p>{item.legal_entity.name}</p>
                 <small>{t('edrpou')} {item.legal_entity.edrpou}</small>
@@ -118,13 +119,13 @@ export default class EmployeesListPage extends React.Component {
           />
         </div>
 
-        <div className={styles.pagination}>
+        {paging.cursors && <div className={styles.pagination}>
           <Pagination
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
           />
-        </div>
+        </div>}
       </div>
     );
   }

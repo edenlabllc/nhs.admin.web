@@ -57,7 +57,7 @@ export default class ClinicsListPage extends React.Component {
         <div className={styles.search}>
           <H2>{ t('Search clinic') }</H2>
           <SearchForm
-            ctive={activeFilter}
+            active={activeFilter}
             placeholder={t('Find clinic')}
             items={[
               { name: 'edrpou', title: t('By edrpou') },
@@ -85,13 +85,13 @@ export default class ClinicsListPage extends React.Component {
 
         <ClinicsList clinics={clinics} />
 
-        <div className={styles.pagination}>
+        {paging.cursors && <div className={styles.pagination}>
           <Pagination
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
           />
-        </div>
+        </div>}
       </div>
     );
   }
