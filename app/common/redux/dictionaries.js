@@ -5,9 +5,10 @@ import { dictionary } from 'schemas';
 import { createUrl } from 'helpers/url';
 import { invoke } from './api';
 
-export const fetchDictionaries = options => invoke({
+export const fetchDictionaries = (options, { useCache = false } = {}) => invoke({
   endpoint: createUrl(`${API_URL}/api/dictionaries`, options),
   method: 'GET',
+  bailout: state => useCache && state.data.dictionaries,
   headers: {
     'content-type': 'application/json',
   },
@@ -42,5 +43,5 @@ export default handleAction(
     ...state,
     ...action.payload.entities.dictionaries,
   }),
-  []
+  null
 );

@@ -16,42 +16,25 @@ import Button from 'components/Button';
 import BlocksList from 'containers/blocks/BlocksList';
 import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
-import { getEmployee, getDictionaryValues } from 'reducers';
-
-import { fetchDictionaries } from 'redux/dictionaries';
+import { getEmployee } from 'reducers';
 
 import { fetchEmployee } from './redux';
 
 import styles from './style.scss';
 
-const getDictionaryValue = (dictionary, name) =>
-  (dictionary.filter(({ key }) => name === key)[0] || {}).value;
-
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => Promise.all([
-    dispatch(fetchEmployee(id)),
-    dispatch(fetchDictionaries()),
-  ]),
+  fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
 })
 @connect((state, { params: { id } }) => ({
   employee: getEmployee(state, id),
-  gender: getDictionaryValues(state, 'GENDER'),
-  documentTypes: getDictionaryValues(state, 'DOCUMENT_TYPE'),
-  statuses: getDictionaryValues(state, 'EMPLOYEE_STATUS'),
-  positions: getDictionaryValues(state, 'POSITION'),
-  degree: getDictionaryValues(state, 'EDUCATION_DEGREE'),
-  qualifications: getDictionaryValues(state, 'QUALIFICATION_TYPE'),
 }))
 export default class EmployeeDetailPage extends React.Component {
   render() {
-    const {
-      employee = { },
-      t, gender, documentTypes, statuses,
-      positions, degree, qualifications,
-    } = this.props;
+    const { employee = { }, t } = this.props;
 
     const fullName = `${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`;
 
@@ -93,7 +76,7 @@ export default class EmployeeDetailPage extends React.Component {
             theme="min"
             list={[
               { name: t('Birth date'), value: format(employee.party.birth_date, 'DD/MM/YYYY') },
-              { name: t('Sex'), value: gender.filter(({ key }) => key === employee.party.gender)[0].value },
+              { name: t('Sex'), value: <DictionaryValue dictionary="GENDER" value={employee.party.gender} /> },
             ]}
           />
 
@@ -111,7 +94,7 @@ export default class EmployeeDetailPage extends React.Component {
                 value: <ul className={styles.docs}>
                   {employee.party.documents.map(item => (
                     <li key={item.number}>
-                      {documentTypes.filter(({ key }) => key === item.type)[0].value}
+                      <DictionaryValue dictionary="DOCUMENT_TYPE" value={item.type} />
                       &nbsp; № {item.number}
                     </li>
                   ))}
@@ -126,10 +109,10 @@ export default class EmployeeDetailPage extends React.Component {
             theme="min"
             list={[
               { name: t('Employee ID'), value: employee.party.id },
-              { name: t('Status'), value: (statuses.filter(({ key }) => employee.status === key)[0] || {}).value },
+              { name: t('Status'), value: <DictionaryValue dictionary="EMPLOYEE_STATUS" value={employee.status} /> },
               { name: t('Start work date'), value: format(employee.start_date, 'DD/MM/YYYY') },
               { name: t('End work date'), value: format(employee.end_date, 'DD/MM/YYYY') },
-              { name: t('Position'), value: positions.filter(({ key }) => employee.position === key)[0].value },
+              { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={employee.position} /> },
               {
                 name: t('Education and qualifications'),
                 value: <ShowMore name={t('Show documents')}>
@@ -147,7 +130,7 @@ export default class EmployeeDetailPage extends React.Component {
                         {item.speciality}
                         <div>
                           <ColoredText color="gray">
-                            {getDictionaryValue(degree, item.degree)}, { t('diploma') }: {item.diploma_number}
+                            <DictionaryValue dictionary="EDUCATION_DEGREE" value={item.degree} />, { t('diploma') }: {item.diploma_number}
                           </ColoredText>
                         </div>
                       </li>
@@ -167,7 +150,7 @@ export default class EmployeeDetailPage extends React.Component {
                         {item.speciality}
                         <div>
                           <ColoredText color="gray">
-                            {getDictionaryValue(qualifications, item.type)}, { t('certificate') }: {item.certificate_number}
+                            <DictionaryValue dictionary="QUALIFICATION_TYPE" value={item.type} />, { t('certificate') }: {item.certificate_number}
                           </ColoredText>
                         </div>
                       </li>
