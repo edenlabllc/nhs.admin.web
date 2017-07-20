@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-07-18T14:31:36.342Z\n"
-"PO-Revision-Date: 2017-07-18T14:31:36.342Z\n"
+"POT-Creation-Date: 2017-07-20T10:53:11.659Z\n"
+"PO-Revision-Date: 2017-07-20T10:53:11.659Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -366,6 +366,9 @@ msgid "Licenses"
 msgstr ""
 
 msgid "Issued"
+msgstr ""
+
+msgid "expiry"
 msgstr ""
 
 msgid "Owner"

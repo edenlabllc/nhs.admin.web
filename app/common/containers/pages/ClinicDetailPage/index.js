@@ -199,7 +199,7 @@ export default class ClinicDetailPage extends React.Component {
                         </ColoredText>
                       </p>
                       <div>
-                        { t('Issued') }: {item.issued_date}, expiry: {item.expiry_date}
+                        { t('Issued') }: {item.issued_date}, { t('expiry') }: {item.expiry_date}
                       </div>
                       <ColoredText color="gray">
                         {item.issued_by}
