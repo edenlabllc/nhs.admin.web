@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-07-20 13:53+0300\n"
-"PO-Revision-Date: 2017-07-20 13:55+0300\n"
+"POT-Creation-Date: 2017-07-21 17:47+0300\n"
+"PO-Revision-Date: 2017-07-21 17:48+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -103,74 +103,89 @@ msgstr "Ви впевнені, що хочете залишити цю стор�
 msgid "Declaration"
 msgstr "Декларація"
 
-msgid "Dates"
-msgstr "Дати"
+msgid "Back to declarations list"
+msgstr "Повернутися до списку декларацій"
 
-msgid "Active"
-msgstr "Активно"
+msgid "Declaration ID"
+msgstr "Ідентифікатор декларації"
 
-msgid "scope"
-msgstr "можливості"
+msgid "Start date"
+msgstr "Дата початку"
 
-msgid "Division"
-msgstr "Відділення"
+msgid "End date"
+msgstr "Кінцева дата"
 
-msgid "Contacts"
-msgstr "Контакти"
+msgid "Scope"
+msgstr "Область дії"
+
+msgid "Division ID"
+msgstr "Ідентифікатор відділення"
+
+msgid "Division type"
+msgstr "Тип відділення"
+
+msgid "Division name"
+msgstr "Назва відділення"
 
 msgid "Phones"
 msgstr "Телефони"
 
+msgid "Email"
+msgstr "Email"
+
 msgid "Addresses"
 msgstr "Адреси"
 
-msgid "Other"
-msgstr "Інше"
+msgid "Employee ID"
+msgstr "Ідентифікатор працівника"
 
-msgid "ID"
-msgstr "ID"
+msgid "Go to employee"
+msgstr "Перейти до працівника"
 
-msgid "Type"
-msgstr "Тип"
+msgid "Full name"
+msgstr "Повне Ім’я"
 
-msgid "Mountain"
-msgstr "Гірська група"
-
-msgid "Clinic Detail"
-msgstr "Детально про клініку"
-
-msgid "Employee"
-msgstr "Співробітник"
+msgid "Tax ID"
+msgstr "ІНН"
 
 msgid "Position"
 msgstr "Позиція"
 
-msgid "Person"
-msgstr "Людина"
+msgid "Clinic ID"
+msgstr "Ідентифікатор клініки"
 
-msgid "Birth"
-msgstr "Народжений"
+msgid "Go to clinic"
+msgstr "Перейти до клініки"
 
-msgid "in"
-msgstr "в"
+msgid "Registration address"
+msgstr "Адреса регістрації"
+
+msgid "area"
+msgstr "область"
+
+msgid "city"
+msgstr "місто"
+
+msgid "Residense address is equal to registration address"
+msgstr "Фактична адреса співпадає з адресою реєстрації"
+
+msgid "Person ID"
+msgstr "Ідентифікатор людини"
+
+msgid "Person name"
+msgstr "Повне Ім’я"
+
+msgid "Birth date"
+msgstr "Дата народження"
+
+msgid "Birth place"
+msgstr "Народжений в"
 
 msgid "Documents"
 msgstr "Документи"
 
 msgid "Authentication methods"
 msgstr "Методи перевірки"
-
-msgid "Process data consent"
-msgstr "Процес погодження данних"
-
-msgid "Renewal consent"
-msgstr "Погодження поновлення"
-
-msgid "Patient signed"
-msgstr "Пацієнт підписав"
-
-msgid "Disclosure consent"
-msgstr "Погодження розкриття"
 
 msgid "Closed"
 msgstr "Закрито"
@@ -305,28 +320,10 @@ msgid "head-og-description"
 msgstr "NHS - Панель управління"
 
 msgid "Back to clinics list"
-msgstr "Повернутися до списку клініки"
-
-msgid "Clinic ID"
-msgstr "Ідентифікатор клініки"
+msgstr "Повернутися до списку клінік"
 
 msgid "Go to clinic employees list"
 msgstr "Перейти до списку співробітників клініки"
-
-msgid "Full name"
-msgstr "Повне Ім’я"
-
-msgid "Registration address"
-msgstr "Адреса регістрації"
-
-msgid "area"
-msgstr "область"
-
-msgid "city"
-msgstr "місто"
-
-msgid "Residense address is equal to registration address"
-msgstr "Фактична адреса співпадає з адресою реєстрації"
 
 msgid "KVEDs"
 msgstr "КВЕДи"
@@ -340,8 +337,8 @@ msgstr "Публічна назва"
 msgid "Property type"
 msgstr "Тип властності"
 
-msgid "Email"
-msgstr "Email"
+msgid "Type"
+msgstr "Тип"
 
 msgid "License and accreditation"
 msgstr "Ліцензії та акредитації"
@@ -445,11 +442,23 @@ msgstr "По областям"
 msgid "Region"
 msgstr "Область"
 
-msgid "Select declaration to edit"
-msgstr "Виберіть декларацію для редагування"
+msgid "Search declaration"
+msgstr "Шукати декларацію"
+
+msgid "Find declaration"
+msgstr "Знайти декларацію"
+
+msgid "By employee id"
+msgstr "За ідентифікатором працівника"
+
+msgid "Person"
+msgstr "Людина"
 
 msgid "Legal entity"
 msgstr "Юридична особа"
+
+msgid "Dates"
+msgstr "Дати"
 
 msgid "EDRPOU"
 msgstr "ЕДРПОУ"
@@ -478,23 +487,17 @@ msgstr "Переглянути словник"
 msgid "Edit {{name}} dictionary"
 msgstr "Редагувати {{name}} словник"
 
+msgid "Employee"
+msgstr "Співробітник"
+
 msgid "Back to employees list"
 msgstr "Повернутися до списку співробітників"
 
 msgid "User ID"
 msgstr "Ідентифікатор користувача"
 
-msgid "Tax ID"
-msgstr "ІНН"
-
-msgid "Birth date"
-msgstr "Дата народження"
-
 msgid "Sex"
 msgstr "Стать"
-
-msgid "Employee ID"
-msgstr "Ідентифікатор працівника"
 
 msgid "Start work date"
 msgstr "Дата початку роботи"
@@ -550,6 +553,12 @@ msgstr "Відхилити"
 msgid "Accept"
 msgstr "Прийняти"
 
+msgid "Approve declaration?"
+msgstr "Прийняти декларацію"
+
+msgid "Reject declaration?"
+msgstr "Відхилити декларацію"
+
 msgid "Sign in"
 msgstr "Вхід"
 
@@ -558,6 +567,51 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+#~ msgid "Active"
+#~ msgstr "Активно"
+
+#~ msgid "scope"
+#~ msgstr "можливості"
+
+#~ msgid "Division"
+#~ msgstr "Відділення"
+
+#~ msgid "Contacts"
+#~ msgstr "Контакти"
+
+#~ msgid "Other"
+#~ msgstr "Інше"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Mountain"
+#~ msgstr "Гірська група"
+
+#~ msgid "Clinic Detail"
+#~ msgstr "Детально про клініку"
+
+#~ msgid "Birth"
+#~ msgstr "Народжений"
+
+#~ msgid "in"
+#~ msgstr "в"
+
+#~ msgid "Process data consent"
+#~ msgstr "Процес погодження данних"
+
+#~ msgid "Renewal consent"
+#~ msgstr "Погодження поновлення"
+
+#~ msgid "Patient signed"
+#~ msgstr "Пацієнт підписав"
+
+#~ msgid "Disclosure consent"
+#~ msgstr "Погодження розкриття"
+
+#~ msgid "Select declaration to edit"
+#~ msgstr "Виберіть декларацію для редагування"
 
 #~ msgid "status"
 #~ msgstr "статус"

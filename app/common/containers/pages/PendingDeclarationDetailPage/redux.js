@@ -5,7 +5,7 @@ import * as fromDeclarations from 'redux/declarations';
 export const showDeclaration = createAction('declarationDetailPage/SHOW_DECLARATION');
 
 export const fetchDeclaration = id => dispatch =>
-  dispatch(fromDeclarations.fetchDeclaration(id))
+  dispatch(fromDeclarations.fetchDeclarationRequest(id))
   .then((action) => {
     if (action.error) throw action;
     return dispatch(showDeclaration(action.payload.result));
