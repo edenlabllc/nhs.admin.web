@@ -1,11 +1,8 @@
 import React from 'react';
-import { provideHooks } from 'redial';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import Icon from 'components/Icon';
 import Aside from 'containers/blocks/Aside';
-
-import { fetchDictionaries } from 'redux/dictionaries';
 
 import styles from './styles.scss';
 
@@ -24,6 +21,4 @@ const App = ({ children }) => (
     </footer>
   </div>
 );
-export default provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchDictionaries({}, { useCache: true })),
-})(withStyles(styles)(App));
+export default withStyles(styles)(App);

@@ -19,6 +19,9 @@ export const AUTH_COOKIE_NAME = process.env.AUTH_COOKIE_NAME || 'token';
 export const API_PROXY_PATH = '/api';
 export const MOCK_API_PROXY_PATH = '/mock-api';
 
+export const PUBLIC_INDEX_ROUTE = '/sign-in';
+export const PRIVATE_INDEX_ROUTE = '/clinics';
+
 export const CLIENT_ID = config.CLIENT_ID || process.env.CLIENT_ID || 'e32e51ac-f720-4e42-adb3-67d504f3ad30';
 export const SCOPES = config.SCOPES || process.env.SCOPES || 'legal_entity:read employee:read employee_request:write employee_request:read legal_entity:nhs_verify legal_entity:deactivate global_parameters:read global_parameters:write';
 export const OAUTH_URL = config.OAUTH_URL || process.env.OAUTH_URL || 'http://auth.dev.ehealth.world/sign-in';

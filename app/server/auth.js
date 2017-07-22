@@ -22,7 +22,7 @@ const createSessionToken = code => fetch(`${config.API_HOST}/oauth/tokens`, {
 
 router.get(config.OAUTH_REDIRECT_PATH, (req, resp) => {
   if (!req.query.code) {
-    resp.redirect('/sign-in');
+    resp.redirect(config.PUBLIC_INDEX_ROUTE);
     return;
   }
 
@@ -33,7 +33,7 @@ router.get(config.OAUTH_REDIRECT_PATH, (req, resp) => {
     }
 
     resp.cookie(config.AUTH_COOKIE_NAME, data.value);
-    resp.redirect('/');
+    resp.redirect(config.PRIVATE_INDEX_ROUTE);
   });
 });
 
