@@ -23,7 +23,7 @@ export const PUBLIC_INDEX_ROUTE = '/sign-in';
 export const PRIVATE_INDEX_ROUTE = '/clinics';
 
 export const CLIENT_ID = config.CLIENT_ID || process.env.CLIENT_ID || 'e32e51ac-f720-4e42-adb3-67d504f3ad30';
-export const SCOPES = config.SCOPES || process.env.SCOPES || 'legal_entity:read employee:read employee_request:write employee_request:read legal_entity:nhs_verify legal_entity:deactivate global_parameters:read global_parameters:write';
+export const SCOPES = config.SCOPES || process.env.SCOPES || 'legal_entity:read employee:read employee_request:write employee_request:read legal_entity:nhs_verify legal_entity:deactivate global_parameters:read global_parameters:write declaration_request:read declaration_request:write declaration:read declaration:write';
 export const OAUTH_URL = config.OAUTH_URL || process.env.OAUTH_URL || 'http://auth.dev.ehealth.world/sign-in';
 export const OAUTH_REDIRECT_PATH = config.OAUTH_REDIRECT_PATH || process.env.OAUTH_REDIRECT_PATH || '/auth/redirect';
 export const OAUTH_REDIRECT_URL = config.OAUTH_REDIRECT_URL || process.env.OAUTH_REDIRECT_URL || `${HOSTNAME}${OAUTH_REDIRECT_PATH}`;

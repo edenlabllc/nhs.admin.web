@@ -1,26 +1,56 @@
 import { handleAction, combineActions } from 'redux-actions';
-import { MOCK_API_URL } from 'config';
+import { MOCK_API_URL, API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import { declaration } from 'schemas';
 import { invoke } from './api';
 
 export const fetchDeclarations = options => invoke({
-  endpoint: createUrl(`${MOCK_API_URL}/nhs_portal/declarations`, options),
+  endpoint: createUrl(`${API_URL}/api/declarations`, options),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
   },
   types: ['declarations/FETCH_LIST_REQUEST', {
     type: 'declarations/FETCH_LIST_SUCCESS',
-    payload: (action, state, res) => res.json().then(
+    payload: (action, state, res) => res.clone().json().then(
       json => normalize(json.data, [declaration])
     ),
+    meta: (action, state, res) => res.clone().json().then(json => json.paging || { cursors: {} }),
   }, 'declarations/FETCH_LIST_FAILURE'],
 });
 
+export const fetchDeclarationsRequests = options => invoke({
+  endpoint: createUrl(`${API_URL}/api/declaration_requests`, options),
+  method: 'GET',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['declarations/FETCH_LIST_REQUEST', {
+    type: 'declarations/FETCH_LIST_SUCCESS',
+    payload: (action, state, res) => res.clone().json().then(
+      json => normalize(json.data, [declaration])
+    ),
+    meta: (action, state, res) => res.clone().json().then(json => json.paging || { cursors: {} }),
+  }, 'declarationsRequests/FETCH_LIST_FAILURE'],
+});
+
+export const fetchDeclarationRequest = id => invoke({
+  endpoint: createUrl(`${API_URL}/api/declaration_requests/${id}`),
+  method: 'GET',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['declarations/FETCH_DETAILS_REQUEST', {
+    type: 'declarations/FETCH_DETAILS_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      json => normalize(json.data, declaration)
+    ),
+  }, 'declarationsRequests/FETCH_DETAILS_FAILURE'],
+});
+
 export const fetchDeclaration = id => invoke({
-  endpoint: createUrl(`${MOCK_API_URL}/nhs_portal/declarations/${id}`),
+  endpoint: createUrl(`${API_URL}/api/declarations/${id}`),
   method: 'GET',
   headers: {
     'content-type': 'application/json',
@@ -48,6 +78,34 @@ export const updateDeclaration = (id, body) => invoke({
   body,
 });
 
+export const approveDeclarationRequest = id => invoke({
+  endpoint: `${API_URL}/api/declaration_requests/${id}/actions/approve`,
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['dictionaries/APPROVE_REQUEST', {
+    type: 'dictionaries/APPROVE_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      resp => normalize(resp.data, declaration)
+    ),
+  }, 'dictionaries/APPROVE_FAILURE'],
+});
+
+export const rejectDeclarationRequest = id => invoke({
+  endpoint: `${API_URL}/api/declaration_requests/${id}/actions/reject`,
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['dictionaries/REJECT_REQUEST', {
+    type: 'dictionaries/REJECT_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      resp => normalize(resp.data, declaration)
+    ),
+  }, 'dictionaries/REJECT_FAILURE'],
+});
+
 export default handleAction(
   combineActions(
     'declarations/FETCH_LIST_SUCCESS',
@@ -58,6 +116,7 @@ export default handleAction(
   (state, action) => ({
     ...state,
     ...action.payload.entities.declarations,
+    ...action.meta,
   }),
   {}
 );

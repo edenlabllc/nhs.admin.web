@@ -9,11 +9,12 @@ import { H2 } from 'components/Title';
 import Line from 'components/Line';
 import Button, { ButtonsGroup } from 'components/Button';
 import Gallery from 'components/Gallery';
+import { Confirm } from 'components/Popup';
 
 import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 
 import { getDeclaration } from 'reducers';
-import { updateDeclaration } from 'redux/declarations';
+import { approveDeclarationRequest, rejectDeclarationRequest } from 'redux/declarations';
 
 import { fetchDeclaration } from './redux';
 
@@ -27,20 +28,30 @@ import styles from './styles.scss';
 })
 @connect((state, { params: { id } }) => ({
   declaration: getDeclaration(state, id),
-}), { updateDeclaration })
+}), { approveDeclarationRequest, rejectDeclarationRequest })
 export default class PendingDeclarationDetailPage extends React.Component {
   state = {
     lightboxIsOpen: false,
     currentImage: 0,
+    showApproveConfirm: false,
+    showRejectConfirm: false,
   };
 
   openImage(index) {
     this.setState({ currentImage: index, lightboxIsOpen: true });
   }
 
-  updateStatus(status) {
-    this.props.updateDeclaration(this.props.declaration.id, { status }).then(() => {
-      this.props.router.push('/pending-declarations');
+  approve() {
+    this.setState({ showApproveConfirm: false });
+    this.props.approveDeclarationRequest(this.props.params.id).then(() => {
+      this.props.history.goBack();
+    });
+  }
+
+  reject() {
+    this.setState({ showRejectConfirm: false });
+    this.props.rejectDeclarationRequest(this.props.params.id).then(() => {
+      this.props.history.goBack();
     });
   }
 
@@ -60,13 +71,33 @@ export default class PendingDeclarationDetailPage extends React.Component {
         <Line />
 
         <ButtonsGroup>
-          <Button onClick={() => this.updateStatus('reject')} color="red">
+          <Button theme="border" onClick={() => this.setState({ showRejectConfirm: true })} color="red">
             { t('Reject') }
           </Button>
-          <Button onClick={() => this.updateStatus('accept')} color="green">
+          <Button theme="border" onClick={() => this.setState({ showApproveConfirm: true })} color="green">
             { t('Accept') }
           </Button>
         </ButtonsGroup>
+
+        <Confirm
+          title={t('Approve declaration?')}
+          active={this.state.showApproveConfirm}
+          theme="success"
+          cancel={t('Cancel')}
+          confirm={t('Yes')}
+          onCancel={() => this.setState({ showApproveConfirm: false })}
+          onConfirm={() => this.approve()}
+        />
+
+        <Confirm
+          title={t('Reject declaration?')}
+          active={this.state.showRejectConfirm}
+          theme="error"
+          cancel={t('Cancel')}
+          confirm={t('Yes')}
+          onCancel={() => this.setState({ showRejectConfirm: false })}
+          onConfirm={() => this.reject()}
+        />
       </div>
     );
   }

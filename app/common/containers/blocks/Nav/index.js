@@ -48,6 +48,14 @@ export default class Nav extends React.Component {
             //  </NavItem>
             //
           }
+          <NavItem to="declarations" activeClassName={styles.active}>
+            <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
+          </NavItem>
+          <NavItem to="pending-declarations" activeClassName={styles.active}>
+            <Link id="pending-declarations-nav" to="/pending-declarations">
+              { t('Pending declarations') }
+            </Link>
+          </NavItem>
           <NavItem to="employees" activeClassName={styles.active}>
             <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
           </NavItem>

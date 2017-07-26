@@ -1,32 +1,49 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H1 } from 'components/Title';
+import filter from 'helpers/filter';
+
+import { H1, H2 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
+import Pagination from 'components/CursorPagination';
+
+import ShowBy from 'containers/blocks/ShowBy';
+import SearchForm from 'containers/forms/SearchForm';
 
 import { getDeclarations } from 'reducers';
 
 import { fetchDeclarations } from './redux';
 import styles from './styles.scss';
 
+const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
+
+@withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchDeclarations()),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.DeclarationsListPage,
   declarations: getDeclarations(state, state.pages.DeclarationsListPage.declarations),
 }))
 export default class PendingDeclarationsListPage extends React.Component {
+  get activeFilter() {
+    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
+      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    return FILTER_PARAMS[index !== -1 ? index : 0];
+  }
+
   render() {
-    const { declarations = [], t } = this.props;
+    const { declarations = [], t, location, paging = { } } = this.props;
+    const activeFilter = this.activeFilter;
 
     return (
       <div id="pending-declarations-list-page">
@@ -38,6 +55,33 @@ export default class PendingDeclarationsListPage extends React.Component {
         />
 
         <H1>{ t('Pending declarations') }</H1>
+
+        <div className={styles.search}>
+          <H2>{ t('Search declaration') }</H2>
+          <SearchForm
+            ctive={activeFilter}
+            placeholder={t('Find declaration')}
+            items={[
+              { name: 'employee_id', title: t('By employee id') },
+              { name: 'legal_entity_id', title: t('By legal entity') },
+            ]}
+            initialValues={{
+              [activeFilter]: location.query[activeFilter],
+            }}
+            onSubmit={values => filter({
+              employee_id: null,
+              legal_entity_id: null,
+              ...values,
+            }, this.props)}
+          />
+        </div>
+
+        <div className={styles.showBy}>
+          <ShowBy
+            active={Number(location.query.limit) || 5}
+            onChange={limit => filter({ limit }, this.props)}
+          />
+        </div>
 
         <div id="declarations-table" className={styles.table}>
           <Table
@@ -65,6 +109,14 @@ export default class PendingDeclarationsListPage extends React.Component {
             }))}
           />
         </div>
+
+        {paging.cursors && <div className={styles.pagination}>
+          <Pagination
+            location={location}
+            after={paging.cursors.starting_after}
+            before={paging.cursors.ending_before}
+          />
+        </div>}
       </div>
     );
   }

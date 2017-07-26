@@ -1,19 +1,21 @@
 import React from 'react';
 import format from 'date-fns/format';
 import { translate } from 'react-i18next';
+import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H2, H3 } from 'components/Title';
+import { H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
-import Button from 'components/Button';
-import YesNo from 'components/YesNo';
 
 import AddressesList from 'containers/blocks/AddressesList';
-import HeaderWithSub from 'containers/blocks/HeaderWithSub';
-import Boxes from 'containers/blocks/Boxes';
+import BackLink from 'containers/blocks/BackLink';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
+import styles from './styles.scss';
+
+@withStyles(styles)
 @translate()
 export default class DeclarationDetailPage extends React.Component {
   render() {
@@ -27,188 +29,189 @@ export default class DeclarationDetailPage extends React.Component {
     return (
       <div>
         <Helmet
-          title={`${t('Declaration')} ${declaration.fullName}`}
+          title={`${t('Declaration')} ${fullName}`}
           meta={[
-            { property: 'og:title', content: `${t('Declaration')} ${declaration.fullName}` },
+            { property: 'og:title', content: `${t('Declaration')} ${fullName}` },
           ]}
         />
 
-        <HeaderWithSub title={`${t('Declaration')} ${fullName}`}>
-          { t('Dates') }: <b>{format(declaration.start_date, 'DD.MM.YYYY hh:mm')} - {format(declaration.end_date, 'DD.MM.YYYY hh:mm')}</b>
-
-          <p>
-            { t('Active') }: <b><YesNo bool={declaration.active} /></b>,
-            { t('scope') }: <b>{declaration.scope}</b>
-          </p>
-        </HeaderWithSub>
-
-        <H2>{ t('Division') }</H2>
-
-        <p>
-          <b>{declaration.division.name}</b>
-        </p>
-
-        <br />
-
-        <Boxes>
-          <div>
-            <H3>{ t('Contacts') }:</H3>
-
-            <DataList
-              list={[
-                {
-                  name: 'Email',
-                  value: declaration.division.email,
-                }, {
-                  name: t('Phones'),
-                  value: <InlineList list={declaration.division.phones.map(item => item.number)} />,
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <H3>{ t('Addresses') }:</H3>
-
-            <AddressesList list={declaration.division.addresses} />
-          </div>
-          <div>
-            <H3>{ t('Other') }:</H3>
-
-            <DataList
-              list={[
-                {
-                  name: t('ID'),
-                  value: declaration.division.id,
-                }, {
-                  name: t('Type'),
-                  value: declaration.division.type,
-                }, {
-                  name: t('Mountain'),
-                  value: declaration.division.mountain_group,
-                },
-              ]}
-            />
-          </div>
-        </Boxes>
+        <BackLink onClick={() => this.props.history.goBack()}>{ t('Back to declarations list') }</BackLink>
 
         <Line />
-
-        <Button theme="link" to={`/clinics/${declaration.legal_entity.id}`}>
-          { t('Clinic Detail') }
-        </Button>
-
-        <Line />
-
-        <H2>{ t('Employee') }</H2>
-
-        <p>
-          <b>
-            {[
-              declaration.employee.party.last_name,
-              declaration.employee.party.first_name,
-              declaration.employee.party.second_name,
-            ].join(' ')}
-          </b>
-        </p>
-
-        <p>
-          { t('Position') }: <b>{declaration.employee.position}</b>
-        </p>
-
-        <br />
-
-        <H3>{ t('Contacts') }:</H3>
 
         <DataList
           list={[
+            { name: t('Declaration ID'), value: declaration.id },
+          ]}
+        />
+
+        <Line width={630} />
+
+        <DataList
+          theme="min"
+          list={[
+            { name: t('Start date'), value: format(declaration.start_date, 'DD/MM/YYYY') },
+            { name: t('End date'), value: format(declaration.end_date, 'DD/MM/YYYY') },
+            { name: t('Scope'), value: declaration.scope },
+          ]}
+        />
+
+        <Line />
+
+        <DataList
+          list={[
+            { name: t('Division ID'), value: declaration.division.id },
+          ]}
+        />
+
+        <Line width={630} />
+
+        <DataList
+          theme="min"
+          list={[
+            { name: t('Division type'), value: <DictionaryValue dictionary="DIVISION_TYPE" value={declaration.division.type.toUpperCase()} /> },
+            { name: t('Division name'), value: declaration.division.name },
+            { name: t('Phones'), value: <InlineList list={declaration.division.phones.map(item => item.number)} /> },
+            { name: t('Email'), value: declaration.division.email },
             {
-              name: 'Email',
-              value: declaration.employee.party.email,
-            }, {
-              name: t('Phones'),
-              value: <InlineList
-                list={declaration.employee.party.phones.map(item => item.number)}
-              />,
+              name: t('Addresses'),
+              value: <AddressesList list={declaration.division.addresses} />,
             },
           ]}
         />
 
         <Line />
 
-        <H2>{ t('Person') }</H2>
-
-        <p>
-          <b>
-            {fullName}
-          </b>
-        </p>
-        <p>
-          { t('Birth') }: {format(declaration.person.birth_date, 'DD.MM.YYYY')} { t('in') } {declaration.person.birth_place}
-        </p>
-
-        <br />
-
-        <Boxes>
+        <div className={styles.row}>
           <div>
-            <H3>{ t('Contacts') }:</H3>
-
             <DataList
               list={[
-                {
-                  name: 'Email',
-                  value: declaration.person.email,
-                }, {
-                  name: t('Phones'),
-                  value: <InlineList
-                    list={declaration.person.phones.map(item => item.number)}
-                  />,
-                },
+                { name: t('Employee ID'), value: declaration.employee.id },
               ]}
             />
           </div>
-          <div>
-            <H3>{ t('Documents') }:</H3>
+          <div className={styles.right}>
+            <BackLink iconPosition="right" to={`/employees/${declaration.employee.id}`}>
+              { t('Go to employee') }
+            </BackLink>
+          </div>
+        </div>
 
+        <Line />
+
+        <div className={styles.strong}>
+          <DataList
+            theme="min"
+            list={[
+              {
+                name: t('Full name'),
+                value: `${declaration.employee.party.last_name} ${declaration.employee.party.first_name} ${declaration.employee.party.second_name}`,
+              },
+              { name: t('Tax ID'), value: declaration.employee.party.tax_id },
+              { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={declaration.employee.position} /> },
+            ]}
+          />
+        </div>
+
+        <Line />
+
+        <div className={styles.row}>
+          <div>
             <DataList
-              list={declaration.person.documents.map(item => ({
-                name: item.type,
-                value: item.number,
-              }))}
+              list={[
+                { name: t('Clinic ID'), value: declaration.legal_entity.id },
+              ]}
             />
           </div>
-          <div>
-            <H3>{ t('Authentication methods') }</H3>
-
-            <DataList
-              list={declaration.person.authentication_methods.map(item => ({
-                name: item.type,
-                value: item.phone_number,
-              }))}
-            />
+          <div className={styles.right}>
+            <BackLink iconPosition="right" to={`/clinics/${declaration.legal_entity.id}`}>
+              { t('Go to clinic') }
+            </BackLink>
           </div>
-        </Boxes>
+        </div>
 
-        <br />
-
-        <H3>{ t('Other') }</H3>
+        <Line />
 
         <DataList
           list={[
+            { name: t('Full name'), value: declaration.legal_entity.name },
+            { name: t('edrpou'), value: declaration.legal_entity.edrpou },
             {
-              name: t('Process data consent'),
-              value: <YesNo bool={declaration.person.process_data_consent} />,
-            }, {
-              name: t('Renewal consent'),
-              value: <YesNo bool={declaration.person.renewal_consent} />,
-            }, {
-              name: t('Patient signed'),
-              value: <YesNo bool={declaration.person.patient_signed} />,
-            }, {
-              name: t('Disclosure consent'),
-              value: <YesNo bool={declaration.person.disclosure_consent} />,
+              name: t('Registration address'),
+              value: (
+                <div className={styles.address}>
+                  <p>
+                    {declaration.legal_entity.addresses[0].zip}, {declaration.legal_entity.addresses[0].area} { t('area') }, { t('city') } {declaration.legal_entity.addresses[0].settlement},
+                  </p>
+                  <p>
+                    {declaration.legal_entity.addresses[0].street},&nbsp;
+                    {declaration.legal_entity.addresses[0].building}
+                  </p>
+                  <small>{t('Residense address is equal to registration address')}</small>
+                </div>
+              ),
             },
           ]}
         />
+
+        <Line />
+
+        <DataList
+          list={[
+            { name: t('Person ID'), value: declaration.person.id },
+          ]}
+        />
+
+        <Line width={630} />
+
+        <DataList
+          theme="min"
+          list={[
+            {
+              name: t('Person name'),
+              value: fullName,
+            },
+            { name: t('Tax ID'), value: declaration.person.tax_id },
+            { name: t('Phones'), value: <InlineList list={declaration.person.phones.map(item => item.number)} /> },
+          ]}
+        />
+
+        <Line width={630} />
+
+        <DataList
+          theme="min"
+          list={[
+            {
+              name: t('Birth date'),
+              value: format(declaration.person.birth_date, 'DD/MM/YYYY'),
+            },
+            { name: t('Birth place'), value: `${declaration.person.birth_country}, ${declaration.person.birth_settlement}` },
+          ]}
+        />
+
+        {declaration.person.documents && <div>
+          <Line />
+          <H3>{ t('Documents') }:</H3>
+
+          <DataList
+            theme="min"
+            list={declaration.person.documents.map(item => ({
+              name: <DictionaryValue dictionary="DOCUMENT_TYPE" value={item.type} />,
+              value: item.number,
+            }))}
+          />
+        </div>}
+        {declaration.person.authentication_methods && <div>
+          <Line />
+          <H3>{ t('Authentication methods') }</H3>
+
+          <DataList
+            list={declaration.person.authentication_methods.map(item => ({
+              name: item.type,
+              value: item.phone_number,
+            }))}
+          />
+        </div>}
       </div>
     );
   }
