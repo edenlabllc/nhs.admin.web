@@ -53,25 +53,13 @@ export default class DashboardPage extends React.Component {
           </div>
           <div>
             <div className={styles.count}>
-              {globalStatistic.declarations_signed}
-            </div>
-            { t('Declarations signed') }
-          </div>
-          <div>
-            <div className={styles.count}>
-              {globalStatistic.declarations_terminated}
-            </div>
-            { t('Declarations terminated') }
-          </div>
-          <div>
-            <div className={styles.count}>
               {globalStatistic.doctors}
             </div>
             { t('Doctors') }
           </div>
           <div>
             <div className={styles.count}>
-              {globalStatistic.medical_system_providers}
+              {globalStatistic.msps}
             </div>
             { t('Medical system providers') }
           </div>
