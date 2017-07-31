@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-07-21 17:47+0300\n"
-"PO-Revision-Date: 2017-07-21 17:48+0300\n"
+"POT-Creation-Date: 2017-07-31 16:45+0300\n"
+"PO-Revision-Date: 2017-07-31 16:46+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -220,6 +220,9 @@ msgstr "Підтвердження клініки"
 msgid "Dictionaries"
 msgstr "Словники"
 
+msgid "Reports"
+msgstr "Звіти"
+
 msgid "System configuration"
 msgstr "Конфігурація системи"
 
@@ -228,6 +231,12 @@ msgstr "Документація"
 
 msgid "Logout"
 msgstr "Вихід"
+
+msgid "Link"
+msgstr "Посилання"
+
+msgid "Download"
+msgstr "Завантажити"
 
 msgid "Show by"
 msgstr "Показати по"

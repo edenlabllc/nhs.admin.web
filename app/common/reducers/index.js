@@ -15,7 +15,7 @@ import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
-import { globalStat, detailStat, declarationsStat } from 'redux/reports';
+import { globalStat, detailStat, declarationsStat, reports } from 'redux/reports';
 import configuration from 'redux/configuration';
 
 import Aside from 'containers/blocks/Aside/redux';
@@ -54,6 +54,7 @@ const data = combineReducers({
   detailStat,
   declarationsStat,
   configuration,
+  reports,
 });
 
 export default combineReducers({
@@ -117,3 +118,5 @@ export const getDetailStatistic = (state, ids) => (
 export const getDeclarationsStatByArea = (state, id) => state.data.declarationsStat[id];
 
 export const getConfiguration = state => state.data.configuration;
+
+export const getReports = state => state.data.reports;

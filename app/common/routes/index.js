@@ -26,6 +26,8 @@ import PendingDeclarationDetailPage from 'containers/pages/PendingDeclarationDet
 import EmployeesListPage from 'containers/pages/EmployeesListPage';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage';
 
+import ReportsListPage from 'containers/pages/ReportsListPage';
+
 import SystemConfigurationPage from 'containers/pages/SystemConfigurationPage';
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
@@ -91,6 +93,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <Route path=":id" component={EmployeeDetailPage} />
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} />
+          <Route path="reports" component={ReportsListPage} />
         </Route>
       </Route>
       <Route path="sign-in" component={SignInPage} />
