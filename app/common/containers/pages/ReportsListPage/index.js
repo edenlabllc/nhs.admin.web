@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
@@ -13,10 +12,8 @@ import ReportsList from 'containers/blocks/ReportsList';
 import { getReports } from 'reducers';
 
 import { fetchReports } from 'redux/reports';
-import styles from './styles.scss';
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchReports()),
