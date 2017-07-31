@@ -46,6 +46,7 @@ export default class SearchForm extends React.Component {
             items.map(item => (
               active === item.name && <Field
                 type="text"
+                key={item.name}
                 placeholder={placeholder}
                 name={item.name}
                 component={FieldInput}

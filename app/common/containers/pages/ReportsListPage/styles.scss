@@ -1,0 +1,48 @@
+.table {
+  margin-top: 30px;
+
+  .name {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+  }
+}
+
+.filter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  line-height: 0;
+
+  & > div {
+    flex: 1 1 50%;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.status {
+  color: #22a4ff;
+
+  &_verified {
+    color: #13db63;
+  }
+}
+
+.pagination {
+  margin-top: 43px;
+  text-align: center;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .showBy {
+    margin-top: 20px;
+  }
+}

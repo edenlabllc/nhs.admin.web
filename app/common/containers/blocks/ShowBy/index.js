@@ -40,6 +40,7 @@ export default class ShowBy extends React.Component {
         </span>
         { counts.map(item => (
           <button
+            key={item}
             onClick={() => this.onClick(item)}
             className={classnames(styles.button, active === item && styles.button_active)}
           >

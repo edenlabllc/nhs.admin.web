@@ -1,5 +1,5 @@
 import { handleAction } from 'redux-actions';
-import { MOCK_API_URL } from 'config';
+import { MOCK_API_URL, API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
 import * as schemas from 'schemas';
@@ -49,6 +49,21 @@ export const fetchDeclarationsStat = options => invoke({
   }, 'reports/FETCH_DECLARATIONS_FAILURE'],
 });
 
+
+export const fetchReports = options => invoke({
+  endpoint: createUrl(`${API_URL}/reports/log`, options),
+  method: 'GET',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['reports/FETCH_REPORTS_REQUEST', {
+    type: 'reports/FETCH_REPORTS_SUCCESS',
+    payload: (action, state, res) => res.json().then(
+      json => json.data
+    ),
+  }, 'reports/FETCH_REPORTS_FAILURE'],
+});
+
 export const globalStat = handleAction(
   'reports/FETCH_GLOBAL_SUCCESS',
   (state, action) => ({
@@ -64,6 +79,12 @@ export const detailStat = handleAction(
     ...state,
     ...action.payload.entities.detailStat,
   }),
+  []
+);
+
+export const reports = handleAction(
+  'reports/FETCH_REPORTS_SUCCESS',
+  (state, action) => action.payload,
   []
 );
 
