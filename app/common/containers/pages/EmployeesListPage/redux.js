@@ -11,11 +11,10 @@ export const fetchEmployees = options => dispatch =>
     if (action.error && action.payload.status !== 422) {
       throw action;
     }
+    dispatch(showEmployees(action.payload.result || []));
+    dispatch(pagingEmployees(action.meta || {}));
 
-    return [
-      dispatch(showEmployees(action.payload.result || [])),
-      dispatch(pagingEmployees(action.meta || {})),
-    ];
+    return action;
   });
 
 const employees = handleAction(showEmployees, (state, action) => action.payload, []);
