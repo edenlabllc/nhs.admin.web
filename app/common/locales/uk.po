@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-07-31 16:45+0300\n"
-"PO-Revision-Date: 2017-07-31 16:46+0300\n"
+"POT-Creation-Date: 2017-08-02 00:25+0300\n"
+"PO-Revision-Date: 2017-08-02 00:25+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.2\n"
 
 msgid "Required field"
 msgstr "Обов'язкове поле"
@@ -55,11 +55,11 @@ msgstr "Ні"
 msgid "ap."
 msgstr "вул."
 
-msgid "Area"
-msgstr "Зона"
+msgid "Region"
+msgstr "Область"
 
-msgid "region"
-msgstr "область"
+msgid "District"
+msgstr "Район"
 
 msgid "Created date"
 msgstr "Дата створення"
@@ -217,11 +217,11 @@ msgstr "Клініки"
 msgid "Clinics verification"
 msgstr "Підтвердження клініки"
 
-msgid "Dictionaries"
-msgstr "Словники"
-
 msgid "Reports"
 msgstr "Звіти"
+
+msgid "Dictionaries"
+msgstr "Словники"
 
 msgid "System configuration"
 msgstr "Конфігурація системи"
@@ -448,9 +448,6 @@ msgstr "Провайдери медичної системи"
 msgid "By regions"
 msgstr "По областям"
 
-msgid "Region"
-msgstr "Область"
-
 msgid "Search declaration"
 msgstr "Шукати декларацію"
 
@@ -576,6 +573,12 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+#~ msgid "Area"
+#~ msgstr "Зона"
+
+#~ msgid "region"
+#~ msgstr "область"
 
 #~ msgid "Active"
 #~ msgstr "Активно"
