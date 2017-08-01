@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-07-21T14:47:39.279Z\n"
-"PO-Revision-Date: 2017-07-21T14:47:39.279Z\n"
+"POT-Creation-Date: 2017-07-31T13:45:03.509Z\n"
+"PO-Revision-Date: 2017-07-31T13:45:03.509Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -215,6 +215,9 @@ msgstr ""
 msgid "Dictionaries"
 msgstr ""
 
+msgid "Reports"
+msgstr ""
+
 msgid "System configuration"
 msgstr ""
 
@@ -222,6 +225,12 @@ msgid "Documentation"
 msgstr ""
 
 msgid "Logout"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Download"
 msgstr ""
 
 msgid "Show by"

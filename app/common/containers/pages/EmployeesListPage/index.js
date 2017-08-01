@@ -17,9 +17,9 @@ import Pagination from 'components/CursorPagination';
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
 
-import { fetchDictionaries } from 'redux/dictionaries';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
-import { getEmployees, getDictionaryValues } from 'reducers';
+import { getEmployees } from 'reducers';
 
 import { fetchEmployees } from './redux';
 import styles from './styles.scss';
@@ -30,15 +30,11 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => Promise.all([
-    dispatch(fetchEmployees({ limit: 5, ...query })),
-    dispatch(fetchDictionaries()),
-  ]),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchEmployees({ limit: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.EmployeesListPage,
   employees: getEmployees(state, state.pages.EmployeesListPage.employees),
-  positions: getDictionaryValues(state, 'POSITION'),
 }))
 export default class EmployeesListPage extends React.Component {
   get activeFilter() {
@@ -48,7 +44,7 @@ export default class EmployeesListPage extends React.Component {
   }
 
   render() {
-    const { employees = [], t, location, positions, paging = {} } = this.props;
+    const { employees = [], t, location, paging = {} } = this.props;
     const activeFilter = this.activeFilter;
 
     return (
@@ -101,6 +97,7 @@ export default class EmployeesListPage extends React.Component {
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={employees.map(item => ({
+              key: item.id,
               date: format(item.start_date, 'DD/MM/YYYY'),
               tax: item.party.tax_id,
               name: (
@@ -109,7 +106,7 @@ export default class EmployeesListPage extends React.Component {
                   <div>{item.party.second_name}</div>
                 </div>
               ),
-              position: (positions.filter(({ key }) => key === item.position)[0] || {}).value,
+              position: <DictionaryValue dictionary="POSITION" value={item.position} />,
               legalEntity: <div>
                 <p>{item.legal_entity.name}</p>
                 <small>{t('edrpou')} {item.legal_entity.edrpou}</small>

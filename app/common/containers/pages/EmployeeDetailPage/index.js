@@ -18,8 +18,6 @@ import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
 import DictionaryValue from 'containers/blocks/DictionaryValue';
 
-import { getEmployee } from 'reducers';
-
 import { fetchEmployee } from './redux';
 
 import styles from './style.scss';
@@ -29,9 +27,7 @@ import styles from './style.scss';
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
 })
-@connect((state, { params: { id } }) => ({
-  employee: getEmployee(state, id),
-}))
+@connect(state => state.pages.EmployeeDetailPage)
 export default class EmployeeDetailPage extends React.Component {
   render() {
     const { employee = { }, t } = this.props;
@@ -92,7 +88,7 @@ export default class EmployeeDetailPage extends React.Component {
               {
                 name: t('Documents'),
                 value: <ul className={styles.docs}>
-                  {employee.party.documents.map(item => (
+                  {(employee.party.documents || []).map(item => (
                     <li key={item.number}>
                       <DictionaryValue dictionary="DOCUMENT_TYPE" value={item.type} />
                       &nbsp; № {item.number}
@@ -119,7 +115,7 @@ export default class EmployeeDetailPage extends React.Component {
                   <H3>{ t('Educations') }</H3>
 
                   <BlocksList>
-                    {employee.doctor.educations.map((item, index) => (
+                    {(employee.doctor.educations || []).map((item, index) => (
                       <li key={index}>
                         <div>
                           {item.issued_date}, {item.institution_name}
