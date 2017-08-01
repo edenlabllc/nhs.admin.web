@@ -7,8 +7,8 @@ export const showDetailStat = createAction('dashboardPage/SHOW_DETAIL');
 
 export const fetchGlobalStat = () => dispatch =>
   dispatch(fromReports.fetchGlobalStat({
-    from_date: '2017-06-31',
-    to_date: '2017-07-26',
+    from_date: new Date(2015, 6, 1),
+    to_date: new Date(),
   }))
   .then((action) => {
     if (action.error) throw action;
