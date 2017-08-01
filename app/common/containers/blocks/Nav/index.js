@@ -32,10 +32,9 @@ export default class Nav extends React.Component {
       <nav className={classnames(styles.nav, isOpen && styles.open)}>
         <ul>
           {
-            //
-            //  <NavItem to="/dashboard" activeClassName={styles.active}>
-            //    <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
-            //  </NavItem>
+            <NavItem to="/dashboard" activeClassName={styles.active}>
+              <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
+            </NavItem>
             //  <NavItem to="declarations" activeClassName={styles.active}>
             //    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
             //  </NavItem>

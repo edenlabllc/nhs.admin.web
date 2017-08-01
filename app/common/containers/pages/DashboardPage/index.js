@@ -5,33 +5,26 @@ import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
-import { H1, H3 } from 'components/Title';
-import FoldingTable from 'components/FoldingTable';
+import { H1 } from 'components/Title';
 
-import DeclarationsChartRow from 'containers/blocks/DeclarationsChartRow';
+import { getGlobalSatistic } from 'reducers';
 
-import { fetchDeclarationsStat } from 'redux/reports';
-
-import { getGlobalSatistic, getDetailStatistic } from 'reducers';
-
-import { fetchGlobalStat, fetchDetailStat } from './redux';
+import { fetchGlobalStat } from './redux';
 import styles from './styles.scss';
 
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch }) => Promise.all([
     dispatch(fetchGlobalStat()),
-    dispatch(fetchDetailStat()),
   ]),
 })
 @connect(state => ({
   globalStatistic: getGlobalSatistic(state),
-  detailStatistic: getDetailStatistic(state, state.pages.DashboardPage.detailStat),
-}), { fetchDeclarationsStat })
+}))
 @translate()
 export default class DashboardPage extends React.Component {
   render() {
-    const { globalStatistic, detailStatistic, t } = this.props;
+    const { globalStatistic, t } = this.props;
 
     return (
       <div id="dashboard-page">
@@ -53,48 +46,16 @@ export default class DashboardPage extends React.Component {
           </div>
           <div>
             <div className={styles.count}>
-              {globalStatistic.declarations_signed}
-            </div>
-            { t('Declarations signed') }
-          </div>
-          <div>
-            <div className={styles.count}>
-              {globalStatistic.declarations_terminated}
-            </div>
-            { t('Declarations terminated') }
-          </div>
-          <div>
-            <div className={styles.count}>
               {globalStatistic.doctors}
             </div>
             { t('Doctors') }
           </div>
           <div>
             <div className={styles.count}>
-              {globalStatistic.medical_system_providers}
+              {globalStatistic.msps}
             </div>
             { t('Medical system providers') }
           </div>
-        </div>
-
-        <H3>{ t('By regions') }</H3>
-
-        <div className={styles.detail}>
-          <FoldingTable
-            columns={[
-              { key: 'region_name', title: t('Region') },
-              { key: 'declarations', title: t('Declarations') },
-              { key: 'declarations_signed', title: t('Declarations signed') },
-              { key: 'declarations_terminated', title: t('Declarations terminated') },
-              { key: 'doctors', title: t('Doctors') },
-              { key: 'medical_system_providers', title: t('Medical system providers') },
-            ]}
-            data={detailStatistic}
-            component={DeclarationsChartRow}
-            onOpen={({ id }) => {
-              this.props.fetchDeclarationsStat({ area: id });
-            }}
-          />
         </div>
       </div>
     );
