@@ -44,14 +44,14 @@ export default class PendingDeclarationDetailPage extends React.Component {
   approve() {
     this.setState({ showApproveConfirm: false });
     this.props.approveDeclarationRequest(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 
   reject() {
     this.setState({ showRejectConfirm: false });
     this.props.rejectDeclarationRequest(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 

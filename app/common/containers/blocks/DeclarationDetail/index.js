@@ -2,19 +2,21 @@ import React from 'react';
 import format from 'date-fns/format';
 import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
+import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 
-import { H3 } from 'components/Title';
 import Line from 'components/Line';
+import { H3 } from 'components/Title';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 
-import AddressesList from 'containers/blocks/AddressesList';
 import BackLink from 'containers/blocks/BackLink';
+import AddressesList from 'containers/blocks/AddressesList';
 import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import styles from './styles.scss';
 
+@withRouter
 @withStyles(styles)
 @translate()
 export default class DeclarationDetailPage extends React.Component {
@@ -34,8 +36,10 @@ export default class DeclarationDetailPage extends React.Component {
             { property: 'og:title', content: `${t('Declaration')} ${fullName}` },
           ]}
         />
-
-        <BackLink onClick={() => this.props.history.goBack()}>{ t('Back to declarations list') }</BackLink>
+        {
+          console.log(this.props)
+        }
+        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to declarations list') }</BackLink>
 
         <Line />
 
@@ -156,11 +160,15 @@ export default class DeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <DataList
-          list={[
-            { name: t('Person ID'), value: declaration.person.id },
-          ]}
-        />
+        {
+          declaration.person.id && (
+            <DataList
+              list={[
+                { name: t('Person ID'), value: declaration.person.id },
+              ]}
+            />
+          )
+        }
 
         <Line width={630} />
 

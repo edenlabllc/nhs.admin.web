@@ -3,6 +3,7 @@ import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
+import { withRouter } from 'react-router';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
@@ -24,6 +25,7 @@ import styles from './style.scss';
 
 @withStyles(styles)
 @translate()
+@withRouter
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id)),
 })
@@ -158,7 +160,7 @@ export default class EmployeeDetailPage extends React.Component {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => this.props.history.goBack()} theme="border" color="blue" icon="back" block>
+            <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
               { t('Back to list') }
             </Button>
           </div>
