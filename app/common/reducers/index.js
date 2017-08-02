@@ -10,6 +10,7 @@ import labels from 'redux/labels';
 
 import session from 'redux/session';
 import user from 'redux/user';
+import auth from 'redux/auth';
 
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
@@ -68,6 +69,7 @@ export default combineReducers({
   form,
   routing,
   loading,
+  auth,
 });
 
 export const getToken = state => state.session.token;
@@ -122,3 +124,5 @@ export const getDeclarationsStatByArea = (state, id) => state.data.declarationsS
 export const getConfiguration = state => state.data.configuration;
 
 export const getReports = state => state.data.reports;
+
+export const getScope = state => (state.auth.details || {}).scope;

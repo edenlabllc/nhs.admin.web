@@ -1,4 +1,4 @@
-import { handleAction } from 'redux-actions';
+import { handleAction, combineActions } from 'redux-actions';
 import { API_URL } from 'config';
 import { invoke } from './api';
 
@@ -49,8 +49,10 @@ export const authorize = ({ clientId, scope, redirectUri }) => invoke({
 }, { auth: true });
 
 export default handleAction(
-  'auth/CREATE_SESSION_TOKEN_SUCCESS',
-  'auth/FETCH_SESSION_TOKEN_REQUEST',
+  combineActions(
+    'auth/CREATE_SESSION_TOKEN_SUCCESS',
+    'auth/FETCH_SESSION_TOKEN_SUCCESS'
+  ),
   (state, action) => ({
     ...state,
     ...action.payload,

@@ -31,8 +31,9 @@ import ReportsListPage from 'containers/pages/ReportsListPage';
 import SystemConfigurationPage from 'containers/pages/SystemConfigurationPage';
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
+import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
-import { getUser, getToken } from 'reducers';
+import { getUser, getToken, getScope } from 'reducers';
 
 import { PUBLIC_INDEX_ROUTE } from 'config';
 
@@ -62,6 +63,17 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
       });
     });
 
+  const requireScope = requiredScope => (nextState, replace, next) => {
+    const state = store.getState();
+    const currentScope = (getScope(state) || '').split(' ');
+    const requiredScopeArr = !Array.isArray(requiredScope) ? requiredScope.split(' ') : requiredScope;
+    if (requiredScopeArr.some(i => currentScope.indexOf(i) === -1)) {
+      replace({ pathname: '/401' });
+    }
+
+    return next();
+  };
+
   return (
     <Route component={App}>
       <Route component={Main} onEnter={requireAuth}>
@@ -72,34 +84,35 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={DictionariesPage} />
             <Route path=":name" component={DictionaryPage} />
           </Route>
-          <Route path="clinics">
+          <Route path="clinics" onEnter={requireScope(['legal_entity:read'])}>
             <IndexRoute component={ClinicsListPage} />
             <Route path=":id" component={ClinicDetailPage} />
           </Route>
-          <Route path="clinics-verification">
+          <Route path="clinics-verification" onEnter={requireScope(['legal_entity:read'])} >
             <IndexRoute component={ClinicsSearchPage} />
             <Route path="list" component={ClinicsVerificationListPage} />
           </Route>
-          <Route path="declarations">
+          <Route path="declarations" onEnter={requireScope(['declaration:read'])} >
             <IndexRoute component={DeclarationsListPage} />
             <Route path=":id" component={DeclarationDetailPage} />
           </Route>
-          <Route path="pending-declarations">
+          <Route path="pending-declarations" onEnter={requireScope(['declaration_request:read'])}>
             <IndexRoute component={PendingDeclarationsListPage} />
             <Route path=":id" component={PendingDeclarationDetailPage} />
           </Route>
-          <Route path="employees">
+          <Route path="employees" onEnter={requireScope(['employee:read'])} >
             <IndexRoute component={EmployeesListPage} />
             <Route path=":id" component={EmployeeDetailPage} />
           </Route>
-          <Route path="configuration" component={SystemConfigurationPage} />
+          <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />
         </Route>
       </Route>
       <Route path="sign-in" component={SignInPage} />
       <Route component={Main}>
-        <Route path="*" component={NotFoundPage} />
+        <Route path="401" component={AccessDeniedPage} />
       </Route>
+      <Route path="*" component={NotFoundPage} />
     </Route>
   );
 };
