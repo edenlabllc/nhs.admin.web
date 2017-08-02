@@ -65,7 +65,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     });
 
   const requireScope = requiredScope => (nextState, replace, next) => {
-    if (!hasScope(getScope(store.getState()), requiredScope)) {
+    if (!hasScope(requiredScope, getScope(store.getState()))) {
       replace({ pathname: '/401' });
     }
     return next();
@@ -75,7 +75,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     <Route component={App}>
       <Route component={Main} onEnter={requireAuth}>
         <Route path="/" component={PreloadData}>
-          <IndexRedirect to="dictionaries" />
+          <IndexRedirect to="dashboard" />
           <Route path="dashboard" component={DashboardPage} />
           <Route path="dictionaries">
             <IndexRoute component={DictionariesPage} />
@@ -104,11 +104,9 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />
         </Route>
-      </Route>
-      <Route path="sign-in" component={SignInPage} />
-      <Route component={Main}>
         <Route path="401" component={AccessDeniedPage} />
       </Route>
+      <Route path="sign-in" component={SignInPage} />
       <Route path="*" component={NotFoundPage} />
     </Route>
   );

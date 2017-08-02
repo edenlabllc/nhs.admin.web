@@ -106,7 +106,6 @@ export const getDictionariesLabels = (state) => {
 
 export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
 export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);
-export const getClinicOwner = state => state.data.employees[Object.keys(state.data.employees)[0]];
 
 export const getDeclarations = (state, ids) => denormalize(ids, [schemas.declaration], state.data);
 export const getDeclaration = (state, id) => denormalize(id, schemas.declaration, state.data);

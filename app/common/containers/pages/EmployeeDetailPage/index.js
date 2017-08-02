@@ -111,7 +111,7 @@ export default class EmployeeDetailPage extends React.Component {
               { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={employee.position} /> },
               {
                 name: t('Education and qualifications'),
-                value: <ShowMore name={t('Show documents')}>
+                value: employee.doctor && <ShowMore name={t('Show documents')}>
                   <H3>{ t('Educations') }</H3>
 
                   <BlocksList>
