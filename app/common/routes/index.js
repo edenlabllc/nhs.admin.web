@@ -37,6 +37,7 @@ import { getUser, getToken, getScope } from 'reducers';
 
 import { PUBLIC_INDEX_ROUTE } from 'config';
 
+import { hasScope } from 'helpers/scope';
 import { isLoginned, logout } from 'redux/session';
 import { fetchUserData } from 'redux/user';
 
@@ -64,13 +65,9 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
     });
 
   const requireScope = requiredScope => (nextState, replace, next) => {
-    const state = store.getState();
-    const currentScope = (getScope(state) || '').split(' ');
-    const requiredScopeArr = !Array.isArray(requiredScope) ? requiredScope.split(' ') : requiredScope;
-    if (requiredScopeArr.some(i => currentScope.indexOf(i) === -1)) {
+    if (!hasScope(getScope(store.getState()), requiredScope)) {
       replace({ pathname: '/401' });
     }
-
     return next();
   };
 
