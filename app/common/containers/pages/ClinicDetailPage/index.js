@@ -113,7 +113,9 @@ export default class ClinicDetailPage extends React.Component {
                 name: t('KVEDs'),
                 value: (
                   <div>
-                    {clinic.kveds.map(name => <p>{<DictionaryValue dictionary="KVEDS" value={name} />}</p>)}
+                    {clinic.kveds.map((name, key) => <p>
+                      <DictionaryValue dictionary="KVEDS" value={name} key={key} />
+                    </p>)}
                   </div>
                 ),
               },

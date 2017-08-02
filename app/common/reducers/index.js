@@ -28,6 +28,9 @@ import ClinicDetailPage from 'containers/pages/ClinicDetailPage/redux';
 import DeclarationsListPage from 'containers/pages/DeclarationsListPage/redux';
 import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage/redux';
 
+import PendingDeclarationDetailPage from 'containers/pages/PendingDeclarationDetailPage/redux';
+import PendingDeclarationsListPage from 'containers/pages/PendingDeclarationsListPage/redux';
+
 import EmployeesListPage from 'containers/pages/EmployeesListPage/redux';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage/redux';
 
@@ -41,6 +44,8 @@ const pages = combineReducers({
   ClinicDetailPage,
   DeclarationsListPage,
   DeclarationDetailPage,
+  PendingDeclarationDetailPage,
+  PendingDeclarationsListPage,
   EmployeesListPage,
   EmployeeDetailPage,
 });
