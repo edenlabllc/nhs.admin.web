@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-07-31 16:45+0300\n"
-"PO-Revision-Date: 2017-07-31 16:46+0300\n"
+"POT-Creation-Date: 2017-08-02 16:53+0200\n"
+"PO-Revision-Date: 2017-08-02 16:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.1\n"
 
 msgid "Required field"
 msgstr "Обов'язкове поле"
@@ -217,11 +217,11 @@ msgstr "Клініки"
 msgid "Clinics verification"
 msgstr "Підтвердження клініки"
 
-msgid "Dictionaries"
-msgstr "Словники"
-
 msgid "Reports"
 msgstr "Звіти"
+
+msgid "Dictionaries"
+msgstr "Словники"
 
 msgid "System configuration"
 msgstr "Конфігурація системи"
@@ -328,6 +328,16 @@ msgstr "Панель управління"
 msgid "head-og-description"
 msgstr "NHS - Панель управління"
 
+msgid "Access denied"
+msgstr "Доступ обмежений"
+
+msgid ""
+"You have no access to this page. Try to re-login with new role or call to "
+"support."
+msgstr ""
+"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з "
+"новою роллю або зателефонуйте до підтримки."
+
 msgid "Back to clinics list"
 msgstr "Повернутися до списку клінік"
 
@@ -382,12 +392,6 @@ msgstr "Виданий"
 msgid "expiry"
 msgstr "закінчується"
 
-msgid "Owner"
-msgstr "Власник"
-
-msgid "Tax id"
-msgstr "ІНН"
-
 msgid "Back to list"
 msgstr "Повернутися до списку"
 
@@ -433,23 +437,11 @@ msgstr "Перевірка клінік"
 msgid "Back to search page"
 msgstr "Повернутися до сторінки пошуку"
 
-msgid "Declarations signed"
-msgstr "Підписані декларації"
-
-msgid "Declarations terminated"
-msgstr "Припинені декларації"
-
 msgid "Doctors"
 msgstr "Лікарі"
 
 msgid "Medical system providers"
 msgstr "Провайдери медичної системи"
-
-msgid "By regions"
-msgstr "По областям"
-
-msgid "Region"
-msgstr "Область"
 
 msgid "Search declaration"
 msgstr "Шукати декларацію"
@@ -541,6 +533,9 @@ msgstr "За party ID"
 msgid "Date registration"
 msgstr "Дата реєстрації"
 
+msgid "Tax id"
+msgstr "ІНН"
+
 msgid "Employee name"
 msgstr "Ім'я працівника"
 
@@ -576,6 +571,21 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+#~ msgid "Owner"
+#~ msgstr "Власник"
+
+#~ msgid "Declarations signed"
+#~ msgstr "Підписані декларації"
+
+#~ msgid "Declarations terminated"
+#~ msgstr "Припинені декларації"
+
+#~ msgid "By regions"
+#~ msgstr "По областям"
+
+#~ msgid "Region"
+#~ msgstr "Область"
 
 #~ msgid "Active"
 #~ msgstr "Активно"

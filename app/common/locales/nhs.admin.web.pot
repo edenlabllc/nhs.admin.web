@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-07-31T13:45:03.509Z\n"
-"PO-Revision-Date: 2017-07-31T13:45:03.509Z\n"
+"POT-Creation-Date: 2017-08-02T13:52:48.367Z\n"
+"PO-Revision-Date: 2017-08-02T13:52:48.367Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -212,10 +212,10 @@ msgstr ""
 msgid "Clinics verification"
 msgstr ""
 
-msgid "Dictionaries"
+msgid "Reports"
 msgstr ""
 
-msgid "Reports"
+msgid "Dictionaries"
 msgstr ""
 
 msgid "System configuration"
@@ -323,6 +323,14 @@ msgstr ""
 msgid "head-og-description"
 msgstr ""
 
+msgid "Access denied"
+msgstr ""
+
+msgid ""
+"You have no access to this page. Try to re-login with new role or call to "
+"support."
+msgstr ""
+
 msgid "Back to clinics list"
 msgstr ""
 
@@ -377,12 +385,6 @@ msgstr ""
 msgid "expiry"
 msgstr ""
 
-msgid "Owner"
-msgstr ""
-
-msgid "Tax id"
-msgstr ""
-
 msgid "Back to list"
 msgstr ""
 
@@ -428,22 +430,10 @@ msgstr ""
 msgid "Back to search page"
 msgstr ""
 
-msgid "Declarations signed"
-msgstr ""
-
-msgid "Declarations terminated"
-msgstr ""
-
 msgid "Doctors"
 msgstr ""
 
 msgid "Medical system providers"
-msgstr ""
-
-msgid "By regions"
-msgstr ""
-
-msgid "Region"
 msgstr ""
 
 msgid "Search declaration"
@@ -534,6 +524,9 @@ msgid "By party id"
 msgstr ""
 
 msgid "Date registration"
+msgstr ""
+
+msgid "Tax id"
 msgstr ""
 
 msgid "Employee name"
