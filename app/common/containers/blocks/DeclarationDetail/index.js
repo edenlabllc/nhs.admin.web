@@ -13,6 +13,7 @@ import InlineList from 'components/InlineList';
 import BackLink from 'containers/blocks/BackLink';
 import AddressesList from 'containers/blocks/AddressesList';
 import DictionaryValue from 'containers/blocks/DictionaryValue';
+import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import styles from './styles.scss';
 
@@ -92,11 +93,13 @@ export default class DeclarationDetailPage extends React.Component {
               ]}
             />
           </div>
-          <div className={styles.right}>
-            <BackLink iconPosition="right" to={`/employees/${declaration.employee.id}`}>
-              { t('Go to employee') }
-            </BackLink>
-          </div>
+          <ShowWithScope scope="employee:read">
+            <div className={styles.right}>
+              <BackLink iconPosition="right" to={`/employees/${declaration.employee.id}`}>
+                { t('Go to employee') }
+              </BackLink>
+            </div>
+          </ShowWithScope>
         </div>
 
         <Line />
@@ -129,11 +132,13 @@ export default class DeclarationDetailPage extends React.Component {
               ]}
             />
           </div>
-          <div className={styles.right}>
-            <BackLink iconPosition="right" to={`/clinics/${declaration.legal_entity.id}`}>
-              { t('Go to clinic') }
-            </BackLink>
-          </div>
+          <ShowWithScope scope="legal_entity:read">
+            <div className={styles.right}>
+              <BackLink iconPosition="right" to={`/clinics/${declaration.legal_entity.id}`}>
+                { t('Go to clinic') }
+              </BackLink>
+            </div>
+          </ShowWithScope>
         </div>
 
         <Line />

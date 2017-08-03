@@ -19,10 +19,10 @@ import BackLink from 'containers/blocks/BackLink';
 import ColoredText from 'components/ColoredText';
 import ShowMore from 'containers/blocks/ShowMore';
 import DictionaryValue from 'containers/blocks/DictionaryValue';
+import ShowWithScope from 'containers/blocks/ShowWithScope';
 
-import { getClinic, getClinicOwner } from 'reducers';
+import { getClinic } from 'reducers';
 
-import { fetchEmployees } from 'redux/employees';
 import { verifyClinic, deactivateClinic } from 'redux/clinics';
 
 import { fetchClinic } from './redux';
@@ -34,12 +34,10 @@ import styles from './styles.scss';
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => Promise.all([
     dispatch(fetchClinic(id)),
-    dispatch(fetchEmployees({ legal_entity_id: id })),
   ]),
 })
 @connect((state, { params: { id } }) => ({
   clinic: getClinic(state, id),
-  owner: getClinicOwner(state),
 }), { verifyClinic, deactivateClinic })
 export default class ClinicDetailPage extends React.Component {
   state = {
@@ -60,7 +58,7 @@ export default class ClinicDetailPage extends React.Component {
   }
 
   render() {
-    const { clinic = { }, owner = { }, t } = this.props;
+    const { clinic = { }, t } = this.props;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
     return (
@@ -84,11 +82,13 @@ export default class ClinicDetailPage extends React.Component {
               ]}
             />
           </div>
-          <div className={styles.right}>
-            <BackLink iconPosition="right" to={`/employees?legal_entity_id=${clinic.id}`}>
-              { t('Go to clinic employees list') }
-            </BackLink>
-          </div>
+          <ShowWithScope scope="employee:read">
+            <div className={styles.right}>
+              <BackLink iconPosition="right" to={`/employees?legal_entity_id=${clinic.id}`}>
+                { t('Go to clinic employees list') }
+              </BackLink>
+            </div>
+          </ShowWithScope>
         </div>
 
         <Line />
@@ -218,22 +218,6 @@ export default class ClinicDetailPage extends React.Component {
 
         <Line width={630} />
 
-        <DataList
-          theme="min"
-          list={[
-            {
-              name: t('Owner'),
-              value: `${owner.party.last_name} ${owner.party.first_name} ${owner.party.second_name}`,
-            }, {
-              name: t('Tax id'),
-              value: owner.party.tax_id,
-            }, {
-              name: t('Phones'),
-              value: <InlineList list={owner.party.phones.map(item => item.number)} />,
-            },
-          ]}
-        />
-
         {!clinic.nhs_verified && <div className={styles.buttons}>
           <div className={styles.buttons__row}>
             <div className={styles.buttons__column}>
@@ -241,21 +225,24 @@ export default class ClinicDetailPage extends React.Component {
                 { t('Back to list') }
               </Button>
             </div>
-            <div className={styles.buttons__column}>
-              <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
-                { t('Approve clinic') }
-              </Button>
-            </div>
+            <ShowWithScope scope="legal_entity:nhs_verify">
+              <div className={styles.buttons__column}>
+                <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
+                  { t('Approve clinic') }
+                </Button>
+              </div>
+            </ShowWithScope>
           </div>
-          <div className={styles.buttons__row}>
-            <div className={styles.buttons__column}>
-              <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
-                { t('Cancel verification') }
-              </Button>
+          <ShowWithScope scope="legal_entity:deactivate">
+            <div className={styles.buttons__row}>
+              <div className={styles.buttons__column}>
+                <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
+                  { t('Cancel verification') }
+                </Button>
+              </div>
             </div>
-          </div>
+          </ShowWithScope>
         </div>}
-
         <Confirm
           title={t('Verify clinic {{name}}?', { name: clinic.name })}
           active={this.state.showVerifyConfirm}

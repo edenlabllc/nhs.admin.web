@@ -8,6 +8,7 @@ import Form, { FormRow, FormBlock, FormButtons, FormColumn, FormError } from 'co
 import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button, { ButtonsGroup } from 'components/Button';
+import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 const getValues = getFormValues('dictionary-form');
 
@@ -85,11 +86,13 @@ export default class DictionaryForm extends React.Component {
         <FieldArray name="values" component={renderFields} readOnly={readOnly} />
         <FieldArray name="labels" component={labelFields} readOnly={readOnly} />
         <FormButtons>
-          <ButtonsGroup>
-            <Button type="submit" disabled={!this.isChanged}>{
-              submitting ? t('Saving...') : (this.isChanged ? t('Save Dictionary') : t('Saved'))
-            }</Button>
-          </ButtonsGroup>
+          <ShowWithScope scope="dictionary:write">
+            <ButtonsGroup>
+              <Button type="submit" disabled={!this.isChanged}>{
+                submitting ? t('Saving...') : (this.isChanged ? t('Save Dictionary') : t('Saved'))
+              }</Button>
+            </ButtonsGroup>
+          </ShowWithScope>
         </FormButtons>
       </Form>
     );
@@ -109,26 +112,30 @@ const labelFields = translate()(({ fields, readOnly, t }) => (
             readOnly={readOnly}
           />
         </FormColumn>
-        {
-          !readOnly && (
-            <FormColumn align="bottom">
-              <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
-                { t('Remove') }
-              </Button>
-            </FormColumn>
-          )
-        }
+        <ShowWithScope scope="dictionary:write">
+          {
+            !readOnly && (
+              <FormColumn align="bottom">
+                <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
+                  { t('Remove') }
+                </Button>
+              </FormColumn>
+            )
+          }
+        </ShowWithScope>
       </FormRow>
     ))}
-    {
-      !readOnly && (
-        <FormButtons>
-          <Button type="button" color="blue" size="small" onClick={() => fields.push()}>
-            {t('Add Item')}
-          </Button>
-        </FormButtons>
-      )
-    }
+    <ShowWithScope scope="dictionary:write">
+      {
+        !readOnly && (
+          <FormButtons>
+            <Button type="button" color="blue" size="small" onClick={() => fields.push()}>
+              {t('Add Item')}
+            </Button>
+          </FormButtons>
+        )
+      }
+    </ShowWithScope>
   </FormBlock>
 ));
 
@@ -154,26 +161,30 @@ const renderFields = translate()(({ fields, readOnly, meta, t }) => (
             readOnly={readOnly}
           />
         </FormColumn>
-        {
-          !readOnly && (
-            <FormColumn align="bottom">
-              <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
-                { t('Remove') }
-              </Button>
-            </FormColumn>
-          )
-        }
+        <ShowWithScope scope="dictionary:write">
+          {
+            !readOnly && (
+              <FormColumn align="bottom">
+                <Button color="red" type="button" size="small" onClick={() => fields.remove(index)} tabIndex={-1}>
+                  { t('Remove') }
+                </Button>
+              </FormColumn>
+            )
+          }
+        </ShowWithScope>
       </FormRow>
     )}
-    {
-      !readOnly && (
-        <FormButtons>
-          <Button type="button" color="blue" size="small" onClick={() => fields.push({})}>
-            {t('Add Item')}
-          </Button>
-        </FormButtons>
-      )
-    }
+    <ShowWithScope scope="dictionary:write">
+      {
+        !readOnly && (
+          <FormButtons>
+            <Button type="button" color="blue" size="small" onClick={() => fields.push({})}>
+              {t('Add Item')}
+            </Button>
+          </FormButtons>
+        )
+      }
+    </ShowWithScope>
     { meta.error && (
       <FormError>
         <ErrorMessages error={meta.error}>

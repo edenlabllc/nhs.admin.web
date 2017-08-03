@@ -327,6 +327,14 @@ msgstr ""
 msgid "head-og-description"
 msgstr ""
 
+msgid "Access denied"
+msgstr ""
+
+msgid ""
+"You have no access to this page. Try to re-login with new role or call to "
+"support."
+msgstr ""
+
 msgid "Back to clinics list"
 msgstr ""
 
@@ -381,12 +389,6 @@ msgstr ""
 msgid "expiry"
 msgstr ""
 
-msgid "Owner"
-msgstr ""
-
-msgid "Tax id"
-msgstr ""
-
 msgid "Back to list"
 msgstr ""
 
@@ -430,12 +432,6 @@ msgid "Verification clinics"
 msgstr ""
 
 msgid "Back to search page"
-msgstr ""
-
-msgid "Declarations signed"
-msgstr ""
-
-msgid "Declarations terminated"
 msgstr ""
 
 msgid "Doctors"
@@ -535,6 +531,9 @@ msgid "By party id"
 msgstr ""
 
 msgid "Date registration"
+msgstr ""
+
+msgid "Tax id"
 msgstr ""
 
 msgid "Employee name"

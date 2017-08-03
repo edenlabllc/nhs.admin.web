@@ -12,6 +12,7 @@ import Gallery from 'components/Gallery';
 import { Confirm } from 'components/Popup';
 
 import DeclarationDetail from 'containers/blocks/DeclarationDetail';
+import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import { getDeclaration } from 'reducers';
 import { approveDeclarationRequest, rejectDeclarationRequest } from 'redux/declarations';
@@ -70,34 +71,37 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <ButtonsGroup>
-          <Button theme="border" onClick={() => this.setState({ showRejectConfirm: true })} color="red">
-            { t('Reject') }
-          </Button>
-          <Button theme="border" onClick={() => this.setState({ showApproveConfirm: true })} color="green">
-            { t('Accept') }
-          </Button>
-        </ButtonsGroup>
+        <ShowWithScope scope="declaration_request:write">
+          <div>
+            <ButtonsGroup>
+              <Button theme="border" onClick={() => this.setState({ showRejectConfirm: true })} color="red">
+                { t('Reject') }
+              </Button>
+              <Button theme="border" onClick={() => this.setState({ showApproveConfirm: true })} color="green">
+                { t('Accept') }
+              </Button>
+            </ButtonsGroup>
+            <Confirm
+              title={t('Approve declaration?')}
+              active={this.state.showApproveConfirm}
+              theme="success"
+              cancel={t('Cancel')}
+              confirm={t('Yes')}
+              onCancel={() => this.setState({ showApproveConfirm: false })}
+              onConfirm={() => this.approve()}
+            />
 
-        <Confirm
-          title={t('Approve declaration?')}
-          active={this.state.showApproveConfirm}
-          theme="success"
-          cancel={t('Cancel')}
-          confirm={t('Yes')}
-          onCancel={() => this.setState({ showApproveConfirm: false })}
-          onConfirm={() => this.approve()}
-        />
-
-        <Confirm
-          title={t('Reject declaration?')}
-          active={this.state.showRejectConfirm}
-          theme="error"
-          cancel={t('Cancel')}
-          confirm={t('Yes')}
-          onCancel={() => this.setState({ showRejectConfirm: false })}
-          onConfirm={() => this.reject()}
-        />
+            <Confirm
+              title={t('Reject declaration?')}
+              active={this.state.showRejectConfirm}
+              theme="error"
+              cancel={t('Cancel')}
+              confirm={t('Yes')}
+              onCancel={() => this.setState({ showRejectConfirm: false })}
+              onConfirm={() => this.reject()}
+            />
+          </div>
+        </ShowWithScope>
       </div>
     );
   }

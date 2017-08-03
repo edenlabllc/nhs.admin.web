@@ -7,6 +7,8 @@ import { reduxForm, Field, getFormValues } from 'redux-form';
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
 
+import ShowWithScope from 'containers/blocks/ShowWithScope';
+
 import { reduxFormValidate } from 'react-nebo15-validate';
 
 import styles from './styles.scss';
@@ -71,11 +73,13 @@ export default class ApiForm extends React.Component {
           <div>
             <Field min="1" max="28" type="number" name="billing_date" labelText={t('Billing date')} component={FieldInput} />
           </div>
-          <div>
-            <Button type="submit" disabled={!this.isChanged || submitting}>
-              { submitting ? t('Saving...') : t('Save config') }
-            </Button>
-          </div>
+          <ShowWithScope scope="global_parameters:write">
+            <div>
+              <Button type="submit" disabled={!this.isChanged || submitting}>
+                { submitting ? t('Saving...') : t('Save config') }
+              </Button>
+            </div>
+          </ShowWithScope>
         </div>
       </form>
     );

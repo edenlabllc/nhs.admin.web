@@ -328,6 +328,16 @@ msgstr "Панель управління"
 msgid "head-og-description"
 msgstr "NHS - Панель управління"
 
+msgid "Access denied"
+msgstr "Доступ обмежений"
+
+msgid ""
+"You have no access to this page. Try to re-login with new role or call to "
+"support."
+msgstr ""
+"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з "
+"новою роллю або зателефонуйте до підтримки."
+
 msgid "Back to clinics list"
 msgstr "Повернутися до списку клінік"
 
@@ -382,12 +392,6 @@ msgstr "Виданий"
 msgid "expiry"
 msgstr "закінчується"
 
-msgid "Owner"
-msgstr "Власник"
-
-msgid "Tax id"
-msgstr "ІНН"
-
 msgid "Back to list"
 msgstr "Повернутися до списку"
 
@@ -432,12 +436,6 @@ msgstr "Перевірка клінік"
 
 msgid "Back to search page"
 msgstr "Повернутися до сторінки пошуку"
-
-msgid "Declarations signed"
-msgstr "Підписані декларації"
-
-msgid "Declarations terminated"
-msgstr "Припинені декларації"
 
 msgid "Doctors"
 msgstr "Лікарі"
@@ -538,6 +536,9 @@ msgstr "За party ID"
 msgid "Date registration"
 msgstr "Дата реєстрації"
 
+msgid "Tax id"
+msgstr "ІНН"
+
 msgid "Employee name"
 msgstr "Ім'я працівника"
 
@@ -574,11 +575,27 @@ msgstr "Помилка отримання токена"
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
 
+
 #~ msgid "Area"
 #~ msgstr "Зона"
 
 #~ msgid "region"
 #~ msgstr "область"
+
+#~ msgid "Owner"
+#~ msgstr "Власник"
+
+#~ msgid "Declarations signed"
+#~ msgstr "Підписані декларації"
+
+#~ msgid "Declarations terminated"
+#~ msgstr "Припинені декларації"
+
+#~ msgid "By regions"
+#~ msgstr "По областям"
+
+#~ msgid "Region"
+#~ msgstr "Область"
 
 #~ msgid "Active"
 #~ msgstr "Активно"
