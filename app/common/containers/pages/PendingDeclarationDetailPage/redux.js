@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { handleAction, createAction } from 'redux-actions';
 import * as fromDeclarations from 'redux/declarations';
 
-export const showDeclaration = createAction('declarationDetailPage/SHOW_DECLARATION');
+export const showDeclaration = createAction('pendingDeclarationDetailPage/SHOW_DECLARATION');
 
 export const fetchDeclaration = id => dispatch =>
   dispatch(fromDeclarations.fetchDeclarationRequest(id))

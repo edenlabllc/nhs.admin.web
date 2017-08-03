@@ -2,20 +2,22 @@ import React from 'react';
 import format from 'date-fns/format';
 import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
+import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 
-import { H3 } from 'components/Title';
 import Line from 'components/Line';
+import { H3 } from 'components/Title';
 import DataList from 'components/DataList';
 import InlineList from 'components/InlineList';
 
-import AddressesList from 'containers/blocks/AddressesList';
 import BackLink from 'containers/blocks/BackLink';
+import AddressesList from 'containers/blocks/AddressesList';
 import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import styles from './styles.scss';
 
+@withRouter
 @withStyles(styles)
 @translate()
 export default class DeclarationDetailPage extends React.Component {
@@ -36,7 +38,7 @@ export default class DeclarationDetailPage extends React.Component {
           ]}
         />
 
-        <BackLink onClick={() => this.props.history.goBack()}>{ t('Back to declarations list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to declarations list') }</BackLink>
 
         <Line />
 
@@ -70,9 +72,9 @@ export default class DeclarationDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Division type'), value: <DictionaryValue dictionary="DIVISION_TYPE" value={declaration.division.type.toUpperCase()} /> },
+            { name: t('Division type'), value: <DictionaryValue dictionary="DIVISION_TYPE" value={(declaration.division.type || '').toUpperCase()} /> },
             { name: t('Division name'), value: declaration.division.name },
-            { name: t('Phones'), value: <InlineList list={declaration.division.phones.map(item => item.number)} /> },
+            { name: t('Phones'), value: <InlineList list={(declaration.division.phones || []).map(item => item.number)} /> },
             { name: t('Email'), value: declaration.division.email },
             {
               name: t('Addresses'),
@@ -103,17 +105,21 @@ export default class DeclarationDetailPage extends React.Component {
         <Line />
 
         <div className={styles.strong}>
-          <DataList
-            theme="min"
-            list={[
-              {
-                name: t('Full name'),
-                value: `${declaration.employee.party.last_name} ${declaration.employee.party.first_name} ${declaration.employee.party.second_name}`,
-              },
-              { name: t('Tax ID'), value: declaration.employee.party.tax_id },
-              { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={declaration.employee.position} /> },
-            ]}
-          />
+          {
+            declaration.employee.party && (
+              <DataList
+                theme="min"
+                list={[
+                  {
+                    name: t('Full name'),
+                    value: `${declaration.employee.party.last_name} ${declaration.employee.party.first_name} ${declaration.employee.party.second_name}`,
+                  },
+                  { name: t('Tax ID'), value: declaration.employee.party.tax_id },
+                  { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={declaration.employee.position} /> },
+                ]}
+              />
+            )
+          }
         </div>
 
         <Line />
@@ -145,13 +151,18 @@ export default class DeclarationDetailPage extends React.Component {
               name: t('Registration address'),
               value: (
                 <div className={styles.address}>
-                  <p>
-                    {declaration.legal_entity.addresses[0].zip}, {declaration.legal_entity.addresses[0].area} { t('area') }, { t('city') } {declaration.legal_entity.addresses[0].settlement},
-                  </p>
-                  <p>
-                    {declaration.legal_entity.addresses[0].street},&nbsp;
-                    {declaration.legal_entity.addresses[0].building}
-                  </p>
+                  {
+                    declaration.legal_entity.addresses && (<div>
+                      <p>
+                        {declaration.legal_entity.addresses[0].zip}, {declaration.legal_entity.addresses[0].area} { t('area') }, { t('city') } {declaration.legal_entity.addresses[0].settlement},
+                      </p>
+                      <p>
+                        {declaration.legal_entity.addresses[0].street},&nbsp;
+                        {declaration.legal_entity.addresses[0].building}
+                      </p>
+                    </div>
+                    )
+                  }
                   <small>{t('Residense address is equal to registration address')}</small>
                 </div>
               ),
@@ -161,11 +172,15 @@ export default class DeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <DataList
-          list={[
-            { name: t('Person ID'), value: declaration.person.id },
-          ]}
-        />
+        {
+          declaration.person.id && (
+            <DataList
+              list={[
+                { name: t('Person ID'), value: declaration.person.id },
+              ]}
+            />
+          )
+        }
 
         <Line width={630} />
 
@@ -177,7 +192,7 @@ export default class DeclarationDetailPage extends React.Component {
               value: fullName,
             },
             { name: t('Tax ID'), value: declaration.person.tax_id },
-            { name: t('Phones'), value: <InlineList list={declaration.person.phones.map(item => item.number)} /> },
+            { name: t('Phones'), value: <InlineList list={(declaration.person.phones || []).map(item => item.number)} /> },
           ]}
         />
 

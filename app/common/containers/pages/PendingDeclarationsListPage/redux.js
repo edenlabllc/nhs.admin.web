@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import { handleAction, createAction } from 'redux-actions';
 import * as fromDeclarations from 'redux/declarations';
 
-export const showDeclarations = createAction('declarationsListPage/SHOW_DECLARATIONS');
-export const pagingDeclarations = createAction('declarationsListPage/ADD_PAGING');
+export const showDeclarations = createAction('pendingDeclarationsListPage/SHOW_DECLARATIONS');
+export const pagingDeclarations = createAction('pendingDeclarationsListPage/ADD_PAGING');
 
 export const fetchDeclarations = options => dispatch =>
   dispatch(fromDeclarations.fetchDeclarationsRequests(options))

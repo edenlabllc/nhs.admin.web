@@ -12,7 +12,7 @@ export default withStyles(styles)(translate()(({ list = [], t }) => (
         { t('ap.') } {item.apartment} ({item.zip})
 
         <span>
-          { t('Area') }: {item.area}, { t('region') }: {item.region}
+          { t('Region') }: {item.area}, { t('District') }: {item.region}
         </span>
       </li>
     ))}

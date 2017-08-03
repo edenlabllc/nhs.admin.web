@@ -6,6 +6,8 @@
 
   &__select {
     flex: 0 0 170px;
+    -webkit-flex: none;
+    -webkit-box-flex: 0;
   }
 
   &__input {

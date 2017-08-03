@@ -2,6 +2,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
+import { withRouter } from 'react-router';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
@@ -27,6 +28,7 @@ import { verifyClinic, deactivateClinic } from 'redux/clinics';
 import { fetchClinic } from './redux';
 import styles from './styles.scss';
 
+@withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
@@ -45,13 +47,13 @@ export default class ClinicDetailPage extends React.Component {
 
   verifyClinic() {
     this.props.verifyClinic(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 
   deactivateClinic() {
     this.props.deactivateClinic(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 
@@ -68,7 +70,7 @@ export default class ClinicDetailPage extends React.Component {
           ]}
         />
 
-        <BackLink onClick={() => this.props.history.goBack()}>{ t('Back to clinics list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to clinics list') }</BackLink>
 
         <Line />
 
@@ -113,7 +115,9 @@ export default class ClinicDetailPage extends React.Component {
                 name: t('KVEDs'),
                 value: (
                   <div>
-                    {clinic.kveds.map(name => <p>{<DictionaryValue dictionary="KVEDS" value={name} />}</p>)}
+                    {clinic.kveds.map((name, key) => <p>
+                      <DictionaryValue dictionary="KVEDS" value={name} key={key} />
+                    </p>)}
                   </div>
                 ),
               },
@@ -217,7 +221,7 @@ export default class ClinicDetailPage extends React.Component {
         {!clinic.nhs_verified && <div className={styles.buttons}>
           <div className={styles.buttons__row}>
             <div className={styles.buttons__column}>
-              <Button onClick={() => this.props.history.goBack()} theme="border" color="blue" icon="back" block>
+              <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
                 { t('Back to list') }
               </Button>
             </div>
