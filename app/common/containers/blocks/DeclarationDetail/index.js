@@ -71,7 +71,7 @@ export default class DeclarationDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Division type'), value: <DictionaryValue dictionary="DIVISION_TYPE" value={declaration.division.type.toUpperCase()} /> },
+            { name: t('Division type'), value: <DictionaryValue dictionary="DIVISION_TYPE" value={(declaration.division.type || '').toUpperCase()} /> },
             { name: t('Division name'), value: declaration.division.name },
             { name: t('Phones'), value: <InlineList list={(declaration.division.phones || []).map(item => item.number)} /> },
             { name: t('Email'), value: declaration.division.email },
@@ -102,17 +102,21 @@ export default class DeclarationDetailPage extends React.Component {
         <Line />
 
         <div className={styles.strong}>
-          <DataList
-            theme="min"
-            list={[
-              {
-                name: t('Full name'),
-                value: `${declaration.employee.party.last_name} ${declaration.employee.party.first_name} ${declaration.employee.party.second_name}`,
-              },
-              { name: t('Tax ID'), value: declaration.employee.party.tax_id },
-              { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={declaration.employee.position} /> },
-            ]}
-          />
+          {
+            declaration.employee.party && (
+              <DataList
+                theme="min"
+                list={[
+                  {
+                    name: t('Full name'),
+                    value: `${declaration.employee.party.last_name} ${declaration.employee.party.first_name} ${declaration.employee.party.second_name}`,
+                  },
+                  { name: t('Tax ID'), value: declaration.employee.party.tax_id },
+                  { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={declaration.employee.position} /> },
+                ]}
+              />
+            )
+          }
         </div>
 
         <Line />

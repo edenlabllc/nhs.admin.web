@@ -112,8 +112,8 @@ export default class EmployeeDetailPage extends React.Component {
               { name: t('End work date'), value: format(employee.end_date, 'DD/MM/YYYY') },
               { name: t('Position'), value: <DictionaryValue dictionary="POSITION" value={employee.position} /> },
               {
-                name: t('Education and qualifications'),
-                value: <ShowMore name={t('Show documents')}>
+                name: employee.doctor && t('Education and qualifications'),
+                value: employee.doctor && <ShowMore name={t('Show documents')}>
                   <H3>{ t('Educations') }</H3>
 
                   <BlocksList>

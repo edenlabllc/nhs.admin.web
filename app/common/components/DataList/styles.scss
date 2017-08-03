@@ -5,6 +5,7 @@
 
   dt {
     width: 150px;
+    padding-right: 5px;
   }
 
   dd {
@@ -18,7 +19,6 @@
   dt,
   dd {
     float: left;
-    padding-left: 5px;
   }
 
   dd + dt,
