@@ -31,6 +31,8 @@ import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage/redux'
 
 import EmployeesListPage from 'containers/pages/EmployeesListPage/redux';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage/redux';
+import PendingEmployeesListPage from 'containers/pages/PendingEmployeesListPage/redux';
+import PendingEmployeeDetailPage from 'containers/pages/PendingEmployeeDetailPage/redux';
 
 const blocks = combineReducers({
   Aside,
@@ -44,6 +46,8 @@ const pages = combineReducers({
   DeclarationDetailPage,
   EmployeesListPage,
   EmployeeDetailPage,
+  PendingEmployeesListPage,
+  PendingEmployeeDetailPage,
 });
 
 const data = combineReducers({
