@@ -13,9 +13,15 @@ export const fetchUserData = token => dispatch =>
         error: true,
       };
     }
-    return dispatch(fetchUser(action.payload.user_id));
+    return dispatch(fetchUserByToken(token));
   });
 
+
+export const fetchUserByToken = token => invoke({
+  endpoint: `${API_URL}/admin/tokens/${token}/user`,
+  method: 'GET',
+  types: ['user/FETCH_USER_BY_TOKEN_REQUEST', 'user/FETCH_USER_BY_TOKEN_SUCCESS', 'user/FETCH_USER_BY_TOKEN_FAILURE'],
+});
 
 export const fetchUser = userId => invoke({
   endpoint: `${API_URL}/admin/users/${userId}`,

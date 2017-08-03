@@ -27,7 +27,7 @@ export default class NotFoundPage extends React.Component {
           <H1>{ t('Page Not Found') }</H1>
           <p>
             { t('Requested page not found. Maybe you are looking for') }
-            <Button theme="link" to="/dashboard" >{ t('Go to dashboard') }</Button>.
+            <Button theme="link" to="/" >{ t('Go to dashboard') }</Button>.
           </p>
         </div>
       </section>

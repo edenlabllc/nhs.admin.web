@@ -10,6 +10,7 @@ import labels from 'redux/labels';
 
 import session from 'redux/session';
 import user from 'redux/user';
+import auth from 'redux/auth';
 
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
@@ -68,6 +69,7 @@ export default combineReducers({
   form,
   routing,
   loading,
+  auth,
 });
 
 export const getToken = state => state.session.token;
@@ -104,7 +106,6 @@ export const getDictionariesLabels = (state) => {
 
 export const getClinics = (state, ids) => denormalize(ids, [schemas.clinic], state.data);
 export const getClinic = (state, id) => denormalize(id, schemas.clinic, state.data);
-export const getClinicOwner = state => state.data.employees[Object.keys(state.data.employees)[0]];
 
 export const getDeclarations = (state, ids) => denormalize(ids, [schemas.declaration], state.data);
 export const getDeclaration = (state, id) => denormalize(id, schemas.declaration, state.data);
@@ -122,3 +123,5 @@ export const getDeclarationsStatByArea = (state, id) => state.data.declarationsS
 export const getConfiguration = state => state.data.configuration;
 
 export const getReports = state => state.data.reports;
+
+export const getScope = state => (state.auth.details || {}).scope;
