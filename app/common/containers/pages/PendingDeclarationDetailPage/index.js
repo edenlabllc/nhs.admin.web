@@ -14,7 +14,7 @@ import { Confirm } from 'components/Popup';
 import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
-import { getDeclaration, getImages } from 'reducers';
+import { getDeclaration } from 'reducers';
 import { approveDeclarationRequest, rejectDeclarationRequest, getDeclarationRequestImage } from 'redux/declarations';
 
 import { fetchDeclaration } from './redux';
@@ -32,7 +32,6 @@ import styles from './styles.scss';
 })
 @connect((state, { params: { id } }) => ({
   declaration: getDeclaration(state, id),
-  images: getImages(state, id),
 }), { approveDeclarationRequest, rejectDeclarationRequest })
 export default class PendingDeclarationDetailPage extends React.Component {
   state = {
@@ -61,7 +60,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
   }
 
   render() {
-    const { declaration = { }, images = [], t } = this.props;
+    const { declaration = { }, t } = this.props;
 
     return (
       <div id="declaration-detail-page">
@@ -71,7 +70,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <H2>{ t('Scans') }</H2>
 
-        <Gallery images={images.reduce((acc, cur) => { acc.push(cur.url); return acc; }, [])} />
+        <Gallery images={(declaration.images || []).map(i => i.url)} />
 
         <Line />
 
