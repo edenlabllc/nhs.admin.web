@@ -1,4 +1,4 @@
-import { handleAction, combineActions } from 'redux-actions';
+import { handleActions, combineActions } from 'redux-actions';
 import { MOCK_API_URL, API_URL } from 'config';
 import { normalize } from 'normalizr';
 import { createUrl } from 'helpers/url';
@@ -106,17 +106,42 @@ export const rejectDeclarationRequest = id => invoke({
   }, 'dictionaries/REJECT_FAILURE'],
 });
 
-export default handleAction(
-  combineActions(
+export const getDeclarationRequestImage = id => invoke({
+  endpoint: `${API_URL}/api/declaration_requests/${id}/images`,
+  method: 'GET',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['declarations/GET_DECLARATION_REQUEST_IMAGE', {
+    type: 'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS',
+    payload: (action, state, res) => res.json(),
+  }, 'dictionaries/GET_DECLARATION_REQUEST_IMAGE_FAILURE'],
+});
+
+export default handleActions({
+  [combineActions(
     'declarations/FETCH_LIST_SUCCESS',
-    'declarations/FETCH_DETAILS_SUCCESS',
     'declarations/CREATE_SUCCESS',
-    'declarations/UPDATE_SUCCESS'
-  ),
-  (state, action) => ({
+    'declarations/UPDATE_SUCCESS',
+  )]: (state, action) => ({
     ...state,
     ...action.payload.entities.declarations,
     ...action.meta,
   }),
-  {}
-);
+  'declarations/FETCH_DETAILS_SUCCESS': (state, action) => ({
+    ...state,
+    [action.payload.result]: {
+      ...state[action.payload.result],
+      ...action.payload.entities.declarations[action.payload.result],
+      ...action.meta,
+    },
+  }),
+  'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS': (state, action) => ({
+    ...state,
+    [action.payload.meta.url.split(/declaration_requests\//)[1].split(/\/images/)[0]]: {
+      ...state[action.payload.meta.url.split(/declaration_requests\//)[1].split(/\/images/)[0]],
+      images: action.payload.data,
+    },
+  }),
+}, {});
+

@@ -130,3 +130,5 @@ export const getConfiguration = state => state.data.configuration;
 export const getReports = state => state.data.reports;
 
 export const getScope = state => (state.auth.details || {}).scope;
+
+export const getImages = (state, id) => state.data.declarations[id].images;
