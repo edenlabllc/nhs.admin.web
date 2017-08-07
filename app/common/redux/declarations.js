@@ -115,6 +115,7 @@ export const getDeclarationRequestImage = id => invoke({
   types: ['declarations/GET_DECLARATION_REQUEST_IMAGE', {
     type: 'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS',
     payload: (action, state, res) => res.json(),
+    meta: () => ({ declaration_id: id }),
   }, 'dictionaries/GET_DECLARATION_REQUEST_IMAGE_FAILURE'],
 });
 
@@ -138,8 +139,8 @@ export default handleActions({
   }),
   'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS': (state, action) => ({
     ...state,
-    [action.payload.meta.url.split(/declaration_requests\//)[1].split(/\/images/)[0]]: {
-      ...state[action.payload.meta.url.split(/declaration_requests\//)[1].split(/\/images/)[0]],
+    [action.meta.declaration_id]: {
+      ...state[action.meta.declaration_id],
       images: action.payload.data,
     },
   }),
