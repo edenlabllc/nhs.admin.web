@@ -70,7 +70,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <H2>{ t('Scans') }</H2>
 
-        <Gallery images={(declaration.images || []).map(i => i.url)} />
+        <Gallery images={declaration.images} />
 
         <Line />
 
