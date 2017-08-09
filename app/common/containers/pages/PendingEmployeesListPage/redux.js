@@ -5,8 +5,8 @@ import * as fromEmployees from 'redux/employees';
 export const showPendingEmployees = createAction('pendingEmployeesListPage/SHOW_DECLARATIONS');
 export const pagingEmployees = createAction('pendingEmployeesListPage/ADD_PAGING');
 
-export const fetchEmployees = options => dispatch =>
-  dispatch(fromEmployees.fetchEmployees(options))
+export const fetchEmployeesRequest = options => dispatch =>
+  dispatch(fromEmployees.fetchEmployeesRequest(options))
   .then((action) => {
     if (action.error && action.payload.status !== 422) {
       throw action;

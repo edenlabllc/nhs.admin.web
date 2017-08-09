@@ -21,7 +21,7 @@ import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import { getEmployees } from 'reducers';
 
-import { fetchEmployees } from './redux';
+import { fetchEmployeesRequest } from './redux';
 import styles from './styles.scss';
 
 const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
@@ -30,7 +30,8 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchEmployees({ limit: 5, status: 'NEW', ...query })),
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchEmployeesRequest({ limit: 5, status: 'NEW', ...query })),
 })
 @connect(state => ({
   ...state.pages.PendingEmployeesListPage,
@@ -48,15 +49,15 @@ export default class PendingEmployeesListPage extends React.Component {
     const activeFilter = this.activeFilter;
 
     return (
-      <div id="employees-list-page">
+      <div id="pending-employees-list-page">
         <Helmet
-          title={t('Employees')}
+          title={t('Pending Employees')}
           meta={[
-            { property: 'og:title', content: t('Employees') },
+            { property: 'og:title', content: t('Pending Employees') },
           ]}
         />
 
-        <H1>{ t('Employees') }</H1>
+        <H1>{ t('Pending Employees') }</H1>
 
         <SearchForm
           active={activeFilter}
@@ -86,7 +87,7 @@ export default class PendingEmployeesListPage extends React.Component {
           />
         </div>
 
-        <div id="employees-table" className={styles.table}>
+        <div id="pending-employees-table" className={styles.table}>
           <Table
             columns={[
               { key: 'date', title: t('Date registration') },
