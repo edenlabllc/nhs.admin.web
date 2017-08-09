@@ -2,7 +2,6 @@ import React from 'react';
 import Lightbox from 'react-images';
 import withStyles from 'withStyles';
 
-import imgNotFound from 'public/images/imgnotfound.jpg';
 
 import styles from './styles.scss';
 
@@ -30,7 +29,7 @@ export default class Gallery extends React.Component {
     Promise.all(this.props.images.map(i =>
       this.hasImage(i.url)
         .then(resp => resp)
-        .catch(() => imgNotFound)))
+        .catch(() => null)))
       .then(list => this.setState({ list }));
   }
 
@@ -53,8 +52,10 @@ export default class Gallery extends React.Component {
         <ul className={styles.images}>
           {
             (this.state.list || []).map((image, i) => (
-              <li onClick={() => this.openImage(i)} key={i}>
-                <img src={image} role="presentation" />
+              <li onClick={() => image && this.openImage(i)} key={i}>
+                {
+                  image ? <img src={image} role="presentation" /> : <div className={styles.notFound} />
+                }
                 <span>{DOCUMENTS[images[i].type]}</span>
               </li>
             ))
