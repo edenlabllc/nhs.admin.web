@@ -2,6 +2,8 @@ import React from 'react';
 import Lightbox from 'react-images';
 import withStyles from 'withStyles';
 
+import imgNotFound from 'public/images/imgnotfound.jpg';
+
 import styles from './styles.scss';
 
 const DOCUMENTS = {
@@ -21,11 +23,27 @@ export default class Gallery extends React.Component {
   state = {
     lightboxIsOpen: false,
     currentImage: 0,
+    list: [],
   };
+
+  componentDidMount() {
+    Promise.all(this.props.images.map(i =>
+      this.hasImage(i.url)
+        .then(resp => resp)
+        .catch(() => imgNotFound)))
+      .then(list => this.setState({ list }));
+  }
 
   openImage(index) {
     this.setState({ currentImage: index, lightboxIsOpen: true });
   }
+
+  hasImage = url => new Promise((resolve, reject) => {
+    const temp = new Image();
+    temp.src = url;
+    temp.onerror = e => reject(e);
+    temp.onload = () => resolve(url);
+  });
 
   render() {
     const { images = [] } = this.props;
@@ -34,10 +52,10 @@ export default class Gallery extends React.Component {
       <div>
         <ul className={styles.images}>
           {
-            images.map((image, i) => (
+            (this.state.list || []).map((image, i) => (
               <li onClick={() => this.openImage(i)} key={i}>
-                <img src={image.url} role="presentation" />
-                <span>{DOCUMENTS[image.type]}</span>
+                <img src={image} role="presentation" />
+                <span>{DOCUMENTS[images[i].type]}</span>
               </li>
             ))
           }
