@@ -17,7 +17,7 @@ import Pagination from 'components/CursorPagination';
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
 
-import { getEmployees } from 'reducers';
+import { getEmployeesRequests } from 'reducers';
 
 import { fetchEmployeesRequest } from './redux';
 import styles from './styles.scss';
@@ -33,7 +33,7 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
 })
 @connect(state => ({
   ...state.pages.PendingEmployeesListPage,
-  employees: getEmployees(state, state.pages.PendingEmployeesListPage.employees),
+  employees: getEmployeesRequests(state, state.pages.PendingEmployeesListPage.employeesRequests),
 }))
 export default class PendingEmployeesListPage extends React.Component {
   get activeFilter() {

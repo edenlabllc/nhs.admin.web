@@ -103,7 +103,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={EmployeesListPage} />
             <Route path=":id" component={EmployeeDetailPage} />
           </Route>
-          <Route path="pending-employees" onEnter={requireScope(['employee:read'])} >
+          <Route path="pending-employees" onEnter={requireScope(['employee_request:read'])} >
             <IndexRoute component={PendingEmployeesListPage} />
             <Route path=":id" component={PendingEmployeeDetailPage} />
           </Route>

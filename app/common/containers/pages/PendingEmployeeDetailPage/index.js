@@ -27,7 +27,6 @@ import styles from './style.scss';
 export default class PendingEmployeeDetailPage extends React.Component {
   render() {
     const { employee = { }, t } = this.props;
-    console.log('employee', employee);
 
     const fullName = `${employee.party.last_name} ${employee.party.first_name} ${employee.party.second_name}`;
 
