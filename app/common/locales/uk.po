@@ -55,11 +55,11 @@ msgstr "Ні"
 msgid "ap."
 msgstr "вул."
 
-msgid "Area"
-msgstr "Зона"
+msgid "Region"
+msgstr "Область"
 
-msgid "region"
-msgstr "область"
+msgid "District"
+msgstr "Район"
 
 msgid "Created date"
 msgstr "Дата створення"
@@ -446,6 +446,9 @@ msgstr "Лікарі"
 msgid "Medical system providers"
 msgstr "Провайдери медичної системи"
 
+msgid "By regions"
+msgstr "По областям"
+
 msgid "Search declaration"
 msgstr "Шукати декларацію"
 
@@ -596,6 +599,13 @@ msgstr "Помилка отримання токена"
 
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
+
+
+#~ msgid "Area"
+#~ msgstr "Зона"
+
+#~ msgid "region"
+#~ msgstr "область"
 
 #~ msgid "Owner"
 #~ msgstr "Власник"

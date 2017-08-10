@@ -15,7 +15,7 @@ import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import { getDeclaration } from 'reducers';
-import { approveDeclarationRequest, rejectDeclarationRequest } from 'redux/declarations';
+import { approveDeclarationRequest, rejectDeclarationRequest, getDeclarationRequestImage } from 'redux/declarations';
 
 import { fetchDeclaration } from './redux';
 
@@ -25,34 +25,31 @@ import styles from './styles.scss';
 @translate()
 @withRouter
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => dispatch(fetchDeclaration(id)),
+  fetch: ({ dispatch, params: { id } }) => Promise.all([
+    dispatch(fetchDeclaration(id)),
+    dispatch(getDeclarationRequestImage(id)),
+  ]),
 })
 @connect((state, { params: { id } }) => ({
   declaration: getDeclaration(state, id),
 }), { approveDeclarationRequest, rejectDeclarationRequest })
 export default class PendingDeclarationDetailPage extends React.Component {
   state = {
-    lightboxIsOpen: false,
-    currentImage: 0,
     showApproveConfirm: false,
     showRejectConfirm: false,
   };
 
-  openImage(index) {
-    this.setState({ currentImage: index, lightboxIsOpen: true });
-  }
-
   approve() {
     this.setState({ showApproveConfirm: false });
     this.props.approveDeclarationRequest(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 
   reject() {
     this.setState({ showRejectConfirm: false });
     this.props.rejectDeclarationRequest(this.props.params.id).then(() => {
-      this.props.history.goBack();
+      this.props.router.goBack();
     });
   }
 
@@ -65,11 +62,13 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <H2>{ t('Scans') }</H2>
-
-        <Gallery images={declaration.media_content} />
-
-        <Line />
+        { declaration.images && (
+          <div>
+            <H2>{ t('Scans') }</H2>
+            <Gallery images={declaration.images} />
+            <Line />
+          </div>
+        )}
 
         <ShowWithScope scope="declaration_request:write">
           <div>

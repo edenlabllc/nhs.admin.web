@@ -1,3 +1,4 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
@@ -50,10 +51,10 @@ msgstr ""
 msgid "ap."
 msgstr ""
 
-msgid "Area"
+msgid "Region"
 msgstr ""
 
-msgid "region"
+msgid "District"
 msgstr ""
 
 msgid "Created date"
@@ -437,6 +438,9 @@ msgid "Doctors"
 msgstr ""
 
 msgid "Medical system providers"
+msgstr ""
+
+msgid "By regions"
 msgstr ""
 
 msgid "Search declaration"
