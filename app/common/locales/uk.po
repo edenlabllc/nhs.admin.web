@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-08-02 16:53+0200\n"
-"PO-Revision-Date: 2017-08-02 16:54+0200\n"
+"POT-Creation-Date: 2017-08-10 15:17+0300\n"
+"PO-Revision-Date: 2017-08-10 15:23+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 2.0.2\n"
 
 msgid "Required field"
 msgstr "Обов'язкове поле"
@@ -211,6 +211,9 @@ msgstr "Декларації на розгляді"
 msgid "Employees"
 msgstr "Співробітники"
 
+msgid "Pending employees"
+msgstr "Cпівробітники на розгляді"
+
 msgid "Clinics"
 msgstr "Клініки"
 
@@ -335,8 +338,8 @@ msgid ""
 "You have no access to this page. Try to re-login with new role or call to "
 "support."
 msgstr ""
-"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з "
-"новою роллю або зателефонуйте до підтримки."
+"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з новою "
+"роллю або зателефонуйте до підтримки."
 
 msgid "Back to clinics list"
 msgstr "Повернутися до списку клінік"
@@ -563,6 +566,23 @@ msgstr "Прийняти декларацію"
 msgid "Reject declaration?"
 msgstr "Відхилити декларацію"
 
+#, fuzzy
+#| msgid "Back to employees list"
+msgid "Back to pending employees list"
+msgstr "Повернутися до списку співробітників"
+
+msgid "Employee request ID"
+msgstr "Ідентифікатор "
+
+msgid "Employee type"
+msgstr "Тип працівника"
+
+msgid "Legal entity"
+msgstr "Юридична/Фізична особа"
+
+msgid "ID"
+msgstr "ID"
+
 msgid "Sign in"
 msgstr "Вхід"
 
@@ -601,9 +621,6 @@ msgstr "Увійти за допомогою EHEALTH"
 
 #~ msgid "Other"
 #~ msgstr "Інше"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Mountain"
 #~ msgstr "Гірська група"

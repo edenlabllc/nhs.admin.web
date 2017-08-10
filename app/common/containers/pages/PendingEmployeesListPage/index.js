@@ -49,7 +49,7 @@ export default class PendingEmployeesListPage extends React.Component {
     return (
       <div id="pending-employees-list-page">
         <Helmet
-          title={t('Pending Employees')}
+          title={t('Pending employees')}
           meta={[
             { property: 'og:title', content: t('Pending Employees') },
           ]}
