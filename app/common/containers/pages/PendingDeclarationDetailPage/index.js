@@ -35,15 +35,9 @@ import styles from './styles.scss';
 }), { approveDeclarationRequest, rejectDeclarationRequest })
 export default class PendingDeclarationDetailPage extends React.Component {
   state = {
-    lightboxIsOpen: false,
-    currentImage: 0,
     showApproveConfirm: false,
     showRejectConfirm: false,
   };
-
-  openImage(index) {
-    this.setState({ currentImage: index, lightboxIsOpen: true });
-  }
 
   approve() {
     this.setState({ showApproveConfirm: false });
@@ -68,11 +62,13 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <H2>{ t('Scans') }</H2>
-
-        <Gallery images={declaration.images} />
-
-        <Line />
+        { declaration.images && (
+          <div>
+            <H2>{ t('Scans') }</H2>
+            <Gallery images={declaration.images} />
+            <Line />
+          </div>
+        )}
 
         <ShowWithScope scope="declaration_request:write">
           <div>

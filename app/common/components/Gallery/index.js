@@ -1,7 +1,7 @@
 import React from 'react';
 import Lightbox from 'react-images';
 import withStyles from 'withStyles';
-
+import classnames from 'classnames';
 
 import styles from './styles.scss';
 
@@ -52,11 +52,18 @@ export default class Gallery extends React.Component {
         <ul className={styles.images}>
           {
             (this.state.list || []).map((image, i) => (
-              <li onClick={() => image && this.openImage(i)} key={i}>
-                {
-                  image ? <img src={image} role="presentation" /> : <div className={styles.notFound} />
-                }
-                <span>{DOCUMENTS[images[i].type]}</span>
+              <li
+                onClick={() => image && this.openImage(i)}
+                key={i}
+                className={classnames(styles.image, !image && styles.image_notfound)}
+              >
+                <span
+                  className={classnames(styles.image__el)}
+                  style={image && {
+                    backgroundImage: `url(${image})`,
+                  }}
+                />
+                <span className={styles.image__text}>{DOCUMENTS[images[i].type]}</span>
               </li>
             ))
           }
