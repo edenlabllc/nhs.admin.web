@@ -5,7 +5,7 @@ import * as fromEmployee from 'redux/employees';
 export const showPendingEmployee = createAction('pendingEmployeeDetailPage/SHOW_EMPLOYEE');
 
 export const fetchEmployee = id => dispatch =>
-  dispatch(fromEmployee.fetchEmployee(id))
+  dispatch(fromEmployee.fetchEmployeeRequest(id))
   .then((action) => {
     if (action.error) throw action;
     return dispatch(showPendingEmployee(action.payload.entities.employees[action.payload.result]));

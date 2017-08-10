@@ -17,8 +17,6 @@ import Pagination from 'components/CursorPagination';
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
 
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-
 import { getEmployees } from 'reducers';
 
 import { fetchEmployeesRequest } from './redux';
@@ -90,29 +88,27 @@ export default class PendingEmployeesListPage extends React.Component {
         <div id="pending-employees-table" className={styles.table}>
           <Table
             columns={[
+              { key: 'id', title: t('ID') },
               { key: 'date', title: t('Date registration') },
-              { key: 'tax', title: t('Tax id') },
               { key: 'name', title: t('Employee name') },
-              { key: 'position', title: t('Position') },
               { key: 'legalEntity', title: t('Legal entity') },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={employees.map(item => ({
               key: item.id,
-              date: format(item.start_date, 'DD/MM/YYYY'),
-              tax: item.party.tax_id,
+              id: item.id,
+              date: format(item.inserted_at, 'DD/MM/YYYY'),
               name: (
                 <div>
-                  {item.party.last_name} {item.party.first_name}
-                  <div>{item.party.second_name}</div>
+                  {item.last_name} {item.first_name}
+                  <div>{item.second_name}</div>
                 </div>
               ),
-              position: <DictionaryValue dictionary="POSITION" value={item.position} />,
               legalEntity: <div>
-                <p>{item.legal_entity.name}</p>
-                <small>{t('edrpou')} {item.legal_entity.edrpou}</small>
+                <p>{item.legal_entity_name}</p>
+                <small>{t('edrpou')} {item.edrpou}</small>
               </div>,
-              action: (<Button id={`show-employees-detail-button-${item.id}`} theme="link" to={`/employees/${item.id}`}>{ t('Details') }</Button>),
+              action: (<Button id={`show-employees-detail-button-${item.id}`} theme="link" to={`/pending-employees/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />
         </div>
