@@ -31,8 +31,8 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
   fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, ...query })),
 })
 @connect(state => ({
-  ...state.pages.DeclarationsListPage,
-  declarations: getDeclarations(state, state.pages.DeclarationsListPage.declarations),
+  ...state.pages.PendingDeclarationsListPage,
+  declarations: getDeclarations(state, state.pages.PendingDeclarationsListPage.declarations),
 }))
 export default class PendingDeclarationsListPage extends React.Component {
   get activeFilter() {
@@ -82,7 +82,6 @@ export default class PendingDeclarationsListPage extends React.Component {
             onChange={limit => filter({ limit }, this.props)}
           />
         </div>
-
         <div id="declarations-table" className={styles.table}>
           <Table
             columns={[
