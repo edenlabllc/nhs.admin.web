@@ -102,7 +102,7 @@ export default class DeclarationDetailPage extends React.Component {
           </ShowWithScope>
         </div>
 
-        <Line />
+        { declaration.employee.party && <Line /> }
 
         <div className={styles.strong}>
           {
@@ -181,8 +181,6 @@ export default class DeclarationDetailPage extends React.Component {
             />
           )
         }
-
-        <Line width={630} />
 
         <DataList
           theme="min"
