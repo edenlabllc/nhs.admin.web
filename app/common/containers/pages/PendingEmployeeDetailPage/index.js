@@ -71,7 +71,7 @@ export default class PendingEmployeeDetailPage extends React.Component {
           <DataList
             theme="min"
             list={[
-              { name: t('legal_entity_id'), value: employee.legal_entity_id },
+              { name: t('legal entity id'), value: employee.legal_entity_id },
               { name: t('Legal entity'), value: employee.legal_entity_name },
               { name: t('edrpou'), value: employee.edrpou },
             ]}

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-08-10 15:17+0300\n"
-"PO-Revision-Date: 2017-08-10 15:23+0300\n"
+"POT-Creation-Date: 2017-08-10 15:29+0300\n"
+"PO-Revision-Date: 2017-08-10 15:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -459,7 +459,7 @@ msgid "Person"
 msgstr "Людина"
 
 msgid "Legal entity"
-msgstr "Юридична особа"
+msgstr "Юридична/Фізична особа"
 
 msgid "Dates"
 msgstr "Дати"
@@ -577,8 +577,13 @@ msgstr "Ідентифікатор "
 msgid "Employee type"
 msgstr "Тип працівника"
 
-msgid "Legal entity"
-msgstr "Юридична/Фізична особа"
+msgid "legal entity id"
+msgstr "Ідентифікатор Юридичної/Фізичної особи"
+
+#, fuzzy
+#| msgid "Pending employees"
+msgid "Pending Employees"
+msgstr "Cпівробітники на розгляді"
 
 msgid "ID"
 msgstr "ID"
