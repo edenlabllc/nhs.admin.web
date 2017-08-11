@@ -28,7 +28,7 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, ...query })),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, status: 'NEW', ...query })),
 })
 @connect(state => ({
   ...state.pages.PendingDeclarationsListPage,
@@ -114,6 +114,7 @@ export default class PendingDeclarationsListPage extends React.Component {
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
+            more={paging.has_more}
           />
         </div>}
       </div>

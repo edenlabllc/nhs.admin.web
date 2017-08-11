@@ -80,7 +80,7 @@ export default class DictionaryForm extends React.Component {
       <Form onSubmit={handleSubmit(this.onSubmit)}>
         <FormBlock title={t('General')}>
           <FormRow>
-            <Field name="is_active" labelText={t('Is active')} component={FieldCheckbox} readOnly={readOnly} />
+            <Field name="is_active" labelText={t('Is active')} component={FieldCheckbox} disabled={readOnly} />
           </FormRow>
         </FormBlock>
         <FieldArray name="values" component={renderFields} readOnly={readOnly} />

@@ -109,12 +109,12 @@ export default class DeclarationsListPage extends React.Component {
             }))}
           />
         </div>
-
         {paging.cursors && <div className={styles.pagination}>
           <Pagination
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
+            more={paging.has_more}
           />
         </div>}
       </div>
