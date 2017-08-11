@@ -25,6 +25,8 @@ import PendingDeclarationDetailPage from 'containers/pages/PendingDeclarationDet
 
 import EmployeesListPage from 'containers/pages/EmployeesListPage';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage';
+import PendingEmployeesListPage from 'containers/pages/PendingEmployeesListPage';
+import PendingEmployeeDetailPage from 'containers/pages/PendingEmployeeDetailPage';
 
 import ReportsListPage from 'containers/pages/ReportsListPage';
 
@@ -100,6 +102,10 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="employees" onEnter={requireScope(['employee:read'])} >
             <IndexRoute component={EmployeesListPage} />
             <Route path=":id" component={EmployeeDetailPage} />
+          </Route>
+          <Route path="pending-employees" onEnter={requireScope(['employee_request:read'])} >
+            <IndexRoute component={PendingEmployeesListPage} />
+            <Route path=":id" component={PendingEmployeeDetailPage} />
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />

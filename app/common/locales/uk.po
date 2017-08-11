@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-08-02 00:25+0300\n"
-"PO-Revision-Date: 2017-08-02 00:25+0300\n"
+"POT-Creation-Date: 2017-08-10 15:29+0300\n"
+"PO-Revision-Date: 2017-08-10 15:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -211,6 +211,9 @@ msgstr "Декларації на розгляді"
 msgid "Employees"
 msgstr "Співробітники"
 
+msgid "Pending employees"
+msgstr "Cпівробітники на розгляді"
+
 msgid "Clinics"
 msgstr "Клініки"
 
@@ -335,8 +338,8 @@ msgid ""
 "You have no access to this page. Try to re-login with new role or call to "
 "support."
 msgstr ""
-"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з "
-"новою роллю або зателефонуйте до підтримки."
+"Ви не маєте доступу до цієї сторінки. Спробуйте перезайти до системи з новою "
+"роллю або зателефонуйте до підтримки."
 
 msgid "Back to clinics list"
 msgstr "Повернутися до списку клінік"
@@ -459,7 +462,7 @@ msgid "Person"
 msgstr "Людина"
 
 msgid "Legal entity"
-msgstr "Юридична особа"
+msgstr "Юридична/Фізична особа"
 
 msgid "Dates"
 msgstr "Дати"
@@ -566,6 +569,28 @@ msgstr "Прийняти декларацію"
 msgid "Reject declaration?"
 msgstr "Відхилити декларацію"
 
+#, fuzzy
+#| msgid "Back to employees list"
+msgid "Back to pending employees list"
+msgstr "Повернутися до списку співробітників"
+
+msgid "Employee request ID"
+msgstr "Ідентифікатор "
+
+msgid "Employee type"
+msgstr "Тип працівника"
+
+msgid "legal entity id"
+msgstr "Ідентифікатор Юридичної/Фізичної особи"
+
+#, fuzzy
+#| msgid "Pending employees"
+msgid "Pending Employees"
+msgstr "Cпівробітники на розгляді"
+
+msgid "ID"
+msgstr "ID"
+
 msgid "Sign in"
 msgstr "Вхід"
 
@@ -611,9 +636,6 @@ msgstr "Увійти за допомогою EHEALTH"
 
 #~ msgid "Other"
 #~ msgstr "Інше"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Mountain"
 #~ msgstr "Гірська група"

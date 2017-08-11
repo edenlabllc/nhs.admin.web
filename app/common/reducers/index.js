@@ -16,6 +16,7 @@ import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
+import employeesRequests from 'redux/employees-requests';
 import { globalStat, detailStat, declarationsStat, reports } from 'redux/reports';
 import configuration from 'redux/configuration';
 
@@ -34,6 +35,8 @@ import PendingDeclarationsListPage from 'containers/pages/PendingDeclarationsLis
 
 import EmployeesListPage from 'containers/pages/EmployeesListPage/redux';
 import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage/redux';
+import PendingEmployeesListPage from 'containers/pages/PendingEmployeesListPage/redux';
+import PendingEmployeeDetailPage from 'containers/pages/PendingEmployeeDetailPage/redux';
 
 const blocks = combineReducers({
   Aside,
@@ -49,6 +52,8 @@ const pages = combineReducers({
   PendingDeclarationsListPage,
   EmployeesListPage,
   EmployeeDetailPage,
+  PendingEmployeesListPage,
+  PendingEmployeeDetailPage,
 });
 
 const data = combineReducers({
@@ -58,6 +63,7 @@ const data = combineReducers({
   clinics,
   declarations,
   employees,
+  employeesRequests,
   globalStat,
   detailStat,
   declarationsStat,
@@ -117,6 +123,11 @@ export const getDeclaration = (state, id) => denormalize(id, schemas.declaration
 
 export const getEmployees = (state, ids) => denormalize(ids, [schemas.employee], state.data);
 export const getEmployee = (state, id) => denormalize(id, schemas.employee, state.data);
+
+export const getEmployeesRequests = (state, ids) =>
+  denormalize(ids, [schemas.employeesRequest], state.data);
+export const getEmployeeRequest = (state, id) =>
+  denormalize(id, schemas.employeesRequest, state.data);
 
 export const getGlobalSatistic = state => state.data.globalStat;
 export const getDetailStatistic = (state, ids) => (

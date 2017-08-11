@@ -39,7 +39,7 @@ export default handleAction(
     'employees/FETCH_LIST_SUCCESS',
     'employees/FETCH_DETAILS_SUCCESS',
     'employees/CREATE_SUCCESS',
-    'employees/UPDATE_SUCCESS'
+    'employees/UPDATE_SUCCESS',
   ),
   (state, action) => ({
     ...state,

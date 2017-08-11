@@ -52,6 +52,11 @@ export default class Nav extends React.Component {
               <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
             </NavItem>
           </ShowWithScope>
+          <ShowWithScope scope="employee_request:read">
+            <NavItem to="pending-employees" activeClassName={styles.active}>
+              <Link id="pending-employees-nav" to="/pending-employees">{ t('Pending employees') }</Link>
+            </NavItem>
+          </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics" activeClassName={styles.active}>
               <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>

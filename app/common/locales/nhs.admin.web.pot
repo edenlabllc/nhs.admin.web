@@ -6,11 +6,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-08-02 00:25+0300\n"
-"PO-Revision-Date: 2017-08-01T21:24:58.965Z\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.0.2\n"
+"POT-Creation-Date: 2017-08-10T12:27:33.986Z\n"
+"PO-Revision-Date: 2017-08-10T12:27:33.986Z\n"
 
 msgid "Required field"
 msgstr ""
@@ -208,6 +205,9 @@ msgid "Pending declarations"
 msgstr ""
 
 msgid "Employees"
+msgstr ""
+
+msgid "Pending employees"
 msgstr ""
 
 msgid "Clinics"
@@ -563,8 +563,26 @@ msgstr ""
 msgid "Reject declaration?"
 msgstr ""
 
-msgid "Sign in"
+msgid "Back to pending employees list"
 msgstr ""
+
+msgid "Employee request ID"
+msgstr ""
+
+msgid "Employee type"
+msgstr ""
+
+msgid "legal entity id"
+msgstr ""
+
+msgid "Pending Employees"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Sign in"
+msgstr ""legal entity name
 
 msgid "Auth error {{code}}"
 msgstr ""
