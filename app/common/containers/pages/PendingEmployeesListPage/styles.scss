@@ -17,3 +17,18 @@
 .pagination {
   margin-top: 43px;
 }
+
+.filter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  & > div {
+    flex: 1 1 50%;
+
+    &:first-of-type {
+      margin-right: 20px;
+    }
+  }
+}

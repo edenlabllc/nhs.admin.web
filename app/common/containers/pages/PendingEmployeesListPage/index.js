@@ -15,9 +15,9 @@ import Button from 'components/Button';
 import Pagination from 'components/CursorPagination';
 
 import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import Select from 'components/Select';
 
-import { getEmployeesRequests } from 'reducers';
+import { getEmployeesRequests, getDictionaryValues } from 'reducers';
 
 import { fetchEmployeesRequest } from './redux';
 import styles from './styles.scss';
@@ -34,6 +34,7 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
 @connect(state => ({
   ...state.pages.PendingEmployeesListPage,
   employees: getEmployeesRequests(state, state.pages.PendingEmployeesListPage.employeesRequests),
+  status: getDictionaryValues(state, 'EMPLOYEE_REQUEST_STATUS'),
 }))
 export default class PendingEmployeesListPage extends React.Component {
   get activeFilter() {
@@ -43,8 +44,7 @@ export default class PendingEmployeesListPage extends React.Component {
   }
 
   render() {
-    const { employees = [], t, location, paging = {} } = this.props;
-    const activeFilter = this.activeFilter;
+    const { employees = [], status = [], t, location, paging = {} } = this.props;
 
     return (
       <div id="pending-employees-list-page">
@@ -57,27 +57,19 @@ export default class PendingEmployeesListPage extends React.Component {
 
         <H1>{ t('Pending Employees') }</H1>
 
-        <SearchForm
-          active={activeFilter}
-          placeholder={t('Find employee')}
-          items={[
-            { name: 'tax_id', title: t('By tax id') },
-            { name: 'party_id', title: t('By party id') },
-            { name: 'edrpou', title: t('By edrpou') },
-            { name: 'legal_entity_id', title: t('By legal entity') },
-          ]}
-          initialValues={{
-            [activeFilter]: location.query[activeFilter],
-          }}
-          onSubmit={values => filter({
-            party_id: null,
-            edrpou: null,
-            legal_entity_id: null,
-            tax_id: null,
-            ...values,
-          }, this.props)}
-        />
-
+        <div className={styles.filter}>
+          <div>
+            <Select
+              placeholder={t('Filter by status')}
+              options={status.map(i => ({ name: i.key, title: i.value }))}
+              onChange={value => setTimeout(() => {
+                filter({ status: value }, this.props);
+              })}
+              active={location.query.status || 'NEW'}
+            />
+          </div>
+          <div />
+        </div>
         <div className={styles.showBy}>
           <ShowBy
             active={Number(location.query.limit) || 5}

@@ -59,7 +59,7 @@ export default class DeclarationsListPage extends React.Component {
         <div className={styles.search}>
           <H2>{ t('Search declaration') }</H2>
           <SearchForm
-            ctive={activeFilter}
+            active={activeFilter}
             placeholder={t('Find declaration')}
             items={[
               { name: 'employee_id', title: t('By employee id') },
