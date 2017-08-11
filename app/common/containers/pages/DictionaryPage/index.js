@@ -31,12 +31,12 @@ export default class DictionariesPage extends React.Component {
     super(props);
     this.onSave = this.onSave.bind(this);
     this.state = {
-      readonly: false,
+      write: false,
     };
   }
   componentWillMount() {
-    const readonly = hasScope('dictionary:write', this.props.currentScope);
-    this.setState({ readonly });
+    const write = hasScope('dictionary:write', this.props.currentScope);
+    this.setState({ write });
   }
 
   onSave(values) {
@@ -79,7 +79,7 @@ export default class DictionariesPage extends React.Component {
         <DictionaryForm
           initialValues={this.transformToForm(dictionary)}
           onSubmit={this.onSave}
-          readOnly={this.state.readonly}
+          readOnly={!this.state.write}
         />
       </FormPageWrapper>
     );

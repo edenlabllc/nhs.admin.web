@@ -90,6 +90,7 @@ export default class ClinicsListPage extends React.Component {
             location={location}
             after={paging.cursors.starting_after}
             before={paging.cursors.ending_before}
+            more={paging.has_more}
           />
         </div>}
       </div>
