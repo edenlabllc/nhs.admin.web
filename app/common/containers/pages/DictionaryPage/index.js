@@ -5,10 +5,12 @@ import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
+
 import FormPageWrapper from 'containers/blocks/FormPageWrapper';
 import DictionaryForm from 'containers/forms/DictionaryForm';
 
-import { getDictionary } from 'reducers';
+import { getDictionary, getScope } from 'reducers';
+import { hasScope } from 'helpers/scope';
 
 import { fetchDictionaries, updateDictionary } from 'redux/dictionaries';
 import styles from './styles.scss';
@@ -20,6 +22,7 @@ import styles from './styles.scss';
 })
 @connect((state, params) => ({
   dictionary: getDictionary(state, params.params.name),
+  currentScope: getScope(state),
 }), {
   updateDictionary,
 })
@@ -27,7 +30,15 @@ export default class DictionariesPage extends React.Component {
   constructor(props) {
     super(props);
     this.onSave = this.onSave.bind(this);
+    this.state = {
+      readonly: false,
+    };
   }
+  componentWillMount() {
+    const readonly = hasScope('dictionary:write', this.props.currentScope);
+    this.setState({ readonly });
+  }
+
   onSave(values) {
     const { updateDictionary } = this.props;
 
@@ -68,6 +79,7 @@ export default class DictionariesPage extends React.Component {
         <DictionaryForm
           initialValues={this.transformToForm(dictionary)}
           onSubmit={this.onSave}
+          readOnly={this.state.readonly}
         />
       </FormPageWrapper>
     );

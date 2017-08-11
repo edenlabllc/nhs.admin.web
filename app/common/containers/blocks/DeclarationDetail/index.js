@@ -55,7 +55,7 @@ export default class DeclarationDetailPage extends React.Component {
           list={[
             { name: t('Start date'), value: format(declaration.start_date, 'DD/MM/YYYY') },
             { name: t('End date'), value: format(declaration.end_date, 'DD/MM/YYYY') },
-            { name: t('Scope'), value: declaration.scope },
+            { name: t('Scope'), value: <DictionaryValue dictionary="SPECIALITY_TYPE" value={(declaration.scope || '').toUpperCase()} /> },
           ]}
         />
 

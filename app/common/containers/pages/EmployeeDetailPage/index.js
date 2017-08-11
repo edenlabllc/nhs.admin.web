@@ -148,7 +148,7 @@ export default class EmployeeDetailPage extends React.Component {
                         {item.speciality}
                         <div>
                           <ColoredText color="gray">
-                            <DictionaryValue dictionary="QUALIFICATION_TYPE" value={item.type} />, { t('certificate') }: {item.certificate_number}
+                            <DictionaryValue dictionary="SPEC_QUALIFICATION_TYPE" value={item.type} />, { t('certificate') }: {item.certificate_number}
                           </ColoredText>
                         </div>
                       </li>
