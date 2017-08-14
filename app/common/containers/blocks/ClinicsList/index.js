@@ -24,6 +24,7 @@ export default class ClinicsList extends React.Component {
             { key: 'edrpou', title: t('edrpou') },
             { key: 'address', title: t('address') },
             { key: 'status', title: t('Status') },
+            { key: 'verification', title: t('Verification') },
             { key: 'action', title: t('Action'), width: 100 },
           ]}
           data={clinics.map(i => ({
@@ -39,6 +40,12 @@ export default class ClinicsList extends React.Component {
               </div>
             ),
             status: (
+              <span className={classnames(styles.status, i.nhs_verified && styles.status_verified)}>
+                {i.status === 'ACTIVE' && t('LE Active')}
+                {i.status === 'CLOSED' && t('LE Closed')}
+              </span>
+            ),
+            verification: (
               <span className={classnames(styles.status, i.nhs_verified && styles.status_verified)}>
                 {i.nhs_verified ? t('Verified') : t('Not verified')}
               </span>

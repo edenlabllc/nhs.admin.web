@@ -218,31 +218,39 @@ export default class ClinicDetailPage extends React.Component {
 
         <Line width={630} />
 
-        {!clinic.nhs_verified && <div className={styles.buttons}>
+        <div className={styles.buttons}>
           <div className={styles.buttons__row}>
             <div className={styles.buttons__column}>
               <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
                 { t('Back to list') }
               </Button>
             </div>
-            <ShowWithScope scope="legal_entity:nhs_verify">
-              <div className={styles.buttons__column}>
-                <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
-                  { t('Approve clinic') }
-                </Button>
-              </div>
-            </ShowWithScope>
+            {
+              !clinic.nhs_verified && clinic.status !== 'CLOSED' && (
+                <ShowWithScope scope="legal_entity:nhs_verify">
+                  <div className={styles.buttons__column}>
+                    <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
+                      { t('Approve clinic') }
+                    </Button>
+                  </div>
+                </ShowWithScope>
+              )
+            }
           </div>
-          <ShowWithScope scope="legal_entity:deactivate">
-            <div className={styles.buttons__row}>
-              <div className={styles.buttons__column}>
-                <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
-                  { t('Cancel verification') }
-                </Button>
-              </div>
-            </div>
-          </ShowWithScope>
-        </div>}
+          {
+            clinic.status === 'ACTIVE' && (
+              <ShowWithScope scope="legal_entity:deactivate">
+                <div className={styles.buttons__row}>
+                  <div className={styles.buttons__column}>
+                    <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
+                      { t('Cancel verification') }
+                    </Button>
+                  </div>
+                </div>
+              </ShowWithScope>
+            )
+          }
+        </div>
         <Confirm
           title={t('Verify clinic {{name}}?', { name: clinic.name })}
           active={this.state.showVerifyConfirm}

@@ -6,8 +6,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2017-08-10T12:27:33.986Z\n"
-"PO-Revision-Date: 2017-08-10T12:27:33.986Z\n"
+"POT-Creation-Date: 2017-08-14 15:40+0300\n"
+"PO-Revision-Date: 2017-08-14T12:38:40.581Z\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.2\n"
 
 msgid "Required field"
 msgstr ""
@@ -72,7 +75,16 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
+msgid "Verification"
+msgstr ""
+
 msgid "Action"
+msgstr ""
+
+msgid "LE Active"
+msgstr ""
+
+msgid "LE Closed"
 msgstr ""
 
 msgid "Verified"
@@ -440,9 +452,6 @@ msgstr ""
 msgid "Medical system providers"
 msgstr ""
 
-msgid "By regions"
-msgstr ""
-
 msgid "Search declaration"
 msgstr ""
 
@@ -578,11 +587,14 @@ msgstr ""
 msgid "Pending Employees"
 msgstr ""
 
+msgid "Filter by status"
+msgstr ""
+
 msgid "ID"
 msgstr ""
 
 msgid "Sign in"
-msgstr ""legal entity name
+msgstr ""
 
 msgid "Auth error {{code}}"
 msgstr ""

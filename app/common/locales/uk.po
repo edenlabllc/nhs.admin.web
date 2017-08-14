@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2017-08-10 15:29+0300\n"
-"PO-Revision-Date: 2017-08-10 15:29+0300\n"
+"POT-Creation-Date: 2017-08-14 15:40+0300\n"
+"PO-Revision-Date: 2017-08-14 15:41+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -76,8 +76,19 @@ msgstr "Адреса"
 msgid "Status"
 msgstr "Статус"
 
+#, fuzzy
+#| msgid "Verification clinics"
+msgid "Verification"
+msgstr "Перевірка клінік"
+
 msgid "Action"
 msgstr "Дії"
+
+msgid "LE Active"
+msgstr "Діюча"
+
+msgid "LE Closed"
+msgstr "Закрита"
 
 msgid "Verified"
 msgstr "Підтверджено"
@@ -446,9 +457,6 @@ msgstr "Лікарі"
 msgid "Medical system providers"
 msgstr "Провайдери медичної системи"
 
-msgid "By regions"
-msgstr "По областям"
-
 msgid "Search declaration"
 msgstr "Шукати декларацію"
 
@@ -588,6 +596,11 @@ msgstr "Ідентифікатор Юридичної/Фізичної особ�
 msgid "Pending Employees"
 msgstr "Cпівробітники на розгляді"
 
+#, fuzzy
+#| msgid "Filter by name"
+msgid "Filter by status"
+msgstr "Фільтрувати за назвою"
+
 msgid "ID"
 msgstr "ID"
 
@@ -600,129 +613,5 @@ msgstr "Помилка отримання токена"
 msgid "Enter with EHEALTH"
 msgstr "Увійти за допомогою EHEALTH"
 
-
-#~ msgid "Area"
-#~ msgstr "Зона"
-
-#~ msgid "region"
-#~ msgstr "область"
-
-#~ msgid "Owner"
-#~ msgstr "Власник"
-
-#~ msgid "Declarations signed"
-#~ msgstr "Підписані декларації"
-
-#~ msgid "Declarations terminated"
-#~ msgstr "Припинені декларації"
-
 #~ msgid "By regions"
 #~ msgstr "По областям"
-
-#~ msgid "Region"
-#~ msgstr "Область"
-
-#~ msgid "Active"
-#~ msgstr "Активно"
-
-#~ msgid "scope"
-#~ msgstr "можливості"
-
-#~ msgid "Division"
-#~ msgstr "Відділення"
-
-#~ msgid "Contacts"
-#~ msgstr "Контакти"
-
-#~ msgid "Other"
-#~ msgstr "Інше"
-
-#~ msgid "Mountain"
-#~ msgstr "Гірська група"
-
-#~ msgid "Clinic Detail"
-#~ msgstr "Детально про клініку"
-
-#~ msgid "Birth"
-#~ msgstr "Народжений"
-
-#~ msgid "in"
-#~ msgstr "в"
-
-#~ msgid "Process data consent"
-#~ msgstr "Процес погодження данних"
-
-#~ msgid "Renewal consent"
-#~ msgstr "Погодження поновлення"
-
-#~ msgid "Patient signed"
-#~ msgstr "Пацієнт підписав"
-
-#~ msgid "Disclosure consent"
-#~ msgstr "Погодження розкриття"
-
-#~ msgid "Select declaration to edit"
-#~ msgstr "Виберіть декларацію для редагування"
-
-#~ msgid "status"
-#~ msgstr "статус"
-
-#~ msgid "Clinic"
-#~ msgstr "Клініка"
-
-#~ msgid "Specialities"
-#~ msgstr "Спеціальність"
-
-#~ msgid "Speciality officio"
-#~ msgstr "Посада"
-
-#~ msgid "Science degree"
-#~ msgstr "Науковий ступінь"
-
-#~ msgid "Degree"
-#~ msgstr "ступінь"
-
-#~ msgid "Diploma"
-#~ msgstr "Диплом"
-
-#~ msgid "Location"
-#~ msgstr "Місцезнаходження"
-
-#~ msgid "Date"
-#~ msgstr "Дата"
-
-#~ msgid "Speciality"
-#~ msgstr "Спеціальність"
-
-#~ msgid "Inserted"
-#~ msgstr "Вставлений"
-
-#~ msgid "User"
-#~ msgstr "Користувач"
-
-#~ msgid "Updated"
-#~ msgstr "Оновлено"
-
-#~ msgid "Filter by type"
-#~ msgstr "Фільтр по типу"
-
-#~ msgid "Filter by status"
-#~ msgstr "Фільтр по статусу"
-
-#~ msgid "Filter by owner type"
-#~ msgstr "Фільтрувати за типом власника"
-
-#~ msgid "State"
-#~ msgstr "Регіональні"
-
-#~ msgid "Private"
-#~ msgstr "Приватні"
-
-#~ msgid "Filter by legal form"
-#~ msgstr "Фільтрувати за організаційно-правовою формою"
-
-#~ msgid "Please, enter your data"
-#~ msgstr "Будь ласка, введіть свої дані"
-
-#~ msgid "dictionary"
-#~ msgstr "словник"
