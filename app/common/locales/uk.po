@@ -315,7 +315,7 @@ msgstr "Термін декларації"
 msgid "Declaration request expiration"
 msgstr "Термін дії запиту декларації"
 
-msgid "Employ request expiration"
+msgid "Employee request expiration"
 msgstr "Термін дії запиту співробітників"
 
 msgid "Verification request expiration"

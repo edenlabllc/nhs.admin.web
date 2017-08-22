@@ -24,7 +24,7 @@ import styles from './styles.scss';
     declaration_request_expiration: {
       required: true,
     },
-    employ_request_expiration: {
+    employee_request_expiration: {
       required: true,
     },
     verification_request_expiration: {
@@ -62,7 +62,7 @@ export default class ApiForm extends React.Component {
             <Field name="declaration_request_expiration" labelText={t('Declaration request expiration')} component={FieldInput} />
           </div>
           <div>
-            <Field name="employ_request_expiration" labelText={t('Employ request expiration')} component={FieldInput} />
+            <Field name="employee_request_expiration" labelText={t('Employee request expiration')} component={FieldInput} />
           </div>
           <div>
             <Field name="verification_request_expiration" labelText={t('Verification request expiration')} component={FieldInput} />
