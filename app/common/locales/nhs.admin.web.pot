@@ -312,7 +312,7 @@ msgstr ""
 msgid "Declaration request expiration"
 msgstr ""
 
-msgid "Employ request expiration"
+msgid "Employee request expiration"
 msgstr ""
 
 msgid "Verification request expiration"
