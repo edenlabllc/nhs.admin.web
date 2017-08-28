@@ -64,7 +64,7 @@ export const fetchDeclaration = id => invoke({
 });
 
 export const updateDeclaration = (id, body) => invoke({
-  endpoint: `${MOCK_API_URL}/declaration/${id}`,
+  endpoint: `${MOCK_API_URL}/declarations/${id}`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
@@ -79,7 +79,7 @@ export const updateDeclaration = (id, body) => invoke({
 });
 
 export const approveDeclaration = id => invoke({
-  endpoint: `${API_URL}/api/declaration/${id}/actions/approve`,
+  endpoint: `${API_URL}/api/declarations/${id}/actions/approve`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
@@ -93,7 +93,7 @@ export const approveDeclaration = id => invoke({
 });
 
 export const rejectDeclaration = id => invoke({
-  endpoint: `${API_URL}/api/declaration/${id}/actions/reject`,
+  endpoint: `${API_URL}/api/declarations/${id}/actions/reject`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
@@ -107,7 +107,7 @@ export const rejectDeclaration = id => invoke({
 });
 
 export const getDeclarationImage = id => invoke({
-  endpoint: `${API_URL}/api/declaration/${id}/images`,
+  endpoint: `${API_URL}/api/declarations/${id}/images`,
   method: 'GET',
   headers: {
     'content-type': 'application/json',
