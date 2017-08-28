@@ -203,7 +203,7 @@ export default class DeclarationDetailPage extends React.Component {
               name: t('Birth date'),
               value: format(declaration.person.birth_date, 'DD/MM/YYYY'),
             },
-            { name: t('Birth place'), value: `${declaration.person.birth_country}, ${declaration.person.birth_settlement}` },
+            { name: t('Birth place'), value: [declaration.person.birth_country, declaration.person.birth_settlement].filter(i => i).join(' ,') },
           ]}
         />
 

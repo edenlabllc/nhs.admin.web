@@ -78,8 +78,8 @@ export const updateDeclaration = (id, body) => invoke({
   body,
 });
 
-export const approveDeclarationRequest = id => invoke({
-  endpoint: `${API_URL}/api/declaration_requests/${id}/actions/approve`,
+export const approveDeclaration = id => invoke({
+  endpoint: `${API_URL}/api/declaration/${id}/actions/approve`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
@@ -92,8 +92,8 @@ export const approveDeclarationRequest = id => invoke({
   }, 'dictionaries/APPROVE_FAILURE'],
 });
 
-export const rejectDeclarationRequest = id => invoke({
-  endpoint: `${API_URL}/api/declaration_requests/${id}/actions/reject`,
+export const rejectDeclaration = id => invoke({
+  endpoint: `${API_URL}/api/declaration/${id}/actions/reject`,
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',
@@ -106,17 +106,17 @@ export const rejectDeclarationRequest = id => invoke({
   }, 'dictionaries/REJECT_FAILURE'],
 });
 
-export const getDeclarationRequestImage = id => invoke({
-  endpoint: `${API_URL}/api/declaration_requests/${id}/images`,
+export const getDeclarationImage = id => invoke({
+  endpoint: `${API_URL}/api/declaration/${id}/images`,
   method: 'GET',
   headers: {
     'content-type': 'application/json',
   },
-  types: ['declarations/GET_DECLARATION_REQUEST_IMAGE', {
-    type: 'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS',
+  types: ['declarations/GET_DECLARATION_IMAGE_REQUEST', {
+    type: 'declarations/GET_DECLARATION_IMAGE_SUCCESS',
     payload: (action, state, res) => res.json(),
     meta: () => ({ declaration_id: id }),
-  }, 'dictionaries/GET_DECLARATION_REQUEST_IMAGE_FAILURE'],
+  }, 'dictionaries/GET_DECLARATION_IMAGE_FAILURE'],
 });
 
 export default handleActions({
@@ -137,7 +137,7 @@ export default handleActions({
       ...action.meta,
     },
   }),
-  'declarations/GET_DECLARATION_REQUEST_IMAGE_SUCCESS': (state, action) => ({
+  'declarations/GET_DECLARATION_IMAGE_SUCCESS': (state, action) => ({
     ...state,
     [action.meta.declaration_id]: {
       ...state[action.meta.declaration_id],
@@ -145,4 +145,3 @@ export default handleActions({
     },
   }),
 }, {});
-
