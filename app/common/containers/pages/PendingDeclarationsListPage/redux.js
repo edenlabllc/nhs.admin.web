@@ -6,7 +6,7 @@ export const showDeclarations = createAction('pendingDeclarationsListPage/SHOW_D
 export const pagingDeclarations = createAction('pendingDeclarationsListPage/ADD_PAGING');
 
 export const fetchDeclarations = options => dispatch =>
-  dispatch(fromDeclarations.fetchDeclarationsRequests(options))
+  dispatch(fromDeclarations.fetchDeclarations(options))
   .then((action) => {
     if (action.error) throw action;
 

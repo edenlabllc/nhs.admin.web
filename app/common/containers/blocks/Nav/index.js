@@ -40,7 +40,7 @@ export default class Nav extends React.Component {
               <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
             </NavItem>
           </ShowWithScope>
-          <ShowWithScope scope="declaration_request:read">
+          <ShowWithScope scope="declaration:read">
             <NavItem to="pending-declarations" activeClassName={styles.active}>
               <Link id="pending-declarations-nav" to="/pending-declarations">
                 { t('Pending declarations') }

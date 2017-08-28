@@ -28,7 +28,7 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, status: 'NEW', ...query })),
+  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, status: 'pending_verification', ...query })),
 })
 @connect(state => ({
   ...state.pages.PendingDeclarationsListPage,
@@ -91,19 +91,19 @@ export default class PendingDeclarationsListPage extends React.Component {
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={declarations.map(item => ({
-              person: (
+              person: item.person ? (
                 <div>
                   {`${item.person.last_name} ${item.person.first_name}`}
                   <div>{item.person.second_name}</div>
                 </div>
-              ),
-              legalEntity: (
+              ) : '-',
+              legalEntity: item.legal_entity ? (
                 <div>
                   {item.legal_entity.name}
                   <div className={styles.gray}>{t('EDRPOU')}: {item.legal_entity.edrpou}</div>
                 </div>
-              ),
-              dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} ${format(item.end_date, 'DD.MM.YYYY hh:mm')}`,
+              ) : '-',
+              dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} – ${format(item.end_date, 'DD.MM.YYYY hh:mm')}`,
               action: (<Button id={`show-declaration-detail-button-${item.id}`} theme="link" to={`/pending-declarations/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />

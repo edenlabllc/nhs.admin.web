@@ -15,7 +15,7 @@ import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import { getDeclaration } from 'reducers';
-import { approveDeclarationRequest, rejectDeclarationRequest, getDeclarationRequestImage } from 'redux/declarations';
+import { approveDeclaration, rejectDeclaration, getDeclarationImage } from 'redux/declarations';
 
 import { fetchDeclaration } from './redux';
 
@@ -27,12 +27,12 @@ import styles from './styles.scss';
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => Promise.all([
     dispatch(fetchDeclaration(id)),
-    dispatch(getDeclarationRequestImage(id)),
+    dispatch(getDeclarationImage(id)).catch(e => e),
   ]),
 })
 @connect((state, { params: { id } }) => ({
   declaration: getDeclaration(state, id),
-}), { approveDeclarationRequest, rejectDeclarationRequest })
+}), { approveDeclaration, rejectDeclaration })
 export default class PendingDeclarationDetailPage extends React.Component {
   state = {
     showApproveConfirm: false,
@@ -41,14 +41,14 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
   approve() {
     this.setState({ showApproveConfirm: false });
-    this.props.approveDeclarationRequest(this.props.params.id).then(() => {
+    this.props.approveDeclaration(this.props.params.id).then(() => {
       this.props.router.goBack();
     });
   }
 
   reject() {
     this.setState({ showRejectConfirm: false });
-    this.props.rejectDeclarationRequest(this.props.params.id).then(() => {
+    this.props.rejectDeclaration(this.props.params.id).then(() => {
       this.props.router.goBack();
     });
   }
@@ -70,7 +70,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
           </div>
         )}
 
-        <ShowWithScope scope="declaration_request:write">
+        <ShowWithScope scope="declaration:write">
           <div>
             <ButtonsGroup>
               <Button theme="border" onClick={() => this.setState({ showRejectConfirm: true })} color="red">

@@ -95,7 +95,7 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={DeclarationsListPage} />
             <Route path=":id" component={DeclarationDetailPage} />
           </Route>
-          <Route path="pending-declarations" onEnter={requireScope(['declaration_request:read'])}>
+          <Route path="pending-declarations" onEnter={requireScope(['declaration:read'])}>
             <IndexRoute component={PendingDeclarationsListPage} />
             <Route path=":id" component={PendingDeclarationDetailPage} />
           </Route>
