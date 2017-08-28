@@ -27,7 +27,7 @@ import styles from './styles.scss';
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => Promise.all([
     dispatch(fetchDeclaration(id)),
-    dispatch(getDeclarationImage(id)),
+    dispatch(getDeclarationImage(id)).catch(e => e),
   ]),
 })
 @connect((state, { params: { id } }) => ({
