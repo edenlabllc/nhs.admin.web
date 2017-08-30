@@ -14,7 +14,9 @@ import { Confirm } from 'components/Popup';
 import DeclarationDetail from 'containers/blocks/DeclarationDetail';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
-import { getDeclaration } from 'reducers';
+import { getDeclaration, getScope } from 'reducers';
+import { hasScope } from 'helpers/scope';
+
 import { approveDeclaration, rejectDeclaration, getDeclarationImage } from 'redux/declarations';
 
 import { fetchDeclaration } from './redux';
@@ -25,10 +27,16 @@ import styles from './styles.scss';
 @translate()
 @withRouter
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => Promise.all([
-    dispatch(fetchDeclaration(id)),
-    dispatch(getDeclarationImage(id)).catch(e => e),
-  ]),
+  fetch: ({ dispatch, getState, params: { id } }) => {
+    const promises = [dispatch(fetchDeclaration(id))];
+    const state = getState();
+
+    if (hasScope('declaration_documents:read', getScope(state))) {
+      promises.push(dispatch(getDeclarationImage(id)).catch(e => e));
+    }
+
+    return Promise.all(promises);
+  },
 })
 @connect((state, { params: { id } }) => ({
   declaration: getDeclaration(state, id),
@@ -62,14 +70,15 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        { declaration.images && (
-          <div>
-            <H2>{ t('Scans') }</H2>
-            <Gallery images={declaration.images} />
-            <Line />
-          </div>
-        )}
-
+        <ShowWithScope scope="declaration_documents:read">
+          { declaration.images && (
+            <div>
+              <H2>{ t('Scans') }</H2>
+              <Gallery images={declaration.images} />
+              <Line />
+            </div>
+          )}
+        </ShowWithScope>
         <ShowWithScope scope="declaration:write">
           <div>
             <ButtonsGroup>

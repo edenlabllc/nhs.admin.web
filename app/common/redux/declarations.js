@@ -107,7 +107,7 @@ export const rejectDeclaration = id => invoke({
 });
 
 export const getDeclarationImage = id => invoke({
-  endpoint: `${API_URL}/api/declarations/${id}/images`,
+  endpoint: `${API_URL}/api/declarations/${id}/documents`,
   method: 'GET',
   headers: {
     'content-type': 'application/json',
