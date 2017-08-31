@@ -5,8 +5,14 @@ cache:
   directories:
   - ~/.nvm
   - node_modules
+notifications:
+  slack: 
+    rooms:
+      - secure: "pReYKj7SpV/tZViGSI7gAPlCoNZrsNw4mlHz8S/G0ysACcZxCKlIQzx7pahIXbQumE7lBNRA0EYJwEaTVvghZZrd2eb8pOnm2bFY7kL14kvd8355vlw2RMk74CZYfpSt47WwRBTKIOh3KaZNG0SbcMlT6tav5+Zr9k/Aemz4rlh9VceMFZ9KFN4CM19Nf/XqkYxfO7I1uyqKWqiNMoIhH25i37rtjir5GIUjy3dj3P0Qg+SmgnL1ErFWUltsWXy30sJQbOiLmuDnB64JuK2dQEwaZjIT8Td+4FIrUuK8dB1Iy2XrAE+a8z+MtenS1uB7ZyVXXTgfreuIqM7YFAu4vno0dWuhRYclth2WfY/1B1HUts+AsXmxgAQlwE+vxZzmKeHK/ECD1eTDGY7jvLIvyzSd4ggkAueF2ZWrfGQC4Wp84j/jEGSVBaSMYwnamfOx+s0dySqub26izUjkuxpXPRn+fh4vdgWtmNqZHqtE9Z0aRRZW1pCWJmrXgHVjfHOyF0/mU6XxlNzcuVeoL0nj6aVRltPp88GgYxiuAtdcp2AVg4S6nfbjs4EweGgic66A94V/EeTtZlDG2z0tBrd53cykJbpp/ity1XM4CPOpxlt8V3jXhB2queR34WAki6FJtt0UYPoNIVvafDnBbBIQhRz+1c6bKK7C/Y6iIcheE/k="
+    on_success: always
 env:
   global:
+  - Chart=fe
   - RELEASE_BRANCH="master"
   - DOCKER_HUB_ACCOUNT="edenlabllc"
   - MAIN_BRANCHES="master develop"
@@ -15,20 +21,21 @@ env:
 node_js:
 - 7.5.0
 before_install:
+- openssl aes-256-cbc -K $encrypted_63c31d9868d1_key -iv $encrypted_63c31d9868d1_iv -in eHealth-eef414faa06b.json.enc -out eHealth-eef414faa06b.json -d
 - npm run docker:up
 - chmod -R +x bin
 script:
 - npm run test
-- npm run lint
-- ./bin/version-increment.sh
-- ./bin/build.sh
-- ./bin/start.sh
+- npm run lint || travis_terminate 1
+- ./bin/version-increment.sh || travis_terminate 1
+- ./bin/build.sh || travis_terminate 1
+- ./bin/start.sh || travis_terminate 1
 - sleep 5
 - docker ps
 - RUNNING_CONTAINERS=`docker ps | wc -l`; if [ "${RUNNING_CONTAINERS//[[:space:]]/}"
   == "1" ]; then echo "[E] Container is not started\!"; docker logs nhs.admin.web
   --details --since 5h; exit 1; fi;
-- npm run nightwatch -- -e travis
+- npm run nightwatch -- -e travis  || travis_terminate 1
 - sleep 5
-after_success:
 - ./bin/ci/push.sh
+- sudo ./bin/deploy.sh || travis_terminate 1
