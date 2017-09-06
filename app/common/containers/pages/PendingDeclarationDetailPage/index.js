@@ -71,13 +71,15 @@ export default class PendingDeclarationDetailPage extends React.Component {
         <Line />
 
         <ShowWithScope scope="declaration_documents:read">
-          { declaration.images && (
-            <div>
-              <H2>{ t('Scans') }</H2>
-              <Gallery images={declaration.images} />
-              <Line />
-            </div>
-          )}
+          {
+            declaration.images ? (
+              <div>
+                <H2>{ t('Scans') }</H2>
+                <Gallery images={declaration.images} />
+                <Line />
+              </div>
+              ) : null
+          }
         </ShowWithScope>
         <ShowWithScope scope="declaration:write">
           <div>
