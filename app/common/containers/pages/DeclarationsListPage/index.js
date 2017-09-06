@@ -94,14 +94,23 @@ export default class DeclarationsListPage extends React.Component {
             data={declarations.map(item => ({
               person: (
                 <div>
-                  {`${item.person.last_name} ${item.person.first_name}`}
-                  <div>{item.person.second_name}</div>
+                  {
+                    item.person && (<div>
+                      {`${item.person.last_name} ${item.person.first_name}`}
+                      <div>{item.person.second_name}</div>
+                    </div>
+                    )
+                  }
                 </div>
               ),
               legalEntity: (
-                <div>
-                  {item.legal_entity.name}
-                  <div className={styles.gray}>{t('EDRPOU')}: {item.legal_entity.edrpou}</div>
+                <div> {
+                  item.legal_entity ? (<div>
+                    {item.legal_entity.name}
+                    <div className={styles.gray}>{t('EDRPOU')}: {item.legal_entity.edrpou}</div>
+                  </div>
+                  ) : null
+                }
                 </div>
               ),
               dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} ${format(item.end_date, 'DD.MM.YYYY hh:mm')}`,
