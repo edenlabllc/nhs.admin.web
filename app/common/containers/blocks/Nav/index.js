@@ -81,7 +81,7 @@ export default class Nav extends React.Component {
         </ul>
         <ul className={styles.down}>
           <li>
-            <a href="http://docs.ehealthapi1.apiary.io" rel="noopener noreferrer" target="_blank">
+            <a href="http://docs.uaehealthapi.apiary.io/#" rel="noopener noreferrer" target="_blank">
               <Icon name="doc" />
               { t('Documentation') }
             </a>

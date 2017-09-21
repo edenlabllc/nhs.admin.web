@@ -99,7 +99,7 @@ export default class EmployeesListPage extends React.Component {
             data={employees.map(item => ({
               key: item.id,
               date: format(item.start_date, 'DD/MM/YYYY'),
-              tax: item.party.tax_id,
+              tax: item.party.id,
               name: (
                 <div>
                   {item.party.last_name} {item.party.first_name}
