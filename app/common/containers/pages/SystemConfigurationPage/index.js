@@ -26,7 +26,6 @@ import styles from './styles.scss';
 export default class SystemConfigurationPage extends React.Component {
   render() {
     const { configuration = {}, t } = this.props;
-
     return (
       <div id="system-configuration-page">
         <Helmet

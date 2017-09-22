@@ -163,33 +163,37 @@ export default class ClinicDetailPage extends React.Component {
             {
               name: t('License and accreditation'),
               value: <ShowMore name={t('Show documents')}>
-                <H3>{ t('Accreditation') }</H3>
-
-                <DataList
-                  theme="min"
-                  list={[
-                    {
-                      name: t('Order No.'),
-                      value: (
-                        <Upper>{accreditation.order_no}</Upper>
-                      ),
-                    }, {
-                      name: t('Category'),
-                      value: <DictionaryValue dictionary="ACCREDITATION_CATEGORY" value={accreditation.category} />,
-                    }, {
-                      name: t('Expiry date'),
-                      value: accreditation.expiry_date,
-                    }, {
-                      name: t('Issued date'),
-                      value: accreditation.issued_date,
-                    }, {
-                      name: t('Order date'),
-                      value: accreditation.order_date,
-                    },
-                  ]}
-                />
-
-                <Line />
+                {
+                  accreditation && (
+                    <div>
+                      <H3>{ t('Accreditation') }</H3>
+                      <DataList
+                        theme="min"
+                        list={[
+                          {
+                            name: t('Order No.'),
+                            value: (
+                              <Upper>{accreditation.order_no}</Upper>
+                            ),
+                          }, {
+                            name: t('Category'),
+                            value: <DictionaryValue dictionary="ACCREDITATION_CATEGORY" value={accreditation.category} />,
+                          }, {
+                            name: t('Expiry date'),
+                            value: accreditation.expiry_date,
+                          }, {
+                            name: t('Issued date'),
+                            value: accreditation.issued_date,
+                          }, {
+                            name: t('Order date'),
+                            value: accreditation.order_date,
+                          },
+                        ]}
+                      />
+                      <Line />
+                    </div>
+                  )
+                }
 
                 <H3>{ t('Licenses') }</H3>
 
