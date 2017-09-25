@@ -7,7 +7,9 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import NavItem from 'components/NavItem';
 import Icon from 'components/Icon';
+
 import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowMore from 'containers/blocks/ShowMore';
 
 import { logOut } from './redux';
 
@@ -36,16 +38,20 @@ export default class Nav extends React.Component {
             <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
           </NavItem>
           <ShowWithScope scope="declaration:read">
-            <NavItem to="declarations" activeClassName={styles.active}>
-              <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
-            </NavItem>
-          </ShowWithScope>
-          <ShowWithScope scope="declaration:read">
-            <NavItem to="pending-declarations" activeClassName={styles.active}>
-              <Link id="pending-declarations-nav" to="/pending-declarations">
-                { t('Pending declarations') }
-              </Link>
-            </NavItem>
+            <li>
+              <ShowMore nav name={t('Declarations')}>
+                <ul>
+                  <NavItem to="declarations" activeClassName={styles.active}>
+                    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
+                  </NavItem>
+                  <NavItem to="pending-declarations" activeClassName={styles.active}>
+                    <Link id="pending-declarations-nav" to="/pending-declarations">
+                      { t('Pending declarations') }
+                    </Link>
+                  </NavItem>
+                </ul>
+              </ShowMore>
+            </li>
           </ShowWithScope>
           <ShowWithScope scope="employee:read">
             <NavItem to="employees" activeClassName={styles.active}>

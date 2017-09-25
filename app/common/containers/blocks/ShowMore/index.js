@@ -11,19 +11,29 @@ export default class ShowMore extends React.Component {
   };
 
   render() {
-    const { name, children } = this.props;
+    const { name, children, nav = false } = this.props;
     const { show } = this.state;
 
     return (
-      <div className={styles.main}>
+      <div className={classnames(styles.main, nav && styles.main__nav)}>
         <button
-          className={classnames(styles.button, show && styles.button_active)}
+          className={classnames(
+            styles.button,
+            show && styles.button_active,
+            nav && styles.button_default,
+          )}
           onClick={() => this.setState({ show: !show })}
         >
           {name} <span>▾</span>
         </button>
 
-        <div className={classnames(styles.more, show && styles.more_show)}>
+        <div
+          className={classnames(
+            styles.more,
+            show && styles.more_show,
+            nav && styles.more_nav,
+          )}
+        >
           {children}
         </div>
       </div>
