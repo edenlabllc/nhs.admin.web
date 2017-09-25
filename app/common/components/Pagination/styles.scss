@@ -1,7 +1,12 @@
+.pagination {
+  display: block;
+  margin: 20px auto;
+  max-width: 520px;
+}
+
 .g-pagination {
   margin: 10px auto;
   display: inline-block;
-  max-width: 800px;
 
   ul {
     width: 400px;

@@ -48,7 +48,6 @@ export default class EmployeesListPage extends React.Component {
   render() {
     const { employees = [], t, location, paging = {} } = this.props;
     const activeFilter = this.activeFilter;
-    console.log(paging);
 
     return (
       <div id="employees-list-page">
@@ -83,7 +82,7 @@ export default class EmployeesListPage extends React.Component {
         <div className={styles.showBy}>
           <ShowBy
             active={Number(location.query.page_size) || 5}
-            onChange={page_size => filter({ page_size }, this.props)}
+            onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
         </div>
 
@@ -114,9 +113,6 @@ export default class EmployeesListPage extends React.Component {
             }))}
           />
         </div>
-        {
-          console.log(location)
-        }
         {
           paging.total_pages > 1 && (
             <Pagination

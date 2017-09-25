@@ -19,7 +19,7 @@ export default class Pagination extends React.Component {
     this.handleLink = this.handleLink.bind(this);
   }
 
-  handleLink(page_number) {
+  handleLink(page_number, location) {
     return createUrl(this.props.location.pathname, { ...location.query, page: page_number });
   }
 
@@ -39,7 +39,7 @@ export default class Pagination extends React.Component {
       current <= preservedDistanceToEdge + 1;
     const configs = {
       page,
-      href: this.handleLink(page),
+      href: this.handleLink(page, this.props.location),
     };
 
     if (current === preservedDistanceToEdge + 1 && total > limit) {
@@ -59,7 +59,7 @@ export default class Pagination extends React.Component {
     return (<li
       className={classnames(
         styles.page,
-        page === this.state.currentPage && styles['s-current'],
+        page === this.props.currentPage && styles['s-current'],
       )}
       key={page}
     >
@@ -82,13 +82,13 @@ export default class Pagination extends React.Component {
     const currentPage = this.state.currentPage;
     const prev = this.state.currentPage - 1;
     const next = this.state.currentPage + 1;
-    return (
+    return (<div className={styles.pagination}>
       <ul className={styles['g-pagination']} onClick={this.handleClick}>
         <PagePrevNext
           buttonType="prev"
           display={currentPage !== 1}
           goTo={prev}
-          href={this.handleLink(prev)}
+          href={this.handleLink(prev, this.props.location)}
         />
         <ul>
           { pageArray.map(page => this.handlePage(page)) }
@@ -97,9 +97,10 @@ export default class Pagination extends React.Component {
           buttonType="next"
           display={currentPage !== this.props.totalPage}
           goTo={next}
-          href={this.handleLink(next)}
+          href={this.handleLink(next, this.props.location)}
         />
       </ul>
+    </div>
     );
   }
 }

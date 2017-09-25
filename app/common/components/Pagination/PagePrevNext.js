@@ -1,5 +1,6 @@
 import React from 'react';
 import withStyles from 'withStyles';
+import { Link } from 'react-router';
 import classnames from 'classnames';
 import Icon from 'components/Icon';
 import styles from './styles.scss';
@@ -16,10 +17,10 @@ export default class PagePrevNext extends React.Component {
           !display && styles['s-hidden'],
         )}
       >
-        <a href={href} data-page={goTo}>
+        <Link to={href} data-page={goTo}>
           { buttonType === 'next' && <Icon name="arrow-right" /> }
           { buttonType === 'prev' && <Icon name="arrow-left" /> }
-        </a>
+        </Link>
       </li>
     );
   }
