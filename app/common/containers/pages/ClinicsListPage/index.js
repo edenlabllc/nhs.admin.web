@@ -9,7 +9,7 @@ import Helmet from 'react-helmet';
 import filter from 'helpers/filter';
 
 import { H1, H2 } from 'components/Title';
-import Pagination from 'components/CursorPagination';
+import Pagination from 'components/Pagination';
 
 import ClinicsList from 'containers/blocks/ClinicsList';
 import ShowBy from 'containers/blocks/ShowBy';
@@ -27,7 +27,8 @@ const FILTER_PARAMS = ['edrpou', 'legal_entity_id', 'settlement_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchClinics({ limit: 5, ...query })),
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchClinics({ page_size: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.ClinicsListPage,
@@ -78,21 +79,23 @@ export default class ClinicsListPage extends React.Component {
 
         <div className={styles.showBy}>
           <ShowBy
-            active={Number(location.query.limit) || 5}
-            onChange={limit => filter({ limit }, this.props)}
+            active={Number(location.query.page_size) || 5}
+            onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
         </div>
 
         <ClinicsList clinics={clinics} />
 
-        {paging.cursors && <div className={styles.pagination}>
-          <Pagination
-            location={location}
-            after={paging.cursors.starting_after}
-            before={paging.cursors.ending_before}
-            more={paging.has_more}
-          />
-        </div>}
+        {
+          paging.total_pages > 1 && (
+            <Pagination
+              currentPage={paging.page_number}
+              totalPage={paging.total_pages}
+              location={location}
+              cb={() => {}}
+            />
+          )
+        }
       </div>
     );
   }
