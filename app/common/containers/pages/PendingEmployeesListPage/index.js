@@ -12,7 +12,7 @@ import filter from 'helpers/filter';
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
-import Pagination from 'components/CursorPagination';
+import Pagination from 'components/Pagination';
 
 import ShowBy from 'containers/blocks/ShowBy';
 import Select from 'components/Select';
@@ -29,7 +29,7 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchEmployeesRequest({ limit: 5, status: 'NEW', ...query })),
+    dispatch(fetchEmployeesRequest({ page_size: 5, status: 'NEW', ...query })),
 })
 @connect(state => ({
   ...state.pages.PendingEmployeesListPage,
@@ -72,8 +72,8 @@ export default class PendingEmployeesListPage extends React.Component {
         </div>
         <div className={styles.showBy}>
           <ShowBy
-            active={Number(location.query.limit) || 5}
-            onChange={limit => filter({ limit }, this.props)}
+            active={Number(location.query.page_size) || 5}
+            onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
         </div>
 
@@ -105,13 +105,16 @@ export default class PendingEmployeesListPage extends React.Component {
           />
         </div>
 
-        {paging.cursors && <div className={styles.pagination}>
-          <Pagination
-            location={location}
-            after={paging.cursors.starting_after}
-            before={paging.cursors.ending_before}
-          />
-        </div>}
+        {
+          paging.total_pages > 1 && (
+            <Pagination
+              currentPage={paging.page_number}
+              totalPage={paging.total_pages}
+              location={location}
+              cb={() => {}}
+            />
+          )
+        }
       </div>
     );
   }

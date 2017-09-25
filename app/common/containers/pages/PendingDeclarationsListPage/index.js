@@ -12,7 +12,7 @@ import filter from 'helpers/filter';
 import { H1, H2 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
-import Pagination from 'components/CursorPagination';
+import Pagination from 'components/Pagination';
 
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
@@ -28,7 +28,8 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchDeclarations({ limit: 5, status: 'pending_verification', ...query })),
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchDeclarations({ page_size: 5, status: 'pending_verification', ...query })),
 })
 @connect(state => ({
   ...state.pages.PendingDeclarationsListPage,
@@ -78,8 +79,8 @@ export default class PendingDeclarationsListPage extends React.Component {
 
         <div className={styles.showBy}>
           <ShowBy
-            active={Number(location.query.limit) || 5}
-            onChange={limit => filter({ limit }, this.props)}
+            active={Number(location.query.page_size) || 5}
+            onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
         </div>
         <div id="declarations-table" className={styles.table}>
@@ -109,14 +110,16 @@ export default class PendingDeclarationsListPage extends React.Component {
           />
         </div>
 
-        {paging.cursors && <div className={styles.pagination}>
-          <Pagination
-            location={location}
-            after={paging.cursors.starting_after}
-            before={paging.cursors.ending_before}
-            more={paging.has_more}
-          />
-        </div>}
+        {
+          paging.total_pages > 1 && (
+            <Pagination
+              currentPage={paging.page_number}
+              totalPage={paging.total_pages}
+              location={location}
+              cb={() => {}}
+            />
+          )
+        }
       </div>
     );
   }
