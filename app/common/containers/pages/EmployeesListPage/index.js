@@ -3,6 +3,7 @@ import format from 'date-fns/format';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+
 import { provideHooks } from 'redial';
 import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
@@ -12,7 +13,7 @@ import filter from 'helpers/filter';
 import { H1 } from 'components/Title';
 import Table from 'components/Table';
 import Button from 'components/Button';
-import Pagination from 'components/CursorPagination';
+import Pagination from 'components/Pagination';
 
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
@@ -24,13 +25,14 @@ import { getEmployees } from 'reducers';
 import { fetchEmployees } from './redux';
 import styles from './styles.scss';
 
-const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
+const FILTER_PARAMS = ['party_id', 'edrpou', 'legal_entity_id'];
 
 @withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(fetchEmployees({ limit: 5, ...query })),
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchEmployees({ page_size: 5, ...query })),
 })
 @connect(state => ({
   ...state.pages.EmployeesListPage,
@@ -46,6 +48,7 @@ export default class EmployeesListPage extends React.Component {
   render() {
     const { employees = [], t, location, paging = {} } = this.props;
     const activeFilter = this.activeFilter;
+    console.log(paging);
 
     return (
       <div id="employees-list-page">
@@ -62,7 +65,6 @@ export default class EmployeesListPage extends React.Component {
           active={activeFilter}
           placeholder={t('Find employee')}
           items={[
-            { name: 'tax_id', title: t('By tax id') },
             { name: 'party_id', title: t('By party id') },
             { name: 'edrpou', title: t('By edrpou') },
             { name: 'legal_entity_id', title: t('By legal entity') },
@@ -74,15 +76,14 @@ export default class EmployeesListPage extends React.Component {
             party_id: null,
             edrpou: null,
             legal_entity_id: null,
-            tax_id: null,
             ...values,
           }, this.props)}
         />
 
         <div className={styles.showBy}>
           <ShowBy
-            active={Number(location.query.limit) || 5}
-            onChange={limit => filter({ limit }, this.props)}
+            active={Number(location.query.page_size) || 5}
+            onChange={page_size => filter({ page_size }, this.props)}
           />
         </div>
 
@@ -90,7 +91,6 @@ export default class EmployeesListPage extends React.Component {
           <Table
             columns={[
               { key: 'date', title: t('Date registration') },
-              { key: 'tax', title: t('Tax id') },
               { key: 'name', title: t('Employee name') },
               { key: 'position', title: t('Position') },
               { key: 'legalEntity', title: t('Legal entity') },
@@ -99,7 +99,6 @@ export default class EmployeesListPage extends React.Component {
             data={employees.map(item => ({
               key: item.id,
               date: format(item.start_date, 'DD/MM/YYYY'),
-              tax: item.party.id,
               name: (
                 <div>
                   {item.party.last_name} {item.party.first_name}
@@ -115,15 +114,19 @@ export default class EmployeesListPage extends React.Component {
             }))}
           />
         </div>
-
-        {paging.cursors && <div className={styles.pagination}>
-          <Pagination
-            location={location}
-            after={paging.cursors.starting_after}
-            before={paging.cursors.ending_before}
-            more={paging.has_more}
-          />
-        </div>}
+        {
+          console.log(location)
+        }
+        {
+          paging.total_pages > 1 && (
+            <Pagination
+              currentPage={paging.page_number}
+              totalPage={paging.total_pages}
+              location={location}
+              cb={() => {}}
+            />
+          )
+        }
       </div>
     );
   }
