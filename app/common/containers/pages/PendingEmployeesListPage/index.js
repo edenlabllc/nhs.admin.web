@@ -63,7 +63,7 @@ export default class PendingEmployeesListPage extends React.Component {
               placeholder={t('Filter by status')}
               options={status.map(i => ({ name: i.key, title: i.value }))}
               onChange={value => setTimeout(() => {
-                filter({ status: value }, this.props);
+                filter({ status: value, page: 1 }, this.props);
               })}
               active={location.query.status || 'NEW'}
             />
