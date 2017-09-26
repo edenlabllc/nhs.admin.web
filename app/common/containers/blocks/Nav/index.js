@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import classnames from 'classnames';
+import nl2br from 'react-nl2br';
 import { Link } from 'react-router';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
@@ -54,14 +55,22 @@ export default class Nav extends React.Component {
             </li>
           </ShowWithScope>
           <ShowWithScope scope="employee:read">
-            <NavItem to="employees" activeClassName={styles.active}>
-              <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
-            </NavItem>
-          </ShowWithScope>
-          <ShowWithScope scope="employee_request:read">
-            <NavItem to="pending-employees" activeClassName={styles.active}>
-              <Link id="pending-employees-nav" to="/pending-employees">{ t('Pending employees') }</Link>
-            </NavItem>
+            <li>
+              <ShowMore nav name={t('Employees')}>
+                <ShowWithScope scope="employee_request:read">
+                  <ul>
+                    <NavItem to="employees" activeClassName={styles.active}>
+                      <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
+                    </NavItem>
+                    <NavItem to="pending-employees" activeClassName={styles.active}>
+                      <Link id="pending-employees-nav" to="/pending-employees">
+                        { nl2br(t('Pending\n employees')) }
+                      </Link>
+                    </NavItem>
+                  </ul>
+                </ShowWithScope>
+              </ShowMore>
+            </li>
           </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics" activeClassName={styles.active}>
