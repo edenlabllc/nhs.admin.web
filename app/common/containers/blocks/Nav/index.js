@@ -93,6 +93,43 @@ export default class Nav extends React.Component {
               <Link id="configuration-nav" to="/configuration">{ t('System configuration') }</Link>
             </NavItem>
           </ShowWithScope>
+          <li>
+            <ShowMore nav name={t('innms')}>
+              <ul>
+                <ShowWithScope scope="innm:read">
+                  <NavItem to="innms" activeClassName={styles.active}>
+                    <Link id="innms-nav" to="/innms">{ t('Innms') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="innm_dosage:read">
+                  <NavItem to="innm_dosages" activeClassName={styles.active}>
+                    <Link id="innm_dosages-nav" to="/innm_dosages">{ t('Innm dosages') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="medication:read">
+                  <NavItem to="medications" activeClassName={styles.active}>
+                    <Link id="medications-nav" to="/medications">{ t('Medications') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          <li>
+            <ShowMore nav name={t('Medications')}>
+              <ul>
+                <ShowWithScope scope="medical_program:read">
+                  <NavItem to="medical-program" activeClassName={styles.active}>
+                    <Link id="medical-program-nav" to="/medical-program">{ t('Medical program') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="program_medication:read">
+                  <NavItem to="program-medications" activeClassName={styles.active}>
+                    <Link id="program_medications-nav" to="/program-medications">{ t('Program medications') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
         </ul>
         <ul className={styles.down}>
           <li>

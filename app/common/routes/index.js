@@ -32,6 +32,8 @@ import ReportsListPage from 'containers/pages/ReportsListPage';
 
 import SystemConfigurationPage from 'containers/pages/SystemConfigurationPage';
 
+import InnmsListPage from 'containers/pages/InnmsListPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
@@ -106,6 +108,9 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="pending-employees" onEnter={requireScope(['employee_request:read'])} >
             <IndexRoute component={PendingEmployeesListPage} />
             <Route path=":id" component={PendingEmployeeDetailPage} />
+          </Route>
+          <Route path="innms" onEnter={requireScope(['innm:read'])} >
+            <IndexRoute component={InnmsListPage} />
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />
