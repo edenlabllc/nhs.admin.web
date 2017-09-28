@@ -94,7 +94,7 @@ export default class Nav extends React.Component {
             </NavItem>
           </ShowWithScope>
           <li>
-            <ShowMore nav name={t('innms')}>
+            <ShowMore nav name={t('Innms')}>
               <ul>
                 <ShowWithScope scope="innm:read">
                   <NavItem to="innms" activeClassName={styles.active}>

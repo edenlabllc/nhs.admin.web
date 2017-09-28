@@ -91,9 +91,9 @@ export default class InnmsListPage extends React.Component {
           <Table
             columns={[
               { key: 'id', title: t('id') },
-              { key: 'sctid', title: t('sctid') },
-              { key: 'name', title: t('Name') },
-              { key: 'name_original', title: t('Name original') },
+              { key: 'sctid', title: t('sctid innm') },
+              { key: 'name', title: t('Innms name') },
+              { key: 'name_original', title: t('Innms original name') },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={innms.map(item => ({
