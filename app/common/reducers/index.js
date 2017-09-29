@@ -20,7 +20,7 @@ import employeesRequests from 'redux/employees-requests';
 import { globalStat, detailStat, declarationsStat, reports } from 'redux/reports';
 import configuration from 'redux/configuration';
 import innms from 'redux/innms';
-// import innm_dosages from 'redux/innm-dosages';
+import innm_dosages from 'redux/innm-dosages';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -43,6 +43,9 @@ import PendingEmployeeDetailPage from 'containers/pages/PendingEmployeeDetailPag
 import InnmsListPage from 'containers/pages/InnmsListPage/redux';
 import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
 
+import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage/redux';
+// import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
+
 const blocks = combineReducers({
   Aside,
 });
@@ -61,6 +64,7 @@ const pages = combineReducers({
   PendingEmployeeDetailPage,
   InnmsListPage,
   InnmDetailPage,
+  InnmDosagesListPage,
 });
 
 const data = combineReducers({
@@ -77,7 +81,7 @@ const data = combineReducers({
   configuration,
   reports,
   innms,
-  // innm_dosages
+  innm_dosages,
 });
 
 export default combineReducers({
