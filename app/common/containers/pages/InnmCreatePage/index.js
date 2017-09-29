@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
@@ -12,10 +11,7 @@ import Line from 'components/Line';
 
 import { createInnm } from 'redux/innms';
 
-import styles from './styles.scss';
-
 @withRouter
-@withStyles(styles)
 @translate()
 @connect(null, { createInnm })
 export default class InnmCreatePage extends React.Component {

@@ -54,8 +54,14 @@ export default class InnmsListPage extends React.Component {
             { property: 'og:title', content: t('Innms') },
           ]}
         />
-
-        <H1>{ t('Innms') }</H1>
+        <div className={styles.header}>
+          <H1>{ t('Innms') }</H1>
+          <div className={styles.header__btn}>
+            <Button to="/innms/create" theme="border" size="small" color="orange" icon="add">
+              {t('Create innm')}
+            </Button>
+          </div>
+        </div>
 
         <div className={styles.search}>
           <H2>{ t('Search innms') }</H2>
