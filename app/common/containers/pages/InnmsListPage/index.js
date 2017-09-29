@@ -14,6 +14,7 @@ import Button from 'components/Button';
 
 import Table from 'components/Table';
 import ShowBy from 'containers/blocks/ShowBy';
+import Icon from 'components/Icon';
 
 import SearchForm from 'containers/forms/SearchForm';
 
@@ -58,12 +59,14 @@ export default class InnmsListPage extends React.Component {
 
         <div className={styles.search}>
           <H2>{ t('Search innms') }</H2>
+
           <SearchForm
             active={activeFilter}
             placeholder={t('Find innms')}
             items={[
               { name: 'id', title: t('By id') },
               { name: 'sctid', title: t('By sctid') },
+              { name: 'name', title: t('By name') },
               { name: 'name', title: t('By name') },
               { name: 'name_original', title: t('By name_original') },
             ]}
@@ -94,6 +97,7 @@ export default class InnmsListPage extends React.Component {
               { key: 'sctid', title: t('sctid innm') },
               { key: 'name', title: t('Innms name') },
               { key: 'name_original', title: t('Innms original name') },
+              { key: 'active', title: t('Active') },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={innms.map(item => ({
@@ -101,6 +105,7 @@ export default class InnmsListPage extends React.Component {
               sctid: <div>{item.sctid}</div>,
               name: <div>{item.name}</div>,
               name_original: <div>{item.name_original}</div>,
+              active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
               action: (<Button id={`show-innm-detail-button-${item.id}`} theme="link" to={`/innms/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />
