@@ -50,7 +50,6 @@ export const fetchInnm = id => invoke({
 export default handleAction(
   combineActions(
     'innms/FETCH_LIST_SUCCESS',
-    'innms/CREATE_INNM_SUCCESS',
     'innms/FETCH_DETAILS_SUCCESS',
   ),
   (state, action) => ({

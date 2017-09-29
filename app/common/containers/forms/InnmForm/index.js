@@ -21,6 +21,7 @@ import styles from './styles.scss';
   validate: reduxFormValidate({
     sctid: {
       required: true,
+      length: 8,
     },
     name: {
       required: true,
@@ -34,11 +35,6 @@ import styles from './styles.scss';
   values: getFormValues('innm-form')(state),
 }))
 export default class InnmForm extends React.Component {
-  get isChanged() {
-    const { values = {}, initialValues = {} } = this.props;
-    return JSON.stringify(values) !== JSON.stringify(initialValues);
-  }
-
   render() {
     const { handleSubmit, onSubmit = () => {}, submitting, t, disabled = false } = this.props;
 
@@ -51,6 +47,7 @@ export default class InnmForm extends React.Component {
               labelText={t('sctid innm')}
               component={FieldInput}
               disabled={disabled}
+              placeholder="61626162"
             />
           </div>
           <div>
@@ -59,6 +56,7 @@ export default class InnmForm extends React.Component {
               labelText={t('Innm name')}
               component={FieldInput}
               disabled={disabled}
+              placeholder="Аміодарон"
             />
           </div>
           <div>
@@ -67,14 +65,15 @@ export default class InnmForm extends React.Component {
               labelText={t('Innm original name')}
               component={FieldInput}
               disabled={disabled}
+              placeholder="Amiodarone"
             />
           </div>
           {
             !disabled && (
               <ShowWithScope scope="innm:write">
                 <div>
-                  <Button type="submit" disabled={!this.isChanged || submitting}>
-                    { submitting ? t('Saving...') : t('Save innm') }
+                  <Button type="submit" disabled={submitting}>
+                    { submitting ? t('Saving...') : t('Create innm') }
                   </Button>
                 </div>
               </ShowWithScope>
