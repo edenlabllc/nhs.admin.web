@@ -58,7 +58,6 @@ export default class InnmsListPage extends React.Component {
           <H1>{ t('Innms') }</H1>
           <div className={styles.header__btn}>
             <Button to="/innms/create" theme="border" size="small" color="orange" icon="add">
-
               {t('Create innm')}
             </Button>
           </div>
@@ -73,7 +72,6 @@ export default class InnmsListPage extends React.Component {
             items={[
               { name: 'id', title: t('By id') },
               { name: 'sctid', title: t('By sctid') },
-              { name: 'name', title: t('By name') },
               { name: 'name', title: t('By name') },
               { name: 'name_original', title: t('By name_original') },
             ]}
@@ -117,7 +115,6 @@ export default class InnmsListPage extends React.Component {
             }))}
           />
         </div>
-
         {
           paging.total_pages > 1 && (
             <Pagination
