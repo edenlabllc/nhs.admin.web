@@ -44,7 +44,7 @@ import InnmsListPage from 'containers/pages/InnmsListPage/redux';
 import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
 
 import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage/redux';
-// import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
+import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux';
 
 const blocks = combineReducers({
   Aside,
@@ -65,6 +65,7 @@ const pages = combineReducers({
   InnmsListPage,
   InnmDetailPage,
   InnmDosagesListPage,
+  InnmDosagesDetailPage,
 });
 
 const data = combineReducers({

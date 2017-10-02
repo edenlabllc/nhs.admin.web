@@ -58,6 +58,7 @@ export default class InnmsListPage extends React.Component {
           <H1>{ t('Innms') }</H1>
           <div className={styles.header__btn}>
             <Button to="/innms/create" theme="border" size="small" color="orange" icon="add">
+
               {t('Create innm')}
             </Button>
           </div>

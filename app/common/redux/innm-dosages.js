@@ -32,6 +32,17 @@ export const createInnmDosage = body => invoke({
   body,
 });
 
+export const deactivateInnmDosage = id => invoke({
+  endpoint: createUrl(`${API_URL}/api/innm_dosages${id}/actions/deactivate`),
+  method: 'PATCH',
+  headers: {
+    'content-type': 'application/json',
+  },
+  types: ['innm_dosages/DEACTIVATE_INNM_DOSAGES_REQUEST',
+    'innm_dosages/DEACTIVATE_INNM_DOSAGES_SUCCESS',
+    'innm_dosages/DEACTIVATE_INNM_DOSAGES_FAILURE'],
+});
+
 export const fetchInnmDosage = id => invoke({
   endpoint: createUrl(`${API_URL}/api/innm_dosages/${id}`),
   method: 'GET',
