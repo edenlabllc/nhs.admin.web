@@ -21,6 +21,7 @@ import { globalStat, detailStat, declarationsStat, reports } from 'redux/reports
 import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
+import medications from 'redux/medications';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -46,6 +47,8 @@ import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
 import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage/redux';
 import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux';
 
+import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
+
 const blocks = combineReducers({
   Aside,
 });
@@ -66,6 +69,7 @@ const pages = combineReducers({
   InnmDetailPage,
   InnmDosagesListPage,
   InnmDosagesDetailPage,
+  MedicationsListPage,
 });
 
 const data = combineReducers({
@@ -83,6 +87,7 @@ const data = combineReducers({
   reports,
   innms,
   innm_dosages,
+  medications,
 });
 
 export default combineReducers({
@@ -161,3 +166,6 @@ export const getInnm = (state, id) => denormalize(id, schemas.innm, state.data);
 
 export const getInnmDosages = (state, ids) => denormalize(ids, [schemas.innm_dosage], state.data);
 export const getInnmDosage = (state, id) => denormalize(id, schemas.innm_dosage, state.data);
+
+export const getMedications = (state, ids) => denormalize(ids, [schemas.medication], state.data);
+export const getMedication = (state, id) => denormalize(id, schemas.medication, state.data);
