@@ -33,7 +33,7 @@ export const createInnmDosage = body => invoke({
 });
 
 export const deactivateInnmDosage = id => invoke({
-  endpoint: createUrl(`${API_URL}/api/innm_dosages${id}/actions/deactivate`),
+  endpoint: createUrl(`${API_URL}/api/innm_dosages/${id}/actions/deactivate`),
   method: 'PATCH',
   headers: {
     'content-type': 'application/json',

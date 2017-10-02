@@ -55,7 +55,7 @@ export default class InnmDosagesDetailPage extends React.Component {
             { property: 'og:title', content: t('Innm Dosages detail') },
           ]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to innm dosages list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to list') }</BackLink>
         <Line />
         <div className={styles.row}>
           <DataList list={[{ name: t('Form ID'), value: innm_dosage.id }]} />
@@ -112,25 +112,28 @@ export default class InnmDosagesDetailPage extends React.Component {
         }
 
         <Line width={630} />
-
-        <div className={styles.buttons}>
-          <div className={styles.buttons__row}>
-            <div className={styles.buttons__column}>
-              <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
-                { t('Back to list') }
-              </Button>
-            </div>
-            {
-              <ShowWithScope scope="innm_dosage:deactivate">
+        {
+          innm_dosage.is_active && (
+            <div className={styles.buttons}>
+              <div className={styles.buttons__row}>
                 <div className={styles.buttons__column}>
-                  <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="fill" color="red" icon="check-right" block>
-                    { t('Deactivate innm dosage') }
+                  <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
+                    { t('Back to list') }
                   </Button>
                 </div>
-              </ShowWithScope>
-            }
-          </div>
-        </div>
+                {
+                  <ShowWithScope scope="innm_dosage:deactivate">
+                    <div className={styles.buttons__column}>
+                      <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="fill" color="red" icon="check-right" block>
+                        { t('Deactivate innm dosage') }
+                      </Button>
+                    </div>
+                  </ShowWithScope>
+                }
+              </div>
+            </div>
+          )
+        }
         <Confirm
           title={t('Deactivate innm dosage {{name}}?', { name: innm_dosage.name })}
           active={this.state.showDeactivateConfirm}
