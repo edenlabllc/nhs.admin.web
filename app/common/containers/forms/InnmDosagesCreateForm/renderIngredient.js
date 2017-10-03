@@ -89,7 +89,7 @@ export default class RenderIngredient extends React.Component {
                 </Button>
               </FormColumn>
               <FormColumn>
-                <Button theme="border" size="small" color="orange" onClick={() => fields.remove(index)}>
+                <Button color="orange" size="small" onClick={() => fields.remove(index)}>
                   Додати складову
                 </Button>
               </FormColumn>

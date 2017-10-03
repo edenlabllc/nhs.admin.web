@@ -22,7 +22,7 @@ export default class InnmDosagesCreatePage extends React.Component {
 
   render() {
     const { t, router, innms = [], medication_unit = [], medication_form = [] } = this.props;
-    console.log(medication_form);
+
     return (
       <div id="innm-dosages-create-page">
         <Helmet

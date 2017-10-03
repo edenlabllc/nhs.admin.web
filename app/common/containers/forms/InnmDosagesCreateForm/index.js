@@ -27,6 +27,9 @@ import styles from './styles.scss';
   values: getFormValues('inns-dosages-create-form')(state),
 }))
 export default class InnmDosagesCreateForm extends React.Component {
+  state ={
+    innms_search: '',
+  };
   render() {
     const {
       handleSubmit,
@@ -72,6 +75,69 @@ export default class InnmDosagesCreateForm extends React.Component {
           <div className={styles.title}>
             &#8545;. Складові
           </div>
+          <FormRow>
+            <FormColumn>
+              <Field
+                name="ingredients.denumerator_value"
+                component={SelectUniversal}
+                labelText="Назва речовини"
+                emptyText="Не знайдено"
+                placeholder="Почніть вводити назву"
+                label_bold
+                searchable
+                onChangeSearch={val => this.setState({ innms_search: val.toLowerCase() })}
+                options={data.innms
+                  .filter(i => i.is_active)
+                  .filter(i =>
+                    new RegExp(this.state.innms_search)
+                      .test(i.name.toLowerCase()) === true)
+                    .map(i => ({
+                      name: i.id,
+                      title: i.name,
+                    }))
+                }
+              />
+            </FormColumn>
+          </FormRow>
+          <FormRow>
+            <FormColumn size="1/4">
+              <Field
+                type="number"
+                name="ingredients.numerator_value"
+                labelText="Кількість"
+                component={FieldInput}
+                label_bold
+                placeholder="0-1000"
+              />
+            </FormColumn>
+            <FormColumn size="1/3">
+              <Field
+                name="ingredients.numerator_unit"
+                component={SelectUniversal}
+                labelText="Одиниці"
+                options={[{
+                  name: 'MG',
+                  title: 'мг',
+                }, {
+                  name: 'MKG',
+                  title: 'мкг',
+                }]}
+              />
+            </FormColumn>
+            <FormColumn size="1/3">
+              <Field
+                name="ingredients.denumerator_unit"
+                component={SelectUniversal}
+                labelText="На одну"
+                options={Object.keys(data.medication_unit.values).map(
+                  i => ({
+                    title: data.medication_unit.values[i],
+                    name: i,
+                  })
+                )}
+              />
+            </FormColumn>
+          </FormRow>
           <FormRow>
             <FieldArray name="ingredients" component={RenderIngredient} data={data} />
           </FormRow>
