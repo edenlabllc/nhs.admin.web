@@ -42,6 +42,7 @@ export default class InnmForm extends React.Component {
       t,
       disabled = false,
       create,
+      initialValues = {},
     } = this.props;
 
     return (
@@ -65,6 +66,19 @@ export default class InnmForm extends React.Component {
               placeholder="Amiodarone"
             />
           </div>
+          {
+            initialValues.sctid && (
+              <div>
+                <Field
+                  name="sctid"
+                  labelText={t('sctid innm')}
+                  component={FieldInput}
+                  disabled={disabled}
+                  placeholder="61626162"
+                />
+              </div>
+            )
+          }
           {
             create && (
               <div>
