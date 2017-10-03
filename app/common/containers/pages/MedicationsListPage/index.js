@@ -14,7 +14,8 @@ import Button from 'components/Button';
 
 import Table from 'components/Table';
 import ShowBy from 'containers/blocks/ShowBy';
-// import Icon from 'components/Icon';
+import Icon from 'components/Icon';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import SearchForm from 'containers/forms/SearchForm';
 
@@ -23,7 +24,7 @@ import { getMedications } from 'reducers';
 import { fetchMedications } from './redux';
 import styles from './styles.scss';
 
-const FILTER_PARAMS = ['id', 'innm_id', 'name', 'innm_name', 'form'];
+const FILTER_PARAMS = ['id', 'innm_id', 'name', 'form'];
 
 @withRouter
 @withStyles(styles)
@@ -45,7 +46,6 @@ export default class MedicationsListPage extends React.Component {
   render() {
     const { medications = [], t, paging, location } = this.props;
     const activeFilter = this.activeFilter;
-    console.log('medications', medications);
 
     return (
       <div id="medication-list-page">
@@ -73,8 +73,8 @@ export default class MedicationsListPage extends React.Component {
             placeholder={t('Find medication')}
             items={[
               { name: 'id', title: t('By id') },
-              { name: 'name', title: t('By name') },
-              { name: 'innm_name', title: t('By innm_name') },
+              { name: 'innm_id', title: t('By innm_id') },
+              { name: 'name', title: t('By medication name') },
               { name: 'form', title: t('By form') },
             ]}
             initialValues={{
@@ -102,17 +102,21 @@ export default class MedicationsListPage extends React.Component {
             columns={[
               { key: 'innm_id', title: t('Innm ID') },
               { key: 'id', title: t('Medication ID') },
-              { key: 'name', title: t('Innm name') },
+              { key: 'name', title: t('Medication name') },
               { key: 'form', title: t('Form') },
-              // { key: 'active', title: t('Active') },
+              { key: 'active', title: t('Active') },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={medications.map(item => ({
               innm_id: <div>{item.ingredients[0].id}</div>,
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
-              form: <div>{item.form}</div>,
-              // active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
+              form: <div>
+                <DictionaryValue dictionary="MEDICATION_FORM" value={item.form} />
+                <br />
+                {item.manufacturer.name}
+              </div>,
+              active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
               action: (<Button id={`show-medication-detail-button-${item.id}`} theme="link" to={`/medications/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />

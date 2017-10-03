@@ -58,7 +58,7 @@ export default class RenderIngredient extends React.Component {
                 <Field
                   name={`${ingredient}.numerator_unit`}
                   component={SelectUniversal}
-                  labelText=" "
+                  labelText="Одиниці"
                   options={[{
                     name: 'MG',
                     title: 'мг',
@@ -72,10 +72,10 @@ export default class RenderIngredient extends React.Component {
                 <Field
                   name={`${ingredient}.denumerator_unit`}
                   component={SelectUniversal}
-                  labelText=" "
+                  labelText="На одну"
                   options={Object.keys(data.medication_unit.values).map(
                     i => ({
-                      title: i,
+                      title: data.medication_unit.values[i],
                       name: i,
                     })
                   )}

@@ -44,6 +44,7 @@
 .column {
   display: table-cell;
   width: 2%;
+  vertical-align: top;
 
   & + & {
     padding-left: 24px;
@@ -91,15 +92,15 @@
 }
 
 .column_align {
-  &--bottom {
+  &-bottom {
     vertical-align: bottom;
   }
 
-  &--top {
+  &-top {
     vertical-align: top;
   }
 
-  &--middle {
+  &-middle {
     vertical-align: top;
   }
 }

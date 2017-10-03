@@ -9,7 +9,6 @@ import { SelectUniversal } from 'components/SelectUniversal';
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
 import { FormRow, FormColumn } from 'components/Form';
-// import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import RenderIngredient from './renderIngredient';
@@ -44,7 +43,7 @@ export default class InnmDosagesCreateForm extends React.Component {
           <div className={styles.title}>
             &#8544;. Загальна інформація
           </div>
-          <div>
+          <FormRow>
             <Field
               name="innm_name"
               labelText="Назва"
@@ -53,12 +52,6 @@ export default class InnmDosagesCreateForm extends React.Component {
               label_bold
               placeholder="Назва хімічної сполуки"
             />
-          </div>
-          <div className={styles.title}>
-            &#8545;. Складові
-          </div>
-          <FormRow>
-            <FieldArray name="ingredients" component={RenderIngredient} data={data} />
           </FormRow>
           <FormRow>
             <FormColumn>
@@ -75,6 +68,12 @@ export default class InnmDosagesCreateForm extends React.Component {
                 }
               />
             </FormColumn>
+          </FormRow>
+          <div className={styles.title}>
+            &#8545;. Складові
+          </div>
+          <FormRow>
+            <FieldArray name="ingredients" component={RenderIngredient} data={data} />
           </FormRow>
           {
             !disabled && (
