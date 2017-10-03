@@ -32,6 +32,7 @@ export default class InnmCreatePage extends React.Component {
         <H1>{ t('Innm create page') }</H1>
 
         <InnmForm
+          create
           onSubmit={v => createInnm(v).then(resp =>
             router.push(`/innms/${resp.payload.data.id}`))}
         />

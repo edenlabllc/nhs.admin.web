@@ -20,7 +20,6 @@ import styles from './styles.scss';
   form: 'system-configuration-form',
   validate: reduxFormValidate({
     sctid: {
-      required: true,
       length: 8,
     },
     name: {
@@ -36,20 +35,18 @@ import styles from './styles.scss';
 }))
 export default class InnmForm extends React.Component {
   render() {
-    const { handleSubmit, onSubmit = () => {}, submitting, t, disabled = false } = this.props;
+    const {
+      handleSubmit,
+      onSubmit = () => {},
+      submitting,
+      t,
+      disabled = false,
+      create,
+    } = this.props;
 
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
-          <div>
-            <Field
-              name="sctid"
-              labelText={t('sctid innm')}
-              component={FieldInput}
-              disabled={disabled}
-              placeholder="61626162"
-            />
-          </div>
           <div>
             <Field
               name="name"
@@ -68,6 +65,19 @@ export default class InnmForm extends React.Component {
               placeholder="Amiodarone"
             />
           </div>
+          {
+            create && (
+              <div>
+                <Field
+                  name="sctid"
+                  labelText={t('sctid innm')}
+                  component={FieldInput}
+                  disabled={disabled}
+                  placeholder="61626162"
+                />
+              </div>
+            )
+          }
           {
             !disabled && (
               <ShowWithScope scope="innm:write">

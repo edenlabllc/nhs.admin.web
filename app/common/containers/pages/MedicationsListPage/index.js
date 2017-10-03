@@ -73,7 +73,6 @@ export default class MedicationsListPage extends React.Component {
             placeholder={t('Find medication')}
             items={[
               { name: 'id', title: t('By id') },
-              { name: 'innm_id', title: t('By innm_id') },
               { name: 'name', title: t('By name') },
               { name: 'innm_name', title: t('By innm_name') },
               { name: 'form', title: t('By form') },
@@ -83,7 +82,6 @@ export default class MedicationsListPage extends React.Component {
             }}
             onSubmit={values => filter({
               id: null,
-              innm_id: null,
               name: null,
               innm_name: null,
               form: null,
@@ -103,7 +101,6 @@ export default class MedicationsListPage extends React.Component {
           <Table
             columns={[
               { key: 'innm_id', title: t('Innm ID') },
-              { key: 'innm_name', title: t('Innm Name') },
               { key: 'id', title: t('Medication ID') },
               { key: 'name', title: t('Innm name') },
               { key: 'form', title: t('Form') },
@@ -111,8 +108,7 @@ export default class MedicationsListPage extends React.Component {
               { key: 'action', title: t('Action'), width: 100 },
             ]}
             data={medications.map(item => ({
-              innm_id: <div>{item.innm_id}</div>,
-              innm_name: <div>{item.innm_name}</div>,
+              innm_id: <div>{item.ingredients[0].id}</div>,
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               form: <div>{item.form}</div>,

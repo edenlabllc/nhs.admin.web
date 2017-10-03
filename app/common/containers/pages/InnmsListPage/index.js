@@ -99,7 +99,6 @@ export default class InnmsListPage extends React.Component {
           <Table
             columns={[
               { key: 'id', title: t('id') },
-              { key: 'sctid', title: t('sctid innm') },
               { key: 'name', title: t('Innms name') },
               { key: 'name_original', title: t('Innms original name') },
               { key: 'active', title: t('Active') },
@@ -107,7 +106,6 @@ export default class InnmsListPage extends React.Component {
             ]}
             data={innms.map(item => ({
               id: <div>{item.id}</div>,
-              sctid: <div>{item.sctid}</div>,
               name: <div>{item.name}</div>,
               name_original: <div>{item.name_original}</div>,
               active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
