@@ -162,6 +162,7 @@ export const getReports = state => state.data.reports;
 export const getScope = state => (state.auth.details || {}).scope;
 
 export const getInnms = (state, ids) => denormalize(ids, [schemas.innm], state.data);
+export const getAllInnms = state => getInnms(state, Object.keys(state.data.innms));
 export const getInnm = (state, id) => denormalize(id, schemas.innm, state.data);
 
 export const getInnmDosages = (state, ids) => denormalize(ids, [schemas.innm_dosage], state.data);

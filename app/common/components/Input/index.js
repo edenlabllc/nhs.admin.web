@@ -35,6 +35,7 @@ export const Component = ({
   inputComponent = 'input',
   component = inputComponent,
   theme = 'gray',
+  label_bold,
   className, // eslint-disable-line
   ...rest // eslint-disable-line
 }) => {
@@ -63,9 +64,17 @@ export const Component = ({
 
   return (<span>
     <label className={styles['label-wrapper']}>
-      { labelText && <div className={styles['label-text']}>
-        { labelText }
-      </div>}
+      { labelText && (
+        <div
+          className={
+            classnames(
+              styles['label-text'],
+              label_bold && styles['label-bold'],
+            )}
+        >
+          { labelText }
+        </div>
+      )}
       <span
         className={classnames(
           styles['group-input'],

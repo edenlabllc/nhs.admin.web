@@ -37,6 +37,7 @@ import InnmCreatePage from 'containers/pages/InnmCreatePage';
 import InnmDetailPage from 'containers/pages/InnmDetailPage';
 
 import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage';
+import InnmDosagesCreatePage from 'containers/pages/InnmDosagesCreatePage';
 import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage';
 
 import MedicationsListPage from 'containers/pages/MedicationsListPage';
@@ -123,8 +124,8 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           </Route>
           <Route path="innm-dosages" onEnter={requireScope(['innm_dosage:read'])} >
             <IndexRoute component={InnmDosagesListPage} />
+            <Route path="create" component={InnmDosagesCreatePage} />
             <Route path=":id" component={InnmDosagesDetailPage} />
-            {/* <Route path="create" component={InnmCreatePage} />*/}
           </Route>
           <Route path="medications" onEnter={requireScope(['medication:read'])} >
             <IndexRoute component={MedicationsListPage} />
