@@ -25,7 +25,6 @@ const FormBlockComponent = ({ title, children, border, ...rest }) =>
 
 export const FormBlock = withStyles(styles)(FormBlockComponent);
 
-
 const FormRowComponent = props => <div className={styles.row} {...props} />;
 
 export const FormRow = withStyles(styles)(FormRowComponent);
@@ -49,7 +48,7 @@ const FormColumnComponent = ({ size, align = 'top', ...rest }) =>
     className={classnames(
       styles.column,
       size && sizeToClassName(size),
-      align & styles[`column_align-${align}`],
+      align && styles[`column_align-${align}`],
     )}
     {...rest}
   />;

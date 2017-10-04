@@ -45,8 +45,6 @@ export default class InnmDosagesCreatePage extends React.Component {
           onSubmit={onSubmit}
           data={{ innms, medication_unit, medication_form }}
         />
-
-
       </div>
     );
   }

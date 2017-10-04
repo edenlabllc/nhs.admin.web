@@ -4,12 +4,14 @@ import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
 import { reduxFormValidate, collectionOf, ErrorMessage } from 'react-nebo15-validate';
 import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
+import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import { SelectUniversal } from 'components/SelectUniversal';
+import RadioInput from 'components/RadioInput';
 import FieldInput from 'components/reduxForm/FieldInput';
-import Button from 'components/Button';
 import { FormRow, FormColumn } from 'components/Form';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import Button from 'components/Button';
+import Line from 'components/Line';
 
 import RenderIngredient from './renderIngredient';
 
@@ -26,8 +28,8 @@ import styles from './styles.scss';
     form: {
       required: true,
     },
-    'one.ingredients.id': {
-      required: true,
+    'one.is_primary': {
+      required: false,
     },
     'one.ingredients.denumerator_value': {
       required: true,
@@ -59,14 +61,32 @@ import styles from './styles.scss';
       },
     }),
   }),
+  initialValues: {
+    one: {
+      is_primary: true,
+    },
+  },
+  enableReinitialize: false,
 })
 @connect(state => ({
   values: getFormValues('inns-dosages-create-form')(state),
 }))
 export default class InnmDosagesCreateForm extends React.Component {
-  state ={
-    innms_search: '',
-  };
+  constructor() {
+    super();
+    this.state = {
+      innms_search: '',
+      active: 0,
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(value) {
+    this.setState({
+      active: value,
+    });
+  }
+
   render() {
     const {
       handleSubmit,
@@ -93,29 +113,11 @@ export default class InnmDosagesCreateForm extends React.Component {
               placeholder="Назва хімічної сполуки"
             />
           </FormRow>
-          <FormRow>
-            <FormColumn>
-              <Field
-                name="form"
-                component={SelectUniversal}
-                labelText="Форма"
-                placeholder="Оберіть форму"
-                options={Object.keys(data.medication_form.values)
-                  .map(key => ({
-                    name: key,
-                    title: data.medication_form.values[key],
-                  }))
-                }
-              >
-                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
-              </Field>
-            </FormColumn>
-          </FormRow>
           <div className={styles.title}>
             &#8545;. Складові
           </div>
           <FormRow>
-            <FormColumn>
+            <FormColumn align="baseline">
               <Field
                 name="one.ingredients.id"
                 component={SelectUniversal}
@@ -138,6 +140,16 @@ export default class InnmDosagesCreateForm extends React.Component {
               >
                 <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
               </Field>
+            </FormColumn>
+            <FormColumn align="baseline">
+              <RadioInput
+                name="is_primary"
+                value={0}
+                selected={this.state.active === 0}
+                onChange={v => this.onChange(v)}
+              >
+                Активна речовина
+              </RadioInput>
             </FormColumn>
           </FormRow>
           <FormRow>
@@ -183,8 +195,15 @@ export default class InnmDosagesCreateForm extends React.Component {
               </Field>
             </FormColumn>
           </FormRow>
+          <Line />
           <FormRow>
-            <FieldArray name="ingredients" component={RenderIngredient} data={data} />
+            <FieldArray
+              name="ingredients"
+              component={RenderIngredient}
+              data={data}
+              onChange={this.onChange}
+              active={this.state.active}
+            />
           </FormRow>
           {
             !disabled && (

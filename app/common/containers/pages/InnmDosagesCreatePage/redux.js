@@ -7,6 +7,7 @@ export const onSubmit = v => (dispatch) => {
     name: v.name,
     ingredients: (v.ingredients || []).map(i => ({
       id: i.id.name,
+      is_primary: v.is_primary,
       dosage: {
         numerator_value: i.numerator_value,
         numerator_unit: i.numerator_unit.name,
@@ -17,6 +18,7 @@ export const onSubmit = v => (dispatch) => {
   };
   values.ingredients.push(({
     id: v.one.ingredients.id.name,
+    is_primary: v.one.ingredients.is_primary,
     dosage: {
       numerator_value: v.one.ingredients.numerator_value,
       numerator_unit: v.one.ingredients.numerator_unit.name,

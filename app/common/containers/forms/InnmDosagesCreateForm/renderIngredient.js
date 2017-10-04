@@ -3,8 +3,10 @@ import { Field } from 'redux-form';
 import { translate } from 'react-i18next';
 import { ErrorMessage } from 'react-nebo15-validate';
 
-import { SelectUniversal } from 'components/SelectUniversal';
 import FieldInput from 'components/reduxForm/FieldInput';
+import RadioInput from 'components/RadioInput';
+
+import { SelectUniversal } from 'components/SelectUniversal';
 import { FormRow, FormColumn } from 'components/Form';
 import Button from 'components/Button';
 import Line from 'components/Line';
@@ -23,7 +25,7 @@ export default class RenderIngredient extends React.Component {
           <li key={index}>
             <br />
             <FormRow>
-              <FormColumn>
+              <FormColumn align="baseline">
                 <Field
                   name={`${ingredient}.id`}
                   component={SelectUniversal}
@@ -46,6 +48,16 @@ export default class RenderIngredient extends React.Component {
                 >
                   <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
                 </Field>
+              </FormColumn>
+              <FormColumn align="baseline">
+                <RadioInput
+                  name="is_primary"
+                  value={index + 1}
+                  selected={this.props.active === index + 1}
+                  onChange={v => this.props.onChange(v)}
+                >
+                  Активна речовина
+                </RadioInput>
               </FormColumn>
             </FormRow>
             <FormRow>
@@ -94,7 +106,7 @@ export default class RenderIngredient extends React.Component {
             <FormRow>
               <FormColumn>
                 <Button theme="border" size="small" onClick={() => fields.remove(index)}>
-                  Відміна
+                  Відмінити
                 </Button>
               </FormColumn>
             </FormRow>
