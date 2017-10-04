@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
-import { reduxFormValidate } from 'react-nebo15-validate';
+import { reduxFormValidate, collectionOf, ErrorMessage } from 'react-nebo15-validate';
 import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
 
 import { SelectUniversal } from 'components/SelectUniversal';
@@ -26,6 +26,9 @@ import styles from './styles.scss';
     form: {
       required: true,
     },
+    'one.ingredients.id': {
+      required: true,
+    },
     'one.ingredients.denumerator_value': {
       required: true,
     },
@@ -38,18 +41,23 @@ import styles from './styles.scss';
     'one.ingredients.denumerator_unit': {
       required: true,
     },
-    'ingredients.denumerator_value': {
-      required: true,
-    },
-    'ingredients.numerator_value': {
-      required: true,
-    },
-    'ingredients.numerator_unit': {
-      required: true,
-    },
-    'ingredients.denumerator_unit': {
-      required: true,
-    },
+    ingredients: collectionOf({
+      id: {
+        required: true,
+      },
+      denumerator_value: {
+        required: true,
+      },
+      numerator_value: {
+        required: true,
+      },
+      numerator_unit: {
+        required: true,
+      },
+      denumerator_unit: {
+        required: true,
+      },
+    }),
   }),
 })
 @connect(state => ({
@@ -98,7 +106,9 @@ export default class InnmDosagesCreateForm extends React.Component {
                     title: data.medication_form.values[key],
                   }))
                 }
-              />
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
             </FormColumn>
           </FormRow>
           <div className={styles.title}>
@@ -125,7 +135,9 @@ export default class InnmDosagesCreateForm extends React.Component {
                       title: i.name,
                     }))
                 }
-              />
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
             </FormColumn>
           </FormRow>
           <FormRow>
@@ -151,7 +163,9 @@ export default class InnmDosagesCreateForm extends React.Component {
                   name: 'MKG',
                   title: 'мкг',
                 }]}
-              />
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
             </FormColumn>
             <FormColumn size="1/3">
               <Field
@@ -164,7 +178,9 @@ export default class InnmDosagesCreateForm extends React.Component {
                     name: i,
                   })
                 )}
-              />
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
             </FormColumn>
           </FormRow>
           <FormRow>
@@ -175,7 +191,7 @@ export default class InnmDosagesCreateForm extends React.Component {
               <ShowWithScope scope="innm_dosage:write">
                 <div>
                   <Button type="submit" disabled={submitting}>
-                    { submitting ? t('Saving...') : 'Додати форму хімічної сполуки' }
+                    { submitting ? t('Додаємо...') : 'Додати форму хімічної сполуки' }
                   </Button>
                 </div>
               </ShowWithScope>

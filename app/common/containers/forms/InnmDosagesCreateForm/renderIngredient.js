@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
+import { translate } from 'react-i18next';
+import { ErrorMessage } from 'react-nebo15-validate';
 
 import { SelectUniversal } from 'components/SelectUniversal';
 import FieldInput from 'components/reduxForm/FieldInput';
@@ -7,13 +9,14 @@ import { FormRow, FormColumn } from 'components/Form';
 import Button from 'components/Button';
 import Line from 'components/Line';
 
+@translate()
 export default class RenderIngredient extends React.Component {
   state = {
     innms_search: '',
   };
 
   render() {
-    const { fields, meta: { error, submitFailed }, data } = this.props;
+    const { fields, meta: { error, submitFailed }, data, t } = this.props;
     return (
       <ul>
         { fields.map((ingredient, index) =>
@@ -40,7 +43,9 @@ export default class RenderIngredient extends React.Component {
                       title: i.name,
                     }))
                   }
-                />
+                >
+                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                </Field>
               </FormColumn>
             </FormRow>
             <FormRow>
@@ -66,7 +71,9 @@ export default class RenderIngredient extends React.Component {
                     name: 'MKG',
                     title: 'мкг',
                   }]}
-                />
+                >
+                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                </Field>
               </FormColumn>
               <FormColumn size="1/3">
                 <Field
@@ -79,18 +86,15 @@ export default class RenderIngredient extends React.Component {
                       name: i,
                     })
                   )}
-                />
+                >
+                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                </Field>
               </FormColumn>
             </FormRow>
             <FormRow>
               <FormColumn>
                 <Button theme="border" size="small" onClick={() => fields.remove(index)}>
                   Відміна
-                </Button>
-              </FormColumn>
-              <FormColumn>
-                <Button color="orange" size="small" onClick={() => fields.remove(index)}>
-                  Додати складову
                 </Button>
               </FormColumn>
             </FormRow>
