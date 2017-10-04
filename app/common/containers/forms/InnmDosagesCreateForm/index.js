@@ -20,7 +20,36 @@ import styles from './styles.scss';
 @reduxForm({
   form: 'inns-dosages-create-form',
   validate: reduxFormValidate({
-
+    name: {
+      required: true,
+    },
+    form: {
+      required: true,
+    },
+    'one.ingredients.denumerator_value': {
+      required: true,
+    },
+    'one.ingredients.numerator_value': {
+      required: true,
+    },
+    'one.ingredients.numerator_unit': {
+      required: true,
+    },
+    'one.ingredients.denumerator_unit': {
+      required: true,
+    },
+    'ingredients.denumerator_value': {
+      required: true,
+    },
+    'ingredients.numerator_value': {
+      required: true,
+    },
+    'ingredients.numerator_unit': {
+      required: true,
+    },
+    'ingredients.denumerator_unit': {
+      required: true,
+    },
   }),
 })
 @connect(state => ({
@@ -48,7 +77,7 @@ export default class InnmDosagesCreateForm extends React.Component {
           </div>
           <FormRow>
             <Field
-              name="innm_name"
+              name="name"
               labelText="Назва"
               component={FieldInput}
               disabled={disabled}
@@ -78,7 +107,7 @@ export default class InnmDosagesCreateForm extends React.Component {
           <FormRow>
             <FormColumn>
               <Field
-                name="ingredients.denumerator_value"
+                name="one.ingredients.id"
                 component={SelectUniversal}
                 labelText="Назва речовини"
                 emptyText="Не знайдено"
@@ -103,7 +132,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             <FormColumn size="1/4">
               <Field
                 type="number"
-                name="ingredients.numerator_value"
+                name="one.ingredients.numerator_value"
                 labelText="Кількість"
                 component={FieldInput}
                 label_bold
@@ -112,7 +141,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             </FormColumn>
             <FormColumn size="1/3">
               <Field
-                name="ingredients.numerator_unit"
+                name="one.ingredients.numerator_unit"
                 component={SelectUniversal}
                 labelText="Одиниці"
                 options={[{
@@ -126,7 +155,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             </FormColumn>
             <FormColumn size="1/3">
               <Field
-                name="ingredients.denumerator_unit"
+                name="one.ingredients.denumerator_unit"
                 component={SelectUniversal}
                 labelText="На одну"
                 options={Object.keys(data.medication_unit.values).map(

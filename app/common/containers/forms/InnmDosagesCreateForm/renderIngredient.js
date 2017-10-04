@@ -22,7 +22,7 @@ export default class RenderIngredient extends React.Component {
             <FormRow>
               <FormColumn>
                 <Field
-                  name={`${ingredient}.denumerator_value`}
+                  name={`${ingredient}.id`}
                   component={SelectUniversal}
                   labelText="Назва речовини"
                   emptyText="Не знайдено"
