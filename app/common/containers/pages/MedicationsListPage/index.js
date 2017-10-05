@@ -50,27 +50,26 @@ export default class MedicationsListPage extends React.Component {
     return (
       <div id="medication-list-page">
         <Helmet
-          title={t('Medications')}
+          title="Торгові назви"
           meta={[
-            { property: 'og:title', content: t('Medications') },
+            { property: 'og:title', content: 'Торгові назви' },
           ]}
         />
         <div className={styles.header}>
-          <H1>{ t('Medications') }</H1>
+          <H1>Торгові назви</H1>
           <div className={styles.header__btn}>
             <Button to="/medications/create" theme="border" size="small" color="orange" icon="add">
-
-              {t('Create medication')}
+              Створити торгову назву
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>{ t('Search medication') }</H2>
+          <H2>Пошук торгової назви</H2>
 
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find medication')}
+            placeholder="Знайти торгову назву"
             items={[
               { name: 'id', title: t('By id') },
               { name: 'innm_id', title: t('By innm_id') },
