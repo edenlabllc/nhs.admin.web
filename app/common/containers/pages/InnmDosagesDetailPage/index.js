@@ -96,6 +96,9 @@ export default class InnmDosagesDetailPage extends React.Component {
                                     {`${i.dosage.denumerator_value} `}
                                     {`${t('contains')} ${i.dosage.numerator_value} ${i.dosage.numerator_unit}`}
                                   </p>
+                                  <p>
+                                    { innm_dosage.ingredients[key].is_primary && t('active substance')}
+                                  </p>
                                   <br />
                                 </div>
                               );

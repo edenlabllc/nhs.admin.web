@@ -98,7 +98,7 @@ export default class InnmDosagesCreateForm extends React.Component {
     } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(v => onSubmit(v, this.state.active))}>
         <div className={styles.form}>
           <div className={styles.title}>
             &#8544;. Загальна інформація
@@ -112,6 +112,22 @@ export default class InnmDosagesCreateForm extends React.Component {
               label_bold
               placeholder="Назва хімічної сполуки"
             />
+          </FormRow>
+          <FormRow>
+            <FormColumn>
+              <Field
+                name="form"
+                component={SelectUniversal}
+                labelText="Форма"
+                placeholder="Оберіть форму"
+                options={Object.keys(data.medication_form.values)
+                  .map(key => ({
+                    name: key,
+                    title: data.medication_form.values[key],
+                  }))
+                }
+              />
+            </FormColumn>
           </FormRow>
           <div className={styles.title}>
             &#8545;. Складові
