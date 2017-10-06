@@ -131,8 +131,8 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           </Route>
           <Route path="medications" onEnter={requireScope(['medication:read'])} >
             <IndexRoute component={MedicationsListPage} />
-            <Route path=":id" component={MedicationDetailPage} />
             <Route path="create" component={MedicationCreatePage} />
+            <Route path=":id" component={MedicationDetailPage} />
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />

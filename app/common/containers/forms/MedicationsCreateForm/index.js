@@ -6,9 +6,11 @@ import { reduxFormValidate, collectionOf, ErrorMessage } from 'react-nebo15-vali
 import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
+import FieldInput from 'components/reduxForm/FieldInput';
+import FieldDate from 'components/reduxForm/FieldDatepicker';
+
 import { SelectUniversal } from 'components/SelectUniversal';
 import RadioInput from 'components/RadioInput';
-import FieldInput from 'components/reduxForm/FieldInput';
 import { FormRow, FormColumn } from 'components/Form';
 import Button from 'components/Button';
 import Line from 'components/Line';
@@ -25,11 +27,23 @@ import styles from './styles.scss';
     name: {
       required: true,
     },
+    code_atc: {
+      required: true,
+    },
     form: {
+      required: true,
+    },
+    'manufacturer.name': {
+      required: true,
+    },
+    'manufacturer.country': {
       required: true,
     },
     'one.is_primary': {
       required: false,
+    },
+    'one.id': {
+      required: true,
     },
     'one.ingredients.denumerator_value': {
       required: true,
@@ -60,6 +74,32 @@ import styles from './styles.scss';
         required: true,
       },
     }),
+    // container: {
+    //   numerator_unit: {
+    //     required: true,
+    //   },
+    //   numerator_value: {
+    //     required: true,
+    //   },
+    //   denumerator_unit: {
+    //     required: true,
+    //   },
+    //   denumerator_value: {
+    //     required: true,
+    //   },
+    // },
+    // package_qty: {
+    //   required: false,
+    // },
+    // package_min_qty: {
+    //   required: false,
+    // },
+    certificate: {
+      required: false,
+    },
+    certificate_expired_at: {
+      required: false,
+    },
   }),
   initialValues: {
     one: {
@@ -76,6 +116,7 @@ export default class MedicationsCreateForm extends React.Component {
     super();
     this.state = {
       innms_search: '',
+      country_search: '',
       active: 0,
     };
     this.onChange = this.onChange.bind(this);
@@ -110,7 +151,17 @@ export default class MedicationsCreateForm extends React.Component {
               component={FieldInput}
               disabled={disabled}
               label_bold
-              placeholder="Назва хімічної сполуки"
+              placeholder="Введіть торгову назву"
+            />
+          </FormRow>
+          <FormRow>
+            <Field
+              name="code_atc"
+              labelText="Код АТХ"
+              component={FieldInput}
+              disabled={disabled}
+              label_bold
+              placeholder="Введіть код АТХ"
             />
           </FormRow>
           <FormRow>
@@ -126,7 +177,9 @@ export default class MedicationsCreateForm extends React.Component {
                     title: data.medication_form.values[key],
                   }))
                 }
-              />
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
             </FormColumn>
           </FormRow>
           <div className={styles.title}>
@@ -221,12 +274,122 @@ export default class MedicationsCreateForm extends React.Component {
               active={this.state.active}
             />
           </FormRow>
+          <div className={styles.title}>
+            &#8546;. Упаковка
+          </div>
+          <FormRow>
+            <FormColumn size="1/4">
+              <Field
+                name="one.ingredients.numerator_value"
+                labelText="Тип"
+                component={SelectUniversal}
+                label_bold
+                options={Object.keys(data.medication_unit.values).map(
+                  i => ({
+                    title: data.medication_unit.values[i],
+                    name: i,
+                  })
+                )}
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+            <FormColumn size="1/3">
+              <Field
+                name="one.ingredients.numerator_unit"
+                type="number"
+                component={FieldInput}
+                labelText="Кількість"
+                placeholder="30-60"
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+            <FormColumn size="1/3" align="bottom">
+              <Field
+                name="one.ingredients.denumerator_unit"
+                component={SelectUniversal}
+                options={Object.keys(data.medication_unit.values).map(
+                  i => ({
+                    title: data.medication_unit.values[i],
+                    name: i,
+                  })
+                )}
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+          </FormRow>
+          <div className={styles.title}>
+            &#8546;. Країна виробник
+          </div>
+          <FormRow>
+            <Field
+              name="manufacturer.country"
+              component={SelectUniversal}
+              labelText="Країна"
+              emptyText="Не знайдено"
+              placeholder="Почніть вводити назву"
+              label_bold
+              searchable
+              onChangeSearch={val => this.setState({ country_search: val.toLowerCase() })}
+              options={Object.keys(data.countries.values)
+                .filter(key =>
+                  new RegExp(this.state.country_search)
+                    .test(data.countries.values[key].toLowerCase()) === true)
+                .map(key => ({
+                  name: key,
+                  title: data.countries.values[key],
+                }))
+              }
+            >
+              <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+            </Field>
+          </FormRow>
+          <FormRow>
+            <Field
+              name="manufacturer.name"
+              component={FieldInput}
+              labelText="Виробник"
+              label_bold
+              placeholder="Введіть виробника"
+            >
+              <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+            </Field>
+          </FormRow>
+          <div className={styles.title}>
+            &#8546;. Сертифікат
+          </div>
+          <FormRow>
+            <FormColumn size="2/5" align="baseline">
+              <Field
+                name="certificate"
+                component={FieldInput}
+                labelText="Номер сертифікату"
+                label_bold
+                placeholder="Номер сертифікату"
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+            <FormColumn size="3/5" align="baseline">
+              <Field
+                name="certificate_expired_at"
+                component={FieldDate}
+                labelText="Дата закінчення сертифікату"
+                placeholder="22/01/2018"
+                dateModelFormat="X"
+                disabled={disabled}
+                dateFormat="DD/MM/YY"
+              />
+            </FormColumn>
+          </FormRow>
           {
             !disabled && (
-              <ShowWithScope scope="innm_dosage:write">
+              <ShowWithScope scope="medication:write">
                 <div>
                   <Button type="submit" disabled={submitting}>
-                    { submitting ? t('Додаємо...') : 'Додати форму хімічної сполуки' }
+                    { submitting ? t('Додаємо...') : 'Додати торгову назву' }
                   </Button>
                 </div>
               </ShowWithScope>

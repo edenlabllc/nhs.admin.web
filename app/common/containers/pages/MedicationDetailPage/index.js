@@ -1,5 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+import format from 'date-fns/format';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import { withRouter } from 'react-router';
@@ -141,7 +142,7 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             { name: 'Сертифікат', value: medication.certificate },
-            { name: 'Дата закінчення', value: medication.certificate_expired_at },
+            { name: 'Дата закінчення', value: format(medication.certificate_expired_at, 'DD/MM/YYYY') },
           ]}
         />
 

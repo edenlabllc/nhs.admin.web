@@ -17,6 +17,7 @@ import { onSubmit } from './redux';
   innms: getAllInnms(state),
   medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
   medication_form: getDictionary(state, 'MEDICATION_FORM'),
+  countries: getDictionary(state, 'COUNTRY'),
 }), { onSubmit })
 export default class MedicationCreatePage extends React.Component {
 
@@ -27,15 +28,16 @@ export default class MedicationCreatePage extends React.Component {
       innms = [],
       medication_unit = [],
       medication_form = [],
+      countries = [],
       onSubmit,
     } = this.props;
 
     return (
-      <div id="innm-dosages-create-page">
+      <div id="medicaion-create-page">
         <Helmet
-          title={t('Innm dosages create page')}
+          title={t('Medicaion create page')}
           meta={[
-            { property: 'og:title', content: t('Innm dosages create page') },
+            { property: 'og:title', content: t('Medication create page') },
           ]}
         />
         <BackLink onClick={() => router.goBack()}>Додати торгову назву</BackLink>
@@ -43,7 +45,7 @@ export default class MedicationCreatePage extends React.Component {
 
         <MedicationsCreateForm
           onSubmit={onSubmit}
-          data={{ innms, medication_unit, medication_form }}
+          data={{ innms, medication_unit, medication_form, countries }}
         />
       </div>
     );
