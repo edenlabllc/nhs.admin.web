@@ -35,7 +35,7 @@ export default class RenderIngredient extends React.Component {
                   label_bold
                   searchable
                   onChangeSearch={val => this.setState({ innms_search: val.toLowerCase() })}
-                  options={data.innms
+                  options={data.innm_dosages
                     .filter(i => i.is_active)
                     .filter(i =>
                       new RegExp(this.state.innms_search)

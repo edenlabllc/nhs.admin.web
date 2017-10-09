@@ -11,6 +11,7 @@ export const fetchInnmDosages = options => invoke({
   headers: {
     'content-type': 'application/json',
   },
+  // bailout: state => useCache && state.data.innm_dosages,
   types: ['innm_dosages/FETCH_LIST_REQUEST', {
     type: 'innm_dosages/FETCH_LIST_SUCCESS',
     payload: (action, state, res) => res.clone().json().then(

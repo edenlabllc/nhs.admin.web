@@ -1,6 +1,6 @@
 import React from 'react';
-import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import libStyles from './libStyles.css';
@@ -13,7 +13,7 @@ export const Component = ({
   maxDate,
   onChange,
   value,
-  dateModelFormat,
+  dateModelFormat = 'YYYY-MM-DD',
   placeholder,
   ...rest }) => (
   <DatePicker

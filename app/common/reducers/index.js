@@ -168,6 +168,8 @@ export const getAllInnms = state => getInnms(state, Object.keys(state.data.innms
 export const getInnm = (state, id) => denormalize(id, schemas.innm, state.data);
 
 export const getInnmDosages = (state, ids) => denormalize(ids, [schemas.innm_dosage], state.data);
+export const getAllInnmDosages = state =>
+  getInnmDosages(state, Object.keys(state.data.innm_dosages));
 export const getInnmDosage = (state, id) => denormalize(id, schemas.innm_dosage, state.data);
 
 export const getMedications = (state, ids) => denormalize(ids, [schemas.medication], state.data);

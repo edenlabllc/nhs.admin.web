@@ -42,7 +42,7 @@ import styles from './styles.scss';
     'one.is_primary': {
       required: false,
     },
-    'one.id': {
+    'one.ingredients.id': {
       required: true,
     },
     'one.ingredients.denumerator_value': {
@@ -194,7 +194,7 @@ export default class MedicationsCreateForm extends React.Component {
                 label_bold
                 searchable
                 onChangeSearch={val => this.setState({ innms_search: val.toLowerCase() })}
-                options={data.innms
+                options={data.innm_dosages
                   .filter(i => i.is_active)
                   .filter(i =>
                     new RegExp(this.state.innms_search)
@@ -325,6 +325,7 @@ export default class MedicationsCreateForm extends React.Component {
               <Field
                 name="package_qty"
                 component={FieldInput}
+                type="number"
                 labelText="Упаковка кількість"
                 label_bold
                 postfix={container__active}
@@ -336,6 +337,7 @@ export default class MedicationsCreateForm extends React.Component {
               <Field
                 name="package_min_qty"
                 component={FieldInput}
+                type="number"
                 labelText="Упаковка мінімальна кількість"
                 label_bold
                 postfix={container__active}
@@ -403,9 +405,7 @@ export default class MedicationsCreateForm extends React.Component {
                 component={FieldDate}
                 labelText="Дата закінчення сертифікату"
                 placeholder="22/01/2018"
-                dateModelFormat="X"
-                disabled={disabled}
-                dateFormat="DD/MM/YY"
+                dateFormat="YYYY-MM-DD"
               />
             </FormColumn>
           </FormRow>

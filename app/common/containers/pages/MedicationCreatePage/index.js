@@ -7,14 +7,14 @@ import Helmet from 'react-helmet';
 import BackLink from 'containers/blocks/BackLink';
 import Line from 'components/Line';
 import MedicationsCreateForm from 'containers/forms/MedicationsCreateForm';
-import { getAllInnms, getDictionary } from 'reducers';
+import { getAllInnmDosages, getDictionary } from 'reducers';
 
 import { onSubmit } from './redux';
 
 @withRouter
 @translate()
 @connect(state => ({
-  innms: getAllInnms(state),
+  innm_dosages: getAllInnmDosages(state),
   medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
   medication_form: getDictionary(state, 'MEDICATION_FORM'),
   countries: getDictionary(state, 'COUNTRY'),
@@ -25,7 +25,7 @@ export default class MedicationCreatePage extends React.Component {
     const {
       t,
       router,
-      innms = [],
+      innm_dosages = [],
       medication_unit = [],
       medication_form = [],
       countries = [],
@@ -45,7 +45,7 @@ export default class MedicationCreatePage extends React.Component {
 
         <MedicationsCreateForm
           onSubmit={onSubmit}
-          data={{ innms, medication_unit, medication_form, countries }}
+          data={{ innm_dosages, medication_unit, medication_form, countries }}
         />
       </div>
     );

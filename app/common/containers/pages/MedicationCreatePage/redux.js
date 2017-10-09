@@ -1,17 +1,32 @@
-import { createInnmDosage } from 'redux/innm-dosages';
+import { createMedication } from 'redux/medications';
 import { push } from 'react-router-redux';
 
 export const onSubmit = (v, active) => (dispatch) => {
   const values = {
-    form: v.form.name,
     name: v.name,
-    ingredients: (v.ingredients || []).map(i => ({
-      id: i.id.name,
+    code_atc: v.code_atc,
+    package_qty: +v.package_qty,
+    package_min_qty: +v.package_min_qty,
+    certificate: v.certificate,
+    certificate_expired_at: v.certificate_expired_at,
+    form: v.form.name,
+    manufacturer: {
+      country: v.manufacturer.country.name,
+      name: v.manufacturer.name,
+    },
+    container: {
+      numerator_value: +v.container.numerator_value,
+      numerator_unit: v.container.numerator_unit.name,
+      denumerator_unit: v.container.denumerator_unit.name,
+      denumerator_value: 1,
+    },
+    ingredients: (v.ingredients || []).map(item => ({
+      id: item.id.name,
       is_primary: false,
       dosage: {
-        numerator_value: +i.numerator_value,
-        numerator_unit: i.numerator_unit.name,
-        denumerator_unit: i.denumerator_unit.name,
+        numerator_value: +item.numerator_value,
+        numerator_unit: item.numerator_unit.name,
+        denumerator_unit: item.denumerator_unit.name,
         denumerator_value: 1,
       },
     })),
@@ -26,13 +41,14 @@ export const onSubmit = (v, active) => (dispatch) => {
       denumerator_value: 1,
     },
   }));
-  values.ingredients[active].is_primary = true;
 
-  return dispatch(createInnmDosage(values)).then((action) => {
+  values.ingredients[active].is_primary = true;
+  console.log(values);
+  return dispatch(createMedication(values)).then((action) => {
     if (action.error) {
       throw new Error();
     }
-    return dispatch(push(`/innm-dosages/${action.payload.data.id}`));
+    return dispatch(push(`/medications/${action.payload.data.id}`));
   });
 };
 
