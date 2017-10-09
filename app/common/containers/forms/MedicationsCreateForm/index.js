@@ -74,26 +74,21 @@ import styles from './styles.scss';
         required: true,
       },
     }),
-    // container: {
-    //   numerator_unit: {
-    //     required: true,
-    //   },
-    //   numerator_value: {
-    //     required: true,
-    //   },
-    //   denumerator_unit: {
-    //     required: true,
-    //   },
-    //   denumerator_value: {
-    //     required: true,
-    //   },
-    // },
-    // package_qty: {
-    //   required: false,
-    // },
-    // package_min_qty: {
-    //   required: false,
-    // },
+    'container.numerator_unit': {
+      required: true,
+    },
+    'container.numerator_value': {
+      required: true,
+    },
+    'container.denumerator_unit': {
+      required: true,
+    },
+    package_qty: {
+      required: false,
+    },
+    package_min_qty: {
+      required: false,
+    },
     certificate: {
       required: false,
     },
@@ -136,7 +131,10 @@ export default class MedicationsCreateForm extends React.Component {
       t,
       disabled = false,
       data,
+      values = { },
     } = this.props;
+    const container__active = values.container &&
+      values.container.denumerator_unit && `${values.container.denumerator_unit.title.slice(0, 3)}.`;
 
     return (
       <form onSubmit={handleSubmit(v => onSubmit(v, this.state.active))}>
@@ -150,8 +148,8 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Назва"
               component={FieldInput}
               disabled={disabled}
-              label_bold
               placeholder="Введіть торгову назву"
+              label_bold
             />
           </FormRow>
           <FormRow>
@@ -160,8 +158,8 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Код АТХ"
               component={FieldInput}
               disabled={disabled}
-              label_bold
               placeholder="Введіть код АТХ"
+              label_bold
             />
           </FormRow>
           <FormRow>
@@ -280,8 +278,9 @@ export default class MedicationsCreateForm extends React.Component {
           <FormRow>
             <FormColumn size="1/4">
               <Field
-                name="one.ingredients.numerator_value"
+                name="container.denumerator_unit"
                 labelText="Тип"
+                placeholder="Упаковка"
                 component={SelectUniversal}
                 label_bold
                 options={Object.keys(data.medication_unit.values).map(
@@ -296,19 +295,20 @@ export default class MedicationsCreateForm extends React.Component {
             </FormColumn>
             <FormColumn size="1/3">
               <Field
-                name="one.ingredients.numerator_unit"
+                name="container.numerator_value"
                 type="number"
                 component={FieldInput}
                 labelText="Кількість"
-                placeholder="30-60"
+                placeholder="30"
               >
                 <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="1/3" align="bottom">
               <Field
-                name="one.ingredients.denumerator_unit"
+                name="container.numerator_unit"
                 component={SelectUniversal}
+                placeholder="Таблетки"
                 options={Object.keys(data.medication_unit.values).map(
                   i => ({
                     title: data.medication_unit.values[i],
@@ -319,6 +319,31 @@ export default class MedicationsCreateForm extends React.Component {
                 <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
               </Field>
             </FormColumn>
+          </FormRow>
+          <FormRow>
+            <FormColumn size="1/4">
+              <Field
+                name="package_qty"
+                component={FieldInput}
+                labelText="Упаковка кількість"
+                label_bold
+                postfix={container__active}
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+            <FormColumn size="2/4">
+              <Field
+                name="package_min_qty"
+                component={FieldInput}
+                labelText="Упаковка мінімальна кількість"
+                label_bold
+                postfix={container__active}
+              >
+                <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              </Field>
+            </FormColumn>
+            <FormColumn size="1/2" />
           </FormRow>
           <div className={styles.title}>
             &#8546;. Країна виробник
