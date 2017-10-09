@@ -119,12 +119,12 @@ export default class Nav extends React.Component {
               <ul>
                 <ShowWithScope scope="medical_program:read">
                   <NavItem to="medical-program" activeClassName={styles.active}>
-                    <Link id="medical-program-nav" to="/medical-program">{ t('Medical program') }</Link>
+                    <Link id="medical-program-nav" to="/medical-program">Перелік мед. програм</Link>
                   </NavItem>
                 </ShowWithScope>
                 <ShowWithScope scope="program_medication:read">
                   <NavItem to="program-medications" activeClassName={styles.active}>
-                    <Link id="program_medications-nav" to="/program-medications">{ t('Program medications') }</Link>
+                    <Link id="program_medications-nav" to="/program-medications">Учасники програм</Link>
                   </NavItem>
                 </ShowWithScope>
               </ul>

@@ -43,7 +43,6 @@ export const onSubmit = (v, active) => (dispatch) => {
   }));
 
   values.ingredients[active].is_primary = true;
-  console.log(values);
   return dispatch(createMedication(values)).then((action) => {
     if (action.error) {
       throw new Error();

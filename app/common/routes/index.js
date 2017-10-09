@@ -44,6 +44,10 @@ import MedicationsListPage from 'containers/pages/MedicationsListPage';
 import MedicationCreatePage from 'containers/pages/MedicationCreatePage';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage';
 
+import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage';
+// import MedicationCreatePage from 'containers/pages/MedicationCreatePage';
+// import MedicationDetailPage from 'containers/pages/MedicationDetailPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
@@ -133,6 +137,11 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={MedicationsListPage} />
             <Route path="create" component={MedicationCreatePage} />
             <Route path=":id" component={MedicationDetailPage} />
+          </Route>
+          <Route path="medical-program" onEnter={requireScope(['medical_program:read'])} >
+            <IndexRoute component={MedicalProgramsListPage} />
+            {/* <Route path="create" component={MedicationCreatePage} />*/}
+            {/* <Route path=":id" component={MedicationDetailPage} />*/}
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />

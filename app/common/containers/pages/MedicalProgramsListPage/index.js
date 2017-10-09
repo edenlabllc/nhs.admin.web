@@ -14,76 +14,81 @@ import Button from 'components/Button';
 
 import Table from 'components/Table';
 import ShowBy from 'containers/blocks/ShowBy';
-import Icon from 'components/Icon';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import ColoredText from 'components/ColoredText';
 
 import SearchForm from 'containers/forms/SearchForm';
 
-import { getMedications } from 'reducers';
+import { getMedicalPrograms } from 'reducers';
 
-import { fetchMedications } from './redux';
+import { fetchMedicalPrograms } from './redux';
 import styles from './styles.scss';
 
-const FILTER_PARAMS = ['id', 'innm_id', 'name', 'form'];
+const FILTER_PARAMS = ['id', 'medical_program_id', 'medical_program_name', 'innm_id', 'innm_name', 'medication_id', 'medication_name'];
 
 @withRouter
 @withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchMedications({ page_size: 5, ...query })),
+    dispatch(fetchMedicalPrograms({ page_size: 5, ...query })),
 })
 @connect(state => ({
-  ...state.pages.MedicationsListPage,
-  medications: getMedications(state, state.pages.MedicationsListPage.medications),
+  ...state.pages.MedicalProgramsListPage,
+  medical_programs: getMedicalPrograms(state, state.pages.MedicalProgramsListPage.medical_programs),
 }))
-export default class MedicationsListPage extends React.Component {
+export default class MedicalProgramsListPage extends React.Component {
   get activeFilter() {
     const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
       .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
     return FILTER_PARAMS[index !== -1 ? index : 0];
   }
   render() {
-    const { medications = [], t, paging, location } = this.props;
+    const { medical_programs = [], t, paging, location } = this.props;
     const activeFilter = this.activeFilter;
 
     return (
       <div id="medication-list-page">
         <Helmet
-          title="Торгові назви"
+          title="Перелік медичний програм"
           meta={[
-            { property: 'og:title', content: 'Торгові назви' },
+            { property: 'og:title', content: 'Перелік медичний програм' },
           ]}
         />
         <div className={styles.header}>
-          <H1>Торгові назви</H1>
+          <H1>Перелік медичний програм</H1>
           <div className={styles.header__btn}>
-            <Button to="/medications/create" theme="border" size="small" color="orange" icon="add">
-              Створити торгову назву
+            <Button to="/medical-program/create" theme="border" size="small" color="orange" icon="add">
+              Додати програму
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>Пошук торгової назви</H2>
+          <H2>Пошук програм</H2>
 
           <SearchForm
             active={activeFilter}
-            placeholder="Знайти торгову назву"
+            placeholder="Знайти програму"
             items={[
               { name: 'id', title: t('By id') },
+              { name: 'medical_program_id', title: t('By medical_program_id') },
+              { name: 'medical_program_name', title: t('By medical_program_name') },
               { name: 'innm_id', title: t('By innm_id') },
-              { name: 'name', title: t('By medication name') },
-              { name: 'form', title: t('By form') },
+              { name: 'innm_name', title: t('By innm_name') },
+              { name: 'medication_id', title: t('By medication_id') },
+              { name: 'medication_name', title: t('By medication_name') },
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter],
             }}
             onSubmit={values => filter({
               id: null,
-              name: null,
+              medical_program_id: null,
+              medical_program_name: null,
+              innm_id: null,
               innm_name: null,
-              form: null,
+              medication_id: null,
+              medication_name: null,
               ...values,
             }, this.props)}
           />
@@ -99,24 +104,21 @@ export default class MedicationsListPage extends React.Component {
         <div id="medication-table" className={styles.table}>
           <Table
             columns={[
-              { key: 'innm_id', title: t('Innm ID') },
-              { key: 'id', title: t('Medication ID') },
-              { key: 'name', title: t('Medication name') },
-              { key: 'form', title: t('Form') },
-              { key: 'active', title: t('Active') },
+              { key: 'id', title: 'ID\n медичної программи' },
+              { key: 'name', title: 'Назва медичної программи' },
+              { key: 'status', title: 'Статус программи' },
               { key: 'action', title: t('Action'), width: 100 },
             ]}
-            data={medications.map(item => ({
-              innm_id: <div>{item.ingredients[0].id}</div>,
+            data={medical_programs.map(item => ({
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
-              form: <div>
-                <DictionaryValue dictionary="MEDICATION_FORM" value={item.form} />
-                <br />
-                {item.manufacturer.name}
+              status: <div>
+                {
+                  item.is_active ? <ColoredText color="green">активна</ColoredText> :
+                    <ColoredText color="red">неактивна</ColoredText>
+                }
               </div>,
-              active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
-              action: (<Button id={`show-medication-detail-button-${item.id}`} theme="link" to={`/medications/${item.id}`}>{ t('Details') }</Button>),
+              action: (<Button id={`show-medical-programs-detail-button-${item.id}`} theme="link" to={`/medical-programs/${item.id}`}>{ t('Details') }</Button>),
             }))}
           />
         </div>
