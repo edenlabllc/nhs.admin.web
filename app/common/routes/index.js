@@ -32,6 +32,22 @@ import ReportsListPage from 'containers/pages/ReportsListPage';
 
 import SystemConfigurationPage from 'containers/pages/SystemConfigurationPage';
 
+import InnmsListPage from 'containers/pages/InnmsListPage';
+import InnmCreatePage from 'containers/pages/InnmCreatePage';
+import InnmDetailPage from 'containers/pages/InnmDetailPage';
+
+import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage';
+import InnmDosagesCreatePage from 'containers/pages/InnmDosagesCreatePage';
+import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage';
+
+import MedicationsListPage from 'containers/pages/MedicationsListPage';
+import MedicationCreatePage from 'containers/pages/MedicationCreatePage';
+import MedicationDetailPage from 'containers/pages/MedicationDetailPage';
+
+import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage';
+// import MedicationCreatePage from 'containers/pages/MedicationCreatePage';
+// import MedicationDetailPage from 'containers/pages/MedicationDetailPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
@@ -106,6 +122,26 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
           <Route path="pending-employees" onEnter={requireScope(['employee_request:read'])} >
             <IndexRoute component={PendingEmployeesListPage} />
             <Route path=":id" component={PendingEmployeeDetailPage} />
+          </Route>
+          <Route path="innms" onEnter={requireScope(['innm:read'])} >
+            <IndexRoute component={InnmsListPage} />
+            <Route path="create" component={InnmCreatePage} />
+            <Route path=":id" component={InnmDetailPage} />
+          </Route>
+          <Route path="innm-dosages" onEnter={requireScope(['innm_dosage:read'])} >
+            <IndexRoute component={InnmDosagesListPage} />
+            <Route path="create" component={InnmDosagesCreatePage} />
+            <Route path=":id" component={InnmDosagesDetailPage} />
+          </Route>
+          <Route path="medications" onEnter={requireScope(['medication:read'])} >
+            <IndexRoute component={MedicationsListPage} />
+            <Route path="create" component={MedicationCreatePage} />
+            <Route path=":id" component={MedicationDetailPage} />
+          </Route>
+          <Route path="medical-program" onEnter={requireScope(['medical_program:read'])} >
+            <IndexRoute component={MedicalProgramsListPage} />
+            {/* <Route path="create" component={MedicationCreatePage} />*/}
+            {/* <Route path=":id" component={MedicationDetailPage} />*/}
           </Route>
           <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
           <Route path="reports" component={ReportsListPage} />

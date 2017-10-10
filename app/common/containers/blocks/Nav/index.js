@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import classnames from 'classnames';
+import nl2br from 'react-nl2br';
 import { Link } from 'react-router';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import NavItem from 'components/NavItem';
 import Icon from 'components/Icon';
+
 import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowMore from 'containers/blocks/ShowMore';
 
 import { logOut } from './redux';
 
@@ -36,26 +39,38 @@ export default class Nav extends React.Component {
             <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
           </NavItem>
           <ShowWithScope scope="declaration:read">
-            <NavItem to="declarations" activeClassName={styles.active}>
-              <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
-            </NavItem>
-          </ShowWithScope>
-          <ShowWithScope scope="declaration:read">
-            <NavItem to="pending-declarations" activeClassName={styles.active}>
-              <Link id="pending-declarations-nav" to="/pending-declarations">
-                { t('Pending declarations') }
-              </Link>
-            </NavItem>
+            <li>
+              <ShowMore nav name={t('Declarations')}>
+                <ul>
+                  <NavItem to="declarations" activeClassName={styles.active}>
+                    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
+                  </NavItem>
+                  <NavItem to="pending-declarations" activeClassName={styles.active}>
+                    <Link id="pending-declarations-nav" to="/pending-declarations">
+                      { t('Pending declarations') }
+                    </Link>
+                  </NavItem>
+                </ul>
+              </ShowMore>
+            </li>
           </ShowWithScope>
           <ShowWithScope scope="employee:read">
-            <NavItem to="employees" activeClassName={styles.active}>
-              <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
-            </NavItem>
-          </ShowWithScope>
-          <ShowWithScope scope="employee_request:read">
-            <NavItem to="pending-employees" activeClassName={styles.active}>
-              <Link id="pending-employees-nav" to="/pending-employees">{ t('Pending employees') }</Link>
-            </NavItem>
+            <li>
+              <ShowMore nav name={t('Employees')}>
+                <ShowWithScope scope="employee_request:read">
+                  <ul>
+                    <NavItem to="employees" activeClassName={styles.active}>
+                      <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
+                    </NavItem>
+                    <NavItem to="pending-employees" activeClassName={styles.active}>
+                      <Link id="pending-employees-nav" to="/pending-employees">
+                        { nl2br(t('Pending\n employees')) }
+                      </Link>
+                    </NavItem>
+                  </ul>
+                </ShowWithScope>
+              </ShowMore>
+            </li>
           </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics" activeClassName={styles.active}>
@@ -78,6 +93,47 @@ export default class Nav extends React.Component {
               <Link id="configuration-nav" to="/configuration">{ t('System configuration') }</Link>
             </NavItem>
           </ShowWithScope>
+          <li>
+            <ShowMore nav name={t('Innms')}>
+              <ul>
+                <ShowWithScope scope="innm:read">
+                  <NavItem to="innms" activeClassName={styles.active}>
+                    <Link id="innms-nav" to="/innms">{ t('Innms') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="innm_dosage:read">
+                  <NavItem to="innm-dosages" activeClassName={styles.active}>
+                    <Link id="innm-dosages-nav" to="/innm-dosages">{ t('Innm dosages') }</Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="medication:read">
+                  <NavItem to="medications" activeClassName={styles.active}>
+                    <Link id="medications-nav" to="/medications">Торгова назва</Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          {
+            false && (
+              <li>
+                <ShowMore nav name={t('Medications')}>
+                  <ul>
+                    <ShowWithScope scope="medical_program:read">
+                      <NavItem to="medical-program" activeClassName={styles.active}>
+                        <Link id="medical-program-nav" to="/medical-program">Перелік мед. програм</Link>
+                      </NavItem>
+                    </ShowWithScope>
+                    <ShowWithScope scope="program_medication:read">
+                      <NavItem to="program-medications" activeClassName={styles.active}>
+                        <Link id="program_medications-nav" to="/program-medications">Учасники програм</Link>
+                      </NavItem>
+                    </ShowWithScope>
+                  </ul>
+                </ShowMore>
+              </li>
+            )
+          }
         </ul>
         <ul className={styles.down}>
           <li>
