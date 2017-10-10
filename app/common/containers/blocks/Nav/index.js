@@ -114,22 +114,26 @@ export default class Nav extends React.Component {
               </ul>
             </ShowMore>
           </li>
-          <li>
-            <ShowMore nav name={t('Medications')}>
-              <ul>
-                <ShowWithScope scope="medical_program:read">
-                  <NavItem to="medical-program" activeClassName={styles.active}>
-                    <Link id="medical-program-nav" to="/medical-program">Перелік мед. програм</Link>
-                  </NavItem>
-                </ShowWithScope>
-                <ShowWithScope scope="program_medication:read">
-                  <NavItem to="program-medications" activeClassName={styles.active}>
-                    <Link id="program_medications-nav" to="/program-medications">Учасники програм</Link>
-                  </NavItem>
-                </ShowWithScope>
-              </ul>
-            </ShowMore>
-          </li>
+          {
+            false && (
+              <li>
+                <ShowMore nav name={t('Medications')}>
+                  <ul>
+                    <ShowWithScope scope="medical_program:read">
+                      <NavItem to="medical-program" activeClassName={styles.active}>
+                        <Link id="medical-program-nav" to="/medical-program">Перелік мед. програм</Link>
+                      </NavItem>
+                    </ShowWithScope>
+                    <ShowWithScope scope="program_medication:read">
+                      <NavItem to="program-medications" activeClassName={styles.active}>
+                        <Link id="program_medications-nav" to="/program-medications">Учасники програм</Link>
+                      </NavItem>
+                    </ShowWithScope>
+                  </ul>
+                </ShowMore>
+              </li>
+            )
+          }
         </ul>
         <ul className={styles.down}>
           <li>
