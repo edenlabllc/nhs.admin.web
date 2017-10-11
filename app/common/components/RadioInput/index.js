@@ -3,7 +3,7 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import styles from './styles.scss';
 
-export const Component = ({
+export const RadioInput = ({
   selected = false,
   onChange = e => e,
   disabled,
@@ -27,7 +27,7 @@ export const Component = ({
   </label>
 );
 
-Component.PropTypes = {
+RadioInput.PropTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.isRequired,
   disabled: PropTypes.bool,
@@ -35,4 +35,4 @@ Component.PropTypes = {
   onChange: PropTypes.func
 };
 
-export default withStyles(styles)(Component);
+export default withStyles(styles)(RadioInput);

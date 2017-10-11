@@ -3,4 +3,13 @@ import Checkbox from 'components/Checkbox';
 
 import FieldInput from './FieldInput';
 
-export default props => <FieldInput component={Checkbox} {...props} type="checkbox" checked={props.input.value} />;
+const FieldCheckbox = props => (
+  <FieldInput
+    component={Checkbox}
+    {...props}
+    type="checkbox"
+    checked={props.input.value}
+  />
+);
+
+export default FieldCheckbox;

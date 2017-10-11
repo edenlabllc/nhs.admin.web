@@ -3,4 +3,8 @@ import Input from 'components/Input';
 
 import FieldInput from './FieldInput';
 
-export default props => <FieldInput component={Input} inputComponent="textarea" {...props} />;
+const FieldTextarea = props => (
+  <FieldInput component={Input} inputComponent="textarea" {...props} />
+);
+
+export default FieldTextarea;

@@ -3,6 +3,8 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import styles from './styles.scss';
 
-export default withStyles(styles)(({ children }) => (
+const Upper = ({ children }) => (
   <span className={styles.upper}>{children}</span>
-));
+);
+
+export default withStyles(styles)(Upper);

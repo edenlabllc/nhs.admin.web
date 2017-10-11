@@ -13,7 +13,7 @@ const Postfix = ({ postfix }) => (
   <span className={styles['postfix-wrapper']}>{postfix}</span>
 );
 
-export const Component = ({
+export const Input = ({
   children,
   type,
   labelText,
@@ -103,8 +103,8 @@ export const Component = ({
   );
 };
 
-Component.propTypes = {
+Input.propTypes = {
   theme: PropTypes.oneOf(['light'])
 };
 
-export default withStyles(styles)(Component);
+export default withStyles(styles)(Input);

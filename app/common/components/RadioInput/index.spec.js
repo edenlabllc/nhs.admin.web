@@ -2,7 +2,7 @@ import React from 'react';
 import chai, { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import spies from 'chai-spies';
-import { Component as RadioInput } from './index.js';
+import { RadioInput } from './index.js';
 
 chai.use(spies);
 
@@ -49,7 +49,9 @@ describe('RadioInput', () => {
     it('should not been called if disabled is passed', () => {
       const spyCb = chai.spy(() => {});
       expect(spyCb).to.have.not.been.called();
-      const inst = shallow(<RadioInput onChange={spyCb} value="test" disabled />);
+      const inst = shallow(
+        <RadioInput onChange={spyCb} value="test" disabled />
+      );
       inst.find('input').simulate('change');
       expect(spyCb).to.have.not.been.called();
     });
@@ -57,19 +59,34 @@ describe('RadioInput', () => {
   describe('group of inputs', () => {
     class TestGroup extends React.Component {
       state = {
-        value: 'a',
+        value: 'a'
       };
       onChange(value) {
         this.setState({
-          value,
+          value
         });
       }
       render() {
         return (
           <div>
-            <RadioInput name="test" value="a" selected={this.state.value === 'a'} onChange={v => this.onChange(v)} />
-            <RadioInput name="test" value="b" selected={this.state.value === 'b'} onChange={v => this.onChange(v)} />
-            <RadioInput name="test" value="c" selected={this.state.value === 'c'} onChange={v => this.onChange(v)} />
+            <RadioInput
+              name="test"
+              value="a"
+              selected={this.state.value === 'a'}
+              onChange={v => this.onChange(v)}
+            />
+            <RadioInput
+              name="test"
+              value="b"
+              selected={this.state.value === 'b'}
+              onChange={v => this.onChange(v)}
+            />
+            <RadioInput
+              name="test"
+              value="c"
+              selected={this.state.value === 'c'}
+              onChange={v => this.onChange(v)}
+            />
           </div>
         );
       }
