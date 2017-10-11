@@ -1,7 +1,7 @@
 .pagination {
   display: block;
   margin: 20px auto;
-  max-width: 520px;
+  max-width: 400px;
 }
 
 .g-pagination {
@@ -9,7 +9,6 @@
   display: inline-block;
 
   ul {
-    width: 400px;
     display: inline-block;
   }
 
@@ -56,13 +55,19 @@
     }
   }
 
+  .g-pagination-prev {
+    margin-right: 10px;
+  }
+
+  .g-pagination-next {
+    margin-left: 10px;
+  }
+
   .g-pagination-prev,
   .g-pagination-next {
     &.s-hidden {
       visibility: hidden;
     }
-
-    margin-right: 10px;
 
     a {
       width: 48px;

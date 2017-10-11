@@ -1,6 +1,6 @@
 {
   "name": "nhs.admin.web",
-  "version": "0.1.44",
+  "version": "0.1.47",
   "description": "MAN UI",
   "repository": "https://github.com/Nebo15/nhs.admin.web.git",
   "scripts": {
@@ -98,6 +98,7 @@
     "proxy-middleware": "0.15.0",
     "qs": "^6.5.0",
     "react": "15.2.1",
+    "react-datepicker": "^0.55.0",
     "react-dom": "15.2.1",
     "react-helmet": "4.0.0",
     "react-hot-loader": "3.0.0-beta.6",
@@ -105,6 +106,7 @@
     "react-images": "^0.5.2",
     "react-lite": "0.15.33",
     "react-nebo15-validate": "0.1.12",
+    "react-nl2br": "^0.3.0",
     "react-redux": "4.4.5",
     "react-router": "2.8.1",
     "react-router-redial": "0.3.4",

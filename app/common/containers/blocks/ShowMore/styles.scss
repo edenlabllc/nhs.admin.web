@@ -1,7 +1,19 @@
+.main {
+  &__nav {
+    display: inline;
+  }
+}
+
 .button {
   font-size: 14px;
   font-weight: 700;
   color: #22a4ff;
+
+  &_default {
+    font-size: 12px;
+    color: #fff;
+    font-weight: 400;
+  }
 
   span {
     display: inline-block;
@@ -19,6 +31,14 @@
   margin-top: 20px;
 
   &_show {
+    display: inline-block;
+  }
+
+  &_show_block {
     display: block;
+  }
+
+  &_nav {
+    margin-top: 0;
   }
 }

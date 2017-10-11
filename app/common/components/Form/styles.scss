@@ -1,4 +1,3 @@
-
 .form {
   max-width: 730px;
 }
@@ -91,16 +90,20 @@
 }
 
 .column_align {
-  &--bottom {
+  &-bottom {
     vertical-align: bottom;
   }
 
-  &--top {
+  &-top {
     vertical-align: top;
   }
 
-  &--middle {
-    vertical-align: top;
+  &-middle {
+    vertical-align: middle;
+  }
+
+  &-baseline {
+    vertical-align: baseline;
   }
 }
 

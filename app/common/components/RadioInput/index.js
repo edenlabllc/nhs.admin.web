@@ -3,7 +3,14 @@ import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
 import styles from './styles.scss';
 
-export const Component = ({ selected = false, onChange = e => e, disabled, value, name }) => (
+export const Component = ({
+  selected = false,
+  onChange = e => e,
+  disabled,
+  value,
+  name,
+  children
+}) => (
   <label className={styles.wrap}>
     <input
       type="radio"
@@ -12,19 +19,20 @@ export const Component = ({ selected = false, onChange = e => e, disabled, value
         checked: selected,
         value,
         name,
-        disabled,
+        disabled
       }}
     />
     <span className={styles.view} />
+    <span className={styles.label}>{children}</span>
   </label>
 );
 
 Component.PropTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.isReqiored,
+  value: PropTypes.isRequired,
   disabled: PropTypes.bool,
   selected: PropTypes.bool,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default withStyles(styles)(Component);

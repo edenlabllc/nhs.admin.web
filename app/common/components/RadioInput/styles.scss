@@ -1,5 +1,3 @@
-
-
 .wrap {
   cursor: pointer;
   user-select: none;
@@ -13,7 +11,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  line-height: 17px;
+  line-height: 18px;
   background-color: white;
   border: 1px solid #c9c9c9;
   border-radius: 100%;
@@ -23,9 +21,9 @@
     content: '';
     vertical-align: middle;
     display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: #11d8fb;
+    width: 10px;
+    height: 10px;
+    background-color: #44e242;
     opacity: 0;
     border-radius: 100%;
   }
@@ -39,4 +37,9 @@
       opacity: 1;
     }
   }
+}
+
+.label {
+  margin-left: 10px;
+  font-size: 12px;
 }
