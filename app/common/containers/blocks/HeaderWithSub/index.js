@@ -6,14 +6,12 @@ import Line from 'components/Line';
 
 import styles from './styles.scss';
 
-export default withStyles(styles)(({ title, children }) => (
+const HeaderWithSub = ({ title, children }) => (
   <div>
     <H1>{title}</H1>
-
-    <div className={styles.sub}>
-      {children}
-    </div>
-
+    <div className={styles.sub}>{children}</div>
     <Line />
   </div>
-));
+);
+
+export default withStyles(styles)(HeaderWithSub);

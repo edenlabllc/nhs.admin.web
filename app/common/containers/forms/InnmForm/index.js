@@ -13,25 +13,24 @@ import { reduxFormValidate } from 'react-nebo15-validate';
 
 import styles from './styles.scss';
 
-
 @withStyles(styles)
 @translate()
 @reduxForm({
   form: 'system-configuration-form',
   validate: reduxFormValidate({
     sctid: {
-      length: 8,
+      length: 8
     },
     name: {
-      required: true,
+      required: true
     },
     name_original: {
-      required: true,
-    },
-  }),
+      required: true
+    }
+  })
 })
 @connect(state => ({
-  values: getFormValues('innm-form')(state),
+  values: getFormValues('innm-form')(state)
 }))
 export default class InnmForm extends React.Component {
   render() {
@@ -42,7 +41,7 @@ export default class InnmForm extends React.Component {
       t,
       disabled = false,
       create,
-      initialValues = {},
+      initialValues = {}
     } = this.props;
 
     return (
@@ -66,43 +65,37 @@ export default class InnmForm extends React.Component {
               placeholder="Amiodarone"
             />
           </div>
-          {
-            initialValues.sctid && (
+          {initialValues.sctid && (
+            <div>
+              <Field
+                name="sctid"
+                labelText={t('sctid innm')}
+                component={FieldInput}
+                disabled={disabled}
+                placeholder="61626162"
+              />
+            </div>
+          )}
+          {create && (
+            <div>
+              <Field
+                name="sctid"
+                labelText={t('sctid innm')}
+                component={FieldInput}
+                disabled={disabled}
+                placeholder="61626162"
+              />
+            </div>
+          )}
+          {!disabled && (
+            <ShowWithScope scope="innm:write">
               <div>
-                <Field
-                  name="sctid"
-                  labelText={t('sctid innm')}
-                  component={FieldInput}
-                  disabled={disabled}
-                  placeholder="61626162"
-                />
+                <Button type="submit" disabled={submitting}>
+                  {submitting ? t('Saving...') : t('Create innm')}
+                </Button>
               </div>
-            )
-          }
-          {
-            create && (
-              <div>
-                <Field
-                  name="sctid"
-                  labelText={t('sctid innm')}
-                  component={FieldInput}
-                  disabled={disabled}
-                  placeholder="61626162"
-                />
-              </div>
-            )
-          }
-          {
-            !disabled && (
-              <ShowWithScope scope="innm:write">
-                <div>
-                  <Button type="submit" disabled={submitting}>
-                    { submitting ? t('Saving...') : t('Create innm') }
-                  </Button>
-                </div>
-              </ShowWithScope>
-            )
-          }
+            </ShowWithScope>
+          )}
         </div>
       </form>
     );

@@ -13,14 +13,16 @@ import { onSubmit } from './redux';
 
 @withRouter
 @translate()
-@connect(state => ({
-  innm_dosages: getAllInnmDosages(state),
-  medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
-  medication_form: getDictionary(state, 'MEDICATION_FORM'),
-  countries: getDictionary(state, 'COUNTRY'),
-}), { onSubmit })
+@connect(
+  state => ({
+    innm_dosages: getAllInnmDosages(state),
+    medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
+    medication_form: getDictionary(state, 'MEDICATION_FORM'),
+    countries: getDictionary(state, 'COUNTRY')
+  }),
+  { onSubmit }
+)
 export default class MedicationCreatePage extends React.Component {
-
   render() {
     const {
       t,
@@ -29,7 +31,7 @@ export default class MedicationCreatePage extends React.Component {
       medication_unit = [],
       medication_form = [],
       countries = [],
-      onSubmit,
+      onSubmit
     } = this.props;
 
     return (
@@ -37,10 +39,12 @@ export default class MedicationCreatePage extends React.Component {
         <Helmet
           title={t('Medicaion create page')}
           meta={[
-            { property: 'og:title', content: t('Medication create page') },
+            { property: 'og:title', content: t('Medication create page') }
           ]}
         />
-        <BackLink onClick={() => router.goBack()}>Додати торгову назву</BackLink>
+        <BackLink onClick={() => router.goBack()}>
+          Додати торгову назву
+        </BackLink>
         <Line />
 
         <MedicationsCreateForm

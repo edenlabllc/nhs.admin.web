@@ -23,24 +23,35 @@ $red-border-color: #d74472;
   padding: 18px 28px;
   line-height: 1.2;
   color: #fff;
-  background: $orange-bg-color linear-gradient(0deg, $orange-bg-gradient-from 0%, $orange-bg-gradient-to 100%);
+  background: $orange-bg-color
+    linear-gradient(
+      0deg,
+      $orange-bg-gradient-from 0%,
+      $orange-bg-gradient-to 100%
+    );
   font-size: 12px;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: inset 0 -2px 0 0 $orange-border-color, inset 0 1px 0 rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 -2px 0 0 $orange-border-color,
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
   user-select: none;
   cursor: pointer;
 
   &:hover {
-    background-image: linear-gradient(180deg, $orange-bg-gradient-from 0%, $orange-bg-gradient-to 100%);
+    background-image: linear-gradient(
+      180deg,
+      $orange-bg-gradient-from 0%,
+      $orange-bg-gradient-to 100%
+    );
   }
 
   &:active,
   &.active {
     background-image: none;
-    box-shadow: inset 0 2px 0 0 $orange-border-color, inset 0 1px 0 rgba(255, 255, 255, 0.11);
+    box-shadow: inset 0 2px 0 0 $orange-border-color,
+      inset 0 1px 0 rgba(255, 255, 255, 0.11);
   }
 
   &:disabled,
@@ -73,11 +84,20 @@ $red-border-color: #d74472;
   }
 
   &.color-blue {
-    background: $blue-bg-color linear-gradient(0deg, $blue-bg-gradient-from 0%, $blue-bg-gradient-to 100%);
+    background: $blue-bg-color
+      linear-gradient(
+        0deg,
+        $blue-bg-gradient-from 0%,
+        $blue-bg-gradient-to 100%
+      );
     box-shadow: inset 0 -2px 0 0 $blue-border-color;
 
     &:hover {
-      background-image: linear-gradient(180deg, $blue-bg-gradient-from 0%, $blue-bg-gradient-to 100%);
+      background-image: linear-gradient(
+        180deg,
+        $blue-bg-gradient-from 0%,
+        $blue-bg-gradient-to 100%
+      );
     }
 
     &:active,
@@ -112,11 +132,20 @@ $red-border-color: #d74472;
   }
 
   &.color-green {
-    background: $green-bg-color linear-gradient(0deg, $green-bg-gradient-from 0%, $green-bg-gradient-to 100%);
+    background: $green-bg-color
+      linear-gradient(
+        0deg,
+        $green-bg-gradient-from 0%,
+        $green-bg-gradient-to 100%
+      );
     box-shadow: inset 0 -2px 0 0 $green-border-color;
 
     &:hover {
-      background-image: linear-gradient(180deg, $green-bg-gradient-from 0%, $green-bg-gradient-to 100%);
+      background-image: linear-gradient(
+        180deg,
+        $green-bg-gradient-from 0%,
+        $green-bg-gradient-to 100%
+      );
     }
 
     &:active,
@@ -211,11 +240,16 @@ $red-border-color: #d74472;
 .theme-border,
 .theme-fill {
   &.color-red {
-    background: $red-bg-color linear-gradient(0deg, $red-bg-gradient-from 0%, $red-bg-gradient-to 100%);
+    background: $red-bg-color
+      linear-gradient(0deg, $red-bg-gradient-from 0%, $red-bg-gradient-to 100%);
     box-shadow: inset 0 -2px 0 0 $red-border-color;
 
     &:hover {
-      background-image: linear-gradient(180deg, $red-bg-gradient-from 0%, $red-bg-gradient-to 100%);
+      background-image: linear-gradient(
+        180deg,
+        $red-bg-gradient-from 0%,
+        $red-bg-gradient-to 100%
+      );
     }
 
     &:active,

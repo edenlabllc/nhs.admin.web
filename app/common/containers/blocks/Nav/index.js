@@ -18,9 +18,12 @@ import styles from './styles.scss';
 
 @withStyles(styles)
 @translate()
-@connect(state => ({
-  location: state.routing,
-}), { logOut })
+@connect(
+  state => ({
+    location: state.routing
+  }),
+  { logOut }
+)
 export default class Nav extends React.Component {
   componentWillReceiveProps(props) {
     if (props.isOpen) {
@@ -36,18 +39,28 @@ export default class Nav extends React.Component {
       <nav className={classnames(styles.nav, isOpen && styles.open)}>
         <ul>
           <NavItem to="/dashboard" activeClassName={styles.active}>
-            <Link id="dashboard-nav" to="/dashboard">{ t('Dashboard') }</Link>
+            <Link id="dashboard-nav" to="/dashboard">
+              {t('Dashboard')}
+            </Link>
           </NavItem>
           <ShowWithScope scope="declaration:read">
             <li>
               <ShowMore nav name={t('Declarations')}>
                 <ul>
                   <NavItem to="declarations" activeClassName={styles.active}>
-                    <Link id="declarations-nav" to="/declarations">{ t('Declarations') }</Link>
+                    <Link id="declarations-nav" to="/declarations">
+                      {t('Declarations')}
+                    </Link>
                   </NavItem>
-                  <NavItem to="pending-declarations" activeClassName={styles.active}>
-                    <Link id="pending-declarations-nav" to="/pending-declarations">
-                      { t('Pending declarations') }
+                  <NavItem
+                    to="pending-declarations"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="pending-declarations-nav"
+                      to="/pending-declarations"
+                    >
+                      {t('Pending declarations')}
                     </Link>
                   </NavItem>
                 </ul>
@@ -60,11 +73,16 @@ export default class Nav extends React.Component {
                 <ShowWithScope scope="employee_request:read">
                   <ul>
                     <NavItem to="employees" activeClassName={styles.active}>
-                      <Link id="employees-nav" to="/employees">{ t('Employees') }</Link>
+                      <Link id="employees-nav" to="/employees">
+                        {t('Employees')}
+                      </Link>
                     </NavItem>
-                    <NavItem to="pending-employees" activeClassName={styles.active}>
+                    <NavItem
+                      to="pending-employees"
+                      activeClassName={styles.active}
+                    >
                       <Link id="pending-employees-nav" to="/pending-employees">
-                        { nl2br(t('Pending\n employees')) }
+                        {nl2br(t('Pending\n employees'))}
                       </Link>
                     </NavItem>
                   </ul>
@@ -74,23 +92,33 @@ export default class Nav extends React.Component {
           </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics" activeClassName={styles.active}>
-              <Link id="clinics-nav" to="/clinics">{ t('Clinics') }</Link>
+              <Link id="clinics-nav" to="/clinics">
+                {t('Clinics')}
+              </Link>
             </NavItem>
           </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics-verification" activeClassName={styles.active}>
-              <Link id="clinics-nav" to="/clinics-verification">{ t('Clinics verification') }</Link>
+              <Link id="clinics-nav" to="/clinics-verification">
+                {t('Clinics verification')}
+              </Link>
             </NavItem>
           </ShowWithScope>
           <NavItem to="reports" activeClassName={styles.active}>
-            <Link id="reports-nav" to="/reports">{ t('Reports') }</Link>
+            <Link id="reports-nav" to="/reports">
+              {t('Reports')}
+            </Link>
           </NavItem>
           <NavItem to="dictionaries" activeClassName={styles.active}>
-            <Link id="dictionaries-nav" to="/dictionaries">{ t('Dictionaries') }</Link>
+            <Link id="dictionaries-nav" to="/dictionaries">
+              {t('Dictionaries')}
+            </Link>
           </NavItem>
           <ShowWithScope scope="global_parameters:read">
             <NavItem to="configuration" activeClassName={styles.active}>
-              <Link id="configuration-nav" to="/configuration">{ t('System configuration') }</Link>
+              <Link id="configuration-nav" to="/configuration">
+                {t('System configuration')}
+              </Link>
             </NavItem>
           </ShowWithScope>
           <li>
@@ -98,17 +126,23 @@ export default class Nav extends React.Component {
               <ul>
                 <ShowWithScope scope="innm:read">
                   <NavItem to="innms" activeClassName={styles.active}>
-                    <Link id="innms-nav" to="/innms">{ t('Innms') }</Link>
+                    <Link id="innms-nav" to="/innms">
+                      {t('Innms')}
+                    </Link>
                   </NavItem>
                 </ShowWithScope>
                 <ShowWithScope scope="innm_dosage:read">
                   <NavItem to="innm-dosages" activeClassName={styles.active}>
-                    <Link id="innm-dosages-nav" to="/innm-dosages">{ t('Innm dosages') }</Link>
+                    <Link id="innm-dosages-nav" to="/innm-dosages">
+                      {t('Innm dosages')}
+                    </Link>
                   </NavItem>
                 </ShowWithScope>
                 <ShowWithScope scope="medication:read">
                   <NavItem to="medications" activeClassName={styles.active}>
-                    <Link id="medications-nav" to="/medications">Торгова назва</Link>
+                    <Link id="medications-nav" to="/medications">
+                      Торгова назва
+                    </Link>
                   </NavItem>
                 </ShowWithScope>
               </ul>
@@ -117,14 +151,18 @@ export default class Nav extends React.Component {
         </ul>
         <ul className={styles.down}>
           <li>
-            <a href="http://docs.uaehealthapi.apiary.io/#" rel="noopener noreferrer" target="_blank">
+            <a
+              href="http://docs.uaehealthapi.apiary.io/#"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <Icon name="doc" />
-              { t('Documentation') }
+              {t('Documentation')}
             </a>
           </li>
           <li className={styles.logout} onClick={() => this.props.logOut()}>
             <Icon name="exit" />
-            { t('Logout') }
+            {t('Logout')}
           </li>
         </ul>
       </nav>

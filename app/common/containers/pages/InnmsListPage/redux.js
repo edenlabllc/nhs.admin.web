@@ -6,15 +6,14 @@ export const showInnms = createAction('substancesListPage/SHOW_CLINICS');
 export const pagingInnms = createAction('substancesListPage/ADD_PAGING');
 
 export const fetchInnms = options => dispatch =>
-  dispatch(fromInnms.fetchInnms(options))
-  .then((action) => {
+  dispatch(fromInnms.fetchInnms(options)).then(action => {
     if (action.error && action.payload.status !== 400) {
       throw action;
     }
 
     return [
       dispatch(showInnms(action.payload.result || [])),
-      dispatch(pagingInnms(action.meta || {})),
+      dispatch(pagingInnms(action.meta || {}))
     ];
   });
 
@@ -23,5 +22,5 @@ const paging = handleAction(pagingInnms, (state, action) => action.payload, {});
 
 export default combineReducers({
   innms,
-  paging,
+  paging
 });

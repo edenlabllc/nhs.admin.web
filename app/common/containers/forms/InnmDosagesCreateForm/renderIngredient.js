@@ -14,14 +14,14 @@ import Line from 'components/Line';
 @translate()
 export default class RenderIngredient extends React.Component {
   state = {
-    innms_search: '',
+    innms_search: ''
   };
 
   render() {
     const { fields, meta: { error, submitFailed }, data, t } = this.props;
     return (
       <ul>
-        { fields.map((ingredient, index) =>
+        {fields.map((ingredient, index) => (
           <li key={index}>
             <br />
             <FormRow>
@@ -34,19 +34,24 @@ export default class RenderIngredient extends React.Component {
                   placeholder="Почніть вводити назву"
                   label_bold
                   searchable
-                  onChangeSearch={val => this.setState({ innms_search: val.toLowerCase() })}
+                  onChangeSearch={val =>
+                    this.setState({ innms_search: val.toLowerCase() })}
                   options={data.innms
                     .filter(i => i.is_active)
-                    .filter(i =>
-                      new RegExp(this.state.innms_search)
-                        .test(i.name.toLowerCase()) === true)
+                    .filter(
+                      i =>
+                        new RegExp(this.state.innms_search).test(
+                          i.name.toLowerCase()
+                        ) === true
+                    )
                     .map(i => ({
                       name: i.id,
-                      title: i.name,
-                    }))
-                  }
+                      title: i.name
+                    }))}
                 >
-                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                  <ErrorMessage when="required">
+                    {t('Required field')}
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
               <FormColumn align="baseline">
@@ -76,15 +81,20 @@ export default class RenderIngredient extends React.Component {
                   name={`${ingredient}.numerator_unit`}
                   component={SelectUniversal}
                   labelText="Одиниці"
-                  options={[{
-                    name: 'MG',
-                    title: 'мг',
-                  }, {
-                    name: 'MKG',
-                    title: 'мкг',
-                  }]}
+                  options={[
+                    {
+                      name: 'MG',
+                      title: 'мг'
+                    },
+                    {
+                      name: 'MKG',
+                      title: 'мкг'
+                    }
+                  ]}
                 >
-                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                  <ErrorMessage when="required">
+                    {t('Required field')}
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
               <FormColumn size="1/3">
@@ -92,33 +102,43 @@ export default class RenderIngredient extends React.Component {
                   name={`${ingredient}.denumerator_unit`}
                   component={SelectUniversal}
                   labelText="На одну"
-                  options={Object.keys(data.medication_unit.values).map(
-                    i => ({
-                      title: data.medication_unit.values[i],
-                      name: i,
-                    })
-                  )}
+                  options={Object.keys(data.medication_unit.values).map(i => ({
+                    title: data.medication_unit.values[i],
+                    name: i
+                  }))}
                 >
-                  <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+                  <ErrorMessage when="required">
+                    {t('Required field')}
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
             </FormRow>
             <FormRow>
               <FormColumn>
-                <Button theme="border" size="small" onClick={() => fields.remove(index)}>
+                <Button
+                  theme="border"
+                  size="small"
+                  onClick={() => fields.remove(index)}
+                >
                   Відмінити
                 </Button>
               </FormColumn>
             </FormRow>
             <Line />
           </li>
-        )}
+        ))}
         <li>
           <br />
-          <Button theme="border" size="small" color="orange" icon="add" onClick={() => fields.push({})}>
+          <Button
+            theme="border"
+            size="small"
+            color="orange"
+            icon="add"
+            onClick={() => fields.push({})}
+          >
             Додати складову
           </Button>
-          { submitFailed && error && <span>{error}</span> }
+          {submitFailed && error && <span>{error}</span>}
         </li>
       </ul>
     );

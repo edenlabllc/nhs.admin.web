@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "[ $PREBUILD ] && npm run build || exit 0",
     "predev": "npm run webpack",
-    "dev": "concurrently --kill-others \"node static/server.js\" \"node webpack.server.js\"",
+    "dev":
+      "concurrently --kill-others \"node static/server.js\" \"node webpack.server.js\"",
     "stats": "NODE_ENV=production webpack-dashboard -- node webpack.server.js",
     "start": "NODE_ENV=production node --inspect static/server.js",
     "webpack": "webpack",
@@ -18,36 +19,25 @@
     "test": "npm run karma:single-run",
     "test:watch": "npm run karma",
     "nightwatch": "nightwatch",
-    "hooks:commit": "lint-staged && npm test",
-    "stylelint": "stylelint 'app/**/*.scss' 'app/**/*.css' 'assets/**/*.scss' 'assets/**/*.css'",
+    "precommit": "lint-staged && npm test",
+    "stylelint":
+      "stylelint 'app/**/*.scss' 'app/**/*.css' 'assets/**/*.scss' 'assets/**/*.css'",
     "lint": "eslint app tests && npm run stylelint",
-    "report-coverage": "cat ./coverage/**/*.info | ./node_modules/.bin/coveralls",
+    "report-coverage":
+      "cat ./coverage/**/*.info | ./node_modules/.bin/coveralls",
     "docker:reset": "npm run docker:down && npm run docker:up",
     "docker:up": "docker-compose -f ./docker/dc.selenium.yml up -d",
     "docker:down": "docker-compose -f ./docker/dc.selenium.yml down",
-    "locales:extract": "i18next-extract-gettext --files='./+(app)/**/*.+(js|json)' --output=app/common/locales/nhs.admin.web.pot"
+    "locales:extract":
+      "i18next-extract-gettext --files='./+(app)/**/*.+(js|json)' --output=app/common/locales/nhs.admin.web.pot"
   },
   "lint-staged": {
-    "*.js": "eslint app",
-    "*.@(scss|css)": "stylelint"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run hooks:commit"
-    }
+    "*.{js,json,css,scss}": ["prettier --write", "git add"]
   },
   "greenkeeper": {
-    "ignore": [
-      "eslint-config-airbnb"
-    ]
+    "ignore": ["eslint-config-airbnb"]
   },
-  "browserslist": [
-    "defaults",
-    "> 1%",
-    "iOS >= 7",
-    "Safari >= 7",
-    "Safari 8"
-  ],
+  "browserslist": ["defaults", "> 1%", "iOS >= 7", "Safari >= 7", "Safari 8"],
   "engines": {
     "node": "7.5.0"
   },
@@ -152,13 +142,9 @@
     "coveralls": "2.13.0",
     "enzyme": "2.8.0",
     "eslint": "3.6.0",
-    "eslint-config-airbnb": "11.2.0",
-    "eslint-import-resolver-babel-module": "2.2.1",
     "eslint-plugin-chai-expect": "1.1.1",
-    "eslint-plugin-import": "1.16.0",
-    "eslint-plugin-jsx-a11y": "2.2.2",
-    "eslint-plugin-react": "6.3.0",
-    "ghooks": "1.3.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "husky": "^0.14.3",
     "i18next-extract-gettext": "3.1.3",
     "isparta-loader": "2.0.0",
     "karma": "1.6.0",
@@ -172,9 +158,10 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.30",
     "karma-webpack": "2.0.3",
-    "lint-staged": "3.0.3",
+    "lint-staged": "^4.2.3",
     "mocha": "3.2.0",
     "nightwatch": "0.9.14",
+    "prettier": "1.7.4",
     "react-addons-test-utils": "15.2.1",
     "selenium-download": "2.0.6",
     "selenium-server-standalone-jar": "2.53.1",

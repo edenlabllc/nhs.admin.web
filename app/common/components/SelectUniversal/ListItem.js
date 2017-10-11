@@ -9,7 +9,11 @@ const ListItem = ({ active, disabled, title, onClick }) => (
     className={classnames(active && styles.active, disabled && styles.disabled)}
   >
     {title}
-    {active ? <span className={styles.icon}><Icon name="check-right" /></span> : null }
+    {active ? (
+      <span className={styles.icon}>
+        <Icon name="check-right" />
+      </span>
+    ) : null}
   </li>
 );
 

@@ -13,18 +13,17 @@ import styles from './styles.scss';
 
 const LIST_HEIGHT_PADDING = 32;
 
-
 export class SelectUniversal extends React.Component {
   static propTypes = {
     input: PropTypes.shape({
       onChange: PropTypes.func,
       onBlur: PropTypes.func,
       onFocus: PropTypes.func,
-      value: PropTypes.any,
+      value: PropTypes.any
     }),
     meta: PropTypes.shape({
       active: PropTypes.object,
-      error: PropTypes.any,
+      error: PropTypes.any
     }),
 
     /**
@@ -79,19 +78,19 @@ export class SelectUniversal extends React.Component {
       PropTypes.shape({
         title: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
         name: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
-        disabled: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+        disabled: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
       })
-    ).isRequired,
+    ).isRequired
   };
 
   static defaultProps = {
     input: {
       value: '',
-      onChange: () => {},
+      onChange: () => {}
     },
     meta: {
-      error: {},
-    },
+      error: {}
+    }
   };
 
   constructor(props) {
@@ -107,14 +106,14 @@ export class SelectUniversal extends React.Component {
 
     this.state = {
       value: '',
-      open: false,
+      open: false
     };
   }
 
   onInputChange(value) {
     this.setState({
       value,
-      open: true,
+      open: true
     });
     !this.props.meta.active && this.props.input.onFocus();
     this.props.onChangeSearch && this.props.onChangeSearch(value);
@@ -127,7 +126,7 @@ export class SelectUniversal extends React.Component {
   onControlClick() {
     !this.props.meta.active && this.props.input.onFocus();
     this.setState({
-      open: !this.state.open,
+      open: !this.state.open
     });
   }
   onFocus() {
@@ -139,9 +138,9 @@ export class SelectUniversal extends React.Component {
 
     const value = this.value;
     const isSelected = this.isSelected(item);
-    const newValue = isSelected ?
-      value.filter(i => i.name !== item.name) :
-      [...value, item];
+    const newValue = isSelected
+      ? value.filter(i => i.name !== item.name)
+      : [...value, item];
 
     if (searchable && !multiple) {
       // item title is displaying in input
@@ -161,9 +160,10 @@ export class SelectUniversal extends React.Component {
       newState.open = false;
     }
 
-    this.changeValue(multiple ? newValue : newValue[newValue.length - 1], isBlur !== false ? (
-      !multiple
-    ) : isBlur);
+    this.changeValue(
+      multiple ? newValue : newValue[newValue.length - 1],
+      isBlur !== false ? !multiple : isBlur
+    );
     this.setState(newState);
   }
 
@@ -173,7 +173,7 @@ export class SelectUniversal extends React.Component {
 
   onOuterClick() {
     this.setState({
-      open: false,
+      open: false
     });
     this.props.input.onBlur(this.props.input.value);
   }
@@ -220,7 +220,7 @@ export class SelectUniversal extends React.Component {
       emptyText = 'Not found',
       allowAddItem,
       onAddNewItem,
-      children,
+      children
     } = this.props;
 
     const isErrored = (submitFailed || (dirty && !active)) && error;
@@ -238,7 +238,9 @@ export class SelectUniversal extends React.Component {
     return (
       <section ref={ref => (this.selectNode = ref)} className={classNames}>
         <div className={styles.label}>{labelText}</div>
-        <OuterClick onClick={() => (this.state.open || active) && this.onOuterClick()}>
+        <OuterClick
+          onClick={() => (this.state.open || active) && this.onOuterClick()}
+        >
           <div>
             <div className={styles.wrap}>
               <SelectControl
@@ -254,19 +256,21 @@ export class SelectUniversal extends React.Component {
                 onInputRemove={this.onInputRemove}
                 onEnterItem={value =>
                   allowAddItem &&
-                  (
-                    this.onSelect({ title: value, name: (Math.random() % 1000000) + 1 }, false),
-                    onAddNewItem && (onAddNewItem(value))
-                  )
-                }
+                  (this.onSelect(
+                    { title: value, name: Math.random() % 1000000 + 1 },
+                    false
+                  ),
+                  onAddNewItem && onAddNewItem(value))}
               />
-              {
-                isErrored &&
-                  <div className={styles['error-label']}>
-                    { typeof error === 'string' ? error :
-                      <ErrorMessages error={error}>{children}</ErrorMessages> }
-                  </div>
-              }
+              {isErrored && (
+                <div className={styles['error-label']}>
+                  {typeof error === 'string' ? (
+                    error
+                  ) : (
+                    <ErrorMessages error={error}>{children}</ErrorMessages>
+                  )}
+                </div>
+              )}
               <span className={styles.arrow} />
             </div>
             <div ref={ref => (this.listNode = ref)}>

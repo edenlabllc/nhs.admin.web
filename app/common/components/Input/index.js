@@ -5,17 +5,15 @@ import ErrorMessages from 'components/ErrorMessages';
 
 import styles from './styles.scss';
 
-const Prefix = ({ prefix }) =>
-  <span className={styles['prefix-wrapper']}>
-    {prefix}
-  </span>;
+const Prefix = ({ prefix }) => (
+  <span className={styles['prefix-wrapper']}>{prefix}</span>
+);
 
-const Postfix = ({ postfix }) =>
-  <span className={styles['postfix-wrapper']}>
-    {postfix}
-  </span>;
+const Postfix = ({ postfix }) => (
+  <span className={styles['postfix-wrapper']}>{postfix}</span>
+);
 
-export const Component = ({
+export const Input = ({
   children,
   type,
   labelText,
@@ -43,7 +41,7 @@ export const Component = ({
     errored: !!error,
     focused: active,
     prefix,
-    postfix,
+    postfix
   };
 
   const prefixComp = prefix && <Prefix {...decorInputProps} />;
@@ -59,51 +57,54 @@ export const Component = ({
     name,
     onChange,
     onBlur,
-    onFocus,
+    onFocus
   };
 
-  return (<span>
-    <label className={styles['label-wrapper']}>
-      { labelText && (
-        <div
-          className={
-            classnames(
+  return (
+    <span>
+      <label className={styles['label-wrapper']}>
+        {labelText && (
+          <div
+            className={classnames(
               styles['label-text'],
-              label_bold && styles['label-bold'],
+              label_bold && styles['label-bold']
             )}
-        >
-          { labelText }
-        </div>
-      )}
-      <span
-        className={classnames(
-          styles['group-input'],
-          styles[`theme-${theme}`],
-          error && styles.error,
-          active && !readOnly && styles.active,
-          disabled && styles.disabled
-        )}
-      >
-        { prefixComp }
-        {
-          React.createElement(component, {
-            ...rest,
-            ...inputProps,
-          })
-        }
-        { postfixComp }
-        { error &&
-          <div className={styles['error-label']}>
-            { typeof error === 'string' ? error : <ErrorMessages error={error}>{children}</ErrorMessages> }
+          >
+            {labelText}
           </div>
-        }
-      </span>
-    </label>
-  </span>);
+        )}
+        <span
+          className={classnames(
+            styles['group-input'],
+            styles[`theme-${theme}`],
+            error && styles.error,
+            active && !readOnly && styles.active,
+            disabled && styles.disabled
+          )}
+        >
+          {prefixComp}
+          {React.createElement(component, {
+            ...rest,
+            ...inputProps
+          })}
+          {postfixComp}
+          {error && (
+            <div className={styles['error-label']}>
+              {typeof error === 'string' ? (
+                error
+              ) : (
+                <ErrorMessages error={error}>{children}</ErrorMessages>
+              )}
+            </div>
+          )}
+        </span>
+      </label>
+    </span>
+  );
 };
 
-Component.propTypes = {
-  theme: PropTypes.oneOf(['light']),
+Input.propTypes = {
+  theme: PropTypes.oneOf(['light'])
 };
 
-export default withStyles(styles)(Component);
+export default withStyles(styles)(Input);

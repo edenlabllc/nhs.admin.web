@@ -3,22 +3,24 @@ import classnames from 'classnames';
 import styles from './styles.scss';
 import ListItem from './ListItem';
 
-const List = ({ open, options = [], onClickItem, emptyText, isActiveItem = () => {} }) => (
+const List = ({
+  open,
+  options = [],
+  onClickItem,
+  emptyText,
+  isActiveItem = () => {}
+}) => (
   <ul className={classnames(styles.list, open && styles.open)}>
-    {
-      options.map(item =>
-        <ListItem
-          title={item.title}
-          disabled={item.disabled}
-          onClick={() => onClickItem(item)}
-          active={isActiveItem(item)}
-          key={item.name}
-        />
-      )
-    }
-    {
-      !options.length && <li className={styles.disabled}>{emptyText}</li>
-    }
+    {options.map(item => (
+      <ListItem
+        title={item.title}
+        disabled={item.disabled}
+        onClick={() => onClickItem(item)}
+        active={isActiveItem(item)}
+        key={item.name}
+      />
+    ))}
+    {!options.length && <li className={styles.disabled}>{emptyText}</li>}
   </ul>
 );
 

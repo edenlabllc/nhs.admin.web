@@ -31,16 +31,22 @@ const FILTER_PARAMS = ['id', 'innm_id', 'name', 'form'];
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchMedications({ page_size: 5, ...query })),
+    dispatch(fetchMedications({ page_size: 5, ...query }))
 })
 @connect(state => ({
   ...state.pages.MedicationsListPage,
-  medications: getMedications(state, state.pages.MedicationsListPage.medications),
+  medications: getMedications(
+    state,
+    state.pages.MedicationsListPage.medications
+  )
 }))
 export default class MedicationsListPage extends React.Component {
   get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
-      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    const index = FILTER_PARAMS.indexOf(
+      Object.keys(this.props.location.query).filter(
+        key => ~FILTER_PARAMS.indexOf(key)
+      )[0]
+    );
     return FILTER_PARAMS[index !== -1 ? index : 0];
   }
   render() {
@@ -51,14 +57,18 @@ export default class MedicationsListPage extends React.Component {
       <div id="medication-list-page">
         <Helmet
           title="Торгові назви"
-          meta={[
-            { property: 'og:title', content: 'Торгові назви' },
-          ]}
+          meta={[{ property: 'og:title', content: 'Торгові назви' }]}
         />
         <div className={styles.header}>
           <H1>Торгові назви</H1>
           <div className={styles.header__btn}>
-            <Button to="/medications/create" theme="border" size="small" color="orange" icon="add">
+            <Button
+              to="/medications/create"
+              theme="border"
+              size="small"
+              color="orange"
+              icon="add"
+            >
               Створити торгову назву
             </Button>
           </div>
@@ -74,18 +84,22 @@ export default class MedicationsListPage extends React.Component {
               { name: 'id', title: t('By id') },
               { name: 'innm_id', title: t('By innm_id') },
               { name: 'name', title: t('By medication name') },
-              { name: 'form', title: t('By form') },
+              { name: 'form', title: t('By form') }
             ]}
             initialValues={{
-              [activeFilter]: location.query[activeFilter],
+              [activeFilter]: location.query[activeFilter]
             }}
-            onSubmit={values => filter({
-              id: null,
-              name: null,
-              innm_name: null,
-              form: null,
-              ...values,
-            }, this.props)}
+            onSubmit={values =>
+              filter(
+                {
+                  id: null,
+                  name: null,
+                  innm_name: null,
+                  form: null,
+                  ...values
+                },
+                this.props
+              )}
           />
         </div>
 
@@ -104,33 +118,46 @@ export default class MedicationsListPage extends React.Component {
               { key: 'name', title: t('Medication name') },
               { key: 'form', title: t('Form') },
               { key: 'active', title: t('Active') },
-              { key: 'action', title: t('Action'), width: 100 },
+              { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={medications.map(item => ({
               innm_id: <div>{item.ingredients[0].id}</div>,
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
-              form: <div>
-                <DictionaryValue dictionary="MEDICATION_FORM" value={item.form} />
-                <br />
-                {item.manufacturer.name}
-              </div>,
-              active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
-              action: (<Button id={`show-medication-detail-button-${item.id}`} theme="link" to={`/medications/${item.id}`}>{ t('Details') }</Button>),
+              form: (
+                <div>
+                  <DictionaryValue
+                    dictionary="MEDICATION_FORM"
+                    value={item.form}
+                  />
+                  <br />
+                  {item.manufacturer.name}
+                </div>
+              ),
+              active: (
+                <div>{item.is_active && <Icon name="check-right" />}</div>
+              ),
+              action: (
+                <Button
+                  id={`show-medication-detail-button-${item.id}`}
+                  theme="link"
+                  to={`/medications/${item.id}`}
+                >
+                  {t('Details')}
+                </Button>
+              )
             }))}
           />
         </div>
 
-        {
-          paging.total_pages > 1 && (
-            <Pagination
-              currentPage={paging.page_number}
-              totalPage={paging.total_pages}
-              location={location}
-              cb={() => {}}
-            />
-          )
-        }
+        {paging.total_pages > 1 && (
+          <Pagination
+            currentPage={paging.page_number}
+            totalPage={paging.total_pages}
+            location={location}
+            cb={() => {}}
+          />
+        )}
       </div>
     );
   }

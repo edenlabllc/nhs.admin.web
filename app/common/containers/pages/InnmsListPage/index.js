@@ -30,16 +30,19 @@ const FILTER_PARAMS = ['id', 'sctid', 'name', 'name_original'];
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchInnms({ page_size: 5, ...query })),
+    dispatch(fetchInnms({ page_size: 5, ...query }))
 })
 @connect(state => ({
   ...state.pages.InnmsListPage,
-  innms: getInnms(state, state.pages.InnmsListPage.innms),
+  innms: getInnms(state, state.pages.InnmsListPage.innms)
 }))
 export default class InnmsListPage extends React.Component {
   get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
-      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    const index = FILTER_PARAMS.indexOf(
+      Object.keys(this.props.location.query).filter(
+        key => ~FILTER_PARAMS.indexOf(key)
+      )[0]
+    );
     return FILTER_PARAMS[index !== -1 ? index : 0];
   }
   render() {
@@ -50,21 +53,25 @@ export default class InnmsListPage extends React.Component {
       <div id="innms-list-page">
         <Helmet
           title={t('Innms')}
-          meta={[
-            { property: 'og:title', content: t('Innms') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Innms') }]}
         />
         <div className={styles.header}>
-          <H1>{ t('Innms') }</H1>
+          <H1>{t('Innms')}</H1>
           <div className={styles.header__btn}>
-            <Button to="/innms/create" theme="border" size="small" color="orange" icon="add">
+            <Button
+              to="/innms/create"
+              theme="border"
+              size="small"
+              color="orange"
+              icon="add"
+            >
               {t('Create innm')}
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>{ t('Search innms') }</H2>
+          <H2>{t('Search innms')}</H2>
 
           <SearchForm
             active={activeFilter}
@@ -73,18 +80,22 @@ export default class InnmsListPage extends React.Component {
               { name: 'id', title: t('By id') },
               { name: 'sctid', title: t('By sctid') },
               { name: 'name', title: t('By name') },
-              { name: 'name_original', title: t('By name_original') },
+              { name: 'name_original', title: t('By name_original') }
             ]}
             initialValues={{
-              [activeFilter]: location.query[activeFilter],
+              [activeFilter]: location.query[activeFilter]
             }}
-            onSubmit={values => filter({
-              id: null,
-              sctid: null,
-              name: null,
-              name_original: null,
-              ...values,
-            }, this.props)}
+            onSubmit={values =>
+              filter(
+                {
+                  id: null,
+                  sctid: null,
+                  name: null,
+                  name_original: null,
+                  ...values
+                },
+                this.props
+              )}
           />
         </div>
 
@@ -102,27 +113,35 @@ export default class InnmsListPage extends React.Component {
               { key: 'name', title: t('Innms name') },
               { key: 'name_original', title: t('Innms original name') },
               { key: 'active', title: t('Active') },
-              { key: 'action', title: t('Action'), width: 100 },
+              { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={innms.map(item => ({
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               name_original: <div>{item.name_original}</div>,
-              active: <div>{ item.is_active && <Icon name="check-right" /> }</div>,
-              action: (<Button id={`show-innm-detail-button-${item.id}`} theme="link" to={`/innms/${item.id}`}>{ t('Details') }</Button>),
+              active: (
+                <div>{item.is_active && <Icon name="check-right" />}</div>
+              ),
+              action: (
+                <Button
+                  id={`show-innm-detail-button-${item.id}`}
+                  theme="link"
+                  to={`/innms/${item.id}`}
+                >
+                  {t('Details')}
+                </Button>
+              )
             }))}
           />
         </div>
-        {
-          paging.total_pages > 1 && (
-            <Pagination
-              currentPage={paging.page_number}
-              totalPage={paging.total_pages}
-              location={location}
-              cb={() => {}}
-            />
-          )
-        }
+        {paging.total_pages > 1 && (
+          <Pagination
+            currentPage={paging.page_number}
+            totalPage={paging.total_pages}
+            location={location}
+            cb={() => {}}
+          />
+        )}
       </div>
     );
   }

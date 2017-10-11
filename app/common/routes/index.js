@@ -59,9 +59,10 @@ import { hasScope } from 'helpers/scope';
 import { isLoginned, logout } from 'redux/session';
 import { fetchUserData } from 'redux/user';
 
-export const configureRoutes = ({ store }) => { // eslint-disable-line
+export const configureRoutes = ({ store }) => {
+  // eslint-disable-line
   const requireAuth = (nextState, replace, next) =>
-    store.dispatch(isLoginned()).then((loginned) => {
+    store.dispatch(isLoginned()).then(loginned => {
       if (!loginned) {
         replace({ pathname: PUBLIC_INDEX_ROUTE });
         return next();
@@ -72,14 +73,16 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
 
       if (person) return next();
 
-      return store.dispatch(fetchUserData(getToken(currentState))).then((action) => {
-        if (action.error) {
-          store.dispatch(logout());
-          replace({ pathname: PUBLIC_INDEX_ROUTE });
-        }
+      return store
+        .dispatch(fetchUserData(getToken(currentState)))
+        .then(action => {
+          if (action.error) {
+            store.dispatch(logout());
+            replace({ pathname: PUBLIC_INDEX_ROUTE });
+          }
 
-        return next();
-      });
+          return next();
+        });
     });
 
   const requireScope = requiredScope => (nextState, replace, next) => {
@@ -103,47 +106,69 @@ export const configureRoutes = ({ store }) => { // eslint-disable-line
             <IndexRoute component={ClinicsListPage} />
             <Route path=":id" component={ClinicDetailPage} />
           </Route>
-          <Route path="clinics-verification" onEnter={requireScope(['legal_entity:read'])} >
+          <Route
+            path="clinics-verification"
+            onEnter={requireScope(['legal_entity:read'])}
+          >
             <IndexRoute component={ClinicsSearchPage} />
             <Route path="list" component={ClinicsVerificationListPage} />
           </Route>
-          <Route path="declarations" onEnter={requireScope(['declaration:read'])} >
+          <Route
+            path="declarations"
+            onEnter={requireScope(['declaration:read'])}
+          >
             <IndexRoute component={DeclarationsListPage} />
             <Route path=":id" component={DeclarationDetailPage} />
           </Route>
-          <Route path="pending-declarations" onEnter={requireScope(['declaration:read'])}>
+          <Route
+            path="pending-declarations"
+            onEnter={requireScope(['declaration:read'])}
+          >
             <IndexRoute component={PendingDeclarationsListPage} />
             <Route path=":id" component={PendingDeclarationDetailPage} />
           </Route>
-          <Route path="employees" onEnter={requireScope(['employee:read'])} >
+          <Route path="employees" onEnter={requireScope(['employee:read'])}>
             <IndexRoute component={EmployeesListPage} />
             <Route path=":id" component={EmployeeDetailPage} />
           </Route>
-          <Route path="pending-employees" onEnter={requireScope(['employee_request:read'])} >
+          <Route
+            path="pending-employees"
+            onEnter={requireScope(['employee_request:read'])}
+          >
             <IndexRoute component={PendingEmployeesListPage} />
             <Route path=":id" component={PendingEmployeeDetailPage} />
           </Route>
-          <Route path="innms" onEnter={requireScope(['innm:read'])} >
+          <Route path="innms" onEnter={requireScope(['innm:read'])}>
             <IndexRoute component={InnmsListPage} />
             <Route path="create" component={InnmCreatePage} />
             <Route path=":id" component={InnmDetailPage} />
           </Route>
-          <Route path="innm-dosages" onEnter={requireScope(['innm_dosage:read'])} >
+          <Route
+            path="innm-dosages"
+            onEnter={requireScope(['innm_dosage:read'])}
+          >
             <IndexRoute component={InnmDosagesListPage} />
             <Route path="create" component={InnmDosagesCreatePage} />
             <Route path=":id" component={InnmDosagesDetailPage} />
           </Route>
-          <Route path="medications" onEnter={requireScope(['medication:read'])} >
+          <Route path="medications" onEnter={requireScope(['medication:read'])}>
             <IndexRoute component={MedicationsListPage} />
             <Route path="create" component={MedicationCreatePage} />
             <Route path=":id" component={MedicationDetailPage} />
           </Route>
-          <Route path="medical-program" onEnter={requireScope(['medical_program:read'])} >
+          <Route
+            path="medical-program"
+            onEnter={requireScope(['medical_program:read'])}
+          >
             <IndexRoute component={MedicalProgramsListPage} />
             {/* <Route path="create" component={MedicationCreatePage} />*/}
             {/* <Route path=":id" component={MedicationDetailPage} />*/}
           </Route>
-          <Route path="configuration" component={SystemConfigurationPage} onEnter={requireScope(['global_parameters:read'])} />
+          <Route
+            path="configuration"
+            component={SystemConfigurationPage}
+            onEnter={requireScope(['global_parameters:read'])}
+          />
           <Route path="reports" component={ReportsListPage} />
         </Route>
         <Route path="401" component={AccessDeniedPage} />

@@ -27,15 +27,17 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) =>
-    dispatch(fetchInnmsDosages(id)),
+  fetch: ({ dispatch, params: { id } }) => dispatch(fetchInnmsDosages(id))
 })
-@connect((state, { params: { id } }) => ({
-  innm_dosage: getInnmDosage(state, id),
-}), { deactivateInnmDosage })
+@connect(
+  (state, { params: { id } }) => ({
+    innm_dosage: getInnmDosage(state, id)
+  }),
+  { deactivateInnmDosage }
+)
 export default class InnmDosagesDetailPage extends React.Component {
   state = {
-    showDeactivateConfirm: false,
+    showDeactivateConfirm: false
   };
 
   deactivateInnmDosage() {
@@ -45,17 +47,17 @@ export default class InnmDosagesDetailPage extends React.Component {
   }
 
   render() {
-    const { innm_dosage = { }, t } = this.props;
+    const { innm_dosage = {}, t } = this.props;
 
     return (
       <div id="innm-dosages-detail-page">
         <Helmet
           title={t('Innm Dosages detail')}
-          meta={[
-            { property: 'og:title', content: t('Innm Dosages detail') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Innm Dosages detail') }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>
+          {t('Back to list')}
+        </BackLink>
         <Line />
         <div className={styles.row}>
           <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
@@ -63,82 +65,97 @@ export default class InnmDosagesDetailPage extends React.Component {
         <Line />
         <DataList list={[{ name: t('Name'), value: innm_dosage.name }]} />
         <Line width={630} />
-        {
-          innm_dosage.ingredients && (
-            <DataList
-              theme="min"
-              list={[
-                {
-                  name: 'Складові',
-                  value: (<div>
+        {innm_dosage.ingredients && (
+          <DataList
+            theme="min"
+            list={[
+              {
+                name: 'Складові',
+                value: (
+                  <div>
                     <p>{innm_dosage.name}</p>
                     <br />
                     <p>{innm_dosage.ingredients[0].dosage.denumerator_unit}</p>
                     <br />
                     <p>
-                      {`${innm_dosage.ingredients[0].dosage.denumerator_value} `}
-                      {`${t('contains')} ${innm_dosage.ingredients[0].dosage.numerator_value} ${innm_dosage.ingredients[0].dosage.numerator_unit}`}
+                      {`${innm_dosage.ingredients[0].dosage
+                        .denumerator_value} `}
+                      {`${t('contains')} ${innm_dosage.ingredients[0].dosage
+                        .numerator_value} ${innm_dosage.ingredients[0].dosage
+                        .numerator_unit}`}
                     </p>
                     <p>
-                      { innm_dosage.ingredients[0].is_primary && 'Діюча речовина' }
+                      {innm_dosage.ingredients[0].is_primary &&
+                        'Діюча речовина'}
                     </p>
                     <br />
-                    {
-                      innm_dosage.ingredients.length > 1 && (
-                        <ShowMore name="Показати інші складові" show_block>
-                          {
-                            innm_dosage.ingredients.map((i, key) => {
-                              if (key === 0) return null;
-                              return (
-                                <div key={key}>
-                                  <p>{i.dosage.denumerator_unit}</p>
-                                  <p>
-                                    {`${i.dosage.denumerator_value} `}
-                                    {`містить ${i.dosage.numerator_value} ${i.dosage.numerator_unit}`}
-                                  </p>
-                                  <p>
-                                    { innm_dosage.ingredients[key].is_primary && 'Діюча речовина' }
-                                  </p>
-                                  <br />
-                                </div>
-                              );
-                            })
-                          }
-                        </ShowMore>
-                      )
-                    }
-                  </div>),
-                },
-              ]}
-            />
-          )
-        }
+                    {innm_dosage.ingredients.length > 1 && (
+                      <ShowMore name="Показати інші складові" show_block>
+                        {innm_dosage.ingredients.map((i, key) => {
+                          if (key === 0) return null;
+                          return (
+                            <div key={key}>
+                              <p>{i.dosage.denumerator_unit}</p>
+                              <p>
+                                {`${i.dosage.denumerator_value} `}
+                                {`містить ${i.dosage.numerator_value} ${i.dosage
+                                  .numerator_unit}`}
+                              </p>
+                              <p>
+                                {innm_dosage.ingredients[key].is_primary &&
+                                  'Діюча речовина'}
+                              </p>
+                              <br />
+                            </div>
+                          );
+                        })}
+                      </ShowMore>
+                    )}
+                  </div>
+                )
+              }
+            ]}
+          />
+        )}
 
         <Line width={630} />
-        {
-          innm_dosage.is_active && (
-            <div className={styles.buttons}>
-              <div className={styles.buttons__row}>
-                <div className={styles.buttons__column}>
-                  <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
-                    { t('Back to list') }
-                  </Button>
-                </div>
-                {
-                  <ShowWithScope scope="innm_dosage:deactivate">
-                    <div className={styles.buttons__column}>
-                      <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="fill" color="red" icon="check-right" block>
-                        { t('Deactivate innm dosage') }
-                      </Button>
-                    </div>
-                  </ShowWithScope>
-                }
+        {innm_dosage.is_active && (
+          <div className={styles.buttons}>
+            <div className={styles.buttons__row}>
+              <div className={styles.buttons__column}>
+                <Button
+                  onClick={() => this.props.router.goBack()}
+                  theme="border"
+                  color="blue"
+                  icon="back"
+                  block
+                >
+                  {t('Back to list')}
+                </Button>
               </div>
+              {
+                <ShowWithScope scope="innm_dosage:deactivate">
+                  <div className={styles.buttons__column}>
+                    <Button
+                      onClick={() =>
+                        this.setState({ showDeactivateConfirm: true })}
+                      theme="fill"
+                      color="red"
+                      icon="check-right"
+                      block
+                    >
+                      {t('Deactivate innm dosage')}
+                    </Button>
+                  </div>
+                </ShowWithScope>
+              }
             </div>
-          )
-        }
+          </div>
+        )}
         <Confirm
-          title={t('Deactivate innm dosage {{name}}?', { name: innm_dosage.name })}
+          title={t('Deactivate innm dosage {{name}}?', {
+            name: innm_dosage.name
+          })}
           active={this.state.showDeactivateConfirm}
           theme="error"
           cancel={t('Cancel')}

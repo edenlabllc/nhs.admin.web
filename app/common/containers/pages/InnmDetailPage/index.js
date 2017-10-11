@@ -21,11 +21,10 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) =>
-    dispatch(fetchInnm(id)),
+  fetch: ({ dispatch, params: { id } }) => dispatch(fetchInnm(id))
 })
 @connect((state, { params: { id } }) => ({
-  innm: getInnm(state, id),
+  innm: getInnm(state, id)
 }))
 export default class InnmDetailPage extends React.Component {
   render() {
@@ -35,14 +34,14 @@ export default class InnmDetailPage extends React.Component {
       <div id="innm-detail-page">
         <Helmet
           title={t('Innm detail page')}
-          meta={[
-            { property: 'og:title', content: t('Innm detail page') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Innm detail page') }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to innms list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>
+          {t('Back to innms list')}
+        </BackLink>
         <Line />
 
-        <H1>{ t('Innm detail page') }</H1>
+        <H1>{t('Innm detail page')}</H1>
 
         <InnmForm initialValues={innm} disabled />
       </div>

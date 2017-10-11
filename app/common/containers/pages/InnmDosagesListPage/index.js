@@ -29,16 +29,22 @@ const FILTER_PARAMS = ['id', 'form', 'name'];
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchInnmDosages({ page_size: 5, ...query })),
+    dispatch(fetchInnmDosages({ page_size: 5, ...query }))
 })
 @connect(state => ({
   ...state.pages.InnmDosagesListPage,
-  innm_dosages: getInnmDosages(state, state.pages.InnmDosagesListPage.innm_dosages),
+  innm_dosages: getInnmDosages(
+    state,
+    state.pages.InnmDosagesListPage.innm_dosages
+  )
 }))
 export default class InnmDosagesListPage extends React.Component {
   get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
-      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    const index = FILTER_PARAMS.indexOf(
+      Object.keys(this.props.location.query).filter(
+        key => ~FILTER_PARAMS.indexOf(key)
+      )[0]
+    );
     return FILTER_PARAMS[index !== -1 ? index : 0];
   }
   render() {
@@ -49,21 +55,25 @@ export default class InnmDosagesListPage extends React.Component {
       <div id="innm-dosages-list-page">
         <Helmet
           title={t('Innm dosages')}
-          meta={[
-            { property: 'og:title', content: t('Innm dosages') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Innm dosages') }]}
         />
         <div className={styles.header}>
-          <H1>{ t('Innm dosages') }</H1>
+          <H1>{t('Innm dosages')}</H1>
           <div className={styles.header__btn}>
-            <Button to="/innm-dosages/create" theme="border" size="small" color="orange" icon="add">
+            <Button
+              to="/innm-dosages/create"
+              theme="border"
+              size="small"
+              color="orange"
+              icon="add"
+            >
               {t('Create innm dosages')}
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>{ t('Search innm dosages') }</H2>
+          <H2>{t('Search innm dosages')}</H2>
 
           <SearchForm
             active={activeFilter}
@@ -71,17 +81,21 @@ export default class InnmDosagesListPage extends React.Component {
             items={[
               { name: 'id', title: t('By id') },
               { name: 'form', title: t('By form') },
-              { name: 'name', title: t('By name') },
+              { name: 'name', title: t('By name') }
             ]}
             initialValues={{
-              [activeFilter]: location.query[activeFilter],
+              [activeFilter]: location.query[activeFilter]
             }}
-            onSubmit={values => filter({
-              id: null,
-              form: null,
-              name: null,
-              ...values,
-            }, this.props)}
+            onSubmit={values =>
+              filter(
+                {
+                  id: null,
+                  form: null,
+                  name: null,
+                  ...values
+                },
+                this.props
+              )}
           />
         </div>
 
@@ -98,27 +112,33 @@ export default class InnmDosagesListPage extends React.Component {
               { key: 'id', title: t('id') },
               { key: 'name', title: t('Innms name') },
               { key: 'form', title: t('Form') },
-              { key: 'action', title: t('Action'), width: 100 },
+              { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={innm_dosages.map(item => ({
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               form: <div>{item.form}</div>,
-              action: (<Button id={`show-innm-dosages-detail-button-${item.id}`} theme="link" to={`/innm-dosages/${item.id}`}>{ t('Details') }</Button>),
+              action: (
+                <Button
+                  id={`show-innm-dosages-detail-button-${item.id}`}
+                  theme="link"
+                  to={`/innm-dosages/${item.id}`}
+                >
+                  {t('Details')}
+                </Button>
+              )
             }))}
           />
         </div>
 
-        {
-          paging.total_pages > 1 && (
-            <Pagination
-              currentPage={paging.page_number}
-              totalPage={paging.total_pages}
-              location={location}
-              cb={() => {}}
-            />
-          )
-        }
+        {paging.total_pages > 1 && (
+          <Pagination
+            currentPage={paging.page_number}
+            totalPage={paging.total_pages}
+            location={location}
+            cb={() => {}}
+          />
+        )}
       </div>
     );
   }

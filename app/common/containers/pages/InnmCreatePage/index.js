@@ -22,19 +22,21 @@ export default class InnmCreatePage extends React.Component {
       <div id="innm-create-page">
         <Helmet
           title={t('Innm create page')}
-          meta={[
-            { property: 'og:title', content: t('Innm create page') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Innm create page') }]}
         />
-        <BackLink onClick={() => router.goBack()}>{ t('Back to innms list') }</BackLink>
+        <BackLink onClick={() => router.goBack()}>
+          {t('Back to innms list')}
+        </BackLink>
         <Line />
 
-        <H1>{ t('Innm create page') }</H1>
+        <H1>{t('Innm create page')}</H1>
 
         <InnmForm
           create
-          onSubmit={v => createInnm(v).then(resp =>
-            router.push(`/innms/${resp.payload.data.id}`))}
+          onSubmit={v =>
+            createInnm(v).then(resp =>
+              router.push(`/innms/${resp.payload.data.id}`)
+            )}
         />
       </div>
     );

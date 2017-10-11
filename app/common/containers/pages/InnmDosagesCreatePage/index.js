@@ -13,13 +13,15 @@ import { onSubmit } from './redux';
 
 @withRouter
 @translate()
-@connect(state => ({
-  innms: getAllInnms(state),
-  medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
-  medication_form: getDictionary(state, 'MEDICATION_FORM'),
-}), { onSubmit })
+@connect(
+  state => ({
+    innms: getAllInnms(state),
+    medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
+    medication_form: getDictionary(state, 'MEDICATION_FORM')
+  }),
+  { onSubmit }
+)
 export default class InnmDosagesCreatePage extends React.Component {
-
   render() {
     const {
       t,
@@ -27,7 +29,7 @@ export default class InnmDosagesCreatePage extends React.Component {
       innms = [],
       medication_unit = [],
       medication_form = [],
-      onSubmit,
+      onSubmit
     } = this.props;
 
     return (
@@ -35,10 +37,12 @@ export default class InnmDosagesCreatePage extends React.Component {
         <Helmet
           title={t('Innm dosages create page')}
           meta={[
-            { property: 'og:title', content: t('Innm dosages create page') },
+            { property: 'og:title', content: t('Innm dosages create page') }
           ]}
         />
-        <BackLink onClick={() => router.goBack()}>Додати форму хімічної сполуки</BackLink>
+        <BackLink onClick={() => router.goBack()}>
+          Додати форму хімічної сполуки
+        </BackLink>
         <Line />
 
         <InnmDosagesCreateForm

@@ -3,15 +3,17 @@ import withStyles from 'withStyles';
 
 import styles from './styles.scss';
 
-export default withStyles(styles)(({ list = [] }) => (
+const DataList = ({ list = [] }) => (
   <dl className={styles.list}>
-    {
-      list.reduce((arr, item, index) => (
+    {list.reduce(
+      (arr, item, index) =>
         arr.concat([
           <dt key={`dt-${index}`}>{item.name}</dt>,
-          <dd key={`dd-${index}`}>{item.value}</dd>,
-        ])
-      ), [])
-    }
+          <dd key={`dd-${index}`}>{item.value}</dd>
+        ]),
+      []
+    )}
   </dl>
-));
+);
+
+export default withStyles(styles)(DataList);

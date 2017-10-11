@@ -17,7 +17,7 @@ describe('Select', () => {
     it('should have all components', () => {
       const props = {
         options: [{ name: '1', title: 1 }, { name: '2', title: 1 }],
-        placeholder: 'Enter email',
+        placeholder: 'Enter email'
       };
       const elem = mount(<Select {...props} />);
       expect(elem.find(List).length).to.equal(1);
@@ -28,7 +28,7 @@ describe('Select', () => {
     it('should have options', () => {
       const props = {
         options: [{ name: '1', title: 1 }, { name: '2', title: 1 }],
-        placeholder: 'Enter email',
+        placeholder: 'Enter email'
       };
       const elem = mount(<Select {...props} />);
       expect(elem.find(List).prop('options')).to.deep.equal(props.options);
@@ -37,7 +37,9 @@ describe('Select', () => {
     it('should have placeholder', () => {
       const props = { placeholder: 'Enter email' };
       const elem = shallow(<Select {...props} />);
-      expect(elem.find(SelectControl).prop('placeholder')).to.equal(props.placeholder);
+      expect(elem.find(SelectControl).prop('placeholder')).to.equal(
+        props.placeholder
+      );
     });
   });
 });
@@ -47,7 +49,7 @@ describe('List', () => {
     it('should have ListItem element', () => {
       const props = {
         options: [{ name: '1' }, { name: '2' }],
-        isActiveItem: () => {},
+        isActiveItem: () => {}
       };
 
       const elem = shallow(<List {...props} />);
@@ -56,7 +58,7 @@ describe('List', () => {
     it('should show emptyText', () => {
       const props = {
         options: [],
-        emptyText: 'Not found',
+        emptyText: 'Not found'
       };
 
       const elem = shallow(<List {...props} />);
@@ -68,23 +70,25 @@ describe('List', () => {
       const props = {
         options: [{ name: '1' }, { name: '2' }],
         open: true,
-        isActiveItem: () => {},
+        isActiveItem: () => {}
       };
       const elem = shallow(<List {...props} />);
       expect(elem.find(`.${styles.open}`)).to.have.length(1);
     });
     it('should close on click', () => {
-      const spyCb = chai.spy(() => {
-      });
+      const spyCb = chai.spy(() => {});
       const props = {
         options: [{ name: '1', title: 1 }, { name: '2', title: 1 }],
         onClickItem: spyCb,
-        open: true,
+        open: true
       };
       expect(spyCb).to.not.have.been.called();
       const elem = mount(<List {...props} />);
       expect(elem.find(`.${styles.open}`)).to.have.length(1);
-      elem.find(ListItem).first().simulate('click');
+      elem
+        .find(ListItem)
+        .first()
+        .simulate('click');
       expect(spyCb).to.have.been.called();
     });
   });
@@ -94,7 +98,7 @@ describe('ListItem', () => {
   describe('props', () => {
     it('should have list item with title', () => {
       const props = {
-        title: 'name 1',
+        title: 'name 1'
       };
       const elem = shallow(<ListItem {...props} />);
       expect(elem.find('li').text()).to.equal(props.title);
@@ -102,7 +106,7 @@ describe('ListItem', () => {
     it('should have an check for active element', () => {
       const props = {
         title: 'name 1',
-        active: true,
+        active: true
       };
       const elem = shallow(<ListItem {...props} />);
       expect(elem.find('Icon')).to.be.defined;
@@ -110,7 +114,7 @@ describe('ListItem', () => {
     it('should have disabled styles', () => {
       const props = {
         title: 'name 1',
-        disabled: true,
+        disabled: true
       };
       const elem = shallow(<ListItem {...props} />);
       expect(elem.find(`.${styles.disabled}`)).to.have.length(1);
@@ -122,7 +126,7 @@ describe('SelectControlItem', () => {
   describe('props', () => {
     it('should have one control item with title', () => {
       const props = {
-        title: 'name 1',
+        title: 'name 1'
       };
       const elem = shallow(<SelectControlItem {...props} />);
       expect(elem.find('li').text()).to.equal(props.title);
@@ -130,7 +134,7 @@ describe('SelectControlItem', () => {
     it('should have multiple list item with title and remove btn', () => {
       const props = {
         title: 'name 1',
-        multiple: true,
+        multiple: true
       };
       const elem = shallow(<SelectControlItem {...props} />);
       expect(elem.find('li').text()).to.equal(props.title);

@@ -7,7 +7,7 @@ import styles from './styles.scss';
 @withStyles(styles)
 export default class ShowMore extends React.Component {
   state = {
-    show: false,
+    show: false
   };
 
   render() {
@@ -20,7 +20,7 @@ export default class ShowMore extends React.Component {
           className={classnames(
             styles.button,
             show && styles.button_active,
-            nav && styles.button_default,
+            nav && styles.button_default
           )}
           onClick={() => this.setState({ show: !show })}
         >
@@ -32,7 +32,7 @@ export default class ShowMore extends React.Component {
             styles.more,
             show && styles.more_show,
             show_block && show && styles.more_show_block,
-            nav && styles.more_nav,
+            nav && styles.more_nav
           )}
         >
           {children}
