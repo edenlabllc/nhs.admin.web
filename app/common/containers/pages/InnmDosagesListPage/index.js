@@ -54,11 +54,11 @@ export default class InnmDosagesListPage extends React.Component {
     return (
       <div id="innm-dosages-list-page">
         <Helmet
-          title={t('Innm dosages')}
-          meta={[{ property: 'og:title', content: t('Innm dosages') }]}
+          title="Лікарські форми"
+          meta={[{ property: 'og:title', content: t('Лікарські форми') }]}
         />
         <div className={styles.header}>
-          <H1>{t('Innm dosages')}</H1>
+          <H1>Лікарські форми</H1>
           <div className={styles.header__btn}>
             <Button
               to="/innm-dosages/create"
@@ -67,21 +67,21 @@ export default class InnmDosagesListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              {t('Create innm dosages')}
+              Створити лікарську форму
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>{t('Search innm dosages')}</H2>
+          <H2>Знайти лікарську форму</H2>
 
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find innm dosages')}
+            placeholder="Знайти лікарську форму"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'form', title: t('By form') },
-              { name: 'name', title: t('By name') }
+              { name: 'id', title: t('За ідентифікатором') },
+              { name: 'form', title: t('За формою') },
+              { name: 'name', title: t('За назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]

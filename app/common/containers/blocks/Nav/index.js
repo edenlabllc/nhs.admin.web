@@ -122,19 +122,19 @@ export default class Nav extends React.Component {
             </NavItem>
           </ShowWithScope>
           <li>
-            <ShowMore nav name={t('Innms')}>
+            <ShowMore nav name="МНН">
               <ul>
                 <ShowWithScope scope="innm:read">
                   <NavItem to="innms" activeClassName={styles.active}>
                     <Link id="innms-nav" to="/innms">
-                      {t('Innms')}
+                      МНН
                     </Link>
                   </NavItem>
                 </ShowWithScope>
                 <ShowWithScope scope="innm_dosage:read">
                   <NavItem to="innm-dosages" activeClassName={styles.active}>
                     <Link id="innm-dosages-nav" to="/innm-dosages">
-                      {t('Innm dosages')}
+                      Лікарська форма
                     </Link>
                   </NavItem>
                 </ShowWithScope>

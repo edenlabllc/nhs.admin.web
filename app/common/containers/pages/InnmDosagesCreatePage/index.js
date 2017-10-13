@@ -35,13 +35,16 @@ export default class InnmDosagesCreatePage extends React.Component {
     return (
       <div id="innm-dosages-create-page">
         <Helmet
-          title={t('Innm dosages create page')}
+          title="Сторінка створення лікарської форми"
           meta={[
-            { property: 'og:title', content: t('Innm dosages create page') }
+            {
+              property: 'og:title',
+              content: 'Сторінка створення лікарської форми'
+            }
           ]}
         />
         <BackLink onClick={() => router.goBack()}>
-          Додати форму хімічної сполуки
+          Додати лікарську форму
         </BackLink>
         <Line />
 

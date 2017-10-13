@@ -51,12 +51,9 @@ export default class InnmsListPage extends React.Component {
 
     return (
       <div id="innms-list-page">
-        <Helmet
-          title={t('Innms')}
-          meta={[{ property: 'og:title', content: t('Innms') }]}
-        />
+        <Helmet title="МНН" meta={[{ property: 'og:title', content: 'МНН' }]} />
         <div className={styles.header}>
-          <H1>{t('Innms')}</H1>
+          <H1>МНН</H1>
           <div className={styles.header__btn}>
             <Button
               to="/innms/create"
@@ -65,22 +62,22 @@ export default class InnmsListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              {t('Create innm')}
+              Cтворити МНН
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
-          <H2>{t('Search innms')}</H2>
+          <H2>Пошук МНН</H2>
 
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find innms')}
+            placeholder="Знайти МНН"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'sctid', title: t('By sctid') },
-              { name: 'name', title: t('By name') },
-              { name: 'name_original', title: t('By name_original') }
+              { name: 'id', title: 'За ідентифікатором' },
+              { name: 'sctid', title: t('За sctid') },
+              { name: 'name', title: t('За назвою') },
+              { name: 'name_original', title: t('За оригінальною назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]

@@ -112,7 +112,7 @@ export default class InnmDosagesCreateForm extends React.Component {
               component={FieldInput}
               disabled={disabled}
               label_bold
-              placeholder="Назва хімічної сполуки"
+              placeholder="Назва лікарської форми"
             />
           </FormRow>
           <FormRow>
@@ -233,9 +233,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             <ShowWithScope scope="innm_dosage:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting
-                    ? t('Додаємо...')
-                    : 'Додати форму хімічної сполуки'}
+                  {submitting ? t('Додаємо...') : 'Додати лікарську форму'}
                 </Button>
               </div>
             </ShowWithScope>

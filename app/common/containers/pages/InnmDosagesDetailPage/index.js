@@ -52,18 +52,18 @@ export default class InnmDosagesDetailPage extends React.Component {
     return (
       <div id="innm-dosages-detail-page">
         <Helmet
-          title={t('Innm Dosages detail')}
-          meta={[{ property: 'og:title', content: t('Innm Dosages detail') }]}
+          title="Деталі лікарської форми"
+          meta={[{ property: 'og:title', content: 'Деталі лікарської форми' }]}
         />
         <BackLink onClick={() => this.props.router.goBack()}>
-          {t('Back to list')}
+          Повернутися до списку лікарських форм
         </BackLink>
         <Line />
         <div className={styles.row}>
           <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
         </div>
         <Line />
-        <DataList list={[{ name: t('Name'), value: innm_dosage.name }]} />
+        <DataList list={[{ name: 'Назва', value: innm_dosage.name }]} />
         <Line width={630} />
         {innm_dosage.ingredients && (
           <DataList
@@ -144,7 +144,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      {t('Deactivate innm dosage')}
+                      Деактивувати лікарську форму
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -153,9 +153,7 @@ export default class InnmDosagesDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t('Deactivate innm dosage {{name}}?', {
-            name: innm_dosage.name
-          })}
+          title={`Деактивувати лікарську форму ${innm_dosage.name}?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
           cancel={t('Cancel')}

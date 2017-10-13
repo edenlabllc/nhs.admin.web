@@ -21,15 +21,15 @@ export default class InnmCreatePage extends React.Component {
     return (
       <div id="innm-create-page">
         <Helmet
-          title={t('Innm create page')}
-          meta={[{ property: 'og:title', content: t('Innm create page') }]}
+          title="Сторінка створення МНН"
+          meta={[{ property: 'og:title', content: 'Сторінка створення МНН' }]}
         />
         <BackLink onClick={() => router.goBack()}>
-          {t('Back to innms list')}
+          Повернутися до списку МНН
         </BackLink>
         <Line />
 
-        <H1>{t('Innm create page')}</H1>
+        <H1>Сторінка створення МНН</H1>
 
         <InnmForm
           create
