@@ -50,7 +50,7 @@ export default class InnmForm extends React.Component {
           <div>
             <Field
               name="name"
-              labelText={t('Innm name')}
+              labelText="Назва МНН"
               component={FieldInput}
               disabled={disabled}
               placeholder="Аміодарон"
@@ -59,7 +59,7 @@ export default class InnmForm extends React.Component {
           <div>
             <Field
               name="name_original"
-              labelText={t('Innm original name')}
+              labelText="Оригінальна назва МНН"
               component={FieldInput}
               disabled={disabled}
               placeholder="Amiodarone"
@@ -69,7 +69,7 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid innm')}
+                labelText={t('sctid МНН')}
                 component={FieldInput}
                 disabled={disabled}
                 placeholder="61626162"
@@ -80,7 +80,7 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid innm')}
+                labelText={t('sctid МНН')}
                 component={FieldInput}
                 disabled={disabled}
                 placeholder="61626162"
@@ -91,7 +91,7 @@ export default class InnmForm extends React.Component {
             <ShowWithScope scope="innm:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Saving...') : t('Create innm')}
+                  {submitting ? t('Saving...') : t('Створити МНН')}
                 </Button>
               </div>
             </ShowWithScope>
