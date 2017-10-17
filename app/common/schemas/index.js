@@ -20,3 +20,4 @@ export const innm = new schema.Entity('innms');
 export const innm_dosage = new schema.Entity('innm_dosages');
 export const medication = new schema.Entity('medications');
 export const medical_program = new schema.Entity('medical_programs');
+export const program_medication = new schema.Entity('program_medications');

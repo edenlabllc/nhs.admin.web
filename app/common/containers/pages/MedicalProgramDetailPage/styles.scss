@@ -13,3 +13,18 @@
     flex: 0 1 48%;
   }
 }
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 10px;
+
+  & > div {
+    flex: 1 1 50%;
+  }
+
+  .right {
+    text-align: right;
+  }
+}

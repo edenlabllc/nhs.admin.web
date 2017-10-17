@@ -28,6 +28,7 @@ import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
 import medical_programs from 'redux/medical-programs';
+import program_medications from 'redux/program-medications';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -59,6 +60,8 @@ import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
 import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/redux';
 import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
 
+import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage/redux';
+
 const blocks = combineReducers({
   Aside
 });
@@ -82,7 +85,8 @@ const pages = combineReducers({
   MedicationsListPage,
   MedicationDetailPage,
   MedicalProgramsListPage,
-  MedicalProgramDetailPage
+  MedicalProgramDetailPage,
+  ProgramMedicationsListPage
 });
 
 const data = combineReducers({
@@ -101,7 +105,8 @@ const data = combineReducers({
   innms,
   innm_dosages,
   medications,
-  medical_programs
+  medical_programs,
+  program_medications
 });
 
 export default combineReducers({
@@ -205,3 +210,8 @@ export const getMedicalPrograms = (state, ids) =>
   denormalize(ids, [schemas.medical_program], state.data);
 export const getMedicalProgram = (state, id) =>
   denormalize(id, schemas.medical_program, state.data);
+
+export const getProgramMedications = (state, ids) =>
+  denormalize(ids, [schemas.program_medication], state.data);
+export const getProgramMedication = (state, id) =>
+  denormalize(id, schemas.program_medication, state.data);
