@@ -8,6 +8,7 @@ import Helmet from 'react-helmet';
 
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 import BackLink from 'containers/blocks/BackLink';
+import Checkbox from 'components/Checkbox';
 
 import DataList from 'components/DataList';
 import { Confirm } from 'components/Popup';
@@ -50,7 +51,6 @@ export default class MedicalProgramDetailPage extends React.Component {
 
   render() {
     const { medical_program = {}, t } = this.props;
-    console.log(medical_program);
     return (
       <div id="medical-program-detail-page">
         <Helmet
@@ -65,7 +65,11 @@ export default class MedicalProgramDetailPage extends React.Component {
           <DataList
             list={[
               { name: 'ID Программи', value: medical_program.id },
-              { name: 'Назва', value: medical_program.name }
+              { name: 'Назва', value: medical_program.name },
+              {
+                name: 'Активна',
+                value: <Checkbox checked={medical_program.is_active} />
+              }
             ]}
           />
         </div>

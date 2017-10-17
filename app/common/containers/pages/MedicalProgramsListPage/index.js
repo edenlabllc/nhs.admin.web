@@ -70,7 +70,7 @@ export default class MedicalProgramsListPage extends React.Component {
           <H1>Перелік медичний програм</H1>
           <div className={styles.header__btn}>
             <Button
-              to="/medical-program/create"
+              to="/medical-programs/create"
               theme="border"
               size="small"
               color="orange"
