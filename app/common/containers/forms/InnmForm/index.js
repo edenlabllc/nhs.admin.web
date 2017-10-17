@@ -16,7 +16,7 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'system-configuration-form',
+  form: 'innm-form',
   validate: reduxFormValidate({
     sctid: {
       length: 8

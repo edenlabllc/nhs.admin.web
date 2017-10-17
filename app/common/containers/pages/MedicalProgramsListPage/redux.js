@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleAction, createAction } from 'redux-actions';
-import * as fromMedicalProgram from 'redux/medical_programs';
+import * as fromMedicalProgram from 'redux/medical-programs';
 
 export const showMedicalProgram = createAction(
   'medicalProgramsListPage/SHOW_MEDICAL_PROGRAMS'

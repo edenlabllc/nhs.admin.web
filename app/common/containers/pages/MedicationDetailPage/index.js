@@ -183,7 +183,7 @@ export default class MedicationDetailPage extends React.Component {
                 </Button>
               </div>
               {
-                <ShowWithScope scope="innm_dosage:deactivate">
+                <ShowWithScope scope="medical_program:deactivate">
                   <div className={styles.buttons__column}>
                     <Button
                       onClick={() =>

@@ -27,7 +27,7 @@ import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
-import medical_programs from 'redux/medical_programs';
+import medical_programs from 'redux/medical-programs';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -57,7 +57,7 @@ import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
 
 import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/redux';
-// import MedicalProgramDetailPage from 'containers/pages/MedicationDetailPage/redux';
+import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
 
 const blocks = combineReducers({
   Aside
@@ -81,7 +81,8 @@ const pages = combineReducers({
   InnmDosagesDetailPage,
   MedicationsListPage,
   MedicationDetailPage,
-  MedicalProgramsListPage
+  MedicalProgramsListPage,
+  MedicalProgramDetailPage
 });
 
 const data = combineReducers({
