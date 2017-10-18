@@ -42,7 +42,7 @@ const FILTER_PARAMS = [
     dispatch(fetchProgramMedications({ page_size: 5, ...query }))
 })
 @connect(state => ({
-  ...state.pages.MedicalProgramsListPage,
+  ...state.pages.ProgramMedicationsListPage,
   program_medications: getProgramMedications(
     state,
     state.pages.ProgramMedicationsListPage.program_medications
@@ -60,7 +60,7 @@ export default class ProgramMedicationsListPage extends React.Component {
   render() {
     const { program_medications = [], t, paging, location } = this.props;
     const activeFilter = this.activeFilter;
-    console.log(program_medications);
+    console.log(program_medications, paging);
 
     return (
       <div id="medication-list-page">
@@ -71,7 +71,7 @@ export default class ProgramMedicationsListPage extends React.Component {
           ]}
         />
         <div className={styles.header}>
-          <H1>Перелік медичний програм</H1>
+          <H1>Перелік учасників медичних програм</H1>
           <div className={styles.header__btn}>
             <Button
               to="/program-medications/create"
@@ -80,28 +80,29 @@ export default class ProgramMedicationsListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              Додати учасника медичної програми
+              Додати учасника
             </Button>
           </div>
         </div>
 
         <div className={styles.search}>
           <H2>Пошук учасників програм</H2>
-
-          <SearchForm
+          {/* <SearchForm
             active={activeFilter}
             placeholder="Знайти учасника програми"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'medical_program_id', title: t('By medical_program_id') },
+              { name: 'medical_program_name', title: t('За ID') },
               {
-                name: 'medical_program_name',
-                title: t('За назвою')
+                name: 'medical_program_id',
+                title: t('За ID медичної програми')
               },
-              { name: 'innm_id', title: t('By innm_id') },
-              { name: 'innm_name', title: t('By innm_name') },
-              { name: 'medication_id', title: t('By medication_id') },
-              { name: 'medication_name', title: t('By medication_name') }
+              {
+                name: 'innm_id',
+                title: t('За innm_id')
+              },
+              { name: 'innm_name', title: t('За МНН') },
+              { name: 'medication_id', title: t('За ID Торгової Назви') },
+              { name: 'medication_name', title: t('За Торговою Назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -120,7 +121,7 @@ export default class ProgramMedicationsListPage extends React.Component {
                 },
                 this.props
               )}
-          />
+          /> */}
         </div>
 
         <div className={styles.showBy}>

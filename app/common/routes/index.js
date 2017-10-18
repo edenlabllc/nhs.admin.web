@@ -49,6 +49,7 @@ import MedicalProgramCreatePage from 'containers/pages/MedicalProgramCreatePage'
 import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage';
 
 import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage';
+import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage';
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
@@ -172,7 +173,7 @@ export const configureRoutes = ({ store }) => {
           >
             <IndexRoute component={ProgramMedicationsListPage} />
             {/*<Route path="create" component={MedicalProgramCreatePage} />*/}
-            {/*<Route path=":id" component={MedicalProgramDetailPage} />*/}
+            <Route path=":id" component={ProgramMedicationDetailPage} />
           </Route>
           <Route
             path="configuration"

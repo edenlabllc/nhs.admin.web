@@ -31,7 +31,7 @@ export const fetchProgramMedications = options =>
     ]
   });
 
-export const createMedicalProgram = body =>
+export const createProgramMedication = body =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/program_medications`),
     method: 'POST',
@@ -46,21 +46,7 @@ export const createMedicalProgram = body =>
     body
   });
 
-export const deactivateMedicalProgram = id =>
-  invoke({
-    endpoint: createUrl(`${API_URL}/api/program_medications/${id}/deactivate`),
-    method: 'PATCH',
-    headers: {
-      'content-type': 'application/json'
-    },
-    types: [
-      'program_medications/DEACTIVATE_REQUEST',
-      'program_medications/DEACTIVATE_SUCCESS',
-      'program_medications/DEACTIVATE_FAILURE'
-    ]
-  });
-
-export const fetchMedicalProgram = id =>
+export const fetchProgramMedication = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/program_medications/${id}`),
     method: 'GET',
