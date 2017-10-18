@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import filter from 'helpers/filter';
 
+import { ListHeader, ListShowBy, ListTable } from 'components/List';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
@@ -21,12 +21,10 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getInnms } from 'reducers';
 
 import { fetchInnms } from './redux';
-import styles from './styles.scss';
 
 const FILTER_PARAMS = ['id', 'sctid', 'name', 'name_original'];
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
@@ -55,9 +53,9 @@ export default class InnmsListPage extends React.Component {
           title={t('Innms')}
           meta={[{ property: 'og:title', content: t('Innms') }]}
         />
-        <div className={styles.header}>
-          <H1>{t('Innms')}</H1>
-          <div className={styles.header__btn}>
+
+        <ListHeader
+          button={
             <Button
               to="/innms/create"
               theme="border"
@@ -67,10 +65,12 @@ export default class InnmsListPage extends React.Component {
             >
               {t('Create innm')}
             </Button>
-          </div>
-        </div>
+          }
+        >
+          <H1>{t('Innms')}</H1>
+        </ListHeader>
 
-        <div className={styles.search}>
+        <div>
           <H2>{t('Search innms')}</H2>
 
           <SearchForm
@@ -99,14 +99,14 @@ export default class InnmsListPage extends React.Component {
           />
         </div>
 
-        <div className={styles.showBy}>
+        <ListShowBy>
           <ShowBy
             active={Number(location.query.page_size) || 5}
             onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
-        </div>
+        </ListShowBy>
 
-        <div id="innms-table" className={styles.table}>
+        <ListTable id="innms-table">
           <Table
             columns={[
               { key: 'id', title: t('id') },
@@ -133,7 +133,8 @@ export default class InnmsListPage extends React.Component {
               )
             }))}
           />
-        </div>
+        </ListTable>
+
         {paging.total_pages > 1 && (
           <Pagination
             currentPage={paging.page_number}
