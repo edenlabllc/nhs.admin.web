@@ -7,8 +7,18 @@ import Icon from 'components/Icon';
 
 import styles from './styles.scss';
 
-const BackLink = ({ children, to, iconPosition = 'left', onClick }) => (
-  <div className={classnames(styles.back, styles[`back_icon_${iconPosition}`])}>
+const BackLink = ({
+  children,
+  to,
+  iconPosition = 'left',
+  detached,
+  onClick
+}) => (
+  <div
+    className={classnames(styles.back, styles[`back_icon_${iconPosition}`], {
+      [styles.back_detached]: detached
+    })}
+  >
     <Link onClick={onClick} to={to}>
       <span className={styles.back__icon}>
         <Icon name="back" />

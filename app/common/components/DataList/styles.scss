@@ -1,13 +1,20 @@
 .list {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   line-height: 22px;
   font-size: 16px;
 
   dt {
-    width: 150px;
+    flex-basis: 150px;
     padding-right: 5px;
   }
 
+  dd {
+    flex-basis: calc(100% - 150px);
+  }
+
+  dt,
   dd {
     margin-bottom: 26px;
 
@@ -16,30 +23,10 @@
     }
   }
 
-  dt,
-  dd {
-    float: left;
-  }
-
-  dd + dt,
-  dd + dd {
-    clear: left;
-  }
-
-  dd + dd {
-    float: none;
-  }
-
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    clear: both;
-  }
-
   &_theme_min {
     font-size: 14px;
 
+    dt,
     dd {
       margin-bottom: 5px;
     }
