@@ -10,12 +10,9 @@ import { H3 } from 'components/Title';
 import Line from 'components/Line';
 import DataList from 'components/DataList';
 import Checkbox from 'components/Checkbox';
-import InlineList from 'components/InlineList';
-import Upper from 'components/Upper';
-import { Confirm } from 'components/Popup';
 import Button from 'components/Button';
+import { Confirm } from 'components/Popup';
 
-import BlocksList from 'containers/blocks/BlocksList';
 import BackLink from 'containers/blocks/BackLink';
 import ColoredText from 'components/ColoredText';
 import ShowMore from 'containers/blocks/ShowMore';
@@ -39,10 +36,9 @@ import styles from './styles.scss';
 export default class ProgramMedicationDetailPage extends React.Component {
   render() {
     const { program_medication = {}, t } = this.props;
-    console.log(program_medication);
 
     return (
-      <div id="clinic-detail-page">
+      <div id="program-medication-detail-page">
         <Helmet
           title={program_medication.name}
           meta={[{ property: 'og:title', content: program_medication.name }]}
@@ -82,12 +78,14 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       />
                       <br />
                       <p>
-                        {`${program_medication.medication.ingredients[0].dosage
+                        {`
+                        ${program_medication.medication.ingredients[0].dosage
                           .denumerator_value} `}
-                        {`${t('мість')} ${program_medication.medication
-                          .ingredients[0].dosage
-                          .numerator_value} ${program_medication.medication
-                          .ingredients[0].dosage.numerator_unit}`}
+                        {`${t('мість')}
+                          ${program_medication.medication.ingredients[0].dosage
+                            .numerator_value}
+                          ${program_medication.medication.ingredients[0].dosage
+                            .numerator_unit}`}
                       </p>
                       <p>
                         {program_medication.medication.ingredients[0]
@@ -118,18 +116,18 @@ export default class ProgramMedicationDetailPage extends React.Component {
                           )}
                         </ShowMore>
                       )}
-                      <ShowWithScope scope="medication:read">
-                        <div className={styles.right}>
-                          <BackLink
-                            iconPosition="right"
-                            to={`/medications/${program_medication.medication
-                              .id}`}
-                          >
-                            Перейти до торгово назви
-                          </BackLink>
-                        </div>
-                      </ShowWithScope>
                     </div>
+                    <ShowWithScope scope="medication:read">
+                      <div className={styles.right}>
+                        <BackLink
+                          iconPosition="right"
+                          to={`/medications/${program_medication.medication
+                            .id}`}
+                        >
+                          Перейти до торгової назви
+                        </BackLink>
+                      </div>
+                    </ShowWithScope>
                   </div>
                 )
               }
@@ -163,13 +161,16 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Відшкодування'),
+                  name: t('Ціна'),
                   value: (
                     <div>
-                      Відсоток від вартості
+                      {program_medication.reimbursement.type === 'fixed' &&
+                        'Фіксована'}
+                      {program_medication.reimbursement.type === 'dinamic' &&
+                        'Динамічна'}
                       <br />
-                      {program_medication.reimbursement.reimbursement_amount %
-                        100}
+                      {`${program_medication.reimbursement
+                        .reimbursement_amount} грн.`}
                     </div>
                   )
                 }
@@ -188,8 +189,20 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <Checkbox checked={program_medication.medication_request_allowed} />
-            Medication request allowed
+            Дозвіл на відпуск рецептів
           </div>
+        </div>
+        <br />
+        <div className="row">
+          <ShowWithScope scope="program_medication:write">
+            <div>
+              <Button
+                to={`/program-medications/${program_medication.id}/update`}
+              >
+                Редагувати
+              </Button>
+            </div>
+          </ShowWithScope>
         </div>
       </div>
     );

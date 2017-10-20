@@ -61,6 +61,8 @@ import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/re
 import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
 
 import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage/redux';
+import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage/redux';
+import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
 
 const blocks = combineReducers({
   Aside
@@ -86,7 +88,9 @@ const pages = combineReducers({
   MedicationDetailPage,
   MedicalProgramsListPage,
   MedicalProgramDetailPage,
-  ProgramMedicationsListPage
+  ProgramMedicationsListPage,
+  ProgramMedicationUpdatePage,
+  ProgramMedicationDetailPage
 });
 
 const data = combineReducers({

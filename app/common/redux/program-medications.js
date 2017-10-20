@@ -46,6 +46,21 @@ export const createProgramMedication = body =>
     body
   });
 
+export const updateProgramMedication = (body, id) =>
+  invoke({
+    endpoint: `${API_URL}/api/program_medications/${id}`,
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json'
+    },
+    types: [
+      'program_medications/UPDATE_MEDICAL_PROGRAM_REQUEST',
+      'program_medications/UPDATE_SUCCESS',
+      'program_medications/UPDATE_FAILURE'
+    ],
+    body
+  });
+
 export const fetchProgramMedication = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/program_medications/${id}`),

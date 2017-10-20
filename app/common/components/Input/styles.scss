@@ -50,6 +50,14 @@ $errored: #ff1f44;
   &.theme-light {
     border-color: #dadcde;
   }
+
+  &.theme-disabled {
+    border-color: $disabled;
+
+    .input {
+      color: rgba(61, 61, 61, 0.5);
+    }
+  }
 }
 
 .input {
