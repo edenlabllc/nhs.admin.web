@@ -145,6 +145,19 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
+                <ShowWithScope scope="medication_dispense:read">
+                  <NavItem
+                    to="medication-dispenses"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="medication-dispenses-nav"
+                      to="/medication-dispenses"
+                    >
+                      Рецепти
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
               </ul>
             </ShowMore>
           </li>
