@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 .header {
   position: relative;
 
@@ -5,18 +7,6 @@
     position: absolute;
     right: 0;
     top: 0;
-  }
-}
-
-.table {
-  margin-top: 30px;
-
-  .name {
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: bottom;
   }
 }
 
@@ -38,6 +28,24 @@
   }
 }
 
+.showBy {
+  @media screen and (max-width: $breakpoint-tablet) {
+    margin-top: 20px;
+  }
+}
+
+.table {
+  margin-top: 30px;
+
+  div {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+  }
+}
+
 .status {
   color: #22a4ff;
 
@@ -49,10 +57,4 @@
 .pagination {
   margin-top: 43px;
   text-align: center;
-}
-
-@media screen and (max-width: $breakpoint-tablet) {
-  .showBy {
-    margin-top: 20px;
-  }
 }

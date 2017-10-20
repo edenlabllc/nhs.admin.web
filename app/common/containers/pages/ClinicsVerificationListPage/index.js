@@ -3,38 +3,39 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import { H1 } from 'components/Title';
+import { ListPagination } from 'components/List';
 import Pagination from 'components/CursorPagination';
 import Icon from 'components/Icon';
 
+import BackLink from 'containers/blocks/BackLink';
 import ClinicsList from 'containers/blocks/ClinicsList';
 import ShowBy from 'containers/blocks/ShowBy';
 
 import { getClinics } from 'reducers';
 
 import { fetchClinics } from './redux';
-import styles from './styles.scss';
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, location: { query } }) => dispatch(
-    fetchClinics({ ...query, nhs_verified: false })
-  ),
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchClinics({ ...query, nhs_verified: false }))
 })
-@connect(state => ({
-  ...state.pages.ClinicsListPage,
-  clinics: getClinics(state, state.pages.ClinicsListPage.clinics),
-}), { fetchClinics })
+@connect(
+  state => ({
+    ...state.pages.ClinicsListPage,
+    clinics: getClinics(state, state.pages.ClinicsListPage.clinics)
+  }),
+  { fetchClinics }
+)
 export default class ClinicsVerificationListPage extends React.Component {
   filterClinics(filter) {
     const newFilter = {
       ...this.props.location.query,
-      ...filter,
+      ...filter
     };
 
     const query = Object.keys(newFilter).reduce((target, key) => {
@@ -43,11 +44,11 @@ export default class ClinicsVerificationListPage extends React.Component {
       }
 
       return target;
-    }, { });
+    }, {});
 
     this.props.router.push({
       ...this.props.location,
-      query,
+      query
     });
   }
 
@@ -58,18 +59,14 @@ export default class ClinicsVerificationListPage extends React.Component {
       <div id="clinics-verification-list-page">
         <Helmet
           title={t('Verification clinics')}
-          meta={[
-            { property: 'og:title', content: t('Verification clinics') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Verification clinics') }]}
         />
 
-        <div className={styles.back}>
-          <Link to="/clinics-verification">
-            <Icon name="back" /> {t('Back to search page')}
-          </Link>
-        </div>
+        <BackLink to="/clinics-verification" detached>
+          {t('Back to search page')}
+        </BackLink>
 
-        <H1>{ t('Verification clinics') }</H1>
+        <H1>{t('Verification clinics')}</H1>
 
         <ShowBy
           active={Number(location.query.limit) || 5}
@@ -78,13 +75,15 @@ export default class ClinicsVerificationListPage extends React.Component {
 
         <ClinicsList clinics={clinics} />
 
-        {paging.cursors && <div className={styles.pagination}>
-          <Pagination
-            location={location}
-            after={paging.cursors.starting_after}
-            before={paging.cursors.ending_before}
-          />
-        </div>}
+        {paging.cursors && (
+          <ListPagination>
+            <Pagination
+              location={location}
+              after={paging.cursors.starting_after}
+              before={paging.cursors.ending_before}
+            />
+          </ListPagination>
+        )}
       </div>
     );
   }

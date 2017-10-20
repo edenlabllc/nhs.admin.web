@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import filter from 'helpers/filter';
 
+import { ListHeader, ListShowBy, ListTable } from 'components/List';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
@@ -20,12 +20,10 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getInnmDosages } from 'reducers';
 
 import { fetchInnmDosages } from './redux';
-import styles from './styles.scss';
 
 const FILTER_PARAMS = ['id', 'form', 'name'];
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
@@ -57,9 +55,8 @@ export default class InnmDosagesListPage extends React.Component {
           title="Лікарські форми"
           meta={[{ property: 'og:title', content: t('Лікарські форми') }]}
         />
-        <div className={styles.header}>
-          <H1>Лікарські форми</H1>
-          <div className={styles.header__btn}>
+        <ListHeader
+          button={
             <Button
               to="/innm-dosages/create"
               theme="border"
@@ -69,12 +66,13 @@ export default class InnmDosagesListPage extends React.Component {
             >
               Створити лікарську форму
             </Button>
-          </div>
-        </div>
+          }
+        >
+          <H1>Лікарські форми</H1>
+        </ListHeader>
 
-        <div className={styles.search}>
+        <div>
           <H2>Знайти лікарську форму</H2>
-
           <SearchForm
             active={activeFilter}
             placeholder="Знайти лікарську форму"
@@ -99,14 +97,14 @@ export default class InnmDosagesListPage extends React.Component {
           />
         </div>
 
-        <div className={styles.showBy}>
+        <ListShowBy>
           <ShowBy
             active={Number(location.query.page_size) || 5}
             onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
-        </div>
+        </ListShowBy>
 
-        <div id="innm-dosages-table" className={styles.table}>
+        <ListTable id="innm-dosages-table">
           <Table
             columns={[
               { key: 'id', title: t('id') },
@@ -129,7 +127,7 @@ export default class InnmDosagesListPage extends React.Component {
               )
             }))}
           />
-        </div>
+        </ListTable>
 
         {paging.total_pages > 1 && (
           <Pagination

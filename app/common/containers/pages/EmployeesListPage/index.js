@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import filter from 'helpers/filter';
 
 import { H1 } from 'components/Title';
+import { ListShowBy, ListTable } from 'components/List';
 import Table from 'components/Table';
 import Button from 'components/Button';
 import Pagination from 'components/Pagination';
@@ -23,25 +23,26 @@ import DictionaryValue from 'containers/blocks/DictionaryValue';
 import { getEmployees } from 'reducers';
 
 import { fetchEmployees } from './redux';
-import styles from './styles.scss';
 
 const FILTER_PARAMS = ['party_id', 'edrpou', 'legal_entity_id'];
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchEmployees({ page_size: 5, ...query })),
+    dispatch(fetchEmployees({ page_size: 5, ...query }))
 })
 @connect(state => ({
   ...state.pages.EmployeesListPage,
-  employees: getEmployees(state, state.pages.EmployeesListPage.employees),
+  employees: getEmployees(state, state.pages.EmployeesListPage.employees)
 }))
 export default class EmployeesListPage extends React.Component {
   get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(Object.keys(this.props.location.query)
-      .filter(key => ~FILTER_PARAMS.indexOf(key))[0]);
+    const index = FILTER_PARAMS.indexOf(
+      Object.keys(this.props.location.query).filter(
+        key => ~FILTER_PARAMS.indexOf(key)
+      )[0]
+    );
     return FILTER_PARAMS[index !== -1 ? index : 0];
   }
 
@@ -53,12 +54,10 @@ export default class EmployeesListPage extends React.Component {
       <div id="employees-list-page">
         <Helmet
           title={t('Employees')}
-          meta={[
-            { property: 'og:title', content: t('Employees') },
-          ]}
+          meta={[{ property: 'og:title', content: t('Employees') }]}
         />
 
-        <H1>{ t('Employees') }</H1>
+        <H1>{t('Employees')}</H1>
 
         <SearchForm
           active={activeFilter}
@@ -66,34 +65,38 @@ export default class EmployeesListPage extends React.Component {
           items={[
             { name: 'party_id', title: t('By party id') },
             { name: 'edrpou', title: t('By edrpou') },
-            { name: 'legal_entity_id', title: t('By legal entity') },
+            { name: 'legal_entity_id', title: t('By legal entity') }
           ]}
           initialValues={{
-            [activeFilter]: location.query[activeFilter],
+            [activeFilter]: location.query[activeFilter]
           }}
-          onSubmit={values => filter({
-            party_id: null,
-            edrpou: null,
-            legal_entity_id: null,
-            ...values,
-          }, this.props)}
+          onSubmit={values =>
+            filter(
+              {
+                party_id: null,
+                edrpou: null,
+                legal_entity_id: null,
+                ...values
+              },
+              this.props
+            )}
         />
 
-        <div className={styles.showBy}>
+        <ListShowBy>
           <ShowBy
             active={Number(location.query.page_size) || 5}
             onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
-        </div>
+        </ListShowBy>
 
-        <div id="employees-table" className={styles.table}>
+        <ListTable id="employees-table">
           <Table
             columns={[
               { key: 'date', title: t('Date registration') },
               { key: 'name', title: t('Employee name') },
               { key: 'position', title: t('Position') },
               { key: 'legalEntity', title: t('Legal entity') },
-              { key: 'action', title: t('Action'), width: 100 },
+              { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={employees.map(item => ({
               key: item.id,
@@ -104,25 +107,37 @@ export default class EmployeesListPage extends React.Component {
                   <div>{item.party.second_name}</div>
                 </div>
               ),
-              position: <DictionaryValue dictionary="POSITION" value={item.position} />,
-              legalEntity: <div>
-                <p>{item.legal_entity.name}</p>
-                <small>{t('edrpou')} {item.legal_entity.edrpou}</small>
-              </div>,
-              action: (<Button id={`show-employees-detail-button-${item.id}`} theme="link" to={`/employees/${item.id}`}>{ t('Details') }</Button>),
+              position: (
+                <DictionaryValue dictionary="POSITION" value={item.position} />
+              ),
+              legalEntity: (
+                <div>
+                  <p>{item.legal_entity.name}</p>
+                  <small>
+                    {t('edrpou')} {item.legal_entity.edrpou}
+                  </small>
+                </div>
+              ),
+              action: (
+                <Button
+                  id={`show-employees-detail-button-${item.id}`}
+                  theme="link"
+                  to={`/employees/${item.id}`}
+                >
+                  {t('Details')}
+                </Button>
+              )
             }))}
           />
-        </div>
-        {
-          paging.total_pages > 1 && (
-            <Pagination
-              currentPage={paging.page_number}
-              totalPage={paging.total_pages}
-              location={location}
-              cb={() => {}}
-            />
-          )
-        }
+        </ListTable>
+        {paging.total_pages > 1 && (
+          <Pagination
+            currentPage={paging.page_number}
+            totalPage={paging.total_pages}
+            location={location}
+            cb={() => {}}
+          />
+        )}
       </div>
     );
   }

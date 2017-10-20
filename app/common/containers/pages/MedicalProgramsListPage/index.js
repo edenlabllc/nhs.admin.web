@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
 import Helmet from 'react-helmet';
 
 import filter from 'helpers/filter';
 
+import { ListHeader, ListShowBy, ListTable } from 'components/List';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
@@ -21,7 +21,6 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getMedicalPrograms } from 'reducers';
 
 import { fetchMedicalPrograms } from './redux';
-import styles from './styles.scss';
 
 const FILTER_PARAMS = [
   'id',
@@ -34,7 +33,6 @@ const FILTER_PARAMS = [
 ];
 
 @withRouter
-@withStyles(styles)
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
@@ -66,9 +64,8 @@ export default class MedicalProgramsListPage extends React.Component {
           title="Перелік медичний програм"
           meta={[{ property: 'og:title', content: 'Перелік медичний програм' }]}
         />
-        <div className={styles.header}>
-          <H1>Перелік медичний програм</H1>
-          <div className={styles.header__btn}>
+        <ListHeader
+          button={
             <Button
               to="/medical-programs/create"
               theme="border"
@@ -78,10 +75,12 @@ export default class MedicalProgramsListPage extends React.Component {
             >
               Додати програму
             </Button>
-          </div>
-        </div>
+          }
+        >
+          <H1>Перелік медичний програм</H1>
+        </ListHeader>
 
-        <div className={styles.search}>
+        <div>
           <H2>Пошук програм</H2>
 
           <SearchForm
@@ -119,14 +118,14 @@ export default class MedicalProgramsListPage extends React.Component {
           />
         </div>
 
-        <div className={styles.showBy}>
+        <ListShowBy>
           <ShowBy
             active={Number(location.query.page_size) || 5}
             onChange={page_size => filter({ page_size, page: 1 }, this.props)}
           />
-        </div>
+        </ListShowBy>
 
-        <div id="medication-table" className={styles.table}>
+        <ListTable id="medication-table">
           <Table
             columns={[
               { key: 'id', title: 'ID\n медичної программи' },
@@ -157,7 +156,7 @@ export default class MedicalProgramsListPage extends React.Component {
               )
             }))}
           />
-        </div>
+        </ListTable>
 
         {paging.total_pages > 1 && (
           <Pagination

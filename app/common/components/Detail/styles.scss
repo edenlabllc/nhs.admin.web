@@ -1,0 +1,17 @@
+.main {
+  max-width: 630px;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  & > div {
+    flex: 1 1 50%;
+  }
+
+  .right {
+    text-align: right;
+  }
+}

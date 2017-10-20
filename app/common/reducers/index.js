@@ -27,8 +27,9 @@ import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
-import medical_programs from 'redux/medical-programs';
 import program_medications from 'redux/program-medications';
+import medical_programs from 'redux/medical-programs';
+import medication_dispenses from 'redux/medication-dispenses';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -57,6 +58,9 @@ import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux'
 import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
 
+import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage/redux';
+import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage/redux';
+
 import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/redux';
 import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
 
@@ -78,19 +82,27 @@ const pages = combineReducers({
   PendingDeclarationsListPage,
   EmployeesListPage,
   EmployeeDetailPage,
+
   PendingEmployeesListPage,
   PendingEmployeeDetailPage,
+
   InnmsListPage,
   InnmDetailPage,
   InnmDosagesListPage,
   InnmDosagesDetailPage,
+
   MedicationsListPage,
   MedicationDetailPage,
+
   MedicalProgramsListPage,
   MedicalProgramDetailPage,
+
   ProgramMedicationsListPage,
   ProgramMedicationUpdatePage,
-  ProgramMedicationDetailPage
+  ProgramMedicationDetailPage,
+
+  MedicationDispensesListPage,
+  MedicationDispenseDetailPage
 });
 
 const data = combineReducers({
@@ -110,7 +122,8 @@ const data = combineReducers({
   innm_dosages,
   medications,
   medical_programs,
-  program_medications
+  program_medications,
+  medication_dispenses
 });
 
 export default combineReducers({
@@ -209,6 +222,11 @@ export const getMedications = (state, ids) =>
   denormalize(ids, [schemas.medication], state.data);
 export const getMedication = (state, id) =>
   denormalize(id, schemas.medication, state.data);
+
+export const getMedicationDispenses = (state, ids) =>
+  denormalize(ids, [schemas.medication_dispense], state.data);
+export const getMedicationDispense = (state, id) =>
+  denormalize(id, schemas.medication_dispense, state.data);
 
 export const getMedicalPrograms = (state, ids) =>
   denormalize(ids, [schemas.medical_program], state.data);
