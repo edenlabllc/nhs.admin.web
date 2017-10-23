@@ -3,28 +3,25 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
 import { reduxForm, Field, getFormValues } from 'redux-form';
-
-import FieldInput from 'components/reduxForm/FieldInput';
-import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
-import { FormRow, FormColumn } from 'components/Form';
-
-import { SelectUniversal } from 'components/SelectUniversal';
-import Button from 'components/Button';
-
-import ShowWithScope from 'containers/blocks/ShowWithScope';
-
 import {
   reduxFormValidate,
   collectionOf,
   ErrorMessage
 } from 'react-nebo15-validate';
 
+import { SelectUniversal } from 'components/SelectUniversal';
+import FieldInput from 'components/reduxForm/FieldInput';
+import { FormRow, FormColumn } from 'components/Form';
+import Button from 'components/Button';
+
+import ShowWithScope from 'containers/blocks/ShowWithScope';
+
 import styles from './styles.scss';
 
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'program-medication-update-form',
+  form: 'program-medication-create-form',
   validate: reduxFormValidate({
     fixed: {
       required: true
@@ -35,13 +32,14 @@ import styles from './styles.scss';
   })
 })
 @connect(state => ({
-  values: getFormValues('program-medication-update-form')(state)
+  values: getFormValues('program-medication-create-form')(state)
 }))
-export default class ProgramMedicationForm extends React.Component {
+export default class ProgramMedicationCreateForm extends React.Component {
   render() {
     const {
       handleSubmit,
       onSubmit = () => {},
+      data = [],
       submitting,
       t,
       disabled = false,
@@ -55,53 +53,30 @@ export default class ProgramMedicationForm extends React.Component {
           <FormRow>
             <FormColumn>
               <Field
-                name="id"
-                labelText="ID Учасника"
-                component={FieldInput}
-                disabled
-                theme="disabled"
-              />
-            </FormColumn>
-          </FormRow>
-          <FormRow>
-            <FormColumn>
-              <Field
-                name="medication.name"
-                labelText="Торгова назва"
-                component={FieldInput}
-                disabled
-                theme="disabled"
-              />
-            </FormColumn>
-            <FormColumn>
-              <Field
-                name="medication.id"
+                name="medication_id"
                 labelText="ID торгової назви"
                 component={FieldInput}
-                disabled
-                readonly
-                theme="disabled"
+                placeholder="Введіть ідентифікатор торгової назви"
               />
             </FormColumn>
           </FormRow>
           <FormRow>
             <FormColumn>
               <Field
-                name="medical_program.name"
+                name="medical_program"
                 labelText="Медична программа"
-                component={FieldInput}
-                disabled
-                theme="disabled"
-              />
-            </FormColumn>
-            <FormColumn>
-              <Field
-                name="medical_program.id"
-                labelText="ID медичної програми"
-                component={FieldInput}
-                disabled
-                theme="disabled"
-              />
+                component={SelectUniversal}
+                options={Object.values(data)
+                  .filter(i => i.id)
+                  .map(i => ({
+                    title: i.name,
+                    name: i.id
+                  }))}
+              >
+                <ErrorMessage when="required">
+                  {t('Required field')}
+                </ErrorMessage>
+              </Field>
             </FormColumn>
           </FormRow>
           <div>
@@ -131,24 +106,10 @@ export default class ProgramMedicationForm extends React.Component {
               <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
             </Field>
           </div>
-          <div>
-            <Field
-              name="is_active"
-              labelText="Активний"
-              component={FieldCheckbox}
-            />
-          </div>
-          <div>
-            <Field
-              name="medication_request_allowed"
-              labelText="Дозвіл на відпуск рецептів"
-              component={FieldCheckbox}
-            />
-          </div>
           <ShowWithScope scope="program_medication:write">
             <div>
               <Button type="submit" disabled={submitting}>
-                {submitting ? t('Saving...') : t('Оновити')}
+                {submitting ? t('Saving...') : t('Створити')}
               </Button>
             </div>
           </ShowWithScope>

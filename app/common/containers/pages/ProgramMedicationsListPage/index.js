@@ -60,7 +60,6 @@ export default class ProgramMedicationsListPage extends React.Component {
   render() {
     const { program_medications = [], t, paging, location } = this.props;
     const activeFilter = this.activeFilter;
-    console.log(program_medications, paging);
 
     return (
       <div id="medication-list-page">

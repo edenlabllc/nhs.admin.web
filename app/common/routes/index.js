@@ -51,6 +51,7 @@ import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage'
 import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage';
 import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage';
 import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage';
+import ProgramMedicationCreatePage from 'containers/pages/ProgramMedicationCreatePage';
 
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage';
@@ -183,8 +184,11 @@ export const configureRoutes = ({ store }) => {
             onEnter={requireScope(['program_medication:read'])}
           >
             <IndexRoute component={ProgramMedicationsListPage} />
-            {/*<Route path="create" component={MedicalProgramCreatePage} />*/}
-            ProgramMedicationUpdatePage
+            <Route
+              path="create"
+              onEnter={requireScope(['program_medication:write'])}
+              component={ProgramMedicationCreatePage}
+            />
             <Route path=":id/update" component={ProgramMedicationUpdatePage} />
             <Route path=":id" component={ProgramMedicationDetailPage} />
           </Route>
