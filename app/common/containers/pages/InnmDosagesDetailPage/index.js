@@ -15,6 +15,7 @@ import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
 // import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
+import Icon from 'components/Icon';
 
 import { getInnmDosage } from 'reducers';
 
@@ -73,20 +74,24 @@ export default class InnmDosagesDetailPage extends React.Component {
                 name: 'Складові',
                 value: (
                   <div>
-                    <p>{innm_dosage.name}</p>
+                    <p>{innm_dosage.ingredients[0].name}</p>
                     <br />
-                    <p>{innm_dosage.ingredients[0].dosage.denumerator_unit}</p>
+                    <p>{innm_dosage.ingredients[0].id}</p>
                     <br />
                     <p>
                       {`${innm_dosage.ingredients[0].dosage
-                        .denumerator_value} `}
-                      {`${t('contains')} ${innm_dosage.ingredients[0].dosage
+                        .denumerator_value}  ${innm_dosage.ingredients[0].dosage
+                        .denumerator_unit} `}
+                      {`${t('містить')} ${innm_dosage.ingredients[0].dosage
                         .numerator_value} ${innm_dosage.ingredients[0].dosage
                         .numerator_unit}`}
                     </p>
                     <p>
-                      {innm_dosage.ingredients[0].is_primary &&
-                        'Діюча речовина'}
+                      {innm_dosage.ingredients[0].is_primary && (
+                        <div>
+                          <Icon name="check-right" /> &nbsp; Діюча речовина
+                        </div>
+                      )}
                     </p>
                     <br />
                     {innm_dosage.ingredients.length > 1 && (
@@ -95,9 +100,13 @@ export default class InnmDosagesDetailPage extends React.Component {
                           if (key === 0) return null;
                           return (
                             <div key={key}>
-                              <p>{i.dosage.denumerator_unit}</p>
+                              <p>{i.name}</p>
+                              <br />
+                              <p>{i.id}</p>
+                              <br />
                               <p>
-                                {`${i.dosage.denumerator_value} `}
+                                {`${i.dosage.denumerator_value} ${i.dosage
+                                  .denumerator_unit}`}
                                 {`містить ${i.dosage.numerator_value} ${i.dosage
                                   .numerator_unit}`}
                               </p>
@@ -106,6 +115,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                                   'Діюча речовина'}
                               </p>
                               <br />
+                              <Line width={300} />
                             </div>
                           );
                         })}
@@ -117,6 +127,23 @@ export default class InnmDosagesDetailPage extends React.Component {
             ]}
           />
         )}
+        <Line width={630} />
+        <div className={styles.row}>
+          <DataList list={[{ name: 'Форма', value: innm_dosage.form }]} />
+        </div>
+        <Line />
+        <DataList
+          list={[
+            {
+              name: 'Активна',
+              value: innm_dosage.is_active ? (
+                <Icon name="check-right" color="green" />
+              ) : (
+                '-'
+              )
+            }
+          ]}
+        />
 
         <Line width={630} />
         {innm_dosage.is_active && (
@@ -144,7 +171,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      Деактивувати лікарську форму
+                      Деактивувати форму
                     </Button>
                   </div>
                 </ShowWithScope>

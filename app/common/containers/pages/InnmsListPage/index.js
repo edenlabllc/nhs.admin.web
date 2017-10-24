@@ -111,6 +111,7 @@ export default class InnmsListPage extends React.Component {
               { key: 'id', title: t('id') },
               { key: 'name', title: t('Innms name') },
               { key: 'name_original', title: t('Innms original name') },
+              { key: 'sctid', title: t('sctid') },
               { key: 'active', title: t('Active') },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
@@ -118,6 +119,7 @@ export default class InnmsListPage extends React.Component {
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               name_original: <div>{item.name_original}</div>,
+              sctid: <div>{item.sctid ? item.sctid : '-'}</div>,
               active: (
                 <div>{item.is_active && <Icon name="check-right" />}</div>
               ),

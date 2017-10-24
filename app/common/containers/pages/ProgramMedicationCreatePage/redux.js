@@ -15,7 +15,6 @@ export const onCreate = v => dispatch => {
     fromProgramMedications.createProgramMedication(values)
   ).then(action => {
     if (action.error) throw action;
-    console.log('create', action);
     return dispatch(push(`/program-medications/${action.payload.data.id}`));
   });
 };

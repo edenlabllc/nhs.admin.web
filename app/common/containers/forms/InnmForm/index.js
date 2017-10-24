@@ -6,6 +6,7 @@ import { reduxForm, Field, getFormValues } from 'redux-form';
 
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
+import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
 
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
@@ -49,6 +50,14 @@ export default class InnmForm extends React.Component {
         <div className={styles.form}>
           <div>
             <Field
+              name="id"
+              labelText="ID"
+              component={FieldInput}
+              disabled={disabled}
+            />
+          </div>
+          <div>
+            <Field
               name="name"
               labelText="Назва МНН"
               component={FieldInput}
@@ -65,17 +74,15 @@ export default class InnmForm extends React.Component {
               placeholder="Amiodarone"
             />
           </div>
-          {initialValues.sctid && (
-            <div>
-              <Field
-                name="sctid"
-                labelText={t('sctid МНН')}
-                component={FieldInput}
-                disabled={disabled}
-                placeholder="61626162"
-              />
-            </div>
-          )}
+          <div>
+            <Field
+              name="sctid"
+              labelText={t('sctid МНН')}
+              component={FieldInput}
+              disabled={disabled}
+              placeholder="-"
+            />
+          </div>
           {create && (
             <div>
               <Field
@@ -87,6 +94,13 @@ export default class InnmForm extends React.Component {
               />
             </div>
           )}
+          <div>
+            <Field
+              name="is_active"
+              labelText="Активна"
+              component={FieldCheckbox}
+            />
+          </div>
           {!disabled && (
             <ShowWithScope scope="innm:write">
               <div>
