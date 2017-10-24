@@ -11,6 +11,7 @@ import Line from 'components/Line';
 import DataList from 'components/DataList';
 import { Confirm } from 'components/Popup';
 import Button from 'components/Button';
+import Icon from 'components/Icon';
 
 import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
@@ -60,12 +61,23 @@ export default class MedicationDetailPage extends React.Component {
         </BackLink>
         <Line />
         <div className={styles.row}>
-          <DataList list={[{ name: 'ID Форми', value: medication.id }]} />
+          <DataList
+            list={[{ name: 'ID торгівельної назви', value: medication.id }]}
+          />
         </div>
         <Line width={630} />
         <DataList list={[{ name: t('Name'), value: medication.name }]} />
         <Line width={630} />
-        <DataList list={[{ name: 'Код АТХ', value: medication.code_atc }]} />
+        <DataList
+          list={[
+            { name: 'Код АТХ', value: medication.code_atc },
+            { name: 'Кількість ліків', value: medication.package_qty },
+            {
+              name: 'Мін. к-сть ліків',
+              value: medication.package_min_qty
+            }
+          ]}
+        />
         <Line width={630} />
         {medication.ingredients && (
           <DataList
@@ -75,12 +87,13 @@ export default class MedicationDetailPage extends React.Component {
                 name: 'Складові',
                 value: (
                   <div>
-                    <p>{medication.name}</p>
+                    <p>{medication.ingredients[0].name}</p>
                     <br />
-                    <p>{medication.ingredients[0].dosage.denumerator_unit}</p>
+                    <p>{medication.ingredients[0].id}</p>
                     <br />
                     <p>
-                      {`${medication.ingredients[0].dosage.denumerator_value} `}
+                      {`${medication.ingredients[0].dosage.denumerator_value}
+                      ${medication.ingredients[0].dosage.denumerator_unit} `}
                       {`${t('contains')} ${medication.ingredients[0].dosage
                         .numerator_value} ${medication.ingredients[0].dosage
                         .numerator_unit}`}
@@ -95,7 +108,9 @@ export default class MedicationDetailPage extends React.Component {
                           if (key === 0) return null;
                           return (
                             <div key={key}>
-                              <p>{i.dosage.denumerator_unit}</p>
+                              <p>{medication.ingredients[0].name}</p>
+                              <br />
+                              <p>{medication.ingredients[0].id}</p>
                               <p>
                                 {`${i.dosage.denumerator_value} `}
                                 {`містить ${i.dosage.numerator_value} ${i.dosage
@@ -121,7 +136,7 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             {
-              name: 'Країна виробник',
+              name: 'Країна, Виробник',
               value: (
                 <div>
                   <span>
@@ -152,6 +167,19 @@ export default class MedicationDetailPage extends React.Component {
                     />
                   </span>
                 </div>
+              )
+            }
+          ]}
+        />
+        <Line width={630} />
+        <DataList
+          list={[
+            {
+              name: 'Активна',
+              value: medication.is_active ? (
+                <Icon name="check-right" color="green" />
+              ) : (
+                '-'
               )
             }
           ]}

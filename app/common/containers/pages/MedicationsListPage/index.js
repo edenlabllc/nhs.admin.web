@@ -123,9 +123,9 @@ export default class MedicationsListPage extends React.Component {
             columns={[
               { key: 'id', title: t('ID') },
               { key: 'innm_dosage_id', title: t('ID лікарської форми') },
-              { key: 'name', title: t('Medication name') },
-              { key: 'form', title: t('Form') },
-              { key: 'active', title: t('Active') },
+              { key: 'name', title: t('Торгова назва') },
+              { key: 'form', title: t('Форма /Виробник') },
+              { key: 'active', title: t('Активна') },
               { key: 'action', title: t('Детально / Деактивація'), width: 200 }
             ]}
             data={medications.map(item => ({

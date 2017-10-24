@@ -131,7 +131,7 @@ export default class InnmDosagesDetailPage extends React.Component {
         <div className={styles.row}>
           <DataList list={[{ name: 'Форма', value: innm_dosage.form }]} />
         </div>
-        <Line />
+        <Line width={630} />
         <DataList
           list={[
             {
