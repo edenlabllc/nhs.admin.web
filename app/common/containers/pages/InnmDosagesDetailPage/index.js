@@ -16,6 +16,7 @@ import ShowMore from 'containers/blocks/ShowMore';
 // import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 import Icon from 'components/Icon';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import { getInnmDosage } from 'reducers';
 
@@ -49,6 +50,7 @@ export default class InnmDosagesDetailPage extends React.Component {
 
   render() {
     const { innm_dosage = {}, t } = this.props;
+    console.log(innm_dosage);
 
     return (
       <div id="innm-dosages-detail-page">
@@ -60,9 +62,7 @@ export default class InnmDosagesDetailPage extends React.Component {
           Повернутися до списку лікарських форм
         </BackLink>
         <Line />
-        <div className={styles.row}>
-          <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
-        </div>
+        <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
         <Line />
         <DataList list={[{ name: 'Назва', value: innm_dosage.name }]} />
         <Line width={630} />
@@ -80,11 +80,19 @@ export default class InnmDosagesDetailPage extends React.Component {
                     <br />
                     <p>
                       {`${innm_dosage.ingredients[0].dosage
-                        .denumerator_value}  ${innm_dosage.ingredients[0].dosage
-                        .denumerator_unit} `}
-                      {`${t('містить')} ${innm_dosage.ingredients[0].dosage
-                        .numerator_value} ${innm_dosage.ingredients[0].dosage
-                        .numerator_unit}`}
+                        .denumerator_value} `}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={
+                          innm_dosage.ingredients[0].dosage.denumerator_unit
+                        }
+                      />
+                      {`${t(' містить')} ${innm_dosage.ingredients[0].dosage
+                        .numerator_value} `}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={innm_dosage.ingredients[0].dosage.numerator_unit}
+                      />
                     </p>
                     <p>
                       {innm_dosage.ingredients[0].is_primary && (
@@ -105,10 +113,16 @@ export default class InnmDosagesDetailPage extends React.Component {
                               <p>{i.id}</p>
                               <br />
                               <p>
-                                {`${i.dosage.denumerator_value} ${i.dosage
-                                  .denumerator_unit}`}
-                                {`містить ${i.dosage.numerator_value} ${i.dosage
-                                  .numerator_unit}`}
+                                {`${i.dosage.denumerator_value} `}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.denumerator_unit}
+                                />
+                                {` містить ${i.dosage.numerator_value} `}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.numerator_unit}
+                                />
                               </p>
                               <p>
                                 {innm_dosage.ingredients[key].is_primary &&
@@ -128,9 +142,7 @@ export default class InnmDosagesDetailPage extends React.Component {
           />
         )}
         <Line width={630} />
-        <div className={styles.row}>
-          <DataList list={[{ name: 'Форма', value: innm_dosage.form }]} />
-        </div>
+        <DataList list={[{ name: 'Форма', value: innm_dosage.form }]} />
         <Line width={630} />
         <DataList
           list={[
