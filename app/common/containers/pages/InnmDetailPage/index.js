@@ -33,15 +33,15 @@ export default class InnmDetailPage extends React.Component {
     return (
       <div id="innm-detail-page">
         <Helmet
-          title={t('Innm detail page')}
-          meta={[{ property: 'og:title', content: t('Innm detail page') }]}
+          title="Сторінка делатей МНН"
+          meta={[{ property: 'og:title', content: 'Сторінка делатей МНН' }]}
         />
         <BackLink onClick={() => this.props.router.goBack()}>
-          {t('Back to innms list')}
+          Повернутися до списку МНН
         </BackLink>
         <Line />
 
-        <H1>{t('Innm detail page')}</H1>
+        <H1>Сторінка делатей МНН</H1>
 
         <InnmForm initialValues={innm} disabled />
       </div>

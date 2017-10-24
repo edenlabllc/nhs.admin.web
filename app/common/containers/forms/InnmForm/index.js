@@ -6,6 +6,7 @@ import { reduxForm, Field, getFormValues } from 'redux-form';
 
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
+import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
 
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
@@ -16,7 +17,7 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'system-configuration-form',
+  form: 'innm-form',
   validate: reduxFormValidate({
     sctid: {
       length: 8
@@ -49,8 +50,16 @@ export default class InnmForm extends React.Component {
         <div className={styles.form}>
           <div>
             <Field
+              name="id"
+              labelText="ID"
+              component={FieldInput}
+              disabled={disabled}
+            />
+          </div>
+          <div>
+            <Field
               name="name"
-              labelText={t('Innm name')}
+              labelText="Назва МНН"
               component={FieldInput}
               disabled={disabled}
               placeholder="Аміодарон"
@@ -59,39 +68,44 @@ export default class InnmForm extends React.Component {
           <div>
             <Field
               name="name_original"
-              labelText={t('Innm original name')}
+              labelText="Оригінальна назва МНН"
               component={FieldInput}
               disabled={disabled}
               placeholder="Amiodarone"
             />
           </div>
-          {initialValues.sctid && (
-            <div>
-              <Field
-                name="sctid"
-                labelText={t('sctid innm')}
-                component={FieldInput}
-                disabled={disabled}
-                placeholder="61626162"
-              />
-            </div>
-          )}
+          <div>
+            <Field
+              name="sctid"
+              labelText={t('sctid МНН')}
+              component={FieldInput}
+              disabled={disabled}
+              placeholder="-"
+            />
+          </div>
           {create && (
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid innm')}
+                labelText={t('sctid МНН')}
                 component={FieldInput}
                 disabled={disabled}
                 placeholder="61626162"
               />
             </div>
           )}
+          <div>
+            <Field
+              name="is_active"
+              labelText="Активна"
+              component={FieldCheckbox}
+            />
+          </div>
           {!disabled && (
             <ShowWithScope scope="innm:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Saving...') : t('Create innm')}
+                  {submitting ? t('Saving...') : t('Створити МНН')}
                 </Button>
               </div>
             </ShowWithScope>

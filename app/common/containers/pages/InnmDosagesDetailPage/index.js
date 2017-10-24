@@ -15,6 +15,8 @@ import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
 // import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
+import Icon from 'components/Icon';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import { getInnmDosage } from 'reducers';
 
@@ -48,22 +50,21 @@ export default class InnmDosagesDetailPage extends React.Component {
 
   render() {
     const { innm_dosage = {}, t } = this.props;
+    console.log(innm_dosage);
 
     return (
       <div id="innm-dosages-detail-page">
         <Helmet
-          title={t('Innm Dosages detail')}
-          meta={[{ property: 'og:title', content: t('Innm Dosages detail') }]}
+          title="Деталі лікарської форми"
+          meta={[{ property: 'og:title', content: 'Деталі лікарської форми' }]}
         />
         <BackLink onClick={() => this.props.router.goBack()}>
-          {t('Back to list')}
+          Повернутися до списку лікарських форм
         </BackLink>
         <Line />
-        <div className={styles.row}>
-          <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
-        </div>
+        <DataList list={[{ name: 'ID Форми', value: innm_dosage.id }]} />
         <Line />
-        <DataList list={[{ name: t('Name'), value: innm_dosage.name }]} />
+        <DataList list={[{ name: 'Назва', value: innm_dosage.name }]} />
         <Line width={630} />
         {innm_dosage.ingredients && (
           <DataList
@@ -73,20 +74,32 @@ export default class InnmDosagesDetailPage extends React.Component {
                 name: 'Складові',
                 value: (
                   <div>
-                    <p>{innm_dosage.name}</p>
+                    <p>{innm_dosage.ingredients[0].name}</p>
                     <br />
-                    <p>{innm_dosage.ingredients[0].dosage.denumerator_unit}</p>
+                    <p>{innm_dosage.ingredients[0].id}</p>
                     <br />
                     <p>
                       {`${innm_dosage.ingredients[0].dosage
                         .denumerator_value} `}
-                      {`${t('contains')} ${innm_dosage.ingredients[0].dosage
-                        .numerator_value} ${innm_dosage.ingredients[0].dosage
-                        .numerator_unit}`}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={
+                          innm_dosage.ingredients[0].dosage.denumerator_unit
+                        }
+                      />
+                      {`${t(' містить')} ${innm_dosage.ingredients[0].dosage
+                        .numerator_value} `}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={innm_dosage.ingredients[0].dosage.numerator_unit}
+                      />
                     </p>
                     <p>
-                      {innm_dosage.ingredients[0].is_primary &&
-                        'Діюча речовина'}
+                      {innm_dosage.ingredients[0].is_primary && (
+                        <div>
+                          <Icon name="check-right" /> &nbsp; Діюча речовина
+                        </div>
+                      )}
                     </p>
                     <br />
                     {innm_dosage.ingredients.length > 1 && (
@@ -95,17 +108,28 @@ export default class InnmDosagesDetailPage extends React.Component {
                           if (key === 0) return null;
                           return (
                             <div key={key}>
-                              <p>{i.dosage.denumerator_unit}</p>
+                              <p>{i.name}</p>
+                              <br />
+                              <p>{i.id}</p>
+                              <br />
                               <p>
                                 {`${i.dosage.denumerator_value} `}
-                                {`містить ${i.dosage.numerator_value} ${i.dosage
-                                  .numerator_unit}`}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.denumerator_unit}
+                                />
+                                {` містить ${i.dosage.numerator_value} `}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.numerator_unit}
+                                />
                               </p>
                               <p>
                                 {innm_dosage.ingredients[key].is_primary &&
                                   'Діюча речовина'}
                               </p>
                               <br />
+                              <Line width={300} />
                             </div>
                           );
                         })}
@@ -117,6 +141,21 @@ export default class InnmDosagesDetailPage extends React.Component {
             ]}
           />
         )}
+        <Line width={630} />
+        <DataList list={[{ name: 'Форма', value: innm_dosage.form }]} />
+        <Line width={630} />
+        <DataList
+          list={[
+            {
+              name: 'Активна',
+              value: innm_dosage.is_active ? (
+                <Icon name="check-right" color="green" />
+              ) : (
+                '-'
+              )
+            }
+          ]}
+        />
 
         <Line width={630} />
         {innm_dosage.is_active && (
@@ -144,7 +183,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      {t('Deactivate innm dosage')}
+                      Деактивувати форму
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -153,9 +192,7 @@ export default class InnmDosagesDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t('Deactivate innm dosage {{name}}?', {
-            name: innm_dosage.name
-          })}
+          title={`Деактивувати лікарську форму ${innm_dosage.name}?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
           cancel={t('Cancel')}

@@ -27,9 +27,10 @@ import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
+import program_medications from 'redux/program-medications';
+import medical_programs from 'redux/medical-programs';
 import medication_requests from 'redux/medication-requests';
 import medication_dispenses from 'redux/medication-dispenses';
-import medical_programs from 'redux/medical_programs';
 
 import Aside from 'containers/blocks/Aside/redux';
 
@@ -59,13 +60,17 @@ import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
 
 import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage/redux';
-// import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
+import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
 
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage/redux';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage/redux';
 
 import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/redux';
-// import MedicalProgramDetailPage from 'containers/pages/MedicationDetailPage/redux';
+import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
+
+import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage/redux';
+import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage/redux';
+import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
 
 const blocks = combineReducers({
   Aside
@@ -81,19 +86,30 @@ const pages = combineReducers({
   PendingDeclarationsListPage,
   EmployeesListPage,
   EmployeeDetailPage,
+
   PendingEmployeesListPage,
   PendingEmployeeDetailPage,
+
   InnmsListPage,
   InnmDetailPage,
   InnmDosagesListPage,
   InnmDosagesDetailPage,
+
   MedicationsListPage,
   MedicationDetailPage,
+
+  MedicalProgramsListPage,
+  MedicalProgramDetailPage,
+
+  ProgramMedicationsListPage,
+  ProgramMedicationUpdatePage,
+  ProgramMedicationDetailPage,
+
   MedicationRequestsListPage,
-  // MedicationRequestDetailPage,
+  MedicationRequestDetailPage,
+
   MedicationDispensesListPage,
-  MedicationDispenseDetailPage,
-  MedicalProgramsListPage
+  MedicationDispenseDetailPage
 });
 
 const data = combineReducers({
@@ -112,8 +128,9 @@ const data = combineReducers({
   innms,
   innm_dosages,
   medications,
-  medication_requests,
+  program_medications,
   medication_dispenses,
+  medication_requests,
   medical_programs
 });
 
@@ -228,3 +245,8 @@ export const getMedicalPrograms = (state, ids) =>
   denormalize(ids, [schemas.medical_program], state.data);
 export const getMedicalProgram = (state, id) =>
   denormalize(id, schemas.medical_program, state.data);
+
+export const getProgramMedications = (state, ids) =>
+  denormalize(ids, [schemas.program_medication], state.data);
+export const getProgramMedication = (state, id) =>
+  denormalize(id, schemas.program_medication, state.data);

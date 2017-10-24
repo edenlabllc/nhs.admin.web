@@ -112,7 +112,7 @@ export default class InnmDosagesCreateForm extends React.Component {
               component={FieldInput}
               disabled={disabled}
               label_bold
-              placeholder="Назва хімічної сполуки"
+              placeholder="Назва лікарської форми"
             />
           </FormRow>
           <FormRow>
@@ -185,18 +185,12 @@ export default class InnmDosagesCreateForm extends React.Component {
             <FormColumn size="1/3">
               <Field
                 name="one.ingredients.numerator_unit"
-                component={SelectUniversal}
                 labelText="Одиниці"
-                options={[
-                  {
-                    name: 'MG',
-                    title: 'мг'
-                  },
-                  {
-                    name: 'MKG',
-                    title: 'мкг'
-                  }
-                ]}
+                component={SelectUniversal}
+                options={Object.keys(data.medication_unit.values).map(i => ({
+                  title: data.medication_unit.values[i],
+                  name: i
+                }))}
               >
                 <ErrorMessage when="required">
                   {t('Required field')}
@@ -233,9 +227,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             <ShowWithScope scope="innm_dosage:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting
-                    ? t('Додаємо...')
-                    : 'Додати форму хімічної сполуки'}
+                  {submitting ? t('Додаємо...') : 'Додати лікарську форму'}
                 </Button>
               </div>
             </ShowWithScope>

@@ -104,7 +104,7 @@ export const Input = ({
 };
 
 Input.propTypes = {
-  theme: PropTypes.oneOf(['light'])
+  theme: PropTypes.oneOf(['light', 'disabled'])
 };
 
 export default withStyles(styles)(Input);

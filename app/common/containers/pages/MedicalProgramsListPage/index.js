@@ -67,7 +67,7 @@ export default class MedicalProgramsListPage extends React.Component {
         <ListHeader
           button={
             <Button
-              to="/medical-program/create"
+              to="/medical-programs/create"
               theme="border"
               size="small"
               color="orange"

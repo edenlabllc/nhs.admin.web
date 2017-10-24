@@ -122,19 +122,19 @@ export default class Nav extends React.Component {
             </NavItem>
           </ShowWithScope>
           <li>
-            <ShowMore nav name={t('Innms')}>
+            <ShowMore nav name="МНН">
               <ul>
                 <ShowWithScope scope="innm:read">
                   <NavItem to="innms" activeClassName={styles.active}>
                     <Link id="innms-nav" to="/innms">
-                      {t('Innms')}
+                      МНН
                     </Link>
                   </NavItem>
                 </ShowWithScope>
                 <ShowWithScope scope="innm_dosage:read">
                   <NavItem to="innm-dosages" activeClassName={styles.active}>
                     <Link id="innm-dosages-nav" to="/innm-dosages">
-                      {t('Innm dosages')}
+                      Лікарська форма
                     </Link>
                   </NavItem>
                 </ShowWithScope>
@@ -145,6 +145,12 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          <li>
+            <ShowMore nav name="Рецепти">
+              <ul>
                 <ShowWithScope scope="medication_request:read">
                   <NavItem
                     to="medication-requests"
@@ -168,6 +174,32 @@ export default class Nav extends React.Component {
                       to="/medication-dispenses"
                     >
                       Рецепти
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          <li>
+            <ShowMore nav name={t('Medications')}>
+              <ul>
+                <ShowWithScope scope="medical_program:read">
+                  <NavItem to="medical-program" activeClassName={styles.active}>
+                    <Link id="medical-program-nav" to="/medical-program">
+                      Перелік мед. програм
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="program_medication:read">
+                  <NavItem
+                    to="program-medications"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="program_medications-nav"
+                      to="/program-medications"
+                    >
+                      Учасники програм
                     </Link>
                   </NavItem>
                 </ShowWithScope>

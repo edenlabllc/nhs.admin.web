@@ -11,6 +11,7 @@ import { ListHeader, ListShowBy, ListTable } from 'components/List';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
+import Icon from 'components/Icon';
 
 import Table from 'components/Table';
 import ShowBy from 'containers/blocks/ShowBy';
@@ -52,8 +53,8 @@ export default class InnmDosagesListPage extends React.Component {
     return (
       <div id="innm-dosages-list-page">
         <Helmet
-          title={t('Innm dosages')}
-          meta={[{ property: 'og:title', content: t('Innm dosages') }]}
+          title="Лікарські форми"
+          meta={[{ property: 'og:title', content: t('Лікарські форми') }]}
         />
         <ListHeader
           button={
@@ -64,23 +65,22 @@ export default class InnmDosagesListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              {t('Create innm dosages')}
+              Створити лікарську форму
             </Button>
           }
         >
-          <H1>{t('Innm dosages')}</H1>
+          <H1>Лікарські форми</H1>
         </ListHeader>
 
         <div>
-          <H2>{t('Search innm dosages')}</H2>
-
+          <H2>Знайти лікарську форму</H2>
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find innm dosages')}
+            placeholder="Знайти лікарську форму"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'form', title: t('By form') },
-              { name: 'name', title: t('By name') }
+              { name: 'id', title: t('За ідентифікатором') },
+              { name: 'form', title: t('За формою') },
+              { name: 'name', title: t('За назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -111,12 +111,16 @@ export default class InnmDosagesListPage extends React.Component {
               { key: 'id', title: t('id') },
               { key: 'name', title: t('Innms name') },
               { key: 'form', title: t('Form') },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: 'active', title: t('Active') },
+              { key: 'action', title: t('Деталі /Деактивація'), width: 150 }
             ]}
             data={innm_dosages.map(item => ({
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               form: <div>{item.form}</div>,
+              active: (
+                <div>{item.is_active && <Icon name="check-right" />}</div>
+              ),
               action: (
                 <Button
                   id={`show-innm-dosages-detail-button-${item.id}`}

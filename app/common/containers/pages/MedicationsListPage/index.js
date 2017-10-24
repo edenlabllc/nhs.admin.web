@@ -23,7 +23,13 @@ import { getMedications } from 'reducers';
 
 import { fetchMedications } from './redux';
 
-const FILTER_PARAMS = ['id', 'innm_id', 'name', 'form'];
+const FILTER_PARAMS = [
+  'id',
+  'innm_dosage_id',
+  'innm_dosage_name',
+  'name',
+  'form'
+];
 
 @withRouter
 @translate()
@@ -82,7 +88,8 @@ export default class MedicationsListPage extends React.Component {
             placeholder="Знайти торгову назву"
             items={[
               { name: 'id', title: t('By id') },
-              { name: 'innm_id', title: t('By innm_id') },
+              { name: 'innm_dosage_id', title: t('By innm_dosage_id') },
+              { name: 'innm_dosage_name', title: t('By innm_dosage_name') },
               { name: 'name', title: t('By medication name') },
               { name: 'form', title: t('By form') }
             ]}
@@ -93,8 +100,9 @@ export default class MedicationsListPage extends React.Component {
               filter(
                 {
                   id: null,
+                  innm_dosage_id: null,
+                  innm_dosage_name: null,
                   name: null,
-                  innm_name: null,
                   form: null,
                   ...values
                 },
@@ -113,16 +121,18 @@ export default class MedicationsListPage extends React.Component {
         <ListTable id="medication-table">
           <Table
             columns={[
-              { key: 'innm_id', title: t('Innm ID') },
-              { key: 'id', title: t('Medication ID') },
-              { key: 'name', title: t('Medication name') },
-              { key: 'form', title: t('Form') },
-              { key: 'active', title: t('Active') },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: 'id', title: t('ID') },
+              { key: 'innm_dosage_id', title: t('ID лікарської форми') },
+              { key: 'name', title: t('Торгова назва') },
+              { key: 'form', title: t('Форма /Виробник') },
+              { key: 'active', title: t('Активна') },
+              { key: 'action', title: t('Детально / Деактивація'), width: 200 }
             ]}
             data={medications.map(item => ({
-              innm_id: <div>{item.ingredients[0].id}</div>,
               id: <div>{item.id}</div>,
+              innm_dosage_id: (
+                <div>{item.ingredients.filter(i => i.is_primary)[0].id}</div>
+              ),
               name: <div>{item.name}</div>,
               form: (
                 <div>

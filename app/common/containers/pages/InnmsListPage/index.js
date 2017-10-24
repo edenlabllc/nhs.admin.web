@@ -50,8 +50,8 @@ export default class InnmsListPage extends React.Component {
     return (
       <div id="innms-list-page">
         <Helmet
-          title={t('Innms')}
-          meta={[{ property: 'og:title', content: t('Innms') }]}
+          title={t('МНН')}
+          meta={[{ property: 'og:title', content: t('МНН') }]}
         />
 
         <ListHeader
@@ -63,24 +63,23 @@ export default class InnmsListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              {t('Create innm')}
+              Cтворити МНН
             </Button>
           }
         >
-          <H1>{t('Innms')}</H1>
+          <H1>{t('МНН')}</H1>
         </ListHeader>
 
         <div>
-          <H2>{t('Search innms')}</H2>
-
+          <H2>Пошук МНН</H2>
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find innms')}
+            placeholder="Знайти МНН"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'sctid', title: t('By sctid') },
-              { name: 'name', title: t('By name') },
-              { name: 'name_original', title: t('By name_original') }
+              { name: 'id', title: 'За ідентифікатором' },
+              { name: 'sctid', title: t('За sctid') },
+              { name: 'name', title: t('За назвою') },
+              { name: 'name_original', title: t('За оригінальною назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -112,6 +111,7 @@ export default class InnmsListPage extends React.Component {
               { key: 'id', title: t('id') },
               { key: 'name', title: t('Innms name') },
               { key: 'name_original', title: t('Innms original name') },
+              { key: 'sctid', title: t('sctid') },
               { key: 'active', title: t('Active') },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
@@ -119,6 +119,7 @@ export default class InnmsListPage extends React.Component {
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
               name_original: <div>{item.name_original}</div>,
+              sctid: <div>{item.sctid ? item.sctid : '-'}</div>,
               active: (
                 <div>{item.is_active && <Icon name="check-right" />}</div>
               ),

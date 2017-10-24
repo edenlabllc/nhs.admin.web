@@ -22,3 +22,4 @@ export const medication = new schema.Entity('medications');
 export const medication_request = new schema.Entity('medication_requests');
 export const medication_dispense = new schema.Entity('medication_dispenses');
 export const medical_program = new schema.Entity('medical_programs');
+export const program_medication = new schema.Entity('program_medications');

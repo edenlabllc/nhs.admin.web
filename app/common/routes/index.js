@@ -44,13 +44,20 @@ import MedicationsListPage from 'containers/pages/MedicationsListPage';
 import MedicationCreatePage from 'containers/pages/MedicationCreatePage';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage';
 
+import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage';
+import MedicalProgramCreatePage from 'containers/pages/MedicalProgramCreatePage';
+import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage';
+
+import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage';
+import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage';
+import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage';
+import ProgramMedicationCreatePage from 'containers/pages/ProgramMedicationCreatePage';
+
 import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage';
 import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage';
 
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage';
-
-import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage';
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
@@ -179,8 +186,21 @@ export const configureRoutes = ({ store }) => {
             onEnter={requireScope(['medical_program:read'])}
           >
             <IndexRoute component={MedicalProgramsListPage} />
-            {/* <Route path="create" component={MedicationCreatePage} />*/}
-            {/* <Route path=":id" component={MedicationDetailPage} />*/}
+            <Route path="create" component={MedicalProgramCreatePage} />
+            <Route path=":id" component={MedicalProgramDetailPage} />
+          </Route>
+          <Route
+            path="program-medications"
+            onEnter={requireScope(['program_medication:read'])}
+          >
+            <IndexRoute component={ProgramMedicationsListPage} />
+            <Route
+              path="create"
+              onEnter={requireScope(['program_medication:write'])}
+              component={ProgramMedicationCreatePage}
+            />
+            <Route path=":id/update" component={ProgramMedicationUpdatePage} />
+            <Route path=":id" component={ProgramMedicationDetailPage} />
           </Route>
           <Route
             path="configuration"
