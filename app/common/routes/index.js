@@ -53,6 +53,9 @@ import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetai
 import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage';
 import ProgramMedicationCreatePage from 'containers/pages/ProgramMedicationCreatePage';
 
+import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage';
+import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage';
+
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage';
 
@@ -163,6 +166,13 @@ export const configureRoutes = ({ store }) => {
             <IndexRoute component={MedicationsListPage} />
             <Route path="create" component={MedicationCreatePage} />
             <Route path=":id" component={MedicationDetailPage} />
+          </Route>
+          <Route
+            path="medication-requests"
+            onEnter={requireScope(['medication_request:read'])}
+          >
+            <IndexRoute component={MedicationRequestsListPage} />
+            <Route path=":id" component={MedicationRequestDetailPage} />
           </Route>
           <Route
             path="medication-dispenses"

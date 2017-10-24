@@ -29,6 +29,7 @@ import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
 import program_medications from 'redux/program-medications';
 import medical_programs from 'redux/medical-programs';
+import medication_requests from 'redux/medication-requests';
 import medication_dispenses from 'redux/medication-dispenses';
 
 import Aside from 'containers/blocks/Aside/redux';
@@ -57,6 +58,9 @@ import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux'
 
 import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
+
+import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage/redux';
+import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
 
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage/redux';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage/redux';
@@ -101,6 +105,9 @@ const pages = combineReducers({
   ProgramMedicationUpdatePage,
   ProgramMedicationDetailPage,
 
+  MedicationRequestsListPage,
+  MedicationRequestDetailPage,
+
   MedicationDispensesListPage,
   MedicationDispenseDetailPage
 });
@@ -121,9 +128,10 @@ const data = combineReducers({
   innms,
   innm_dosages,
   medications,
-  medical_programs,
   program_medications,
-  medication_dispenses
+  medication_dispenses,
+  medication_requests,
+  medical_programs
 });
 
 export default combineReducers({
@@ -222,6 +230,11 @@ export const getMedications = (state, ids) =>
   denormalize(ids, [schemas.medication], state.data);
 export const getMedication = (state, id) =>
   denormalize(id, schemas.medication, state.data);
+
+export const getMedicationRequests = (state, ids) =>
+  denormalize(ids, [schemas.medication_request], state.data);
+export const getMedicationRequest = (state, id) =>
+  denormalize(id, schemas.medication_request, state.data);
 
 export const getMedicationDispenses = (state, ids) =>
   denormalize(ids, [schemas.medication_dispense], state.data);
