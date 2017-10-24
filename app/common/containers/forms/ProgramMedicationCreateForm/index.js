@@ -68,6 +68,7 @@ export default class ProgramMedicationCreateForm extends React.Component {
                 component={SelectUniversal}
                 options={Object.values(data)
                   .filter(i => i.id)
+                  .filter(i => i.is_active)
                   .map(i => ({
                     title: i.name,
                     name: i.id

@@ -16,8 +16,6 @@ export const fetchProgramMedications = options => dispatch =>
     if (action.error && action.payload.status !== 400) {
       throw action;
     }
-    console.log(action);
-
     return [
       dispatch(showProgramMedications(action.payload.result || [])),
       dispatch(pagingProgramMedications(action.meta || {}))
