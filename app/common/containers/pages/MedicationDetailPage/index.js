@@ -12,10 +12,10 @@ import DataList from 'components/DataList';
 import { Confirm } from 'components/Popup';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import BackLink from 'containers/blocks/BackLink';
 import ShowMore from 'containers/blocks/ShowMore';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import { getMedication } from 'reducers';
@@ -92,11 +92,19 @@ export default class MedicationDetailPage extends React.Component {
                     <p>{medication.ingredients[0].id}</p>
                     <br />
                     <p>
-                      {`${medication.ingredients[0].dosage.denumerator_value}
-                      ${medication.ingredients[0].dosage.denumerator_unit} `}
-                      {`${t('contains')} ${medication.ingredients[0].dosage
-                        .numerator_value} ${medication.ingredients[0].dosage
-                        .numerator_unit}`}
+                      {`${medication.ingredients[0].dosage.denumerator_value} `}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={
+                          medication.ingredients[0].dosage.denumerator_unit
+                        }
+                      />
+                      {`${t(' містить')} ${medication.ingredients[0].dosage
+                        .numerator_value} `}
+                      <DictionaryValue
+                        dictionary="MEDICATION_UNIT"
+                        value={medication.ingredients[0].dosage.numerator_unit}
+                      />
                     </p>
                     <p>
                       {medication.ingredients[0].is_primary && 'Діюча речовина'}
@@ -113,8 +121,15 @@ export default class MedicationDetailPage extends React.Component {
                               <p>{medication.ingredients[0].id}</p>
                               <p>
                                 {`${i.dosage.denumerator_value} `}
-                                {`містить ${i.dosage.numerator_value} ${i.dosage
-                                  .numerator_unit}`}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.denumerator_unit}
+                                />
+                                {` містить ${i.dosage.numerator_value} `}
+                                <DictionaryValue
+                                  dictionary="MEDICATION_UNIT"
+                                  value={i.dosage.numerator_unit}
+                                />
                               </p>
                               <p>
                                 {medication.ingredients[key].is_primary &&
