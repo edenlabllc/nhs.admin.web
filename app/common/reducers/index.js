@@ -27,6 +27,7 @@ import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
 import medications from 'redux/medications';
+import medication_requests from 'redux/medication-requests';
 import medication_dispenses from 'redux/medication-dispenses';
 import medical_programs from 'redux/medical_programs';
 
@@ -57,6 +58,9 @@ import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux'
 import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
 
+import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage/redux';
+// import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
+
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage/redux';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage/redux';
 
@@ -85,6 +89,8 @@ const pages = combineReducers({
   InnmDosagesDetailPage,
   MedicationsListPage,
   MedicationDetailPage,
+  MedicationRequestsListPage,
+  // MedicationRequestDetailPage,
   MedicationDispensesListPage,
   MedicationDispenseDetailPage,
   MedicalProgramsListPage
@@ -106,6 +112,7 @@ const data = combineReducers({
   innms,
   innm_dosages,
   medications,
+  medication_requests,
   medication_dispenses,
   medical_programs
 });
@@ -206,6 +213,11 @@ export const getMedications = (state, ids) =>
   denormalize(ids, [schemas.medication], state.data);
 export const getMedication = (state, id) =>
   denormalize(id, schemas.medication, state.data);
+
+export const getMedicationRequests = (state, ids) =>
+  denormalize(ids, [schemas.medication_request], state.data);
+export const getMedicationRequest = (state, id) =>
+  denormalize(id, schemas.medication_request, state.data);
 
 export const getMedicationDispenses = (state, ids) =>
   denormalize(ids, [schemas.medication_dispense], state.data);

@@ -43,6 +43,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: bottom;
+
+    &:global(.nobr) {
+      white-space: nowrap;
+    }
+
+    &:global(.rtl) {
+      direction: rtl;
+    }
   }
 }
 
