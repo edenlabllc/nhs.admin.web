@@ -60,27 +60,24 @@ export default class MedicalProgramDetailPage extends React.Component {
         <BackLink onClick={() => this.props.router.goBack()}>
           {t('Back to list')}
         </BackLink>
-        <div className={styles.row}>
-          <DataList
-            list={[{ name: 'ID Программи', value: medical_program.id }]}
-          />
-        </div>
+        <br />
+        <br />
+        <DataList
+          list={[{ name: 'ID Программи', value: medical_program.id }]}
+        />
         <Line width={630} />
-        <div className={styles.row}>
-          <DataList list={[{ name: 'Назва', value: medical_program.name }]} />
-        </div>
+        <DataList list={[{ name: 'Назва', value: medical_program.name }]} />
         <Line width={630} />
         <h4>Активна для сворення рецептів</h4>
-        <div className={styles.row}>
-          <DataList
-            list={[
-              {
-                name: 'Активна',
-                value: <Checkbox checked={medical_program.is_active} />
-              }
-            ]}
-          />
-        </div>
+        <br />
+        <DataList
+          list={[
+            {
+              name: 'Активна',
+              value: <Checkbox checked={medical_program.is_active} />
+            }
+          ]}
+        />
         {medical_program.is_active && (
           <div className={styles.buttons}>
             <div className={styles.buttons__row}>

@@ -182,7 +182,7 @@ export const configureRoutes = ({ store }) => {
             <Route path=":id" component={MedicationDispenseDetailPage} />
           </Route>
           <Route
-            path="medical-program"
+            path="medical-programs"
             onEnter={requireScope(['medical_program:read'])}
           >
             <IndexRoute component={MedicalProgramsListPage} />

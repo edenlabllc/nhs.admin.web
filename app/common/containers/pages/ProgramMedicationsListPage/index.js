@@ -86,7 +86,7 @@ export default class ProgramMedicationsListPage extends React.Component {
 
         <div className={styles.search}>
           <H2>Пошук учасників програм</H2>
-          {/* <SearchForm
+          <SearchForm
             active={activeFilter}
             placeholder="Знайти учасника програми"
             items={[
@@ -120,7 +120,7 @@ export default class ProgramMedicationsListPage extends React.Component {
                 },
                 this.props
               )}
-          /> */}
+          />
         </div>
 
         <div className={styles.showBy}>

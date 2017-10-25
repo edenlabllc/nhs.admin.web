@@ -184,8 +184,11 @@ export default class Nav extends React.Component {
             <ShowMore nav name={t('Medications')}>
               <ul>
                 <ShowWithScope scope="medical_program:read">
-                  <NavItem to="medical-program" activeClassName={styles.active}>
-                    <Link id="medical-program-nav" to="/medical-program">
+                  <NavItem
+                    to="medical-programs"
+                    activeClassName={styles.active}
+                  >
+                    <Link id="medical-programs-nav" to="/medical-programs">
                       Перелік мед. програм
                     </Link>
                   </NavItem>

@@ -22,15 +22,7 @@ import { getMedicalPrograms } from 'reducers';
 
 import { fetchMedicalPrograms } from './redux';
 
-const FILTER_PARAMS = [
-  'id',
-  'medical_program_id',
-  'medical_program_name',
-  'innm_id',
-  'innm_name',
-  'medication_id',
-  'medication_name'
-];
+const FILTER_PARAMS = ['id', 'medical_program_name'];
 
 @withRouter
 @translate()
@@ -88,15 +80,10 @@ export default class MedicalProgramsListPage extends React.Component {
             placeholder="Знайти програму"
             items={[
               { name: 'id', title: t('By id') },
-              { name: 'medical_program_id', title: t('By medical_program_id') },
               {
                 name: 'medical_program_name',
                 title: t('By medical_program_name')
-              },
-              { name: 'innm_id', title: t('By innm_id') },
-              { name: 'innm_name', title: t('By innm_name') },
-              { name: 'medication_id', title: t('By medication_id') },
-              { name: 'medication_name', title: t('By medication_name') }
+              }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -105,12 +92,7 @@ export default class MedicalProgramsListPage extends React.Component {
               filter(
                 {
                   id: null,
-                  medical_program_id: null,
                   medical_program_name: null,
-                  innm_id: null,
-                  innm_name: null,
-                  medication_id: null,
-                  medication_name: null,
                   ...values
                 },
                 this.props
