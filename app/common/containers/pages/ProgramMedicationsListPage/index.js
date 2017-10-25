@@ -106,20 +106,7 @@ export default class ProgramMedicationsListPage extends React.Component {
             initialValues={{
               [activeFilter]: location.query[activeFilter]
             }}
-            onSubmit={values =>
-              filter(
-                {
-                  id: null,
-                  medical_program_id: null,
-                  medical_program_name: null,
-                  innm_id: null,
-                  innm_name: null,
-                  medication_id: null,
-                  medication_name: null,
-                  ...values
-                },
-                this.props
-              )}
+            onSubmit={values => filter(values, this.props)}
           />
         </div>
 
