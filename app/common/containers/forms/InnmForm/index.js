@@ -48,14 +48,16 @@ export default class InnmForm extends React.Component {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
-          <div>
-            <Field
-              name="id"
-              labelText="ID"
-              component={FieldInput}
-              disabled={disabled}
-            />
-          </div>
+          {!create && (
+            <div>
+              <Field
+                name="id"
+                labelText="ID"
+                component={FieldInput}
+                disabled={disabled}
+              />
+            </div>
+          )}
           <div>
             <Field
               name="name"
@@ -74,15 +76,16 @@ export default class InnmForm extends React.Component {
               placeholder="Amiodarone"
             />
           </div>
-          <div>
-            <Field
-              name="sctid"
-              labelText={t('sctid МНН')}
-              component={FieldInput}
-              disabled={disabled}
-              placeholder="-"
-            />
-          </div>
+          {!create && (
+            <div>
+              <Field
+                name="sctid"
+                labelText={t('sctid МНН')}
+                component={FieldInput}
+                placeholder="-"
+              />
+            </div>
+          )}
           {create && (
             <div>
               <Field
@@ -90,7 +93,7 @@ export default class InnmForm extends React.Component {
                 labelText={t('sctid МНН')}
                 component={FieldInput}
                 disabled={disabled}
-                placeholder="61626162"
+                placeholder="98730785"
               />
             </div>
           )}
