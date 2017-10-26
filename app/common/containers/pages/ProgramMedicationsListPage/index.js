@@ -60,7 +60,6 @@ export default class ProgramMedicationsListPage extends React.Component {
   render() {
     const { program_medications = [], t, paging, location } = this.props;
     const activeFilter = this.activeFilter;
-    console.log(activeFilter);
 
     return (
       <div id="medication-list-page">
@@ -91,10 +90,14 @@ export default class ProgramMedicationsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти учасника програми"
             items={[
-              { name: 'medical_program_name', title: t('За ID') },
+              { name: 'id', title: t('За ID') },
               {
                 name: 'medical_program_id',
                 title: t('За ID медичної програми')
+              },
+              {
+                name: 'medical_program_name',
+                title: t('За назва медичної програми')
               },
               {
                 name: 'innm_id',

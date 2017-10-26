@@ -74,7 +74,6 @@ export default class MedicalProgramsListPage extends React.Component {
 
         <div>
           <H2>Пошук програм</H2>
-
           <SearchForm
             active={activeFilter}
             placeholder="Знайти програму"
