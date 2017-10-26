@@ -81,7 +81,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
                         {`
                         ${program_medication.medication.ingredients[0].dosage
                           .denumerator_value} `}
-                        {`${t('мість')}
+                        {`${t('містить')}
                           ${program_medication.medication.ingredients[0].dosage
                             .numerator_value}
                           ${program_medication.medication.ingredients[0].dosage
@@ -161,7 +161,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Ціна'),
+                  name: t('Сума відшкодування'),
                   value: (
                     <div>
                       {program_medication.reimbursement.type === 'fixed' &&

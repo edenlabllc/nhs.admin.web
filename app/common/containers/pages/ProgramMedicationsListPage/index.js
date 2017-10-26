@@ -86,14 +86,18 @@ export default class ProgramMedicationsListPage extends React.Component {
 
         <div className={styles.search}>
           <H2>Пошук учасників програм</H2>
-          {/* <SearchForm
+          <SearchForm
             active={activeFilter}
             placeholder="Знайти учасника програми"
             items={[
-              { name: 'medical_program_name', title: t('За ID') },
+              { name: 'id', title: t('За ID') },
               {
                 name: 'medical_program_id',
                 title: t('За ID медичної програми')
+              },
+              {
+                name: 'medical_program_name',
+                title: t('За назва медичної програми')
               },
               {
                 name: 'innm_id',
@@ -120,7 +124,7 @@ export default class ProgramMedicationsListPage extends React.Component {
                 },
                 this.props
               )}
-          /> */}
+          />
         </div>
 
         <div className={styles.showBy}>
