@@ -41,7 +41,10 @@ export const createInnm = body =>
     types: [
       'innms/CREATE_INNM_REQUEST',
       'innms/CREATE_INNM_SUCCESS',
-      'innms/CREATE_INNM_FAILURE'
+      {
+        type: 'innms/CREATE_INNM_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });

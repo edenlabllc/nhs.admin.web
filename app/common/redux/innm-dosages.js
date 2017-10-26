@@ -42,7 +42,10 @@ export const createInnmDosage = body =>
     types: [
       'innm_dosages/CREATE_INNM_DOSAGES_REQUEST',
       'innm_dosages/CREATE_INNM_DOSAGES_SUCCESS',
-      'innm_dosages/CREATE_INNM_DOSAGES_FAILURE'
+      {
+        type: 'innm_dosages/CREATE_INNM_DOSAGES_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });

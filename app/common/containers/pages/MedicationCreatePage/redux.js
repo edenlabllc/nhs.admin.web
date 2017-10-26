@@ -1,52 +1,70 @@
 import { createMedication } from 'redux/medications';
 import { push } from 'react-router-redux';
 
-export const onSubmit = (v, active) => dispatch => {
+export const onSubmit = (
+  {
+    name,
+    code_atc,
+    package_qty,
+    package_min_qty,
+    certificate,
+    certificate_expired_at,
+    form,
+    manufacturer,
+    container: {
+      numerator_value,
+      numerator_unit: { name: numerator_unit },
+      denumerator_unit: { name: denumerator_unit }
+    },
+    ingredients = [],
+    one: { ingredients: one }
+  },
+  active
+) => dispatch => {
   const values = {
-    name: v.name,
-    code_atc: v.code_atc,
-    package_qty: +v.package_qty,
-    package_min_qty: +v.package_min_qty,
-    certificate: v.certificate,
-    certificate_expired_at: v.certificate_expired_at,
-    form: v.form.name,
+    name,
+    code_atc,
+    package_qty: parseFloat(package_qty, 10),
+    package_min_qty: parseFloat(package_min_qty, 10),
+    certificate,
+    certificate_expired_at,
+    form: form.name,
     manufacturer: {
-      country: v.manufacturer.country.name,
-      name: v.manufacturer.name
+      country: manufacturer.country.name,
+      name: manufacturer.name
     },
     container: {
-      numerator_value: +v.container.numerator_value,
-      numerator_unit: v.container.numerator_unit.name,
-      denumerator_unit: v.container.denumerator_unit.name,
-      denumerator_value: 1
+      numerator_value: parseFloat(numerator_value, 10),
+      denumerator_value: 1,
+      numerator_unit,
+      denumerator_unit
     },
-    ingredients: (v.ingredients || []).map(item => ({
-      id: item.id.name,
-      is_primary: false,
-      dosage: {
-        numerator_value: +item.numerator_value,
-        numerator_unit: item.numerator_unit.name,
-        denumerator_unit: item.denumerator_unit.name,
-        denumerator_value: 1
-      }
-    }))
+    ingredients: ingredients
+      .map((ingredient, index) => mapIngredient(ingredient, index, active))
+      .concat(mapIngredient(one, ingredients.length, active))
   };
-  values.ingredients.push({
-    id: v.one.ingredients.id.name,
-    is_primary: false,
-    dosage: {
-      numerator_value: +v.one.ingredients.numerator_value,
-      numerator_unit: v.one.ingredients.numerator_unit.name,
-      denumerator_unit: v.one.ingredients.denumerator_unit.name,
-      denumerator_value: 1
-    }
-  });
 
-  values.ingredients[active].is_primary = true;
-  return dispatch(createMedication(values)).then(action => {
-    if (action.error) {
-      throw new Error();
-    }
-    return dispatch(push(`/medications/${action.payload.data.id}`));
+  return dispatch(createMedication(values)).then(({ error, payload }) => {
+    if (!error) return dispatch(push(`/medications/${payload.data.id}`));
   });
 };
+
+const mapIngredient = (
+  {
+    id: { name: id },
+    numerator_value,
+    numerator_unit: { name: numerator_unit },
+    denumerator_unit: { name: denumerator_unit }
+  },
+  index,
+  active
+) => ({
+  id,
+  is_primary: index === active,
+  dosage: {
+    numerator_value: parseFloat(numerator_value, 10),
+    denumerator_value: 1,
+    numerator_unit,
+    denumerator_unit
+  }
+});

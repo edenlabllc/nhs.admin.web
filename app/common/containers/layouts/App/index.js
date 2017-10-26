@@ -2,6 +2,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
 
+import ErrorMessage from 'containers/blocks/ErrorMessage';
+
 const App = ({ t, children }) => (
   <div>
     <Helmet
@@ -55,6 +57,7 @@ const App = ({ t, children }) => (
         { name: 'theme-color', content: '#ffffff' }
       ]}
     />
+    <ErrorMessage />
     {children}
   </div>
 );
