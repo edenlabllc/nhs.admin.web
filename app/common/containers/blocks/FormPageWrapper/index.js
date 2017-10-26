@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import { H1 } from 'components/Title';
@@ -9,7 +10,7 @@ import styles from './styles.scss';
 @withStyles(styles)
 export default class FormPageWrapper extends React.Component {
   static contextTypes = {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
   goBack() {
     if (this.props.back) {

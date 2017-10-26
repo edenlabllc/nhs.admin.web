@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 import classnames from 'classnames';
 
@@ -10,11 +11,20 @@ import styles from './styles.scss';
 const Checkbox = ({
   checked = false,
   onChange = e => e,
-  onBlur, onFocus,
-  error, name, labelText,
-  disabled,
+  onBlur,
+  onFocus,
+  error,
+  name,
+  labelText,
+  disabled
 }) => (
-  <label className={classnames(styles.wrap, error && styles.isError, checked && styles.checked)}>
+  <label
+    className={classnames(
+      styles.wrap,
+      error && styles.isError,
+      checked && styles.checked
+    )}
+  >
     {
       <input
         type="checkbox"
@@ -24,7 +34,7 @@ const Checkbox = ({
           onBlur,
           onFocus,
           name,
-          disabled,
+          disabled
         }}
       />
     }
@@ -32,9 +42,7 @@ const Checkbox = ({
       <Icon name="check-right" />
     </span>
 
-    <span className={styles.label}>
-      {labelText}
-    </span>
+    <span className={styles.label}>{labelText}</span>
   </label>
 );
 
@@ -43,10 +51,10 @@ Checkbox.PropTypes = {
   onChange: PropTypes.func.isRequired,
   name: PropTypes.any,
   onBlur: PropTypes.func,
-  onFocus: PropTypes.func,
+  onFocus: PropTypes.func
 };
 
-export const CheckboxGroup = withStyles(styles)(
-  ({ children }) => <span className={styles.group}>{children}</span>
-);
+export const CheckboxGroup = withStyles(styles)(({ children }) => (
+  <span className={styles.group}>{children}</span>
+));
 export default withStyles(styles)(Checkbox);

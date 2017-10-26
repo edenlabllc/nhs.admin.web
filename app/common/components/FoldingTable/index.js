@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
@@ -10,15 +11,26 @@ import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-const ActionsColumnData = ({ isOpened }) => (<span className={classnames(styles.arrow, isOpened && styles['arrow-active'])}>
-  <Icon name="arrow-down" />
-</span>);
-const FoldingRowComponent = ({ columns, data, onOpen, onClose, isOpened, component = 'div' }) => (
+const ActionsColumnData = ({ isOpened }) => (
+  <span
+    className={classnames(styles.arrow, isOpened && styles['arrow-active'])}
+  >
+    <Icon name="arrow-down" />
+  </span>
+);
+const FoldingRowComponent = ({
+  columns,
+  data,
+  onOpen,
+  onClose,
+  isOpened,
+  component = 'div'
+}) => (
   <tbody>
     <TableRow
       data={{
         ...data,
-        __actions: <ActionsColumnData isOpened={isOpened} />,
+        __actions: <ActionsColumnData isOpened={isOpened} />
       }}
       className={classnames(styles.row, isOpened && styles.active)}
       columns={columns}
@@ -26,7 +38,9 @@ const FoldingRowComponent = ({ columns, data, onOpen, onClose, isOpened, compone
     />
     {
       <tr hidden={!isOpened} className={styles['row-sub']}>
-        <td colSpan={columns.length}>{ isOpened && React.createElement(component, data) }</td>
+        <td colSpan={columns.length}>
+          {isOpened && React.createElement(component, data)}
+        </td>
       </tr>
     }
   </tbody>
@@ -39,7 +53,7 @@ class FoldingRow extends React.Component {
     this.onClose = this.onClose.bind(this);
   }
   state = {
-    isOpened: false,
+    isOpened: false
   };
   onOpen() {
     this.setState({ isOpened: true });
@@ -55,7 +69,7 @@ class FoldingRow extends React.Component {
           ...this.state,
           ...this.props,
           onClose: this.onClose,
-          onOpen: this.onOpen,
+          onOpen: this.onOpen
         }}
       />
     );
@@ -69,13 +83,13 @@ const FoldingTable = ({
   component,
   keyColumn,
   onOpen = () => {},
-  ...rest,
+  ...rest
 }) => (
   <Table
     tbody={false}
     columns={[
       ...columns,
-      { key: '__actions', title: 'Show details', ...detailsColumn },
+      { key: '__actions', title: 'Show details', ...detailsColumn }
     ]}
     {...rest}
   >
@@ -99,12 +113,12 @@ FoldingTable.propTypes = {
       title: PropTypes.string,
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       align: PropTypes.oneOf(['left', 'center', 'right']),
-      colspan: PropTypes.number,
+      colspan: PropTypes.number
     })
   ),
 
   data: PropTypes.arrayOf(PropTypes.object),
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 export default withStyles(styles)(FoldingTable);
