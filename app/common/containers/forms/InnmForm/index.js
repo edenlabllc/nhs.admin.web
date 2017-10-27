@@ -97,13 +97,6 @@ export default class InnmForm extends React.Component {
               />
             </div>
           )}
-          <div>
-            <Field
-              name="is_active"
-              labelText="Активна"
-              component={FieldCheckbox}
-            />
-          </div>
           {!disabled && (
             <ShowWithScope scope="innm:write">
               <div>
