@@ -43,14 +43,11 @@ export default class InnmDosagesDetailPage extends React.Component {
   };
 
   deactivateInnmDosage() {
-    this.props.deactivateInnmDosage(this.props.params.id).then(() => {
-      this.props.router.goBack();
-    });
+    this.props.deactivateInnmDosage(this.props.params.id);
   }
 
   render() {
     const { innm_dosage = {}, t } = this.props;
-    console.log(innm_dosage);
 
     return (
       <div id="innm-dosages-detail-page">
@@ -58,7 +55,7 @@ export default class InnmDosagesDetailPage extends React.Component {
           title="Деталі лікарської форми"
           meta={[{ property: 'og:title', content: 'Деталі лікарської форми' }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>
+        <BackLink onClick={() => this.props.router.push('/innm-dosages')}>
           Повернутися до списку лікарських форм
         </BackLink>
         <Line />
@@ -163,7 +160,7 @@ export default class InnmDosagesDetailPage extends React.Component {
             <div className={styles.buttons__row}>
               <div className={styles.buttons__column}>
                 <Button
-                  onClick={() => this.props.router.goBack()}
+                  onClick={() => this.props.router.push('/innm-dosages')}
                   theme="border"
                   color="blue"
                   icon="back"

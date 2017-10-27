@@ -16,11 +16,6 @@ import { getProgramMedication } from 'reducers';
 import { onUpdate, fetchProgramMedication } from './redux';
 import styles from './styles.scss';
 
-const reimbursement_types = {
-  fixed: 'Фіксована',
-  dinamic: 'Динамічна'
-};
-
 @withRouter
 @withStyles(styles)
 @translate()
@@ -49,24 +44,7 @@ export default class ProgramMedicationUpdatePage extends React.Component {
         </BackLink>
         <H3>Оновлення учасника програми</H3>
         <ProgramMedicationUpdateForm
-          initialValues={{
-            ...program_medication,
-            reimbursement: {
-              reimbursement_amount:
-                program_medication.reimbursement.reimbursement_amount,
-              type: {
-                name: Object.keys(reimbursement_types).filter(
-                  i => i === program_medication.reimbursement.type
-                )[0],
-                title: Object.values(reimbursement_types).filter(
-                  i =>
-                    reimbursement_types[
-                      program_medication.reimbursement.type
-                    ] === i
-                )[0]
-              }
-            }
-          }}
+          initialValues={{ ...program_medication }}
           onSubmit={v => onUpdate(v, program_medication.id)}
         />
       </div>

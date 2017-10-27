@@ -56,7 +56,7 @@ export default class MedicationDetailPage extends React.Component {
           title={t('Medication detail')}
           meta={[{ property: 'og:title', content: t('Medication detail') }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>
+        <BackLink onClick={() => this.props.router.push('/medications')}>
           {t('Back to list')}
         </BackLink>
         <Line />
@@ -216,7 +216,7 @@ export default class MedicationDetailPage extends React.Component {
             <div className={styles.buttons__row}>
               <div className={styles.buttons__column}>
                 <Button
-                  onClick={() => this.props.router.goBack()}
+                  onClick={() => this.props.router.push('/medications')}
                   theme="border"
                   color="blue"
                   icon="back"

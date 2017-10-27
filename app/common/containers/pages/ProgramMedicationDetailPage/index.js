@@ -44,7 +44,9 @@ export default class ProgramMedicationDetailPage extends React.Component {
           meta={[{ property: 'og:title', content: program_medication.name }]}
         />
 
-        <BackLink onClick={() => this.props.router.goBack()}>
+        <BackLink
+          onClick={() => this.props.router.push('/program-medications')}
+        >
           Повернутись до списку учасників программ
         </BackLink>
 

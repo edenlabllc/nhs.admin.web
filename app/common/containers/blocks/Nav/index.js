@@ -122,7 +122,7 @@ export default class Nav extends React.Component {
             </NavItem>
           </ShowWithScope>
           <li>
-            <ShowMore nav name="МНН">
+            <ShowMore nav name="Медикаменти">
               <ul>
                 <ShowWithScope scope="innm:read">
                   <NavItem to="innms" activeClassName={styles.active}>
@@ -142,6 +142,35 @@ export default class Nav extends React.Component {
                   <NavItem to="medications" activeClassName={styles.active}>
                     <Link id="medications-nav" to="/medications">
                       Торгова назва
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          <li>
+            <ShowMore nav name={t('Програми')}>
+              <ul>
+                <ShowWithScope scope="medical_program:read">
+                  <NavItem
+                    to="medical-programs"
+                    activeClassName={styles.active}
+                  >
+                    <Link id="medical-programs-nav" to="/medical-programs">
+                      Перелік мед. програм
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="program_medication:read">
+                  <NavItem
+                    to="program-medications"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="program_medications-nav"
+                      to="/program-medications"
+                    >
+                      Учасники програм
                     </Link>
                   </NavItem>
                 </ShowWithScope>
@@ -174,35 +203,6 @@ export default class Nav extends React.Component {
                       to="/medication-dispenses"
                     >
                       Рецепти
-                    </Link>
-                  </NavItem>
-                </ShowWithScope>
-              </ul>
-            </ShowMore>
-          </li>
-          <li>
-            <ShowMore nav name={t('Medications')}>
-              <ul>
-                <ShowWithScope scope="medical_program:read">
-                  <NavItem
-                    to="medical-programs"
-                    activeClassName={styles.active}
-                  >
-                    <Link id="medical-programs-nav" to="/medical-programs">
-                      Перелік мед. програм
-                    </Link>
-                  </NavItem>
-                </ShowWithScope>
-                <ShowWithScope scope="program_medication:read">
-                  <NavItem
-                    to="program-medications"
-                    activeClassName={styles.active}
-                  >
-                    <Link
-                      id="program_medications-nav"
-                      to="/program-medications"
-                    >
-                      Учасники програм
                     </Link>
                   </NavItem>
                 </ShowWithScope>

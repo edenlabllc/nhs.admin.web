@@ -76,6 +76,7 @@ export default class EmployeesListPage extends React.Component {
                 party_id: null,
                 edrpou: null,
                 legal_entity_id: null,
+                page: 1,
                 ...values
               },
               this.props
