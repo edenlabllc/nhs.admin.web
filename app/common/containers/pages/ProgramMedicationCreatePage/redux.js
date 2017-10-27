@@ -7,7 +7,7 @@ export const onCreate = v => dispatch => {
     medication_id: v.medication_id,
     medical_program_id: v.medical_program.name,
     reimbursement: {
-      type: v.reimbursement.type.name,
+      type: 'fixed',
       reimbursement_amount: parseFloat(v.reimbursement.reimbursement_amount)
     }
   };

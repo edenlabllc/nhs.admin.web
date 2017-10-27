@@ -83,6 +83,7 @@ export default class PendingDeclarationsListPage extends React.Component {
                 {
                   employee_id: null,
                   legal_entity_id: null,
+                  page: 1,
                   ...values
                 },
                 this.props

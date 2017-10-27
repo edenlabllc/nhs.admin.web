@@ -18,7 +18,7 @@ export const onUpdate = (v, id) => dispatch => {
     is_active: v.is_active,
     medication_request_allowed: v.medication_request_allowed,
     reimbursement: {
-      type: v.reimbursement.type.name,
+      type: v.reimbursement.type,
       reimbursement_amount: parseFloat(v.reimbursement.reimbursement_amount, 2)
     }
   };

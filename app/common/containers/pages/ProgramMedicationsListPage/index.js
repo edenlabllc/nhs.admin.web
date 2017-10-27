@@ -25,7 +25,6 @@ import { fetchProgramMedications } from './redux';
 import styles from './styles.scss';
 
 const FILTER_PARAMS = [
-  'id',
   'medical_program_id',
   'medical_program_name',
   'innm_id',
@@ -90,22 +89,21 @@ export default class ProgramMedicationsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти учасника програми"
             items={[
-              { name: 'id', title: t('За ID') },
               {
                 name: 'medical_program_id',
-                title: t('За ID медичної програми')
+                title: t('за ID медичної програми')
               },
               {
                 name: 'medical_program_name',
-                title: t('За назва медичної програми')
+                title: t('за назва медичної програми')
               },
               {
                 name: 'innm_id',
-                title: t('За innm_id')
+                title: t('за ID Лікарської форми')
               },
-              { name: 'innm_name', title: t('За МНН') },
-              { name: 'medication_id', title: t('За ID Торгової Назви') },
-              { name: 'medication_name', title: t('За Торговою Назвою') }
+              { name: 'innm_name', title: t('за Назвою Лікарської форми') },
+              { name: 'medication_id', title: t('за ID Торгової Назви') },
+              { name: 'medication_name', title: t('за Торговою Назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -113,13 +111,13 @@ export default class ProgramMedicationsListPage extends React.Component {
             onSubmit={values =>
               filter(
                 {
-                  id: null,
                   medical_program_id: null,
                   medical_program_name: null,
                   innm_id: null,
                   innm_name: null,
                   medication_id: null,
                   medication_name: null,
+                  page: 1,
                   ...values
                 },
                 this.props
@@ -142,11 +140,11 @@ export default class ProgramMedicationsListPage extends React.Component {
                 key: 'medical_program_name',
                 title: 'Назва медичної программи'
               },
-              { key: 'medication_name', title: 'Назва сполуки' },
-              { key: 'medication_form', title: 'Форма сполуки' },
+              { key: 'medication_name', title: 'Торгова Назва' },
+              { key: 'medication_form', title: 'Форма' },
               { key: 'manufacturer', title: 'Виробник' },
-              { key: 'reimbursement_amount', title: 'Кількість' },
-              { key: 'status', title: 'Активен' },
+              { key: 'reimbursement_amount', title: 'Сума Відшкодування' },
+              { key: 'status', title: 'Активний' },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={program_medications.map(item => ({
