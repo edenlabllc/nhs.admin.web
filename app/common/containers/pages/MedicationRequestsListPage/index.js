@@ -27,10 +27,10 @@ const FILTERS = [
   { name: 'employee_id', title: 'За ID працівника' },
   { name: 'person_id', title: 'За ID пацієнта' },
   { name: 'status', title: 'За статусом' },
-  { name: 'request_number', title: 'За номером запиту' },
+  { name: 'request_number', title: 'За номером рецепту' },
   // { name: 'created_from', title: 'За датою створення' },
   // { name: 'created_to', title: 'За датою створення' },
-  { name: 'division_id', title: 'За ID розподілу' },
+  { name: 'division_id', title: 'За ID підрозділу' },
   { name: 'medication_id', title: 'За ID торгової назви' }
 ];
 
@@ -43,20 +43,20 @@ const MedicationRequestsListPage = ({
 }) => (
   <div id="medication-requests-list-page">
     <Helmet
-      title="Медичні запити"
-      meta={[{ property: 'og:title', content: 'Медичні запити' }]}
+      title="Рецепти"
+      meta={[{ property: 'og:title', content: 'Рецепти' }]}
     />
 
     <ListHeader>
-      <H1>Медичні запити</H1>
+      <H1>Рецепти</H1>
     </ListHeader>
 
     <div>
-      <H2>Пошук запиту</H2>
+      <H2>Пошук рецепту</H2>
 
       <SearchForm
         active={activeFilter}
-        placeholder="Знайти запит"
+        placeholder="Знайти рецепт"
         items={FILTERS}
         initialValues={{ [activeFilter]: location.query[activeFilter] }}
         onSubmit={values => setFilter(values, { location, router })}
@@ -76,8 +76,8 @@ const MedicationRequestsListPage = ({
         columns={[
           { key: 'created_at', title: 'Дата створення', width: 120 },
           { key: 'id', title: 'ID' },
-          { key: 'request_number', title: 'Номер запиту' },
-          { key: 'division_id', title: 'ID філії' },
+          { key: 'request_number', title: 'Номер рецепту' },
+          { key: 'division_id', title: 'ID підрозділу' },
           { key: 'medication_id', title: 'ID торгової назви', width: 110 },
           { key: 'person_id', title: 'ID пацієнта' },
           { key: 'status', title: 'Статус' },
@@ -94,31 +94,11 @@ const MedicationRequestsListPage = ({
             status
           }) => ({
             created_at: format(created_at, 'DD/MM/YYYY'),
-            id: (
-              <div className="rtl nobr" title={id}>
-                {id}
-              </div>
-            ),
-            request_number: (
-              <div className="rtl nobr" title={request_number}>
-                {request_number}
-              </div>
-            ),
-            division_id: (
-              <div className="rtl nobr" title={division.id}>
-                {division.id}
-              </div>
-            ),
-            medication_id: (
-              <div className="rtl nobr" title={medication_id}>
-                {medication_id}
-              </div>
-            ),
-            person_id: (
-              <div className="rtl nobr" title={person.id}>
-                {person.id}
-              </div>
-            ),
+            id,
+            request_number,
+            division_id: division.id,
+            medication_id,
+            person_id: person.id,
             status,
             action: (
               <Button

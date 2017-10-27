@@ -40,12 +40,12 @@ const MedicationRequestDetailPage = ({
 }) => (
   <div id="medication-request-detail-page">
     <Helmet
-      title={`Медичні запити - Запит ${id}`}
-      meta={[{ property: 'og:title', content: `Медичні запити - Запит ${id}` }]}
+      title={`Рецепти - Рецепт ${id}`}
+      meta={[{ property: 'og:title', content: `Рецепти - Рецепт ${id}` }]}
     />
 
     <BackLink onClick={() => router.goBack()}>
-      Повернутися до списку медичних запитів
+      Повернутися до списку рецептів
     </BackLink>
 
     <Line />
@@ -55,18 +55,18 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID запиту', value: id },
+          { name: 'ID рецепту', value: id },
           { name: 'Статус', value: status },
-          { name: 'Номер медзапиту', value: request_number },
+          { name: 'Номер рецепту', value: request_number },
           { name: 'Дата створення', value: format(created_at, 'DD/MM/YYYY') },
           { name: 'Дата початку', value: format(started_at, 'DD/MM/YYYY') },
           { name: 'Дата закінчення', value: format(ended_at, 'DD/MM/YYYY') },
           {
-            name: 'Дозвіл дійсний з',
+            name: 'Відпуск дійсний з',
             value: format(dispense_valid_from, 'DD/MM/YYYY')
           },
           {
-            name: 'Дозвіл дійсний до',
+            name: 'Відпуск дійсний по',
             value: format(dispense_valid_to, 'DD/MM/YYYY')
           }
         ]}
@@ -74,15 +74,15 @@ const MedicationRequestDetailPage = ({
 
       <Line />
 
-      <H1>II. Інформація про юридичну особу</H1>
+      <H1>II. Інформація про медичний заклад</H1>
 
       <DataList
         list={[
-          { name: 'ID особи', value: legal_entity.id },
+          { name: 'ID медичного закладу', value: legal_entity.id },
           { name: 'Назва', value: legal_entity.name },
           { name: 'ЄДРПОУ', value: legal_entity.edrpou },
-          { name: 'ID філії', value: division.id },
-          { name: 'Назва філії', value: division.name }
+          { name: 'ID підрозділу', value: division.id },
+          { name: 'Назва підрозділу', value: division.name }
         ]}
       />
 
