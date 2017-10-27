@@ -173,7 +173,7 @@ export default class Nav extends React.Component {
                       id="medication-dispenses-nav"
                       to="/medication-dispenses"
                     >
-                      Рецепти
+                      Відпуски рецептів
                     </Link>
                   </NavItem>
                 </ShowWithScope>

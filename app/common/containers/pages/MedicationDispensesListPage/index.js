@@ -43,27 +43,27 @@ const MedicationDispensesListPage = ({
 }) => (
   <div id="medication-dispenses-list-page">
     <Helmet
-      title="Рецепти"
-      meta={[{ property: 'og:title', content: 'Рецепти' }]}
+      title="Відпуск рецептів"
+      meta={[{ property: 'og:title', content: 'Відпуск рецептів' }]}
     />
 
     <ListHeader>
-      <H1>Рецепти</H1>
+      <H1>Відпуски рецептів</H1>
     </ListHeader>
 
     <div>
-      <H2>Пошук рецепта</H2>
+      <H2>Пошук відпуску</H2>
 
       <SearchForm
         active={activeFilter}
-        placeholder="Знайти рецепт"
+        placeholder="Знайти відпуск"
         items={[
           { name: 'id', title: 'За ID' },
-          { name: 'medication_request_id', title: 'За ID медзапиту' },
-          { name: 'legal_entity_id', title: 'За ID юрособи' },
-          { name: 'division_id', title: 'За ID розподілу' },
+          { name: 'medication_request_id', title: 'За ID рецепту' },
+          { name: 'legal_entity_id', title: 'За ID аптеки' },
+          { name: 'division_id', title: 'За ID підрозділу' },
           { name: 'status', title: 'За статусом' },
-          { name: 'dispensed_at', title: 'За датою виписки' }
+          { name: 'dispensed_at', title: 'За датою відпуску' }
         ]}
         initialValues={{
           [activeFilter]: location.query[activeFilter]
@@ -95,12 +95,12 @@ const MedicationDispensesListPage = ({
     <ListTable id="medication-dispenses-table">
       <Table
         columns={[
-          { key: 'id', title: 'ID рецепту' },
-          { key: 'medication_request_id', title: 'ID медзапиту' },
-          { key: 'legal_entity_id', title: 'ID юрособи' },
-          { key: 'division_id', title: 'ID розподілу' },
+          { key: 'id', title: 'ID' },
+          { key: 'medication_request_id', title: 'ID рецепту' },
+          { key: 'legal_entity_id', title: 'ID аптеки' },
+          { key: 'division_id', title: 'ID підрозділу' },
           { key: 'status', title: 'Статус' },
-          { key: 'dispensed', title: 'Виписаний' },
+          { key: 'dispensed', title: 'Дата відпуску' },
           { key: 'action', title: 'Дії', width: 100 }
         ]}
         data={medication_dispenses.map(
@@ -112,12 +112,12 @@ const MedicationDispensesListPage = ({
             status,
             dispensed_at
           }) => ({
-            id: <div>{id}</div>,
-            medication_request_id: <div>{medication_request.id}</div>,
-            legal_entity_id: <div>{legal_entity.id}</div>,
-            division_id: <div>{division.id}</div>,
-            status: <div>{status}</div>,
-            dispensed: <div>{format(dispensed_at, 'DD/MM/YYYY')}</div>,
+            id,
+            medication_request_id: medication_request.id,
+            legal_entity_id: legal_entity.id,
+            division_id: division.id,
+            status,
+            dispensed: format(dispensed_at, 'DD/MM/YYYY'),
             action: (
               <Button
                 id={`show-medication-dispense-detail-button-${id}`}
