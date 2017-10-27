@@ -12,6 +12,7 @@ import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
+import DictionaryValue from 'containers/blocks/DictionaryValue';
 
 import Table from 'components/Table';
 import ShowBy from 'containers/blocks/ShowBy';
@@ -22,7 +23,7 @@ import { getInnmDosages } from 'reducers';
 
 import { fetchInnmDosages } from './redux';
 
-const FILTER_PARAMS = ['id', 'form', 'name'];
+const FILTER_PARAMS = ['id', 'name'];
 
 @withRouter
 @translate()
@@ -79,7 +80,6 @@ export default class InnmDosagesListPage extends React.Component {
             placeholder="Знайти лікарську форму"
             items={[
               { name: 'id', title: t('За ідентифікатором') },
-              { name: 'form', title: t('За формою') },
               { name: 'name', title: t('За назвою') }
             ]}
             initialValues={{
@@ -89,8 +89,8 @@ export default class InnmDosagesListPage extends React.Component {
               filter(
                 {
                   id: null,
-                  form: null,
                   name: null,
+                  page: 1,
                   ...values
                 },
                 this.props
@@ -108,16 +108,23 @@ export default class InnmDosagesListPage extends React.Component {
         <ListTable id="innm-dosages-table">
           <Table
             columns={[
-              { key: 'id', title: t('id') },
-              { key: 'name', title: t('Innms name') },
-              { key: 'form', title: t('Form') },
-              { key: 'active', title: t('Active') },
+              { key: 'id', title: t('ID') },
+              { key: 'name', title: t('Назва') },
+              { key: 'form', title: t('Форма') },
+              { key: 'active', title: t('Активна') },
               { key: 'action', title: t('Деталі /Деактивація'), width: 150 }
             ]}
             data={innm_dosages.map(item => ({
               id: <div>{item.id}</div>,
               name: <div>{item.name}</div>,
-              form: <div>{item.form}</div>,
+              form: (
+                <div>
+                  <DictionaryValue
+                    dictionary="MEDICATION_FORM"
+                    value={item.form}
+                  />
+                </div>
+              ),
               active: (
                 <div>{item.is_active && <Icon name="check-right" />}</div>
               ),

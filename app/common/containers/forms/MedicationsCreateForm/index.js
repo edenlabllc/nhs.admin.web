@@ -242,16 +242,10 @@ export default class MedicationsCreateForm extends React.Component {
                 name="one.ingredients.numerator_unit"
                 component={SelectUniversal}
                 labelText="Одиниці"
-                options={[
-                  {
-                    name: 'MG',
-                    title: 'мг'
-                  },
-                  {
-                    name: 'MKG',
-                    title: 'мкг'
-                  }
-                ]}
+                options={Object.keys(data.medication_unit.values).map(i => ({
+                  title: data.medication_unit.values[i],
+                  name: i
+                }))}
               >
                 <ErrorMessage when="required">
                   {t('Required field')}

@@ -83,29 +83,10 @@ export default class ProgramMedicationCreateForm extends React.Component {
           <div>
             <Field
               name="reimbursement.reimbursement_amount"
-              labelText="Ціна"
+              labelText="Сума відшкодування"
               component={FieldInput}
-              placeholder="Введіть ціну в гривнях"
+              placeholder="Введіть cуму відшкодування в гривнях"
             />
-          </div>
-          <div>
-            <Field
-              name="reimbursement.type"
-              component={SelectUniversal}
-              labelText="Тип"
-              options={[
-                {
-                  name: 'fixed',
-                  title: 'Фіксована'
-                },
-                {
-                  name: 'dinamic',
-                  title: 'Динамічна'
-                }
-              ]}
-            >
-              <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
-            </Field>
           </div>
           <ShowWithScope scope="program_medication:write">
             <div>

@@ -91,6 +91,7 @@ export default class InnmsListPage extends React.Component {
                   sctid: null,
                   name: null,
                   name_original: null,
+                  page: 1,
                   ...values
                 },
                 this.props

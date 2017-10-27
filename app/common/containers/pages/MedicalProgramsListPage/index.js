@@ -22,7 +22,7 @@ import { getMedicalPrograms } from 'reducers';
 
 import { fetchMedicalPrograms } from './redux';
 
-const FILTER_PARAMS = ['id', 'medical_program_name'];
+const FILTER_PARAMS = ['id', 'name'];
 
 @withRouter
 @translate()
@@ -53,7 +53,7 @@ export default class MedicalProgramsListPage extends React.Component {
     return (
       <div id="medication-list-page">
         <Helmet
-          title="Перелік медичний програм"
+          title="Перелік медичних програм"
           meta={[{ property: 'og:title', content: 'Перелік медичний програм' }]}
         />
         <ListHeader
@@ -78,10 +78,10 @@ export default class MedicalProgramsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти програму"
             items={[
-              { name: 'id', title: t('By id') },
+              { name: 'id', title: t('за ID') },
               {
-                name: 'medical_program_name',
-                title: t('By medical_program_name')
+                name: 'name',
+                title: t('за назвою медичної програми')
               }
             ]}
             initialValues={{
@@ -91,7 +91,8 @@ export default class MedicalProgramsListPage extends React.Component {
               filter(
                 {
                   id: null,
-                  medical_program_name: null,
+                  name: null,
+                  page: 1,
                   ...values
                 },
                 this.props
@@ -114,28 +115,33 @@ export default class MedicalProgramsListPage extends React.Component {
               { key: 'status', title: 'Статус программи' },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
-            data={medical_programs.map(item => ({
-              id: <div>{item.id}</div>,
-              name: <div>{item.name}</div>,
-              status: (
-                <div>
-                  {item.is_active ? (
-                    <ColoredText color="green">активна</ColoredText>
-                  ) : (
-                    <ColoredText color="red">неактивна</ColoredText>
-                  )}
-                </div>
-              ),
-              action: (
-                <Button
-                  id={`show-medical-programs-detail-button-${item.id}`}
-                  theme="link"
-                  to={`/medical-programs/${item.id}`}
-                >
-                  {t('Details')}
-                </Button>
+            data={medical_programs
+              .sort(
+                (a, b) =>
+                  a.is_active === b.is_active ? 0 : a.is_active ? -1 : 1
               )
-            }))}
+              .map(item => ({
+                id: <div>{item.id}</div>,
+                name: <div>{item.name}</div>,
+                status: (
+                  <div>
+                    {item.is_active ? (
+                      <ColoredText color="green">активна</ColoredText>
+                    ) : (
+                      <ColoredText color="red">неактивна</ColoredText>
+                    )}
+                  </div>
+                ),
+                action: (
+                  <Button
+                    id={`show-medical-programs-detail-button-${item.id}`}
+                    theme="link"
+                    to={`/medical-programs/${item.id}`}
+                  >
+                    {t('Details')}
+                  </Button>
+                )
+              }))}
           />
         </ListTable>
 

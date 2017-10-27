@@ -77,6 +77,7 @@ export default class ClinicsListPage extends React.Component {
                   edrpou: null,
                   legal_entity_id: null,
                   settlement_id: null,
+                  page: 1,
                   ...values
                 },
                 this.props

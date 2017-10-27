@@ -44,9 +44,7 @@ export default class MedicalProgramDetailPage extends React.Component {
   };
 
   deactivateMedicalProgram() {
-    this.props.deactivateMedicalProgram(this.props.params.id).then(() => {
-      this.props.router.goBack();
-    });
+    this.props.deactivateMedicalProgram(this.props.params.id);
   }
 
   render() {
@@ -83,7 +81,7 @@ export default class MedicalProgramDetailPage extends React.Component {
             <div className={styles.buttons__row}>
               <div className={styles.buttons__column}>
                 <Button
-                  onClick={() => this.props.router.goBack()}
+                  onClick={() => this.props.router.push('/medical-programs')}
                   theme="border"
                   color="blue"
                   icon="back"
@@ -103,7 +101,7 @@ export default class MedicalProgramDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      Деактивувати торгову назву
+                      Деактивувати медичну програм
                     </Button>
                   </div>
                 </ShowWithScope>
