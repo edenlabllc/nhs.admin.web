@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
 
@@ -13,52 +14,66 @@ const DEFAULT_ALERT_BTN_TEXT = 'Done';
 
 const THEMES_COLOR = {
   error: 'red',
-  success: 'blue',
+  success: 'blue'
 };
 
 const PopupComponent = ({
   children,
   title,
   active = false,
-  theme, onClose, bgCloser = true, id,
+  theme,
+  onClose,
+  bgCloser = true,
+  id
 }) => (
-  <section id={id} className={classnames(styles.popup, active && styles.active, theme && styles[`theme-${theme}`])}>
+  <section
+    id={id}
+    className={classnames(
+      styles.popup,
+      active && styles.active,
+      theme && styles[`theme-${theme}`]
+    )}
+  >
     <div className={styles.content}>
-      {
-        title && <header className={styles.header}>
+      {title && (
+        <header className={styles.header}>
           <H2 color={THEMES_COLOR[theme]}>{title}</H2>
         </header>
-      }
+      )}
       {children}
     </div>
-    { // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      bgCloser && <div className={styles.closer} onClick={onClose} />
-    }
+    {// eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    bgCloser && <div className={styles.closer} onClick={onClose} />}
   </section>
 );
 
 PopupComponent.propTypes = {
-  title: React.PropTypes.string,
-  active: React.PropTypes.bool,
-  theme: React.PropTypes.oneOf(['error', 'success']),
-  onClose: React.PropTypes.func,
-  bgCloser: React.PropTypes.bool,
-  id: React.PropTypes.string,
+  title: PropTypes.string,
+  active: PropTypes.bool,
+  theme: PropTypes.oneOf(['error', 'success']),
+  onClose: PropTypes.func,
+  bgCloser: PropTypes.bool,
+  id: PropTypes.string
 };
 
 PopupComponent.defaultProps = {
   active: false,
-  bgCloser: true,
+  bgCloser: true
 };
 
-const AlertComponent = (props) => {
-  const { children, title, ok = DEFAULT_ALERT_BTN_TEXT, theme, active, onClose } = props;
+const AlertComponent = props => {
+  const {
+    children,
+    title,
+    ok = DEFAULT_ALERT_BTN_TEXT,
+    theme,
+    active,
+    onClose
+  } = props;
 
   return (
     <Popup active={active} title={title} theme={theme} bgCloser={false}>
-      <article>
-        {children}
-      </article>
+      <article>{children}</article>
       <footer>
         <Button onClick={onClose}>{ok}</Button>
       </footer>
@@ -67,53 +82,60 @@ const AlertComponent = (props) => {
 };
 
 AlertComponent.propTypes = {
-  title: React.PropTypes.string,
-  ok: React.PropTypes.string,
-  active: React.PropTypes.bool,
-  theme: React.PropTypes.oneOf(['error', 'success']),
-  onClose: React.PropTypes.func,
+  title: PropTypes.string,
+  ok: PropTypes.string,
+  active: PropTypes.bool,
+  theme: PropTypes.oneOf(['error', 'success']),
+  onClose: PropTypes.func
 };
 
 AlertComponent.defaultProps = {
   active: false,
-  ok: DEFAULT_ALERT_BTN_TEXT,
+  ok: DEFAULT_ALERT_BTN_TEXT
 };
 
-const ConfirmComponent = (props) => {
+const ConfirmComponent = props => {
   const {
     confirm = DEFAULT_CONFIRM_BTN_TEXT,
     cancel = DEFAULT_CANCEL_BTN_TEXT,
-    title, theme, active, children,
-    onCancel, onConfirm, id,
+    title,
+    theme,
+    active,
+    children,
+    onCancel,
+    onConfirm,
+    id
   } = props;
 
   return (
     <Popup id={id} active={active} title={title} theme={theme} bgCloser={false}>
-      <article>
-        {children}
-      </article>
+      <article>{children}</article>
       <footer>
-        <Button name="popup-confirm-cancel" theme="border" onClick={onCancel}>{cancel}</Button>
-        <Button name="popup-confirm-ok" onClick={onConfirm}>{confirm}</Button>
+        <Button name="popup-confirm-cancel" theme="border" onClick={onCancel}>
+          {cancel}
+        </Button>
+        <Button name="popup-confirm-ok" onClick={onConfirm}>
+          {confirm}
+        </Button>
       </footer>
     </Popup>
   );
 };
 
 ConfirmComponent.propTypes = {
-  title: React.PropTypes.string,
-  confirm: React.PropTypes.string,
-  cancel: React.PropTypes.string,
-  active: React.PropTypes.bool,
-  theme: React.PropTypes.oneOf(['error', 'success']),
-  onCancel: React.PropTypes.func,
-  onConfirm: React.PropTypes.func,
+  title: PropTypes.string,
+  confirm: PropTypes.string,
+  cancel: PropTypes.string,
+  active: PropTypes.bool,
+  theme: PropTypes.oneOf(['error', 'success']),
+  onCancel: PropTypes.func,
+  onConfirm: PropTypes.func
 };
 
 ConfirmComponent.defaultProps = {
   active: false,
   confirm: DEFAULT_CONFIRM_BTN_TEXT,
-  cancel: DEFAULT_CANCEL_BTN_TEXT,
+  cancel: DEFAULT_CANCEL_BTN_TEXT
 };
 
 export const Popup = withStyles(styles)(PopupComponent);

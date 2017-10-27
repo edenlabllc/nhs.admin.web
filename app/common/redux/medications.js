@@ -41,7 +41,10 @@ export const createMedication = body =>
     types: [
       'medications/CREATE_INNM_DOSAGES_REQUEST',
       'medications/CREATE_SUCCESS',
-      'medications/CREATE_FAILURE'
+      {
+        type: 'medications/CREATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });

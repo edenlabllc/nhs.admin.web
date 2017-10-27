@@ -1,37 +1,39 @@
 import { createInnmDosage } from 'redux/innm-dosages';
 import { push } from 'react-router-redux';
 
-export const onSubmit = (v, active) => dispatch => {
+export const onSubmit = (
+  { form: { name: form }, name, ingredients = [], one: { ingredients: one } },
+  active
+) => dispatch => {
   const values = {
-    form: v.form.name,
-    name: v.name,
-    ingredients: (v.ingredients || []).map(i => ({
-      id: i.id.name,
-      is_primary: false,
-      dosage: {
-        numerator_value: +i.numerator_value,
-        numerator_unit: i.numerator_unit.name,
-        denumerator_unit: i.denumerator_unit.name,
-        denumerator_value: 1
-      }
-    }))
+    form,
+    name,
+    ingredients: ingredients
+      .map((ingredient, index) => mapIngredient(ingredient, index, active))
+      .concat(mapIngredient(one, ingredients.length, active))
   };
-  values.ingredients.push({
-    id: v.one.ingredients.id.name,
-    is_primary: false,
-    dosage: {
-      numerator_value: +v.one.ingredients.numerator_value,
-      numerator_unit: v.one.ingredients.numerator_unit.name,
-      denumerator_unit: v.one.ingredients.denumerator_unit.name,
-      denumerator_value: 1
-    }
-  });
-  values.ingredients[active].is_primary = true;
 
-  return dispatch(createInnmDosage(values)).then(action => {
-    if (action.error) {
-      throw new Error();
-    }
-    return dispatch(push(`/innm-dosages/${action.payload.data.id}`));
+  return dispatch(createInnmDosage(values)).then(({ error, payload }) => {
+    if (!error) return dispatch(push(`/innm-dosages/${payload.data.id}`));
   });
 };
+
+const mapIngredient = (
+  {
+    id: { name: id },
+    numerator_value,
+    numerator_unit: { name: numerator_unit },
+    denumerator_unit: { name: denumerator_unit }
+  },
+  index,
+  active
+) => ({
+  id,
+  is_primary: index === active,
+  dosage: {
+    numerator_value: parseFloat(numerator_value, 10),
+    denumerator_value: 1,
+    numerator_unit,
+    denumerator_unit
+  }
+});

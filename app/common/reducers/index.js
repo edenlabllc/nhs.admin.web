@@ -11,6 +11,7 @@ import labels from 'redux/labels';
 import session from 'redux/session';
 import user from 'redux/user';
 import auth from 'redux/auth';
+import error from 'redux/error';
 
 import dictionaries from 'redux/dictionaries';
 import clinics from 'redux/clinics';
@@ -137,6 +138,7 @@ const data = combineReducers({
 export default combineReducers({
   blocks,
   session,
+  error,
   pages,
   data,
   // external libraries

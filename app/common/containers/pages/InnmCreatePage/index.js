@@ -34,9 +34,9 @@ export default class InnmCreatePage extends React.Component {
         <InnmForm
           create
           onSubmit={v =>
-            createInnm(v).then(resp =>
-              router.push(`/innms/${resp.payload.data.id}`)
-            )}
+            createInnm(v).then(({ error, payload }) => {
+              if (!error) router.push(`/innms/${payload.data.id}`);
+            })}
         />
       </div>
     );

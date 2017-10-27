@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class OuterClick extends React.Component {
   static propTypes = {
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    this.callback = (e) => {
+    this.callback = e => {
       this.handleClick(e);
     };
 
@@ -32,10 +33,10 @@ export default class OuterClick extends React.Component {
 
     return React.cloneElement(children, {
       ...children.props,
-      ref: (node) => {
+      ref: node => {
         this.node = node;
         children.ref && children.ref(node);
-      },
+      }
     });
   }
 }
