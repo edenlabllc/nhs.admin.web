@@ -11,7 +11,7 @@ export default class ShowMore extends React.Component {
   };
 
   render() {
-    const { name, children, nav = false, show_block = false } = this.props;
+    const { name, children, nav = false, show_block = nav } = this.props;
     const { show } = this.state;
 
     return (
