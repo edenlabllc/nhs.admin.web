@@ -90,8 +90,7 @@ export default class MedicationsListPage extends React.Component {
               { name: 'id', title: t('By id') },
               { name: 'innm_dosage_id', title: t('By innm_dosage_id') },
               { name: 'innm_dosage_name', title: t('By innm_dosage_name') },
-              { name: 'name', title: t('By medication name') },
-              { name: 'form', title: t('By form') }
+              { name: 'name', title: t('By medication name') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -103,7 +102,7 @@ export default class MedicationsListPage extends React.Component {
                   innm_dosage_id: null,
                   innm_dosage_name: null,
                   name: null,
-                  form: null,
+                  page: 1,
                   ...values
                 },
                 this.props
