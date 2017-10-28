@@ -87,10 +87,13 @@ export default class MedicationsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти торгову назву"
             items={[
-              { name: 'id', title: t('By id') },
-              { name: 'innm_dosage_id', title: t('By innm_dosage_id') },
-              { name: 'innm_dosage_name', title: t('By innm_dosage_name') },
-              { name: 'name', title: t('By medication name') }
+              { name: 'id', title: t('за ID') },
+              { name: 'innm_dosage_id', title: t('за ID лікарської форми') },
+              {
+                name: 'innm_dosage_name',
+                title: t('за назвою лікарської форми')
+              },
+              { name: 'name', title: t('за назвою') }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]

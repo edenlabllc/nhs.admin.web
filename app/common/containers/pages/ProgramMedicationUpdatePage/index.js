@@ -44,7 +44,17 @@ export default class ProgramMedicationUpdatePage extends React.Component {
         </BackLink>
         <H3>Оновлення учасника програми</H3>
         <ProgramMedicationUpdateForm
-          initialValues={{ ...program_medication }}
+          initialValues={{
+            ...program_medication,
+            reimbursement: {
+              reimbursement_amount:
+                program_medication.reimbursement.reimbursement_amount,
+              type:
+                program_medication.reimbursement.type === 'fixed'
+                  ? 'фіксована'
+                  : 'динамічна'
+            }
+          }}
           onSubmit={v => onUpdate(v, program_medication.id)}
         />
       </div>

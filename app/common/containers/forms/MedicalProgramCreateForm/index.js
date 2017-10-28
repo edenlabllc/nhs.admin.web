@@ -42,7 +42,7 @@ export default class MedicalProgramCreateForm extends React.Component {
           <div>
             <Field
               name="name"
-              labelText="Назва медичної программи"
+              labelText="Назва медичної програми"
               component={FieldInput}
               disabled={disabled}
               placeholder="Доступні ліки"

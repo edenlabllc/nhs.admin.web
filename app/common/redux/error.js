@@ -8,7 +8,8 @@ export default handleActions(
       'innms/CREATE_INNM_FAILURE',
       'innm_dosages/CREATE_INNM_DOSAGES_FAILURE',
       'innm_dosages/DEACTIVATE_INNM_DOSAGES_FAILURE',
-      'medications/CREATE_FAILURE'
+      'medications/CREATE_FAILURE',
+      'medications/DEACTIVATE_FAILURE'
     )]: (state, action) => action.payload,
     [dismissError]: () => null
   },

@@ -131,6 +131,7 @@ export default class MedicationsCreateForm extends React.Component {
     const {
       handleSubmit,
       onSubmit = () => {},
+      onSearchInnmsDosages = () => {},
       submitting,
       t,
       disabled = false,
@@ -195,8 +196,13 @@ export default class MedicationsCreateForm extends React.Component {
                 placeholder="Почніть вводити назву"
                 label_bold
                 searchable
-                onChangeSearch={val =>
-                  this.setState({ innms_search: val.toLowerCase() })}
+                onChangeSearch={v =>
+                  v &&
+                  onSearchInnmsDosages(v).then(() =>
+                    this.setState({
+                      innms_search: v.toLowerCase()
+                    })
+                  )}
                 options={data.innm_dosages
                   .filter(i => i.is_active)
                   .filter(

@@ -135,10 +135,10 @@ export default class ProgramMedicationsListPage extends React.Component {
         <div id="medication-table" className={styles.table}>
           <Table
             columns={[
-              { key: 'medical_program_id', title: 'ID\n медичної программи' },
+              { key: 'medical_program_id', title: 'ID\n медичної програми' },
               {
                 key: 'medical_program_name',
-                title: 'Назва медичної программи'
+                title: 'Назва медичної програми'
               },
               { key: 'medication_name', title: 'Торгова Назва' },
               { key: 'medication_form', title: 'Форма' },

@@ -59,7 +59,10 @@ export const deactivateMedication = id =>
     types: [
       'medications/DEACTIVATE_REQUEST',
       'medications/DEACTIVATE_SUCCESS',
-      'medications/DEACTIVATE_FAILURE'
+      {
+        type: 'medications/DEACTIVATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ]
   });
 

@@ -23,21 +23,22 @@ const ErrorMessage = ({ error, dismissError }) => (
       <div className={styles.root}>
         <H3>An error has occured</H3>
         <p className={styles.message}>{error.message}</p>
-
-        <ShowMore name="Details" show_block>
-          {error.invalid.map(({ entry, rules }) => (
-            <div key={entry} className={styles.error}>
-              <H5>{entry}</H5>
-              <ul>
-                {rules.map(({ rule, description }, index) => (
-                  <li key={index}>
-                    {rule}: {description}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </ShowMore>
+        {error.invalid && (
+          <ShowMore name="Details" show_block>
+            {(error.invalid || []).map(({ entry, rules }) => (
+              <div key={entry} className={styles.error}>
+                <H5>{entry}</H5>
+                <ul>
+                  {rules.map(({ rule, description }, index) => (
+                    <li key={index}>
+                      {rule}: {description}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </ShowMore>
+        )}
       </div>
     )}
   </Portal>
