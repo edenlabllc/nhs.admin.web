@@ -21,11 +21,11 @@ export default class MedicalProgramCreatePage extends React.Component {
     return (
       <div id="innm-create-page">
         <Helmet
-          title="Сторінка створення Медичної Программи"
+          title="Сторінка створення Медичної Програми"
           meta={[
             {
               property: 'og:title',
-              content: 'Сторінка створення Медичної Программи'
+              content: 'Сторінка створення Медичної Програми'
             }
           ]}
         />
@@ -34,13 +34,13 @@ export default class MedicalProgramCreatePage extends React.Component {
         </BackLink>
         <Line />
 
-        <H1>Cтворення Медичної Программи</H1>
+        <H1>Програми</H1>
 
         <MedicalProgramCreateForm
           create
           onSubmit={v =>
             createMedicalProgram(v).then(resp =>
-              router.push(`/medical-program/${resp.payload.data.id}`)
+              router.push(`/medical-programs/${resp.payload.data.id}`)
             )}
         />
       </div>

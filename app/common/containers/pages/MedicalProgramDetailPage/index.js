@@ -60,13 +60,10 @@ export default class MedicalProgramDetailPage extends React.Component {
         </BackLink>
         <br />
         <br />
-        <DataList
-          list={[{ name: 'ID Программи', value: medical_program.id }]}
-        />
+        <DataList list={[{ name: 'ID Програми', value: medical_program.id }]} />
         <Line width={630} />
         <DataList list={[{ name: 'Назва', value: medical_program.name }]} />
         <Line width={630} />
-        <h4>Активна для сворення рецептів</h4>
         <br />
         <DataList
           list={[
@@ -101,7 +98,7 @@ export default class MedicalProgramDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      Деактивувати медичну програм
+                      Деактивувати програму
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -111,7 +108,7 @@ export default class MedicalProgramDetailPage extends React.Component {
         )}
 
         <Confirm
-          title={t('Деактивувати медичну программу {{name}}?', {
+          title={t('Деактивувати медичну програму {{name}}?', {
             name: medical_program.name
           })}
           active={this.state.showDeactivateConfirm}
