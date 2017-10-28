@@ -60,6 +60,7 @@ import InnmDosagesCreatePage from 'containers/pages/InnmDosagesCreatePage/redux'
 
 import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
 import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
+import MedicationCreatePage from 'containers/pages/MedicationCreatePage/redux';
 
 import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage/redux';
 import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
@@ -101,6 +102,7 @@ const pages = combineReducers({
 
   MedicationsListPage,
   MedicationDetailPage,
+  MedicationCreatePage,
 
   MedicalProgramsListPage,
   MedicalProgramDetailPage,

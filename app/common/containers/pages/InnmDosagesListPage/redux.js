@@ -2,7 +2,9 @@ import { combineReducers } from 'redux';
 import { handleAction, createAction } from 'redux-actions';
 import * as fromInnmDosages from 'redux/innm-dosages';
 
-export const showInnmDosages = createAction('innmDosagesListPage/SHOW_CLINICS');
+export const showInnmDosages = createAction(
+  'innmDosagesListPage/SHOW_INNM_DOSAGES'
+);
 export const pagingInnmDosages = createAction('innmDosagesListPage/ADD_PAGING');
 
 export const fetchInnmDosages = options => dispatch =>
