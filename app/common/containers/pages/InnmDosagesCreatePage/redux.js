@@ -1,5 +1,8 @@
 import { createInnmDosage } from 'redux/innm-dosages';
 import { push } from 'react-router-redux';
+import { handleAction, createAction } from 'redux-actions';
+import * as fromInnms from 'redux/innms';
+import { combineReducers } from 'redux';
 
 export const onSubmit = (
   { form: { name: form }, name, ingredients = [], one: { ingredients: one } },
@@ -36,4 +39,21 @@ const mapIngredient = (
     numerator_unit,
     denumerator_unit
   }
+});
+
+export const getInnms = createAction('innmDosaggesCreatePage/SHOW_INNMS');
+
+export const onChangeSearchInnm = name => dispatch =>
+  dispatch(fromInnms.fetchInnms({ name, page_size: 200 })).then(action => {
+    if (action.error && action.payload.status !== 400) {
+      throw action;
+    }
+
+    return dispatch(getInnms(action.payload.result || []));
+  });
+
+const innms = handleAction(getInnms, (state, action) => action.payload, []);
+
+export default combineReducers({
+  innms
 });

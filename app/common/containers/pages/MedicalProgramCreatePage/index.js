@@ -16,7 +16,7 @@ import { createMedicalProgram } from 'redux/medical-programs';
 @connect(null, { createMedicalProgram })
 export default class MedicalProgramCreatePage extends React.Component {
   render() {
-    const { createMedicalProgram = () => {}, t, router } = this.props;
+    const { createMedicalProgram = () => {}, router } = this.props;
 
     return (
       <div id="innm-create-page">
