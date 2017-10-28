@@ -43,7 +43,15 @@ export default class InnmDosagesDetailPage extends React.Component {
   };
 
   deactivateInnmDosage() {
-    this.props.deactivateInnmDosage(this.props.params.id);
+    this.props.deactivateInnmDosage(this.props.params.id).then(action => {
+      if (action.error) {
+        this.setState({
+          showDeactivateConfirm: false
+        });
+        return this.props.router.push(`/innm-dosages/${this.props.params.id}`);
+      }
+      return this.props.router.push(`/innm-dosages/${action.payload.id}`);
+    });
   }
 
   render() {
@@ -93,9 +101,9 @@ export default class InnmDosagesDetailPage extends React.Component {
                     </p>
                     <p>
                       {innm_dosage.ingredients[0].is_primary && (
-                        <div>
+                        <span>
                           <Icon name="check-right" /> &nbsp; Діюча речовина
-                        </div>
+                        </span>
                       )}
                     </p>
                     <br />
