@@ -92,7 +92,6 @@ export default class InnmDosagesCreateForm extends React.Component {
     });
   }
   onSearchChange(value) {
-    console.log('c', value);
     this.setState({
       innms_search: value
     });
