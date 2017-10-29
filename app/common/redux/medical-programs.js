@@ -41,7 +41,10 @@ export const createMedicalProgram = body =>
     types: [
       'medical_programs/CREATE_MEDICAL_PROGRAM_REQUEST',
       'medical_programs/CREATE_SUCCESS',
-      'medical_programs/CREATE_FAILURE'
+      {
+        type: 'medical_programs/CREATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });
@@ -56,7 +59,10 @@ export const deactivateMedicalProgram = id =>
     types: [
       'medical_programs/DEACTIVATE_REQUEST',
       'medical_programs/DEACTIVATE_SUCCESS',
-      'medical_programs/DEACTIVATE_FAILURE'
+      {
+        type: 'medical_programs/DEACTIVATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ]
   });
 

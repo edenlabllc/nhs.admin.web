@@ -52,9 +52,7 @@ export default class MedicalProgramCreateForm extends React.Component {
             <ShowWithScope scope="medical_program:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting
-                    ? t('Saving...')
-                    : t('Створити Медичну программу')}
+                  {submitting ? t('Saving...') : t('Створити Медичну програму')}
                 </Button>
               </div>
             </ShowWithScope>

@@ -83,11 +83,17 @@ export default class InnmDosagesCreateForm extends React.Component {
       active: 0
     };
     this.onChange = this.onChange.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onChange(value) {
     this.setState({
       active: value
+    });
+  }
+  onSearchChange(value) {
+    this.setState({
+      innms_search: value
     });
   }
 
@@ -225,7 +231,9 @@ export default class InnmDosagesCreateForm extends React.Component {
               name="ingredients"
               component={RenderIngredient}
               data={data}
+              onSearchInnms={onSearchInnms}
               onChange={this.onChange}
+              onSearchChange={this.onSearchChange}
               active={this.state.active}
             />
           </FormRow>

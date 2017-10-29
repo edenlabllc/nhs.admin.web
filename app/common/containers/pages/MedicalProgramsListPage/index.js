@@ -54,7 +54,7 @@ export default class MedicalProgramsListPage extends React.Component {
       <div id="medication-list-page">
         <Helmet
           title="Перелік медичних програм"
-          meta={[{ property: 'og:title', content: 'Перелік медичний програм' }]}
+          meta={[{ property: 'og:title', content: 'Перелік медичних програм' }]}
         />
         <ListHeader
           button={

@@ -44,7 +44,16 @@ export default class MedicalProgramDetailPage extends React.Component {
   };
 
   deactivateMedicalProgram() {
-    this.props.deactivateMedicalProgram(this.props.params.id);
+    this.props.deactivateMedicalProgram(this.props.params.id).then(action => {
+      if (action.error) {
+        this.setState({
+          showDeactivateConfirm: false
+        });
+      }
+      return this.props.router.push(
+        `/medical-programs/${this.props.params.id}`
+      );
+    });
   }
 
   render() {

@@ -18,7 +18,14 @@ export default class RenderIngredient extends React.Component {
   };
 
   render() {
-    const { fields, meta: { error, submitFailed }, data, t } = this.props;
+    const {
+      fields,
+      meta: { error, submitFailed },
+      data,
+      t,
+      onSearchInnmsDosages = () => {},
+      onSearchChange = () => {}
+    } = this.props;
     return (
       <ul>
         {fields.map((ingredient, index) => (
@@ -34,8 +41,11 @@ export default class RenderIngredient extends React.Component {
                   placeholder="Почніть вводити назву"
                   label_bold
                   searchable
-                  onChangeSearch={val =>
-                    this.setState({ innms_search: val.toLowerCase() })}
+                  onChangeSearch={v =>
+                    v &&
+                    onSearchInnmsDosages(v.toLowerCase()).then(() =>
+                      onSearchChange(v.toLowerCase())
+                    )}
                   options={data.innm_dosages
                     .filter(i => i.is_active)
                     .filter(

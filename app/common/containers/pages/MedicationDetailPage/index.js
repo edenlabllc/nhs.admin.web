@@ -42,14 +42,8 @@ export default class MedicationDetailPage extends React.Component {
   };
 
   deactivateMedication() {
-    this.props.deactivateMedication(this.props.params.id).then(action => {
-      if (action.error) {
-        this.setState({
-          showDeactivateConfirm: false
-        });
-        return this.props.router.push(`/medications/${this.props.params.id}`);
-      }
-      return this.props.router.push(`/medications/${action.payload.id}`);
+    this.props.deactivateMedication(this.props.params.id).then(() => {
+      return this.props.router.push(`/medications/${this.props.params.id}`);
     });
   }
 
