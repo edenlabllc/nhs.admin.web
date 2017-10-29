@@ -49,11 +49,10 @@ export default class MedicalProgramDetailPage extends React.Component {
         this.setState({
           showDeactivateConfirm: false
         });
-        return this.props.router.push(
-          `/medical-programs/${this.props.params.id}`
-        );
       }
-      return this.props.router.push(`/medical-programs/${action.payload.id}`);
+      return this.props.router.push(
+        `/medical-programs/${this.props.params.id}`
+      );
     });
   }
 
