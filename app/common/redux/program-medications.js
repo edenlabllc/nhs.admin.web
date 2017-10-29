@@ -41,7 +41,10 @@ export const createProgramMedication = body =>
     types: [
       'program_medications/CREATE_MEDICAL_PROGRAM_REQUEST',
       'program_medications/CREATE_SUCCESS',
-      'program_medications/CREATE_FAILURE'
+      {
+        type: 'program_medications/CREATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });

@@ -110,10 +110,10 @@ export default class InnmsListPage extends React.Component {
           <Table
             columns={[
               { key: 'id', title: t('id') },
-              { key: 'name', title: t('Innms name') },
-              { key: 'name_original', title: t('Innms original name') },
-              { key: 'sctid', title: t('sctid') },
-              { key: 'active', title: t('Active') },
+              { key: 'name', title: t('Назва МНН') },
+              { key: 'name_original', title: t('Оригінальна назва МНН') },
+              { key: 'sctid', title: t('SCTID') },
+              { key: 'active', title: t('Активна') },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
             data={innms.map(item => ({

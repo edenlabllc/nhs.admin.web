@@ -119,11 +119,17 @@ export default class MedicationsCreateForm extends React.Component {
       active: 0
     };
     this.onChange = this.onChange.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onChange(value) {
     this.setState({
       active: value
+    });
+  }
+  onSearchChange(value) {
+    this.setState({
+      innms_search: value
     });
   }
 
@@ -279,6 +285,8 @@ export default class MedicationsCreateForm extends React.Component {
             <FieldArray
               name="ingredients"
               component={RenderIngredient}
+              onSearchInnmsDosages={onSearchInnmsDosages}
+              onSearchChange={this.onSearchChange}
               data={data}
               onChange={this.onChange}
               active={this.state.active}
