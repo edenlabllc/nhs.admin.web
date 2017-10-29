@@ -42,7 +42,6 @@ export default class InnmDosagesDetailPage extends React.Component {
     showDeactivateConfirm: false
   };
   componentDidMount() {
-    console.log('render', this.state);
     this.setState({
       showDeactivateConfirm: false
     });
