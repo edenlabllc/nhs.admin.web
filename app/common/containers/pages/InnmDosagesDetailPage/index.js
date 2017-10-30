@@ -48,8 +48,11 @@ export default class InnmDosagesDetailPage extends React.Component {
   }
 
   deactivateInnmDosage() {
-    this.props.deactivateInnmDosage(this.props.params.id).then(() => {
-      return this.props.router.push(`/innm-dosages/${this.props.params.id}`);
+    this.props.deactivateInnmDosage(this.props.params.id).then(action => {
+      this.setState({
+        showDeactivateConfirm: false
+      });
+      return this.props.router.push(`/innm-dosages/${action.payload.data.id}`);
     });
   }
 
