@@ -47,7 +47,7 @@ export default class InnmDosagesDetailPage extends React.Component {
       this.setState({
         showDeactivateConfirm: false
       });
-      return this.props.router.push(`/innm-dosages/${action.payload.data.id}`);
+      return this.props.router.push(`/innm-dosages/${this.props.params.id}`);
     });
   }
 
