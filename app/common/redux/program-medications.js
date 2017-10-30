@@ -59,7 +59,10 @@ export const updateProgramMedication = (body, id) =>
     types: [
       'program_medications/UPDATE_MEDICAL_PROGRAM_REQUEST',
       'program_medications/UPDATE_SUCCESS',
-      'program_medications/UPDATE_FAILURE'
+      {
+        type: 'program_medications/UPDATE_FAILURE',
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
     ],
     body
   });
