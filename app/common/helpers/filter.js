@@ -1,7 +1,8 @@
 export const setFilter = (filter, { location, router }) => {
   const newFilter = {
     ...location.query,
-    ...filter
+    ...filter,
+    page: 1
   };
 
   const query = Object.keys(newFilter).reduce((target, key) => {

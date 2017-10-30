@@ -12,39 +12,47 @@ import { H3, H5 } from 'components/Title';
 
 import styles from './styles.scss';
 
-const ErrorMessage = ({ error, dismissError }) => (
+const ErrorMessage = ({
+  isErrored,
+  error: { message, invalid },
+  dismissError
+}) => (
   <Portal
-    isOpened={!!error}
+    isOpened={isErrored}
     onClose={dismissError}
     closeOnEsc
     closeOnOutsideClick
   >
-    {error && (
-      <div className={styles.root}>
-        <H3>An error has occured</H3>
-        <p className={styles.message}>{error.message}</p>
-        {error.invalid && (
-          <ShowMore name="Details" show_block>
-            {(error.invalid || []).map(({ entry, rules }) => (
-              <div key={entry} className={styles.error}>
-                <H5>{entry}</H5>
-                <ul>
-                  {rules.map(({ rule, description }, index) => (
-                    <li key={index}>
-                      {rule}: {description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </ShowMore>
-        )}
-      </div>
-    )}
+    <div className={styles.root}>
+      <H3>An error has occured</H3>
+      <p className={styles.message}>{message}</p>
+      {invalid && (
+        <ShowMore name="Details" show_block>
+          {invalid.map(({ entry, rules }) => (
+            <div key={entry} className={styles.error}>
+              <H5>{entry}</H5>
+              <ul>
+                {rules.map(({ rule, description }, index) => (
+                  <li key={index}>
+                    {rule}: {description}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </ShowMore>
+      )}
+    </div>
   </Portal>
 );
 
 export default compose(
   withStyles(styles),
-  connect(({ error }) => ({ error }), { dismissError })
+  connect(
+    ({ error }) => ({
+      isErrored: !!error,
+      error: error || {}
+    }),
+    { dismissError }
+  )
 )(ErrorMessage);

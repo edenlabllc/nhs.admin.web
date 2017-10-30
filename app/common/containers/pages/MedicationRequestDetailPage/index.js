@@ -32,9 +32,15 @@ const MedicationRequestDetailPage = ({
     dispense_valid_to,
     legal_entity = {},
     division = {},
-    employee: { party = {} } = {},
+    employee: { party = {}, ...employee } = {},
     person = {},
-    medication_info: { medication_name, medication_id, form, dosage } = {},
+    medication_info: {
+      medication_name,
+      medication_id,
+      form,
+      dosage,
+      medication_qty
+    } = {},
     medical_program = {}
   } = {}
 }) => (
@@ -92,7 +98,7 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID особи', value: party.id },
+          { name: 'ID працівника', value: employee.id },
           { name: 'Прізвище', value: party.last_name },
           { name: "Ім'я", value: party.first_name },
           party.second_name && { name: 'По батькові', value: party.second_name }
@@ -112,7 +118,6 @@ const MedicationRequestDetailPage = ({
             name: 'По батькові',
             value: person.second_name
           },
-          { name: 'ІНН', value: person.tax_id },
           {
             name: 'Дата народження',
             value: format(person.birth_date, 'DD/MM/YYYY')
@@ -132,7 +137,8 @@ const MedicationRequestDetailPage = ({
             name: 'Форма',
             value: <DictionaryValue dictionary="MEDICATION_FORM" value={form} />
           },
-          { name: 'Упаковка', value: <Container container={dosage} /> }
+          { name: 'Дозування', value: <Container container={dosage} /> },
+          { name: 'Кількість препарату', value: medication_qty }
         ]}
       />
 
