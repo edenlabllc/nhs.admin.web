@@ -41,11 +41,6 @@ export default class InnmDosagesDetailPage extends React.Component {
   state = {
     showDeactivateConfirm: false
   };
-  componentDidMount() {
-    this.setState({
-      showDeactivateConfirm: false
-    });
-  }
 
   deactivateInnmDosage() {
     this.props.deactivateInnmDosage(this.props.params.id).then(action => {
