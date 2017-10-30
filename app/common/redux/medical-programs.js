@@ -51,7 +51,9 @@ export const createMedicalProgram = body =>
 
 export const deactivateMedicalProgram = id =>
   invoke({
-    endpoint: createUrl(`${API_URL}/api/medical_programs/${id}/deactivate`),
+    endpoint: createUrl(
+      `${API_URL}/api/medical_programs/${id}/actions/deactivate`
+    ),
     method: 'PATCH',
     headers: {
       'content-type': 'application/json'
