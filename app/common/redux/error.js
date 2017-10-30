@@ -13,7 +13,9 @@ export default handleActions(
 
       'innm_dosages/DEACTIVATE_INNM_DOSAGES_FAILURE',
       'medications/DEACTIVATE_FAILURE',
-      'medical_programs/DEACTIVATE_FAILURE'
+      'medical_programs/DEACTIVATE_FAILURE',
+
+      'program_medications/UPDATE_FAILURE'
     )]: (state, action) => action.payload,
     [dismissError]: () => null
   },
