@@ -30,8 +30,8 @@ const FILTERS = [
   { name: 'request_number', title: 'За номером рецепту' },
   // { name: 'created_from', title: 'За датою створення' },
   // { name: 'created_to', title: 'За датою створення' },
-  { name: 'division_id', title: 'За ID підрозділу' },
-  { name: 'medication_id', title: 'За ID торгової назви' }
+  { name: 'legal_entity_id', title: 'За ID медичного закладу' },
+  { name: 'medication_id', title: 'За ID лікарської форми' }
 ];
 
 const MedicationRequestsListPage = ({
@@ -66,8 +66,7 @@ const MedicationRequestsListPage = ({
     <ListShowBy>
       <ShowBy
         active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          setFilter({ page_size, page: 1 }, { location, router })}
+        onChange={page_size => setFilter({ page_size }, { location, router })}
       />
     </ListShowBy>
 
@@ -78,7 +77,8 @@ const MedicationRequestsListPage = ({
           { key: 'id', title: 'ID' },
           { key: 'request_number', title: 'Номер рецепту' },
           { key: 'division_id', title: 'ID підрозділу' },
-          { key: 'medication_id', title: 'ID торгової назви', width: 110 },
+          { key: 'legal_entity_id', title: 'ID медичного закладу' },
+          { key: 'medication_id', title: 'ID лікарської форми', width: 110 },
           { key: 'person_id', title: 'ID пацієнта' },
           { key: 'status', title: 'Статус' },
           { key: 'action', title: 'Дії', width: 100 }
@@ -88,6 +88,7 @@ const MedicationRequestsListPage = ({
             created_at,
             id,
             request_number,
+            legal_entity,
             division,
             medication_info: { medication_id },
             person,
@@ -97,6 +98,7 @@ const MedicationRequestsListPage = ({
             id,
             request_number,
             division_id: division.id,
+            legal_entity_id: legal_entity.id,
             medication_id,
             person_id: person.id,
             status,
