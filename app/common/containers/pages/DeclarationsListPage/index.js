@@ -105,7 +105,7 @@ export default class DeclarationsListPage extends React.Component {
                 <div>
                   {item.person && (
                     <div>
-                      {`${item.person.last_name} ${item.person.first_name}`}
+                      {`${item.person.last_name} ${item.person.first_name} `}
                       <div>{item.person.second_name}</div>
                     </div>
                   )}
