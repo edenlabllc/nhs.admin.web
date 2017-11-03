@@ -1,4 +1,4 @@
-import 'react-dates/lib/initialize';
+// import 'react-dates/lib/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React from 'react';
 import withStyles from 'withStyles';
@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import styles from './styles.scss';
 
-@withStyles(datePicker, styles)
+@withStyles(styles)
 export default class DateFilterForm extends React.Component {
   state = {
     startDate:
