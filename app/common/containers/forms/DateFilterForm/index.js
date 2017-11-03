@@ -1,10 +1,10 @@
+import 'react-dates/lib/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import React from 'react';
 import withStyles from 'withStyles';
-import 'react-dates/lib/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
-import datePicker from 'react-dates/lib/css/_datepicker.css';
 import styles from './styles.scss';
 
 @withStyles(datePicker, styles)
