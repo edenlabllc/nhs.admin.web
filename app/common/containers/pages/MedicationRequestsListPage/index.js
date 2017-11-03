@@ -13,11 +13,11 @@ import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
 import Table from 'components/Table';
-import Icon from 'components/Icon';
 
 import ShowBy from 'containers/blocks/ShowBy';
 
 import SearchForm from 'containers/forms/SearchForm';
+import DateFilterForm from 'containers/forms/DateFilterForm';
 
 import { getMedicationRequests } from 'reducers';
 
@@ -33,13 +33,17 @@ const FILTERS = [
   { name: 'legal_entity_id', title: 'За ID медичного закладу' },
   { name: 'medication_id', title: 'За ID лікарської форми' }
 ];
+const FILTER_DATE = [
+  { names: ['created_from', 'created_to'], title: 'За період' }
+];
 
 const MedicationRequestsListPage = ({
   location,
   router,
   medication_requests = [],
   paging,
-  activeFilter
+  activeFilter,
+  activeDateFilter = []
 }) => (
   <div id="medication-requests-list-page">
     <Helmet
@@ -61,6 +65,21 @@ const MedicationRequestsListPage = ({
         initialValues={{ [activeFilter]: location.query[activeFilter] }}
         onSubmit={values => setFilter(values, { location, router })}
       />
+    </div>
+    <div>
+      <DateFilterForm
+        label="Оберіть період створення"
+        active={
+          activeDateFilter.length === 2
+            ? {
+                startDate: location.query.created_from,
+                endDate: location.query.created_to
+              }
+            : []
+        }
+        onChange={values => setFilter(values, { location, router })}
+      />
+      <br />
     </div>
 
     <ListShowBy>
@@ -138,6 +157,7 @@ export default compose(
       state,
       state.pages.MedicationRequestsListPage.medication_requests
     ),
-    activeFilter: getFilter(props, FILTERS)
+    activeFilter: getFilter(props, FILTERS),
+    activeDateFilter: getFilter(props, FILTER_DATE)
   }))
 )(MedicationRequestsListPage);

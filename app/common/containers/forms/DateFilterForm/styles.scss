@@ -1,0 +1,33 @@
+.DateRangePickerInput {
+  padding: 1px !important;
+}
+
+.DateInput_input {
+  font-size: 14px !important;
+}
+
+.CalendarDay__highlighted_calendar {
+  background: red;
+  color: peru;
+}
+
+.CalendarDay__highlighted_calendar:hover {
+  background: #58d68d;
+  color: #186a3b;
+}
+
+.CalendarDay__highlighted_calendar:active {
+  background: red;
+  color: rebeccapurple;
+}
+
+h4 {
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+.datepicker {
+  font-size: 10px !important;
+}

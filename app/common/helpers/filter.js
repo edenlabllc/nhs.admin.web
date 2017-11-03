@@ -22,9 +22,11 @@ export const setFilter = (filter, { location, router }) => {
 export const getFilter = ({ location: { query } }, filters) => {
   const [{ name: defaultFilter }] = filters;
 
-  const filter = Object.keys(query).find(key =>
-    filters.some(({ name }) => name === key)
-  );
+  const filter = filters[0].names
+    ? Object.keys(query).filter(key =>
+        filters[0].names.some(item => item === key)
+      )
+    : Object.keys(query).find(key => filters.some(({ name }) => name === key));
 
   return filter || defaultFilter;
 };
