@@ -1,6 +1,6 @@
 import React from 'react';
 import withStyles from 'withStyles';
-import 'react-dates/initialize';
+import 'react-dates/lib/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
