@@ -4,12 +4,10 @@ import 'react-dates/lib/initialize';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
-import { reduxFormValidate } from 'react-nebo15-validate';
-
-import 'react-dates/lib/css/_datepicker.css';
+import datePicker from 'react-dates/lib/css/_datepicker.css';
 import styles from './styles.scss';
 
-@withStyles(styles)
+@withStyles(datePicker, styles)
 export default class DateFilterForm extends React.Component {
   state = {
     startDate:
