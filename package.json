@@ -165,7 +165,6 @@
     "mocha": "3.2.0",
     "nightwatch": "0.9.14",
     "prettier": "1.7.4",
-    "react-addons-shallow-compare": "^15.6.2",
     "react-addons-test-utils": "^15.3.0",
     "selenium-download": "2.0.6",
     "selenium-server-standalone-jar": "2.53.1",

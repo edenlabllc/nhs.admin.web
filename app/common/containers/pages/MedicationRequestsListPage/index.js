@@ -28,8 +28,6 @@ const FILTERS = [
   { name: 'person_id', title: 'За ID пацієнта' },
   { name: 'status', title: 'За статусом' },
   { name: 'request_number', title: 'За номером рецепту' },
-  // { name: 'created_from', title: 'За датою створення' },
-  // { name: 'created_to', title: 'За датою створення' },
   { name: 'legal_entity_id', title: 'За ID медичного закладу' },
   { name: 'medication_id', title: 'За ID лікарської форми' }
 ];

@@ -10,12 +10,7 @@ import styles from './styles.scss';
 
 @withStyles(styles)
 @reduxForm({
-  form: 'dates-range-filter-form',
-  validate: reduxFormValidate({
-    created_from: {
-      required: true
-    }
-  })
+  form: 'dates-range-filter-form'
 })
 export default class DateFilterForm extends React.Component {
   render() {

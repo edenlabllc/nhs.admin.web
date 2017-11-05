@@ -6,40 +6,42 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import format from 'date-fns/format';
 
-import filter from 'helpers/filter';
+import { setFilter, getFilter } from 'helpers/filter';
 
 import { ListHeader, ListShowBy, ListTable } from 'components/List';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
 import Table from 'components/Table';
-import Icon from 'components/Icon';
 
 import ShowBy from 'containers/blocks/ShowBy';
-
 import SearchForm from 'containers/forms/SearchForm';
+import DateFilterForm from 'containers/forms/DateFilterForm';
 
 import { getMedicationDispenses } from 'reducers';
 
 import { fetchMedicationDispenses } from './redux';
 
-const FILTER_PARAMS = [
-  'id',
-  'medication_request_id',
-  'legal_entity_id',
-  'division_id',
-  'status',
-  'dispensed_at'
+const FILTERS = [
+  { name: 'id', title: 'За ID' },
+  { name: 'medication_request_id', title: 'За ID рецепту' },
+  { name: 'legal_entity_id', title: 'За ID аптеки' },
+  { name: 'division_id', title: 'За ID підрозділу' },
+  { name: 'status', title: 'За статусом' },
+  { name: 'dispensed_at', title: 'За датою відпуску' }
 ];
 
-const [DEFAULT_FILTER] = FILTER_PARAMS;
+const FILTER_DATE = [
+  { names: ['created_from', 'created_to'], title: 'За період' }
+];
 
 const MedicationDispensesListPage = ({
   location,
   router,
   medication_dispenses = [],
   paging,
-  activeFilter
+  activeFilter,
+  activeDateFilter = []
 }) => (
   <div id="medication-dispenses-list-page">
     <Helmet
@@ -57,38 +59,28 @@ const MedicationDispensesListPage = ({
       <SearchForm
         active={activeFilter}
         placeholder="Знайти відпуск"
-        items={[
-          { name: 'id', title: 'За ID' },
-          { name: 'medication_request_id', title: 'За ID рецепту' },
-          { name: 'legal_entity_id', title: 'За ID аптеки' },
-          { name: 'division_id', title: 'За ID підрозділу' },
-          { name: 'status', title: 'За статусом' },
-          { name: 'dispensed_at', title: 'За датою відпуску' }
-        ]}
-        initialValues={{
-          [activeFilter]: location.query[activeFilter]
-        }}
-        onSubmit={values =>
-          filter(
-            {
-              id: null,
-              medication_request_id: null,
-              legal_entity_id: null,
-              division_id: null,
-              status: null,
-              dispensed_at: null,
-              ...values
-            },
-            { location, router }
-          )}
+        items={FILTERS}
+        initialValues={{ [activeFilter]: location.query[activeFilter] }}
+        onSubmit={values => setFilter(values, { location, router })}
+      />
+    </div>
+
+    <div>
+      <DateFilterForm
+        initialValues={
+          activeDateFilter.length === 2 && {
+            created_from: location.query[activeDateFilter[0]],
+            created_to: location.query[activeDateFilter[1]]
+          }
+        }
+        onSubmit={values => setFilter(values, { location, router })}
       />
     </div>
 
     <ListShowBy>
       <ShowBy
         active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
+        onChange={page_size => setFilter({ page_size }, { location, router })}
       />
     </ListShowBy>
 
@@ -137,7 +129,6 @@ const MedicationDispensesListPage = ({
         currentPage={paging.page_number}
         totalPage={paging.total_pages}
         location={location}
-        cb={() => {}}
       />
     )}
   </div>
@@ -155,12 +146,7 @@ export default compose(
       state,
       state.pages.MedicationDispensesListPage.medication_dispenses
     ),
-    activeFilter: getActiveFilter(props)
+    activeFilter: getFilter(props, FILTERS),
+    activeDateFilter: getFilter(props, FILTER_DATE)
   }))
 )(MedicationDispensesListPage);
-
-function getActiveFilter({ location: { query } }) {
-  const filter = Object.keys(query).find(key => FILTER_PARAMS.includes(key));
-
-  return filter || DEFAULT_FILTER;
-}
