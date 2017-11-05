@@ -66,12 +66,10 @@ const MedicationRequestsListPage = ({
     </div>
     <div>
       <DateFilterForm
-        initialValues={
-          activeDateFilter.length === 2 && {
-            created_from: location.query[activeDateFilter[0]],
-            created_to: location.query[activeDateFilter[1]]
-          }
-        }
+        initialValues={activeDateFilter.reduce(
+          (filter, name) => ({ ...filter, [name]: location.query[name] }),
+          {}
+        )}
         onSubmit={values => setFilter(values, { location, router })}
       />
     </div>
