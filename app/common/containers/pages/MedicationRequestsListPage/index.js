@@ -68,18 +68,14 @@ const MedicationRequestsListPage = ({
     </div>
     <div>
       <DateFilterForm
-        label="Оберіть період створення"
-        active={
-          activeDateFilter.length === 2
-            ? {
-                startDate: location.query.created_from,
-                endDate: location.query.created_to
-              }
-            : []
+        initialValues={
+          activeDateFilter.length === 2 && {
+            created_from: location.query[activeDateFilter[0]],
+            created_to: location.query[activeDateFilter[1]]
+          }
         }
-        onChange={values => setFilter(values, { location, router })}
+        onSubmit={values => setFilter(values, { location, router })}
       />
-      <br />
     </div>
 
     <ListShowBy>

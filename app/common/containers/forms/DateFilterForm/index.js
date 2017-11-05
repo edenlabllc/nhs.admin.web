@@ -1,52 +1,58 @@
-// import 'react-dates/lib/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import React from 'react';
 import withStyles from 'withStyles';
-import { DateRangePicker } from 'react-dates';
-import moment from 'moment';
+import { reduxForm, Field } from 'redux-form';
+
+import { reduxFormValidate } from 'react-nebo15-validate';
+import FieldDate from 'components/reduxForm/FieldDatepicker';
+import { FormRow, FormColumn } from 'components/Form';
 
 import styles from './styles.scss';
 
 @withStyles(styles)
+@reduxForm({
+  form: 'dates-range-filter-form',
+  validate: reduxFormValidate({
+    created_from: {
+      required: true
+    }
+  })
+})
 export default class DateFilterForm extends React.Component {
-  state = {
-    startDate:
-      this.props.active && this.props.active.startDate
-        ? moment(this.props.active.startDate)
-        : null,
-    endDate:
-      this.props.active && this.props.active.endDate
-        ? moment(this.props.active.endDate)
-        : null,
-    focusedInput: ''
-  };
-
   render() {
-    const { onChange, label } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <div>
-        <h4>{label}</h4>
-        <div className={styles.datepicker}>
-          <DateRangePicker
-            isOutsideRange={() => false}
-            hideKeyboardShortcutsPanel
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-            startDatePlaceholderText="Початок"
-            endDatePlaceholderText="Кінець"
-            onDatesChange={({ startDate, endDate }) => {
-              endDate &&
-                startDate &&
-                onChange({
-                  created_from: startDate.format('YYYY-MM-DD'),
-                  created_to: endDate.format('YYYY-MM-DD')
-                });
-              this.setState({ startDate, endDate });
-            }}
-            focusedInput={this.state.focusedInput}
-            onFocusChange={focusedInput => this.setState({ focusedInput })}
-          />
-        </div>
+        <form className={styles.main} onSubmit={handleSubmit}>
+          <FormRow>
+            <FormColumn align="baseline">
+              <Field
+                name="created_from"
+                component={FieldDate}
+                dateFormat="YYYY-MM-DD"
+                labelText="Початкова дата"
+                placeholder="22/01/2018"
+              />
+            </FormColumn>
+            <FormColumn align="baseline">
+              <Field
+                name="created_to"
+                component={FieldDate}
+                dateFormat="YYYY-MM-DD"
+                labelText="Кінцева дата"
+                placeholder="26/01/2018"
+              />
+            </FormColumn>
+            <FormColumn align="baseline">
+              <button
+                className={styles.button}
+                disabled={submitting}
+                type="submit"
+              >
+                Пошук
+              </button>
+            </FormColumn>
+          </FormRow>
+        </form>
       </div>
     );
   }

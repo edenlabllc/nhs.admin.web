@@ -1,33 +1,20 @@
-.DateRangePickerInput {
-  padding: 1px !important;
-}
+.main {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row nowrap;
 
-.DateInput_input {
-  font-size: 14px !important;
-}
+  & > div {
+    flex: 1 1 auto;
 
-.CalendarDay__highlighted_calendar {
-  background: red;
-  color: peru;
-}
+    &:last-child {
+      flex: 0 0 auto;
+    }
+  }
 
-.CalendarDay__highlighted_calendar:hover {
-  background: #58d68d;
-  color: #186a3b;
-}
-
-.CalendarDay__highlighted_calendar:active {
-  background: red;
-  color: rebeccapurple;
-}
-
-h4 {
-  padding: 10px 0;
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.2em;
-}
-
-.datepicker {
-  font-size: 10px !important;
+  .button {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #dedede;
+    margin-left: -1px;
+  }
 }
