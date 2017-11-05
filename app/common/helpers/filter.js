@@ -20,15 +20,18 @@ export const setFilter = (filter, { location, router }) => {
 };
 
 export const getFilter = ({ location: { query } }, filters) => {
-  const [{ name: defaultFilter }] = filters;
+  const [defaultFilter] = filters;
 
-  const filter = filters[0].names
-    ? Object.keys(query).filter(key =>
-        filters[0].names.some(item => item === key)
-      )
-    : Object.keys(query).find(key => filters.some(({ name }) => name === key));
+  const filter = filters.find(
+    ({ names, name }) =>
+      names
+        ? names.every(name => query.hasOwnProperty(name))
+        : query.hasOwnProperty(name)
+  );
 
-  return filter || defaultFilter;
+  const { names, name } = filter || defaultFilter;
+
+  return names || name;
 };
 
 // TODO: Remove this after list pages refactoring
