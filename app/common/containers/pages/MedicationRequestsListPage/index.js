@@ -13,11 +13,11 @@ import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
 import Table from 'components/Table';
-import Icon from 'components/Icon';
 
 import ShowBy from 'containers/blocks/ShowBy';
 
 import SearchForm from 'containers/forms/SearchForm';
+import DateFilterForm from 'containers/forms/DateFilterForm';
 
 import { getMedicationRequests } from 'reducers';
 
@@ -28,10 +28,11 @@ const FILTERS = [
   { name: 'person_id', title: 'За ID пацієнта' },
   { name: 'status', title: 'За статусом' },
   { name: 'request_number', title: 'За номером рецепту' },
-  // { name: 'created_from', title: 'За датою створення' },
-  // { name: 'created_to', title: 'За датою створення' },
   { name: 'legal_entity_id', title: 'За ID медичного закладу' },
   { name: 'medication_id', title: 'За ID лікарської форми' }
+];
+const FILTER_DATE = [
+  { names: ['created_from', 'created_to'], title: 'За період' }
 ];
 
 const MedicationRequestsListPage = ({
@@ -39,7 +40,8 @@ const MedicationRequestsListPage = ({
   router,
   medication_requests = [],
   paging,
-  activeFilter
+  activeFilter,
+  activeDateFilter = []
 }) => (
   <div id="medication-requests-list-page">
     <Helmet
@@ -59,6 +61,15 @@ const MedicationRequestsListPage = ({
         placeholder="Знайти рецепт"
         items={FILTERS}
         initialValues={{ [activeFilter]: location.query[activeFilter] }}
+        onSubmit={values => setFilter(values, { location, router })}
+      />
+    </div>
+    <div>
+      <DateFilterForm
+        initialValues={activeDateFilter.reduce(
+          (filter, name) => ({ ...filter, [name]: location.query[name] }),
+          {}
+        )}
         onSubmit={values => setFilter(values, { location, router })}
       />
     </div>
@@ -138,6 +149,7 @@ export default compose(
       state,
       state.pages.MedicationRequestsListPage.medication_requests
     ),
-    activeFilter: getFilter(props, FILTERS)
+    activeFilter: getFilter(props, FILTERS),
+    activeDateFilter: getFilter(props, FILTER_DATE)
   }))
 )(MedicationRequestsListPage);

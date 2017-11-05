@@ -11,7 +11,7 @@ import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import FieldInput from 'components/reduxForm/FieldInput';
-import FieldDate from 'components/reduxForm/FieldDate';
+import FieldDate from 'components/reduxForm/FieldDatepicker';
 
 import { SelectUniversal } from 'components/SelectUniversal';
 import RadioInput from 'components/RadioInput';
@@ -428,7 +428,7 @@ export default class MedicationsCreateForm extends React.Component {
               <Field
                 name="certificate_expired_at"
                 component={FieldDate}
-                type="date"
+                dateFormat="YYYY-MM-DD"
                 labelText="Дата закінчення сертифікату"
                 placeholder="22/01/2018"
               />

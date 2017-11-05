@@ -32,17 +32,19 @@ import styles from './styles.scss';
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch, params: { id } }) => Promise.all([
-    dispatch(fetchClinic(id)),
-  ]),
+  fetch: ({ dispatch, params: { id } }) =>
+    Promise.all([dispatch(fetchClinic(id))])
 })
-@connect((state, { params: { id } }) => ({
-  clinic: getClinic(state, id),
-}), { verifyClinic, deactivateClinic })
+@connect(
+  (state, { params: { id } }) => ({
+    clinic: getClinic(state, id)
+  }),
+  { verifyClinic, deactivateClinic }
+)
 export default class ClinicDetailPage extends React.Component {
   state = {
     showVerifyConfirm: false,
-    showDeactivateConfirm: false,
+    showDeactivateConfirm: false
   };
 
   verifyClinic() {
@@ -58,34 +60,33 @@ export default class ClinicDetailPage extends React.Component {
   }
 
   render() {
-    const { clinic = { }, t } = this.props;
+    const { clinic = {}, t } = this.props;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
     return (
       <div id="clinic-detail-page">
         <Helmet
           title={clinic.name}
-          meta={[
-            { property: 'og:title', content: clinic.name },
-          ]}
+          meta={[{ property: 'og:title', content: clinic.name }]}
         />
 
-        <BackLink onClick={() => this.props.router.goBack()}>{ t('Back to clinics list') }</BackLink>
+        <BackLink onClick={() => this.props.router.goBack()}>
+          {t('Back to clinics list')}
+        </BackLink>
 
         <Line />
 
         <div className={styles.row}>
           <div>
-            <DataList
-              list={[
-                { name: t('Clinic ID'), value: clinic.id },
-              ]}
-            />
+            <DataList list={[{ name: t('Clinic ID'), value: clinic.id }]} />
           </div>
           <ShowWithScope scope="employee:read">
             <div className={styles.right}>
-              <BackLink iconPosition="right" to={`/employees?legal_entity_id=${clinic.id}`}>
-                { t('Go to clinic employees list') }
+              <BackLink
+                iconPosition="right"
+                to={`/employees?legal_entity_id=${clinic.id}`}
+              >
+                {t('Go to clinic employees list')}
               </BackLink>
             </div>
           </ShowWithScope>
@@ -103,24 +104,35 @@ export default class ClinicDetailPage extends React.Component {
                 value: (
                   <div className={styles.address}>
                     <p>
-                      {clinic.addresses[0].zip}, {clinic.addresses[0].area} { t('area') }, { t('city') } {clinic.addresses[0].settlement},
+                      {clinic.addresses[0].zip}, {clinic.addresses[0].area}{' '}
+                      {t('area')}, {t('city')} {clinic.addresses[0].settlement},
                     </p>
                     <p>
-                      {clinic.addresses[0].street}, {clinic.addresses[0].building}
+                      {clinic.addresses[0].street},{' '}
+                      {clinic.addresses[0].building}
                     </p>
-                    <small>{t('Residense address is equal to registration address')}</small>
+                    <small>
+                      {t('Residense address is equal to registration address')}
+                    </small>
                   </div>
-                ),
-              }, {
+                )
+              },
+              {
                 name: t('KVEDs'),
                 value: (
                   <div>
-                    {clinic.kveds.map((name, key) => <p>
-                      <DictionaryValue dictionary="KVEDS" value={name} key={key} />
-                    </p>)}
+                    {clinic.kveds.map((name, key) => (
+                      <p>
+                        <DictionaryValue
+                          dictionary="KVEDS"
+                          value={name}
+                          key={key}
+                        />
+                      </p>
+                    ))}
                   </div>
-                ),
-              },
+                )
+              }
             ]}
           />
         </div>
@@ -131,7 +143,7 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             { name: t('Short name'), value: clinic.short_name },
-            { name: t('Public name'), value: clinic.public_name },
+            { name: t('Public name'), value: clinic.public_name }
           ]}
         />
 
@@ -140,8 +152,16 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Property type'), value: <DictionaryValue dictionary="OWNER_PROPERTY_TYPE" value={clinic.owner_property_type} /> },
-            { name: t('Type'), value: clinic.type },
+            {
+              name: t('Property type'),
+              value: (
+                <DictionaryValue
+                  dictionary="OWNER_PROPERTY_TYPE"
+                  value={clinic.owner_property_type}
+                />
+              )
+            },
+            { name: t('Type'), value: clinic.type }
           ]}
         />
 
@@ -150,8 +170,13 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Phones'), value: <InlineList list={clinic.phones.map(item => item.number)} /> },
-            { name: t('Email'), value: clinic.email },
+            {
+              name: t('Phones'),
+              value: (
+                <InlineList list={clinic.phones.map(item => item.number)} />
+              )
+            },
+            { name: t('Email'), value: clinic.email }
           ]}
         />
 
@@ -162,61 +187,67 @@ export default class ClinicDetailPage extends React.Component {
           list={[
             {
               name: t('License and accreditation'),
-              value: <ShowMore name={t('Show documents')}>
-                {
-                  accreditation && (
+              value: (
+                <ShowMore name={t('Show documents')}>
+                  {accreditation && (
                     <div>
-                      <H3>{ t('Accreditation') }</H3>
+                      <H3>{t('Accreditation')}</H3>
                       <DataList
                         theme="min"
                         list={[
                           {
                             name: t('Order No.'),
-                            value: (
-                              <Upper>{accreditation.order_no}</Upper>
-                            ),
-                          }, {
-                            name: t('Category'),
-                            value: <DictionaryValue dictionary="ACCREDITATION_CATEGORY" value={accreditation.category} />,
-                          }, {
-                            name: t('Expiry date'),
-                            value: accreditation.expiry_date,
-                          }, {
-                            name: t('Issued date'),
-                            value: accreditation.issued_date,
-                          }, {
-                            name: t('Order date'),
-                            value: accreditation.order_date,
+                            value: <Upper>{accreditation.order_no}</Upper>
                           },
+                          {
+                            name: t('Category'),
+                            value: (
+                              <DictionaryValue
+                                dictionary="ACCREDITATION_CATEGORY"
+                                value={accreditation.category}
+                              />
+                            )
+                          },
+                          {
+                            name: t('Expiry date'),
+                            value: accreditation.expiry_date
+                          },
+                          {
+                            name: t('Issued date'),
+                            value: accreditation.issued_date
+                          },
+                          {
+                            name: t('Order date'),
+                            value: accreditation.order_date
+                          }
                         ]}
                       />
                       <Line />
                     </div>
-                  )
-                }
+                  )}
 
-                <H3>{ t('Licenses') }</H3>
+                  <H3>{t('Licenses')}</H3>
 
-                <BlocksList>
-                  {licenses.map((item, i) => (
-                    <li key={i}>
-                      <Upper>{item.license_number}</Upper>
-                      <p>
-                        <ColoredText color="gray">
-                          {item.what_licensed}
-                        </ColoredText>
-                      </p>
-                      <div>
-                        { t('Issued') }: {item.issued_date}, { t('expiry') }: {item.expiry_date}
-                      </div>
-                      <ColoredText color="gray">
-                        {item.issued_by}
-                      </ColoredText>
-                    </li>
-                  ))}
-                </BlocksList>
-              </ShowMore>,
-            },
+                  <BlocksList>
+                    {licenses.map((item, i) => (
+                      <li key={i}>
+                        <Upper>{item.license_number}</Upper>
+                        <p>
+                          <ColoredText color="gray">
+                            {item.what_licensed}
+                          </ColoredText>
+                        </p>
+                        <div>
+                          {t('Issued')}: {item.issued_date}, {t('expiry')}:{' '}
+                          {item.expiry_date}
+                        </div>
+                        <ColoredText color="gray">{item.issued_by}</ColoredText>
+                      </li>
+                    ))}
+                  </BlocksList>
+                </ShowMore>
+              )
+            }
           ]}
         />
 
@@ -225,35 +256,51 @@ export default class ClinicDetailPage extends React.Component {
         <div className={styles.buttons}>
           <div className={styles.buttons__row}>
             <div className={styles.buttons__column}>
-              <Button onClick={() => this.props.router.goBack()} theme="border" color="blue" icon="back" block>
-                { t('Back to list') }
+              <Button
+                onClick={() => this.props.router.goBack()}
+                theme="border"
+                color="blue"
+                icon="back"
+                block
+              >
+                {t('Back to list')}
               </Button>
             </div>
-            {
-              !clinic.nhs_verified && clinic.status !== 'CLOSED' && (
+            {!clinic.nhs_verified &&
+              clinic.status !== 'CLOSED' && (
                 <ShowWithScope scope="legal_entity:nhs_verify">
                   <div className={styles.buttons__column}>
-                    <Button onClick={() => this.setState({ showVerifyConfirm: true })} theme="fill" color="green" icon="check-right" block>
-                      { t('Approve clinic') }
+                    <Button
+                      onClick={() => this.setState({ showVerifyConfirm: true })}
+                      theme="fill"
+                      color="green"
+                      icon="check-right"
+                      block
+                    >
+                      {t('Approve clinic')}
                     </Button>
                   </div>
                 </ShowWithScope>
-              )
-            }
+              )}
           </div>
-          {
-            clinic.status === 'ACTIVE' && (
-              <ShowWithScope scope="legal_entity:deactivate">
-                <div className={styles.buttons__row}>
-                  <div className={styles.buttons__column}>
-                    <Button onClick={() => this.setState({ showDeactivateConfirm: true })} theme="border" color="red" icon="close" block>
-                      { t('Cancel verification') }
-                    </Button>
-                  </div>
+          {clinic.status === 'ACTIVE' && (
+            <ShowWithScope scope="legal_entity:deactivate">
+              <div className={styles.buttons__row}>
+                <div className={styles.buttons__column}>
+                  <Button
+                    onClick={() =>
+                      this.setState({ showDeactivateConfirm: true })}
+                    theme="border"
+                    color="red"
+                    icon="close"
+                    block
+                  >
+                    {t('Cancel verification')}
+                  </Button>
                 </div>
-              </ShowWithScope>
-            )
-          }
+              </div>
+            </ShowWithScope>
+          )}
         </div>
         <Confirm
           title={t('Verify clinic {{name}}?', { name: clinic.name })}
