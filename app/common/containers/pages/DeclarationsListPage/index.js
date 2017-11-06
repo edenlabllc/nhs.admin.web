@@ -23,6 +23,7 @@ import { getDeclarations } from 'reducers';
 import { fetchDeclarations } from './redux';
 
 const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
+const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
 
 @withRouter
 @translate()
@@ -98,47 +99,54 @@ export default class DeclarationsListPage extends React.Component {
               { key: 'person', title: t('Person') },
               { key: 'legalEntity', title: t('Legal entity') },
               { key: 'dates', title: t('Dates'), width: 150 },
+              { key: 'status', title: t('Status') },
               { key: 'action', title: t('Action'), width: 100 }
             ]}
-            data={declarations.map(item => ({
-              person: (
-                <div>
-                  {item.person && (
-                    <div>
-                      {`${item.person.last_name} ${item.person.first_name} `}
-                      <div>{item.person.second_name}</div>
-                    </div>
-                  )}
-                </div>
-              ),
-              legalEntity: (
-                <div>
-                  {' '}
-                  {item.legal_entity ? (
-                    <div>
-                      {item.legal_entity.name}
-                      <br />
-                      <ColoredText color="gray">
-                        {t('EDRPOU')}: {item.legal_entity.edrpou}
-                      </ColoredText>
-                    </div>
-                  ) : null}
-                </div>
-              ),
-              dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} ${format(
-                item.end_date,
-                'DD.MM.YYYY hh:mm'
-              )}`,
-              action: (
-                <Button
-                  id={`show-declaration-detail-button-${item.id}`}
-                  theme="link"
-                  to={`/declarations/${item.id}`}
-                >
-                  {t('Details')}
-                </Button>
-              )
-            }))}
+            data={declarations.map(
+              ({
+                id,
+                person = {},
+                legal_entity = {},
+                start_date,
+                end_date,
+                status
+              }) => ({
+                person: (
+                  <div>
+                    {`${person.last_name} ${person.first_name} `}
+                    <br />
+                    {person.second_name}
+                  </div>
+                ),
+                legalEntity: (
+                  <div>
+                    {legal_entity && (
+                      <div>
+                        {legal_entity.name}
+                        <br />
+                        <ColoredText color="gray">
+                          {t('EDRPOU')}: {legal_entity.edrpou}
+                        </ColoredText>
+                      </div>
+                    )}
+                  </div>
+                ),
+                dates: [
+                  format(start_date, DATE_FORMAT),
+                  format(end_date, DATE_FORMAT)
+                ].join(' '),
+                status,
+                action: (
+                  <Button
+                    id={`show-declaration-detail-button-${id}`}
+                    theme="link"
+                    to={`/declarations/${id}`}
+                  >
+                    {t('Details')}
+                  </Button>
+                )
+              })
+            )}
           />
         </ListTable>
         {paging.total_pages > 1 && (
