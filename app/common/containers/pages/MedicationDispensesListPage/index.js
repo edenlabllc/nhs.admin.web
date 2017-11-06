@@ -32,7 +32,7 @@ const FILTERS = [
 ];
 
 const FILTER_DATE = [
-  { names: ['created_from', 'created_to'], title: 'За період' }
+  { names: ['dispensed_from', 'dispensed_to'], title: 'За період' }
 ];
 
 const MedicationDispensesListPage = ({
@@ -67,6 +67,7 @@ const MedicationDispensesListPage = ({
 
     <div>
       <DateFilterForm
+        items={FILTER_DATE[0].names}
         initialValues={activeDateFilter.reduce(
           (filter, name) => ({ ...filter, [name]: location.query[name] }),
           {}

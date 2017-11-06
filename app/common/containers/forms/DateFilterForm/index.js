@@ -14,14 +14,18 @@ import styles from './styles.scss';
 })
 export default class DateFilterForm extends React.Component {
   render() {
-    const { handleSubmit, submitting } = this.props;
+    const {
+      handleSubmit,
+      submitting,
+      items: [startFieldName, endFieldName]
+    } = this.props;
     return (
       <div>
         <form className={styles.main} onSubmit={handleSubmit}>
           <FormRow>
             <FormColumn align="baseline">
               <Field
-                name="created_from"
+                name={startFieldName}
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Початкова дата"
@@ -30,7 +34,7 @@ export default class DateFilterForm extends React.Component {
             </FormColumn>
             <FormColumn align="baseline">
               <Field
-                name="created_to"
+                name={endFieldName}
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Кінцева дата"
