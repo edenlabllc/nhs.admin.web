@@ -66,6 +66,7 @@ const MedicationRequestsListPage = ({
     </div>
     <div>
       <DateFilterForm
+        items={FILTER_DATE[0].names}
         initialValues={activeDateFilter.reduce(
           (filter, name) => ({ ...filter, [name]: location.query[name] }),
           {}
