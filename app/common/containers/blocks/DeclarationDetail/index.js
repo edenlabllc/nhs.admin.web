@@ -24,6 +24,8 @@ import ShowWithScope from 'containers/blocks/ShowWithScope';
 
 import styles from './styles.scss';
 
+const DATE_FORMAT = 'DD/MM/YYYY';
+
 @withRouter
 @withStyles(styles)
 @translate()
@@ -67,11 +69,15 @@ export default class DeclarationDetailPage extends Component {
           list={[
             {
               name: t('Start date'),
-              value: format(declaration.start_date, 'DD/MM/YYYY')
+              value: format(declaration.start_date, DATE_FORMAT)
             },
             {
               name: t('End date'),
-              value: format(declaration.end_date, 'DD/MM/YYYY')
+              value: format(declaration.end_date, DATE_FORMAT)
+            },
+            {
+              name: t('Status'),
+              value: declaration.status
             },
             {
               name: t('Scope'),
