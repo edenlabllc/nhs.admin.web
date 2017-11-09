@@ -1,6 +1,6 @@
 {
   "name": "nhs.admin.web",
-  "version": "0.1.71",
+  "version": "0.1.72",
   "description": "MAN UI",
   "repository": "https://github.com/Nebo15/nhs.admin.web.git",
   "scripts": {
