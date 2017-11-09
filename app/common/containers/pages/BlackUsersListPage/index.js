@@ -85,7 +85,7 @@ const BlackUsersListPage = ({
       />
     </ListShowBy>
 
-    <ListTable id="medication-dispenses-table">
+    <ListTable id="black-list-users-table">
       <Table
         columns={[
           { key: 'id', title: 'ID' },

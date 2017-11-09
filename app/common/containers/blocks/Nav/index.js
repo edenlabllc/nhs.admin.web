@@ -222,7 +222,7 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
-                <ShowWithScope scope="bl_user:read">
+                <ShowWithScope scope="party_user:read">
                   <NavItem to="party-users" activeClassName={styles.active}>
                     <Link id="party_users" to="/party-users">
                       Party users

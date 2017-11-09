@@ -19,12 +19,15 @@ import declarations from 'redux/declarations';
 import employees from 'redux/employees';
 import employeesRequests from 'redux/employees-requests';
 import black_list_users from 'redux/black-list-users';
+import party_users from 'redux/party-users';
+
 import {
   globalStat,
   detailStat,
   declarationsStat,
   reports
 } from 'redux/reports';
+
 import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
@@ -79,6 +82,8 @@ import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetai
 import BlackUsersListPage from 'containers/pages/BlackUsersListPage/redux';
 import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage/redux';
 
+import PartyUsersListPage from 'containers/pages/PartyUsersListPage/redux';
+
 const blocks = combineReducers({
   Aside
 });
@@ -122,7 +127,9 @@ const pages = combineReducers({
   MedicationDispenseDetailPage,
 
   BlackUsersListPage,
-  BlackListUserDetailPage
+  BlackListUserDetailPage,
+
+  PartyUsersListPage
 });
 
 const data = combineReducers({
@@ -130,22 +137,31 @@ const data = combineReducers({
   user,
   dictionaries,
   clinics,
+
   declarations,
+  declarationsStat,
+
   employees,
   employeesRequests,
+
   globalStat,
   detailStat,
-  declarationsStat,
+
   configuration,
   reports,
+
   innms,
   innm_dosages,
+
   medications,
   program_medications,
+
   medication_dispenses,
   medication_requests,
   medical_programs,
-  black_list_users
+
+  black_list_users,
+  party_users
 });
 
 export default combineReducers({
@@ -270,3 +286,6 @@ export const getBlackUsers = (state, ids) =>
   denormalize(ids, [schemas.black_list_user], state.data);
 export const getBlackUser = (state, id) =>
   denormalize(id, schemas.black_list_user, state.data);
+
+export const getPartyUsers = (state, ids) =>
+  denormalize(ids, [schemas.party_user], state.data);
