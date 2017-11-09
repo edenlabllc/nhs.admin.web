@@ -59,14 +59,23 @@ const BlackUsersListPage = ({
 
     <div>
       <H2>Пошук користувача</H2>
-
-      <SearchForm
-        active={activeFilter}
-        placeholder="Знайти користувача"
-        items={FILTERS}
-        initialValues={{ [activeFilter]: location.query[activeFilter] }}
-        onSubmit={values => setFilter(values, { location, router })}
-      />
+      <FormRow>
+        <FormColumn align="bottom">
+          <SearchForm
+            active={activeFilter}
+            placeholder="Знайти користувача"
+            items={FILTERS}
+            initialValues={{ [activeFilter]: location.query[activeFilter] }}
+            onSubmit={values => setFilter(values, { location, router })}
+          />
+        </FormColumn>
+        <FormColumn align="top">
+          <ActiveFilterForm
+            onChange={is_active =>
+              setFilter({ is_active }, { location, router })}
+          />
+        </FormColumn>
+      </FormRow>
     </div>
 
     <ListShowBy>
@@ -75,14 +84,6 @@ const BlackUsersListPage = ({
         onChange={page_size => setFilter({ page_size }, { location, router })}
       />
     </ListShowBy>
-    <FormRow>
-      <FormColumn>
-        <ActiveFilterForm
-          onChange={is_active => setFilter({ is_active }, { location, router })}
-        />
-      </FormColumn>
-      <FormColumn />
-    </FormRow>
 
     <ListTable id="medication-dispenses-table">
       <Table
