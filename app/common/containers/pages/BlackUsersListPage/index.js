@@ -8,6 +8,7 @@ import Helmet from 'react-helmet';
 import { setFilter, getFilter } from 'helpers/filter';
 
 import { ListHeader, ListShowBy, ListTable } from 'components/List';
+import { FormRow, FormColumn } from 'components/Form';
 import { H1, H2 } from 'components/Title';
 import Pagination from 'components/Pagination';
 import Button from 'components/Button';
@@ -16,7 +17,7 @@ import ColoredText from 'components/ColoredText';
 
 import ShowBy from 'containers/blocks/ShowBy';
 import SearchForm from 'containers/forms/SearchForm';
-import DateFilterForm from 'containers/forms/DateFilterForm';
+import ActiveFilterForm from 'containers/forms/ActiveFilterForm';
 
 import { getBlackUsers } from 'reducers';
 
@@ -74,6 +75,14 @@ const BlackUsersListPage = ({
         onChange={page_size => setFilter({ page_size }, { location, router })}
       />
     </ListShowBy>
+    <FormRow>
+      <FormColumn>
+        <ActiveFilterForm
+          onChange={is_active => setFilter({ is_active }, { location, router })}
+        />
+      </FormColumn>
+      <FormColumn />
+    </FormRow>
 
     <ListTable id="medication-dispenses-table">
       <Table
