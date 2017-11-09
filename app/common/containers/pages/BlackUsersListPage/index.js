@@ -80,8 +80,6 @@ const BlackUsersListPage = ({
         columns={[
           { key: 'id', title: 'ID' },
           { key: 'tax_id', title: 'ID tax_id' },
-          { key: 'name', title: "Ім'я користувача" },
-          { key: 'birth', title: 'Дата народження' },
           { key: 'status', title: 'Статус' },
           {
             key: 'action',
@@ -89,37 +87,28 @@ const BlackUsersListPage = ({
             width: 200
           }
         ]}
-        data={black_list_users.map(
-          ({
-            id,
-            tax_id,
-            is_active,
-            parties: [{ first_name, last_name, second_name, birth_date }]
-          }) => ({
-            id,
-            tax_id,
-            birth: birth_date,
-            name: <div>{`${last_name} ${first_name} ${second_name}`}</div>,
-            status: (
-              <div>
-                {is_active ? (
-                  <ColoredText color="green">активна</ColoredText>
-                ) : (
-                  <ColoredText color="red">неактивна</ColoredText>
-                )}
-              </div>
-            ),
-            action: (
-              <Button
-                id={`show-black-list-users-detail-button-${id}`}
-                theme="link"
-                to={`/black-list-users/${id}`}
-              >
-                Детально
-              </Button>
-            )
-          })
-        )}
+        data={black_list_users.map(({ id, tax_id, is_active }) => ({
+          id,
+          tax_id,
+          status: (
+            <div>
+              {is_active ? (
+                <ColoredText color="green">активна</ColoredText>
+              ) : (
+                <ColoredText color="red">неактивна</ColoredText>
+              )}
+            </div>
+          ),
+          action: (
+            <Button
+              id={`show-black-list-users-detail-button-${id}`}
+              theme="link"
+              to={`/black-list-users/${id}`}
+            >
+              Детально
+            </Button>
+          )
+        }))}
       />
     </ListTable>
 

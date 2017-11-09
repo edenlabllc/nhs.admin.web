@@ -77,6 +77,7 @@ import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdat
 import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
 
 import BlackUsersListPage from 'containers/pages/BlackUsersListPage/redux';
+import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage/redux';
 
 const blocks = combineReducers({
   Aside
@@ -119,7 +120,9 @@ const pages = combineReducers({
 
   MedicationDispensesListPage,
   MedicationDispenseDetailPage,
-  BlackUsersListPage
+
+  BlackUsersListPage,
+  BlackListUserDetailPage
 });
 
 const data = combineReducers({

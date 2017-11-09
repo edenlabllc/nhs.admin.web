@@ -31,56 +31,58 @@ export const fetchBlackListUsers = options =>
     ]
   });
 
-export const createInnmDosage = body =>
+export const createBlackListUsers = body =>
   invoke({
-    endpoint: createUrl(`${API_URL}/api/innm_dosages`),
+    endpoint: createUrl(`${API_URL}/api/black_list_users`),
     method: 'POST',
     headers: {
       'content-type': 'application/json'
     },
     types: [
-      'innm_dosages/CREATE_INNM_DOSAGES_REQUEST',
-      'innm_dosages/CREATE_INNM_DOSAGES_SUCCESS',
+      'black_list_users/CREATE_REQUEST',
+      'black_list_users/CREATE_SUCCESS',
       {
-        type: 'innm_dosages/CREATE_INNM_DOSAGES_FAILURE',
+        type: 'black_list_users/CREATE_FAILURE',
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ],
     body
   });
 
-export const deactivateInnmDosage = id =>
+export const deactivateBlackListUser = id =>
   invoke({
-    endpoint: createUrl(`${API_URL}/api/innm_dosages/${id}/actions/deactivate`),
+    endpoint: createUrl(
+      `${API_URL}/api/black_list_users/${id}/actions/deactivate`
+    ),
     method: 'PATCH',
     headers: {
       'content-type': 'application/json'
     },
     types: [
-      'innm_dosages/DEACTIVATE_INNM_DOSAGES_REQUEST',
-      'innm_dosages/DEACTIVATE_INNM_DOSAGES_SUCCESS',
+      'black_list_users/DEACTIVATE_REQUEST',
+      'black_list_users/DEACTIVATE_SUCCESS',
       {
-        type: 'innm_dosages/DEACTIVATE_INNM_DOSAGES_FAILURE',
+        type: 'black_list_users/DEACTIVATE_FAILURE',
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ]
   });
 
-export const fetchInnmDosage = id =>
+export const fetchBlackListUser = id =>
   invoke({
-    endpoint: createUrl(`${API_URL}/api/innm_dosages/${id}`),
+    endpoint: createUrl(`${API_URL}/api/black_list_users/${id}`),
     method: 'GET',
     headers: {
       'content-type': 'application/json'
     },
     types: [
-      'innm_dosages/FETCH_DETAILS_REQUEST',
+      'black_list_users/FETCH_DETAILS_REQUEST',
       {
-        type: 'innm_dosages/FETCH_DETAILS_SUCCESS',
+        type: 'black_list_users/FETCH_DETAILS_SUCCESS',
         payload: (action, state, res) =>
-          res.json().then(json => normalize(json.data, innm_dosage))
+          res.json().then(json => normalize(json.data, black_list_user))
       },
-      'innm_dosages/FETCH_DETAILS_FAILURE'
+      'black_list_users/FETCH_DETAILS_FAILURE'
     ]
   });
 
