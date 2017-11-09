@@ -18,6 +18,7 @@ import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
 import employeesRequests from 'redux/employees-requests';
+import black_list_users from 'redux/black-list-users';
 import {
   globalStat,
   detailStat,
@@ -75,6 +76,8 @@ import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListP
 import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage/redux';
 import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
 
+import BlackUsersListPage from 'containers/pages/BlackUsersListPage/redux';
+
 const blocks = combineReducers({
   Aside
 });
@@ -115,7 +118,8 @@ const pages = combineReducers({
   MedicationRequestDetailPage,
 
   MedicationDispensesListPage,
-  MedicationDispenseDetailPage
+  MedicationDispenseDetailPage,
+  BlackUsersListPage
 });
 
 const data = combineReducers({
@@ -137,7 +141,8 @@ const data = combineReducers({
   program_medications,
   medication_dispenses,
   medication_requests,
-  medical_programs
+  medical_programs,
+  black_list_users
 });
 
 export default combineReducers({
@@ -257,3 +262,8 @@ export const getProgramMedications = (state, ids) =>
   denormalize(ids, [schemas.program_medication], state.data);
 export const getProgramMedication = (state, id) =>
   denormalize(id, schemas.program_medication, state.data);
+
+export const getBlackUsers = (state, ids) =>
+  denormalize(ids, [schemas.black_list_user], state.data);
+export const getBlackUser = (state, id) =>
+  denormalize(id, schemas.black_list_user, state.data);

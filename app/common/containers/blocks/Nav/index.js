@@ -209,6 +209,29 @@ export default class Nav extends React.Component {
               </ul>
             </ShowMore>
           </li>
+          <li>
+            <ShowMore nav name="Користувачі">
+              <ul>
+                <ShowWithScope scope="bl_user:read">
+                  <NavItem
+                    to="black-list-users"
+                    activeClassName={styles.active}
+                  >
+                    <Link id="black_list_users" to="/black-list-users">
+                      Чорний список
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="bl_user:read">
+                  <NavItem to="party-users" activeClassName={styles.active}>
+                    <Link id="party_users" to="/party-users">
+                      Party users
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
         </ul>
         <ul className={styles.down}>
           <li>
