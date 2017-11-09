@@ -61,6 +61,7 @@ import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDet
 
 import BlackUsersListPage from 'containers/pages/BlackUsersListPage';
 import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage';
+import BlackUserCreatePage from 'containers/pages/BlackUserCreatePage';
 
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
@@ -210,6 +211,7 @@ export const configureRoutes = ({ store }) => {
             onEnter={requireScope(['bl_user:read'])}
           >
             <IndexRoute component={BlackUsersListPage} />
+            <Route path="create" component={BlackUserCreatePage} />
             <Route path=":id" component={BlackListUserDetailPage} />
           </Route>
           <Route
