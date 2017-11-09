@@ -51,7 +51,6 @@ export default class BlackListUserDetailPage extends React.Component {
       router,
       black_list_user: { id, tax_id, is_active, parties } = {}
     } = this.props;
-    console.log(this.props);
     return (
       <div id="medication-dispense-detail-page">
         <Helmet
@@ -101,21 +100,23 @@ export default class BlackListUserDetailPage extends React.Component {
           />
         </DetailMain>
         <Line />
-        <ShowWithScope scope="bl_user:deactivate">
-          <FormRow>
-            <FormColumn size="2/3">
-              <Button
-                onClick={() => this.setState({ showDeactivateConfirm: true })}
-                theme="fill"
-                color="red"
-                block
-              >
-                Деактивувати користувача
-              </Button>
-            </FormColumn>
-            <FormColumn size="1/3" />
-          </FormRow>
-        </ShowWithScope>
+        {is_active && (
+          <ShowWithScope scope="bl_user:deactivate">
+            <FormRow>
+              <FormColumn size="2/3">
+                <Button
+                  onClick={() => this.setState({ showDeactivateConfirm: true })}
+                  theme="fill"
+                  color="red"
+                  block
+                >
+                  Деактивувати користувача
+                </Button>
+              </FormColumn>
+              <FormColumn size="1/3" />
+            </FormRow>
+          </ShowWithScope>
+        )}
         <Confirm
           title="Деактивувати користувача?"
           active={this.state.showDeactivateConfirm}
