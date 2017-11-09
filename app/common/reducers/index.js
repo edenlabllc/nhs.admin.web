@@ -18,12 +18,16 @@ import clinics from 'redux/clinics';
 import declarations from 'redux/declarations';
 import employees from 'redux/employees';
 import employeesRequests from 'redux/employees-requests';
+import black_list_users from 'redux/black-list-users';
+import party_users from 'redux/party-users';
+
 import {
   globalStat,
   detailStat,
   declarationsStat,
   reports
 } from 'redux/reports';
+
 import configuration from 'redux/configuration';
 import innms from 'redux/innms';
 import innm_dosages from 'redux/innm-dosages';
@@ -75,6 +79,11 @@ import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListP
 import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage/redux';
 import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
 
+import BlackUsersListPage from 'containers/pages/BlackUsersListPage/redux';
+import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage/redux';
+
+import PartyUsersListPage from 'containers/pages/PartyUsersListPage/redux';
+
 const blocks = combineReducers({
   Aside
 });
@@ -115,7 +124,12 @@ const pages = combineReducers({
   MedicationRequestDetailPage,
 
   MedicationDispensesListPage,
-  MedicationDispenseDetailPage
+  MedicationDispenseDetailPage,
+
+  BlackUsersListPage,
+  BlackListUserDetailPage,
+
+  PartyUsersListPage
 });
 
 const data = combineReducers({
@@ -123,21 +137,31 @@ const data = combineReducers({
   user,
   dictionaries,
   clinics,
+
   declarations,
+  declarationsStat,
+
   employees,
   employeesRequests,
+
   globalStat,
   detailStat,
-  declarationsStat,
+
   configuration,
   reports,
+
   innms,
   innm_dosages,
+
   medications,
   program_medications,
+
   medication_dispenses,
   medication_requests,
-  medical_programs
+  medical_programs,
+
+  black_list_users,
+  party_users
 });
 
 export default combineReducers({
@@ -257,3 +281,11 @@ export const getProgramMedications = (state, ids) =>
   denormalize(ids, [schemas.program_medication], state.data);
 export const getProgramMedication = (state, id) =>
   denormalize(id, schemas.program_medication, state.data);
+
+export const getBlackUsers = (state, ids) =>
+  denormalize(ids, [schemas.black_list_user], state.data);
+export const getBlackUser = (state, id) =>
+  denormalize(id, schemas.black_list_user, state.data);
+
+export const getPartyUsers = (state, ids) =>
+  denormalize(ids, [schemas.party_user], state.data);

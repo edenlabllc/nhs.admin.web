@@ -29,6 +29,8 @@
 }
 
 .showBy {
+  margin-top: 10px;
+
   @media screen and (max-width: $breakpoint-tablet) {
     margin-top: 20px;
   }

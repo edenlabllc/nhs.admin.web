@@ -10,10 +10,12 @@ export default handleActions(
       'medications/CREATE_FAILURE',
       'medical_programs/CREATE_FAILURE',
       'program_medications/CREATE_FAILURE',
+      'black_list_users/CREATE_FAILURE',
 
       'innm_dosages/DEACTIVATE_INNM_DOSAGES_FAILURE',
       'medications/DEACTIVATE_FAILURE',
       'medical_programs/DEACTIVATE_FAILURE',
+      'black_list_users/DEACTIVATE_FAILURE',
 
       'program_medications/UPDATE_FAILURE',
       'persons/RESET_AUTH_FAILURE'

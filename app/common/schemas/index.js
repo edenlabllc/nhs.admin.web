@@ -23,3 +23,6 @@ export const medication_request = new schema.Entity('medication_requests');
 export const medication_dispense = new schema.Entity('medication_dispenses');
 export const medical_program = new schema.Entity('medical_programs');
 export const program_medication = new schema.Entity('program_medications');
+
+export const black_list_user = new schema.Entity('black_list_users');
+export const party_user = new schema.Entity('party_users');

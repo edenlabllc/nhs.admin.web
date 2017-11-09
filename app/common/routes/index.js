@@ -59,6 +59,12 @@ import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetai
 import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage';
 import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage';
 
+import BlackUsersListPage from 'containers/pages/BlackUsersListPage';
+import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage';
+import BlackUserCreatePage from 'containers/pages/BlackUserCreatePage';
+
+import PartyUsersListPage from 'containers/pages/PartyUsersListPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
@@ -201,6 +207,18 @@ export const configureRoutes = ({ store }) => {
             />
             <Route path=":id/update" component={ProgramMedicationUpdatePage} />
             <Route path=":id" component={ProgramMedicationDetailPage} />
+          </Route>
+
+          <Route path="party-users" onEnter={requireScope(['party_user:read'])}>
+            <IndexRoute component={PartyUsersListPage} />
+          </Route>
+          <Route
+            path="black-list-users"
+            onEnter={requireScope(['bl_user:read'])}
+          >
+            <IndexRoute component={BlackUsersListPage} />
+            <Route path="create" component={BlackUserCreatePage} />
+            <Route path=":id" component={BlackListUserDetailPage} />
           </Route>
           <Route
             path="configuration"
