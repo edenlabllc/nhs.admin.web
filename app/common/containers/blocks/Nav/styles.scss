@@ -28,7 +28,7 @@ $nav-breakpoint: 860px;
       margin: 0;
 
       &::before {
-        content: "";
+        content: '';
         display: inline-block;
         width: 60px;
         height: 1px;
@@ -91,7 +91,7 @@ $nav-breakpoint: 860px;
     line-height: 32px;
 
     &::before {
-      content: "";
+      content: '';
       display: inline-block;
       width: 6px;
       height: 6px;
@@ -121,6 +121,7 @@ $nav-breakpoint: 860px;
     vertical-align: middle;
     text-decoration: none;
     color: #fff;
+    line-height: 2;
   }
 }
 

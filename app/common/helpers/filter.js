@@ -4,9 +4,8 @@ export const setFilter = (filter, { location, router }) => {
     ...filter,
     page: 1
   };
-
   const query = Object.keys(newFilter).reduce((target, key) => {
-    if (newFilter[key]) {
+    if (newFilter[key] || newFilter[key] === false) {
       target[key] = newFilter[key]; // eslint-disable-line
     }
 

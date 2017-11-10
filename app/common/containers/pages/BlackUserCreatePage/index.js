@@ -26,8 +26,8 @@ export default class BlackUserCreatePage extends React.Component {
             }
           ]}
         />
-        <BackLink onClick={() => router.goBack()}>
-          Додати користувача до чорного списку
+        <BackLink onClick={() => router.push('/black-list-users')}>
+          Повернутися до списку
         </BackLink>
         <Line />
 

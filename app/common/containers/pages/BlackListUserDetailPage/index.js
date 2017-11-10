@@ -103,7 +103,18 @@ export default class BlackListUserDetailPage extends React.Component {
         {is_active && (
           <ShowWithScope scope="bl_user:deactivate">
             <FormRow>
-              <FormColumn size="2/3">
+              <FormColumn>
+                <Button
+                  to="/black-list-users"
+                  theme="border"
+                  color="blue"
+                  icon="back"
+                  block
+                >
+                  Повернутися до списку
+                </Button>
+              </FormColumn>
+              <FormColumn>
                 <Button
                   onClick={() => this.setState({ showDeactivateConfirm: true })}
                   theme="fill"
@@ -113,7 +124,6 @@ export default class BlackListUserDetailPage extends React.Component {
                   Деактивувати користувача
                 </Button>
               </FormColumn>
-              <FormColumn size="1/3" />
             </FormRow>
           </ShowWithScope>
         )}
