@@ -24,23 +24,37 @@ export default class BlackUserCreateForm extends React.Component {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormRow>
-          <Field
-            name="tax_id"
-            labelText="ІНН Користувача"
-            component={FieldInput}
-            placeholder="2848165412"
-          />
+          <FormColumn>
+            <Field
+              name="tax_id"
+              labelText="ІНН Користувача"
+              component={FieldInput}
+              placeholder="2848165412"
+            />
+          </FormColumn>
+          <FormColumn />
         </FormRow>
         <FormRow>
-          <ShowWithScope scope="bl_user:write">
-            <div>
-              <Button type="submit" disabled={submitting}>
-                {submitting
-                  ? 'Saving...'
-                  : 'Додати користувача до чорного списку'}
-              </Button>
-            </div>
-          </ShowWithScope>
+          <FormColumn>
+            <Button
+              to="/black-list-users"
+              theme="border"
+              color="blue"
+              icon="back"
+              block
+            >
+              Повернутися до списку
+            </Button>
+          </FormColumn>
+          <FormColumn>
+            <ShowWithScope scope="bl_user:write">
+              <div>
+                <Button type="submit" disabled={submitting}>
+                  {submitting ? 'Збереження' : 'Заблокувати користувача'}
+                </Button>
+              </div>
+            </ShowWithScope>
+          </FormColumn>
         </FormRow>
       </form>
     );

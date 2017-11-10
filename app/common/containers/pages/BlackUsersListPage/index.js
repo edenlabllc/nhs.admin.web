@@ -71,8 +71,8 @@ const BlackUsersListPage = ({
         </FormColumn>
         <FormColumn align="top">
           <ActiveFilterForm
-            onChange={is_active =>
-              setFilter({ is_active }, { location, router })}
+            onChange={active =>
+              setFilter({ is_active: active }, { location, router })}
           />
         </FormColumn>
       </FormRow>

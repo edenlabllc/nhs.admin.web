@@ -218,7 +218,7 @@ export default class Nav extends React.Component {
                     activeClassName={styles.active}
                   >
                     <Link id="black_list_users" to="/black-list-users">
-                      Чорний список
+                      Заблоковані <br /> користувачі
                     </Link>
                   </NavItem>
                 </ShowWithScope>

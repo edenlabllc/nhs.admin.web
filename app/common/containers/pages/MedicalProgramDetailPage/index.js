@@ -62,7 +62,7 @@ export default class MedicalProgramDetailPage extends React.Component {
           title={t('Medication detail')}
           meta={[{ property: 'og:title', content: t('Medication detail') }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>
+        <BackLink onClick={() => this.props.router.push('/medical-programs')}>
           {t('Back to list')}
         </BackLink>
         <br />
