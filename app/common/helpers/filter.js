@@ -4,13 +4,13 @@ export const setFilter = (filter, { location, router }) => {
     ...filter,
     page: 1
   };
-  const query = Object.keys(newFilter).reduce((target, key) => {
-    if (newFilter[key] || newFilter[key] === false) {
-      target[key] = newFilter[key]; // eslint-disable-line
-    }
 
-    return target;
-  }, {});
+  const query = Object.entries(newFilter)
+    .filter(([_, value]) => value !== undefined)
+    .reduce(
+      (query, [key, value]) => Object.assign(query, { [key]: value }),
+      {}
+    );
 
   router.push({
     ...location,
