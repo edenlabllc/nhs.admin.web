@@ -65,6 +65,8 @@ import BlackUserCreatePage from 'containers/pages/BlackUserCreatePage';
 
 import PartyUsersListPage from 'containers/pages/PartyUsersListPage';
 
+import ResetAuthenticationMethodPage from 'containers/pages/ResetAuthenticationMethodPage';
+
 import NotFoundPage from 'containers/pages/NotFoundPage';
 import AccessDeniedPage from 'containers/pages/AccessDeniedPage';
 
@@ -226,6 +228,11 @@ export const configureRoutes = ({ store }) => {
             onEnter={requireScope(['global_parameters:read'])}
           />
           <Route path="reports" component={ReportsListPage} />
+          <Route
+            path="reset-authentication-method"
+            onEnter={requireScope(['person:reset_authentication_method'])}
+            component={ResetAuthenticationMethodPage}
+          />
         </Route>
         <Route path="401" component={AccessDeniedPage} />
       </Route>
