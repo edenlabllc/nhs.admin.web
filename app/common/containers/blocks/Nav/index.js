@@ -232,6 +232,20 @@ export default class Nav extends React.Component {
               </ul>
             </ShowMore>
           </li>
+          <ShowWithScope scope="person:reset_authentication_method">
+            <NavItem
+              to="reset-authentication-method"
+              activeClassName={styles.active}
+            >
+              <Link
+                id="reset-authentication-method-nav"
+                to="/reset-authentication-method"
+              >
+                Скинути метод<br />
+                авторизації
+              </Link>
+            </NavItem>
+          </ShowWithScope>
         </ul>
         <ul className={styles.down}>
           <li>

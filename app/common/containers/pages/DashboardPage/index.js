@@ -52,7 +52,7 @@ export default class DashboardPage extends React.Component {
           width="100%"
           height="600"
           src="https://app.powerbi.com/view?r=eyJrIjoiYTM5OGYzMjMtYjU3ZC00MjFjLWJlN2ItYjViNTY2MzkyMGQyIiwidCI6IjhjNzYwNTYxLTg0ZjUtNDYxNC05YjJkLTBkODU2ZmRjZWUyYSIsImMiOjl9"
-          frameborder="0"
+          frameBorder="0"
           allowFullScreen
         />
       </div>
