@@ -225,7 +225,7 @@ export default class Nav extends React.Component {
                 <ShowWithScope scope="party_user:read">
                   <NavItem to="party-users" activeClassName={styles.active}>
                     <Link id="party_users" to="/party-users">
-                      Party users
+                      Облікові записи
                     </Link>
                   </NavItem>
                 </ShowWithScope>

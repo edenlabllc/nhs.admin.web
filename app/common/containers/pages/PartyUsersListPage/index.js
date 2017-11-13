@@ -21,7 +21,7 @@ import { fetchPartyUsers } from './redux';
 
 const FILTERS = [
   { name: 'user_id', title: 'За ID користувача' },
-  { name: 'party_id', title: 'За party_id' }
+  { name: 'party_id', title: 'За ID особи' }
 ];
 
 const PartyUsersListPage = ({
@@ -34,18 +34,18 @@ const PartyUsersListPage = ({
 }) => (
   <div id="party-users-list-page">
     <Helmet
-      title="party-users"
-      meta={[{ property: 'og:title', content: 'party-users' }]}
+      title="Облікові записи"
+      meta={[{ property: 'og:title', content: 'Облікові записи' }]}
     />
     <ListHeader>
-      <H1>PartyUsersListPage</H1>
+      <H1>Облікові записи</H1>
     </ListHeader>
 
     <div>
-      <H2>Пошук party users</H2>
+      <H2>Пошук облікового запису</H2>
       <SearchForm
         active={activeFilter}
-        placeholder="Знайти party users"
+        placeholder="Знайти обліковий запис"
         items={FILTERS}
         initialValues={{ [activeFilter]: location.query[activeFilter] }}
         onSubmit={values => setFilter(values, { location, router })}
@@ -63,8 +63,8 @@ const PartyUsersListPage = ({
       <Table
         columns={[
           { key: 'id', title: 'ID' },
-          { key: 'user_id', title: 'user_id' },
-          { key: 'party_id', title: 'party_id' },
+          { key: 'user_id', title: 'ID користувача' },
+          { key: 'party_id', title: 'ID особи' },
           { key: 'name', title: "Ім'я" },
           { key: 'birth_date', title: 'Дата народження' }
         ]}

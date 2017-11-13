@@ -13,11 +13,11 @@ export default class ActiveFilterForm extends React.Component {
         <form>
           <Select
             name="is_active"
-            placeholder="Активні/Не активні"
+            placeholder="Активні/Неактивні"
             active={active}
             options={[
               { title: 'Активні', name: true },
-              { title: 'Не активні', name: false }
+              { title: 'Неактивні', name: false }
             ]}
             onChange={active => onChange(active)}
           />

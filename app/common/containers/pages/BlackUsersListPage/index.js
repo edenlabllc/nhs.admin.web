@@ -25,7 +25,7 @@ import { fetchBlackListUsers } from './redux';
 
 const FILTERS = [
   { name: 'id', title: 'За ID' },
-  { name: 'tax_id', title: 'За tax_id' }
+  { name: 'tax_id', title: 'За ІНН' }
 ];
 
 const BlackUsersListPage = ({
@@ -89,7 +89,7 @@ const BlackUsersListPage = ({
       <Table
         columns={[
           { key: 'id', title: 'ID' },
-          { key: 'tax_id', title: 'ID tax_id' },
+          { key: 'tax_id', title: 'ID ІНН' },
           { key: 'status', title: 'Статус' },
           {
             key: 'action',
@@ -105,7 +105,7 @@ const BlackUsersListPage = ({
               {is_active ? (
                 <ColoredText color="green">активна</ColoredText>
               ) : (
-                <ColoredText color="red">неактивна</ColoredText>
+                <ColoredText color="red">не2цактивна</ColoredText>
               )}
             </div>
           ),
