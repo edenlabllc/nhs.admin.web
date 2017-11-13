@@ -105,7 +105,7 @@ const BlackUsersListPage = ({
               {is_active ? (
                 <ColoredText color="green">активна</ColoredText>
               ) : (
-                <ColoredText color="red">не2цактивна</ColoredText>
+                <ColoredText color="red">неактивна</ColoredText>
               )}
             </div>
           ),
