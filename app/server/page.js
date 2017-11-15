@@ -31,7 +31,7 @@ export default () => (req, res, next) => {
       html: null,
       reduxState: null,
       inlineCss: null,
-      helmet: Helmet.rewind(),
+      helmet: Helmet.rewind()
     });
   }
 
@@ -39,71 +39,80 @@ export default () => (req, res, next) => {
   const store = configureStore({
     history: memoryHistory,
     cookies: new CookieDough(req),
-    i18n: req.i18n,
+    i18n: req.i18n
   });
   const history = syncHistoryWithStore(memoryHistory, store);
   const routes = configureRoutes({
-    store,
+    store
   });
-  const router = <Router history={history}>{ routes }</Router>;
+  const router = <Router history={history}>{routes}</Router>;
   const historyLocation = history.createLocation(req.url);
 
   const { dispatch, getState } = store;
 
-  return match({ routes: router, location: historyLocation }, (error, redirectLocation, renderProps) => { //eslint-disable-line
-    if (redirectLocation) {
-      return res.redirect(301, redirectLocation.pathname + redirectLocation.search);
-    } else if (error) {
-      return res.status(500).send(error.message);
-    } else if (renderProps == null) {
-      return res.status(404).send('Not found');
-    }
-
-    const route = renderProps.routes[renderProps.routes.length - 1];
-    const locals = {
-      // Allow lifecycle hooks to dispatch Redux actions:
-      dispatch,
-      getState,
-    };
-
-    // Wait for async data fetching to complete, then render:
-    return triggerHooks({
-      renderProps,
-      locals,
-      hooks: ['fetch', 'server', 'done'],
-    }).then(() => {
-      const reduxState = escape(JSON.stringify(getState()));
-      const css = new Set();
-      /* eslint-disable no-underscore-dangle */
-      let html;
-      try {
-        html = ReactDOMServer.renderToString(
-          <I18nextProvider i18n={req.i18n}>
-            <WithStylesContext
-              onInsertCss={styles => styles._getCss && css.add(styles._getCss())}
-            >
-              <Provider store={store}>
-                <RouterContext {...renderProps} />
-              </Provider>
-            </WithStylesContext>
-          </I18nextProvider>
+  return match(
+    { routes: router, location: historyLocation },
+    (error, redirectLocation, renderProps) => {
+      //eslint-disable-line
+      if (redirectLocation) {
+        return res.redirect(
+          301,
+          redirectLocation.pathname + redirectLocation.search
         );
-      } catch (e) {
-        console.log('render error');
-        console.error(e);
-        html = null;
+      } else if (error) {
+        return res.status(500).send(error.message);
+      } else if (renderProps == null) {
+        return res.status(404).send('Not found');
       }
 
-      const helmet = Helmet.rewind();
+      const route = renderProps.routes[renderProps.routes.length - 1];
+      const locals = {
+        // Allow lifecycle hooks to dispatch Redux actions:
+        dispatch,
+        getState
+      };
 
-      res.status(route.status || 200);
-      res.render('index', {
-        html,
-        reduxState,
-        helmet,
-        inlineCss: arrayFrom(css).join(''),
-      });
-    })
-    .catch(err => next(err));
-  });
+      // Wait for async data fetching to complete, then render:
+      return triggerHooks({
+        renderProps,
+        locals,
+        hooks: ['fetch', 'server', 'done']
+      })
+        .then(() => {
+          const reduxState = escape(JSON.stringify(getState()));
+          const css = new Set();
+          /* eslint-disable no-underscore-dangle */
+          let html;
+          try {
+            html = ReactDOMServer.renderToString(
+              <I18nextProvider i18n={req.i18n}>
+                <WithStylesContext
+                  onInsertCss={styles =>
+                    styles._getCss && css.add(styles._getCss())}
+                >
+                  <Provider store={store}>
+                    <RouterContext {...renderProps} />
+                  </Provider>
+                </WithStylesContext>
+              </I18nextProvider>
+            );
+          } catch (e) {
+            console.log('render error');
+            console.error(e);
+            html = null;
+          }
+
+          const helmet = Helmet.rewind();
+
+          res.status(route.status || 200);
+          res.render('index', {
+            html,
+            reduxState,
+            helmet,
+            inlineCss: arrayFrom(css).join('')
+          });
+        })
+        .catch(err => next(err));
+    }
+  );
 };
