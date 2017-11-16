@@ -159,7 +159,7 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Назва"
               component={FieldInput}
               disabled={disabled}
-              placeholder="Введіть торгову назву"
+              placeholder="Введіть торгівельне найменування"
               label_bold
             />
           </FormRow>
@@ -293,6 +293,9 @@ export default class MedicationsCreateForm extends React.Component {
             />
           </FormRow>
           <div className={styles.title}>&#8546;. Упаковка</div>
+          <div className={styles.title}>
+            <b>Контейнер</b>
+          </div>
           <FormRow>
             <FormColumn size="1/4">
               <Field
@@ -341,7 +344,7 @@ export default class MedicationsCreateForm extends React.Component {
             </FormColumn>
           </FormRow>
           <FormRow>
-            <FormColumn size="1/4">
+            <FormColumn size="2/5">
               <Field
                 name="package_qty"
                 component={FieldInput}
@@ -355,7 +358,7 @@ export default class MedicationsCreateForm extends React.Component {
                 </ErrorMessage>
               </Field>
             </FormColumn>
-            <FormColumn size="2/4">
+            <FormColumn size="4/5">
               <Field
                 name="package_min_qty"
                 component={FieldInput}
@@ -368,10 +371,11 @@ export default class MedicationsCreateForm extends React.Component {
                   {t('Required field')}
                 </ErrorMessage>
               </Field>
+              <FormColumn />
             </FormColumn>
             <FormColumn size="1/2" />
           </FormRow>
-          <div className={styles.title}>&#8546;. Країна виробник</div>
+          <div className={styles.title}>&#8547;. Країна виробник</div>
           <FormRow>
             <Field
               name="manufacturer.country"
@@ -409,7 +413,7 @@ export default class MedicationsCreateForm extends React.Component {
               <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
             </Field>
           </FormRow>
-          <div className={styles.title}>&#8546;. Сертифікат</div>
+          <div className={styles.title}>&#8548;. Реєстраційне посвідчення</div>
           <FormRow>
             <FormColumn size="2/5" align="baseline">
               <Field
@@ -430,7 +434,7 @@ export default class MedicationsCreateForm extends React.Component {
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Дата закінчення сертифікату"
-                placeholder="22/01/2018"
+                placeholder="2018-02-01"
               />
             </FormColumn>
           </FormRow>
@@ -438,7 +442,9 @@ export default class MedicationsCreateForm extends React.Component {
             <ShowWithScope scope="medication:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Додаємо...') : 'Додати торгову назву'}
+                  {submitting
+                    ? t('Додаємо...')
+                    : 'Додати торгівельне найменування'}
                 </Button>
               </div>
             </ShowWithScope>

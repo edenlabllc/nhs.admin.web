@@ -140,7 +140,7 @@ export default class ProgramMedicationsListPage extends React.Component {
                 key: 'medical_program_name',
                 title: 'Назва медичної програми'
               },
-              { key: 'medication_name', title: 'Торгова Назва' },
+              { key: 'medication_name', title: 'Торгівельне найменування' },
               { key: 'medication_form', title: 'Форма' },
               { key: 'manufacturer', title: 'Виробник' },
               { key: 'reimbursement_amount', title: 'Сума Відшкодування' },

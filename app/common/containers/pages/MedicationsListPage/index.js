@@ -60,8 +60,8 @@ export default class MedicationsListPage extends React.Component {
     return (
       <div id="medication-list-page">
         <Helmet
-          title="Торгові назви"
-          meta={[{ property: 'og:title', content: 'Торгові назви' }]}
+          title="Торгівельні найменування"
+          meta={[{ property: 'og:title', content: 'Торгівельні найменування' }]}
         />
 
         <ListHeader
@@ -73,15 +73,15 @@ export default class MedicationsListPage extends React.Component {
               color="orange"
               icon="add"
             >
-              Створити торгову назву
+              Створити торгівельне найменування
             </Button>
           }
         >
-          <H1>Торгові назви</H1>
+          <H1>Торгівельні найменування</H1>
         </ListHeader>
 
         <div>
-          <H2>Пошук торгової назви</H2>
+          <H2>Пошук торгівельного найменування</H2>
 
           <SearchForm
             active={activeFilter}
@@ -125,7 +125,7 @@ export default class MedicationsListPage extends React.Component {
             columns={[
               { key: 'id', title: t('ID') },
               { key: 'innm_dosage_id', title: t('ID лікарської форми') },
-              { key: 'name', title: t('Торгова назва') },
+              { key: 'name', title: t('Торгівельне найменування') },
               { key: 'form', title: t('Форма /Виробник') },
               { key: 'active', title: t('Активна') },
               { key: 'action', title: t('Детально / Деактивація'), width: 200 }

@@ -7,6 +7,7 @@ import { reduxForm, Field, getFormValues } from 'redux-form';
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
 import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
+import { FormRow, FormColumn } from 'components/Form';
 
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
@@ -97,15 +98,30 @@ export default class InnmForm extends React.Component {
               />
             </div>
           )}
-          {!disabled && (
-            <ShowWithScope scope="innm:write">
-              <div>
-                <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Saving...') : t('Створити МНН')}
-                </Button>
-              </div>
-            </ShowWithScope>
-          )}
+          <FormRow>
+            <FormColumn>
+              <Button
+                onClick={() => this.props.router.push('/medical-programs')}
+                theme="border"
+                color="blue"
+                icon="back"
+                block
+              >
+                Назад
+              </Button>
+            </FormColumn>
+            <FormColumn>
+              {!disabled && (
+                <ShowWithScope scope="innm:write">
+                  <div>
+                    <Button type="submit" disabled={submitting}>
+                      {submitting ? t('Saving...') : t('Створити МНН')}
+                    </Button>
+                  </div>
+                </ShowWithScope>
+              )}
+            </FormColumn>
+          </FormRow>
         </div>
       </form>
     );
