@@ -23,6 +23,8 @@ import { getInnmDosages } from 'reducers';
 
 import { fetchInnmDosages } from './redux';
 
+import uuidValidate from '../../../helpers/validators/uuid-validate';
+
 const FILTER_PARAMS = ['id', 'name'];
 
 @withRouter
@@ -79,7 +81,11 @@ export default class InnmDosagesListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти лікарську форму"
             items={[
-              { name: 'id', title: t('За ідентифікатором') },
+              {
+                name: 'id',
+                title: t('За ідентифікатором'),
+                validate: uuidValidate
+              },
               { name: 'name', title: t('За назвою') }
             ]}
             initialValues={{

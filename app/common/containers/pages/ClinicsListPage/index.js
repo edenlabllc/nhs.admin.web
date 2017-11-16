@@ -19,6 +19,7 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getClinics } from 'reducers';
 
 import { fetchClinics } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = ['edrpou', 'legal_entity_id', 'settlement_id'];
 
@@ -65,8 +66,16 @@ export default class ClinicsListPage extends React.Component {
             placeholder={t('Find clinic')}
             items={[
               { name: 'edrpou', title: t('By edrpou') },
-              { name: 'legal_entity_id', title: t('By legal entity') },
-              { name: 'settlement_id', title: t('By settlement id') }
+              {
+                name: 'legal_entity_id',
+                title: t('By legal entity'),
+                validate: uuidValidate
+              },
+              {
+                name: 'settlement_id',
+                title: t('By settlement id'),
+                validate: uuidValidate
+              }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]

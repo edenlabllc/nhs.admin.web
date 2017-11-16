@@ -21,6 +21,7 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getDeclarations } from 'reducers';
 
 import { fetchDeclarations } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
 const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
@@ -67,8 +68,16 @@ export default class DeclarationsListPage extends React.Component {
             active={activeFilter}
             placeholder={t('Find declaration')}
             items={[
-              { name: 'employee_id', title: t('By employee id') },
-              { name: 'legal_entity_id', title: t('By legal entity') }
+              {
+                name: 'employee_id',
+                title: t('By employee id'),
+                validate: uuidValidate
+              },
+              {
+                name: 'legal_entity_id',
+                title: t('By legal entity'),
+                validate: uuidValidate
+              }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]

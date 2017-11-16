@@ -21,6 +21,7 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getMedicalPrograms } from 'reducers';
 
 import { fetchMedicalPrograms } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = ['id', 'name'];
 
@@ -78,7 +79,7 @@ export default class MedicalProgramsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти програму"
             items={[
-              { name: 'id', title: t('за ID') },
+              { name: 'id', title: t('за ID'), validate: uuidValidate },
               {
                 name: 'name',
                 title: t('за назвою медичної програми')

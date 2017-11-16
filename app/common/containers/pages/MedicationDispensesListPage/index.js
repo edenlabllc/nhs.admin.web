@@ -21,12 +21,17 @@ import DateFilterForm from 'containers/forms/DateFilterForm';
 import { getMedicationDispenses } from 'reducers';
 
 import { fetchMedicationDispenses } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTERS = [
-  { name: 'id', title: 'За ID' },
-  { name: 'medication_request_id', title: 'За ID рецепту' },
-  { name: 'legal_entity_id', title: 'За ID аптеки' },
-  { name: 'division_id', title: 'За ID підрозділу' },
+  { name: 'id', title: 'За ID', validate: uuidValidate },
+  {
+    name: 'medication_request_id',
+    title: 'За ID рецепту',
+    validate: uuidValidate
+  },
+  { name: 'legal_entity_id', title: 'За ID аптеки', validate: uuidValidate },
+  { name: 'division_id', title: 'За ID підрозділу', validate: uuidValidate },
   { name: 'status', title: 'За статусом' },
   { name: 'dispensed_at', title: 'За датою відпуску' }
 ];

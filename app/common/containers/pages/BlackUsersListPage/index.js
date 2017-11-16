@@ -23,8 +23,14 @@ import { getBlackUsers } from 'reducers';
 
 import { fetchBlackListUsers } from './redux';
 
+import uuidValidate from '../../../helpers/validators/uuid-validate';
+
 const FILTERS = [
-  { name: 'id', title: 'За ID' },
+  {
+    name: 'id',
+    title: 'За ID',
+    validate: uuidValidate
+  },
   { name: 'tax_id', title: 'За ІНН' }
 ];
 

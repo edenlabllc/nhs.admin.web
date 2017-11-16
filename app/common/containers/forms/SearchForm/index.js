@@ -14,14 +14,17 @@ import styles from './styles.scss';
 @translate()
 @reduxForm({
   form: 'search-form',
-  enableReinitialize: true,
+  enableReinitialize: true
 })
-@connect(state => ({
-  values: getFormValues('search-form')(state),
-}), { change })
+@connect(
+  state => ({
+    values: getFormValues('search-form')(state)
+  }),
+  { change }
+)
 export default class SearchForm extends React.Component {
   state = {
-    active: null,
+    active: null
   };
 
   componentWillMount() {
@@ -42,17 +45,19 @@ export default class SearchForm extends React.Component {
     return (
       <form className={styles.search} onSubmit={handleSubmit}>
         <div className={styles.search__input}>
-          {
-            items.map(item => (
-              active === item.name && <Field
-                type="text"
-                key={item.name}
-                placeholder={placeholder}
-                name={item.name}
-                component={FieldInput}
-              />
-            ))
-          }
+          {items.map(
+            item =>
+              active === item.name && (
+                <Field
+                  type="text"
+                  key={item.name}
+                  placeholder={placeholder}
+                  name={item.name}
+                  component={FieldInput}
+                  validate={item.validate ? [item.validate] : []}
+                />
+              )
+          )}
         </div>
         <div className={styles.search__select}>
           <Select
@@ -62,9 +67,7 @@ export default class SearchForm extends React.Component {
           />
         </div>
 
-        <div className={styles.search__content}>
-          {children}
-        </div>
+        <div className={styles.search__content}>{children}</div>
       </form>
     );
   }
