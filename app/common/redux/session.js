@@ -9,26 +9,29 @@ export const setToken = token => (dispatch, getState, { cookies }) =>
 export const removeToken = () => (dispatch, getState, { cookies }) =>
   cookies.remove(AUTH_COOKIE_NAME, { path: '/' });
 
-export const isLoginned = () => dispatch => dispatch(getToken()).then(resp => !!resp);
+export const isLoginned = () => dispatch =>
+  dispatch(getToken()).then(resp => !!resp);
 
 export const logoutAction = createAction('session/LOGOUT');
 export const setData = createAction('session/SET_DATA');
 
 export const loadTokenFromStorage = () => (dispatch, getState, { cookies }) =>
-  dispatch(setData({
-    token: cookies.get(AUTH_COOKIE_NAME, { path: '/' }),
-  }));
+  dispatch(
+    setData({
+      token: cookies.get(AUTH_COOKIE_NAME, { path: '/' })
+    })
+  );
 
 export const logout = () => dispatch =>
   dispatch(removeToken()).then(() => dispatch(logoutAction()));
 
 export const login = token => dispatch =>
-  dispatch([
-    setToken(token),
-    setData({ token }),
-  ]);
+  dispatch([setToken(token), setData({ token })]);
 
-export default handleActions({
-  [setData]: (state, action) => action.payload,
-  [logoutAction]: () => ({}),
-}, {});
+export default handleActions(
+  {
+    [setData]: (state, action) => action.payload,
+    [logoutAction]: () => ({})
+  },
+  {}
+);

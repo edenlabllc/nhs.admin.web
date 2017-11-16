@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 import withStyles from 'withStyles';
 import { reduxForm, Field, getFormValues } from 'redux-form';
 
 import FieldInput from 'components/reduxForm/FieldInput';
 import Button from 'components/Button';
-import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
+import { FormRow, FormColumn } from 'components/Form';
 
 import ShowWithScope from 'containers/blocks/ShowWithScope';
 
@@ -15,7 +14,6 @@ import { reduxFormValidate } from 'react-nebo15-validate';
 import styles from './styles.scss';
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: 'innm-form',
   validate: reduxFormValidate({
@@ -39,7 +37,6 @@ export default class InnmForm extends React.Component {
       handleSubmit,
       onSubmit = () => {},
       submitting,
-      t,
       disabled = false,
       create,
       initialValues = {}
@@ -80,7 +77,7 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid МНН')}
+                labelText="sctid МНН"
                 component={FieldInput}
                 placeholder="-"
               />
@@ -90,22 +87,37 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid МНН')}
+                labelText="sctid МНН"
                 component={FieldInput}
                 disabled={disabled}
                 placeholder="98730785"
               />
             </div>
           )}
-          {!disabled && (
-            <ShowWithScope scope="innm:write">
-              <div>
-                <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Saving...') : t('Створити МНН')}
-                </Button>
-              </div>
-            </ShowWithScope>
-          )}
+          <FormRow>
+            <FormColumn>
+              <Button
+                onClick={() => this.props.router.push('/medical-programs')}
+                theme="border"
+                color="blue"
+                icon="back"
+                block
+              >
+                Назад
+              </Button>
+            </FormColumn>
+            <FormColumn>
+              {!disabled && (
+                <ShowWithScope scope="innm:write">
+                  <div>
+                    <Button type="submit" disabled={submitting}>
+                      {submitting ? 'Збереження' : 'Створити МНН'}
+                    </Button>
+                  </div>
+                </ShowWithScope>
+              )}
+            </FormColumn>
+          </FormRow>
         </div>
       </form>
     );

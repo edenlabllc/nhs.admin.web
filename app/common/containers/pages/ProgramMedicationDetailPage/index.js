@@ -63,7 +63,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
           <DataList
             list={[
               {
-                name: t('Торгова назва'),
+                name: t('Торгівельне найменування'),
                 value: (
                   <div>
                     <div>
@@ -191,7 +191,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <Checkbox checked={program_medication.medication_request_allowed} />
-            Дозвіл на відпуск рецептів
+            Дозвіл на створення рецептів
           </div>
         </div>
         <br />

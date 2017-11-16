@@ -67,7 +67,7 @@ export default class ProgramMedicationForm extends React.Component {
             <FormColumn>
               <Field
                 name="medication.name"
-                labelText="Торгова назва"
+                labelText="Торгівельне найменування"
                 component={FieldInput}
                 disabled
                 theme="disabled"
@@ -134,7 +134,7 @@ export default class ProgramMedicationForm extends React.Component {
           <div>
             <Field
               name="medication_request_allowed"
-              labelText="Дозвіл на відпуск рецептів"
+              labelText="Дозвіл на створення рецептів"
               component={FieldCheckbox}
             />
           </div>

@@ -36,7 +36,7 @@ export default class InnmDetailPage extends React.Component {
           title="Сторінка делатей МНН"
           meta={[{ property: 'og:title', content: 'Сторінка делатей МНН' }]}
         />
-        <BackLink onClick={() => this.props.router.goBack()}>
+        <BackLink onClick={() => this.props.router.push('/innms')}>
           Повернутися до списку МНН
         </BackLink>
         <Line />
