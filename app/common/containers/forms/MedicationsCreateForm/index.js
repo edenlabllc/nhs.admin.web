@@ -443,7 +443,7 @@ export default class MedicationsCreateForm extends React.Component {
               <div>
                 <Button type="submit" disabled={submitting}>
                   {submitting
-                    ? t('Додаємо...')
+                    ? 'Додаємо...'
                     : 'Додати торгівельне найменування'}
                 </Button>
               </div>
