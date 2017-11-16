@@ -23,6 +23,7 @@ import DictionaryValue from 'containers/blocks/DictionaryValue';
 import { getEmployees } from 'reducers';
 
 import { fetchEmployees } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = ['party_id', 'edrpou', 'legal_entity_id'];
 
@@ -63,9 +64,17 @@ export default class EmployeesListPage extends React.Component {
           active={activeFilter}
           placeholder={t('Find employee')}
           items={[
-            { name: 'party_id', title: t('By party id') },
+            {
+              name: 'party_id',
+              title: t('By party id'),
+              validate: uuidValidate
+            },
             { name: 'edrpou', title: t('By edrpou') },
-            { name: 'legal_entity_id', title: t('By legal entity') }
+            {
+              name: 'legal_entity_id',
+              title: t('By legal entity'),
+              validate: uuidValidate
+            }
           ]}
           initialValues={{
             [activeFilter]: location.query[activeFilter]

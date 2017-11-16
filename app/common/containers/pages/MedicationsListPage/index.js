@@ -22,6 +22,7 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getMedications } from 'reducers';
 
 import { fetchMedications } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = [
   'id',
@@ -87,8 +88,12 @@ export default class MedicationsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти торгову назву"
             items={[
-              { name: 'id', title: t('за ID') },
-              { name: 'innm_dosage_id', title: t('за ID лікарської форми') },
+              { name: 'id', title: t('за ID'), validate: uuidValidate },
+              {
+                name: 'innm_dosage_id',
+                title: t('за ID лікарської форми'),
+                validate: uuidValidate
+              },
               {
                 name: 'innm_dosage_name',
                 title: t('за назвою лікарської форми')

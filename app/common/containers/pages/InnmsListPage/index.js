@@ -21,6 +21,7 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getInnms } from 'reducers';
 
 import { fetchInnms } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = ['id', 'sctid', 'name', 'name_original'];
 
@@ -76,7 +77,11 @@ export default class InnmsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти МНН"
             items={[
-              { name: 'id', title: 'За ідентифікатором' },
+              {
+                name: 'id',
+                title: 'За ідентифікатором',
+                validate: uuidValidate
+              },
               { name: 'sctid', title: t('За sctid') },
               { name: 'name', title: t('За назвою') },
               { name: 'name_original', title: t('За оригінальною назвою') }

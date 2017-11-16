@@ -22,14 +22,23 @@ import DateFilterForm from 'containers/forms/DateFilterForm';
 import { getMedicationRequests } from 'reducers';
 
 import { fetchMedicationRequests } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTERS = [
-  { name: 'employee_id', title: 'За ID працівника' },
-  { name: 'person_id', title: 'За ID пацієнта' },
+  { name: 'employee_id', title: 'За ID працівника', validate: uuidValidate },
+  { name: 'person_id', title: 'За ID пацієнта', validate: uuidValidate },
   { name: 'status', title: 'За статусом' },
   { name: 'request_number', title: 'За номером рецепту' },
-  { name: 'legal_entity_id', title: 'За ID медичного закладу' },
-  { name: 'medication_id', title: 'За ID лікарської форми' }
+  {
+    name: 'legal_entity_id',
+    title: 'За ID медичного закладу',
+    validate: uuidValidate
+  },
+  {
+    name: 'medication_id',
+    title: 'За ID лікарської форми',
+    validate: uuidValidate
+  }
 ];
 const FILTER_DATE = [
   { names: ['created_from', 'created_to'], title: 'За період' }

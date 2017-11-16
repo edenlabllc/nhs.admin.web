@@ -18,10 +18,11 @@ import SearchForm from 'containers/forms/SearchForm';
 import { getPartyUsers } from 'reducers';
 
 import { fetchPartyUsers } from './redux';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTERS = [
-  { name: 'user_id', title: 'За ID користувача' },
-  { name: 'party_id', title: 'За ID особи' }
+  { name: 'user_id', title: 'За ID користувача', validate: uuidValidate },
+  { name: 'party_id', title: 'За ID особи', validate: uuidValidate }
 ];
 
 const PartyUsersListPage = ({

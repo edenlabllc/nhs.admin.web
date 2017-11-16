@@ -10,6 +10,7 @@ import Button from 'components/Button';
 import SearchForm from 'containers/forms/SearchForm';
 
 import styles from './styles.scss';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 @withRouter
 @withStyles(styles)
@@ -23,13 +24,13 @@ export default class ClinicsSearchPage extends React.Component {
         <Helmet
           title={t('Clinics verification search')}
           meta={[
-            { property: 'og:title', content: t('Clinics verification search') },
+            { property: 'og:title', content: t('Clinics verification search') }
           ]}
         />
 
-        <H1>{ t('Clinics verification') }</H1>
+        <H1>{t('Clinics verification')}</H1>
 
-        <H2>{ t('Search clinic for verification') }</H2>
+        <H2>{t('Search clinic for verification')}</H2>
 
         <div className={styles.search}>
           <SearchForm
@@ -37,24 +38,34 @@ export default class ClinicsSearchPage extends React.Component {
             placeholder={t('Find clinic')}
             items={[
               { name: 'edrpou', title: t('By edrpou') },
-              { name: 'legal_entity_id', title: t('By legal entity') },
-              { name: 'settlement_id', title: t('By settlement id') },
+              {
+                name: 'legal_entity_id',
+                title: t('By legal entity'),
+                validate: uuidValidate
+              },
+              {
+                name: 'settlement_id',
+                title: t('By settlement id'),
+                validate: uuidValidate
+              }
             ]}
-            onSubmit={(values) => {
+            onSubmit={values => {
               this.props.router.push({
                 pathname: '/clinics-verification/list',
-                query: values,
+                query: values
               });
             }}
           >
             <div className={styles.button}>
-              <Button type="submit" color="blue">{ t('Find clinic') }</Button>
+              <Button type="submit" color="blue">
+                {t('Find clinic')}
+              </Button>
             </div>
           </SearchForm>
         </div>
         <div>
           <Button to="/clinics" theme="link">
-            <span className={styles.link}>{ t('Go to clinics list') }</span>
+            <span className={styles.link}>{t('Go to clinics list')}</span>
           </Button>
         </div>
       </div>

@@ -23,6 +23,7 @@ import { getProgramMedications } from 'reducers';
 
 import { fetchProgramMedications } from './redux';
 import styles from './styles.scss';
+import uuidValidate from '../../../helpers/validators/uuid-validate';
 
 const FILTER_PARAMS = [
   'medical_program_id',
@@ -91,7 +92,8 @@ export default class ProgramMedicationsListPage extends React.Component {
             items={[
               {
                 name: 'medical_program_id',
-                title: t('за ID медичної програми')
+                title: t('за ID медичної програми'),
+                validate: uuidValidate
               },
               {
                 name: 'medical_program_name',
@@ -99,10 +101,15 @@ export default class ProgramMedicationsListPage extends React.Component {
               },
               {
                 name: 'innm_id',
-                title: t('за ID Лікарської форми')
+                title: t('за ID Лікарської форми'),
+                validate: uuidValidate
               },
               { name: 'innm_name', title: t('за Назвою Лікарської форми') },
-              { name: 'medication_id', title: t('за ID Торгової Назви') },
+              {
+                name: 'medication_id',
+                title: t('за ID Торгової Назви'),
+                validate: uuidValidate
+              },
               { name: 'medication_name', title: t('за Торговою Назвою') }
             ]}
             initialValues={{

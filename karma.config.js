@@ -1,4 +1,3 @@
-
 const karmaWebpack = require('karma-webpack');
 const karmaMocha = require('karma-mocha');
 const karmaChai = require('karma-chai');
@@ -26,8 +25,8 @@ const webpackTestConfig = webpackMerge(
     externals: {
       'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': true,
-    },
+      'react/lib/ReactContext': true
+    }
   }
 );
 
@@ -39,34 +38,33 @@ const plugins = [
   karmaCoverage,
   karmaPhantomjsLauncher,
   karmaSourcemapLoader,
-  karmaSpecReporter,
+  karmaSpecReporter
 ];
 
-const reporters = [
-  'spec',
-  'coverage',
-];
+const reporters = ['spec', 'coverage'];
 
 if (IS_COVERALLS) {
   plugins.push(karmaCoveralls);
   reporters.push('coveralls');
 }
 
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     basePath: '.',
 
     reporters,
     plugins,
 
+    // @todo: Add all files (app/**/*.spec.js) here.
     files: [
       'app/common/components/Icon/index.spec.js',
+      'app/common/helpers/validators/*.spec.js'
     ],
 
     frameworks: ['mocha'],
 
     preprocessors: {
-      'app/**/*.spec.js': ['webpack'],
+      'app/**/*.spec.js': ['webpack']
     },
 
     browserNoActivityTimeout: 30000,
@@ -75,20 +73,20 @@ module.exports = (config) => {
 
     webpackMiddleware: {
       noInfo: true,
-      stats: 'errors-only',
+      stats: 'errors-only'
     },
 
     browsers: ['PhantomJS'],
     client: {
       mocha: {
-        timeout: 6000, // 6 seconds - upped from 2 seconds
-      },
+        timeout: 6000 // 6 seconds - upped from 2 seconds
+      }
     },
     coverageReporter: {
       type: 'lcov',
-      dir: './coverage',
+      dir: './coverage'
     },
 
-    concurrency: Infinity,
+    concurrency: Infinity
   });
 };

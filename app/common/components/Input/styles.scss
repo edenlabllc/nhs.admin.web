@@ -17,19 +17,6 @@ $errored: #ff1f44;
   background-color: #fefefe;
   border: 1px solid $default;
 
-  &.error {
-    border-color: $errored;
-
-    .prefix-wrapper,
-    .postfix-wrapper {
-      color: $errored;
-    }
-
-    .required-label {
-      border-bottom-color: $errored;
-    }
-  }
-
   &.active {
     border-color: $focused;
 
@@ -40,6 +27,19 @@ $errored: #ff1f44;
 
     .required-label {
       border-bottom-color: $focused;
+    }
+  }
+
+  &.error {
+    border-color: $errored;
+
+    .prefix-wrapper,
+    .postfix-wrapper {
+      color: $errored;
+    }
+
+    .required-label {
+      border-bottom-color: $errored;
     }
   }
 
