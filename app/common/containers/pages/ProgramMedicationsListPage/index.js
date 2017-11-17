@@ -100,11 +100,14 @@ export default class ProgramMedicationsListPage extends React.Component {
                 title: t('за назва медичної програми')
               },
               {
-                name: 'innm_id',
+                name: 'innm_dosage_id',
                 title: t('за ID Лікарської форми'),
                 validate: uuidValidate
               },
-              { name: 'innm_name', title: t('за Назвою Лікарської форми') },
+              {
+                name: 'innm_dosage_name',
+                title: t('за Назвою Лікарської форми')
+              },
               {
                 name: 'medication_id',
                 title: t('за ID Торгової Назви'),
@@ -120,8 +123,8 @@ export default class ProgramMedicationsListPage extends React.Component {
                 {
                   medical_program_id: null,
                   medical_program_name: null,
-                  innm_id: null,
-                  innm_name: null,
+                  innm_dosage_id: null,
+                  innm_dosage_name: null,
                   medication_id: null,
                   medication_name: null,
                   page: 1,
