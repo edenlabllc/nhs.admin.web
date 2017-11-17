@@ -28,8 +28,8 @@ import uuidValidate from '../../../helpers/validators/uuid-validate';
 const FILTER_PARAMS = [
   'medical_program_id',
   'medical_program_name',
-  'innm_id',
-  'innm_name',
+  'innm_dosage_id',
+  'innm_dosage_name',
   'medication_id',
   'medication_name'
 ];
