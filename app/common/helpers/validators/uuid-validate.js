@@ -12,7 +12,7 @@ import isUuidValid from './uuid';
  * @returns {(undefined|string)} Undefined for ok, string for errors.
  */
 const uuidValidate = value => {
-  return isUuidValid(value) ? undefined : 'Некоректний формат';
+  return !value || isUuidValid(value) ? undefined : 'Некоректний формат';
 };
 
 export default uuidValidate;
