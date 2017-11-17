@@ -10,7 +10,10 @@ export const removeToken = () => (dispatch, getState, { cookies }) =>
   cookies.remove(AUTH_COOKIE_NAME, { path: '/' });
 
 export const isLoginned = () => dispatch =>
-  dispatch(getToken()).then(resp => !!resp);
+  dispatch(getToken()).then(resp => {
+    console.log('Token from storage: ', resp);
+    return !!resp;
+  });
 
 export const logoutAction = createAction('session/LOGOUT');
 export const setData = createAction('session/SET_DATA');
