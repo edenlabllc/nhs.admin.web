@@ -19,6 +19,7 @@
     "test": "npm run karma:single-run",
     "test:watch": "npm run karma",
     "nightwatch": "nightwatch",
+    "nightwatch:local": "nightwatch -c nightwatch.conf.js --env local",
     "precommit": "lint-staged && npm test",
     "stylelint":
       "stylelint 'app/**/*.scss' 'app/**/*.css' 'assets/**/*.scss' 'assets/**/*.css'",
@@ -127,6 +128,7 @@
     "redux-multi": "0.1.12",
     "redux-promise": "0.5.3",
     "redux-thunk": "2.1.0",
+    "request": "2.83.0",
     "style-loader": "0.13.1",
     "svg-inline-loader": "0.7.0",
     "svg-inline-react": "1.0.2",
