@@ -206,7 +206,7 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
-                <ShowWithScope scope="reimbursement_report:read">
+                <ShowWithScope scope="reimbursement_report:download">
                   <NavItem
                     to="reimbursement-report"
                     activeClassName={styles.active}

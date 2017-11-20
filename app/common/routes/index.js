@@ -194,7 +194,7 @@ export const configureRoutes = ({ store }) => {
           </Route>
           <Route
             path="reimbursement-report"
-            onEnter={requireScope(['reimbursement_report:read'])}
+            onEnter={requireScope(['reimbursement_report:download'])}
           >
             <IndexRoute component={ReimbursementReportPage} />
           </Route>

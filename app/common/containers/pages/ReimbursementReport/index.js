@@ -21,6 +21,12 @@ export default class ReimbursementReportPage extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  /**
+   * Don't need to use Redux logic because we just redirect user to another page.
+   *
+   * @param {Object} values - Object with date_from_dispense and
+   *                          date_to_dispense properties from DateFilterForm.
+   */
   onSubmit(values) {
     if (!values.date_from_dispense || !values.date_to_dispense) {
       return;
@@ -28,6 +34,7 @@ export default class ReimbursementReportPage extends React.Component {
 
     const options = Object.assign({}, values);
     options.token = this.props.token;
+
     const url = createUrl(
       `${API_INTERNAL_PROXY}/reimbursement_report_download`,
       options
