@@ -12,6 +12,7 @@ import auth from './auth';
 
 import i18next from '../common/services/i18next';
 import * as config from '../common/config';
+import reimbursementReportDownload from './internal-api/reimbursement_report_download';
 
 const server = new Express();
 
@@ -44,6 +45,12 @@ server.locals.CONFIG = escape(JSON.stringify(config));
 
 server.use(cookieParser());
 server.use(i18nextMiddleware.handle(i18next));
+
+// Internal proxy endpoint for report download.
+server.get(
+  config.API_INTERNAL_PROXY + '/reimbursement_report_download',
+  reimbursementReportDownload
+);
 
 server.use(config.API_PROXY_PATH, proxy(config.API_HOST));
 server.use(config.MOCK_API_PROXY_PATH, proxy(config.MOCK_API_HOST));

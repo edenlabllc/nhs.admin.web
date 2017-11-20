@@ -1,0 +1,16 @@
+.error {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+  &__main {
+    margin: auto;
+    padding: 40px;
+    color: #fff;
+    border-radius: 4px;
+
+    h1 {
+      color: #fff;
+    }
+  }
+}

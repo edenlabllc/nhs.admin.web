@@ -78,6 +78,9 @@ import { hasScope } from 'helpers/scope';
 import { isLoginned, logout } from 'redux/session';
 import { fetchUserData } from 'redux/user';
 
+import ReimbursementReportPage from '../containers/pages/ReimbursementReport/index';
+import InternalErrorPage from '../containers/pages/InternalErrorPage/index';
+
 export const configureRoutes = ({ store }) => {
   // eslint-disable-line
   const requireAuth = (nextState, replace, next) =>
@@ -190,6 +193,12 @@ export const configureRoutes = ({ store }) => {
             <Route path=":id" component={MedicationDispenseDetailPage} />
           </Route>
           <Route
+            path="reimbursement-report"
+            onEnter={requireScope(['reimbursement_report:read'])}
+          >
+            <IndexRoute component={ReimbursementReportPage} />
+          </Route>
+          <Route
             path="medical-programs"
             onEnter={requireScope(['medical_program:read'])}
           >
@@ -237,6 +246,7 @@ export const configureRoutes = ({ store }) => {
         <Route path="401" component={AccessDeniedPage} />
       </Route>
       <Route path="sign-in" component={SignInPage} />
+      <Route path="internal-error" component={InternalErrorPage} />
       <Route path="*" component={NotFoundPage} />
     </Route>
   );

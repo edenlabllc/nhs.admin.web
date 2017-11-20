@@ -206,6 +206,19 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
+                <ShowWithScope scope="reimbursement_report:read">
+                  <NavItem
+                    to="reimbursement-report"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="reimbursement-report-nav"
+                      to="/reimbursement-report"
+                    >
+                      Звіт
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
               </ul>
             </ShowMore>
           </li>

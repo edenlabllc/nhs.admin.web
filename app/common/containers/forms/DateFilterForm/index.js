@@ -17,8 +17,10 @@ export default class DateFilterForm extends React.Component {
     const {
       handleSubmit,
       submitting,
-      items: [startFieldName, endFieldName]
+      items: [startFieldName, endFieldName],
+      submitTitle
     } = this.props;
+
     return (
       <div>
         <form className={styles.main} onSubmit={handleSubmit}>
@@ -47,7 +49,7 @@ export default class DateFilterForm extends React.Component {
                 disabled={submitting}
                 type="submit"
               >
-                Пошук
+                {submitTitle ? submitTitle : 'Пошук'}
               </button>
             </FormColumn>
           </FormRow>
