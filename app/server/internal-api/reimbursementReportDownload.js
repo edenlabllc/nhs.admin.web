@@ -15,7 +15,7 @@ const reimbursementReportDownload = (req, res) => {
     !req.query.date_to_dispense ||
     !req.query.token
   ) {
-    return;
+    res.redirect('/internal-error');
   }
 
   const options = {

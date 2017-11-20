@@ -19,6 +19,7 @@
     "test": "npm run karma:single-run",
     "test:watch": "npm run karma",
     "nightwatch": "nightwatch",
+    "nightwatch:local": "nightwatch -c nightwatch.conf.js --env local",
     "precommit": "lint-staged && npm test",
     "stylelint":
       "stylelint 'app/**/*.scss' 'app/**/*.css' 'assets/**/*.scss' 'assets/**/*.css'",
