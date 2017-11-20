@@ -17,8 +17,7 @@ export default handleActions(
       'medical_programs/DEACTIVATE_FAILURE',
       'black_list_users/DEACTIVATE_FAILURE',
 
-      'program_medications/UPDATE_FAILURE',
-      'persons/RESET_AUTH_FAILURE'
+      'program_medications/UPDATE_FAILURE'
     )]: (state, action) => action.payload,
     [dismissError]: () => null
   },
