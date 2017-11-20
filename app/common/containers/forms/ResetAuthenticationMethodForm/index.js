@@ -24,7 +24,8 @@ export default reduxForm({
   form: 'reset-authentication-method-form',
   validate: reduxFormValidate({
     person_id: {
-      required: true
+      required: true,
+      uuid: true
     }
   })
 })(ResetAuthenticationMethodForm);

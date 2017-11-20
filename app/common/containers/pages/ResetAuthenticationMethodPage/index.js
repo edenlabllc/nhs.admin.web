@@ -16,7 +16,13 @@ export default class ResetAuthenticationMethodPage extends Component {
   state = {};
 
   render() {
-    const { person_id, showResetAuthConfirm, showResetAuthAlert } = this.state;
+    const {
+      person_id,
+      showConfirm,
+      alertTitle,
+      alertTheme,
+      showAlert
+    } = this.state;
 
     return (
       <div>
@@ -31,25 +37,30 @@ export default class ResetAuthenticationMethodPage extends Component {
 
         <ResetAuthenticationMethodForm
           onSubmit={({ person_id }) =>
-            this.setState({ person_id, showResetAuthConfirm: true })}
+            this.setState({ person_id, showConfirm: true })}
         />
 
         <Confirm
           title="Скинути метод авторизації?"
-          active={showResetAuthConfirm}
+          active={showConfirm}
           theme="error"
           cancel="Скасувати"
           confirm="Так"
-          onCancel={() => this.setState({ showResetAuthConfirm: false })}
+          onCancel={() => this.setState({ showConfirm: false })}
           onConfirm={this.resetAuthMethod}
         />
 
         <Alert
-          title="Метод авторизації успішно скинутий"
-          active={showResetAuthAlert}
-          theme="success"
+          title={alertTitle}
+          active={showAlert}
+          theme={alertTheme}
           ok="Ok"
-          onClose={() => this.setState({ showResetAuthAlert: false })}
+          onClose={() =>
+            this.setState({
+              showAlert: false,
+              alertTitle: null,
+              alertTheme: null
+            })}
         />
       </div>
     );
@@ -62,8 +73,12 @@ export default class ResetAuthenticationMethodPage extends Component {
     resetAuthMethod(person_id).then(({ error }) => {
       this.setState({
         person_id: null,
-        showResetAuthConfirm: false,
-        showResetAuthAlert: !error
+        showConfirm: false,
+        showAlert: true,
+        alertTitle: error
+          ? 'Обліковий запис не знайдено'
+          : 'Метод авторизації успішно скинутий',
+        alertTheme: error ? 'error' : 'success'
       });
 
       if (!error) return reset('reset-authentication-method-form');
