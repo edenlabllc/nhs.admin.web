@@ -56,7 +56,7 @@ export default () => (req, res, next) => {
       //eslint-disable-line
       if (redirectLocation) {
         return res.redirect(
-          301,
+          302,
           redirectLocation.pathname + redirectLocation.search
         );
       } else if (error) {
