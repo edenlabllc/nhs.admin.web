@@ -31,7 +31,7 @@ export default class DateFilterForm extends React.Component {
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Початкова дата"
-                placeholder="22/01/2018"
+                placeholder="2017-10-25"
               />
             </FormColumn>
             <FormColumn align="baseline">
@@ -40,7 +40,7 @@ export default class DateFilterForm extends React.Component {
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Кінцева дата"
-                placeholder="26/01/2018"
+                placeholder="2018-09-26"
               />
             </FormColumn>
             <FormColumn align="baseline">
