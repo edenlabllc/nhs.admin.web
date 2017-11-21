@@ -6,7 +6,7 @@ describe('Icon', () => {
   describe('icons', () => {
     test('should export all available icons', () => {
       expect(icons).toBeDefined();
-      // expect(icons).to.be.array;
+      expect(Array.isArray(icons)).toBeTruthy();
     });
   });
 

@@ -41,6 +41,7 @@ Application supports these environment variables:
 - Webpack
 - Enzyme
 - Jest
+- Puppeteer
 
 ### Git flow
 
@@ -51,9 +52,9 @@ After finish work on a task, you need to create PR.
 
 To contribute to the repository be ready to write some tests.
 
-- Unit tests for business logic (we use Mocha)
+- Unit tests for business logic (we use Jest)
 - Integration tests for UI components (we use Enzyme)
-- Acceptance tests for user stories
+- Acceptance tests for user stories (we use Puppeteer)
 
 ### PR
 

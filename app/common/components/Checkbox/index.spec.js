@@ -10,7 +10,7 @@ describe('Checkbox', () => {
   describe('checked', () => {
     test('should support checked passing', () => {
       const inst = mount(<Checkbox checked="true" />);
-      expect(inst.find('input').prop('checked')).toBe('true');
+      expect(inst.find('input').prop('checked')).toBeTruthy();
 
       const instFalse = mount(<Checkbox checked={false} />);
       expect(instFalse.find('input').prop('checked')).toBeFalsy();
@@ -22,7 +22,7 @@ describe('Checkbox', () => {
     test('should not change on click events', () => {
       const inst = mount(<Checkbox checked="true" />);
       inst.find('input').simulate('change', { target: { checked: false } });
-      expect(inst.find('input').prop('checked')).toBe('true');
+      expect(inst.find('input').prop('checked')).toBeTruthy();
 
       const instFalse = mount(<Checkbox checked={false} />);
       instFalse.find('input').simulate('change', { target: { checked: true } });
@@ -37,15 +37,15 @@ describe('Checkbox', () => {
   });
   describe('onChange', () => {
     test('should be invoked on click', () => {
-      const spyCb = jest.fn();
-      expect(spyCb).not.toHaveBeenCalled();
+      const onChangeHandler = jest.fn();
+      expect(onChangeHandler).not.toHaveBeenCalled();
 
-      const inst = mount(<Checkbox onChange={spyCb} />);
+      const inst = mount(<Checkbox onChange={onChangeHandler} />);
       inst.find('input').simulate('change', { target: { checked: true } });
       inst.find('input').simulate('change', { target: { checked: false } });
 
-      expect(spyCb).toHaveBeenCalledWith(true);
-      expect(spyCb).toHaveBeenCalledWith(false);
+      expect(onChangeHandler).toHaveBeenCalledWith(true);
+      expect(onChangeHandler).toHaveBeenCalledWith(false);
     });
   });
 });
