@@ -118,7 +118,6 @@ export default class InnmDosagesCreateForm extends React.Component {
               labelText="Назва"
               component={FieldInput}
               disabled={disabled}
-              label_bold
               placeholder="Назва лікарської форми"
             />
           </FormRow>
@@ -145,7 +144,6 @@ export default class InnmDosagesCreateForm extends React.Component {
                 labelText="Назва речовини"
                 emptyText="Не знайдено"
                 placeholder="Почніть вводити назву"
-                label_bold
                 searchable
                 onChangeSearch={v =>
                   v &&
@@ -190,7 +188,6 @@ export default class InnmDosagesCreateForm extends React.Component {
                 name="one.ingredients.numerator_value"
                 labelText="Кількість"
                 component={FieldInput}
-                label_bold
                 placeholder="0-1000"
               />
             </FormColumn>

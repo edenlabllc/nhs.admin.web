@@ -23,6 +23,7 @@ export const Component = ({
     onChange={params => params && onChange(params.format(dateModelFormat))}
     onBlur={() => onBlur(value)}
     selected={value ? moment(value, dateModelFormat) : null}
+    shouldCloseOnSelect={true}
     placeholderText={placeholder}
     {...rest}
   />
