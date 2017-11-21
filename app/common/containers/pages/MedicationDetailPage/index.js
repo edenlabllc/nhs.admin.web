@@ -85,7 +85,7 @@ export default class MedicationDetailPage extends React.Component {
               name: 'Форма',
               value: (
                 <DictionaryValue
-                  dictionary="MEDICATION_FORM"
+                  dictionary="MEDICATION_FOR"
                   value={medication.form}
                 />
               )
