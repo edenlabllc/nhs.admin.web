@@ -266,7 +266,7 @@ export default class MedicationDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t('Деактивувати торгівельне найменовання {{name}}?', {
+          title={t('Деактивувати торгівельне найменування {{name}}?', {
             name: medication.name
           })}
           active={this.state.showDeactivateConfirm}
