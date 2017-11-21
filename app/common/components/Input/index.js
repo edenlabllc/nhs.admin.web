@@ -63,7 +63,10 @@ export const Input = ({
 
   return (
     <span>
-      <label className={styles['label-wrapper']}>
+      <label
+        className={styles['label-wrapper']}
+        onClick={e => e.preventDefault()}
+      >
         {labelText && (
           <div
             className={classnames(

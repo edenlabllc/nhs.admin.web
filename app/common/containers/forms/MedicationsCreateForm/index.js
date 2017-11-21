@@ -160,7 +160,6 @@ export default class MedicationsCreateForm extends React.Component {
               component={FieldInput}
               disabled={disabled}
               placeholder="Введіть торгівельне найменування"
-              label_bold
             />
           </FormRow>
           <FormRow>
@@ -170,7 +169,6 @@ export default class MedicationsCreateForm extends React.Component {
               component={FieldInput}
               disabled={disabled}
               placeholder="Введіть код АТХ"
-              label_bold
             />
           </FormRow>
           <FormRow>
@@ -200,7 +198,6 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Назва речовини"
                 emptyText="Не знайдено"
                 placeholder="Почніть вводити назву"
-                label_bold
                 searchable
                 onChangeSearch={v =>
                   v &&
@@ -245,7 +242,6 @@ export default class MedicationsCreateForm extends React.Component {
                 name="one.ingredients.numerator_value"
                 labelText="Кількість"
                 component={FieldInput}
-                label_bold
                 placeholder="0-1000"
               />
             </FormColumn>
@@ -303,7 +299,6 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Тип"
                 placeholder="Упаковка"
                 component={SelectUniversal}
-                label_bold
                 options={Object.keys(data.medication_unit.values).map(i => ({
                   title: data.medication_unit.values[i],
                   name: i
@@ -350,7 +345,6 @@ export default class MedicationsCreateForm extends React.Component {
                 component={FieldInput}
                 type="number"
                 labelText="Упаковка кількість"
-                label_bold
                 postfix={container__active}
               >
                 <ErrorMessage when="required">
@@ -364,7 +358,6 @@ export default class MedicationsCreateForm extends React.Component {
                 component={FieldInput}
                 type="number"
                 labelText="Упаковка мінімальна кількість"
-                label_bold
                 postfix={container__active}
               >
                 <ErrorMessage when="required">
@@ -383,7 +376,6 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Країна"
               emptyText="Не знайдено"
               placeholder="Почніть вводити назву"
-              label_bold
               searchable
               onChangeSearch={val =>
                 this.setState({ country_search: val.toLowerCase() })}
@@ -407,7 +399,6 @@ export default class MedicationsCreateForm extends React.Component {
               name="manufacturer.name"
               component={FieldInput}
               labelText="Виробник"
-              label_bold
               placeholder="Введіть виробника"
             >
               <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
@@ -419,21 +410,22 @@ export default class MedicationsCreateForm extends React.Component {
               <Field
                 name="certificate"
                 component={FieldInput}
-                labelText="Номер сертифікату"
-                label_bold
-                placeholder="Номер сертифікату"
+                labelText="Номер реєстраційного посвідчення"
+                placeholder="Номер реєстраційного посвідчення"
               >
                 <ErrorMessage when="required">
                   {t('Required field')}
                 </ErrorMessage>
               </Field>
             </FormColumn>
-            <FormColumn size="3/5" align="baseline">
+          </FormRow>
+          <FormRow>
+            <FormColumn>
               <Field
                 name="certificate_expired_at"
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
-                labelText="Дата закінчення сертифікату"
+                labelText="Дата закінчення реєстраційного посвідчення"
                 placeholder="2018-02-01"
               />
             </FormColumn>
