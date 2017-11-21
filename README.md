@@ -40,8 +40,7 @@ Application supports these environment variables:
 - Redux
 - Webpack
 - Enzyme
-- Karma
-- Nightwatch
+- Jest
 
 ### Git flow
 
@@ -54,7 +53,7 @@ To contribute to the repository be ready to write some tests.
 
 - Unit tests for business logic (we use Mocha)
 - Integration tests for UI components (we use Enzyme)
-- Acceptance tests for user stories (we use Nightwatch)
+- Acceptance tests for user stories
 
 ### PR
 

@@ -1,12 +1,8 @@
 import React from 'react';
-import chai, { expect } from 'chai';
 import { mount } from 'enzyme';
-import spies from 'chai-spies';
 
 import styles from './styles.scss';
 import Select from './index';
-
-chai.use(spies);
 
 describe('Select', () => {
   const elem = mount(
@@ -15,31 +11,41 @@ describe('Select', () => {
       placeholder="Select item..."
       options={[
         { name: 'item1', title: 'Item 1' },
-        { name: 'item2', title: 'Item 2' },
+        { name: 'item2', title: 'Item 2' }
       ]}
     />
   );
 
   describe('props', () => {
-    it('options', () => {
-      expect(elem.find('li')).to.have.length(2);
+    test('options', () => {
+      expect(elem.find('li')).toHaveLength(2);
     });
 
-    it('placeholder', () => {
-      expect(elem.find(`.${styles.placeholder}`).text()).to.equal('Select item...');
+    test('placeholder', () => {
+      expect(elem.find(`.${styles.placeholder}`).text()).toEqual(
+        'Select item...'
+      );
     });
 
-    it('active', () => {
-      expect(elem.find('div span').at(1).text()).to.equal('Item 2');
-      expect(elem.find(`.${styles.active}`)).to.have.length(1);
+    test('active', () => {
+      expect(
+        elem
+          .find('div span')
+          .at(1)
+          .text()
+      ).toEqual('Item 2');
+      expect(elem.find(`.${styles.active}`)).toHaveLength(1);
     });
 
-    it('onChange', () => {
-      const onChange = chai.spy(() => {});
+    test('onChange', () => {
+      const onChange = jest.fn();
 
       elem.setProps({ onChange });
-      elem.find('li').first().simulate('click');
-      expect(onChange).to.have.been.called.with('item1');
+      elem
+        .find('li')
+        .first()
+        .simulate('click');
+      expect(onChange).toHaveBeenCalledWith('item1');
     });
   });
 });
