@@ -81,6 +81,15 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             { name: 'Код АТХ', value: medication.code_atc },
+            {
+              name: 'Форма',
+              value: (
+                <DictionaryValue
+                  dictionary="MEDICATION_FORM"
+                  value={medication.form}
+                />
+              )
+            },
             { name: 'Кількість ліків', value: medication.package_qty },
             {
               name: 'Мін. к-сть ліків',
