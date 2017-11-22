@@ -86,7 +86,7 @@ export default class MedicationsListPage extends React.Component {
 
           <SearchForm
             active={activeFilter}
-            placeholder="Знайти торгову назву"
+            placeholder="Знайти торгівельне найменування"
             items={[
               { name: 'id', title: t('за ID'), validate: uuidValidate },
               {

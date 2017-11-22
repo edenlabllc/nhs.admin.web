@@ -41,13 +41,16 @@ export default class MedicationCreatePage extends React.Component {
     return (
       <div id="medicaion-create-page">
         <Helmet
-          title={t('Medicaion create page')}
+          title="Створення торгівельного найменування"
           meta={[
-            { property: 'og:title', content: t('Medication create page') }
+            {
+              property: 'og:title',
+              content: 'Створення торгівельного найменування'
+            }
           ]}
         />
         <BackLink onClick={() => router.goBack()}>
-          Додати торгову назву
+          Додати торгівельне найменування
         </BackLink>
         <Line />
 

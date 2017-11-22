@@ -96,17 +96,6 @@ export default class InnmForm extends React.Component {
           )}
           <FormRow>
             <FormColumn>
-              <Button
-                onClick={() => this.props.router.push('/medical-programs')}
-                theme="border"
-                color="blue"
-                icon="back"
-                block
-              >
-                Назад
-              </Button>
-            </FormColumn>
-            <FormColumn>
               {!disabled && (
                 <ShowWithScope scope="innm:write">
                   <div>

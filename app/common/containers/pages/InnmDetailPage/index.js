@@ -10,6 +10,8 @@ import InnmForm from 'containers/forms/InnmForm';
 import { withRouter } from 'react-router';
 import BackLink from 'containers/blocks/BackLink';
 import Line from 'components/Line';
+import Button from 'components/Button';
+import { FormRow, FormColumn } from 'components/Form';
 
 import { getInnm } from 'reducers';
 // import { deactivateInnms } from 'redux/innms';
@@ -44,6 +46,21 @@ export default class InnmDetailPage extends React.Component {
         <H1>Сторінка делатей МНН</H1>
 
         <InnmForm initialValues={innm} disabled />
+
+        <FormRow>
+          <FormColumn>
+            <Button
+              onClick={() => this.props.router.push('/medications')}
+              theme="border"
+              color="blue"
+              icon="back"
+              block
+            >
+              {t('Back to list')}
+            </Button>
+          </FormColumn>
+          <FormColumn />
+        </FormRow>
       </div>
     );
   }

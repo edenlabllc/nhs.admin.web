@@ -56,8 +56,13 @@ export default class MedicationDetailPage extends React.Component {
     return (
       <div id="medication-detail-page">
         <Helmet
-          title={t('Medication detail')}
-          meta={[{ property: 'og:title', content: t('Medication detail') }]}
+          title="Деталі торгівельного найменовання"
+          meta={[
+            {
+              property: 'og:title',
+              content: 'Деталі торгівельного найменовання'
+            }
+          ]}
         />
         <BackLink onClick={() => this.props.router.push('/medications')}>
           {t('Back to list')}
@@ -65,7 +70,9 @@ export default class MedicationDetailPage extends React.Component {
         <Line />
         <div className={styles.row}>
           <DataList
-            list={[{ name: 'ID торгівельної назви', value: medication.id }]}
+            list={[
+              { name: 'ID торгівельного найменовання', value: medication.id }
+            ]}
           />
         </div>
         <Line width={630} />
@@ -74,6 +81,15 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             { name: 'Код АТХ', value: medication.code_atc },
+            {
+              name: 'Форма',
+              value: (
+                <DictionaryValue
+                  dictionary="MEDICATION_FORM"
+                  value={medication.form}
+                />
+              )
+            },
             { name: 'Кількість ліків', value: medication.package_qty },
             {
               name: 'Мін. к-сть ліків',
@@ -205,9 +221,12 @@ export default class MedicationDetailPage extends React.Component {
         <Line width={630} />
         <DataList
           list={[
-            { name: 'Сертифікат', value: medication.certificate },
             {
-              name: 'Дата закінчення',
+              name: 'Номер реєстраційного посвідчення',
+              value: medication.certificate
+            },
+            {
+              name: 'Дата закінчення реєстраційного посвідчення',
               value: format(medication.certificate_expired_at, 'DD/MM/YYYY')
             }
           ]}
@@ -229,17 +248,16 @@ export default class MedicationDetailPage extends React.Component {
                 </Button>
               </div>
               {
-                <ShowWithScope scope="medical_program:deactivate">
+                <ShowWithScope scope="medication:deactivate">
                   <div className={styles.buttons__column}>
                     <Button
                       onClick={() =>
                         this.setState({ showDeactivateConfirm: true })}
                       theme="fill"
                       color="red"
-                      icon="check-right"
                       block
                     >
-                      Деактивувати торгову назву
+                      Деактивувати торгівельне найменування
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -248,7 +266,7 @@ export default class MedicationDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t('Деактивувати торгову назву {{name}}?', {
+          title={t('Деактивувати торгівельне найменування {{name}}?', {
             name: medication.name
           })}
           active={this.state.showDeactivateConfirm}
