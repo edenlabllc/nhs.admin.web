@@ -21,10 +21,9 @@ env:
 node_js:
 - 7.5.0
 before_install:
-- npm run docker:up
 - chmod -R +x bin
 script:
-- npm run test
+- npm run test || travis_terminate 1
 # - npm run lint || travis_terminate 1
 - ./bin/version-increment.sh || travis_terminate 1
 - ./bin/build.sh || travis_terminate 1
@@ -34,7 +33,7 @@ script:
 - RUNNING_CONTAINERS=`docker ps | wc -l`; if [ "${RUNNING_CONTAINERS//[[:space:]]/}"
   == "1" ]; then echo "[E] Container is not started\!"; docker logs nhs.admin.web
   --details --since 5h; exit 1; fi;
-- npm run nightwatch -- -e travis  || travis_terminate 1
+- npm run e2e || travis_terminate 1
 - sleep 5
 - ./bin/ci/push.sh
 - openssl aes-256-cbc -K $encrypted_fcc3a444b384_key -iv $encrypted_fcc3a444b384_iv -in eHealth-8110bd102a69.json.enc -out eHealth-8110bd102a69.json -d

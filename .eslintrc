@@ -3,8 +3,7 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true,
-    "mocha": true
+    "node": true
   },
   "globals": {
     "__DEV__": true,
@@ -12,13 +11,10 @@
     "__REDUX_STATE__": true
   },
   "plugins": [
-    "prettier",
-    "chai-expect"
+    "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
-    "chai-expect/missing-assertion": "error",
-    "chai-expect/terminating-properties": "warn"
+    "prettier/prettier": "error"
   },
   "parserOptions": {
     "ecmaVersion": 6,
