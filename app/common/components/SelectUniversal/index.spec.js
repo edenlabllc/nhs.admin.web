@@ -18,19 +18,19 @@ describe('Select', () => {
       placeholder: 'Enter email'
     };
 
-    test('should have all components', () => {
+    it('should have all components', () => {
       const elem = mount(<Select {...props} />);
       expect(elem.find(List).length).toEqual(1);
       expect(elem.find(ListItem).length).toEqual(2);
       expect(elem.find(SelectControl).length).toEqual(1);
     });
 
-    test('should have options', () => {
+    it('should have options', () => {
       const elem = mount(<Select {...props} />);
       expect(elem.find(List).prop('options')).toEqual(props.options);
     });
 
-    test('should have placeholder', () => {
+    it('should have placeholder', () => {
       const elem = mount(<Select {...props} />);
       expect(elem.find(SelectControl).prop('placeholder')).toEqual(
         props.placeholder
@@ -41,7 +41,7 @@ describe('Select', () => {
 
 describe('List', () => {
   describe('props', () => {
-    test('should have ListItem element', () => {
+    it('should have ListItem element', () => {
       const props = {
         options: [{ name: '1' }, { name: '2' }],
         isActiveItem: () => {}
@@ -50,7 +50,7 @@ describe('List', () => {
       const elem = shallow(<List {...props} />);
       expect(elem.find(ListItem).length).toEqual(props.options.length);
     });
-    test('should show emptyText', () => {
+    it('should show emptyText', () => {
       const props = {
         options: [],
         emptyText: 'Not found'
@@ -61,7 +61,7 @@ describe('List', () => {
     });
   });
   describe('events', () => {
-    test('show have open class', () => {
+    it('show have open class', () => {
       const props = {
         options: [{ name: '1' }, { name: '2' }],
         open: true,
@@ -70,7 +70,7 @@ describe('List', () => {
       const elem = shallow(<List {...props} />);
       expect(elem.find(`.${styles.open}`)).toHaveLength(1);
     });
-    test('should close on click', () => {
+    it('should close on click', () => {
       const spyCb = jest.fn();
       const props = {
         options: [{ name: '1', title: 1 }, { name: '2', title: 1 }],
@@ -91,14 +91,14 @@ describe('List', () => {
 
 describe('ListItem', () => {
   describe('props', () => {
-    test('should have list item with title', () => {
+    it('should have list item with title', () => {
       const props = {
         title: 'name 1'
       };
       const elem = shallow(<ListItem {...props} />);
       expect(elem.find('li').text()).toEqual(props.title);
     });
-    test('should have an check for active element', () => {
+    it('should have an check for active element', () => {
       const props = {
         title: 'name 1',
         active: true
@@ -106,7 +106,7 @@ describe('ListItem', () => {
       const elem = shallow(<ListItem {...props} />);
       expect(elem.find('Icon')).toBeDefined();
     });
-    test('should have disabled styles', () => {
+    it('should have disabled styles', () => {
       const props = {
         title: 'name 1',
         disabled: true
@@ -119,14 +119,14 @@ describe('ListItem', () => {
 
 describe('SelectControlItem', () => {
   describe('props', () => {
-    test('should have one control item with title', () => {
+    it('should have one control item with title', () => {
       const props = {
         title: 'name 1'
       };
       const elem = shallow(<SelectControlItem {...props} />);
       expect(elem.find('li').text()).toEqual(props.title);
     });
-    test('should have multiple list item with title and remove btn', () => {
+    it('should have multiple list item with title and remove btn', () => {
       const props = {
         title: 'name 1',
         multiple: true

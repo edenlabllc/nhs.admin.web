@@ -4,19 +4,19 @@ import Icon, { icons } from './index';
 
 describe('Icon', () => {
   describe('icons', () => {
-    test('should export all available icons', () => {
+    it('should export all available icons', () => {
       expect(icons).toBeDefined();
       expect(Array.isArray(icons)).toBeTruthy();
     });
   });
 
   describe('default', () => {
-    test('should exists', () => {
+    it('should exists', () => {
       expect(Icon).toBeDefined();
     });
 
     describe('render', () => {
-      test('should render in i tag', () => {
+      it('should render in i tag', () => {
         const instance = mount(
           <div>
             <Icon name={icons[0]} />

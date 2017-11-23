@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import config from '../config';
 
 describe('Internal error page', () => {
-  test(
+  it(
     'Has correct text',
     async () => {
       const browser = await puppeteer.launch(config.puppeteer);

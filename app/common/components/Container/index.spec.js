@@ -5,7 +5,7 @@ import { Container } from './index';
 
 describe('Container', () => {
   describe('children', () => {
-    test('should pass children', () => {
+    it('should pass children', () => {
       const wrapper = shallow(
         <Container>
           <h1>Title</h1>

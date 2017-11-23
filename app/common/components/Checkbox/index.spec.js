@@ -3,12 +3,12 @@ import { mount } from 'enzyme';
 import Checkbox from './index';
 
 describe('Checkbox', () => {
-  test('should have input element', () => {
+  it('should have input element', () => {
     const inst = mount(<Checkbox />);
     expect(inst.find('input')).toHaveLength(1);
   });
   describe('checked', () => {
-    test('should support checked passing', () => {
+    it('should support checked passing', () => {
       const inst = mount(<Checkbox checked="true" />);
       expect(inst.find('input').prop('checked')).toBeTruthy();
 
@@ -19,7 +19,7 @@ describe('Checkbox', () => {
       expect(instDefault.find('input').prop('checked')).toBeFalsy();
     });
 
-    test('should not change on click events', () => {
+    it('should not change on click events', () => {
       const inst = mount(<Checkbox checked="true" />);
       inst.find('input').simulate('change', { target: { checked: false } });
       expect(inst.find('input').prop('checked')).toBeTruthy();
@@ -36,7 +36,7 @@ describe('Checkbox', () => {
     });
   });
   describe('onChange', () => {
-    test('should be invoked on click', () => {
+    it('should be invoked on click', () => {
       const onChangeHandler = jest.fn();
       expect(onChangeHandler).not.toHaveBeenCalled();
 

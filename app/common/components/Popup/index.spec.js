@@ -5,7 +5,7 @@ import styles from './styles.scss';
 import { Popup, Confirm, Alert } from './index';
 
 describe('Popup', () => {
-  test('children', () => {
+  it('children', () => {
     const elem = shallow(
       <Popup>
         <span>Content</span>
@@ -17,23 +17,23 @@ describe('Popup', () => {
   describe('props', () => {
     const elem = mount(<Popup title="Popup title" active theme="error" />);
 
-    test('title', () => {
+    it('title', () => {
       expect(elem.text()).toBe('Popup title');
     });
 
-    test('active', () => {
+    it('active', () => {
       expect(elem.find(`.${styles.active}`)).toHaveLength(1);
     });
 
-    test('theme', () => {
+    it('theme', () => {
       expect(elem.find(`.${styles['theme-error']}`)).toHaveLength(1);
     });
 
-    test('bgCloser', () => {
+    it('bgCloser', () => {
       expect(elem.find(`.${styles.closer}`)).toHaveLength(1);
     });
 
-    test('onClose', () => {
+    it('onClose', () => {
       const onClose = jest.fn();
 
       elem.setProps({ onClose });
@@ -45,7 +45,7 @@ describe('Popup', () => {
 });
 
 describe('Alert', () => {
-  test('children', () => {
+  it('children', () => {
     const elem = shallow(
       <Alert>
         <span>Content</span>
@@ -54,7 +54,7 @@ describe('Alert', () => {
     expect(elem.contains(<span>Content</span>)).toBeTruthy();
   });
 
-  test('use popup', () => {
+  it('use popup', () => {
     const elem = mount(<Alert />);
     expect(elem.find(Popup)).toHaveLength(1);
   });
@@ -64,11 +64,11 @@ describe('Alert', () => {
       <Alert title="Confirm" ok="Done" active theme="error" />
     );
 
-    test('ok', () => {
+    it('ok', () => {
       expect(elem.find('Button')).toHaveLength(1);
     });
 
-    test('onClose', () => {
+    it('onClose', () => {
       const onClose = jest.fn();
 
       elem.setProps({ onClose });
@@ -80,7 +80,7 @@ describe('Alert', () => {
 });
 
 describe('Confirm', () => {
-  test('children', () => {
+  it('children', () => {
     const elem = shallow(
       <Confirm>
         <span>Content</span>
@@ -89,7 +89,7 @@ describe('Confirm', () => {
     expect(elem.contains(<span>Content</span>)).toBeTruthy();
   });
 
-  test('use popup', () => {
+  it('use popup', () => {
     const elem = mount(<Confirm />);
     expect(elem.find(Popup)).toHaveLength(1);
   });
@@ -105,11 +105,11 @@ describe('Confirm', () => {
       />
     );
 
-    test('confirm, cancel', () => {
+    it('confirm, cancel', () => {
       expect(elem.find('Button')).toHaveLength(2);
     });
 
-    test('onCancel', () => {
+    it('onCancel', () => {
       const onCancel = jest.fn();
 
       elem.setProps({ onCancel });
@@ -121,7 +121,7 @@ describe('Confirm', () => {
       expect(onCancel).toHaveBeenCalledTimes(1);
     });
 
-    test('onConfirm', () => {
+    it('onConfirm', () => {
       const onConfirm = jest.fn();
 
       elem.setProps({ onConfirm });

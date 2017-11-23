@@ -3,13 +3,13 @@ import { shallow, mount } from 'enzyme';
 import { RadioInput } from './index.js';
 
 describe('RadioInput', () => {
-  test('should have radio input element', () => {
+  it('should have radio input element', () => {
     const inst = shallow(<RadioInput />);
     expect(inst.find('input')).toHaveLength(1);
     expect(inst.find('input').prop('type')).toEqual('radio');
   });
   describe('selected', () => {
-    test('should support selected passing', () => {
+    it('should support selected passing', () => {
       const inst = shallow(<RadioInput selected />);
       expect(inst.find('input').prop('checked')).toBeTruthy();
 
@@ -21,28 +21,28 @@ describe('RadioInput', () => {
     });
   });
   describe('props passing', () => {
-    test('should pass name prop', () => {
+    it('should pass name prop', () => {
       const inst = shallow(<RadioInput name="test" />);
       expect(inst.find('input').prop('name')).toEqual('test');
     });
-    test('should pass value prop', () => {
+    it('should pass value prop', () => {
       const inst = shallow(<RadioInput value="value" />);
       expect(inst.find('input').prop('value')).toEqual('value');
     });
-    test('should pass disabled prop', () => {
+    it('should pass disabled prop', () => {
       const inst = shallow(<RadioInput disabled />);
       expect(inst.find('input').prop('disabled')).toBeTruthy();
     });
   });
   describe('onChange', () => {
-    test('should return value when click on element', () => {
+    it('should return value when click on element', () => {
       const spyCb = jest.fn();
       expect(spyCb).not.toHaveBeenCalled();
       const inst = shallow(<RadioInput onChange={spyCb} value="test" />);
       inst.find('input').simulate('change');
       expect(spyCb).toHaveBeenCalledWith('test');
     });
-    test('should not been called if disabled is passed', () => {
+    it('should not been called if disabled is passed', () => {
       const spyCb = jest.fn();
       expect(spyCb).not.toHaveBeenCalled();
       const inst = shallow(
@@ -87,7 +87,7 @@ describe('RadioInput', () => {
         );
       }
     }
-    test('should work', () => {
+    it('should work', () => {
       const wrapper = mount(<TestGroup />);
       const inputA = wrapper.find('input[value="a"]');
       const inputB = wrapper.find('input[value="b"]');

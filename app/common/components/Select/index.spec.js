@@ -17,17 +17,17 @@ describe('Select', () => {
   );
 
   describe('props', () => {
-    test('options', () => {
+    it('options', () => {
       expect(elem.find('li')).toHaveLength(2);
     });
 
-    test('placeholder', () => {
+    it('placeholder', () => {
       expect(elem.find(`.${styles.placeholder}`).text()).toEqual(
         'Select item...'
       );
     });
 
-    test('active', () => {
+    it('active', () => {
       expect(
         elem
           .find('div span')
@@ -37,7 +37,7 @@ describe('Select', () => {
       expect(elem.find(`.${styles.active}`)).toHaveLength(1);
     });
 
-    test('onChange', () => {
+    it('onChange', () => {
       const onChange = jest.fn();
 
       elem.setProps({ onChange });

@@ -54,12 +54,12 @@ describe('TableRow', () => {
     />
   );
 
-  test('render', () => {
+  it('render', () => {
     expect(elem.find('tr td')).toHaveLength(2);
   });
 
   describe('props', () => {
-    test('data title', () => {
+    it('data title', () => {
       expect(
         elem
           .find('td')
@@ -68,11 +68,11 @@ describe('TableRow', () => {
       ).toEqual('One');
     });
 
-    test('columns align', () => {
+    it('columns align', () => {
       expect(elem.find(`.${styles.right}`)).toHaveLength(2);
     });
 
-    test('columns colspan', () => {
+    it('columns colspan', () => {
       expect(elem.find('td[colSpan=2]')).toHaveLength(2);
     });
   });
@@ -88,11 +88,11 @@ describe('TableHead', () => {
     />
   );
 
-  test('render', () => {
+  it('render', () => {
     expect(elem.find('thead tr th')).toHaveLength(2);
   });
 
-  test('column position', () => {
+  it('column position', () => {
     expect(
       elem
         .find('thead tr th')
@@ -108,7 +108,7 @@ describe('TableHead', () => {
   });
 
   describe('props', () => {
-    test('columns title', () => {
+    it('columns title', () => {
       expect(
         elem
           .find('th')
@@ -117,11 +117,11 @@ describe('TableHead', () => {
       ).toEqual('One title');
     });
 
-    test('columns align', () => {
+    it('columns align', () => {
       expect(elem.find(`.${styles.right}`)).toHaveLength(1);
     });
 
-    test('columns width', () => {
+    it('columns width', () => {
       expect(elem.find('th[width=200]')).toHaveLength(1);
     });
   });
@@ -131,19 +131,19 @@ describe('Table', () => {
   const elem = mount(<Table columns={tableColumns} data={tableData} />);
 
   describe('render', () => {
-    test('table', () => {
+    it('table', () => {
       expect(elem.find('table tbody')).toHaveLength(1);
     });
 
-    test('head', () => {
+    it('head', () => {
       expect(elem.find(TableHead)).toHaveLength(1);
     });
 
-    test('rows', () => {
+    it('rows', () => {
       expect(elem.find(TableRow)).toHaveLength(3);
     });
 
-    test('rows as children', () => {
+    it('rows as children', () => {
       const elem = mount(
         <Table columns={tableColumns}>
           <TableRow data={tableData[0]} />
@@ -162,36 +162,36 @@ describe('Table', () => {
   });
 
   describe('props', () => {
-    test('placeholder', () => {
+    it('placeholder', () => {
       const elem = mount(<Table placeholder="Empty" columns={tableColumns} />);
       expect(elem.find(`.${styles.placeholder}`).text()).toEqual('Empty');
     });
 
-    test('head', () => {
+    it('head', () => {
       expect(elem.find(TableHead)).toHaveLength(1);
       elem.setProps({ head: false });
       expect(elem.find(TableHead)).toHaveLength(0);
     });
 
-    test('tbody', () => {
+    it('tbody', () => {
       expect(elem.find('tbody')).toHaveLength(1);
       elem.setProps({ tbody: false });
       expect(elem.find('tbody')).toHaveLength(0);
     });
 
-    test('zebra', () => {
+    it('zebra', () => {
       expect(elem.find(`.${styles.zebra}`)).toHaveLength(1);
       elem.setProps({ zebra: false });
       expect(elem.find(`.${styles.zebra}`)).toHaveLength(0);
     });
 
-    test('hovered', () => {
+    it('hovered', () => {
       expect(elem.find(`.${styles.hovered}`)).toHaveLength(1);
       elem.setProps({ hovered: false });
       expect(elem.find(`.${styles.hovered}`)).toHaveLength(0);
     });
 
-    test('rowComponent', () => {
+    it('rowComponent', () => {
       elem.setProps({ rowComponent: CustomRow });
       expect(elem.find(CustomRow)).toHaveLength(3);
       expect(
@@ -202,7 +202,7 @@ describe('Table', () => {
       ).toEqual(tableData[0].title);
     });
 
-    test('headComponent', () => {
+    it('headComponent', () => {
       elem.setProps({ head: true, headComponent: CustomHead });
       expect(elem.find(CustomHead)).toHaveLength(1);
       expect(elem.find(CustomHead).text()).toEqual(tableColumns[0].title);

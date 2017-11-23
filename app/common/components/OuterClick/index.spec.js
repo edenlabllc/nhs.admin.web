@@ -9,7 +9,7 @@ describe('OuterClick', () => {
     onClick = jest.fn();
   });
 
-  test('called on outer click', () => {
+  it('called on outer click', () => {
     mount(
       <OuterClick onClick={onClick}>
         <div>Test</div>
@@ -20,7 +20,7 @@ describe('OuterClick', () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  test('no called on inner click', () => {
+  it('no called on inner click', () => {
     const elem = mount(
       <OuterClick onClick={onClick}>
         <div>Test</div>

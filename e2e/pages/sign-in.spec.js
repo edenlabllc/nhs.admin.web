@@ -15,7 +15,7 @@ describe('Sign in page', () => {
     await browser.close();
   });
 
-  test(
+  it(
     'Has correct text',
     async () => {
       const text = await page.evaluate(
@@ -27,7 +27,7 @@ describe('Sign in page', () => {
     config.jasmine
   );
 
-  test(
+  it(
     'Click to link will redirect to correct page',
     async () => {
       await page.waitForSelector('a');
