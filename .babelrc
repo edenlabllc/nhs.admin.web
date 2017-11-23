@@ -34,22 +34,7 @@
         "react",
         "stage-0"
       ],
-      "plugins": [
-        "transform-runtime",
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        [
-          "module-resolver",
-          {
-            "root": ["./app/common"],
-            "alias": {
-              "tests": "./tests",
-              "withStyles": "nebo15-isomorphic-style-loader/lib/withStyles",
-              "public": "./public"
-            }
-          }
-        ]
-      ]
+      "plugins": ["transform-decorators-legacy"]
     }
   }
 }
