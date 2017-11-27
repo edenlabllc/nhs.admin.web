@@ -1,7 +1,7 @@
-import React from 'react';
-import withStyles from 'withStyles';
+import React from "react";
+import withStyles from "withStyles";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const DataList = ({ list = [] }) => (
   <dl className={styles.list}>

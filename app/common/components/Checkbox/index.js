@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import classnames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
+import classnames from "classnames";
 
-import Icon from 'components/Icon';
+import Icon from "components/Icon";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
-/* eslint-disable jsx-a11y/label-has-for */
 const Checkbox = ({
   checked = false,
   onChange = e => e,

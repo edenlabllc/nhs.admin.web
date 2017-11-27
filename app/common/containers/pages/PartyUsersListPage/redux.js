@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromPartyUsers from 'redux/party-users';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromPartyUsers from "redux/party-users";
 
 export const showPartyUsers = createAction(
-  'partyUsersPage/SHOW_BLACK_LIST_USERS'
+  "partyUsersPage/SHOW_BLACK_LIST_USERS"
 );
-export const pagingPartyUsers = createAction('partyUsersPage/ADD_PAGING');
+export const pagingPartyUsers = createAction("partyUsersPage/ADD_PAGING");
 
 export const fetchPartyUsers = options => dispatch =>
   dispatch(fromPartyUsers.fetchPartyUsers(options)).then(action => {

@@ -1,30 +1,30 @@
-import React from 'react';
-import format from 'date-fns/format';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import format from "date-fns/format";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { H1, H2 } from 'components/Title';
-import { ListTable, ListShowBy } from 'components/List';
-import Table from 'components/Table';
-import ColoredText from 'components/ColoredText';
-import Button from 'components/Button';
-import Pagination from 'components/Pagination';
+import { H1, H2 } from "components/Title";
+import { ListTable, ListShowBy } from "components/List";
+import Table from "components/Table";
+import ColoredText from "components/ColoredText";
+import Button from "components/Button";
+import Pagination from "components/Pagination";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
 
-import { getDeclarations } from 'reducers';
+import { getDeclarations } from "reducers";
 
-import { fetchDeclarations } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchDeclarations } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
-const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
+const FILTER_PARAMS = ["employee_id", "legal_entity_id"];
+const DATE_FORMAT = "DD.MM.YYYY hh:mm";
 
 @withRouter
 @translate()
@@ -56,26 +56,26 @@ export default class DeclarationsListPage extends React.Component {
     return (
       <div id="declarations-list-page">
         <Helmet
-          title={t('Declarations')}
-          meta={[{ property: 'og:title', content: t('Declarations') }]}
+          title={t("Declarations")}
+          meta={[{ property: "og:title", content: t("Declarations") }]}
         />
 
-        <H1>{t('Declarations')}</H1>
+        <H1>{t("Declarations")}</H1>
 
         <div>
-          <H2>{t('Search declaration')}</H2>
+          <H2>{t("Search declaration")}</H2>
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find declaration')}
+            placeholder={t("Find declaration")}
             items={[
               {
-                name: 'employee_id',
-                title: t('By employee id'),
+                name: "employee_id",
+                title: t("By employee id"),
                 validate: uuidValidate
               },
               {
-                name: 'legal_entity_id',
-                title: t('By legal entity'),
+                name: "legal_entity_id",
+                title: t("By legal entity"),
                 validate: uuidValidate
               }
             ]}
@@ -91,7 +91,8 @@ export default class DeclarationsListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 
@@ -105,11 +106,11 @@ export default class DeclarationsListPage extends React.Component {
         <ListTable id="declarations-table">
           <Table
             columns={[
-              { key: 'person', title: t('Person') },
-              { key: 'legalEntity', title: t('Legal entity') },
-              { key: 'dates', title: t('Dates'), width: 150 },
-              { key: 'status', title: t('Status') },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "person", title: t("Person") },
+              { key: "legalEntity", title: t("Legal entity") },
+              { key: "dates", title: t("Dates"), width: 150 },
+              { key: "status", title: t("Status") },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={declarations.map(
               ({
@@ -134,7 +135,7 @@ export default class DeclarationsListPage extends React.Component {
                         {legal_entity.name}
                         <br />
                         <ColoredText color="gray">
-                          {t('EDRPOU')}: {legal_entity.edrpou}
+                          {t("EDRPOU")}: {legal_entity.edrpou}
                         </ColoredText>
                       </div>
                     )}
@@ -143,7 +144,7 @@ export default class DeclarationsListPage extends React.Component {
                 dates: [
                   format(start_date, DATE_FORMAT),
                   format(end_date, DATE_FORMAT)
-                ].join(' '),
+                ].join(" "),
                 status,
                 action: (
                   <Button
@@ -151,7 +152,7 @@ export default class DeclarationsListPage extends React.Component {
                     theme="link"
                     to={`/declarations/${id}`}
                   >
-                    {t('Details')}
+                    {t("Details")}
                   </Button>
                 )
               })

@@ -1,20 +1,21 @@
 # National Health Service administration portal
 
-[![Build Status](https://travis-ci.org/Nebo15/nhs.admin.web.svg?branch=master)](https://travis-ci.org/Nebo15/nhs.admin.web)
+[![Build Status](https://api.travis-ci.org/edenlabllc/nhs.admin.web.svg?branch=master)](https://travis-ci.org/edenlabllc/nhs.admin.web)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-Demo (dev): http://nhs-admin-web.herokuapp.com/
+Demo (dev): http://admin.dev.ehealth.world/
 
-API: [Nebo15/ehealth.api](https://github.com/Nebo15/ehealth.api)
+API: [edenlabllc/ehealth.api](https://github.com/edenlabllc/ehealth.api)
 
 ## Installation
 
 ### Heroku One-Click Deployment
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nebo15/nhs.admin.web)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/edenlabllc/nhs.admin.web)
 
 ### Docker
 
-Dashboard can be deployed as a single container from [nebo15/nhs.admin.web](https://hub.docker.com/r/nebo15/nhs.admin.web/) Docker Hub.
+Dashboard can be deployed as a single container from [edenlabllc/nhs.admin.web](https://hub.docker.com/r/edenlabllc/nhs.admin.web/) Docker Hub.
 
 ## Configurations
 
@@ -58,7 +59,7 @@ To contribute to the repository be ready to write some tests.
 
 ### PR
 
-Every task finishes with PR. Eslint, Stylelint, and tests are blocking PRs. To simplify PR review, we deploy every PR's branch automatically on Heroku.
+Every task finishes with PR. Prettier lint check and tests are blocking PRs. To simplify PR review, we deploy every PR's branch automatically on Heroku.
 
 ## License
 

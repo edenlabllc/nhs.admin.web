@@ -1,7 +1,7 @@
-import React from 'react';
-import Input from 'components/Input';
+import React from "react";
+import Input from "components/Input";
 
-import FieldInput from './FieldInput';
+import FieldInput from "./FieldInput";
 
 const FieldDate = props => (
   <FieldInput

@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import { push } from 'react-router-redux';
-import * as fromProgramMedications from 'redux/program-medications';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import { push } from "react-router-redux";
+import * as fromProgramMedications from "redux/program-medications";
 
 export const showProgramMedication = createAction(
-  'programMedicationUpdatePage/SHOW_PROGRAM_MEDICATION'
+  "programMedicationUpdatePage/SHOW_PROGRAM_MEDICATION"
 );
 
 export const fetchProgramMedication = id => dispatch =>
@@ -22,12 +22,12 @@ export const onUpdate = (v, id) => dispatch => {
       reimbursement_amount: parseFloat(v.reimbursement.reimbursement_amount, 2)
     }
   };
-  dispatch(
-    fromProgramMedications.updateProgramMedication(values, id)
-  ).then(action => {
-    if (action.error) throw action;
-    return dispatch(push(`/program-medications/${id}`));
-  });
+  dispatch(fromProgramMedications.updateProgramMedication(values, id)).then(
+    action => {
+      if (action.error) throw action;
+      return dispatch(push(`/program-medications/${id}`));
+    }
+  );
 };
 
 const program_medication = handleAction(

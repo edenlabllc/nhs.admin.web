@@ -1,8 +1,8 @@
-import { createMedication } from 'redux/medications';
-import { push } from 'react-router-redux';
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromInnmDosages from 'redux/innm-dosages';
+import { createMedication } from "redux/medications";
+import { push } from "react-router-redux";
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromInnmDosages from "redux/innm-dosages";
 
 export const onSubmit = (
   {
@@ -73,18 +73,18 @@ const mapIngredient = (
 });
 
 export const getInnmsDosages = createAction(
-  'innmDosagesCreatePage/SHOW_INNM_DOSAGES'
+  "innmDosagesCreatePage/SHOW_INNM_DOSAGES"
 );
 
 export const onSearchInnmsDosages = name => dispatch =>
-  dispatch(
-    fromInnmDosages.fetchInnmDosages({ name, page_size: 200 })
-  ).then(action => {
-    if (action.error && action.payload.status !== 400) {
-      throw action;
+  dispatch(fromInnmDosages.fetchInnmDosages({ name, page_size: 200 })).then(
+    action => {
+      if (action.error && action.payload.status !== 400) {
+        throw action;
+      }
+      return dispatch(getInnmsDosages(action.payload.result || []));
     }
-    return dispatch(getInnmsDosages(action.payload.result || []));
-  });
+  );
 
 const innm_dosages = handleAction(
   getInnmsDosages,

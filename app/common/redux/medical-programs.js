@@ -1,21 +1,21 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { medical_program } from 'schemas';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { medical_program } from "schemas";
+import { invoke } from "./api";
 
 export const fetchMedicalPrograms = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/medical_programs`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'medical_programs/FETCH_LIST_REQUEST',
+      "medical_programs/FETCH_LIST_REQUEST",
       {
-        type: 'medical_programs/FETCH_LIST_SUCCESS',
+        type: "medical_programs/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,22 +27,22 @@ export const fetchMedicalPrograms = options =>
             .json()
             .then(json => json.paging)
       },
-      'medical_programs/FETCH_LIST_FAILURE'
+      "medical_programs/FETCH_LIST_FAILURE"
     ]
   });
 
 export const createMedicalProgram = body =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/medical_programs`),
-    method: 'POST',
+    method: "POST",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'medical_programs/CREATE_MEDICAL_PROGRAM_REQUEST',
-      'medical_programs/CREATE_SUCCESS',
+      "medical_programs/CREATE_MEDICAL_PROGRAM_REQUEST",
+      "medical_programs/CREATE_SUCCESS",
       {
-        type: 'medical_programs/CREATE_FAILURE',
+        type: "medical_programs/CREATE_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ],
@@ -54,15 +54,15 @@ export const deactivateMedicalProgram = id =>
     endpoint: createUrl(
       `${API_URL}/api/medical_programs/${id}/actions/deactivate`
     ),
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'medical_programs/DEACTIVATE_REQUEST',
-      'medical_programs/DEACTIVATE_SUCCESS',
+      "medical_programs/DEACTIVATE_REQUEST",
+      "medical_programs/DEACTIVATE_SUCCESS",
       {
-        type: 'medical_programs/DEACTIVATE_FAILURE',
+        type: "medical_programs/DEACTIVATE_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ]
@@ -71,25 +71,25 @@ export const deactivateMedicalProgram = id =>
 export const fetchMedicalProgram = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/medical_programs/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'medical_programs/FETCH_DETAILS_REQUEST',
+      "medical_programs/FETCH_DETAILS_REQUEST",
       {
-        type: 'medical_programs/FETCH_DETAILS_SUCCESS',
+        type: "medical_programs/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, medical_program))
       },
-      'medical_programs/FETCH_DETAILS_FAILURE'
+      "medical_programs/FETCH_DETAILS_FAILURE"
     ]
   });
 
 export default handleAction(
   combineActions(
-    'medical_programs/FETCH_LIST_SUCCESS',
-    'medical_programs/FETCH_DETAILS_SUCCESS'
+    "medical_programs/FETCH_LIST_SUCCESS",
+    "medical_programs/FETCH_DETAILS_SUCCESS"
   ),
   (state, action) => ({
     ...state,

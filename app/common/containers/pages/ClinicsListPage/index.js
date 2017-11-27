@@ -1,27 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { ListShowBy } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
+import { ListShowBy } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
 
-import ClinicsList from 'containers/blocks/ClinicsList';
-import ShowBy from 'containers/blocks/ShowBy';
+import ClinicsList from "containers/blocks/ClinicsList";
+import ShowBy from "containers/blocks/ShowBy";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
 
-import { getClinics } from 'reducers';
+import { getClinics } from "reducers";
 
-import { fetchClinics } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchClinics } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTER_PARAMS = ['edrpou', 'legal_entity_id', 'settlement_id'];
+const FILTER_PARAMS = ["edrpou", "legal_entity_id", "settlement_id"];
 
 @withRouter
 @translate()
@@ -52,28 +52,28 @@ export default class ClinicsListPage extends React.Component {
     return (
       <div id="clinics-list-page">
         <Helmet
-          title={t('Clinics')}
-          meta={[{ property: 'og:title', content: t('Clinics') }]}
+          title={t("Clinics")}
+          meta={[{ property: "og:title", content: t("Clinics") }]}
         />
 
-        <H1>{t('Clinics')}</H1>
+        <H1>{t("Clinics")}</H1>
 
         <div>
-          <H2>{t('Search clinic')}</H2>
+          <H2>{t("Search clinic")}</H2>
 
           <SearchForm
             active={activeFilter}
-            placeholder={t('Find clinic')}
+            placeholder={t("Find clinic")}
             items={[
-              { name: 'edrpou', title: t('By edrpou') },
+              { name: "edrpou", title: t("By edrpou") },
               {
-                name: 'legal_entity_id',
-                title: t('By legal entity'),
+                name: "legal_entity_id",
+                title: t("By legal entity"),
                 validate: uuidValidate
               },
               {
-                name: 'settlement_id',
-                title: t('By settlement id'),
+                name: "settlement_id",
+                title: t("By settlement id"),
                 validate: uuidValidate
               }
             ]}
@@ -90,7 +90,8 @@ export default class ClinicsListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 

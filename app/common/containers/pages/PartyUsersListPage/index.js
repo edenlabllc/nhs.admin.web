@@ -1,28 +1,28 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
 
-import { setFilter, getFilter } from 'helpers/filter';
+import { setFilter, getFilter } from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Table from 'components/Table';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Table from "components/Table";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
 
-import { getPartyUsers } from 'reducers';
+import { getPartyUsers } from "reducers";
 
-import { fetchPartyUsers } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchPartyUsers } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
 const FILTERS = [
-  { name: 'user_id', title: 'За ID користувача', validate: uuidValidate },
-  { name: 'party_id', title: 'За ID особи', validate: uuidValidate }
+  { name: "user_id", title: "За ID користувача", validate: uuidValidate },
+  { name: "party_id", title: "За ID особи", validate: uuidValidate }
 ];
 
 const PartyUsersListPage = ({
@@ -36,7 +36,7 @@ const PartyUsersListPage = ({
   <div id="party-users-list-page">
     <Helmet
       title="Облікові записи"
-      meta={[{ property: 'og:title', content: 'Облікові записи' }]}
+      meta={[{ property: "og:title", content: "Облікові записи" }]}
     />
     <ListHeader>
       <H1>Облікові записи</H1>
@@ -63,11 +63,11 @@ const PartyUsersListPage = ({
     <ListTable id="party-users-table">
       <Table
         columns={[
-          { key: 'id', title: 'ID' },
-          { key: 'user_id', title: 'ID користувача' },
-          { key: 'party_id', title: 'ID особи' },
-          { key: 'name', title: "Ім'я" },
-          { key: 'birth_date', title: 'Дата народження' }
+          { key: "id", title: "ID" },
+          { key: "user_id", title: "ID користувача" },
+          { key: "party_id", title: "ID особи" },
+          { key: "name", title: "Ім'я" },
+          { key: "birth_date", title: "Дата народження" }
         ]}
         data={party_users.map(
           ({

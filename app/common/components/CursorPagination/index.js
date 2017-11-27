@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router';
-import classnames from 'classnames';
-import withStyles from 'withStyles';
+import React from "react";
+import { Link } from "react-router";
+import classnames from "classnames";
+import withStyles from "withStyles";
 
-import Icon from 'components/Icon';
+import Icon from "components/Icon";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const CursorPagination = ({ location, after = null, before = null, more }) => (
   <div className={styles.paging}>

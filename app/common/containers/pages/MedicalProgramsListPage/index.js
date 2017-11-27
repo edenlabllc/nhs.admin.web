@@ -1,29 +1,29 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
 
-import Table from 'components/Table';
-import ShowBy from 'containers/blocks/ShowBy';
-import ColoredText from 'components/ColoredText';
+import Table from "components/Table";
+import ShowBy from "containers/blocks/ShowBy";
+import ColoredText from "components/ColoredText";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
 
-import { getMedicalPrograms } from 'reducers';
+import { getMedicalPrograms } from "reducers";
 
-import { fetchMedicalPrograms } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchMedicalPrograms } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTER_PARAMS = ['id', 'name'];
+const FILTER_PARAMS = ["id", "name"];
 
 @withRouter
 @translate()
@@ -55,7 +55,7 @@ export default class MedicalProgramsListPage extends React.Component {
       <div id="medication-list-page">
         <Helmet
           title="Перелік медичних програм"
-          meta={[{ property: 'og:title', content: 'Перелік медичних програм' }]}
+          meta={[{ property: "og:title", content: "Перелік медичних програм" }]}
         />
         <ListHeader
           button={
@@ -79,10 +79,10 @@ export default class MedicalProgramsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти програму"
             items={[
-              { name: 'id', title: t('за ID'), validate: uuidValidate },
+              { name: "id", title: t("за ID"), validate: uuidValidate },
               {
-                name: 'name',
-                title: t('за назвою медичної програми')
+                name: "name",
+                title: t("за назвою медичної програми")
               }
             ]}
             initialValues={{
@@ -97,7 +97,8 @@ export default class MedicalProgramsListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 
@@ -111,10 +112,10 @@ export default class MedicalProgramsListPage extends React.Component {
         <ListTable id="medication-table">
           <Table
             columns={[
-              { key: 'id', title: 'ID\n медичної програми' },
-              { key: 'name', title: 'Назва медичної програми' },
-              { key: 'status', title: 'Статус програми' },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "id", title: "ID\n медичної програми" },
+              { key: "name", title: "Назва медичної програми" },
+              { key: "status", title: "Статус програми" },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={medical_programs
               .sort(
@@ -139,7 +140,7 @@ export default class MedicalProgramsListPage extends React.Component {
                     theme="link"
                     to={`/medical-programs/${item.id}`}
                   >
-                    {t('Details')}
+                    {t("Details")}
                   </Button>
                 )
               }))}

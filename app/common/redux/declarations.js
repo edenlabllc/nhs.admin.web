@@ -1,21 +1,21 @@
-import { handleActions, combineActions } from 'redux-actions';
-import { MOCK_API_URL, API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { declaration } from 'schemas';
-import { invoke } from './api';
+import { handleActions, combineActions } from "redux-actions";
+import { MOCK_API_URL, API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { declaration } from "schemas";
+import { invoke } from "./api";
 
 export const fetchDeclarations = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/declarations`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'declarations/FETCH_LIST_REQUEST',
+      "declarations/FETCH_LIST_REQUEST",
       {
-        type: 'declarations/FETCH_LIST_SUCCESS',
+        type: "declarations/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,21 +27,21 @@ export const fetchDeclarations = options =>
             .json()
             .then(json => json.paging || { cursors: {} })
       },
-      'declarations/FETCH_LIST_FAILURE'
+      "declarations/FETCH_LIST_FAILURE"
     ]
   });
 
 export const fetchDeclarationsRequests = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/declaration_requests`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'declarations/FETCH_LIST_REQUEST',
+      "declarations/FETCH_LIST_REQUEST",
       {
-        type: 'declarations/FETCH_LIST_SUCCESS',
+        type: "declarations/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -53,61 +53,61 @@ export const fetchDeclarationsRequests = options =>
             .json()
             .then(json => json.paging || { cursors: {} })
       },
-      'declarationsRequests/FETCH_LIST_FAILURE'
+      "declarationsRequests/FETCH_LIST_FAILURE"
     ]
   });
 
 export const fetchDeclarationRequest = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/declaration_requests/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'declarations/FETCH_DETAILS_REQUEST',
+      "declarations/FETCH_DETAILS_REQUEST",
       {
-        type: 'declarations/FETCH_DETAILS_SUCCESS',
+        type: "declarations/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, declaration))
       },
-      'declarationsRequests/FETCH_DETAILS_FAILURE'
+      "declarationsRequests/FETCH_DETAILS_FAILURE"
     ]
   });
 
 export const fetchDeclaration = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/declarations/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'declarations/FETCH_DETAILS_REQUEST',
+      "declarations/FETCH_DETAILS_REQUEST",
       {
-        type: 'declarations/FETCH_DETAILS_SUCCESS',
+        type: "declarations/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, declaration))
       },
-      'declarations/FETCH_DETAILS_FAILURE'
+      "declarations/FETCH_DETAILS_FAILURE"
     ]
   });
 
 export const updateDeclaration = (id, body) =>
   invoke({
     endpoint: `${MOCK_API_URL}/declarations/${id}`,
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'dictionaries/UPDATE_REQUEST',
+      "dictionaries/UPDATE_REQUEST",
       {
-        type: 'dictionaries/UPDATE_SUCCESS',
+        type: "dictionaries/UPDATE_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(resp => normalize(resp.data, declaration))
       },
-      'dictionaries/UPDATE_FAILURE'
+      "dictionaries/UPDATE_FAILURE"
     ],
     body
   });
@@ -115,69 +115,69 @@ export const updateDeclaration = (id, body) =>
 export const approveDeclaration = id =>
   invoke({
     endpoint: `${API_URL}/api/declarations/${id}/actions/approve`,
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'dictionaries/APPROVE_REQUEST',
+      "dictionaries/APPROVE_REQUEST",
       {
-        type: 'dictionaries/APPROVE_SUCCESS',
+        type: "dictionaries/APPROVE_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(resp => normalize(resp.data, declaration))
       },
-      'dictionaries/APPROVE_FAILURE'
+      "dictionaries/APPROVE_FAILURE"
     ]
   });
 
 export const rejectDeclaration = id =>
   invoke({
     endpoint: `${API_URL}/api/declarations/${id}/actions/reject`,
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'dictionaries/REJECT_REQUEST',
+      "dictionaries/REJECT_REQUEST",
       {
-        type: 'dictionaries/REJECT_SUCCESS',
+        type: "dictionaries/REJECT_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(resp => normalize(resp.data, declaration))
       },
-      'dictionaries/REJECT_FAILURE'
+      "dictionaries/REJECT_FAILURE"
     ]
   });
 
 export const getDeclarationImage = id =>
   invoke({
     endpoint: `${API_URL}/api/declarations/${id}/documents`,
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'declarations/GET_DECLARATION_IMAGE_REQUEST',
+      "declarations/GET_DECLARATION_IMAGE_REQUEST",
       {
-        type: 'declarations/GET_DECLARATION_IMAGE_SUCCESS',
+        type: "declarations/GET_DECLARATION_IMAGE_SUCCESS",
         payload: (action, state, res) => res.json(),
         meta: () => ({ declaration_id: id })
       },
-      'dictionaries/GET_DECLARATION_IMAGE_FAILURE'
+      "dictionaries/GET_DECLARATION_IMAGE_FAILURE"
     ]
   });
 
 export default handleActions(
   {
     [combineActions(
-      'declarations/FETCH_LIST_SUCCESS',
-      'declarations/CREATE_SUCCESS',
-      'declarations/UPDATE_SUCCESS'
+      "declarations/FETCH_LIST_SUCCESS",
+      "declarations/CREATE_SUCCESS",
+      "declarations/UPDATE_SUCCESS"
     )]: (state, action) => ({
       ...state,
       ...action.payload.entities.declarations,
       ...action.meta
     }),
-    'declarations/FETCH_DETAILS_SUCCESS': (state, action) => ({
+    "declarations/FETCH_DETAILS_SUCCESS": (state, action) => ({
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],
@@ -185,7 +185,7 @@ export default handleActions(
         ...action.meta
       }
     }),
-    'declarations/GET_DECLARATION_IMAGE_SUCCESS': (state, action) => ({
+    "declarations/GET_DECLARATION_IMAGE_SUCCESS": (state, action) => ({
       ...state,
       [action.meta.declaration_id]: {
         ...state[action.meta.declaration_id],

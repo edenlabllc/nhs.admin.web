@@ -1,16 +1,16 @@
-import React from 'react';
-import { reduxForm, Field, getFormValues } from 'redux-form';
+import React from "react";
+import { reduxForm, Field, getFormValues } from "redux-form";
 
-import FieldInput from 'components/reduxForm/FieldInput';
-import Button from 'components/Button';
-import { FormRow, FormColumn } from 'components/Form';
+import FieldInput from "components/reduxForm/FieldInput";
+import Button from "components/Button";
+import { FormRow, FormColumn } from "components/Form";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
+import { reduxFormValidate } from "react-nebo15-validate";
 
 @reduxForm({
-  form: 'black-user-create-form',
+  form: "black-user-create-form",
   validate: reduxFormValidate({
     tax_id: {
       length: 10
@@ -50,7 +50,7 @@ export default class BlackUserCreateForm extends React.Component {
             <ShowWithScope scope="bl_user:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? 'Збереження' : 'Заблокувати користувача'}
+                  {submitting ? "Збереження" : "Заблокувати користувача"}
                 </Button>
               </div>
             </ShowWithScope>

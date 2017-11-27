@@ -1,88 +1,88 @@
-import { combineReducers } from 'redux';
-import { reducer as form } from 'redux-form';
-import { routerReducer as routing } from 'react-router-redux';
-import { denormalize } from 'normalizr';
-import * as schemas from 'schemas';
+import { combineReducers } from "redux";
+import { reducer as form } from "redux-form";
+import { routerReducer as routing } from "react-router-redux";
+import { denormalize } from "normalizr";
+import * as schemas from "schemas";
 
-import loading from 'redux/loading';
+import loading from "redux/loading";
 
-import labels from 'redux/labels';
+import labels from "redux/labels";
 
-import session from 'redux/session';
-import user from 'redux/user';
-import auth from 'redux/auth';
-import error from 'redux/error';
+import session from "redux/session";
+import user from "redux/user";
+import auth from "redux/auth";
+import error from "redux/error";
 
-import dictionaries from 'redux/dictionaries';
-import clinics from 'redux/clinics';
-import declarations from 'redux/declarations';
-import employees from 'redux/employees';
-import employeesRequests from 'redux/employees-requests';
-import black_list_users from 'redux/black-list-users';
-import party_users from 'redux/party-users';
+import dictionaries from "redux/dictionaries";
+import clinics from "redux/clinics";
+import declarations from "redux/declarations";
+import employees from "redux/employees";
+import employeesRequests from "redux/employees-requests";
+import black_list_users from "redux/black-list-users";
+import party_users from "redux/party-users";
 
 import {
   globalStat,
   detailStat,
   declarationsStat,
   reports
-} from 'redux/reports';
+} from "redux/reports";
 
-import configuration from 'redux/configuration';
-import innms from 'redux/innms';
-import innm_dosages from 'redux/innm-dosages';
-import medications from 'redux/medications';
-import program_medications from 'redux/program-medications';
-import medical_programs from 'redux/medical-programs';
-import medication_requests from 'redux/medication-requests';
-import medication_dispenses from 'redux/medication-dispenses';
+import configuration from "redux/configuration";
+import innms from "redux/innms";
+import innm_dosages from "redux/innm-dosages";
+import medications from "redux/medications";
+import program_medications from "redux/program-medications";
+import medical_programs from "redux/medical-programs";
+import medication_requests from "redux/medication-requests";
+import medication_dispenses from "redux/medication-dispenses";
 
-import Aside from 'containers/blocks/Aside/redux';
+import Aside from "containers/blocks/Aside/redux";
 
-import DashboardPage from 'containers/pages/DashboardPage/redux';
+import DashboardPage from "containers/pages/DashboardPage/redux";
 
-import ClinicsListPage from 'containers/pages/ClinicsListPage/redux';
-import ClinicDetailPage from 'containers/pages/ClinicDetailPage/redux';
+import ClinicsListPage from "containers/pages/ClinicsListPage/redux";
+import ClinicDetailPage from "containers/pages/ClinicDetailPage/redux";
 
-import DeclarationsListPage from 'containers/pages/DeclarationsListPage/redux';
-import DeclarationDetailPage from 'containers/pages/DeclarationDetailPage/redux';
+import DeclarationsListPage from "containers/pages/DeclarationsListPage/redux";
+import DeclarationDetailPage from "containers/pages/DeclarationDetailPage/redux";
 
-import PendingDeclarationDetailPage from 'containers/pages/PendingDeclarationDetailPage/redux';
-import PendingDeclarationsListPage from 'containers/pages/PendingDeclarationsListPage/redux';
+import PendingDeclarationDetailPage from "containers/pages/PendingDeclarationDetailPage/redux";
+import PendingDeclarationsListPage from "containers/pages/PendingDeclarationsListPage/redux";
 
-import EmployeesListPage from 'containers/pages/EmployeesListPage/redux';
-import EmployeeDetailPage from 'containers/pages/EmployeeDetailPage/redux';
-import PendingEmployeesListPage from 'containers/pages/PendingEmployeesListPage/redux';
-import PendingEmployeeDetailPage from 'containers/pages/PendingEmployeeDetailPage/redux';
+import EmployeesListPage from "containers/pages/EmployeesListPage/redux";
+import EmployeeDetailPage from "containers/pages/EmployeeDetailPage/redux";
+import PendingEmployeesListPage from "containers/pages/PendingEmployeesListPage/redux";
+import PendingEmployeeDetailPage from "containers/pages/PendingEmployeeDetailPage/redux";
 
-import InnmsListPage from 'containers/pages/InnmsListPage/redux';
-import InnmDetailPage from 'containers/pages/InnmDetailPage/redux';
+import InnmsListPage from "containers/pages/InnmsListPage/redux";
+import InnmDetailPage from "containers/pages/InnmDetailPage/redux";
 
-import InnmDosagesListPage from 'containers/pages/InnmDosagesListPage/redux';
-import InnmDosagesDetailPage from 'containers/pages/InnmDosagesDetailPage/redux';
-import InnmDosagesCreatePage from 'containers/pages/InnmDosagesCreatePage/redux';
+import InnmDosagesListPage from "containers/pages/InnmDosagesListPage/redux";
+import InnmDosagesDetailPage from "containers/pages/InnmDosagesDetailPage/redux";
+import InnmDosagesCreatePage from "containers/pages/InnmDosagesCreatePage/redux";
 
-import MedicationsListPage from 'containers/pages/MedicationsListPage/redux';
-import MedicationDetailPage from 'containers/pages/MedicationDetailPage/redux';
-import MedicationCreatePage from 'containers/pages/MedicationCreatePage/redux';
+import MedicationsListPage from "containers/pages/MedicationsListPage/redux";
+import MedicationDetailPage from "containers/pages/MedicationDetailPage/redux";
+import MedicationCreatePage from "containers/pages/MedicationCreatePage/redux";
 
-import MedicationRequestsListPage from 'containers/pages/MedicationRequestsListPage/redux';
-import MedicationRequestDetailPage from 'containers/pages/MedicationRequestDetailPage/redux';
+import MedicationRequestsListPage from "containers/pages/MedicationRequestsListPage/redux";
+import MedicationRequestDetailPage from "containers/pages/MedicationRequestDetailPage/redux";
 
-import MedicationDispensesListPage from 'containers/pages/MedicationDispensesListPage/redux';
-import MedicationDispenseDetailPage from 'containers/pages/MedicationDispenseDetailPage/redux';
+import MedicationDispensesListPage from "containers/pages/MedicationDispensesListPage/redux";
+import MedicationDispenseDetailPage from "containers/pages/MedicationDispenseDetailPage/redux";
 
-import MedicalProgramsListPage from 'containers/pages/MedicalProgramsListPage/redux';
-import MedicalProgramDetailPage from 'containers/pages/MedicalProgramDetailPage/redux';
+import MedicalProgramsListPage from "containers/pages/MedicalProgramsListPage/redux";
+import MedicalProgramDetailPage from "containers/pages/MedicalProgramDetailPage/redux";
 
-import ProgramMedicationsListPage from 'containers/pages/ProgramMedicationsListPage/redux';
-import ProgramMedicationUpdatePage from 'containers/pages/ProgramMedicationUpdatePage/redux';
-import ProgramMedicationDetailPage from 'containers/pages/ProgramMedicationDetailPage/redux';
+import ProgramMedicationsListPage from "containers/pages/ProgramMedicationsListPage/redux";
+import ProgramMedicationUpdatePage from "containers/pages/ProgramMedicationUpdatePage/redux";
+import ProgramMedicationDetailPage from "containers/pages/ProgramMedicationDetailPage/redux";
 
-import BlackUsersListPage from 'containers/pages/BlackUsersListPage/redux';
-import BlackListUserDetailPage from 'containers/pages/BlackListUserDetailPage/redux';
+import BlackUsersListPage from "containers/pages/BlackUsersListPage/redux";
+import BlackListUserDetailPage from "containers/pages/BlackListUserDetailPage/redux";
 
-import PartyUsersListPage from 'containers/pages/PartyUsersListPage/redux';
+import PartyUsersListPage from "containers/pages/PartyUsersListPage/redux";
 
 const blocks = combineReducers({
   Aside

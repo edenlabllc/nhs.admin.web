@@ -1,21 +1,21 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { party_user } from 'schemas';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { party_user } from "schemas";
+import { invoke } from "./api";
 
 export const fetchPartyUsers = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/party_users`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'party_users/FETCH_LIST_REQUEST',
+      "party_users/FETCH_LIST_REQUEST",
       {
-        type: 'party_users/FETCH_LIST_SUCCESS',
+        type: "party_users/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,12 +27,12 @@ export const fetchPartyUsers = options =>
             .json()
             .then(json => json.paging)
       },
-      'party_users/FETCH_LIST_FAILURE'
+      "party_users/FETCH_LIST_FAILURE"
     ]
   });
 
 export default handleAction(
-  combineActions('party_users/FETCH_LIST_SUCCESS'),
+  combineActions("party_users/FETCH_LIST_SUCCESS"),
   (state, action) => ({
     ...state,
     ...action.payload.entities.party_users

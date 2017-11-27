@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
 
-import * as fromBlackListUsers from 'redux/black-list-users';
+import * as fromBlackListUsers from "redux/black-list-users";
 
 export const showBlackListUsers = createAction(
-  'blackListUsersDetailPage/SHOW_DETAIL'
+  "blackListUsersDetailPage/SHOW_DETAIL"
 );
 
 export const fetchBlackListUser = id => dispatch =>

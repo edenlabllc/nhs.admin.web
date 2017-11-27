@@ -1,23 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { withRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { withRouter } from "react-router";
+import Helmet from "react-helmet";
 
-import BackLink from 'containers/blocks/BackLink';
-import Line from 'components/Line';
-import InnmDosagesCreateForm from 'containers/forms/InnmDosagesCreateForm';
-import { getDictionary, getInnms } from 'reducers';
+import BackLink from "containers/blocks/BackLink";
+import Line from "components/Line";
+import InnmDosagesCreateForm from "containers/forms/InnmDosagesCreateForm";
+import { getDictionary, getInnms } from "reducers";
 
-import { onSubmit, onChangeSearchInnm } from './redux';
+import { onSubmit, onChangeSearchInnm } from "./redux";
 
 @withRouter
 @translate()
 @connect(
   state => ({
     innms: getInnms(state, state.pages.InnmDosagesCreatePage.innms),
-    medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
-    medication_form: getDictionary(state, 'MEDICATION_FORM')
+    medication_unit: getDictionary(state, "MEDICATION_UNIT"),
+    medication_form: getDictionary(state, "MEDICATION_FORM")
   }),
   { onSubmit, onChangeSearchInnm }
 )
@@ -39,8 +39,8 @@ export default class InnmDosagesCreatePage extends React.Component {
           title="Сторінка створення лікарської форми"
           meta={[
             {
-              property: 'og:title',
-              content: 'Сторінка створення лікарської форми'
+              property: "og:title",
+              content: "Сторінка створення лікарської форми"
             }
           ]}
         />

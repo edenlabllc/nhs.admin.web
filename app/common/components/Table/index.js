@@ -1,11 +1,11 @@
-import React, { Children } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React, { Children } from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
-const DEFAULT_PLACEHOLDER = 'No data';
+const DEFAULT_PLACEHOLDER = "No data";
 
 const TableRowComponent = ({ columns = [], data = {}, ...rest }) => (
   <tr {...rest}>
@@ -17,9 +17,9 @@ const TableRowComponent = ({ columns = [], data = {}, ...rest }) => (
         className={align && styles[align]}
         key={key}
       >
-        {typeof data[key] !== 'undefined' || React.isValidElement(data[key])
+        {typeof data[key] !== "undefined" || React.isValidElement(data[key])
           ? data[key]
-          : ''}
+          : ""}
       </td>
     ))}
   </tr>
@@ -103,14 +103,12 @@ const Table = props => {
   );
 };
 
-/* eslint-disable react/no-unused-prop-types */
-
 const columnsType = PropTypes.arrayOf(
   PropTypes.shape({
     key: PropTypes.any.isRequired,
     title: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    align: PropTypes.oneOf(['left', 'center', 'right']),
+    align: PropTypes.oneOf(["left", "center", "right"]),
     colspan: PropTypes.number
   })
 );

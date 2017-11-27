@@ -1,12 +1,12 @@
 /**
  * @link https://github.com/motdotla/dotenv
  */
-require('dotenv').config();
+require("dotenv").config();
 
-const appUrlBase = 'http://localhost:8080';
+const appUrlBase = "http://localhost:8080";
 const width = 1024;
 const height = 768;
-const debugMode = process.env.DEBUG === 'true';
+const debugMode = process.env.DEBUG === "true";
 
 const config = {
   user: {

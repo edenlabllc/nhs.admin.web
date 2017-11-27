@@ -1,7 +1,6 @@
 {
   "name": "nhs.admin.web",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
     "PREBUILD": {
       "description": "RUN postinstall script",
@@ -13,9 +12,7 @@
       "quantity": 1
     }
   },
-  "addons": [
-
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"

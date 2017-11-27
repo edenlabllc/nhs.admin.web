@@ -1,37 +1,110 @@
 /* stylelint-disable */
 
 @font-face {
-  font-family: 'Geometria';
+  font-family: "Geometria";
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/Geometria.eot');
-  src: url('/fonts/Geometria.eot') format('embedded-opentype'),
-  url('/fonts/Geometria.woff2') format('woff2'),
-  url('/fonts/Geometria.woff') format('woff');
+  src: url("/fonts/Geometria.eot");
+  src: url("/fonts/Geometria.eot") format("embedded-opentype"),
+    url("/fonts/Geometria.woff2") format("woff2"),
+    url("/fonts/Geometria.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Geometria';
+  font-family: "Geometria";
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/Geometria-Bold.eot');
-  src: url('/fonts/Geometria-Bold.eot') format('embedded-opentype'),
-  url('/fonts/Geometria-Bold.woff2') format('woff2'),
-  url('/fonts/Geometria-Bold.woff') format('woff');
+  src: url("/fonts/Geometria-Bold.eot");
+  src: url("/fonts/Geometria-Bold.eot") format("embedded-opentype"),
+    url("/fonts/Geometria-Bold.woff2") format("woff2"),
+    url("/fonts/Geometria-Bold.woff") format("woff");
 }
 
-html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5,
-h6, p, blockquote, pre,a, abbr, acronym, address, big,
-cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small,
-strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt,
-dd, ol, ul, li,fieldset, form, label, legend,table, caption,
-tbody, tfoot, thead, tr, th, td,article, aside, canvas, details,
-embed, figure, figcaption, footer, header, hgroup, menu, nav,
-output, ruby, section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline
+  vertical-align: baseline;
 }
 
 html {
@@ -39,20 +112,24 @@ html {
 }
 
 body {
-  background-image: linear-gradient(-30deg,#3d72b4 -10%, #2d2b4a 50%);
+  background-image: linear-gradient(-30deg, #3d72b4 -10%, #2d2b4a 50%);
   color: #454545;
   min-height: 100vh;
 }
 
-textarea, input, body {
-  font: 400 12px/140% 'Geometria', sans-serif;
+textarea,
+input,
+body {
+  font: 400 12px/140% "Geometria", sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #3d3d3d;
 }
 
-img,fieldset, a img {
+img,
+fieldset,
+a img {
   border: none;
 }
 
@@ -74,11 +151,11 @@ button {
 }
 input[type="submit"],
 button {
-  cursor: pointer
+  cursor: pointer;
 }
 
 button {
-  font-family: 'Geometria', sans-serif;
+  font-family: "Geometria", sans-serif;
   -webkit-appearance: none;
   background: none;
   display: inline-block;
@@ -86,11 +163,24 @@ button {
   font-size: inherit;
 }
 
-div, input, textarea, select,button,
-h1,h2,h3,h4,h5,h6,a,span,a:focus {
+div,
+input,
+textarea,
+select,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+a:focus {
   outline: none;
 }
-ul,ol {
+ul,
+ol {
   list-style-type: none;
 }
 
@@ -102,7 +192,9 @@ table {
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 /* stylelint-enable */

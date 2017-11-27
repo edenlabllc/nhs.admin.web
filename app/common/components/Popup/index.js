@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import { H2 } from '../Title';
-import Button from '../Button';
+import { H2 } from "../Title";
+import Button from "../Button";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
-const DEFAULT_CONFIRM_BTN_TEXT = 'Confirm';
-const DEFAULT_CANCEL_BTN_TEXT = 'Cancel';
-const DEFAULT_ALERT_BTN_TEXT = 'Done';
+const DEFAULT_CONFIRM_BTN_TEXT = "Confirm";
+const DEFAULT_CANCEL_BTN_TEXT = "Cancel";
+const DEFAULT_ALERT_BTN_TEXT = "Done";
 
 const THEMES_COLOR = {
-  error: 'red',
-  success: 'blue'
+  error: "red",
+  success: "blue"
 };
 
 const PopupComponent = ({
@@ -42,15 +42,14 @@ const PopupComponent = ({
       )}
       {children}
     </div>
-    {// eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    bgCloser && <div className={styles.closer} onClick={onClose} />}
+    {bgCloser && <div className={styles.closer} onClick={onClose} />}
   </section>
 );
 
 PopupComponent.propTypes = {
   title: PropTypes.string,
   active: PropTypes.bool,
-  theme: PropTypes.oneOf(['error', 'success']),
+  theme: PropTypes.oneOf(["error", "success"]),
   onClose: PropTypes.func,
   bgCloser: PropTypes.bool,
   id: PropTypes.string
@@ -85,7 +84,7 @@ AlertComponent.propTypes = {
   title: PropTypes.string,
   ok: PropTypes.string,
   active: PropTypes.bool,
-  theme: PropTypes.oneOf(['error', 'success']),
+  theme: PropTypes.oneOf(["error", "success"]),
   onClose: PropTypes.func
 };
 
@@ -127,7 +126,7 @@ ConfirmComponent.propTypes = {
   confirm: PropTypes.string,
   cancel: PropTypes.string,
   active: PropTypes.bool,
-  theme: PropTypes.oneOf(['error', 'success']),
+  theme: PropTypes.oneOf(["error", "success"]),
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func
 };

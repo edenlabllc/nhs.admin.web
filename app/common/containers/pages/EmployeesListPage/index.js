@@ -1,31 +1,31 @@
-import React from 'react';
-import format from 'date-fns/format';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import React from "react";
+import format from "date-fns/format";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
 
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { H1 } from 'components/Title';
-import { ListShowBy, ListTable } from 'components/List';
-import Table from 'components/Table';
-import Button from 'components/Button';
-import Pagination from 'components/Pagination';
+import { H1 } from "components/Title";
+import { ListShowBy, ListTable } from "components/List";
+import Table from "components/Table";
+import Button from "components/Button";
+import Pagination from "components/Pagination";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
 
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import { getEmployees } from 'reducers';
+import { getEmployees } from "reducers";
 
-import { fetchEmployees } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchEmployees } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTER_PARAMS = ['party_id', 'edrpou', 'legal_entity_id'];
+const FILTER_PARAMS = ["party_id", "edrpou", "legal_entity_id"];
 
 @withRouter
 @translate()
@@ -54,25 +54,25 @@ export default class EmployeesListPage extends React.Component {
     return (
       <div id="employees-list-page">
         <Helmet
-          title={t('Employees')}
-          meta={[{ property: 'og:title', content: t('Employees') }]}
+          title={t("Employees")}
+          meta={[{ property: "og:title", content: t("Employees") }]}
         />
 
-        <H1>{t('Employees')}</H1>
+        <H1>{t("Employees")}</H1>
 
         <SearchForm
           active={activeFilter}
-          placeholder={t('Find employee')}
+          placeholder={t("Find employee")}
           items={[
             {
-              name: 'party_id',
-              title: t('By party id'),
+              name: "party_id",
+              title: t("By party id"),
               validate: uuidValidate
             },
-            { name: 'edrpou', title: t('By edrpou') },
+            { name: "edrpou", title: t("By edrpou") },
             {
-              name: 'legal_entity_id',
-              title: t('By legal entity'),
+              name: "legal_entity_id",
+              title: t("By legal entity"),
               validate: uuidValidate
             }
           ]}
@@ -89,7 +89,8 @@ export default class EmployeesListPage extends React.Component {
                 ...values
               },
               this.props
-            )}
+            )
+          }
         />
 
         <ListShowBy>
@@ -102,15 +103,15 @@ export default class EmployeesListPage extends React.Component {
         <ListTable id="employees-table">
           <Table
             columns={[
-              { key: 'date', title: t('Date registration') },
-              { key: 'name', title: t('Employee name') },
-              { key: 'position', title: t('Position') },
-              { key: 'legalEntity', title: t('Legal entity') },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "date", title: t("Date registration") },
+              { key: "name", title: t("Employee name") },
+              { key: "position", title: t("Position") },
+              { key: "legalEntity", title: t("Legal entity") },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={employees.map(item => ({
               key: item.id,
-              date: format(item.start_date, 'DD/MM/YYYY'),
+              date: format(item.start_date, "DD/MM/YYYY"),
               name: (
                 <div>
                   {item.party.last_name} {item.party.first_name}
@@ -124,7 +125,7 @@ export default class EmployeesListPage extends React.Component {
                 <div>
                   <p>{item.legal_entity.name}</p>
                   <small>
-                    {t('edrpou')} {item.legal_entity.edrpou}
+                    {t("edrpou")} {item.legal_entity.edrpou}
                   </small>
                 </div>
               ),
@@ -134,7 +135,7 @@ export default class EmployeesListPage extends React.Component {
                   theme="link"
                   to={`/employees/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}

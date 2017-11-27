@@ -1,9 +1,9 @@
-import puppeteer from 'puppeteer';
-import config from '../config';
+import puppeteer from "puppeteer";
+import config from "../config";
 
-describe('Trying to go to private route', () => {
+describe("Trying to go to private route", () => {
   it(
-    'Dashboard must redirect to sign-in page',
+    "Dashboard must redirect to sign-in page",
     async () => {
       const browser = await puppeteer.launch(config.puppeteer);
       const page = await browser.newPage();
@@ -14,17 +14,15 @@ describe('Trying to go to private route', () => {
 
       // Go to private route.
       await page.goto(config.routes.private.dashboard);
-      await page.waitForSelector('#sign-in-page > div > article > a');
+      await page.waitForSelector("#sign-in-page > div > article > a");
 
       // After redirect we must be on signIn page.
       const dashboardText = await page.evaluate(() => {
-        return document.querySelector('#sign-in-page > div > article > a')
+        return document.querySelector("#sign-in-page > div > article > a")
           .textContent;
       });
-      const dashboardUrl = page.url();
 
-      expect(dashboardText).toEqual('Увійти за допомогою EHEALTH');
-      expect(dashboardUrl).toEqual(config.routes.public.signIn);
+      expect(dashboardText).toEqual("Увійти за допомогою EHEALTH");
 
       await browser.close();
     },

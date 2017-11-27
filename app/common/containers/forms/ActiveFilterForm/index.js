@@ -1,9 +1,9 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import Select from 'components/Select';
+import React from "react";
+import { reduxForm, Field } from "redux-form";
+import Select from "components/Select";
 
 @reduxForm({
-  form: 'active-filter-form'
+  form: "active-filter-form"
 })
 export default class ActiveFilterForm extends React.Component {
   render() {
@@ -16,8 +16,8 @@ export default class ActiveFilterForm extends React.Component {
             placeholder="Активні/Неактивні"
             active={active}
             options={[
-              { title: 'Активні', name: true },
-              { title: 'Неактивні', name: false }
+              { title: "Активні", name: true },
+              { title: "Неактивні", name: false }
             ]}
             onChange={active => onChange(active)}
           />

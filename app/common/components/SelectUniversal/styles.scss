@@ -156,7 +156,7 @@ $focused: #11d8fb;
       &:first-child {
         &::before,
         &::after {
-          content: '';
+          content: "";
           display: block;
           width: 0;
           height: 0;
@@ -196,7 +196,7 @@ $focused: #11d8fb;
       li:last-child {
         &::before,
         &::after {
-          content: '';
+          content: "";
           display: block;
           width: 0;
           height: 0;
@@ -286,7 +286,7 @@ $focused: #11d8fb;
   &::after {
     position: absolute;
     left: 1px;
-    content: ' ';
+    content: " ";
     height: 10px;
     width: 1px;
     background-color: #333;

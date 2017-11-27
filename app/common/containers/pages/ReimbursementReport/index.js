@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import Helmet from "react-helmet";
 
-import { H1 } from '../../../components/Title/index';
-import DateFilterForm from '../../forms/DateFilterForm/index';
-import { createUrl } from '../../../helpers/url';
-import { API_INTERNAL_PROXY } from '../../../config';
-import { getToken } from '../../../reducers/index';
+import { H1 } from "../../../components/Title/index";
+import DateFilterForm from "../../forms/DateFilterForm/index";
+import { createUrl } from "../../../helpers/url";
+import { API_INTERNAL_PROXY } from "../../../config";
+import { getToken } from "../../../reducers/index";
 
-const FILTER_DATE = ['date_from_dispense', 'date_to_dispense'];
+const FILTER_DATE = ["date_from_dispense", "date_to_dispense"];
 
 @withRouter
 @connect(state => ({
@@ -40,15 +40,15 @@ export default class ReimbursementReportPage extends React.Component {
       options
     );
 
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   }
 
   render() {
     return (
       <div id="reimbursement-report">
         <Helmet
-          title={'Звіт'}
-          meta={[{ property: 'og:title', content: 'Звіт' }]}
+          title={"Звіт"}
+          meta={[{ property: "og:title", content: "Звіт" }]}
         />
 
         <H1>Звіт</H1>
@@ -60,7 +60,7 @@ export default class ReimbursementReportPage extends React.Component {
             {}
           )}
           onSubmit={this.onSubmit}
-          submitTitle={'Завантажити'}
+          submitTitle={"Завантажити"}
         />
       </div>
     );

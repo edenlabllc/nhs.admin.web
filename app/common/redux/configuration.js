@@ -1,47 +1,47 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { createUrl } from 'helpers/url';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { createUrl } from "helpers/url";
+import { invoke } from "./api";
 
 export const fetchConfiguration = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/global_parameters`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'dictionaries/FETCH_CONFIGURATION_REQUEST',
+      "dictionaries/FETCH_CONFIGURATION_REQUEST",
       {
-        type: 'dictionaries/FETCH_CONFIGURATION_SUCCESS',
+        type: "dictionaries/FETCH_CONFIGURATION_SUCCESS",
         payload: (action, state, res) => res.json().then(resp => resp.data)
       },
-      'dictionaries/FETCH_CONFIGURATION_FAILURE'
+      "dictionaries/FETCH_CONFIGURATION_FAILURE"
     ]
   });
 
 export const updateConfiguration = body =>
   invoke({
     endpoint: `${API_URL}/api/global_parameters`,
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'dictionaries/UPDATE_CONFIGURATION_REQUEST',
+      "dictionaries/UPDATE_CONFIGURATION_REQUEST",
       {
-        type: 'dictionaries/UPDATE_CONFIGURATION_SUCCESS',
+        type: "dictionaries/UPDATE_CONFIGURATION_SUCCESS",
         payload: (action, state, res) => res.json().then(resp => resp.data)
       },
-      'dictionaries/UPDATE_CONFIGURATION_FAILURE'
+      "dictionaries/UPDATE_CONFIGURATION_FAILURE"
     ],
     body
   });
 
 export default handleAction(
   combineActions(
-    'dictionaries/FETCH_CONFIGURATION_SUCCESS',
-    'dictionaries/UPDATE_CONFIGURATION_SUCCESS'
+    "dictionaries/FETCH_CONFIGURATION_SUCCESS",
+    "dictionaries/UPDATE_CONFIGURATION_SUCCESS"
   ),
   (state, action) => ({
     ...state,

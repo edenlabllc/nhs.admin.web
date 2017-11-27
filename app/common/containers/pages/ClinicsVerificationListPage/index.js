@@ -1,22 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter, Link } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import { ListPagination } from 'components/List';
-import Pagination from 'components/CursorPagination';
-import Icon from 'components/Icon';
+import { H1 } from "components/Title";
+import { ListPagination } from "components/List";
+import Pagination from "components/CursorPagination";
+import Icon from "components/Icon";
 
-import BackLink from 'containers/blocks/BackLink';
-import ClinicsList from 'containers/blocks/ClinicsList';
-import ShowBy from 'containers/blocks/ShowBy';
+import BackLink from "containers/blocks/BackLink";
+import ClinicsList from "containers/blocks/ClinicsList";
+import ShowBy from "containers/blocks/ShowBy";
 
-import { getClinics } from 'reducers';
+import { getClinics } from "reducers";
 
-import { fetchClinics } from './redux';
+import { fetchClinics } from "./redux";
 
 @withRouter
 @translate()
@@ -40,7 +40,7 @@ export default class ClinicsVerificationListPage extends React.Component {
 
     const query = Object.keys(newFilter).reduce((target, key) => {
       if (newFilter[key]) {
-        target[key] = newFilter[key]; // eslint-disable-line
+        target[key] = newFilter[key];
       }
 
       return target;
@@ -58,15 +58,15 @@ export default class ClinicsVerificationListPage extends React.Component {
     return (
       <div id="clinics-verification-list-page">
         <Helmet
-          title={t('Verification clinics')}
-          meta={[{ property: 'og:title', content: t('Verification clinics') }]}
+          title={t("Verification clinics")}
+          meta={[{ property: "og:title", content: t("Verification clinics") }]}
         />
 
         <BackLink to="/clinics-verification" detached>
-          {t('Back to search page')}
+          {t("Back to search page")}
         </BackLink>
 
-        <H1>{t('Verification clinics')}</H1>
+        <H1>{t("Verification clinics")}</H1>
 
         <ShowBy
           active={Number(location.query.limit) || 5}

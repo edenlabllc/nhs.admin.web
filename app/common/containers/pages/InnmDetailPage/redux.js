@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromInnms from 'redux/innms';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromInnms from "redux/innms";
 
-export const showInnm = createAction('innm/SHOW_CONFIGURATION');
+export const showInnm = createAction("innm/SHOW_CONFIGURATION");
 
 export const fetchInnm = id => dispatch =>
   dispatch(fromInnms.fetchInnm(id)).then(action => {

@@ -1,37 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import Table from 'components/Table';
-import ShowBy from 'containers/blocks/ShowBy';
-import ColoredText from 'components/ColoredText';
+import Table from "components/Table";
+import ShowBy from "containers/blocks/ShowBy";
+import ColoredText from "components/ColoredText";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
 
-import { getProgramMedications } from 'reducers';
+import { getProgramMedications } from "reducers";
 
-import { fetchProgramMedications } from './redux';
-import styles from './styles.scss';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchProgramMedications } from "./redux";
+import styles from "./styles.scss";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
 const FILTER_PARAMS = [
-  'medical_program_id',
-  'medical_program_name',
-  'innm_dosage_id',
-  'innm_dosage_name',
-  'medication_id',
-  'medication_name'
+  "medical_program_id",
+  "medical_program_name",
+  "innm_dosage_id",
+  "innm_dosage_name",
+  "medication_id",
+  "medication_name"
 ];
 
 @withRouter
@@ -66,7 +66,7 @@ export default class ProgramMedicationsListPage extends React.Component {
         <Helmet
           title="Учасники медичних программ"
           meta={[
-            { property: 'og:title', content: 'Учасники медичних программ' }
+            { property: "og:title", content: "Учасники медичних программ" }
           ]}
         />
         <div className={styles.header}>
@@ -91,29 +91,29 @@ export default class ProgramMedicationsListPage extends React.Component {
             placeholder="Знайти учасника програми"
             items={[
               {
-                name: 'medical_program_id',
-                title: t('за ID медичної програми'),
+                name: "medical_program_id",
+                title: t("за ID медичної програми"),
                 validate: uuidValidate
               },
               {
-                name: 'medical_program_name',
-                title: t('за назва медичної програми')
+                name: "medical_program_name",
+                title: t("за назва медичної програми")
               },
               {
-                name: 'innm_dosage_id',
-                title: t('за ID Лікарської форми'),
+                name: "innm_dosage_id",
+                title: t("за ID Лікарської форми"),
                 validate: uuidValidate
               },
               {
-                name: 'innm_dosage_name',
-                title: t('за Назвою Лікарської форми')
+                name: "innm_dosage_name",
+                title: t("за Назвою Лікарської форми")
               },
               {
-                name: 'medication_id',
-                title: t('за ID Торгової Назви'),
+                name: "medication_id",
+                title: t("за ID Торгової Назви"),
                 validate: uuidValidate
               },
-              { name: 'medication_name', title: t('за Торговою Назвою') }
+              { name: "medication_name", title: t("за Торговою Назвою") }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -131,7 +131,8 @@ export default class ProgramMedicationsListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 
@@ -145,17 +146,17 @@ export default class ProgramMedicationsListPage extends React.Component {
         <div id="medication-table" className={styles.table}>
           <Table
             columns={[
-              { key: 'medical_program_id', title: 'ID\n медичної програми' },
+              { key: "medical_program_id", title: "ID\n медичної програми" },
               {
-                key: 'medical_program_name',
-                title: 'Назва медичної програми'
+                key: "medical_program_name",
+                title: "Назва медичної програми"
               },
-              { key: 'medication_name', title: 'Торгівельне найменування' },
-              { key: 'medication_form', title: 'Форма' },
-              { key: 'manufacturer', title: 'Виробник' },
-              { key: 'reimbursement_amount', title: 'Сума Відшкодування' },
-              { key: 'status', title: 'Активний' },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "medication_name", title: "Торгівельне найменування" },
+              { key: "medication_form", title: "Форма" },
+              { key: "manufacturer", title: "Виробник" },
+              { key: "reimbursement_amount", title: "Сума Відшкодування" },
+              { key: "status", title: "Активний" },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={program_medications.map(item => ({
               medical_program_id: <div>{item.medical_program.id}</div>,
@@ -171,8 +172,9 @@ export default class ProgramMedicationsListPage extends React.Component {
               ),
               manufacturer: (
                 <div>
-                  {`${item.medication.manufacturer.name} ${item.medication
-                    .manufacturer.country}`}
+                  {`${item.medication.manufacturer.name} ${
+                    item.medication.manufacturer.country
+                  }`}
                 </div>
               ),
               reimbursement_amount: (
@@ -193,7 +195,7 @@ export default class ProgramMedicationsListPage extends React.Component {
                   theme="link"
                   to={`/program-medications/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}
