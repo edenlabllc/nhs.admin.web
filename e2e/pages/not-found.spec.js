@@ -7,11 +7,15 @@ describe('Not found page', () => {
     async () => {
       const browser = await puppeteer.launch(config.puppeteer);
       const page = await browser.newPage();
+      await page.setViewport({
+        width: config.puppeteer.width,
+        height: config.puppeteer.height
+      });
 
       await page.goto(config.routes.public.notFound);
-      await page.waitForSelector('h1');
+      await page.waitForSelector('#not-found-page > div > h1');
       const text = await page.evaluate(
-        () => document.querySelector('h1').innerText
+        () => document.querySelector('#not-found-page > div > h1').innerText
       );
 
       expect(text).toEqual('Сторінка не знайдена');

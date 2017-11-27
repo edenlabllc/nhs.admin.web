@@ -11,7 +11,7 @@ import styles from './styles.scss';
 export default class InternalErrorPage extends React.Component {
   render() {
     return (
-      <section className={styles.error} id="not-found-page">
+      <section className={styles.error} id="internal-error-page">
         <Helmet
           title={'Internal Error'}
           meta={[{ property: 'og:title', content: 'Internal Error' }]}
@@ -23,7 +23,7 @@ export default class InternalErrorPage extends React.Component {
             <br />
             <Button theme="link" to="/">
               {'Go to dashboard'}
-            </Button>.
+            </Button>
           </p>
         </div>
       </section>
