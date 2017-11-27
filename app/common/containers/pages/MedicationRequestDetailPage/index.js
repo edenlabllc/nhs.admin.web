@@ -1,23 +1,23 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-import format from 'date-fns/format';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
+import format from "date-fns/format";
 
-import Line from 'components/Line';
-import { DetailMain } from 'components/Detail';
-import { H1 } from 'components/Title';
-import DataList from 'components/DataList';
+import Line from "components/Line";
+import { DetailMain } from "components/Detail";
+import { H1 } from "components/Title";
+import DataList from "components/DataList";
 
-import BackLink from 'containers/blocks/BackLink';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import Container from 'containers/blocks/Container';
+import BackLink from "containers/blocks/BackLink";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import Container from "containers/blocks/Container";
 
-import { getMedicationRequest } from 'reducers';
+import { getMedicationRequest } from "reducers";
 
-import { fetchMedicationRequest } from './redux';
+import { fetchMedicationRequest } from "./redux";
 
 const MedicationRequestDetailPage = ({
   router,
@@ -47,7 +47,7 @@ const MedicationRequestDetailPage = ({
   <div id="medication-request-detail-page">
     <Helmet
       title={`Рецепти - Рецепт ${id}`}
-      meta={[{ property: 'og:title', content: `Рецепти - Рецепт ${id}` }]}
+      meta={[{ property: "og:title", content: `Рецепти - Рецепт ${id}` }]}
     />
 
     <BackLink onClick={() => router.goBack()}>
@@ -61,19 +61,19 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID рецепту', value: id },
-          { name: 'Статус', value: status },
-          { name: 'Номер рецепту', value: request_number },
-          { name: 'Дата створення', value: format(created_at, 'DD/MM/YYYY') },
-          { name: 'Дата початку', value: format(started_at, 'DD/MM/YYYY') },
-          { name: 'Дата закінчення', value: format(ended_at, 'DD/MM/YYYY') },
+          { name: "ID рецепту", value: id },
+          { name: "Статус", value: status },
+          { name: "Номер рецепту", value: request_number },
+          { name: "Дата створення", value: format(created_at, "DD/MM/YYYY") },
+          { name: "Дата початку", value: format(started_at, "DD/MM/YYYY") },
+          { name: "Дата закінчення", value: format(ended_at, "DD/MM/YYYY") },
           {
-            name: 'Відпуск дійсний з',
-            value: format(dispense_valid_from, 'DD/MM/YYYY')
+            name: "Відпуск дійсний з",
+            value: format(dispense_valid_from, "DD/MM/YYYY")
           },
           {
-            name: 'Відпуск дійсний по',
-            value: format(dispense_valid_to, 'DD/MM/YYYY')
+            name: "Відпуск дійсний по",
+            value: format(dispense_valid_to, "DD/MM/YYYY")
           }
         ]}
       />
@@ -84,11 +84,11 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID медичного закладу', value: legal_entity.id },
-          { name: 'Назва', value: legal_entity.name },
-          { name: 'ЄДРПОУ', value: legal_entity.edrpou },
-          { name: 'ID підрозділу', value: division.id },
-          { name: 'Назва підрозділу', value: division.name }
+          { name: "ID медичного закладу", value: legal_entity.id },
+          { name: "Назва", value: legal_entity.name },
+          { name: "ЄДРПОУ", value: legal_entity.edrpou },
+          { name: "ID підрозділу", value: division.id },
+          { name: "Назва підрозділу", value: division.name }
         ]}
       />
 
@@ -98,10 +98,10 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID працівника', value: employee.id },
-          { name: 'Прізвище', value: party.last_name },
+          { name: "ID працівника", value: employee.id },
+          { name: "Прізвище", value: party.last_name },
           { name: "Ім'я", value: party.first_name },
-          party.second_name && { name: 'По батькові', value: party.second_name }
+          party.second_name && { name: "По батькові", value: party.second_name }
         ]}
       />
 
@@ -111,16 +111,16 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID особи', value: person.id },
-          { name: 'Прізвище', value: person.last_name },
+          { name: "ID особи", value: person.id },
+          { name: "Прізвище", value: person.last_name },
           { name: "Ім'я", value: person.first_name },
           person.second_name && {
-            name: 'По батькові',
+            name: "По батькові",
             value: person.second_name
           },
           {
-            name: 'Дата народження',
-            value: format(person.birth_date, 'DD/MM/YYYY')
+            name: "Дата народження",
+            value: format(person.birth_date, "DD/MM/YYYY")
           }
         ]}
       />
@@ -131,14 +131,14 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'Назва', value: medication_name },
-          { name: 'ID дозування', value: medication_id },
+          { name: "Назва", value: medication_name },
+          { name: "ID дозування", value: medication_id },
           {
-            name: 'Форма',
+            name: "Форма",
             value: <DictionaryValue dictionary="MEDICATION_FORM" value={form} />
           },
-          { name: 'Дозування', value: <Container container={dosage} /> },
-          { name: 'Кількість препарату', value: medication_qty }
+          { name: "Дозування", value: <Container container={dosage} /> },
+          { name: "Кількість препарату", value: medication_qty }
         ]}
       />
 
@@ -148,8 +148,8 @@ const MedicationRequestDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID програми', value: medical_program.id },
-          { name: 'Назва програми', value: medical_program.name }
+          { name: "ID програми", value: medical_program.id },
+          { name: "Назва програми", value: medical_program.name }
         ]}
       />
     </DetailMain>

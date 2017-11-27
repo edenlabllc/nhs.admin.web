@@ -1,8 +1,8 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import classnames from 'classnames';
+import React from "react";
+import withStyles from "withStyles";
+import classnames from "classnames";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const ListHeaderComponent = ({ button, children, ...props }) => (
   <div className={styles.header} {...props}>

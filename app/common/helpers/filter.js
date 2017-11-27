@@ -6,7 +6,7 @@ export const setFilter = (filter, { location, router }) => {
   };
 
   const query = Object.entries(newFilter)
-    .filter(([_, value]) => value !== undefined && value != null) // eslint-disable-line
+    .filter(([_, value]) => value !== undefined && value != null)
     .reduce(
       (query, [key, value]) => Object.assign(query, { [key]: value }),
       {}

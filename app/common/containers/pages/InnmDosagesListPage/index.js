@@ -1,31 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
-import Icon from 'components/Icon';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
+import Icon from "components/Icon";
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import Table from 'components/Table';
-import ShowBy from 'containers/blocks/ShowBy';
+import Table from "components/Table";
+import ShowBy from "containers/blocks/ShowBy";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
 
-import { getInnmDosages } from 'reducers';
+import { getInnmDosages } from "reducers";
 
-import { fetchInnmDosages } from './redux';
+import { fetchInnmDosages } from "./redux";
 
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTER_PARAMS = ['id', 'name'];
+const FILTER_PARAMS = ["id", "name"];
 
 @withRouter
 @translate()
@@ -57,7 +57,7 @@ export default class InnmDosagesListPage extends React.Component {
       <div id="innm-dosages-list-page">
         <Helmet
           title="Лікарські форми"
-          meta={[{ property: 'og:title', content: t('Лікарські форми') }]}
+          meta={[{ property: "og:title", content: t("Лікарські форми") }]}
         />
         <ListHeader
           button={
@@ -82,11 +82,11 @@ export default class InnmDosagesListPage extends React.Component {
             placeholder="Знайти лікарську форму"
             items={[
               {
-                name: 'id',
-                title: t('За ідентифікатором'),
+                name: "id",
+                title: t("За ідентифікатором"),
                 validate: uuidValidate
               },
-              { name: 'name', title: t('За назвою') }
+              { name: "name", title: t("За назвою") }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -100,7 +100,8 @@ export default class InnmDosagesListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 
@@ -114,11 +115,11 @@ export default class InnmDosagesListPage extends React.Component {
         <ListTable id="innm-dosages-table">
           <Table
             columns={[
-              { key: 'id', title: t('ID') },
-              { key: 'name', title: t('Назва') },
-              { key: 'form', title: t('Форма') },
-              { key: 'active', title: t('Активна') },
-              { key: 'action', title: t('Деталі /Деактивація'), width: 150 }
+              { key: "id", title: t("ID") },
+              { key: "name", title: t("Назва") },
+              { key: "form", title: t("Форма") },
+              { key: "active", title: t("Активна") },
+              { key: "action", title: t("Деталі /Деактивація"), width: 150 }
             ]}
             data={innm_dosages.map(item => ({
               id: <div>{item.id}</div>,
@@ -140,7 +141,7 @@ export default class InnmDosagesListPage extends React.Component {
                   theme="link"
                   to={`/innm-dosages/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}

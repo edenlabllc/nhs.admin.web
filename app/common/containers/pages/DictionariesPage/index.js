@@ -1,22 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import { ListFilter, ListTable } from 'components/List';
-import Table from 'components/Table';
-import Button from 'components/Button';
-import Select from 'components/Select';
+import { H1 } from "components/Title";
+import { ListFilter, ListTable } from "components/List";
+import Table from "components/Table";
+import Button from "components/Button";
+import Select from "components/Select";
 
 import {
   getDictionaries,
   getDictionariesNames,
   getDictionariesLabels
-} from 'reducers';
+} from "reducers";
 
-import { fetchDictionaries } from 'redux/dictionaries';
+import { fetchDictionaries } from "redux/dictionaries";
 
 @translate()
 @provideHooks({
@@ -42,24 +42,24 @@ export default class DictionariesPage extends React.Component {
     return (
       <div id="dictionaries-page">
         <Helmet
-          title={t('Dictionaries')}
-          meta={[{ property: 'og:title', content: t('Dictionaries') }]}
+          title={t("Dictionaries")}
+          meta={[{ property: "og:title", content: t("Dictionaries") }]}
         />
 
-        <H1>{t('Dictionaries')}</H1>
+        <H1>{t("Dictionaries")}</H1>
 
         <div>
           <ListFilter>
             <div>
               <Select
-                placeholder={t('Filter by name')}
-                options={[{ name: null, title: t('All') }, ...names]}
+                placeholder={t("Filter by name")}
+                options={[{ name: null, title: t("All") }, ...names]}
                 onChange={name => this.setState({ name })}
               />
             </div>
             <div>
               <Select
-                placeholder={t('Filter by label')}
+                placeholder={t("Filter by label")}
                 options={labels.map(name => ({ name, title: name }))}
                 multiple
                 onChange={label => this.setState({ label })}
@@ -67,13 +67,13 @@ export default class DictionariesPage extends React.Component {
             </div>
           </ListFilter>
 
-          <p>{t('Select dictionary to edit')}</p>
+          <p>{t("Select dictionary to edit")}</p>
 
           <ListTable id="templates-table">
             <Table
               columns={[
-                { key: 'name', title: t('Dictionary Name') },
-                { key: 'edit', title: t('Edit') }
+                { key: "name", title: t("Dictionary Name") },
+                { key: "edit", title: t("Edit") }
               ]}
               data={Object.keys(dictionaries)
                 .filter(
@@ -93,7 +93,7 @@ export default class DictionariesPage extends React.Component {
                       theme="link"
                       to={`/dictionaries/${dictionaryName}`}
                     >
-                      {t('View Dictionary')}
+                      {t("View Dictionary")}
                     </Button>
                   )
                 }))}

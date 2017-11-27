@@ -1,35 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
 
-import Table from 'components/Table';
-import ShowBy from 'containers/blocks/ShowBy';
-import Icon from 'components/Icon';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import Table from "components/Table";
+import ShowBy from "containers/blocks/ShowBy";
+import Icon from "components/Icon";
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
 
-import { getMedications } from 'reducers';
+import { getMedications } from "reducers";
 
-import { fetchMedications } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchMedications } from "./redux";
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
 const FILTER_PARAMS = [
-  'id',
-  'innm_dosage_id',
-  'innm_dosage_name',
-  'name',
-  'form'
+  "id",
+  "innm_dosage_id",
+  "innm_dosage_name",
+  "name",
+  "form"
 ];
 
 @withRouter
@@ -62,7 +62,7 @@ export default class MedicationsListPage extends React.Component {
       <div id="medication-list-page">
         <Helmet
           title="Торгівельні найменування"
-          meta={[{ property: 'og:title', content: 'Торгівельні найменування' }]}
+          meta={[{ property: "og:title", content: "Торгівельні найменування" }]}
         />
 
         <ListHeader
@@ -88,17 +88,17 @@ export default class MedicationsListPage extends React.Component {
             active={activeFilter}
             placeholder="Знайти торгівельне найменування"
             items={[
-              { name: 'id', title: t('за ID'), validate: uuidValidate },
+              { name: "id", title: t("за ID"), validate: uuidValidate },
               {
-                name: 'innm_dosage_id',
-                title: t('за ID лікарської форми'),
+                name: "innm_dosage_id",
+                title: t("за ID лікарської форми"),
                 validate: uuidValidate
               },
               {
-                name: 'innm_dosage_name',
-                title: t('за назвою лікарської форми')
+                name: "innm_dosage_name",
+                title: t("за назвою лікарської форми")
               },
-              { name: 'name', title: t('за назвою') }
+              { name: "name", title: t("за назвою") }
             ]}
             initialValues={{
               [activeFilter]: location.query[activeFilter]
@@ -114,7 +114,8 @@ export default class MedicationsListPage extends React.Component {
                   ...values
                 },
                 this.props
-              )}
+              )
+            }
           />
         </div>
 
@@ -128,12 +129,12 @@ export default class MedicationsListPage extends React.Component {
         <ListTable id="medication-table">
           <Table
             columns={[
-              { key: 'id', title: t('ID') },
-              { key: 'innm_dosage_id', title: t('ID лікарської форми') },
-              { key: 'name', title: t('Торгівельне найменування') },
-              { key: 'form', title: t('Форма /Виробник') },
-              { key: 'active', title: t('Активна') },
-              { key: 'action', title: t('Детально / Деактивація'), width: 200 }
+              { key: "id", title: t("ID") },
+              { key: "innm_dosage_id", title: t("ID лікарської форми") },
+              { key: "name", title: t("Торгівельне найменування") },
+              { key: "form", title: t("Форма /Виробник") },
+              { key: "active", title: t("Активна") },
+              { key: "action", title: t("Детально / Деактивація"), width: 200 }
             ]}
             data={medications.map(item => ({
               id: <div>{item.id}</div>,
@@ -160,7 +161,7 @@ export default class MedicationsListPage extends React.Component {
                   theme="link"
                   to={`/medications/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}

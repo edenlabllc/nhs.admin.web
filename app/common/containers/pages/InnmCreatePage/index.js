@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { withRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { withRouter } from "react-router";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import InnmForm from 'containers/forms/InnmForm';
-import BackLink from 'containers/blocks/BackLink';
-import Line from 'components/Line';
+import { H1 } from "components/Title";
+import InnmForm from "containers/forms/InnmForm";
+import BackLink from "containers/blocks/BackLink";
+import Line from "components/Line";
 
-import { createInnm } from 'redux/innms';
+import { createInnm } from "redux/innms";
 
 @withRouter
 @translate()
@@ -22,7 +22,7 @@ export default class InnmCreatePage extends React.Component {
       <div id="innm-create-page">
         <Helmet
           title="Сторінка створення МНН"
-          meta={[{ property: 'og:title', content: 'Сторінка створення МНН' }]}
+          meta={[{ property: "og:title", content: "Сторінка створення МНН" }]}
         />
         <BackLink onClick={() => router.goBack()}>
           Повернутися до списку МНН
@@ -36,7 +36,8 @@ export default class InnmCreatePage extends React.Component {
           onSubmit={v =>
             createInnm(v).then(({ error, payload }) => {
               if (!error) router.push(`/innms/${payload.data.id}`);
-            })}
+            })
+          }
         />
       </div>
     );

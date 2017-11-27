@@ -1,20 +1,20 @@
-import React from 'react';
-import classnames from 'classnames';
-import withStyles from 'withStyles';
-import { translate } from 'react-i18next';
+import React from "react";
+import classnames from "classnames";
+import withStyles from "withStyles";
+import { translate } from "react-i18next";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @translate()
 @withStyles(styles)
 export default class ShowBy extends React.Component {
   static defaultProps = {
     counts: [5, 20, 50],
-    onChange: () => {},
+    onChange: () => {}
   };
 
   state = {
-    active: 5,
+    active: 5
   };
 
   componentWillMount() {
@@ -35,18 +35,19 @@ export default class ShowBy extends React.Component {
 
     return (
       <div className={styles.main}>
-        <span className={styles.text}>
-          {t('Show by')}
-        </span>
-        { counts.map(item => (
+        <span className={styles.text}>{t("Show by")}</span>
+        {counts.map(item => (
           <button
             key={item}
             onClick={() => this.onClick(item)}
-            className={classnames(styles.button, active === item && styles.button_active)}
+            className={classnames(
+              styles.button,
+              active === item && styles.button_active
+            )}
           >
             {item}
           </button>
-        )) }
+        ))}
       </div>
     );
   }

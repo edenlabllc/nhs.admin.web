@@ -1,32 +1,32 @@
-import React from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import { provideHooks } from "redial";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H3 } from 'components/Title';
-import Line from 'components/Line';
-import DataList from 'components/DataList';
-import InlineList from 'components/InlineList';
-import Upper from 'components/Upper';
-import { Confirm } from 'components/Popup';
-import Button from 'components/Button';
+import { H3 } from "components/Title";
+import Line from "components/Line";
+import DataList from "components/DataList";
+import InlineList from "components/InlineList";
+import Upper from "components/Upper";
+import { Confirm } from "components/Popup";
+import Button from "components/Button";
 
-import BlocksList from 'containers/blocks/BlocksList';
-import BackLink from 'containers/blocks/BackLink';
-import ColoredText from 'components/ColoredText';
-import ShowMore from 'containers/blocks/ShowMore';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import BlocksList from "containers/blocks/BlocksList";
+import BackLink from "containers/blocks/BackLink";
+import ColoredText from "components/ColoredText";
+import ShowMore from "containers/blocks/ShowMore";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { getClinic } from 'reducers';
+import { getClinic } from "reducers";
 
-import { verifyClinic, deactivateClinic } from 'redux/clinics';
+import { verifyClinic, deactivateClinic } from "redux/clinics";
 
-import { fetchClinic } from './redux';
-import styles from './styles.scss';
+import { fetchClinic } from "./redux";
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -67,18 +67,18 @@ export default class ClinicDetailPage extends React.Component {
       <div id="clinic-detail-page">
         <Helmet
           title={clinic.name}
-          meta={[{ property: 'og:title', content: clinic.name }]}
+          meta={[{ property: "og:title", content: clinic.name }]}
         />
 
         <BackLink onClick={() => this.props.router.goBack()}>
-          {t('Back to clinics list')}
+          {t("Back to clinics list")}
         </BackLink>
 
         <Line />
 
         <div className={styles.row}>
           <div>
-            <DataList list={[{ name: t('Clinic ID'), value: clinic.id }]} />
+            <DataList list={[{ name: t("Clinic ID"), value: clinic.id }]} />
           </div>
           <ShowWithScope scope="employee:read">
             <div className={styles.right}>
@@ -86,7 +86,7 @@ export default class ClinicDetailPage extends React.Component {
                 iconPosition="right"
                 to={`/employees?legal_entity_id=${clinic.id}`}
               >
-                {t('Go to clinic employees list')}
+                {t("Go to clinic employees list")}
               </BackLink>
             </div>
           </ShowWithScope>
@@ -97,28 +97,28 @@ export default class ClinicDetailPage extends React.Component {
         <div className={styles.bold}>
           <DataList
             list={[
-              { name: t('Full name'), value: clinic.name },
-              { name: t('edrpou'), value: clinic.edrpou },
+              { name: t("Full name"), value: clinic.name },
+              { name: t("edrpou"), value: clinic.edrpou },
               {
-                name: t('Registration address'),
+                name: t("Registration address"),
                 value: (
                   <div className={styles.address}>
                     <p>
-                      {clinic.addresses[0].zip}, {clinic.addresses[0].area}{' '}
-                      {t('area')}, {t('city')} {clinic.addresses[0].settlement},
+                      {clinic.addresses[0].zip}, {clinic.addresses[0].area}{" "}
+                      {t("area")}, {t("city")} {clinic.addresses[0].settlement},
                     </p>
                     <p>
-                      {clinic.addresses[0].street},{' '}
+                      {clinic.addresses[0].street},{" "}
                       {clinic.addresses[0].building}
                     </p>
                     <small>
-                      {t('Residense address is equal to registration address')}
+                      {t("Residense address is equal to registration address")}
                     </small>
                   </div>
                 )
               },
               {
-                name: t('KVEDs'),
+                name: t("KVEDs"),
                 value: (
                   <div>
                     {clinic.kveds.map((name, key) => (
@@ -142,8 +142,8 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t('Short name'), value: clinic.short_name },
-            { name: t('Public name'), value: clinic.public_name }
+            { name: t("Short name"), value: clinic.short_name },
+            { name: t("Public name"), value: clinic.public_name }
           ]}
         />
 
@@ -153,7 +153,7 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t('Property type'),
+              name: t("Property type"),
               value: (
                 <DictionaryValue
                   dictionary="OWNER_PROPERTY_TYPE"
@@ -161,7 +161,7 @@ export default class ClinicDetailPage extends React.Component {
                 />
               )
             },
-            { name: t('Type'), value: clinic.type }
+            { name: t("Type"), value: clinic.type }
           ]}
         />
 
@@ -171,12 +171,12 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t('Phones'),
+              name: t("Phones"),
               value: (
                 <InlineList list={clinic.phones.map(item => item.number)} />
               )
             },
-            { name: t('Email'), value: clinic.email }
+            { name: t("Email"), value: clinic.email }
           ]}
         />
 
@@ -186,21 +186,21 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t('License and accreditation'),
+              name: t("License and accreditation"),
               value: (
-                <ShowMore name={t('Show documents')}>
+                <ShowMore name={t("Show documents")}>
                   {accreditation && (
                     <div>
-                      <H3>{t('Accreditation')}</H3>
+                      <H3>{t("Accreditation")}</H3>
                       <DataList
                         theme="min"
                         list={[
                           {
-                            name: t('Order No.'),
+                            name: t("Order No."),
                             value: <Upper>{accreditation.order_no}</Upper>
                           },
                           {
-                            name: t('Category'),
+                            name: t("Category"),
                             value: (
                               <DictionaryValue
                                 dictionary="ACCREDITATION_CATEGORY"
@@ -209,15 +209,15 @@ export default class ClinicDetailPage extends React.Component {
                             )
                           },
                           {
-                            name: t('Expiry date'),
+                            name: t("Expiry date"),
                             value: accreditation.expiry_date
                           },
                           {
-                            name: t('Issued date'),
+                            name: t("Issued date"),
                             value: accreditation.issued_date
                           },
                           {
-                            name: t('Order date'),
+                            name: t("Order date"),
                             value: accreditation.order_date
                           }
                         ]}
@@ -226,7 +226,7 @@ export default class ClinicDetailPage extends React.Component {
                     </div>
                   )}
 
-                  <H3>{t('Licenses')}</H3>
+                  <H3>{t("Licenses")}</H3>
 
                   <BlocksList>
                     {licenses.map((item, i) => (
@@ -238,7 +238,7 @@ export default class ClinicDetailPage extends React.Component {
                           </ColoredText>
                         </p>
                         <div>
-                          {t('Issued')}: {item.issued_date}, {t('expiry')}:{' '}
+                          {t("Issued")}: {item.issued_date}, {t("expiry")}:{" "}
                           {item.expiry_date}
                         </div>
                         <ColoredText color="gray">{item.issued_by}</ColoredText>
@@ -263,11 +263,11 @@ export default class ClinicDetailPage extends React.Component {
                 icon="back"
                 block
               >
-                {t('Back to list')}
+                {t("Back to list")}
               </Button>
             </div>
             {!clinic.nhs_verified &&
-              clinic.status !== 'CLOSED' && (
+              clinic.status !== "CLOSED" && (
                 <ShowWithScope scope="legal_entity:nhs_verify">
                   <div className={styles.buttons__column}>
                     <Button
@@ -277,25 +277,26 @@ export default class ClinicDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      {t('Approve clinic')}
+                      {t("Approve clinic")}
                     </Button>
                   </div>
                 </ShowWithScope>
               )}
           </div>
-          {clinic.status === 'ACTIVE' && (
+          {clinic.status === "ACTIVE" && (
             <ShowWithScope scope="legal_entity:deactivate">
               <div className={styles.buttons__row}>
                 <div className={styles.buttons__column}>
                   <Button
                     onClick={() =>
-                      this.setState({ showDeactivateConfirm: true })}
+                      this.setState({ showDeactivateConfirm: true })
+                    }
                     theme="border"
                     color="red"
                     icon="close"
                     block
                   >
-                    {t('Cancel verification')}
+                    {t("Cancel verification")}
                   </Button>
                 </div>
               </div>
@@ -303,21 +304,21 @@ export default class ClinicDetailPage extends React.Component {
           )}
         </div>
         <Confirm
-          title={t('Verify clinic {{name}}?', { name: clinic.name })}
+          title={t("Verify clinic {{name}}?", { name: clinic.name })}
           active={this.state.showVerifyConfirm}
           theme="success"
-          cancel={t('Cancel')}
-          confirm={t('Yes')}
+          cancel={t("Cancel")}
+          confirm={t("Yes")}
           onCancel={() => this.setState({ showVerifyConfirm: false })}
           onConfirm={() => this.verifyClinic()}
         />
 
         <Confirm
-          title={t('Deactivate clinic {{name}}?', { name: clinic.name })}
+          title={t("Deactivate clinic {{name}}?", { name: clinic.name })}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t('Cancel')}
-          confirm={t('Yes')}
+          cancel={t("Cancel")}
+          confirm={t("Yes")}
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateClinic()}
         />

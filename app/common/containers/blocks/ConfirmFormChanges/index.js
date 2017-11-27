@@ -1,8 +1,8 @@
-import React from 'react';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
+import React from "react";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
 
-import { Confirm } from 'components/Popup';
+import { Confirm } from "components/Popup";
 
 @translate()
 @withRouter
@@ -10,12 +10,16 @@ export default class ConfirmFormChanges extends React.Component {
   state = {
     isConfirmed: false,
     showConfirm: false,
-    location: null,
+    location: null
   };
 
   componentDidMount() {
-    this.removeListener = this.props.router.listenBefore((location) => {
-      if (this.state.isConfirmed || !this.props.isChanged || this.props.submitting) {
+    this.removeListener = this.props.router.listenBefore(location => {
+      if (
+        this.state.isConfirmed ||
+        !this.props.isChanged ||
+        this.props.submitting
+      ) {
         return true;
       }
 
@@ -42,15 +46,17 @@ export default class ConfirmFormChanges extends React.Component {
 
     return (
       <Confirm
-        title={t('You have unsaved changes')}
+        title={t("You have unsaved changes")}
         active={this.state.showConfirm}
         theme="error"
-        confirm={t('Ok')}
-        cancel={t('Cancel')}
+        confirm={t("Ok")}
+        cancel={t("Cancel")}
         id="confirm-leave"
         onCancel={() => this.setState({ showConfirm: false })}
         onConfirm={() => this.confirmLocation()}
-      >{ t('Are you sure want to leave this page?') }</Confirm>
+      >
+        {t("Are you sure want to leave this page?")}
+      </Confirm>
     );
   }
 }

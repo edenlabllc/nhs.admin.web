@@ -1,24 +1,24 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import { reduxForm, Field, change, getFormValues } from 'redux-form';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import React from "react";
+import withStyles from "withStyles";
+import { reduxForm, Field, change, getFormValues } from "redux-form";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
 
-import Select from 'components/Select';
+import Select from "components/Select";
 
-import FieldInput from 'components/reduxForm/FieldInput';
+import FieldInput from "components/reduxForm/FieldInput";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'search-form',
+  form: "search-form",
   enableReinitialize: true
 })
 @connect(
   state => ({
-    values: getFormValues('search-form')(state)
+    values: getFormValues("search-form")(state)
   }),
   { change }
 )
@@ -35,7 +35,7 @@ export default class SearchForm extends React.Component {
     const { values = {}, change } = this.props;
 
     this.setState({ active });
-    Object.keys(values).forEach(key => change('search-form', key, ''));
+    Object.keys(values).forEach(key => change("search-form", key, ""));
   }
 
   render() {

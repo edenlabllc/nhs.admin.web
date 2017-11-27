@@ -1,16 +1,16 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import { reduxForm, Field } from 'redux-form';
+import React from "react";
+import withStyles from "withStyles";
+import { reduxForm, Field } from "redux-form";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
-import FieldDate from 'components/reduxForm/FieldDatepicker';
-import { FormRow, FormColumn } from 'components/Form';
+import { reduxFormValidate } from "react-nebo15-validate";
+import FieldDate from "components/reduxForm/FieldDatepicker";
+import { FormRow, FormColumn } from "components/Form";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @reduxForm({
-  form: 'dates-range-filter-form'
+  form: "dates-range-filter-form"
 })
 export default class DateFilterForm extends React.Component {
   render() {
@@ -49,7 +49,7 @@ export default class DateFilterForm extends React.Component {
                 disabled={submitting}
                 type="submit"
               >
-                {submitTitle ? submitTitle : 'Пошук'}
+                {submitTitle ? submitTitle : "Пошук"}
               </button>
             </FormColumn>
           </FormRow>

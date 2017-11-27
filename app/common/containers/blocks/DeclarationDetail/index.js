@@ -1,48 +1,48 @@
-import React from 'react';
-import format from 'date-fns/format';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import { translate } from 'react-i18next';
-import Helmet from 'react-helmet';
+import React from "react";
+import format from "date-fns/format";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import { translate } from "react-i18next";
+import Helmet from "react-helmet";
 
-import Line from 'components/Line';
-import { H3 } from 'components/Title';
-import DataList from 'components/DataList';
-import InlineList from 'components/InlineList';
+import Line from "components/Line";
+import { H3 } from "components/Title";
+import DataList from "components/DataList";
+import InlineList from "components/InlineList";
 
-import BackLink from 'containers/blocks/BackLink';
-import AddressesList from 'containers/blocks/AddressesList';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import BackLink from "containers/blocks/BackLink";
+import AddressesList from "containers/blocks/AddressesList";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
-const DATE_FORMAT = 'DD/MM/YYYY';
+const DATE_FORMAT = "DD/MM/YYYY";
 
 const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
   const fullName = [
     declaration.person.last_name,
     declaration.person.first_name,
     declaration.person.second_name
-  ].join(' ');
+  ].join(" ");
 
   return (
     <div>
       <Helmet
-        title={`${t('Declaration')} ${fullName}`}
+        title={`${t("Declaration")} ${fullName}`}
         meta={[
-          { property: 'og:title', content: `${t('Declaration')} ${fullName}` }
+          { property: "og:title", content: `${t("Declaration")} ${fullName}` }
         ]}
       />
 
       <BackLink onClick={() => router.goBack()}>
-        {t('Back to declarations list')}
+        {t("Back to declarations list")}
       </BackLink>
 
       <Line />
 
-      <DataList list={[{ name: t('Declaration ID'), value: declaration.id }]} />
+      <DataList list={[{ name: t("Declaration ID"), value: declaration.id }]} />
 
       <Line width={630} />
 
@@ -50,23 +50,23 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
         theme="min"
         list={[
           {
-            name: t('Start date'),
+            name: t("Start date"),
             value: format(declaration.start_date, DATE_FORMAT)
           },
           {
-            name: t('End date'),
+            name: t("End date"),
             value: format(declaration.end_date, DATE_FORMAT)
           },
           {
-            name: t('Status'),
+            name: t("Status"),
             value: declaration.status
           },
           {
-            name: t('Scope'),
+            name: t("Scope"),
             value: (
               <DictionaryValue
                 dictionary="SPECIALITY_TYPE"
-                value={(declaration.scope || '').toUpperCase()}
+                value={(declaration.scope || "").toUpperCase()}
               />
             )
           }
@@ -76,7 +76,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
       <Line />
 
       <DataList
-        list={[{ name: t('Division ID'), value: declaration.division.id }]}
+        list={[{ name: t("Division ID"), value: declaration.division.id }]}
       />
 
       <Line width={630} />
@@ -85,17 +85,17 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
         theme="min"
         list={[
           {
-            name: t('Division type'),
+            name: t("Division type"),
             value: (
               <DictionaryValue
                 dictionary="DIVISION_TYPE"
-                value={(declaration.division.type || '').toUpperCase()}
+                value={(declaration.division.type || "").toUpperCase()}
               />
             )
           },
-          { name: t('Division name'), value: declaration.division.name },
+          { name: t("Division name"), value: declaration.division.name },
           {
-            name: t('Phones'),
+            name: t("Phones"),
             value: (
               <InlineList
                 list={(declaration.division.phones || []).map(
@@ -104,9 +104,9 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
               />
             )
           },
-          { name: t('Email'), value: declaration.division.email },
+          { name: t("Email"), value: declaration.division.email },
           {
-            name: t('Addresses'),
+            name: t("Addresses"),
             value: <AddressesList list={declaration.division.addresses} />
           }
         ]}
@@ -117,7 +117,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
       <div className={styles.row}>
         <div>
           <DataList
-            list={[{ name: t('Employee ID'), value: declaration.employee.id }]}
+            list={[{ name: t("Employee ID"), value: declaration.employee.id }]}
           />
         </div>
         <ShowWithScope scope="employee:read">
@@ -126,7 +126,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
               iconPosition="right"
               to={`/employees/${declaration.employee.id}`}
             >
-              {t('Go to employee')}
+              {t("Go to employee")}
             </BackLink>
           </div>
         </ShowWithScope>
@@ -140,14 +140,14 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
             theme="min"
             list={[
               {
-                name: t('Full name'),
-                value: `${declaration.employee.party.last_name} ${declaration
-                  .employee.party.first_name} ${declaration.employee.party
-                  .second_name}`
+                name: t("Full name"),
+                value: `${declaration.employee.party.last_name} ${
+                  declaration.employee.party.first_name
+                } ${declaration.employee.party.second_name}`
               },
-              { name: t('Tax ID'), value: declaration.employee.party.tax_id },
+              { name: t("Tax ID"), value: declaration.employee.party.tax_id },
               {
-                name: t('Position'),
+                name: t("Position"),
                 value: (
                   <DictionaryValue
                     dictionary="POSITION"
@@ -166,7 +166,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
         <div>
           <DataList
             list={[
-              { name: t('Clinic ID'), value: declaration.legal_entity.id }
+              { name: t("Clinic ID"), value: declaration.legal_entity.id }
             ]}
           />
         </div>
@@ -176,7 +176,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
               iconPosition="right"
               to={`/clinics/${declaration.legal_entity.id}`}
             >
-              {t('Go to clinic')}
+              {t("Go to clinic")}
             </BackLink>
           </div>
         </ShowWithScope>
@@ -186,18 +186,18 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
 
       <DataList
         list={[
-          { name: t('Full name'), value: declaration.legal_entity.name },
-          { name: t('edrpou'), value: declaration.legal_entity.edrpou },
+          { name: t("Full name"), value: declaration.legal_entity.name },
+          { name: t("edrpou"), value: declaration.legal_entity.edrpou },
           {
-            name: t('Registration address'),
+            name: t("Registration address"),
             value: (
               <div className={styles.address}>
                 {declaration.legal_entity.addresses && (
                   <div>
                     <p>
-                      {declaration.legal_entity.addresses[0].zip},{' '}
-                      {declaration.legal_entity.addresses[0].area} {t('area')},{' '}
-                      {t('city')}{' '}
+                      {declaration.legal_entity.addresses[0].zip},{" "}
+                      {declaration.legal_entity.addresses[0].area} {t("area")},{" "}
+                      {t("city")}{" "}
                       {declaration.legal_entity.addresses[0].settlement},
                     </p>
                     <p>
@@ -207,7 +207,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
                   </div>
                 )}
                 <small>
-                  {t('Residense address is equal to registration address')}
+                  {t("Residense address is equal to registration address")}
                 </small>
               </div>
             )
@@ -219,7 +219,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
 
       {declaration.person.id && (
         <DataList
-          list={[{ name: t('Person ID'), value: declaration.person.id }]}
+          list={[{ name: t("Person ID"), value: declaration.person.id }]}
         />
       )}
 
@@ -227,12 +227,12 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
         theme="min"
         list={[
           {
-            name: t('Person name'),
+            name: t("Person name"),
             value: fullName
           },
-          { name: t('Tax ID'), value: declaration.person.tax_id },
+          { name: t("Tax ID"), value: declaration.person.tax_id },
           {
-            name: t('Phones'),
+            name: t("Phones"),
             value: (
               <InlineList
                 list={(declaration.person.phones || []).map(
@@ -250,17 +250,17 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
         theme="min"
         list={[
           {
-            name: t('Birth date'),
-            value: format(declaration.person.birth_date, 'DD/MM/YYYY')
+            name: t("Birth date"),
+            value: format(declaration.person.birth_date, "DD/MM/YYYY")
           },
           {
-            name: t('Birth place'),
+            name: t("Birth place"),
             value: [
               declaration.person.birth_country,
               declaration.person.birth_settlement
             ]
               .filter(i => i)
-              .join(' ,')
+              .join(" ,")
           }
         ]}
       />
@@ -268,7 +268,7 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
       {declaration.person.documents && (
         <div>
           <Line />
-          <H3>{t('Documents')}:</H3>
+          <H3>{t("Documents")}:</H3>
 
           <DataList
             theme="min"

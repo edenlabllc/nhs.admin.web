@@ -92,7 +92,7 @@ $disabled-bg: #f5f5f5;
       &:first-child {
         &::before,
         &::after {
-          content: '';
+          content: "";
           display: block;
           width: 0;
           height: 0;
@@ -132,7 +132,7 @@ $disabled-bg: #f5f5f5;
       li:last-child {
         &::before,
         &::after {
-          content: '';
+          content: "";
           display: block;
           width: 0;
           height: 0;

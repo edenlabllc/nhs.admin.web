@@ -1,37 +1,37 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
 
-import { setFilter, getFilter } from 'helpers/filter';
+import { setFilter, getFilter } from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { FormRow, FormColumn } from 'components/Form';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
-import Table from 'components/Table';
-import ColoredText from 'components/ColoredText';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { FormRow, FormColumn } from "components/Form";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
+import Table from "components/Table";
+import ColoredText from "components/ColoredText";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
-import ActiveFilterForm from 'containers/forms/ActiveFilterForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
+import ActiveFilterForm from "containers/forms/ActiveFilterForm";
 
-import { getBlackUsers } from 'reducers';
+import { getBlackUsers } from "reducers";
 
-import { fetchBlackListUsers } from './redux';
+import { fetchBlackListUsers } from "./redux";
 
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import uuidValidate from "../../../helpers/validators/uuid-validate";
 
 const FILTERS = [
   {
-    name: 'id',
-    title: 'За ID',
+    name: "id",
+    title: "За ID",
     validate: uuidValidate
   },
-  { name: 'tax_id', title: 'За ІНН' }
+  { name: "tax_id", title: "За ІНН" }
 ];
 
 const BlackUsersListPage = ({
@@ -45,7 +45,7 @@ const BlackUsersListPage = ({
   <div id="black-list-users-list-page">
     <Helmet
       title="Заблоковані користувачі"
-      meta={[{ property: 'og:title', content: 'Заблоковані користувачі' }]}
+      meta={[{ property: "og:title", content: "Заблоковані користувачі" }]}
     />
     <ListHeader
       button={
@@ -78,7 +78,8 @@ const BlackUsersListPage = ({
         <FormColumn align="top">
           <ActiveFilterForm
             onChange={active =>
-              setFilter({ is_active: active }, { location, router })}
+              setFilter({ is_active: active }, { location, router })
+            }
           />
         </FormColumn>
       </FormRow>
@@ -94,12 +95,12 @@ const BlackUsersListPage = ({
     <ListTable id="black-list-users-table">
       <Table
         columns={[
-          { key: 'id', title: 'ID' },
-          { key: 'tax_id', title: 'ID ІНН' },
-          { key: 'status', title: 'Статус' },
+          { key: "id", title: "ID" },
+          { key: "tax_id", title: "ID ІНН" },
+          { key: "status", title: "Статус" },
           {
-            key: 'action',
-            title: 'Детально / Деактивація',
+            key: "action",
+            title: "Детально / Деактивація",
             width: 200
           }
         ]}

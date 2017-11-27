@@ -1,21 +1,21 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { clinic } from 'schemas';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { clinic } from "schemas";
+import { invoke } from "./api";
 
 export const fetchClinics = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/legal_entities`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'clinics/FETCH_LIST_REQUEST',
+      "clinics/FETCH_LIST_REQUEST",
       {
-        type: 'clinics/FETCH_LIST_SUCCESS',
+        type: "clinics/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,25 +27,25 @@ export const fetchClinics = options =>
             .json()
             .then(json => json.paging || { cursors: {} })
       },
-      'clinics/FETCH_LIST_FAILURE'
+      "clinics/FETCH_LIST_FAILURE"
     ]
   });
 
 export const fetchClinic = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/legal_entities/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'clinics/FETCH_DETAILS_REQUEST',
+      "clinics/FETCH_DETAILS_REQUEST",
       {
-        type: 'clinics/FETCH_DETAILS_SUCCESS',
+        type: "clinics/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, clinic))
       },
-      'clinics/FETCH_DETAILS_FAILURE'
+      "clinics/FETCH_DETAILS_FAILURE"
     ]
   });
 
@@ -54,18 +54,18 @@ export const verifyClinic = id =>
     endpoint: createUrl(
       `${API_URL}/api/legal_entities/${id}/actions/nhs_verify`
     ),
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'clinics/VERIFY_REQUEST',
+      "clinics/VERIFY_REQUEST",
       {
-        type: 'clinics/VERIFY_SUCCESS',
+        type: "clinics/VERIFY_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, clinic))
       },
-      'clinics/VERIFY_FAILURE'
+      "clinics/VERIFY_FAILURE"
     ]
   });
 
@@ -74,27 +74,27 @@ export const deactivateClinic = id =>
     endpoint: createUrl(
       `${API_URL}/api/legal_entities/${id}/actions/deactivate`
     ),
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'clinics/DEACTIVATE_REQUEST',
+      "clinics/DEACTIVATE_REQUEST",
       {
-        type: 'clinics/DEACTIVATE_SUCCESS',
+        type: "clinics/DEACTIVATE_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, clinic))
       },
-      'clinics/DEACTIVATE_FAILURE'
+      "clinics/DEACTIVATE_FAILURE"
     ]
   });
 
 export default handleAction(
   combineActions(
-    'clinics/FETCH_LIST_SUCCESS',
-    'clinics/FETCH_DETAILS_SUCCESS',
-    'clinics/CREATE_SUCCESS',
-    'clinics/UPDATE_SUCCESS'
+    "clinics/FETCH_LIST_SUCCESS",
+    "clinics/FETCH_DETAILS_SUCCESS",
+    "clinics/CREATE_SUCCESS",
+    "clinics/UPDATE_SUCCESS"
   ),
   (state, action) => ({
     ...state,

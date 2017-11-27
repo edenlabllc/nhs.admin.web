@@ -1,14 +1,14 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from "react";
+import { Provider } from "react-redux";
 
-import { Router, applyRouterMiddleware } from 'react-router';
-import { useRedial } from 'react-router-redial';
+import { Router, applyRouterMiddleware } from "react-router";
+import { useRedial } from "react-router-redial";
 
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider } from "react-i18next";
 
-import { showLoading, hideLoading } from 'redux/loading';
+import { showLoading, hideLoading } from "redux/loading";
 
-const trackPage = (route) => {}; // eslint-disable-line
+const trackPage = route => {};
 
 export default class RootComponent extends React.Component {
   constructor(props) {
@@ -21,17 +21,9 @@ export default class RootComponent extends React.Component {
     this.store = props.store;
   }
   render() {
-    const {
-      renderProps,
-      locals,
-      i18n,
-    } = this.props;
+    const { renderProps, locals, i18n } = this.props;
 
-    const {
-      history,
-      routes,
-      store,
-    } = this;
+    const { history, routes, store } = this;
 
     return (
       <I18nextProvider i18n={i18n}>
@@ -43,18 +35,19 @@ export default class RootComponent extends React.Component {
             render={applyRouterMiddleware(
               useRedial({
                 locals,
-                beforeTransition: ['fetch'],
-                afterTransition: ['defer', 'done'],
+                beforeTransition: ["fetch"],
+                afterTransition: ["defer", "done"],
                 parallel: true,
-                initialLoading: process.env.NODE_ENV === 'production' ? null : (() => <div>Loading...</div>),
+                initialLoading:
+                  process.env.NODE_ENV === "production"
+                    ? null
+                    : () => <div>Loading...</div>,
                 onStarted: () => {
                   store.dispatch(showLoading());
                 },
-                onCompleted: (transition) => {
-                  store.dispatch([
-                    hideLoading(),
-                  ]);
-                  if (transition === 'beforeTransition') {
+                onCompleted: transition => {
+                  store.dispatch([hideLoading()]);
+                  if (transition === "beforeTransition") {
                     window.scrollTo(0, 0);
                   }
                 },
@@ -63,7 +56,7 @@ export default class RootComponent extends React.Component {
                 },
                 onError: () => {
                   store.dispatch(hideLoading());
-                },
+                }
               })
             )}
           />

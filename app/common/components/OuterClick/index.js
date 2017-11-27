@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default class OuterClick extends React.Component {
   static propTypes = {
@@ -11,11 +11,11 @@ export default class OuterClick extends React.Component {
       this.handleClick(e);
     };
 
-    document.documentElement.addEventListener('click', this.callback, false);
+    document.documentElement.addEventListener("click", this.callback, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.callback, false);
+    document.removeEventListener("click", this.callback, false);
   }
 
   callback = null;

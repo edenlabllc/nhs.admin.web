@@ -1,24 +1,24 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-import format from 'date-fns/format';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
+import format from "date-fns/format";
 
-import Line from 'components/Line';
-import { DetailMain, DetailRow, DetailRowRight } from 'components/Detail';
-import { H1 } from 'components/Title';
-import DataList from 'components/DataList';
+import Line from "components/Line";
+import { DetailMain, DetailRow, DetailRowRight } from "components/Detail";
+import { H1 } from "components/Title";
+import DataList from "components/DataList";
 
-import BackLink from 'containers/blocks/BackLink';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
-import Container from 'containers/blocks/Container';
+import BackLink from "containers/blocks/BackLink";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
+import Container from "containers/blocks/Container";
 
-import { getMedicationDispense } from 'reducers';
+import { getMedicationDispense } from "reducers";
 
-import { fetchMedicationDispense } from './redux';
+import { fetchMedicationDispense } from "./redux";
 
 const MedicationDispenseDetailPage = ({
   router,
@@ -38,7 +38,7 @@ const MedicationDispenseDetailPage = ({
     <Helmet
       title={`Відпуск рецептів - Відпуск ${id}`}
       meta={[
-        { property: 'og:title', content: `Відпуск рецептів - Відпуск ${id}` }
+        { property: "og:title", content: `Відпуск рецептів - Відпуск ${id}` }
       ]}
     />
 
@@ -53,10 +53,10 @@ const MedicationDispenseDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID відпуску рецепту', value: id },
-          { name: 'Статус', value: status },
+          { name: "ID відпуску рецепту", value: id },
+          { name: "Статус", value: status },
           {
-            name: 'ID рецепту',
+            name: "ID рецепту",
             value: (
               <DetailRow>
                 <div>{medication_request.id}</div>
@@ -74,8 +74,8 @@ const MedicationDispenseDetailPage = ({
               </DetailRow>
             )
           },
-          { name: 'Номер рецепту', value: medication_request.request_number },
-          { name: 'Дата відпуску', value: format(dispensed_at, 'DD/MM/YYYY') }
+          { name: "Номер рецепту", value: medication_request.request_number },
+          { name: "Дата відпуску", value: format(dispensed_at, "DD/MM/YYYY") }
         ]}
       />
 
@@ -85,11 +85,11 @@ const MedicationDispenseDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID аптеки', value: legal_entity.id },
-          { name: 'Назва', value: legal_entity.name },
-          { name: 'ЄДРПОУ', value: legal_entity.edrpou },
-          { name: 'ID підрозділу', value: division.id },
-          { name: 'Назва підрозділу', value: division.name }
+          { name: "ID аптеки", value: legal_entity.id },
+          { name: "Назва", value: legal_entity.name },
+          { name: "ЄДРПОУ", value: legal_entity.edrpou },
+          { name: "ID підрозділу", value: division.id },
+          { name: "Назва підрозділу", value: division.name }
         ]}
       />
 
@@ -99,10 +99,10 @@ const MedicationDispenseDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID особи', value: party.id },
-          { name: 'Прізвище', value: party.last_name },
+          { name: "ID особи", value: party.id },
+          { name: "Прізвище", value: party.last_name },
           { name: "Ім'я", value: party.first_name },
-          party.second_name && { name: 'По батькові', value: party.second_name }
+          party.second_name && { name: "По батькові", value: party.second_name }
         ]}
       />
 
@@ -112,17 +112,17 @@ const MedicationDispenseDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID особи', value: person.id },
-          { name: 'Прізвище', value: person.last_name },
+          { name: "ID особи", value: person.id },
+          { name: "Прізвище", value: person.last_name },
           { name: "Ім'я", value: person.first_name },
           person.second_name && {
-            name: 'По батькові',
+            name: "По батькові",
             value: person.second_name
           },
-          { name: 'ІНН', value: person.tax_id },
+          { name: "ІНН", value: person.tax_id },
           {
-            name: 'Дата народження',
-            value: format(person.birth_date, 'DD/MM/YYYY')
+            name: "Дата народження",
+            value: format(person.birth_date, "DD/MM/YYYY")
           }
         ]}
       />
@@ -146,20 +146,20 @@ const MedicationDispenseDetailPage = ({
           <DataList
             key={index}
             list={[
-              { name: 'Назва', value: name },
-              { name: 'Виробник', value: manufacturer.name },
+              { name: "Назва", value: name },
+              { name: "Виробник", value: manufacturer.name },
               {
-                name: 'Форма',
+                name: "Форма",
                 value: (
                   <DictionaryValue dictionary="MEDICATION_FORM" value={form} />
                 )
               },
-              { name: 'Упаковка', value: <Container container={container} /> },
-              { name: 'Вартість одиниці', value: sell_price },
-              { name: 'Вартість продажу', value: sell_amount },
-              { name: 'Продано', value: medication_qty },
-              { name: 'Знижка', value: discount_amount },
-              { name: 'Відшкодування', value: reimbursement_amount }
+              { name: "Упаковка", value: <Container container={container} /> },
+              { name: "Вартість одиниці", value: sell_price },
+              { name: "Вартість продажу", value: sell_amount },
+              { name: "Продано", value: medication_qty },
+              { name: "Знижка", value: discount_amount },
+              { name: "Відшкодування", value: reimbursement_amount }
             ]}
           />
         )
@@ -171,8 +171,8 @@ const MedicationDispenseDetailPage = ({
 
       <DataList
         list={[
-          { name: 'ID програми', value: medical_program.id },
-          { name: 'Назва програми', value: medical_program.name }
+          { name: "ID програми", value: medical_program.id },
+          { name: "Назва програми", value: medical_program.name }
         ]}
       />
     </DetailMain>

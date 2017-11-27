@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import { ErrorMessages } from 'react-nebo15-validate';
-import findFn from 'lodash/find';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
+import { ErrorMessages } from "react-nebo15-validate";
+import findFn from "lodash/find";
 
-import OuterClick from '../OuterClick';
-import List from './List';
-import SelectControl from './SelectControl';
+import OuterClick from "../OuterClick";
+import List from "./List";
+import SelectControl from "./SelectControl";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const LIST_HEIGHT_PADDING = 32;
 
@@ -76,16 +76,16 @@ export class SelectUniversal extends React.Component {
      */
     options: PropTypes.arrayOf(
       PropTypes.shape({
-        title: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
-        name: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
-        disabled: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
+        title: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        disabled: PropTypes.bool
       })
     ).isRequired
   };
 
   static defaultProps = {
     input: {
-      value: '',
+      value: "",
       onChange: () => {}
     },
     meta: {
@@ -105,7 +105,7 @@ export class SelectUniversal extends React.Component {
     this.onInputRemove = this.onInputRemove.bind(this);
 
     this.state = {
-      value: '',
+      value: "",
       open: false
     };
   }
@@ -148,12 +148,12 @@ export class SelectUniversal extends React.Component {
     }
 
     if (searchable && multiple) {
-      newState.value = '';
-      onChangeSearch && onChangeSearch('');
+      newState.value = "";
+      onChangeSearch && onChangeSearch("");
     }
 
     if (isSelected && item.title === this.state.value) {
-      newState.value = '';
+      newState.value = "";
     }
 
     if (isBlur || !multiple) {
@@ -179,7 +179,7 @@ export class SelectUniversal extends React.Component {
   }
 
   changeValue(value, isBlur) {
-    return this.props.input[isBlur ? 'onBlur' : 'onChange'](value || '');
+    return this.props.input[isBlur ? "onBlur" : "onChange"](value || "");
   }
 
   isSelected(item) {
@@ -188,12 +188,12 @@ export class SelectUniversal extends React.Component {
 
   get value() {
     const value = this.props.input.value;
-    return value ? (Array.isArray(value) ? value : [value]) : value; // eslint-disable-line
+    return value ? (Array.isArray(value) ? value : [value]) : value;
   }
 
   get position() {
     if (!this.selectNode) {
-      return 'bottom';
+      return "bottom";
     }
 
     const selectSize = this.selectNode.getBoundingClientRect();
@@ -201,13 +201,12 @@ export class SelectUniversal extends React.Component {
     const selectHeight = this.listNode.clientHeight;
 
     if (screenHeight - selectSize.bottom > selectHeight + LIST_HEIGHT_PADDING) {
-      return 'bottom';
+      return "bottom";
     }
 
-    return 'top';
+    return "top";
   }
 
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
   render() {
     const {
       options = [],
@@ -217,7 +216,7 @@ export class SelectUniversal extends React.Component {
       labelText,
       multiple,
       searchable,
-      emptyText = 'Not found',
+      emptyText = "Not found",
       allowAddItem,
       onAddNewItem,
       children
@@ -260,11 +259,12 @@ export class SelectUniversal extends React.Component {
                     { title: value, name: Math.random() % 1000000 + 1 },
                     false
                   ),
-                  onAddNewItem && onAddNewItem(value))}
+                  onAddNewItem && onAddNewItem(value))
+                }
               />
               {isErrored && (
-                <div className={styles['error-label']}>
-                  {typeof error === 'string' ? (
+                <div className={styles["error-label"]}>
+                  {typeof error === "string" ? (
                     error
                   ) : (
                     <ErrorMessages error={error}>{children}</ErrorMessages>

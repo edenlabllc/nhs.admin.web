@@ -1,9 +1,9 @@
-import puppeteer from 'puppeteer';
-import config from '../config';
+import puppeteer from "puppeteer";
+import config from "../config";
 
-describe('Not found page', () => {
+describe("Not found page", () => {
   it(
-    'Has correct text',
+    "Has correct text",
     async () => {
       const browser = await puppeteer.launch(config.puppeteer);
       const page = await browser.newPage();
@@ -13,12 +13,12 @@ describe('Not found page', () => {
       });
 
       await page.goto(config.routes.public.notFound);
-      await page.waitForSelector('#not-found-page > div > h1');
+      await page.waitForSelector("#not-found-page > div > h1");
       const text = await page.evaluate(
-        () => document.querySelector('#not-found-page > div > h1').innerText
+        () => document.querySelector("#not-found-page > div > h1").innerText
       );
 
-      expect(text).toEqual('Сторінка не знайдена');
+      expect(text).toEqual("Сторінка не знайдена");
 
       browser.close();
     },

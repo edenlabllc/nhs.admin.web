@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromMedications from 'redux/medications';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromMedications from "redux/medications";
 
 export const showMedications = createAction(
-  'medicationsListPage/SHOW_MEDICATIONS'
+  "medicationsListPage/SHOW_MEDICATIONS"
 );
-export const pagingMedications = createAction('medicationsListPage/ADD_PAGING');
+export const pagingMedications = createAction("medicationsListPage/ADD_PAGING");
 
 export const fetchMedications = options => dispatch =>
   dispatch(fromMedications.fetchMedications(options)).then(action => {

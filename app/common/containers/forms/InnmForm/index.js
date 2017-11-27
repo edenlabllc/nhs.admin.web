@@ -1,21 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import withStyles from 'withStyles';
-import { reduxForm, Field, getFormValues } from 'redux-form';
+import React from "react";
+import { connect } from "react-redux";
+import withStyles from "withStyles";
+import { reduxForm, Field, getFormValues } from "redux-form";
 
-import FieldInput from 'components/reduxForm/FieldInput';
-import Button from 'components/Button';
-import { FormRow, FormColumn } from 'components/Form';
+import FieldInput from "components/reduxForm/FieldInput";
+import Button from "components/Button";
+import { FormRow, FormColumn } from "components/Form";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
+import { reduxFormValidate } from "react-nebo15-validate";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @reduxForm({
-  form: 'innm-form',
+  form: "innm-form",
   validate: reduxFormValidate({
     sctid: {
       length: 8
@@ -29,7 +29,7 @@ import styles from './styles.scss';
   })
 })
 @connect(state => ({
-  values: getFormValues('innm-form')(state)
+  values: getFormValues("innm-form")(state)
 }))
 export default class InnmForm extends React.Component {
   render() {
@@ -100,7 +100,7 @@ export default class InnmForm extends React.Component {
                 <ShowWithScope scope="innm:write">
                   <div>
                     <Button type="submit" disabled={submitting}>
-                      {submitting ? 'Збереження' : 'Створити МНН'}
+                      {submitting ? "Збереження" : "Створити МНН"}
                     </Button>
                   </div>
                 </ShowWithScope>

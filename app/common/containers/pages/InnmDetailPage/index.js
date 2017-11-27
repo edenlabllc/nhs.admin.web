@@ -1,23 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import InnmForm from 'containers/forms/InnmForm';
-import { withRouter } from 'react-router';
-import BackLink from 'containers/blocks/BackLink';
-import Line from 'components/Line';
-import Button from 'components/Button';
-import { FormRow, FormColumn } from 'components/Form';
+import { H1 } from "components/Title";
+import InnmForm from "containers/forms/InnmForm";
+import { withRouter } from "react-router";
+import BackLink from "containers/blocks/BackLink";
+import Line from "components/Line";
+import Button from "components/Button";
+import { FormRow, FormColumn } from "components/Form";
 
-import { getInnm } from 'reducers';
+import { getInnm } from "reducers";
 // import { deactivateInnms } from 'redux/innms';
-import { fetchInnm } from './redux';
+import { fetchInnm } from "./redux";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -36,9 +36,9 @@ export default class InnmDetailPage extends React.Component {
       <div id="innm-detail-page">
         <Helmet
           title="Сторінка делатей МНН"
-          meta={[{ property: 'og:title', content: 'Сторінка делатей МНН' }]}
+          meta={[{ property: "og:title", content: "Сторінка делатей МНН" }]}
         />
-        <BackLink onClick={() => this.props.router.push('/innms')}>
+        <BackLink onClick={() => this.props.router.push("/innms")}>
           Повернутися до списку МНН
         </BackLink>
         <Line />
@@ -50,13 +50,13 @@ export default class InnmDetailPage extends React.Component {
         <FormRow>
           <FormColumn>
             <Button
-              onClick={() => this.props.router.push('/medications')}
+              onClick={() => this.props.router.push("/medications")}
               theme="border"
               color="blue"
               icon="back"
               block
             >
-              {t('Back to list')}
+              {t("Back to list")}
             </Button>
           </FormColumn>
           <FormColumn />
