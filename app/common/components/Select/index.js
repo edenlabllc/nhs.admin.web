@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import Icon from 'components/Icon';
-import OuterClick from 'components/OuterClick';
+import Icon from "components/Icon";
+import OuterClick from "components/OuterClick";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const LIST_HEIGHT_PADDING = 32;
 
@@ -20,9 +20,9 @@ class Select extends React.Component {
     placeholder: PropTypes.string,
     options: PropTypes.arrayOf(
       PropTypes.shape({
-        title: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
-        name: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
-        disabled: PropTypes.bool // eslint-disable-line react/no-unused-prop-types
+        title: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        disabled: PropTypes.bool
       })
     ).isRequired,
     onChange: PropTypes.func
@@ -69,7 +69,7 @@ class Select extends React.Component {
    */
   get position() {
     if (!this.selectNode) {
-      return 'bottom';
+      return "bottom";
     }
 
     const selectSize = this.selectNode.getBoundingClientRect();
@@ -77,17 +77,16 @@ class Select extends React.Component {
     const selectHeight = this.listNode.clientHeight;
 
     if (screenHeight - selectSize.bottom > selectHeight + LIST_HEIGHT_PADDING) {
-      return 'bottom';
+      return "bottom";
     }
 
-    return 'top';
+    return "top";
   }
 
   get value() {
     return this.state.active;
   }
 
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
   render() {
     const {
       options = [],
@@ -132,7 +131,7 @@ class Select extends React.Component {
             {multiple && (
               <div>
                 {activeItem.length ? (
-                  <ul className={styles['multiple-list']}>
+                  <ul className={styles["multiple-list"]}>
                     {activeItem.map(name => (
                       <li key={`${name}-key`}>{name}</li>
                     ))}

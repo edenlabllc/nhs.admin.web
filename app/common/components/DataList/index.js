@@ -1,10 +1,10 @@
-import React from 'react';
-import classnames from 'classnames';
-import withStyles from 'withStyles';
+import React from "react";
+import classnames from "classnames";
+import withStyles from "withStyles";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
-const DataList = ({ list = [], theme = 'default' }) => (
+const DataList = ({ list = [], theme = "default" }) => (
   <dl className={classnames(styles.list, styles[`list_theme_${theme}`])}>
     {list
       .filter(Boolean)

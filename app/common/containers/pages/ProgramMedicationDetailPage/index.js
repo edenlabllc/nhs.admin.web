@@ -1,28 +1,28 @@
-import React from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import { provideHooks } from "redial";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H3 } from 'components/Title';
-import Line from 'components/Line';
-import DataList from 'components/DataList';
-import Checkbox from 'components/Checkbox';
-import Button from 'components/Button';
-import { Confirm } from 'components/Popup';
+import { H3 } from "components/Title";
+import Line from "components/Line";
+import DataList from "components/DataList";
+import Checkbox from "components/Checkbox";
+import Button from "components/Button";
+import { Confirm } from "components/Popup";
 
-import BackLink from 'containers/blocks/BackLink';
-import ColoredText from 'components/ColoredText';
-import ShowMore from 'containers/blocks/ShowMore';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import BackLink from "containers/blocks/BackLink";
+import ColoredText from "components/ColoredText";
+import ShowMore from "containers/blocks/ShowMore";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { getProgramMedication } from 'reducers';
+import { getProgramMedication } from "reducers";
 
-import { fetchProgramMedication } from './redux';
-import styles from './styles.scss';
+import { fetchProgramMedication } from "./redux";
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -41,11 +41,11 @@ export default class ProgramMedicationDetailPage extends React.Component {
       <div id="program-medication-detail-page">
         <Helmet
           title={program_medication.name}
-          meta={[{ property: 'og:title', content: program_medication.name }]}
+          meta={[{ property: "og:title", content: program_medication.name }]}
         />
 
         <BackLink
-          onClick={() => this.props.router.push('/program-medications')}
+          onClick={() => this.props.router.push("/program-medications")}
         >
           Повернутись до списку учасників программ
         </BackLink>
@@ -54,7 +54,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <DataList
-              list={[{ name: t('ID Учасника'), value: program_medication.id }]}
+              list={[{ name: t("ID Учасника"), value: program_medication.id }]}
             />
           </div>
         </div>
@@ -63,7 +63,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
           <DataList
             list={[
               {
-                name: t('Торгівельне найменування'),
+                name: t("Торгівельне найменування"),
                 value: (
                   <div>
                     <div>
@@ -83,7 +83,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
                         {`
                         ${program_medication.medication.ingredients[0].dosage
                           .denumerator_value} `}
-                        {`${t('містить')}
+                        {`${t("містить")}
                           ${program_medication.medication.ingredients[0].dosage
                             .numerator_value}
                           ${program_medication.medication.ingredients[0].dosage
@@ -91,7 +91,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       </p>
                       <p>
                         {program_medication.medication.ingredients[0]
-                          .is_primary && 'Діюча речовина'}
+                          .is_primary && "Діюча речовина"}
                       </p>
                       <br />
                       {program_medication.medication.ingredients.length > 1 && (
@@ -109,7 +109,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
                                   </p>
                                   <p>
                                     {innm_dosage.medication.ingredients[key]
-                                      .is_primary && 'Діюча речовина'}
+                                      .is_primary && "Діюча речовина"}
                                   </p>
                                   <br />
                                 </div>
@@ -142,7 +142,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Медична програма'),
+                  name: t("Медична програма"),
                   value: (
                     <div>
                       {program_medication.medical_program.name}
@@ -163,13 +163,13 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Сума відшкодування'),
+                  name: t("Сума відшкодування"),
                   value: (
                     <div>
-                      {program_medication.reimbursement.type === 'fixed' &&
-                        'Фіксована'}
-                      {program_medication.reimbursement.type === 'dinamic' &&
-                        'Динамічна'}
+                      {program_medication.reimbursement.type === "fixed" &&
+                        "Фіксована"}
+                      {program_medication.reimbursement.type === "dinamic" &&
+                        "Динамічна"}
                       <br />
                       {`${program_medication.reimbursement
                         .reimbursement_amount} грн.`}

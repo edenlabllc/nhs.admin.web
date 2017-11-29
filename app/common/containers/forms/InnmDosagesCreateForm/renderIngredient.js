@@ -1,20 +1,20 @@
-import React from 'react';
-import { Field } from 'redux-form';
-import { translate } from 'react-i18next';
-import { ErrorMessage } from 'react-nebo15-validate';
+import React from "react";
+import { Field } from "redux-form";
+import { translate } from "react-i18next";
+import { ErrorMessage } from "react-nebo15-validate";
 
-import FieldInput from 'components/reduxForm/FieldInput';
-import RadioInput from 'components/RadioInput';
+import FieldInput from "components/reduxForm/FieldInput";
+import RadioInput from "components/RadioInput";
 
-import { SelectUniversal } from 'components/SelectUniversal';
-import { FormRow, FormColumn } from 'components/Form';
-import Button from 'components/Button';
-import Line from 'components/Line';
+import { SelectUniversal } from "components/SelectUniversal";
+import { FormRow, FormColumn } from "components/Form";
+import Button from "components/Button";
+import Line from "components/Line";
 
 @translate()
 export default class RenderIngredient extends React.Component {
   state = {
-    innms_search: ''
+    innms_search: ""
   };
 
   render() {
@@ -60,7 +60,7 @@ export default class RenderIngredient extends React.Component {
                     }))}
                 >
                   <ErrorMessage when="required">
-                    {t('Required field')}
+                    {t("Required field")}
                   </ErrorMessage>
                 </Field>
               </FormColumn>
@@ -97,7 +97,7 @@ export default class RenderIngredient extends React.Component {
                   }))}
                 >
                   <ErrorMessage when="required">
-                    {t('Required field')}
+                    {t("Required field")}
                   </ErrorMessage>
                 </Field>
               </FormColumn>
@@ -112,7 +112,7 @@ export default class RenderIngredient extends React.Component {
                   }))}
                 >
                   <ErrorMessage when="required">
-                    {t('Required field')}
+                    {t("Required field")}
                   </ErrorMessage>
                 </Field>
               </FormColumn>

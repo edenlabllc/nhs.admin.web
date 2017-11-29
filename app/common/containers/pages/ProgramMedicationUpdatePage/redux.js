@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import { push } from 'react-router-redux';
-import * as fromProgramMedications from 'redux/program-medications';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import { push } from "react-router-redux";
+import * as fromProgramMedications from "redux/program-medications";
 
 export const showProgramMedication = createAction(
-  'programMedicationUpdatePage/SHOW_PROGRAM_MEDICATION'
+  "programMedicationUpdatePage/SHOW_PROGRAM_MEDICATION"
 );
 
 export const fetchProgramMedication = id => dispatch =>

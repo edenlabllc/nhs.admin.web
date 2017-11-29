@@ -1,11 +1,11 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from "react";
+import { shallow } from "enzyme";
 
-import { Container } from './index';
+import { Container } from "./index";
 
-describe('Container', () => {
-  describe('children', () => {
-    it('should pass children', () => {
+describe("Container", () => {
+  describe("children", () => {
+    it("should pass children", () => {
       const wrapper = shallow(
         <Container>
           <h1>Title</h1>

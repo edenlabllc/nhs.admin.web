@@ -1,6 +1,6 @@
-import { createMedication } from 'redux/medications';
-import { push } from 'react-router-redux';
-import { createBlackListUsers } from 'redux/black-list-users';
+import { createMedication } from "redux/medications";
+import { push } from "react-router-redux";
+import { createBlackListUsers } from "redux/black-list-users";
 
 export const onSubmit = ({ tax_id }) => dispatch => {
   return dispatch(

@@ -1,10 +1,10 @@
-import React from 'react';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React from "react";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import Button from 'components/Button';
-import Icon from 'components/Icon';
+import Button from "components/Button";
+import Icon from "components/Icon";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 export default class FieldsList extends React.Component {
@@ -13,18 +13,23 @@ export default class FieldsList extends React.Component {
   }
 
   render() {
-    const { fields, ruleComponent, addText = 'Add rule' } = this.props;
+    const { fields, ruleComponent, addText = "Add rule" } = this.props;
 
     return (
       <div>
-        {
-          fields.map((rule, index) => React.createElement(ruleComponent, {
-            key: index, rule, fields, index,
-          }))
-        }
-        <div className={styles['add-rule']}>
+        {fields.map((rule, index) =>
+          React.createElement(ruleComponent, {
+            key: index,
+            rule,
+            fields,
+            index
+          })
+        )}
+        <div className={styles["add-rule"]}>
           <Button theme="link" onClick={() => fields.push()}>
-            <span><Icon name="add" /></span>
+            <span>
+              <Icon name="add" />
+            </span>
             {addText}
           </Button>
         </div>

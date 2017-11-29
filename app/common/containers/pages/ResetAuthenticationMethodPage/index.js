@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-import { reset } from 'redux-form';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
+import { reset } from "redux-form";
 
-import { resetAuthMethod } from 'redux/persons';
+import { resetAuthMethod } from "redux/persons";
 
-import ResetAuthenticationMethodForm from 'containers/forms/ResetAuthenticationMethodForm';
+import ResetAuthenticationMethodForm from "containers/forms/ResetAuthenticationMethodForm";
 
-import { H1 } from 'components/Title';
-import Button from 'components/Button';
-import { Confirm, Alert } from 'components/Popup';
+import { H1 } from "components/Title";
+import Button from "components/Button";
+import { Confirm, Alert } from "components/Popup";
 
 @connect(null, { resetAuthMethod, reset })
 export default class ResetAuthenticationMethodPage extends Component {
@@ -29,7 +29,7 @@ export default class ResetAuthenticationMethodPage extends Component {
         <Helmet
           title="Скинути метод авторизації"
           meta={[
-            { property: 'og:title', content: 'Скинути метод авторизації' }
+            { property: "og:title", content: "Скинути метод авторизації" }
           ]}
         />
 
@@ -76,12 +76,12 @@ export default class ResetAuthenticationMethodPage extends Component {
         showConfirm: false,
         showAlert: true,
         alertTitle: error
-          ? 'Обліковий запис не знайдено'
-          : 'Метод авторизації успішно скинутий',
-        alertTheme: error ? 'error' : 'success'
+          ? "Обліковий запис не знайдено"
+          : "Метод авторизації успішно скинутий",
+        alertTheme: error ? "error" : "success"
       });
 
-      if (!error) return reset('reset-authentication-method-form');
+      if (!error) return reset("reset-authentication-method-form");
     });
   };
 }

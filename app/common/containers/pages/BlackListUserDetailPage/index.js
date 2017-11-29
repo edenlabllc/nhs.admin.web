@@ -1,24 +1,24 @@
-import React from 'react';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import React from "react";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
 
-import { DetailMain, DetailRow, DetailRowRight } from 'components/Detail';
-import { FormRow, FormColumn } from 'components/Form';
-import Checkbox from 'components/Checkbox';
-import DataList from 'components/DataList';
-import { H1 } from 'components/Title';
-import Line from 'components/Line';
-import { Confirm } from 'components/Popup';
-import Button from 'components/Button';
+import { DetailMain, DetailRow, DetailRowRight } from "components/Detail";
+import { FormRow, FormColumn } from "components/Form";
+import Checkbox from "components/Checkbox";
+import DataList from "components/DataList";
+import { H1 } from "components/Title";
+import Line from "components/Line";
+import { Confirm } from "components/Popup";
+import Button from "components/Button";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
-import BackLink from 'containers/blocks/BackLink';
+import ShowWithScope from "containers/blocks/ShowWithScope";
+import BackLink from "containers/blocks/BackLink";
 
-import { fetchBlackListUser } from './redux';
-import { getBlackUser } from 'reducers';
-import { deactivateBlackListUser } from 'redux/black-list-users';
+import { fetchBlackListUser } from "./redux";
+import { getBlackUser } from "reducers";
+import { deactivateBlackListUser } from "redux/black-list-users";
 
 @withRouter
 @provideHooks({
@@ -57,23 +57,23 @@ export default class BlackListUserDetailPage extends React.Component {
           title="Деталі заблокованого користувача"
           meta={[
             {
-              property: 'og:title',
-              content: 'Деталі заблокованого користувача'
+              property: "og:title",
+              content: "Деталі заблокованого користувача"
             }
           ]}
         />
 
-        <BackLink onClick={() => router.push('/black-list-users')}>
+        <BackLink onClick={() => router.push("/black-list-users")}>
           Повернутися назад
         </BackLink>
         <Line />
         <DetailMain>
           <DataList
             list={[
-              { name: 'ID', value: id },
-              { name: 'ІНН Користувача', value: tax_id },
+              { name: "ID", value: id },
+              { name: "ІНН Користувача", value: tax_id },
               {
-                name: 'Імена користувачів',
+                name: "Імена користувачів",
                 value: (
                   <ul>
                     {parties.map(
@@ -93,8 +93,8 @@ export default class BlackListUserDetailPage extends React.Component {
                 )
               },
               {
-                name: 'Активний',
-                value: is_active ? <Checkbox checked={is_active} /> : '-'
+                name: "Активний",
+                value: is_active ? <Checkbox checked={is_active} /> : "-"
               }
             ]}
           />

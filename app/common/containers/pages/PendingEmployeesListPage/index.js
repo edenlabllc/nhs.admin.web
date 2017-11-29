@@ -1,33 +1,33 @@
-import React from 'react';
-import format from 'date-fns/format';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import format from "date-fns/format";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { H1 } from 'components/Title';
-import { ListFilter, ListShowBy, ListTable } from 'components/List';
-import Table from 'components/Table';
-import Button from 'components/Button';
-import Pagination from 'components/Pagination';
+import { H1 } from "components/Title";
+import { ListFilter, ListShowBy, ListTable } from "components/List";
+import Table from "components/Table";
+import Button from "components/Button";
+import Pagination from "components/Pagination";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import Select from 'components/Select';
+import ShowBy from "containers/blocks/ShowBy";
+import Select from "components/Select";
 
-import { getEmployeesRequests, getDictionaryValues } from 'reducers';
+import { getEmployeesRequests, getDictionaryValues } from "reducers";
 
-import { fetchEmployeesRequest } from './redux';
+import { fetchEmployeesRequest } from "./redux";
 
-const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
+const FILTER_PARAMS = ["tax_id", "party_id", "edrpou", "legal_entity_id"];
 
 @withRouter
 @translate()
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchEmployeesRequest({ page_size: 5, status: 'NEW', ...query }))
+    dispatch(fetchEmployeesRequest({ page_size: 5, status: "NEW", ...query }))
 })
 @connect(state => ({
   ...state.pages.PendingEmployeesListPage,
@@ -35,7 +35,7 @@ const FILTER_PARAMS = ['tax_id', 'party_id', 'edrpou', 'legal_entity_id'];
     state,
     state.pages.PendingEmployeesListPage.employeesRequests
   ),
-  status: getDictionaryValues(state, 'EMPLOYEE_REQUEST_STATUS')
+  status: getDictionaryValues(state, "EMPLOYEE_REQUEST_STATUS")
 }))
 export default class PendingEmployeesListPage extends React.Component {
   get activeFilter() {
@@ -59,22 +59,22 @@ export default class PendingEmployeesListPage extends React.Component {
     return (
       <div id="pending-employees-list-page">
         <Helmet
-          title={t('Pending employees')}
-          meta={[{ property: 'og:title', content: t('Pending Employees') }]}
+          title={t("Pending employees")}
+          meta={[{ property: "og:title", content: t("Pending Employees") }]}
         />
 
-        <H1>{t('Pending Employees')}</H1>
+        <H1>{t("Pending Employees")}</H1>
 
         <ListFilter>
           <div>
             <Select
-              placeholder={t('Filter by status')}
+              placeholder={t("Filter by status")}
               options={status.map(i => ({ name: i.key, title: i.value }))}
               onChange={value =>
                 setTimeout(() => {
                   filter({ status: value, page: 1 }, this.props);
                 })}
-              active={location.query.status || 'NEW'}
+              active={location.query.status || "NEW"}
             />
           </div>
           <div />
@@ -90,16 +90,16 @@ export default class PendingEmployeesListPage extends React.Component {
         <ListTable id="pending-employees-table">
           <Table
             columns={[
-              { key: 'id', title: t('ID') },
-              { key: 'date', title: t('Date registration') },
-              { key: 'name', title: t('Employee name') },
-              { key: 'legalEntity', title: t('Legal entity') },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "id", title: t("ID") },
+              { key: "date", title: t("Date registration") },
+              { key: "name", title: t("Employee name") },
+              { key: "legalEntity", title: t("Legal entity") },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={employees.map(item => ({
               key: item.id,
               id: item.id,
-              date: format(item.inserted_at, 'DD/MM/YYYY'),
+              date: format(item.inserted_at, "DD/MM/YYYY"),
               name: (
                 <div>
                   {item.last_name} {item.first_name}
@@ -110,7 +110,7 @@ export default class PendingEmployeesListPage extends React.Component {
                 <div>
                   <p>{item.legal_entity_name}</p>
                   <small>
-                    {t('edrpou')} {item.edrpou}
+                    {t("edrpou")} {item.edrpou}
                   </small>
                 </div>
               ),
@@ -120,7 +120,7 @@ export default class PendingEmployeesListPage extends React.Component {
                   theme="link"
                   to={`/pending-employees/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}

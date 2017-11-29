@@ -1,7 +1,7 @@
-import React from 'react';
-import classnames from 'classnames';
-import styles from './styles.scss';
-import ListItem from './ListItem';
+import React from "react";
+import classnames from "classnames";
+import styles from "./styles.scss";
+import ListItem from "./ListItem";
 
 const List = ({
   open,

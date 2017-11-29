@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import Icon from 'components/Icon';
-import Table, { TableRow } from 'components/Table';
+import Icon from "components/Icon";
+import Table, { TableRow } from "components/Table";
 
-import styles from './styles.scss';
-
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+import styles from "./styles.scss";
 
 const ActionsColumnData = ({ isOpened }) => (
   <span
-    className={classnames(styles.arrow, isOpened && styles['arrow-active'])}
+    className={classnames(styles.arrow, isOpened && styles["arrow-active"])}
   >
     <Icon name="arrow-down" />
   </span>
@@ -24,7 +22,7 @@ const FoldingRowComponent = ({
   onOpen,
   onClose,
   isOpened,
-  component = 'div'
+  component = "div"
 }) => (
   <tbody>
     <TableRow
@@ -37,7 +35,7 @@ const FoldingRowComponent = ({
       onClick={!isOpened ? onOpen : onClose}
     />
     {
-      <tr hidden={!isOpened} className={styles['row-sub']}>
+      <tr hidden={!isOpened} className={styles["row-sub"]}>
         <td colSpan={columns.length}>
           {isOpened && React.createElement(component, data)}
         </td>
@@ -89,7 +87,7 @@ const FoldingTable = ({
     tbody={false}
     columns={[
       ...columns,
-      { key: '__actions', title: 'Show details', ...detailsColumn }
+      { key: "__actions", title: "Show details", ...detailsColumn }
     ]}
     {...rest}
   >
@@ -104,15 +102,13 @@ const FoldingTable = ({
   </Table>
 );
 
-/* eslint-disable react/no-unused-prop-types */
-
 FoldingTable.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.any.isRequired,
       title: PropTypes.string,
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      align: PropTypes.oneOf(['left', 'center', 'right']),
+      align: PropTypes.oneOf(["left", "center", "right"]),
       colspan: PropTypes.number
     })
   ),

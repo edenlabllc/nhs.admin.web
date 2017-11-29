@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromMedicalProgram from 'redux/medical-programs';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromMedicalProgram from "redux/medical-programs";
 
 export const showMedicalProgram = createAction(
-  'medicalProgramsDetailPage/SHOW_MEDICAL_PROGRAM'
+  "medicalProgramsDetailPage/SHOW_MEDICAL_PROGRAM"
 );
 
 export const fetchMedicalProgram = id => dispatch =>

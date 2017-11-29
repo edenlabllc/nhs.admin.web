@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
+import { reduxFormValidate } from "react-nebo15-validate";
 
-import Form, { FormButtons } from 'components/Form';
-import FieldInput from 'components/reduxForm/FieldInput';
-import Button from 'components/Button';
+import Form, { FormButtons } from "components/Form";
+import FieldInput from "components/reduxForm/FieldInput";
+import Button from "components/Button";
 
 const ResetAuthenticationMethodForm = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
@@ -21,7 +21,7 @@ const ResetAuthenticationMethodForm = ({ handleSubmit }) => (
 );
 
 export default reduxForm({
-  form: 'reset-authentication-method-form',
+  form: "reset-authentication-method-form",
   validate: reduxFormValidate({
     person_id: {
       required: true,

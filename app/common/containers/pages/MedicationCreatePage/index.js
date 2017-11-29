@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { withRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { withRouter } from "react-router";
+import Helmet from "react-helmet";
 
-import BackLink from 'containers/blocks/BackLink';
-import Line from 'components/Line';
-import MedicationsCreateForm from 'containers/forms/MedicationsCreateForm';
-import { getInnmDosages, getDictionary } from 'reducers';
+import BackLink from "containers/blocks/BackLink";
+import Line from "components/Line";
+import MedicationsCreateForm from "containers/forms/MedicationsCreateForm";
+import { getInnmDosages, getDictionary } from "reducers";
 
-import { onSubmit, onSearchInnmsDosages } from './redux';
+import { onSubmit, onSearchInnmsDosages } from "./redux";
 
 @withRouter
 @translate()
@@ -19,9 +19,9 @@ import { onSubmit, onSearchInnmsDosages } from './redux';
       state,
       state.pages.MedicationCreatePage.innm_dosages
     ),
-    medication_unit: getDictionary(state, 'MEDICATION_UNIT'),
-    medication_form: getDictionary(state, 'MEDICATION_FORM'),
-    countries: getDictionary(state, 'COUNTRY')
+    medication_unit: getDictionary(state, "MEDICATION_UNIT"),
+    medication_form: getDictionary(state, "MEDICATION_FORM"),
+    countries: getDictionary(state, "COUNTRY")
   }),
   { onSubmit, onSearchInnmsDosages }
 )
@@ -44,8 +44,8 @@ export default class MedicationCreatePage extends React.Component {
           title="Створення торгівельного найменування"
           meta={[
             {
-              property: 'og:title',
-              content: 'Створення торгівельного найменування'
+              property: "og:title",
+              content: "Створення торгівельного найменування"
             }
           ]}
         />

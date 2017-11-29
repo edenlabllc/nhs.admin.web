@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
 const Container = ({
   container: {
@@ -12,17 +12,17 @@ const Container = ({
 }) =>
   numerator_value === denumerator_value ? (
     <div>
-      {denumerator_value}{' '}
+      {denumerator_value}{" "}
       <DictionaryValue dictionary="MEDICATION_UNIT" value={denumerator_unit} />
     </div>
   ) : (
     <div>
-      {denumerator_value}{' '}
+      {denumerator_value}{" "}
       <DictionaryValue
         dictionary="MEDICATION_UNIT"
         value={denumerator_unit}
-      />{' '}
-      містить {numerator_value}{' '}
+      />{" "}
+      містить {numerator_value}{" "}
       <DictionaryValue dictionary="MEDICATION_UNIT" value={numerator_unit} />
     </div>
   );

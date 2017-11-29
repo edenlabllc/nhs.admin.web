@@ -24,7 +24,7 @@ before_install:
 - chmod -R +x bin
 script:
 - npm run test || travis_terminate 1
-# - npm run lint || travis_terminate 1
+- npm run lint || travis_terminate 1
 - ./bin/version-increment.sh || travis_terminate 1
 - ./bin/build.sh || travis_terminate 1
 - ./bin/start.sh || travis_terminate 1

@@ -1,8 +1,8 @@
-import { createMedication } from 'redux/medications';
-import { push } from 'react-router-redux';
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromInnmDosages from 'redux/innm-dosages';
+import { createMedication } from "redux/medications";
+import { push } from "react-router-redux";
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromInnmDosages from "redux/innm-dosages";
 
 export const onSubmit = (
   {
@@ -73,7 +73,7 @@ const mapIngredient = (
 });
 
 export const getInnmsDosages = createAction(
-  'innmDosagesCreatePage/SHOW_INNM_DOSAGES'
+  "innmDosagesCreatePage/SHOW_INNM_DOSAGES"
 );
 
 export const onSearchInnmsDosages = name => dispatch =>

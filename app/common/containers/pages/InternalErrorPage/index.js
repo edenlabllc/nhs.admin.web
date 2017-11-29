@@ -1,29 +1,29 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import Button from '../../../components/Button/index';
-import { H1 } from '../../../components/Title/index';
+import Button from "../../../components/Button/index";
+import { H1 } from "../../../components/Title/index";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 export default class InternalErrorPage extends React.Component {
   render() {
     return (
-      <section className={styles.error} id="not-found-page">
+      <section className={styles.error} id="internal-error-page">
         <Helmet
-          title={'Internal Error'}
-          meta={[{ property: 'og:title', content: 'Internal Error' }]}
+          title={"Internal Error"}
+          meta={[{ property: "og:title", content: "Internal Error" }]}
         />
         <div className={styles.error__main}>
-          <H1>{'Internal Error'}</H1>
+          <H1>{"Internal Error"}</H1>
           <p>
-            {'Sorry for this.'}
+            {"Sorry for this."}
             <br />
             <Button theme="link" to="/">
-              {'Go to dashboard'}
-            </Button>.
+              {"Go to dashboard"}
+            </Button>
           </p>
         </div>
       </section>

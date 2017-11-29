@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromInnms from 'redux/innms';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromInnms from "redux/innms";
 
-export const showInnms = createAction('innmsListPage/SHOW_INMMS');
-export const pagingInnms = createAction('innmsListPage/ADD_PAGING');
+export const showInnms = createAction("innmsListPage/SHOW_INMMS");
+export const pagingInnms = createAction("innmsListPage/ADD_PAGING");
 
 export const fetchInnms = options => dispatch =>
   dispatch(fromInnms.fetchInnms(options)).then(action => {

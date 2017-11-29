@@ -1,21 +1,21 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { black_list_user } from 'schemas';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { black_list_user } from "schemas";
+import { invoke } from "./api";
 
 export const fetchBlackListUsers = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/black_list_users`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'black_list_users/FETCH_LIST_REQUEST',
+      "black_list_users/FETCH_LIST_REQUEST",
       {
-        type: 'black_list_users/FETCH_LIST_SUCCESS',
+        type: "black_list_users/FETCH_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,22 +27,22 @@ export const fetchBlackListUsers = options =>
             .json()
             .then(json => json.paging)
       },
-      'black_list_users/FETCH_LIST_FAILURE'
+      "black_list_users/FETCH_LIST_FAILURE"
     ]
   });
 
 export const createBlackListUsers = body =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/black_list_users`),
-    method: 'POST',
+    method: "POST",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'black_list_users/CREATE_REQUEST',
-      'black_list_users/CREATE_SUCCESS',
+      "black_list_users/CREATE_REQUEST",
+      "black_list_users/CREATE_SUCCESS",
       {
-        type: 'black_list_users/CREATE_FAILURE',
+        type: "black_list_users/CREATE_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ],
@@ -54,15 +54,15 @@ export const deactivateBlackListUser = id =>
     endpoint: createUrl(
       `${API_URL}/api/black_list_users/${id}/actions/deactivate`
     ),
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'black_list_users/DEACTIVATE_REQUEST',
-      'black_list_users/DEACTIVATE_SUCCESS',
+      "black_list_users/DEACTIVATE_REQUEST",
+      "black_list_users/DEACTIVATE_SUCCESS",
       {
-        type: 'black_list_users/DEACTIVATE_FAILURE',
+        type: "black_list_users/DEACTIVATE_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ]
@@ -71,23 +71,23 @@ export const deactivateBlackListUser = id =>
 export const fetchBlackListUser = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/black_list_users/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'black_list_users/FETCH_DETAILS_REQUEST',
+      "black_list_users/FETCH_DETAILS_REQUEST",
       {
-        type: 'black_list_users/FETCH_DETAILS_SUCCESS',
+        type: "black_list_users/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, black_list_user))
       },
-      'black_list_users/FETCH_DETAILS_FAILURE'
+      "black_list_users/FETCH_DETAILS_FAILURE"
     ]
   });
 
 export default handleAction(
-  combineActions('black_list_users/FETCH_LIST_SUCCESS'),
+  combineActions("black_list_users/FETCH_LIST_SUCCESS"),
   (state, action) => ({
     ...state,
     ...action.payload.entities.black_list_users

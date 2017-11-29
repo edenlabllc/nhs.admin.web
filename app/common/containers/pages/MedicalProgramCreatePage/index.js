@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { withRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { withRouter } from "react-router";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import MedicalProgramCreateForm from 'containers/forms/MedicalProgramCreateForm';
-import BackLink from 'containers/blocks/BackLink';
-import Line from 'components/Line';
+import { H1 } from "components/Title";
+import MedicalProgramCreateForm from "containers/forms/MedicalProgramCreateForm";
+import BackLink from "containers/blocks/BackLink";
+import Line from "components/Line";
 
-import { createMedicalProgram } from 'redux/medical-programs';
+import { createMedicalProgram } from "redux/medical-programs";
 
 @withRouter
 @translate()
@@ -24,8 +24,8 @@ export default class MedicalProgramCreatePage extends React.Component {
           title="Сторінка створення Медичної Програми"
           meta={[
             {
-              property: 'og:title',
-              content: 'Сторінка створення Медичної Програми'
+              property: "og:title",
+              content: "Сторінка створення Медичної Програми"
             }
           ]}
         />

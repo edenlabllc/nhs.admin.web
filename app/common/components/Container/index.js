@@ -1,6 +1,6 @@
-import React from 'react';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import styles from './styles.scss';
+import React from "react";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
+import styles from "./styles.scss";
 
 export const Container = ({ children, id }) => (
   <div id={id} className={styles.main}>

@@ -1,5 +1,5 @@
-import request from 'request';
-import * as config from '../../common/config';
+import request from "request";
+import * as config from "../../common/config";
 
 /**
  * We need this endpoint to send HTTP GET request to our backend
@@ -15,19 +15,19 @@ const reimbursementReportDownload = (req, res) => {
     !req.query.date_to_dispense ||
     !req.query.token
   ) {
-    res.redirect('/internal-error');
+    res.redirect("/internal-error");
   }
 
   const options = {
-    method: 'GET',
-    url: config.API_HOST + '/api/reimbursement_report_download',
+    method: "GET",
+    url: config.API_HOST + "/api/reimbursement_report_download",
     qs: {
       date_from_dispense: req.query.date_from_dispense,
       date_to_dispense: req.query.date_to_dispense
     },
     headers: {
-      'cache-control': 'no-cache',
-      authorization: 'Bearer ' + req.query.token
+      "cache-control": "no-cache",
+      authorization: "Bearer " + req.query.token
     }
   };
 
@@ -37,12 +37,12 @@ const reimbursementReportDownload = (req, res) => {
   request(options, (error, response, body) => {
     if (
       response.statusCode === 200 &&
-      response.headers['content-type'] === 'text/csv; charset=utf-8'
+      response.headers["content-type"] === "text/csv; charset=utf-8"
     ) {
-      res.setHeader('content-type', 'text/csv; charset=utf-8');
+      res.setHeader("content-type", "text/csv; charset=utf-8");
       res.send(body);
     } else {
-      res.redirect('/internal-error');
+      res.redirect("/internal-error");
     }
   });
 };

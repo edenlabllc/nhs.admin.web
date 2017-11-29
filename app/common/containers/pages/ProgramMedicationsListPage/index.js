@@ -141,8 +141,8 @@ export default class ProgramMedicationsListPage extends React.Component {
               ),
               manufacturer: (
                 <div>
-                  {`${item.medication.manufacturer.name} ${item.medication
-                    .manufacturer.country}`}
+                  {item.medication.manufacturer.name}{" "}
+                  {item.medication.manufacturer.country}
                 </div>
               ),
               reimbursement_amount: (
