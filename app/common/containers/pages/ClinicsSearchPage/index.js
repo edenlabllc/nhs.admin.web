@@ -1,4 +1,5 @@
 import React from "react";
+import { compose } from "redux";
 import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import withStyles from "withStyles";
@@ -14,62 +15,51 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import styles from "./styles.scss";
 
-@withRouter
-@withStyles(styles)
-@translate()
-export default class ClinicsSearchPage extends React.Component {
-  render() {
-    const { t, location } = this.props;
+const ClinicsSearchPage = ({ t, location }) => (
+  <div id="clinics-search-page">
+    <Helmet
+      title={t("Clinics verification search")}
+      meta={[
+        { property: "og:title", content: t("Clinics verification search") }
+      ]}
+    />
 
-    return (
-      <div id="clinics-search-page">
-        <Helmet
-          title={t("Clinics verification search")}
-          meta={[
-            { property: "og:title", content: t("Clinics verification search") }
-          ]}
-        />
+    <H1>{t("Clinics verification")}</H1>
 
-        <H1>{t("Clinics verification")}</H1>
+    <H2>{t("Search clinic for verification")}</H2>
 
-        <H2>{t("Search clinic for verification")}</H2>
-
-        <div className={styles.search}>
-          <SearchForm
-            fields={[
+    <div className={styles.search}>
+      <SearchForm
+        fields={[
+          {
+            component: SearchFilterField,
+            title: t("Find clinic"),
+            filters: [
+              { name: "edrpou", title: t("By edrpou") },
               {
-                component: SearchFilterField,
-                title: t("Find clinic"),
-                filters: [
-                  { name: "edrpou", title: t("By edrpou") },
-                  {
-                    name: "legal_entity_id",
-                    title: t("By legal entity"),
-                    validate: uuidValidate
-                  },
-                  {
-                    name: "settlement_id",
-                    title: t("By settlement id"),
-                    validate: uuidValidate
-                  }
-                ]
+                name: "legal_entity_id",
+                title: t("By legal entity"),
+                validate: uuidValidate
+              },
+              {
+                name: "settlement_id",
+                title: t("By settlement id"),
+                validate: uuidValidate
               }
-            ]}
-            location={location}
-          >
-            <div className={styles.button}>
-              <Button type="submit" color="blue">
-                {t("Find clinic")}
-              </Button>
-            </div>
-          </SearchForm>
-        </div>
-        <div>
-          <Button to="/clinics" theme="link">
-            <span className={styles.link}>{t("Go to clinics list")}</span>
-          </Button>
-        </div>
-      </div>
-    );
-  }
-}
+            ]
+          }
+        ]}
+        location={location}
+      />
+    </div>
+    <div>
+      <Button to="/clinics" theme="link">
+        <span className={styles.link}>{t("Go to clinics list")}</span>
+      </Button>
+    </div>
+  </div>
+);
+
+export default compose(withRouter, withStyles(styles), translate())(
+  ClinicsSearchPage
+);

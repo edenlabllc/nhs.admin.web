@@ -1,4 +1,5 @@
 import React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { translate } from "react-i18next";
@@ -42,109 +43,108 @@ const SEARCH_FIELDS = [
   }
 ];
 
-@withRouter
-@translate()
-@provideHooks({
-  fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchMedications({ page_size: 5, ...query }))
-})
-@connect(state => ({
-  ...state.pages.MedicationsListPage,
-  medications: getMedications(
-    state,
-    state.pages.MedicationsListPage.medications
-  )
-}))
-export default class MedicationsListPage extends React.Component {
-  render() {
-    const { medications = [], t, paging, location } = this.props;
+const MedicationsListPage = ({
+  medications = [],
+  t,
+  paging,
+  location,
+  router
+}) => (
+  <div id="medication-list-page">
+    <Helmet
+      title="Торгівельні найменування"
+      meta={[{ property: "og:title", content: "Торгівельні найменування" }]}
+    />
 
-    return (
-      <div id="medication-list-page">
-        <Helmet
-          title="Торгівельні найменування"
-          meta={[{ property: "og:title", content: "Торгівельні найменування" }]}
-        />
-
-        <ListHeader
-          button={
-            <Button
-              to="/medications/create"
-              theme="border"
-              size="small"
-              color="orange"
-              icon="add"
-            >
-              Створити торгівельне найменування
-            </Button>
-          }
+    <ListHeader
+      button={
+        <Button
+          to="/medications/create"
+          theme="border"
+          size="small"
+          color="orange"
+          icon="add"
         >
-          <H1>Торгівельні найменування</H1>
-        </ListHeader>
+          Створити торгівельне найменування
+        </Button>
+      }
+    >
+      <H1>Торгівельні найменування</H1>
+    </ListHeader>
 
-        <div>
-          <H2>Пошук торгівельного найменування</H2>
-          <SearchForm fields={SEARCH_FIELDS} location={location} />
-        </div>
+    <div>
+      <H2>Пошук торгівельного найменування</H2>
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
+    </div>
 
-        <ListShowBy>
-          <ShowBy
-            active={Number(location.query.page_size) || 5}
-            onChange={page_size => filter({ page_size, page: 1 }, this.props)}
-          />
-        </ListShowBy>
+    <ListShowBy>
+      <ShowBy
+        active={Number(location.query.page_size) || 5}
+        onChange={page_size =>
+          filter({ page_size, page: 1 }, { location, router })}
+      />
+    </ListShowBy>
 
-        <ListTable id="medication-table">
-          <Table
-            columns={[
-              { key: "id", title: t("ID") },
-              { key: "innm_dosage_id", title: t("ID лікарської форми") },
-              { key: "name", title: t("Торгівельне найменування") },
-              { key: "form", title: t("Форма /Виробник") },
-              { key: "active", title: t("Активна") },
-              { key: "action", title: t("Детально / Деактивація"), width: 200 }
-            ]}
-            data={medications.map(item => ({
-              id: <div>{item.id}</div>,
-              innm_dosage_id: (
-                <div>{item.ingredients.filter(i => i.is_primary)[0].id}</div>
-              ),
-              name: <div>{item.name}</div>,
-              form: (
-                <div>
-                  <DictionaryValue
-                    dictionary="MEDICATION_FORM"
-                    value={item.form}
-                  />
-                  <br />
-                  {item.manufacturer.name}
-                </div>
-              ),
-              active: (
-                <div>{item.is_active && <Icon name="check-right" />}</div>
-              ),
-              action: (
-                <Button
-                  id={`show-medication-detail-button-${item.id}`}
-                  theme="link"
-                  to={`/medications/${item.id}`}
-                >
-                  {t("Details")}
-                </Button>
-              )
-            }))}
-          />
-        </ListTable>
+    <ListTable id="medication-table">
+      <Table
+        columns={[
+          { key: "id", title: t("ID") },
+          { key: "innm_dosage_id", title: t("ID лікарської форми") },
+          { key: "name", title: t("Торгівельне найменування") },
+          { key: "form", title: t("Форма /Виробник") },
+          { key: "active", title: t("Активна") },
+          { key: "action", title: t("Детально / Деактивація"), width: 200 }
+        ]}
+        data={medications.map(item => ({
+          id: <div>{item.id}</div>,
+          innm_dosage_id: (
+            <div>{item.ingredients.filter(i => i.is_primary)[0].id}</div>
+          ),
+          name: <div>{item.name}</div>,
+          form: (
+            <div>
+              <DictionaryValue dictionary="MEDICATION_FORM" value={item.form} />
+              <br />
+              {item.manufacturer.name}
+            </div>
+          ),
+          active: <div>{item.is_active && <Icon name="check-right" />}</div>,
+          action: (
+            <Button
+              id={`show-medication-detail-button-${item.id}`}
+              theme="link"
+              to={`/medications/${item.id}`}
+            >
+              {t("Details")}
+            </Button>
+          )
+        }))}
+      />
+    </ListTable>
 
-        {paging.total_pages > 1 && (
-          <Pagination
-            currentPage={paging.page_number}
-            totalPage={paging.total_pages}
-            location={location}
-            cb={() => {}}
-          />
-        )}
-      </div>
-    );
-  }
-}
+    {paging.total_pages > 1 && (
+      <Pagination
+        currentPage={paging.page_number}
+        totalPage={paging.total_pages}
+        location={location}
+        cb={() => {}}
+      />
+    )}
+  </div>
+);
+
+export default compose(
+  withRouter,
+  translate(),
+  provideHooks({
+    fetch: ({ dispatch, location: { query } }) =>
+      dispatch(fetchMedications({ page_size: 5, ...query }))
+  }),
+  connect(state => ({
+    ...state.pages.MedicationsListPage,
+    medications: getMedications(
+      state,
+      state.pages.MedicationsListPage.medications
+    )
+  }))
+)(MedicationsListPage);
