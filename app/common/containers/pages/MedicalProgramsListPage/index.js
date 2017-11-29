@@ -1,29 +1,39 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
 
-import Table from 'components/Table';
-import ShowBy from 'containers/blocks/ShowBy';
-import ColoredText from 'components/ColoredText';
+import Table from "components/Table";
+import ShowBy from "containers/blocks/ShowBy";
+import ColoredText from "components/ColoredText";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 
-import { getMedicalPrograms } from 'reducers';
+import { getMedicalPrograms } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-import { fetchMedicalPrograms } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchMedicalPrograms } from "./redux";
 
-const FILTER_PARAMS = ['id', 'name'];
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    title: "Знайти програму",
+    filters: [
+      { name: "id", title: "за ID", validate: uuidValidate },
+      { name: "name", title: "за назвою медичної програми" }
+    ]
+  }
+];
 
 @withRouter
 @translate()
@@ -39,23 +49,14 @@ const FILTER_PARAMS = ['id', 'name'];
   )
 }))
 export default class MedicalProgramsListPage extends React.Component {
-  get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(
-      Object.keys(this.props.location.query).filter(
-        key => ~FILTER_PARAMS.indexOf(key)
-      )[0]
-    );
-    return FILTER_PARAMS[index !== -1 ? index : 0];
-  }
   render() {
     const { medical_programs = [], t, paging, location } = this.props;
-    const activeFilter = this.activeFilter;
 
     return (
       <div id="medication-list-page">
         <Helmet
           title="Перелік медичних програм"
-          meta={[{ property: 'og:title', content: 'Перелік медичних програм' }]}
+          meta={[{ property: "og:title", content: "Перелік медичних програм" }]}
         />
         <ListHeader
           button={
@@ -75,30 +76,7 @@ export default class MedicalProgramsListPage extends React.Component {
 
         <div>
           <H2>Пошук програм</H2>
-          <SearchForm
-            active={activeFilter}
-            placeholder="Знайти програму"
-            items={[
-              { name: 'id', title: t('за ID'), validate: uuidValidate },
-              {
-                name: 'name',
-                title: t('за назвою медичної програми')
-              }
-            ]}
-            initialValues={{
-              [activeFilter]: location.query[activeFilter]
-            }}
-            onSubmit={values =>
-              filter(
-                {
-                  id: null,
-                  name: null,
-                  page: 1,
-                  ...values
-                },
-                this.props
-              )}
-          />
+          <SearchForm fields={SEARCH_FIELDS} location={location} />
         </div>
 
         <ListShowBy>
@@ -111,10 +89,10 @@ export default class MedicalProgramsListPage extends React.Component {
         <ListTable id="medication-table">
           <Table
             columns={[
-              { key: 'id', title: 'ID\n медичної програми' },
-              { key: 'name', title: 'Назва медичної програми' },
-              { key: 'status', title: 'Статус програми' },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "id", title: "ID\n медичної програми" },
+              { key: "name", title: "Назва медичної програми" },
+              { key: "status", title: "Статус програми" },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={medical_programs
               .sort(
@@ -139,7 +117,7 @@ export default class MedicalProgramsListPage extends React.Component {
                     theme="link"
                     to={`/medical-programs/${item.id}`}
                   >
-                    {t('Details')}
+                    {t("Details")}
                   </Button>
                 )
               }))}

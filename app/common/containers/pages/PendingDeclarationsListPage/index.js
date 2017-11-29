@@ -1,29 +1,28 @@
-import React from 'react';
-import format from 'date-fns/format';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import Helmet from 'react-helmet';
+import React from "react";
+import format from "date-fns/format";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import Helmet from "react-helmet";
 
-import filter from 'helpers/filter';
+import filter from "helpers/filter";
 
-import { H1, H2 } from 'components/Title';
-import { ListShowBy, ListTable } from 'components/List';
-import Table from 'components/Table';
-import ColoredText from 'components/ColoredText';
-import Button from 'components/Button';
-import Pagination from 'components/Pagination';
+import { H1, H2 } from "components/Title";
+import { ListShowBy, ListTable } from "components/List";
+import Table from "components/Table";
+import ColoredText from "components/ColoredText";
+import Button from "components/Button";
+import Pagination from "components/Pagination";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 
-import { getDeclarations } from 'reducers';
+import { getDeclarations } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-import { fetchDeclarations } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
-
-const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
+import { fetchDeclarations } from "./redux";
 
 @withRouter
 @translate()
@@ -32,7 +31,7 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
     dispatch(
       fetchDeclarations({
         page_size: 5,
-        status: 'pending_verification',
+        status: "pending_verification",
         ...query
       })
     )
@@ -45,15 +44,6 @@ const FILTER_PARAMS = ['employee_id', 'legal_entity_id'];
   )
 }))
 export default class PendingDeclarationsListPage extends React.Component {
-  get activeFilter() {
-    const index = FILTER_PARAMS.indexOf(
-      Object.keys(this.props.location.query).filter(
-        key => ~FILTER_PARAMS.indexOf(key)
-      )[0]
-    );
-    return FILTER_PARAMS[index !== -1 ? index : 0];
-  }
-
   render() {
     const { declarations = [], t, location, paging = {} } = this.props;
     const activeFilter = this.activeFilter;
@@ -61,42 +51,34 @@ export default class PendingDeclarationsListPage extends React.Component {
     return (
       <div id="pending-declarations-list-page">
         <Helmet
-          title={t('Pending declarations')}
-          meta={[{ property: 'og:title', content: t('Pending declarations') }]}
+          title={t("Pending declarations")}
+          meta={[{ property: "og:title", content: t("Pending declarations") }]}
         />
 
-        <H1>{t('Pending declarations')}</H1>
+        <H1>{t("Pending declarations")}</H1>
 
         <div>
-          <H2>{t('Search declaration')}</H2>
+          <H2>{t("Search declaration")}</H2>
           <SearchForm
-            ctive={activeFilter}
-            placeholder={t('Find declaration')}
-            items={[
+            fields={[
               {
-                name: 'employee_id',
-                title: t('By employee id'),
-                validate: uuidValidate
-              },
-              {
-                name: 'legal_entity_id',
-                title: t('By legal entity'),
-                validate: uuidValidate
+                component: SearchFilterField,
+                title: t("Find declaration"),
+                filters: [
+                  {
+                    name: "employee_id",
+                    title: t("By employee id"),
+                    validate: uuidValidate
+                  },
+                  {
+                    name: "legal_entity_id",
+                    title: t("By legal entity"),
+                    validate: uuidValidate
+                  }
+                ]
               }
             ]}
-            initialValues={{
-              [activeFilter]: location.query[activeFilter]
-            }}
-            onSubmit={values =>
-              filter(
-                {
-                  employee_id: null,
-                  legal_entity_id: null,
-                  page: 1,
-                  ...values
-                },
-                this.props
-              )}
+            location={location}
           />
         </div>
 
@@ -110,10 +92,10 @@ export default class PendingDeclarationsListPage extends React.Component {
         <ListTable id="declarations-table">
           <Table
             columns={[
-              { key: 'person', title: t('Person') },
-              { key: 'legalEntity', title: t('Legal entity') },
-              { key: 'dates', title: t('Dates'), width: 150 },
-              { key: 'action', title: t('Action'), width: 100 }
+              { key: "person", title: t("Person") },
+              { key: "legalEntity", title: t("Legal entity") },
+              { key: "dates", title: t("Dates"), width: 150 },
+              { key: "action", title: t("Action"), width: 100 }
             ]}
             data={declarations.map(item => ({
               person: item.person ? (
@@ -122,22 +104,22 @@ export default class PendingDeclarationsListPage extends React.Component {
                   <div>{item.person.second_name}</div>
                 </div>
               ) : (
-                '-'
+                "-"
               ),
               legalEntity: item.legal_entity ? (
                 <div>
                   {item.legal_entity.name}
                   <br />
                   <ColoredText color="gray">
-                    {t('EDRPOU')}: {item.legal_entity.edrpou}
+                    {t("EDRPOU")}: {item.legal_entity.edrpou}
                   </ColoredText>
                 </div>
               ) : (
-                '-'
+                "-"
               ),
-              dates: `${format(item.start_date, 'DD.MM.YYYY hh:mm')} – ${format(
+              dates: `${format(item.start_date, "DD.MM.YYYY hh:mm")} – ${format(
                 item.end_date,
-                'DD.MM.YYYY hh:mm'
+                "DD.MM.YYYY hh:mm"
               )}`,
               action: (
                 <Button
@@ -145,7 +127,7 @@ export default class PendingDeclarationsListPage extends React.Component {
                   theme="link"
                   to={`/pending-declarations/${item.id}`}
                 >
-                  {t('Details')}
+                  {t("Details")}
                 </Button>
               )
             }))}

@@ -1,71 +1,72 @@
-import React from 'react';
-import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { withRouter } from "react-router";
+import { translate } from "react-i18next";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H1, H2 } from 'components/Title';
-import Button from 'components/Button';
+import { H1, H2 } from "components/Title";
+import Button from "components/Button";
 
-import SearchForm from 'containers/forms/SearchForm';
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 
-import styles from './styles.scss';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import uuidValidate from "helpers/validators/uuid-validate";
+
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
 @translate()
 export default class ClinicsSearchPage extends React.Component {
   render() {
-    const { t } = this.props;
+    const { t, location } = this.props;
 
     return (
       <div id="clinics-search-page">
         <Helmet
-          title={t('Clinics verification search')}
+          title={t("Clinics verification search")}
           meta={[
-            { property: 'og:title', content: t('Clinics verification search') }
+            { property: "og:title", content: t("Clinics verification search") }
           ]}
         />
 
-        <H1>{t('Clinics verification')}</H1>
+        <H1>{t("Clinics verification")}</H1>
 
-        <H2>{t('Search clinic for verification')}</H2>
+        <H2>{t("Search clinic for verification")}</H2>
 
         <div className={styles.search}>
           <SearchForm
-            active="edrpou"
-            placeholder={t('Find clinic')}
-            items={[
-              { name: 'edrpou', title: t('By edrpou') },
+            fields={[
               {
-                name: 'legal_entity_id',
-                title: t('By legal entity'),
-                validate: uuidValidate
-              },
-              {
-                name: 'settlement_id',
-                title: t('By settlement id'),
-                validate: uuidValidate
+                component: SearchFilterField,
+                title: t("Find clinic"),
+                filters: [
+                  { name: "edrpou", title: t("By edrpou") },
+                  {
+                    name: "legal_entity_id",
+                    title: t("By legal entity"),
+                    validate: uuidValidate
+                  },
+                  {
+                    name: "settlement_id",
+                    title: t("By settlement id"),
+                    validate: uuidValidate
+                  }
+                ]
               }
             ]}
-            onSubmit={values => {
-              this.props.router.push({
-                pathname: '/clinics-verification/list',
-                query: values
-              });
-            }}
+            location={location}
           >
             <div className={styles.button}>
               <Button type="submit" color="blue">
-                {t('Find clinic')}
+                {t("Find clinic")}
               </Button>
             </div>
           </SearchForm>
         </div>
         <div>
           <Button to="/clinics" theme="link">
-            <span className={styles.link}>{t('Go to clinics list')}</span>
+            <span className={styles.link}>{t("Go to clinics list")}</span>
           </Button>
         </div>
       </div>

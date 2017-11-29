@@ -18,7 +18,7 @@ export const setFilter = (filter, { location, router }) => {
   });
 };
 
-export const getFilter = ({ location: { query } }, filters) => {
+export const getFilter = (query, filters) => {
   const [defaultFilter] = filters;
 
   const filter = filters.find(

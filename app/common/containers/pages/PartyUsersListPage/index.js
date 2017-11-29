@@ -1,42 +1,42 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
 
-import { setFilter, getFilter } from 'helpers/filter';
+import { setFilter, getFilter } from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Table from 'components/Table';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Table from "components/Table";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 
-import { getPartyUsers } from 'reducers';
+import { getPartyUsers } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-import { fetchPartyUsers } from './redux';
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchPartyUsers } from "./redux";
 
-const FILTERS = [
-  { name: 'user_id', title: 'За ID користувача', validate: uuidValidate },
-  { name: 'party_id', title: 'За ID особи', validate: uuidValidate }
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    title: "Знайти обліковий запис",
+    filters: [
+      { name: "user_id", title: "За ID користувача", validate: uuidValidate },
+      { name: "party_id", title: "За ID особи", validate: uuidValidate }
+    ]
+  }
 ];
 
-const PartyUsersListPage = ({
-  location,
-  router,
-  party_users = [],
-  paging,
-  activeFilter,
-  activeDateFilter = []
-}) => (
+const PartyUsersListPage = ({ location, router, party_users = [], paging }) => (
   <div id="party-users-list-page">
     <Helmet
       title="Облікові записи"
-      meta={[{ property: 'og:title', content: 'Облікові записи' }]}
+      meta={[{ property: "og:title", content: "Облікові записи" }]}
     />
     <ListHeader>
       <H1>Облікові записи</H1>
@@ -44,13 +44,7 @@ const PartyUsersListPage = ({
 
     <div>
       <H2>Пошук облікового запису</H2>
-      <SearchForm
-        active={activeFilter}
-        placeholder="Знайти обліковий запис"
-        items={FILTERS}
-        initialValues={{ [activeFilter]: location.query[activeFilter] }}
-        onSubmit={values => setFilter(values, { location, router })}
-      />
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <ListShowBy>
@@ -63,11 +57,11 @@ const PartyUsersListPage = ({
     <ListTable id="party-users-table">
       <Table
         columns={[
-          { key: 'id', title: 'ID' },
-          { key: 'user_id', title: 'ID користувача' },
-          { key: 'party_id', title: 'ID особи' },
-          { key: 'name', title: "Ім'я" },
-          { key: 'birth_date', title: 'Дата народження' }
+          { key: "id", title: "ID" },
+          { key: "user_id", title: "ID користувача" },
+          { key: "party_id", title: "ID особи" },
+          { key: "name", title: "Ім'я" },
+          { key: "birth_date", title: "Дата народження" }
         ]}
         data={party_users.map(
           ({
@@ -107,10 +101,6 @@ export default compose(
   }),
   connect((state, props) => ({
     ...state.pages.PartyUsersListPage,
-    party_users: getPartyUsers(
-      state,
-      state.pages.PartyUsersListPage.partyUsers
-    ),
-    activeFilter: getFilter(props, FILTERS)
+    party_users: getPartyUsers(state, state.pages.PartyUsersListPage.partyUsers)
   }))
 )(PartyUsersListPage);

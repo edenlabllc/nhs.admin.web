@@ -1,51 +1,65 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import React from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
 
-import { setFilter, getFilter } from 'helpers/filter';
+import { setFilter, getFilter } from "helpers/filter";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { FormRow, FormColumn } from 'components/Form';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
-import Table from 'components/Table';
-import ColoredText from 'components/ColoredText';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { FormRow, FormColumn } from "components/Form";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
+import Table from "components/Table";
+import ColoredText from "components/ColoredText";
 
-import ShowBy from 'containers/blocks/ShowBy';
-import SearchForm from 'containers/forms/SearchForm';
-import ActiveFilterForm from 'containers/forms/ActiveFilterForm';
+import ShowBy from "containers/blocks/ShowBy";
 
-import { getBlackUsers } from 'reducers';
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
 
-import { fetchBlackListUsers } from './redux';
+import { getBlackUsers } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-import uuidValidate from '../../../helpers/validators/uuid-validate';
+import { fetchBlackListUsers } from "./redux";
 
-const FILTERS = [
+const SEARCH_FIELDS = [
   {
-    name: 'id',
-    title: 'За ID',
-    validate: uuidValidate
+    component: SearchFilterField,
+    title: "Знайти користувача",
+    filters: [
+      {
+        name: "id",
+        title: "За ID",
+        validate: uuidValidate
+      },
+      { name: "tax_id", title: "За ІНН" }
+    ]
   },
-  { name: 'tax_id', title: 'За ІНН' }
+  {
+    component: SelectFilterField,
+    title: "Активні/Неактивні",
+    name: "is_active",
+    options: [
+      { title: "Активні", name: "true" },
+      { title: "Неактивні", name: "false" }
+    ]
+  }
 ];
 
 const BlackUsersListPage = ({
   location,
   router,
   black_list_users = [],
-  paging,
-  activeFilter,
-  activeDateFilter = []
+  paging
 }) => (
   <div id="black-list-users-list-page">
     <Helmet
       title="Заблоковані користувачі"
-      meta={[{ property: 'og:title', content: 'Заблоковані користувачі' }]}
+      meta={[{ property: "og:title", content: "Заблоковані користувачі" }]}
     />
     <ListHeader
       button={
@@ -65,23 +79,7 @@ const BlackUsersListPage = ({
 
     <div>
       <H2>Пошук користувача</H2>
-      <FormRow>
-        <FormColumn align="bottom">
-          <SearchForm
-            active={activeFilter}
-            placeholder="Знайти користувача"
-            items={FILTERS}
-            initialValues={{ [activeFilter]: location.query[activeFilter] }}
-            onSubmit={values => setFilter(values, { location, router })}
-          />
-        </FormColumn>
-        <FormColumn align="top">
-          <ActiveFilterForm
-            onChange={active =>
-              setFilter({ is_active: active }, { location, router })}
-          />
-        </FormColumn>
-      </FormRow>
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <ListShowBy>
@@ -94,12 +92,12 @@ const BlackUsersListPage = ({
     <ListTable id="black-list-users-table">
       <Table
         columns={[
-          { key: 'id', title: 'ID' },
-          { key: 'tax_id', title: 'ID ІНН' },
-          { key: 'status', title: 'Статус' },
+          { key: "id", title: "ID" },
+          { key: "tax_id", title: "ID ІНН" },
+          { key: "status", title: "Статус" },
           {
-            key: 'action',
-            title: 'Детально / Деактивація',
+            key: "action",
+            title: "Детально / Деактивація",
             width: 200
           }
         ]}
@@ -149,7 +147,6 @@ export default compose(
     black_list_users: getBlackUsers(
       state,
       state.pages.BlackUsersListPage.blackListUsers
-    ),
-    activeFilter: getFilter(props, FILTERS)
+    )
   }))
 )(BlackUsersListPage);
