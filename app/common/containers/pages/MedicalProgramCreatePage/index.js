@@ -41,7 +41,8 @@ export default class MedicalProgramCreatePage extends React.Component {
           onSubmit={v =>
             createMedicalProgram(v).then(resp =>
               router.push(`/medical-programs/${resp.payload.data.id}`)
-            )}
+            )
+          }
         />
       </div>
     );

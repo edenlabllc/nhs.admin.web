@@ -22,12 +22,12 @@ export const onUpdate = (v, id) => dispatch => {
       reimbursement_amount: parseFloat(v.reimbursement.reimbursement_amount, 2)
     }
   };
-  dispatch(
-    fromProgramMedications.updateProgramMedication(values, id)
-  ).then(action => {
-    if (action.error) throw action;
-    return dispatch(push(`/program-medications/${id}`));
-  });
+  dispatch(fromProgramMedications.updateProgramMedication(values, id)).then(
+    action => {
+      if (action.error) throw action;
+      return dispatch(push(`/program-medications/${id}`));
+    }
+  );
 };
 
 const program_medication = handleAction(

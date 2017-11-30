@@ -77,14 +77,14 @@ export const getInnmsDosages = createAction(
 );
 
 export const onSearchInnmsDosages = name => dispatch =>
-  dispatch(
-    fromInnmDosages.fetchInnmDosages({ name, page_size: 200 })
-  ).then(action => {
-    if (action.error && action.payload.status !== 400) {
-      throw action;
+  dispatch(fromInnmDosages.fetchInnmDosages({ name, page_size: 200 })).then(
+    action => {
+      if (action.error && action.payload.status !== 400) {
+        throw action;
+      }
+      return dispatch(getInnmsDosages(action.payload.result || []));
     }
-    return dispatch(getInnmsDosages(action.payload.result || []));
-  });
+  );
 
 const innm_dosages = handleAction(
   getInnmsDosages,

@@ -45,7 +45,8 @@ export default class RenderIngredient extends React.Component {
                     v &&
                     onSearchInnmsDosages(v.toLowerCase()).then(() =>
                       onSearchChange(v.toLowerCase())
-                    )}
+                    )
+                  }
                   options={data.innm_dosages
                     .filter(i => i.is_active)
                     .filter(

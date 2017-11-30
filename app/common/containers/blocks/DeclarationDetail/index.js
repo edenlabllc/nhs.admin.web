@@ -141,9 +141,9 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
             list={[
               {
                 name: t("Full name"),
-                value: `${declaration.employee.party.last_name} ${declaration
-                  .employee.party.first_name} ${declaration.employee.party
-                  .second_name}`
+                value: `${declaration.employee.party.last_name} ${
+                  declaration.employee.party.first_name
+                } ${declaration.employee.party.second_name}`
               },
               { name: t("Tax ID"), value: declaration.employee.party.tax_id },
               {

@@ -11,10 +11,10 @@ export const onCreate = v => dispatch => {
       reimbursement_amount: parseFloat(v.reimbursement.reimbursement_amount)
     }
   };
-  dispatch(
-    fromProgramMedications.createProgramMedication(values)
-  ).then(action => {
-    if (action.error) throw action;
-    return dispatch(push(`/program-medications/${action.payload.data.id}`));
-  });
+  dispatch(fromProgramMedications.createProgramMedication(values)).then(
+    action => {
+      if (action.error) throw action;
+      return dispatch(push(`/program-medications/${action.payload.data.id}`));
+    }
+  );
 };

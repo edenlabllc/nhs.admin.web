@@ -45,7 +45,8 @@ export default class RenderIngredient extends React.Component {
                     v &&
                     onSearchInnms(v.toLowerCase()).then(() =>
                       onSearchChange(v.toLowerCase())
-                    )}
+                    )
+                  }
                   options={data.innms
                     .filter(i => i.is_active)
                     .filter(

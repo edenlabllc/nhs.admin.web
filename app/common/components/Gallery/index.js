@@ -86,9 +86,11 @@ export default class Gallery extends React.Component {
           }))}
           currentImage={this.state.currentImage}
           onClickPrev={() =>
-            this.setState({ currentImage: this.state.currentImage - 1 })}
+            this.setState({ currentImage: this.state.currentImage - 1 })
+          }
           onClickNext={() =>
-            this.setState({ currentImage: this.state.currentImage + 1 })}
+            this.setState({ currentImage: this.state.currentImage + 1 })
+          }
           isOpen={this.state.lightboxIsOpen}
           onClose={() => this.setState({ lightboxIsOpen: false })}
         />

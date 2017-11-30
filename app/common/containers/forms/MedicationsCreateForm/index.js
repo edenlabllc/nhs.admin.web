@@ -205,7 +205,8 @@ export default class MedicationsCreateForm extends React.Component {
                     this.setState({
                       innms_search: v.toLowerCase()
                     })
-                  )}
+                  )
+                }
                 options={data.innm_dosages
                   .filter(i => i.is_active)
                   .filter(
@@ -378,7 +379,8 @@ export default class MedicationsCreateForm extends React.Component {
               placeholder="Почніть вводити назву"
               searchable
               onChangeSearch={val =>
-                this.setState({ country_search: val.toLowerCase() })}
+                this.setState({ country_search: val.toLowerCase() })
+              }
               options={Object.keys(data.countries.values)
                 .filter(
                   key =>

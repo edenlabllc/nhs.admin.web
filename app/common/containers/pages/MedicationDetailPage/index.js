@@ -118,8 +118,9 @@ export default class MedicationDetailPage extends React.Component {
                           medication.ingredients[0].dosage.denumerator_unit
                         }
                       />
-                      {`${t(" містить")} ${medication.ingredients[0].dosage
-                        .numerator_value} `}
+                      {`${t(" містить")} ${
+                        medication.ingredients[0].dosage.numerator_value
+                      } `}
                       <DictionaryValue
                         dictionary="MEDICATION_UNIT"
                         value={medication.ingredients[0].dosage.numerator_unit}
@@ -252,7 +253,8 @@ export default class MedicationDetailPage extends React.Component {
                   <div className={styles.buttons__column}>
                     <Button
                       onClick={() =>
-                        this.setState({ showDeactivateConfirm: true })}
+                        this.setState({ showDeactivateConfirm: true })
+                      }
                       theme="fill"
                       color="red"
                       block

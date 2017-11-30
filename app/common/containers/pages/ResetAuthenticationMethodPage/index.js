@@ -37,7 +37,8 @@ export default class ResetAuthenticationMethodPage extends Component {
 
         <ResetAuthenticationMethodForm
           onSubmit={({ person_id }) =>
-            this.setState({ person_id, showConfirm: true })}
+            this.setState({ person_id, showConfirm: true })
+          }
         />
 
         <Confirm
@@ -60,7 +61,8 @@ export default class ResetAuthenticationMethodPage extends Component {
               showAlert: false,
               alertTitle: null,
               alertTheme: null
-            })}
+            })
+          }
         />
       </div>
     );

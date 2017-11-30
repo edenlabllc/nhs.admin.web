@@ -151,7 +151,8 @@ export default class InnmDosagesCreateForm extends React.Component {
                     this.setState({
                       innms_search: v.toLowerCase()
                     })
-                  )}
+                  )
+                }
                 options={data.innms
                   .filter(i => i.is_active)
                   .filter(

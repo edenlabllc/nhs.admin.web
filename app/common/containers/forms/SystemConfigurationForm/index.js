@@ -63,36 +63,36 @@ export default class ApiForm extends React.Component {
           <div>
             <Field
               name="declaration_term"
-              labelText={`${t("Declaration term")} (${terms[
-                initialValues.declaration_term_unit
-              ]})`}
+              labelText={`${t("Declaration term")} (${
+                terms[initialValues.declaration_term_unit]
+              })`}
               component={FieldInput}
             />
           </div>
           <div>
             <Field
               name="declaration_request_expiration"
-              labelText={`${t("Declaration request expiration")} (${terms[
-                initialValues.declaration_request_term_unit
-              ]})`}
+              labelText={`${t("Declaration request expiration")} (${
+                terms[initialValues.declaration_request_term_unit]
+              })`}
               component={FieldInput}
             />
           </div>
           <div>
             <Field
               name="employee_request_expiration"
-              labelText={`${t("Employee request expiration")} (${terms[
-                initialValues.employee_request_term_unit
-              ]})`}
+              labelText={`${t("Employee request expiration")} (${
+                terms[initialValues.employee_request_term_unit]
+              })`}
               component={FieldInput}
             />
           </div>
           <div>
             <Field
               name="verification_request_expiration"
-              labelText={`${t("Verification request expiration")} (${terms[
-                initialValues.verification_request_term_unit
-              ]})`}
+              labelText={`${t("Verification request expiration")} (${
+                terms[initialValues.verification_request_term_unit]
+              })`}
               component={FieldInput}
             />
           </div>

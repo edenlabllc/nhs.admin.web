@@ -28,8 +28,9 @@ export default class PendingEmployeeDetailPage extends React.Component {
   render() {
     const { employee = {}, t } = this.props;
 
-    const fullName = `${employee.party.last_name} ${employee.party
-      .first_name} ${employee.party.second_name}`;
+    const fullName = `${employee.party.last_name} ${
+      employee.party.first_name
+    } ${employee.party.second_name}`;
 
     return (
       <div id="pending-employee-detail-page">

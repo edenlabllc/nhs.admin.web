@@ -10,17 +10,17 @@ export const pagingProgramMedications = createAction(
 );
 
 export const fetchProgramMedications = options => dispatch =>
-  dispatch(
-    fromProgramMedications.fetchProgramMedications(options)
-  ).then(action => {
-    if (action.error && action.payload.status !== 400) {
-      throw action;
+  dispatch(fromProgramMedications.fetchProgramMedications(options)).then(
+    action => {
+      if (action.error && action.payload.status !== 400) {
+        throw action;
+      }
+      return [
+        dispatch(showProgramMedications(action.payload.result || [])),
+        dispatch(pagingProgramMedications(action.meta || {}))
+      ];
     }
-    return [
-      dispatch(showProgramMedications(action.payload.result || [])),
-      dispatch(pagingProgramMedications(action.meta || {}))
-    ];
-  });
+  );
 
 const program_medications = handleAction(
   showProgramMedications,

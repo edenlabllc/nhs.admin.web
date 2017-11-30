@@ -66,7 +66,8 @@ const SelectControl = ({
               (onEnterItem(e.target.value),
               e.stopPropagation(),
               e.preventDefault())) ||
-            (!e.target.value && e.key === "Backspace" && onInputRemove())}
+            (!e.target.value && e.key === "Backspace" && onInputRemove())
+          }
         />
       </div>
     )}

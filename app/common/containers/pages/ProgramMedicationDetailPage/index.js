@@ -81,13 +81,19 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       <br />
                       <p>
                         {`
-                        ${program_medication.medication.ingredients[0].dosage
-                          .denumerator_value} `}
+                        ${
+                          program_medication.medication.ingredients[0].dosage
+                            .denumerator_value
+                        } `}
                         {`${t("містить")}
-                          ${program_medication.medication.ingredients[0].dosage
-                            .numerator_value}
-                          ${program_medication.medication.ingredients[0].dosage
-                            .numerator_unit}`}
+                          ${
+                            program_medication.medication.ingredients[0].dosage
+                              .numerator_value
+                          }
+                          ${
+                            program_medication.medication.ingredients[0].dosage
+                              .numerator_unit
+                          }`}
                       </p>
                       <p>
                         {program_medication.medication.ingredients[0]
@@ -104,8 +110,9 @@ export default class ProgramMedicationDetailPage extends React.Component {
                                   <p>{i.dosage.denumerator_unit}</p>
                                   <p>
                                     {`${i.dosage.denumerator_value} `}
-                                    {`містить ${i.dosage.numerator_value} ${i
-                                      .dosage.numerator_unit}`}
+                                    {`містить ${i.dosage.numerator_value} ${
+                                      i.dosage.numerator_unit
+                                    }`}
                                   </p>
                                   <p>
                                     {innm_dosage.medication.ingredients[key]
@@ -123,8 +130,9 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       <div className={styles.right}>
                         <BackLink
                           iconPosition="right"
-                          to={`/medications/${program_medication.medication
-                            .id}`}
+                          to={`/medications/${
+                            program_medication.medication.id
+                          }`}
                         >
                           Перейти до торгової назви
                         </BackLink>
@@ -171,8 +179,9 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       {program_medication.reimbursement.type === "dinamic" &&
                         "Динамічна"}
                       <br />
-                      {`${program_medication.reimbursement
-                        .reimbursement_amount} грн.`}
+                      {`${
+                        program_medication.reimbursement.reimbursement_amount
+                      } грн.`}
                     </div>
                   )
                 }

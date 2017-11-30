@@ -86,7 +86,8 @@ export default () => (req, res, next) => {
               <I18nextProvider i18n={req.i18n}>
                 <WithStylesContext
                   onInsertCss={styles =>
-                    styles._getCss && css.add(styles._getCss())}
+                    styles._getCss && css.add(styles._getCss())
+                  }
                 >
                   <Provider store={store}>
                     <RouterContext {...renderProps} />

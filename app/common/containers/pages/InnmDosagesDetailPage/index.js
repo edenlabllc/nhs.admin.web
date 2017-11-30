@@ -81,16 +81,18 @@ export default class InnmDosagesDetailPage extends React.Component {
                     <p>{innm_dosage.ingredients[0].id}</p>
                     <br />
                     <p>
-                      {`${innm_dosage.ingredients[0].dosage
-                        .denumerator_value} `}
+                      {`${
+                        innm_dosage.ingredients[0].dosage.denumerator_value
+                      } `}
                       <DictionaryValue
                         dictionary="MEDICATION_UNIT"
                         value={
                           innm_dosage.ingredients[0].dosage.denumerator_unit
                         }
                       />
-                      {`${t(" містить")} ${innm_dosage.ingredients[0].dosage
-                        .numerator_value} `}
+                      {`${t(" містить")} ${
+                        innm_dosage.ingredients[0].dosage.numerator_value
+                      } `}
                       <DictionaryValue
                         dictionary="MEDICATION_UNIT"
                         value={innm_dosage.ingredients[0].dosage.numerator_unit}
@@ -179,7 +181,8 @@ export default class InnmDosagesDetailPage extends React.Component {
                   <div className={styles.buttons__column}>
                     <Button
                       onClick={() =>
-                        this.setState({ showDeactivateConfirm: true })}
+                        this.setState({ showDeactivateConfirm: true })
+                      }
                       theme="fill"
                       color="red"
                       icon="check-right"

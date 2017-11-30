@@ -289,7 +289,8 @@ export default class ClinicDetailPage extends React.Component {
                 <div className={styles.buttons__column}>
                   <Button
                     onClick={() =>
-                      this.setState({ showDeactivateConfirm: true })}
+                      this.setState({ showDeactivateConfirm: true })
+                    }
                     theme="border"
                     color="red"
                     icon="close"

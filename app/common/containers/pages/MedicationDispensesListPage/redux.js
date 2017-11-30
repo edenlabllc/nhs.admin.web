@@ -12,18 +12,18 @@ export const pagingMedicationDispenses = createAction(
 );
 
 export const fetchMedicationDispenses = options => dispatch =>
-  dispatch(
-    fromMedicationDispenses.fetchMedicationDispenses(options)
-  ).then(action => {
-    if (action.error && action.payload.status !== 400) {
-      throw action;
-    }
+  dispatch(fromMedicationDispenses.fetchMedicationDispenses(options)).then(
+    action => {
+      if (action.error && action.payload.status !== 400) {
+        throw action;
+      }
 
-    return [
-      dispatch(showMedicationDispenses(action.payload.result || [])),
-      dispatch(pagingMedicationDispenses(action.meta || {}))
-    ];
-  });
+      return [
+        dispatch(showMedicationDispenses(action.payload.result || [])),
+        dispatch(pagingMedicationDispenses(action.meta || {}))
+      ];
+    }
+  );
 
 const medication_dispenses = handleAction(
   showMedicationDispenses,

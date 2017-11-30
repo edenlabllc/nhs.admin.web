@@ -82,8 +82,9 @@ export default class BlackListUserDetailPage extends React.Component {
                         key
                       ) => (
                         <li key={key}>
-                          <div
-                          >{`${last_name} ${first_name} ${second_name}`}</div>
+                          <div>{`${last_name} ${first_name} ${
+                            second_name
+                          }`}</div>
                           <div>{birth_date}</div>
                           <Line width={200} />
                         </li>

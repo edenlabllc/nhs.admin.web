@@ -259,7 +259,8 @@ export class SelectUniversal extends React.Component {
                     { title: value, name: Math.random() % 1000000 + 1 },
                     false
                   ),
-                  onAddNewItem && onAddNewItem(value))}
+                  onAddNewItem && onAddNewItem(value))
+                }
               />
               {isErrored && (
                 <div className={styles["error-label"]}>

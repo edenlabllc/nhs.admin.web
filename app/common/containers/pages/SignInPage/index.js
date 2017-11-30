@@ -34,7 +34,9 @@ export default class SignInPage extends React.Component {
           <article className={styles.form}>
             <a
               className={styles.button}
-              href={`${OAUTH_URL}?client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${OAUTH_REDIRECT_URL}`}
+              href={`${OAUTH_URL}?client_id=${CLIENT_ID}&scope=${
+                SCOPES
+              }&redirect_uri=${OAUTH_REDIRECT_URL}`}
             >
               {t("Enter with EHEALTH")}
             </a>

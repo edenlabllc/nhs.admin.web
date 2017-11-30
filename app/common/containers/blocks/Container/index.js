@@ -18,10 +18,7 @@ const Container = ({
   ) : (
     <div>
       {denumerator_value}{" "}
-      <DictionaryValue
-        dictionary="MEDICATION_UNIT"
-        value={denumerator_unit}
-      />{" "}
+      <DictionaryValue dictionary="MEDICATION_UNIT" value={denumerator_unit} />{" "}
       містить {numerator_value}{" "}
       <DictionaryValue dictionary="MEDICATION_UNIT" value={numerator_unit} />
     </div>
