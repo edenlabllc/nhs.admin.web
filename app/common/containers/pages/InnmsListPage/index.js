@@ -1,12 +1,9 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
-
-import filter from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -38,7 +35,7 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const InnmsListPage = ({ innms = [], t, paging, location, router }) => (
+const InnmsListPage = ({ innms = [], paging, location, t }) => (
   <div id="innms-list-page">
     <Helmet
       title={t("МНН")}
@@ -67,11 +64,7 @@ const InnmsListPage = ({ innms = [], t, paging, location, router }) => (
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="innms-table">
@@ -115,7 +108,6 @@ const InnmsListPage = ({ innms = [], t, paging, location, router }) => (
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>

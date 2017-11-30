@@ -1,12 +1,9 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
-
-import { setFilter, getFilter } from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -69,10 +66,9 @@ const SEARCH_FIELDS = [
 ];
 
 const MedicationDispensesListPage = ({
-  location,
-  router,
   medication_dispenses = [],
-  paging
+  paging,
+  location
 }) => (
   <div id="medication-dispenses-list-page">
     <Helmet
@@ -90,10 +86,7 @@ const MedicationDispensesListPage = ({
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size => setFilter({ page_size }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="medication-dispenses-table">
@@ -147,7 +140,6 @@ const MedicationDispensesListPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchMedicationDispenses({ page_size: 5, ...query }))

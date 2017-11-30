@@ -1,6 +1,5 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -15,7 +14,7 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import styles from "./styles.scss";
 
-const ClinicsSearchPage = ({ t, location }) => (
+const ClinicsSearchPage = ({ location, t }) => (
   <div id="clinics-search-page">
     <Helmet
       title={t("Clinics verification search")}
@@ -60,6 +59,4 @@ const ClinicsSearchPage = ({ t, location }) => (
   </div>
 );
 
-export default compose(withRouter, withStyles(styles), translate())(
-  ClinicsSearchPage
-);
+export default compose(withStyles(styles), translate())(ClinicsSearchPage);

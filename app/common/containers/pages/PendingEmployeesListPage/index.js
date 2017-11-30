@@ -54,11 +54,7 @@ const PendingEmployeesListPage = ({
     </ListFilter>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="pending-employees-table">

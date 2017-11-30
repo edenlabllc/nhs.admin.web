@@ -1,13 +1,10 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
-
-import filter from "helpers/filter";
 
 import { H1 } from "components/Title";
 import { ListShowBy, ListTable } from "components/List";
@@ -26,13 +23,7 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchEmployees } from "./redux";
 
-const EmployeesListPage = ({
-  employees = [],
-  t,
-  location,
-  router,
-  paging = {}
-}) => (
+const EmployeesListPage = ({ employees = [], paging = {}, location, t }) => (
   <div id="employees-list-page">
     <Helmet
       title={t("Employees")}
@@ -65,11 +56,7 @@ const EmployeesListPage = ({
     />
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="employees-table">
@@ -125,7 +112,6 @@ const EmployeesListPage = ({
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>

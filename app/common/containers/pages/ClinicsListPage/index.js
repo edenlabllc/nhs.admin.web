@@ -1,12 +1,9 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
-
-import filter from "helpers/filter";
 
 import { ListShowBy } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -23,7 +20,7 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchClinics } from "./redux";
 
-const ClinicsListPage = ({ clinics = [], t, paging, location, router }) => (
+const ClinicsListPage = ({ clinics = [], paging, location, t }) => (
   <div id="clinics-list-page">
     <Helmet
       title={t("Clinics")}
@@ -60,11 +57,7 @@ const ClinicsListPage = ({ clinics = [], t, paging, location, router }) => (
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ClinicsList clinics={clinics} />
@@ -81,7 +74,6 @@ const ClinicsListPage = ({ clinics = [], t, paging, location, router }) => (
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>

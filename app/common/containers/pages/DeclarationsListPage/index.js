@@ -1,13 +1,10 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
-
-import filter from "helpers/filter";
 
 import { H1, H2 } from "components/Title";
 import { ListTable, ListShowBy } from "components/List";
@@ -29,10 +26,9 @@ const DATE_FORMAT = "DD.MM.YYYY hh:mm";
 
 const DeclarationsListPage = ({
   declarations = [],
-  t,
+  paging = {},
   location,
-  router,
-  paging = {}
+  t
 }) => (
   <div id="declarations-list-page">
     <Helmet
@@ -68,11 +64,7 @@ const DeclarationsListPage = ({
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="declarations-table">
@@ -143,7 +135,6 @@ const DeclarationsListPage = ({
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>

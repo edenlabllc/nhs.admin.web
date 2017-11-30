@@ -1,11 +1,8 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-
-import { setFilter, getFilter } from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { FormRow, FormColumn } from "components/Form";
@@ -50,12 +47,7 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const BlackUsersListPage = ({
-  location,
-  router,
-  black_list_users = [],
-  paging
-}) => (
+const BlackUsersListPage = ({ black_list_users = [], paging, location }) => (
   <div id="black-list-users-list-page">
     <Helmet
       title="Заблоковані користувачі"
@@ -83,10 +75,7 @@ const BlackUsersListPage = ({
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size => setFilter({ page_size }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="black-list-users-table">
@@ -137,7 +126,6 @@ const BlackUsersListPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchBlackListUsers({ page_size: 5, ...query }))

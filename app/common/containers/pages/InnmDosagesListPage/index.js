@@ -1,12 +1,9 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
-
-import filter from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -41,13 +38,7 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const InnmDosagesListPage = ({
-  innm_dosages = [],
-  t,
-  paging,
-  location,
-  router
-}) => (
+const InnmDosagesListPage = ({ innm_dosages = [], paging, location, t }) => (
   <div id="innm-dosages-list-page">
     <Helmet
       title="Лікарські форми"
@@ -75,11 +66,7 @@ const InnmDosagesListPage = ({
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="innm-dosages-table">
@@ -125,7 +112,6 @@ const InnmDosagesListPage = ({
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>

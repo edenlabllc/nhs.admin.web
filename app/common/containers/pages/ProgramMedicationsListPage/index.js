@@ -1,13 +1,10 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
-
-import filter from "helpers/filter";
 
 import { H1, H2 } from "components/Title";
 import Pagination from "components/Pagination";
@@ -62,10 +59,9 @@ const SEARCH_FIELDS = [
 
 const ProgramMedicationsListPage = ({
   program_medications = [],
-  t,
   paging,
   location,
-  router
+  t
 }) => (
   <div id="medication-list-page">
     <Helmet
@@ -93,11 +89,7 @@ const ProgramMedicationsListPage = ({
     </div>
 
     <div className={styles.showBy}>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size =>
-          filter({ page_size, page: 1 }, { location, router })}
-      />
+      <ShowBy location={location} />
     </div>
 
     <div id="medication-table" className={styles.table}>
@@ -170,7 +162,6 @@ const ProgramMedicationsListPage = ({
 );
 
 export default compose(
-  withRouter,
   withStyles(styles),
   translate(),
   provideHooks({

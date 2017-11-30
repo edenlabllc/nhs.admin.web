@@ -1,11 +1,8 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-
-import { setFilter, getFilter } from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -32,7 +29,7 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const PartyUsersListPage = ({ location, router, party_users = [], paging }) => (
+const PartyUsersListPage = ({ party_users = [], paging, location }) => (
   <div id="party-users-list-page">
     <Helmet
       title="Облікові записи"
@@ -48,10 +45,7 @@ const PartyUsersListPage = ({ location, router, party_users = [], paging }) => (
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size => setFilter({ page_size }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="party-users-table">
@@ -94,7 +88,6 @@ const PartyUsersListPage = ({ location, router, party_users = [], paging }) => (
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchPartyUsers({ page_size: 5, ...query }))
