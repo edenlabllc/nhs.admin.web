@@ -42,6 +42,14 @@ class Select extends React.Component {
     this.props.active && this.setState({ active: [this.props.active] });
   }
 
+  // FIXME: This is very poor workaround. This component should be controlled or
+  // uncontrolled but not both simultaneously
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active !== this.props.active) {
+      this.setState({ active: [nextProps.active] });
+    }
+  }
+
   onSelect(name) {
     if (this.props.multiple) {
       const active = Array.isArray(this.state.active) ? this.state.active : [];

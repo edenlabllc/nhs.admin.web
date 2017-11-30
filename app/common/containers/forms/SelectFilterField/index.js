@@ -28,8 +28,8 @@ export default class SelectFilterField extends Component {
   }
 
   initForm() {
-    const { initFields, query, name } = this.props;
-    const values = { [name]: query[name] };
+    const { initFields, query, name, defaultValue } = this.props;
+    const values = { [name]: query[name] || defaultValue };
 
     initFields(values);
   }

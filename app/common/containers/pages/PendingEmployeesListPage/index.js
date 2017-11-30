@@ -1,22 +1,21 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
 
-import filter from "helpers/filter";
-
 import { H1 } from "components/Title";
-import { ListFilter, ListShowBy, ListTable } from "components/List";
+import { ListShowBy, ListTable } from "components/List";
 import Table from "components/Table";
 import Button from "components/Button";
 import Pagination from "components/Pagination";
 
 import ShowBy from "containers/blocks/ShowBy";
-import Select from "components/Select";
+
+import SearchForm from "containers/forms/SearchForm";
+import SelectFilterField from "containers/forms/SelectFilterField";
 
 import { getEmployeesRequests, getDictionaryValues } from "reducers";
 
@@ -25,10 +24,9 @@ import { fetchEmployeesRequest } from "./redux";
 const PendingEmployeesListPage = ({
   employees = [],
   status = [],
-  t,
+  paging = {},
   location,
-  router,
-  paging = {}
+  t
 }) => (
   <div id="pending-employees-list-page">
     <Helmet
@@ -38,20 +36,18 @@ const PendingEmployeesListPage = ({
 
     <H1>{t("Pending Employees")}</H1>
 
-    <ListFilter>
-      <div>
-        <Select
-          placeholder={t("Filter by status")}
-          options={status.map(i => ({ name: i.key, title: i.value }))}
-          onChange={value =>
-            setTimeout(() => {
-              filter({ status: value, page: 1 }, { location, router });
-            })}
-          active={location.query.status || "NEW"}
-        />
-      </div>
-      <div />
-    </ListFilter>
+    <SearchForm
+      fields={[
+        {
+          component: SelectFilterField,
+          title: t("Filter by status"),
+          name: "status",
+          defaultValue: "NEW",
+          options: status.map(({ key, value }) => ({ name: key, title: value }))
+        }
+      ]}
+      location={location}
+    />
 
     <ListShowBy>
       <ShowBy location={location} />
@@ -109,7 +105,6 @@ const PendingEmployeesListPage = ({
 );
 
 export default compose(
-  withRouter,
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
