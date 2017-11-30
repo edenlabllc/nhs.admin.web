@@ -3,10 +3,10 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
-import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
 import { H1, H2 } from "components/Title";
+import { ListHeader, ListShowBy, ListTable } from "components/List";
 import Pagination from "components/Pagination";
 import Button from "components/Button";
 import DictionaryValue from "containers/blocks/DictionaryValue";
@@ -22,7 +22,6 @@ import { getProgramMedications } from "reducers";
 import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchProgramMedications } from "./redux";
-import styles from "./styles.scss";
 
 const SEARCH_FIELDS = [
   {
@@ -68,9 +67,8 @@ const ProgramMedicationsListPage = ({
       title="Учасники медичних программ"
       meta={[{ property: "og:title", content: "Учасники медичних программ" }]}
     />
-    <div className={styles.header}>
-      <H1>Перелік учасників медичних програм</H1>
-      <div className={styles.header__btn}>
+    <ListHeader
+      button={
         <Button
           to="/program-medications/create"
           theme="border"
@@ -80,19 +78,21 @@ const ProgramMedicationsListPage = ({
         >
           Додати учасника
         </Button>
-      </div>
-    </div>
+      }
+    >
+      <H1>Перелік учасників медичних програм</H1>
+    </ListHeader>
 
-    <div className={styles.search}>
+    <div>
       <H2>Пошук учасників програм</H2>
       <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
-    <div className={styles.showBy}>
+    <ListShowBy>
       <ShowBy location={location} />
-    </div>
+    </ListShowBy>
 
-    <div id="medication-table" className={styles.table}>
+    <ListTable id="medication-table">
       <Table
         columns={[
           { key: "medical_program_id", title: "ID\n медичної програми" },
@@ -148,7 +148,7 @@ const ProgramMedicationsListPage = ({
           )
         }))}
       />
-    </div>
+    </ListTable>
 
     {paging.total_pages > 1 && (
       <Pagination
@@ -162,7 +162,6 @@ const ProgramMedicationsListPage = ({
 );
 
 export default compose(
-  withStyles(styles),
   translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
