@@ -48,7 +48,7 @@ const ClinicsSearchPage = ({ location, t }) => (
             ]
           }
         ]}
-        location={location}
+        location={{ ...location, pathname: "/clinics-verification/list" }}
       />
     </div>
     <div>
