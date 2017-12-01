@@ -152,6 +152,7 @@
     "prettier": "1.8.2",
     "puppeteer": "0.13.0",
     "react-test-renderer": "^16.1.1",
+    "robotstxt-webpack-plugin": "^4.0.0",
     "webpack-dashboard": "0.3.0",
     "webpack-dev-server": "2.4.2"
   }

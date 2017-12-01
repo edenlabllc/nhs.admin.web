@@ -21,6 +21,7 @@ const genConfig = webpackMerge(
   parts.setupImages(),
   parts.setupJson(),
   parts.setupI18n(),
+  parts.setupRobots(),
   !DEBUG && parts.setupProduction()
 );
 
