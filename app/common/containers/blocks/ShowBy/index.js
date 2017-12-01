@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import classnames from "classnames";
+import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import { translate } from "react-i18next";
 
@@ -7,48 +8,46 @@ import styles from "./styles.scss";
 
 @translate()
 @withStyles(styles)
-export default class ShowBy extends React.Component {
+@withRouter
+export default class ShowBy extends Component {
   static defaultProps = {
-    counts: [5, 20, 50],
-    onChange: () => {}
+    counts: ["5", "20", "50"]
   };
 
   state = {
-    active: 5
+    page_size: this.props.location.query.page_size || "5"
   };
-
-  componentWillMount() {
-    this.props.active && this.setState({ active: this.props.active });
-  }
-
-  onClick(count) {
-    if (count === this.state.active) {
-      return;
-    }
-
-    this.setState({ active: count }, () => this.props.onChange(count));
-  }
 
   render() {
     const { counts, t } = this.props;
-    const { active } = this.state;
+    const { page_size } = this.state;
 
     return (
       <div className={styles.main}>
         <span className={styles.text}>{t("Show by")}</span>
-        {counts.map(item => (
+        {counts.map(count => (
           <button
-            key={item}
-            onClick={() => this.onClick(item)}
-            className={classnames(
-              styles.button,
-              active === item && styles.button_active
-            )}
+            key={count}
+            onClick={() => this.updateFilter(count)}
+            className={classnames(styles.button, {
+              [styles.button_active]: page_size === count
+            })}
           >
-            {item}
+            {count}
           </button>
         ))}
       </div>
     );
+  }
+
+  updateFilter(page_size) {
+    const { location: { query, ...location }, router } = this.props;
+
+    this.setState({ page_size });
+
+    router.push({
+      ...location,
+      query: { ...query, page_size }
+    });
   }
 }

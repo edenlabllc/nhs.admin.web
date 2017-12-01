@@ -1,11 +1,8 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-
-import { setFilter, getFilter } from "helpers/filter";
 
 import { ListHeader, ListShowBy, ListTable } from "components/List";
 import { H1, H2 } from "components/Title";
@@ -14,25 +11,25 @@ import Table from "components/Table";
 
 import ShowBy from "containers/blocks/ShowBy";
 import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 
 import { getPartyUsers } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchPartyUsers } from "./redux";
-import uuidValidate from "../../../helpers/validators/uuid-validate";
 
-const FILTERS = [
-  { name: "user_id", title: "За ID користувача", validate: uuidValidate },
-  { name: "party_id", title: "За ID особи", validate: uuidValidate }
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    title: "Знайти обліковий запис",
+    filters: [
+      { name: "user_id", title: "За ID користувача", validate: uuidValidate },
+      { name: "party_id", title: "За ID особи", validate: uuidValidate }
+    ]
+  }
 ];
 
-const PartyUsersListPage = ({
-  location,
-  router,
-  party_users = [],
-  paging,
-  activeFilter,
-  activeDateFilter = []
-}) => (
+const PartyUsersListPage = ({ party_users = [], paging, location }) => (
   <div id="party-users-list-page">
     <Helmet
       title="Облікові записи"
@@ -44,20 +41,11 @@ const PartyUsersListPage = ({
 
     <div>
       <H2>Пошук облікового запису</H2>
-      <SearchForm
-        active={activeFilter}
-        placeholder="Знайти обліковий запис"
-        items={FILTERS}
-        initialValues={{ [activeFilter]: location.query[activeFilter] }}
-        onSubmit={values => setFilter(values, { location, router })}
-      />
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size => setFilter({ page_size }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="party-users-table">
@@ -100,17 +88,12 @@ const PartyUsersListPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchPartyUsers({ page_size: 5, ...query }))
   }),
   connect((state, props) => ({
     ...state.pages.PartyUsersListPage,
-    party_users: getPartyUsers(
-      state,
-      state.pages.PartyUsersListPage.partyUsers
-    ),
-    activeFilter: getFilter(props, FILTERS)
+    party_users: getPartyUsers(state, state.pages.PartyUsersListPage.partyUsers)
   }))
 )(PartyUsersListPage);

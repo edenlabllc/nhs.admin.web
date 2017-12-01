@@ -1,28 +1,17 @@
-.search {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  max-width: 500px;
+.form {
+  margin-bottom: 20px;
 
-  &__select {
-    flex: 0 0 170px;
-    -webkit-flex: none;
-    -webkit-box-flex: 0;
-  }
-
-  &__input {
-    flex: 1 1 auto;
-    margin-top: -1px;
+  &__fields {
+    margin-bottom: 20px;
+    margin-right: -20px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__button {
     background-color: #f5f5f5;
-    padding: 10px;
     border: 1px solid #dedede;
-    margin-left: -1px;
-  }
-
-  &__content {
-    flex: 0 0 100%;
+    line-height: 15px;
+    padding: 10px;
   }
 }

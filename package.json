@@ -20,7 +20,7 @@
     "e2e": "jest e2e --runInBand",
     "e2e:debug": "DEBUG=true jest e2e --runInBand --no-cache",
     "precommit": "lint-staged && npm test",
-    "lint": "prettier {app,e2e}/**/*.{js,json,css,scss} --list-different",
+    "lint": "prettier \"**/*.{js,json,css,scss}\" --list-different",
     "locales:extract": "i18next-extract-gettext --files='./+(app)/**/*.+(js|json)' --output=app/common/locales/nhs.admin.web.pot"
   },
   "lint-staged": {
