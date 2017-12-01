@@ -26,7 +26,7 @@ import { configureRoutes } from "../common/routes";
 import WithStylesContext from "../common/WithStylesContext";
 
 export default () => (req, res, next) => {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== "production") {
     return res.render("index", {
       html: null,
       reduxState: null,
