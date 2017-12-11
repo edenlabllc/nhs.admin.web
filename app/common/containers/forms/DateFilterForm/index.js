@@ -1,24 +1,26 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import { reduxForm, Field } from 'redux-form';
+import React from "react";
+import withStyles from "withStyles";
+import { reduxForm, Field } from "redux-form";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
-import FieldDate from 'components/reduxForm/FieldDatepicker';
-import { FormRow, FormColumn } from 'components/Form';
+import { reduxFormValidate } from "react-nebo15-validate";
+import FieldDate from "components/reduxForm/FieldDatepicker";
+import { FormRow, FormColumn } from "components/Form";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @reduxForm({
-  form: 'dates-range-filter-form'
+  form: "dates-range-filter-form"
 })
 export default class DateFilterForm extends React.Component {
   render() {
     const {
       handleSubmit,
       submitting,
-      items: [startFieldName, endFieldName]
+      items: [startFieldName, endFieldName],
+      submitTitle
     } = this.props;
+
     return (
       <div>
         <form className={styles.main} onSubmit={handleSubmit}>
@@ -29,7 +31,7 @@ export default class DateFilterForm extends React.Component {
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Початкова дата"
-                placeholder="22/01/2018"
+                placeholder="2017-10-25"
               />
             </FormColumn>
             <FormColumn align="baseline">
@@ -38,7 +40,7 @@ export default class DateFilterForm extends React.Component {
                 component={FieldDate}
                 dateFormat="YYYY-MM-DD"
                 labelText="Кінцева дата"
-                placeholder="26/01/2018"
+                placeholder="2018-09-26"
               />
             </FormColumn>
             <FormColumn align="baseline">
@@ -47,7 +49,7 @@ export default class DateFilterForm extends React.Component {
                 disabled={submitting}
                 type="submit"
               >
-                Пошук
+                {submitTitle ? submitTitle : "Пошук"}
               </button>
             </FormColumn>
           </FormRow>

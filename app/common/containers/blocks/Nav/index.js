@@ -1,20 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import classnames from 'classnames';
-import nl2br from 'react-nl2br';
-import { Link } from 'react-router';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import classnames from "classnames";
+import nl2br from "react-nl2br";
+import { Link } from "react-router";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import NavItem from 'components/NavItem';
-import Icon from 'components/Icon';
+import NavItem from "components/NavItem";
+import Icon from "components/Icon";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
-import ShowMore from 'containers/blocks/ShowMore';
+import ShowWithScope from "containers/blocks/ShowWithScope";
+import ShowMore from "containers/blocks/ShowMore";
 
-import { logOut } from './redux';
+import { logOut } from "./redux";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @translate()
@@ -40,16 +40,16 @@ export default class Nav extends React.Component {
         <ul>
           <NavItem to="/dashboard" activeClassName={styles.active}>
             <Link id="dashboard-nav" to="/dashboard">
-              {t('Dashboard')}
+              {t("Dashboard")}
             </Link>
           </NavItem>
           <ShowWithScope scope="declaration:read">
             <li>
-              <ShowMore nav name={t('Declarations')}>
+              <ShowMore nav name={t("Declarations")}>
                 <ul>
                   <NavItem to="declarations" activeClassName={styles.active}>
                     <Link id="declarations-nav" to="/declarations">
-                      {t('Declarations')}
+                      {t("Declarations")}
                     </Link>
                   </NavItem>
                   <NavItem
@@ -60,7 +60,7 @@ export default class Nav extends React.Component {
                       id="pending-declarations-nav"
                       to="/pending-declarations"
                     >
-                      {t('Pending declarations')}
+                      {t("Pending declarations")}
                     </Link>
                   </NavItem>
                 </ul>
@@ -69,12 +69,12 @@ export default class Nav extends React.Component {
           </ShowWithScope>
           <ShowWithScope scope="employee:read">
             <li>
-              <ShowMore nav name={t('Employees')}>
+              <ShowMore nav name={t("Employees")}>
                 <ShowWithScope scope="employee_request:read">
                   <ul>
                     <NavItem to="employees" activeClassName={styles.active}>
                       <Link id="employees-nav" to="/employees">
-                        {t('Employees')}
+                        {t("Employees")}
                       </Link>
                     </NavItem>
                     <NavItem
@@ -82,7 +82,7 @@ export default class Nav extends React.Component {
                       activeClassName={styles.active}
                     >
                       <Link id="pending-employees-nav" to="/pending-employees">
-                        {nl2br(t('Pending\n employees'))}
+                        {nl2br(t("Pending\n employees"))}
                       </Link>
                     </NavItem>
                   </ul>
@@ -93,31 +93,31 @@ export default class Nav extends React.Component {
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics" activeClassName={styles.active}>
               <Link id="clinics-nav" to="/clinics">
-                {t('Clinics')}
+                {t("Clinics")}
               </Link>
             </NavItem>
           </ShowWithScope>
           <ShowWithScope scope="legal_entity:read">
             <NavItem to="clinics-verification" activeClassName={styles.active}>
               <Link id="clinics-nav" to="/clinics-verification">
-                {t('Clinics verification')}
+                {t("Clinics verification")}
               </Link>
             </NavItem>
           </ShowWithScope>
           <NavItem to="reports" activeClassName={styles.active}>
             <Link id="reports-nav" to="/reports">
-              {t('Reports')}
+              {t("Reports")}
             </Link>
           </NavItem>
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">
-              {t('Dictionaries')}
+              {t("Dictionaries")}
             </Link>
           </NavItem>
           <ShowWithScope scope="global_parameters:read">
             <NavItem to="configuration" activeClassName={styles.active}>
               <Link id="configuration-nav" to="/configuration">
-                {t('System configuration')}
+                {t("System configuration")}
               </Link>
             </NavItem>
           </ShowWithScope>
@@ -141,7 +141,7 @@ export default class Nav extends React.Component {
                 <ShowWithScope scope="medication:read">
                   <NavItem to="medications" activeClassName={styles.active}>
                     <Link id="medications-nav" to="/medications">
-                      Торгова назва
+                      Торгівельне <br /> найменування
                     </Link>
                   </NavItem>
                 </ShowWithScope>
@@ -149,7 +149,7 @@ export default class Nav extends React.Component {
             </ShowMore>
           </li>
           <li>
-            <ShowMore nav name={t('Програми')}>
+            <ShowMore nav name={t("Програми")}>
               <ul>
                 <ShowWithScope scope="medical_program:read">
                   <NavItem
@@ -206,6 +206,19 @@ export default class Nav extends React.Component {
                     </Link>
                   </NavItem>
                 </ShowWithScope>
+                <ShowWithScope scope="reimbursement_report:download">
+                  <NavItem
+                    to="reimbursement-report"
+                    activeClassName={styles.active}
+                  >
+                    <Link
+                      id="reimbursement-report-nav"
+                      to="/reimbursement-report"
+                    >
+                      Звіт
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
               </ul>
             </ShowMore>
           </li>
@@ -225,13 +238,27 @@ export default class Nav extends React.Component {
                 <ShowWithScope scope="party_user:read">
                   <NavItem to="party-users" activeClassName={styles.active}>
                     <Link id="party_users" to="/party-users">
-                      Party users
+                      Облікові записи
                     </Link>
                   </NavItem>
                 </ShowWithScope>
               </ul>
             </ShowMore>
           </li>
+          <ShowWithScope scope="person:reset_authentication_method">
+            <NavItem
+              to="reset-authentication-method"
+              activeClassName={styles.active}
+            >
+              <Link
+                id="reset-authentication-method-nav"
+                to="/reset-authentication-method"
+              >
+                Скинути метод<br />
+                авторизації
+              </Link>
+            </NavItem>
+          </ShowWithScope>
         </ul>
         <ul className={styles.down}>
           <li>
@@ -241,12 +268,12 @@ export default class Nav extends React.Component {
               target="_blank"
             >
               <Icon name="doc" />
-              {t('Documentation')}
+              {t("Documentation")}
             </a>
           </li>
           <li className={styles.logout} onClick={() => this.props.logOut()}>
             <Icon name="exit" />
-            {t('Logout')}
+            {t("Logout")}
           </li>
         </ul>
       </nav>

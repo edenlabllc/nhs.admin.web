@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import ErrorMessages from 'components/ErrorMessages';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
+import ErrorMessages from "components/ErrorMessages";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const Prefix = ({ prefix }) => (
-  <span className={styles['prefix-wrapper']}>{prefix}</span>
+  <span className={styles["prefix-wrapper"]}>{prefix}</span>
 );
 
 const Postfix = ({ postfix }) => (
-  <span className={styles['postfix-wrapper']}>{postfix}</span>
+  <span className={styles["postfix-wrapper"]}>{postfix}</span>
 );
 
 export const Input = ({
@@ -22,7 +22,7 @@ export const Input = ({
   prefix,
   disabled,
   readOnly,
-  required, // eslint-disable-line
+  required,
   active,
   value,
   error,
@@ -31,12 +31,12 @@ export const Input = ({
   onChange,
   onBlur,
   onFocus,
-  inputComponent = 'input',
+  inputComponent = "input",
   component = inputComponent,
-  theme = 'gray',
+  theme = "gray",
   label_bold,
-  className, // eslint-disable-line
-  ...rest // eslint-disable-line
+  className,
+  ...rest
 }) => {
   const decorInputProps = {
     errored: !!error,
@@ -63,12 +63,15 @@ export const Input = ({
 
   return (
     <span>
-      <label className={styles['label-wrapper']}>
+      <label
+        className={styles["label-wrapper"]}
+        onClick={e => e.preventDefault()}
+      >
         {labelText && (
           <div
             className={classnames(
-              styles['label-text'],
-              label_bold && styles['label-bold']
+              styles["label-text"],
+              label_bold && styles["label-bold"]
             )}
           >
             {labelText}
@@ -76,7 +79,7 @@ export const Input = ({
         )}
         <span
           className={classnames(
-            styles['group-input'],
+            styles["group-input"],
             styles[`theme-${theme}`],
             error && styles.error,
             active && !readOnly && styles.active,
@@ -90,8 +93,8 @@ export const Input = ({
           })}
           {postfixComp}
           {error && (
-            <div className={styles['error-label']}>
-              {typeof error === 'string' ? (
+            <div className={styles["error-label"]}>
+              {typeof error === "string" ? (
                 error
               ) : (
                 <ErrorMessages error={error}>{children}</ErrorMessages>
@@ -105,7 +108,7 @@ export const Input = ({
 };
 
 Input.propTypes = {
-  theme: PropTypes.oneOf(['light', 'disabled'])
+  theme: PropTypes.oneOf(["light", "disabled"])
 };
 
 export default withStyles(styles)(Input);

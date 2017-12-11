@@ -1,8 +1,8 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import classnames from 'classnames';
+import React from "react";
+import withStyles from "withStyles";
+import classnames from "classnames";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const DetailMainComponent = props => <div className={styles.main} {...props} />;
 

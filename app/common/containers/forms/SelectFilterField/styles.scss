@@ -1,0 +1,9 @@
+.select {
+  flex-basis: 100%;
+  margin-top: 10px;
+  padding-right: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-basis: 50%;
+  }
+}

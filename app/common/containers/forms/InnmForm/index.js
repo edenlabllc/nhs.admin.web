@@ -1,23 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import withStyles from 'withStyles';
-import { reduxForm, Field, getFormValues } from 'redux-form';
+import React from "react";
+import { connect } from "react-redux";
+import withStyles from "withStyles";
+import { reduxForm, Field, getFormValues } from "redux-form";
 
-import FieldInput from 'components/reduxForm/FieldInput';
-import Button from 'components/Button';
-import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
+import FieldInput from "components/reduxForm/FieldInput";
+import Button from "components/Button";
+import { FormRow, FormColumn } from "components/Form";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { reduxFormValidate } from 'react-nebo15-validate';
+import { reduxFormValidate } from "react-nebo15-validate";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
-  form: 'innm-form',
+  form: "innm-form",
   validate: reduxFormValidate({
     sctid: {
       length: 8
@@ -31,7 +29,7 @@ import styles from './styles.scss';
   })
 })
 @connect(state => ({
-  values: getFormValues('innm-form')(state)
+  values: getFormValues("innm-form")(state)
 }))
 export default class InnmForm extends React.Component {
   render() {
@@ -39,7 +37,6 @@ export default class InnmForm extends React.Component {
       handleSubmit,
       onSubmit = () => {},
       submitting,
-      t,
       disabled = false,
       create,
       initialValues = {}
@@ -80,7 +77,7 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid МНН')}
+                labelText="sctid МНН"
                 component={FieldInput}
                 placeholder="-"
               />
@@ -90,22 +87,26 @@ export default class InnmForm extends React.Component {
             <div>
               <Field
                 name="sctid"
-                labelText={t('sctid МНН')}
+                labelText="sctid МНН"
                 component={FieldInput}
                 disabled={disabled}
                 placeholder="98730785"
               />
             </div>
           )}
-          {!disabled && (
-            <ShowWithScope scope="innm:write">
-              <div>
-                <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Saving...') : t('Створити МНН')}
-                </Button>
-              </div>
-            </ShowWithScope>
-          )}
+          <FormRow>
+            <FormColumn>
+              {!disabled && (
+                <ShowWithScope scope="innm:write">
+                  <div>
+                    <Button type="submit" disabled={submitting}>
+                      {submitting ? "Збереження" : "Створити МНН"}
+                    </Button>
+                  </div>
+                </ShowWithScope>
+              )}
+            </FormColumn>
+          </FormRow>
         </div>
       </form>
     );

@@ -1,8 +1,11 @@
 {
+  "ignore": [
+    "node_modules/**"
+  ],
   "presets": [
     ["es2015", { "modules": false }],
     "react",
-    "stage-0",
+    "stage-0"
   ],
   "plugins": [
     "transform-runtime",
@@ -17,13 +20,21 @@
           "public": "./public"
         }
       }
-    ],
+    ]
   ],
   "env": {
     "development": {
       "plugins": [
         "react-hot-loader/babel"
       ]
+    },
+    "test": {
+      "presets": [
+        ["es2015"],
+        "react",
+        "stage-0"
+      ],
+      "plugins": ["transform-decorators-legacy"]
     }
   }
 }

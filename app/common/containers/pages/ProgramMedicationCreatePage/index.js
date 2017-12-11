@@ -1,18 +1,18 @@
-import React from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import { provideHooks } from "redial";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H3 } from 'components/Title';
-import { Confirm } from 'components/Popup';
-import BackLink from 'containers/blocks/BackLink';
-import ProgramMedicationCreateForm from 'containers/forms/ProgramMedicationCreateForm';
+import { H3 } from "components/Title";
+import { Confirm } from "components/Popup";
+import BackLink from "containers/blocks/BackLink";
+import ProgramMedicationCreateForm from "containers/forms/ProgramMedicationCreateForm";
 
-import { onCreate } from './redux';
-import styles from './styles.scss';
+import { onCreate } from "./redux";
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -33,8 +33,8 @@ export default class ProgramMedicationCreatePage extends React.Component {
           title="Створення учасника медичної програми"
           meta={[
             {
-              property: 'og:title',
-              content: 'Створення учасника медчної програми'
+              property: "og:title",
+              content: "Створення учасника медчної програми"
             }
           ]}
         />

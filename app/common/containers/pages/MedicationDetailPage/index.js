@@ -1,28 +1,28 @@
-import React from 'react';
-import { translate } from 'react-i18next';
-import format from 'date-fns/format';
-import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { translate } from "react-i18next";
+import format from "date-fns/format";
+import { connect } from "react-redux";
+import { provideHooks } from "redial";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import Line from 'components/Line';
-import DataList from 'components/DataList';
-import { Confirm } from 'components/Popup';
-import Button from 'components/Button';
-import Icon from 'components/Icon';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
+import Line from "components/Line";
+import DataList from "components/DataList";
+import { Confirm } from "components/Popup";
+import Button from "components/Button";
+import Icon from "components/Icon";
+import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import BackLink from 'containers/blocks/BackLink';
-import ShowMore from 'containers/blocks/ShowMore';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import BackLink from "containers/blocks/BackLink";
+import ShowMore from "containers/blocks/ShowMore";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { getMedication } from 'reducers';
-import { deactivateMedication } from 'redux/medications';
+import { getMedication } from "reducers";
+import { deactivateMedication } from "redux/medications";
 
-import { fetchMedication } from './redux';
-import styles from './styles.scss';
+import { fetchMedication } from "./redux";
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -56,27 +56,43 @@ export default class MedicationDetailPage extends React.Component {
     return (
       <div id="medication-detail-page">
         <Helmet
-          title={t('Medication detail')}
-          meta={[{ property: 'og:title', content: t('Medication detail') }]}
+          title="Деталі торгівельного найменовання"
+          meta={[
+            {
+              property: "og:title",
+              content: "Деталі торгівельного найменовання"
+            }
+          ]}
         />
-        <BackLink onClick={() => this.props.router.push('/medications')}>
-          {t('Back to list')}
+        <BackLink onClick={() => this.props.router.push("/medications")}>
+          {t("Back to list")}
         </BackLink>
         <Line />
         <div className={styles.row}>
           <DataList
-            list={[{ name: 'ID торгівельної назви', value: medication.id }]}
+            list={[
+              { name: "ID торгівельного найменовання", value: medication.id }
+            ]}
           />
         </div>
         <Line width={630} />
-        <DataList list={[{ name: t('Name'), value: medication.name }]} />
+        <DataList list={[{ name: t("Name"), value: medication.name }]} />
         <Line width={630} />
         <DataList
           list={[
-            { name: 'Код АТХ', value: medication.code_atc },
-            { name: 'Кількість ліків', value: medication.package_qty },
+            { name: "Код АТХ", value: medication.code_atc },
             {
-              name: 'Мін. к-сть ліків',
+              name: "Форма",
+              value: (
+                <DictionaryValue
+                  dictionary="MEDICATION_FORM"
+                  value={medication.form}
+                />
+              )
+            },
+            { name: "Кількість ліків", value: medication.package_qty },
+            {
+              name: "Мін. к-сть ліків",
               value: medication.package_min_qty
             }
           ]}
@@ -87,7 +103,7 @@ export default class MedicationDetailPage extends React.Component {
             theme="min"
             list={[
               {
-                name: 'Складові',
+                name: "Складові",
                 value: (
                   <div>
                     <p>{medication.ingredients[0].name}</p>
@@ -102,15 +118,16 @@ export default class MedicationDetailPage extends React.Component {
                           medication.ingredients[0].dosage.denumerator_unit
                         }
                       />
-                      {`${t(' містить')} ${medication.ingredients[0].dosage
-                        .numerator_value} `}
+                      {`${t(" містить")} ${
+                        medication.ingredients[0].dosage.numerator_value
+                      } `}
                       <DictionaryValue
                         dictionary="MEDICATION_UNIT"
                         value={medication.ingredients[0].dosage.numerator_unit}
                       />
                     </p>
                     <p>
-                      {medication.ingredients[0].is_primary && 'Діюча речовина'}
+                      {medication.ingredients[0].is_primary && "Діюча речовина"}
                     </p>
                     <br />
                     {medication.ingredients.length > 1 && (
@@ -136,7 +153,7 @@ export default class MedicationDetailPage extends React.Component {
                               </p>
                               <p>
                                 {medication.ingredients[key].is_primary &&
-                                  'Діюча речовина'}
+                                  "Діюча речовина"}
                               </p>
                               <br />
                             </div>
@@ -154,7 +171,7 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             {
-              name: 'Країна, Виробник',
+              name: "Країна, Виробник",
               value: (
                 <div>
                   <span>
@@ -169,7 +186,7 @@ export default class MedicationDetailPage extends React.Component {
               )
             },
             {
-              name: 'Упаковка',
+              name: "Упаковка",
               value: (
                 <div>
                   <span>
@@ -178,7 +195,7 @@ export default class MedicationDetailPage extends React.Component {
                       dictionary="MEDICATION_UNIT"
                       value={medication.container.numerator_unit}
                     />
-                    &nbsp;на 1{' '}
+                    &nbsp;на 1{" "}
                     <DictionaryValue
                       dictionary="MEDICATION_UNIT"
                       value={medication.container.denumerator_unit}
@@ -193,11 +210,11 @@ export default class MedicationDetailPage extends React.Component {
         <DataList
           list={[
             {
-              name: 'Активна',
+              name: "Активна",
               value: medication.is_active ? (
                 <Icon name="check-right" color="green" />
               ) : (
-                '-'
+                "-"
               )
             }
           ]}
@@ -205,10 +222,13 @@ export default class MedicationDetailPage extends React.Component {
         <Line width={630} />
         <DataList
           list={[
-            { name: 'Сертифікат', value: medication.certificate },
             {
-              name: 'Дата закінчення',
-              value: format(medication.certificate_expired_at, 'DD/MM/YYYY')
+              name: "Номер реєстраційного посвідчення",
+              value: medication.certificate
+            },
+            {
+              name: "Дата закінчення реєстраційного посвідчення",
+              value: format(medication.certificate_expired_at, "DD/MM/YYYY")
             }
           ]}
         />
@@ -219,27 +239,27 @@ export default class MedicationDetailPage extends React.Component {
             <div className={styles.buttons__row}>
               <div className={styles.buttons__column}>
                 <Button
-                  onClick={() => this.props.router.push('/medications')}
+                  onClick={() => this.props.router.push("/medications")}
                   theme="border"
                   color="blue"
                   icon="back"
                   block
                 >
-                  {t('Back to list')}
+                  {t("Back to list")}
                 </Button>
               </div>
               {
-                <ShowWithScope scope="medical_program:deactivate">
+                <ShowWithScope scope="medication:deactivate">
                   <div className={styles.buttons__column}>
                     <Button
                       onClick={() =>
-                        this.setState({ showDeactivateConfirm: true })}
+                        this.setState({ showDeactivateConfirm: true })
+                      }
                       theme="fill"
                       color="red"
-                      icon="check-right"
                       block
                     >
-                      Деактивувати торгову назву
+                      Деактивувати торгівельне найменування
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -248,13 +268,13 @@ export default class MedicationDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t('Деактивувати торгову назву {{name}}?', {
+          title={t("Деактивувати торгівельне найменування {{name}}?", {
             name: medication.name
           })}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t('Cancel')}
-          confirm={t('Yes')}
+          cancel={t("Cancel")}
+          confirm={t("Yes")}
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateMedication()}
         />

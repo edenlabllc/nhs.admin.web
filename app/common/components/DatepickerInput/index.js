@@ -1,11 +1,11 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
+import React from "react";
+import DatePicker from "react-datepicker";
+import moment from "moment";
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
-import libStyles from './libStyles.css';
+import libStyles from "./libStyles.css";
 
-import Input from '../Input';
+import Input from "../Input";
 
 export const Component = ({
   input,
@@ -13,7 +13,7 @@ export const Component = ({
   maxDate,
   onChange,
   value,
-  dateModelFormat = 'YYYY-MM-DD',
+  dateModelFormat = "YYYY-MM-DD",
   placeholder,
   ...rest
 }) => (
@@ -23,6 +23,7 @@ export const Component = ({
     onChange={params => params && onChange(params.format(dateModelFormat))}
     onBlur={() => onBlur(value)}
     selected={value ? moment(value, dateModelFormat) : null}
+    shouldCloseOnSelect={true}
     placeholderText={placeholder}
     {...rest}
   />

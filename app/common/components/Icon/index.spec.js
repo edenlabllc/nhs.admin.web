@@ -1,28 +1,28 @@
-import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import Icon, { icons } from './index';
+import React from "react";
+import { mount } from "enzyme";
+import Icon, { icons } from "./index";
 
-describe('Icon', () => {
-  describe('icons', () => {
-    it('should export all available icons', () => {
-      expect(icons).to.exist;
-      expect(icons).to.be.array;
+describe("Icon", () => {
+  describe("icons", () => {
+    it("should export all available icons", () => {
+      expect(icons).toBeDefined();
+      expect(Array.isArray(icons)).toBeTruthy();
     });
   });
 
-  describe('default', () => {
-    it('should exists', () => {
-      expect(Icon).to.exist;
+  describe("default", () => {
+    it("should exists", () => {
+      expect(Icon).toBeDefined();
     });
-    describe('render', () => {
-      let instance;
-      beforeEach(() => {
-        instance = mount(<div><Icon name={icons[0]} /></div>);
-      });
 
-      it('should render in i tag', () => {
-        expect(instance.find('i')).to.have.length(1);
+    describe("render", () => {
+      it("should render in i tag", () => {
+        const instance = mount(
+          <div>
+            <Icon name={icons[0]} />
+          </div>
+        );
+        expect(instance.find("i")).toHaveLength(1);
       });
     });
   });

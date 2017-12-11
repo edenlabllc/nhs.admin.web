@@ -1,28 +1,28 @@
-import React from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import { provideHooks } from 'redial';
-import { withRouter } from 'react-router';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import { provideHooks } from "redial";
+import { withRouter } from "react-router";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H3 } from 'components/Title';
-import Line from 'components/Line';
-import DataList from 'components/DataList';
-import Checkbox from 'components/Checkbox';
-import Button from 'components/Button';
-import { Confirm } from 'components/Popup';
+import { H3 } from "components/Title";
+import Line from "components/Line";
+import DataList from "components/DataList";
+import Checkbox from "components/Checkbox";
+import Button from "components/Button";
+import { Confirm } from "components/Popup";
 
-import BackLink from 'containers/blocks/BackLink';
-import ColoredText from 'components/ColoredText';
-import ShowMore from 'containers/blocks/ShowMore';
-import DictionaryValue from 'containers/blocks/DictionaryValue';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import BackLink from "containers/blocks/BackLink";
+import ColoredText from "components/ColoredText";
+import ShowMore from "containers/blocks/ShowMore";
+import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { getProgramMedication } from 'reducers';
+import { getProgramMedication } from "reducers";
 
-import { fetchProgramMedication } from './redux';
-import styles from './styles.scss';
+import { fetchProgramMedication } from "./redux";
+import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
@@ -41,11 +41,11 @@ export default class ProgramMedicationDetailPage extends React.Component {
       <div id="program-medication-detail-page">
         <Helmet
           title={program_medication.name}
-          meta={[{ property: 'og:title', content: program_medication.name }]}
+          meta={[{ property: "og:title", content: program_medication.name }]}
         />
 
         <BackLink
-          onClick={() => this.props.router.push('/program-medications')}
+          onClick={() => this.props.router.push("/program-medications")}
         >
           Повернутись до списку учасників программ
         </BackLink>
@@ -54,7 +54,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <DataList
-              list={[{ name: t('ID Учасника'), value: program_medication.id }]}
+              list={[{ name: t("ID Учасника"), value: program_medication.id }]}
             />
           </div>
         </div>
@@ -63,7 +63,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
           <DataList
             list={[
               {
-                name: t('Торгова назва'),
+                name: t("Торгівельне найменування"),
                 value: (
                   <div>
                     <div>
@@ -81,17 +81,23 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       <br />
                       <p>
                         {`
-                        ${program_medication.medication.ingredients[0].dosage
-                          .denumerator_value} `}
-                        {`${t('містить')}
-                          ${program_medication.medication.ingredients[0].dosage
-                            .numerator_value}
-                          ${program_medication.medication.ingredients[0].dosage
-                            .numerator_unit}`}
+                        ${
+                          program_medication.medication.ingredients[0].dosage
+                            .denumerator_value
+                        } `}
+                        {`${t("містить")}
+                          ${
+                            program_medication.medication.ingredients[0].dosage
+                              .numerator_value
+                          }
+                          ${
+                            program_medication.medication.ingredients[0].dosage
+                              .numerator_unit
+                          }`}
                       </p>
                       <p>
                         {program_medication.medication.ingredients[0]
-                          .is_primary && 'Діюча речовина'}
+                          .is_primary && "Діюча речовина"}
                       </p>
                       <br />
                       {program_medication.medication.ingredients.length > 1 && (
@@ -104,12 +110,13 @@ export default class ProgramMedicationDetailPage extends React.Component {
                                   <p>{i.dosage.denumerator_unit}</p>
                                   <p>
                                     {`${i.dosage.denumerator_value} `}
-                                    {`містить ${i.dosage.numerator_value} ${i
-                                      .dosage.numerator_unit}`}
+                                    {`містить ${i.dosage.numerator_value} ${
+                                      i.dosage.numerator_unit
+                                    }`}
                                   </p>
                                   <p>
                                     {innm_dosage.medication.ingredients[key]
-                                      .is_primary && 'Діюча речовина'}
+                                      .is_primary && "Діюча речовина"}
                                   </p>
                                   <br />
                                 </div>
@@ -123,8 +130,9 @@ export default class ProgramMedicationDetailPage extends React.Component {
                       <div className={styles.right}>
                         <BackLink
                           iconPosition="right"
-                          to={`/medications/${program_medication.medication
-                            .id}`}
+                          to={`/medications/${
+                            program_medication.medication.id
+                          }`}
                         >
                           Перейти до торгової назви
                         </BackLink>
@@ -142,7 +150,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Медична програма'),
+                  name: t("Медична програма"),
                   value: (
                     <div>
                       {program_medication.medical_program.name}
@@ -163,16 +171,17 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t('Сума відшкодування'),
+                  name: t("Сума відшкодування"),
                   value: (
                     <div>
-                      {program_medication.reimbursement.type === 'fixed' &&
-                        'Фіксована'}
-                      {program_medication.reimbursement.type === 'dinamic' &&
-                        'Динамічна'}
+                      {program_medication.reimbursement.type === "fixed" &&
+                        "Фіксована"}
+                      {program_medication.reimbursement.type === "dinamic" &&
+                        "Динамічна"}
                       <br />
-                      {`${program_medication.reimbursement
-                        .reimbursement_amount} грн.`}
+                      {`${
+                        program_medication.reimbursement.reimbursement_amount
+                      } грн.`}
                     </div>
                   )
                 }
@@ -191,7 +200,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <Checkbox checked={program_medication.medication_request_allowed} />
-            Дозвіл на відпуск рецептів
+            Дозвіл на створення рецептів
           </div>
         </div>
         <br />

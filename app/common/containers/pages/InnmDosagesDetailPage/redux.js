@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromInnmDosages from 'redux/innm-dosages';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromInnmDosages from "redux/innm-dosages";
 
 export const showInnmDosage = createAction(
-  'InnmDosageDetailPage/SHOW_INNM_DOSAGES'
+  "InnmDosageDetailPage/SHOW_INNM_DOSAGES"
 );
 
 export const fetchInnmsDosages = id => dispatch =>

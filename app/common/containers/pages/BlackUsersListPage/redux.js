@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
-import * as fromBlackListUsers from 'redux/black-list-users';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
+import * as fromBlackListUsers from "redux/black-list-users";
 
 export const showBlackListUsers = createAction(
-  'blackListUsersPage/SHOW_BLACK_LIST_USERS'
+  "blackListUsersPage/SHOW_BLACK_LIST_USERS"
 );
 export const pagingBlackListUsers = createAction(
-  'blackListUsersPage/ADD_PAGING'
+  "blackListUsersPage/ADD_PAGING"
 );
 
 export const fetchBlackListUsers = options => dispatch =>

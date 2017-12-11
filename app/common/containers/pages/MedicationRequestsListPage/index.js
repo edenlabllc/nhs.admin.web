@@ -1,52 +1,79 @@
-import React from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { provideHooks } from 'redial';
-import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-import format from 'date-fns/format';
+import React from "react";
+import { compose } from "redux";
+import { provideHooks } from "redial";
+import { connect } from "react-redux";
+import Helmet from "react-helmet";
+import format from "date-fns/format";
 
-import { setFilter, getFilter } from 'helpers/filter';
+import { ListHeader, ListShowBy, ListTable } from "components/List";
+import { H1, H2 } from "components/Title";
+import Pagination from "components/Pagination";
+import Button from "components/Button";
+import Table from "components/Table";
 
-import { ListHeader, ListShowBy, ListTable } from 'components/List';
-import { H1, H2 } from 'components/Title';
-import Pagination from 'components/Pagination';
-import Button from 'components/Button';
-import Table from 'components/Table';
+import ShowBy from "containers/blocks/ShowBy";
 
-import ShowBy from 'containers/blocks/ShowBy';
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
+import DateFilterField from "containers/forms/DateFilterField";
 
-import SearchForm from 'containers/forms/SearchForm';
-import DateFilterForm from 'containers/forms/DateFilterForm';
+import { getMedicationRequests } from "reducers";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-import { getMedicationRequests } from 'reducers';
+import { fetchMedicationRequests } from "./redux";
 
-import { fetchMedicationRequests } from './redux';
-
-const FILTERS = [
-  { name: 'employee_id', title: 'За ID працівника' },
-  { name: 'person_id', title: 'За ID пацієнта' },
-  { name: 'status', title: 'За статусом' },
-  { name: 'request_number', title: 'За номером рецепту' },
-  { name: 'legal_entity_id', title: 'За ID медичного закладу' },
-  { name: 'medication_id', title: 'За ID лікарської форми' }
-];
-const FILTER_DATE = [
-  { names: ['created_from', 'created_to'], title: 'За період' }
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    title: "Знайти рецепт",
+    filters: [
+      {
+        name: "employee_id",
+        title: "За ID працівника",
+        validate: uuidValidate
+      },
+      { name: "person_id", title: "За ID пацієнта", validate: uuidValidate },
+      { name: "status", title: "За статусом" },
+      { name: "request_number", title: "За номером рецепту" },
+      {
+        name: "legal_entity_id",
+        title: "За ID медичного закладу",
+        validate: uuidValidate
+      },
+      {
+        name: "medication_id",
+        title: "За ID лікарської форми",
+        validate: uuidValidate
+      }
+    ]
+  },
+  {
+    component: DateFilterField,
+    title: "За період",
+    filters: [
+      {
+        name: "created_from",
+        title: "Початкова дата",
+        placeholder: "2017-10-25"
+      },
+      {
+        name: "created_to",
+        title: "Кінцева дата",
+        placeholder: "2018-09-26"
+      }
+    ]
+  }
 ];
 
 const MedicationRequestsListPage = ({
-  location,
-  router,
   medication_requests = [],
   paging,
-  activeFilter,
-  activeDateFilter = []
+  location
 }) => (
   <div id="medication-requests-list-page">
     <Helmet
       title="Рецепти"
-      meta={[{ property: 'og:title', content: 'Рецепти' }]}
+      meta={[{ property: "og:title", content: "Рецепти" }]}
     />
 
     <ListHeader>
@@ -55,45 +82,25 @@ const MedicationRequestsListPage = ({
 
     <div>
       <H2>Пошук рецепту</H2>
-
-      <SearchForm
-        active={activeFilter}
-        placeholder="Знайти рецепт"
-        items={FILTERS}
-        initialValues={{ [activeFilter]: location.query[activeFilter] }}
-        onSubmit={values => setFilter(values, { location, router })}
-      />
-    </div>
-    <div>
-      <DateFilterForm
-        items={FILTER_DATE[0].names}
-        initialValues={activeDateFilter.reduce(
-          (filter, name) => ({ ...filter, [name]: location.query[name] }),
-          {}
-        )}
-        onSubmit={values => setFilter(values, { location, router })}
-      />
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <ListShowBy>
-      <ShowBy
-        active={Number(location.query.page_size) || 5}
-        onChange={page_size => setFilter({ page_size }, { location, router })}
-      />
+      <ShowBy location={location} />
     </ListShowBy>
 
     <ListTable id="medication-requests-table">
       <Table
         columns={[
-          { key: 'created_at', title: 'Дата створення', width: 120 },
-          { key: 'id', title: 'ID' },
-          { key: 'request_number', title: 'Номер рецепту' },
-          { key: 'division_id', title: 'ID підрозділу' },
-          { key: 'legal_entity_id', title: 'ID медичного закладу' },
-          { key: 'medication_id', title: 'ID лікарської форми', width: 110 },
-          { key: 'person_id', title: 'ID пацієнта' },
-          { key: 'status', title: 'Статус' },
-          { key: 'action', title: 'Дії', width: 100 }
+          { key: "created_at", title: "Дата створення", width: 120 },
+          { key: "id", title: "ID" },
+          { key: "request_number", title: "Номер рецепту" },
+          { key: "division_id", title: "ID підрозділу" },
+          { key: "legal_entity_id", title: "ID медичного закладу" },
+          { key: "medication_id", title: "ID лікарської форми", width: 110 },
+          { key: "person_id", title: "ID пацієнта" },
+          { key: "status", title: "Статус" },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={medication_requests.map(
           ({
@@ -106,7 +113,7 @@ const MedicationRequestsListPage = ({
             person,
             status
           }) => ({
-            created_at: format(created_at, 'DD/MM/YYYY'),
+            created_at: format(created_at, "DD/MM/YYYY"),
             id,
             request_number,
             division_id: division.id,
@@ -139,7 +146,6 @@ const MedicationRequestsListPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchMedicationRequests({ page_size: 5, ...query }))
@@ -149,8 +155,6 @@ export default compose(
     medication_requests: getMedicationRequests(
       state,
       state.pages.MedicationRequestsListPage.medication_requests
-    ),
-    activeFilter: getFilter(props, FILTERS),
-    activeDateFilter: getFilter(props, FILTER_DATE)
+    )
   }))
 )(MedicationRequestsListPage);

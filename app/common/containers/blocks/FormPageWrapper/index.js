@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import withStyles from 'nebo15-isomorphic-style-loader/lib/withStyles';
-import { H1 } from 'components/Title';
-import Icon from 'components/Icon';
+import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
+import { H1 } from "components/Title";
+import Icon from "components/Icon";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 export default class FormPageWrapper extends React.Component {
@@ -21,7 +21,7 @@ export default class FormPageWrapper extends React.Component {
   }
 
   render() {
-    const { title, children, back, ...props } = this.props; // eslint-disable-line
+    const { title, children, back, ...props } = this.props;
 
     return (
       <div {...props}>

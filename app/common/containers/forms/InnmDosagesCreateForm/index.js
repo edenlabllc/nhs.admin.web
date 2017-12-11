@@ -1,30 +1,30 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import withStyles from 'withStyles';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import withStyles from "withStyles";
 import {
   reduxFormValidate,
   collectionOf,
   ErrorMessage
-} from 'react-nebo15-validate';
-import { reduxForm, Field, FieldArray, getFormValues } from 'redux-form';
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+} from "react-nebo15-validate";
+import { reduxForm, Field, FieldArray, getFormValues } from "redux-form";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
-import { SelectUniversal } from 'components/SelectUniversal';
-import RadioInput from 'components/RadioInput';
-import FieldInput from 'components/reduxForm/FieldInput';
-import { FormRow, FormColumn } from 'components/Form';
-import Button from 'components/Button';
-import Line from 'components/Line';
+import { SelectUniversal } from "components/SelectUniversal";
+import RadioInput from "components/RadioInput";
+import FieldInput from "components/reduxForm/FieldInput";
+import { FormRow, FormColumn } from "components/Form";
+import Button from "components/Button";
+import Line from "components/Line";
 
-import RenderIngredient from './renderIngredient';
+import RenderIngredient from "./renderIngredient";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'inns-dosages-create-form',
+  form: "inns-dosages-create-form",
   validate: reduxFormValidate({
     name: {
       required: true
@@ -32,19 +32,19 @@ import styles from './styles.scss';
     form: {
       required: true
     },
-    'one.is_primary': {
+    "one.is_primary": {
       required: false
     },
-    'one.ingredients.denumerator_value': {
+    "one.ingredients.denumerator_value": {
       required: true
     },
-    'one.ingredients.numerator_value': {
+    "one.ingredients.numerator_value": {
       required: true
     },
-    'one.ingredients.numerator_unit': {
+    "one.ingredients.numerator_unit": {
       required: true
     },
-    'one.ingredients.denumerator_unit': {
+    "one.ingredients.denumerator_unit": {
       required: true
     },
     ingredients: collectionOf({
@@ -73,13 +73,13 @@ import styles from './styles.scss';
   enableReinitialize: false
 })
 @connect(state => ({
-  values: getFormValues('inns-dosages-create-form')(state)
+  values: getFormValues("inns-dosages-create-form")(state)
 }))
 export default class InnmDosagesCreateForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      innms_search: '',
+      innms_search: "",
       active: 0
     };
     this.onChange = this.onChange.bind(this);
@@ -118,7 +118,6 @@ export default class InnmDosagesCreateForm extends React.Component {
               labelText="Назва"
               component={FieldInput}
               disabled={disabled}
-              label_bold
               placeholder="Назва лікарської форми"
             />
           </FormRow>
@@ -145,7 +144,6 @@ export default class InnmDosagesCreateForm extends React.Component {
                 labelText="Назва речовини"
                 emptyText="Не знайдено"
                 placeholder="Почніть вводити назву"
-                label_bold
                 searchable
                 onChangeSearch={v =>
                   v &&
@@ -153,7 +151,8 @@ export default class InnmDosagesCreateForm extends React.Component {
                     this.setState({
                       innms_search: v.toLowerCase()
                     })
-                  )}
+                  )
+                }
                 options={data.innms
                   .filter(i => i.is_active)
                   .filter(
@@ -168,7 +167,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                   }))}
               >
                 <ErrorMessage when="required">
-                  {t('Required field')}
+                  {t("Required field")}
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -190,7 +189,6 @@ export default class InnmDosagesCreateForm extends React.Component {
                 name="one.ingredients.numerator_value"
                 labelText="Кількість"
                 component={FieldInput}
-                label_bold
                 placeholder="0-1000"
               />
             </FormColumn>
@@ -205,7 +203,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t('Required field')}
+                  {t("Required field")}
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -220,7 +218,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t('Required field')}
+                  {t("Required field")}
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -241,7 +239,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             <ShowWithScope scope="innm_dosage:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t('Додаємо...') : 'Додати лікарську форму'}
+                  {submitting ? t("Додаємо...") : "Додати лікарську форму"}
                 </Button>
               </div>
             </ShowWithScope>

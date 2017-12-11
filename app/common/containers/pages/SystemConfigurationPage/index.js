@@ -1,47 +1,46 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { provideHooks } from 'redial';
-import withStyles from 'withStyles';
-import Helmet from 'react-helmet';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import { provideHooks } from "redial";
+import withStyles from "withStyles";
+import Helmet from "react-helmet";
 
-import { H1 } from 'components/Title';
-import SystemConfigurationForm from 'containers/forms/SystemConfigurationForm';
+import { H1 } from "components/Title";
+import SystemConfigurationForm from "containers/forms/SystemConfigurationForm";
 
-import { getConfiguration } from 'reducers';
+import { getConfiguration } from "reducers";
 
-import { updateConfiguration } from 'redux/configuration';
+import { updateConfiguration } from "redux/configuration";
 
-import { fetchConfiguration } from './redux';
-import styles from './styles.scss';
+import { fetchConfiguration } from "./redux";
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @translate()
 @provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchConfiguration()),
+  fetch: ({ dispatch }) => dispatch(fetchConfiguration())
 })
-@connect(state => ({
-  configuration: getConfiguration(state),
-}), { updateConfiguration })
+@connect(
+  state => ({
+    configuration: getConfiguration(state)
+  }),
+  { updateConfiguration }
+)
 export default class SystemConfigurationPage extends React.Component {
   render() {
     const { configuration = {}, t } = this.props;
     return (
       <div id="system-configuration-page">
         <Helmet
-          title={t('System configuration')}
-          meta={[
-            { property: 'og:title', content: t('System configuration') },
-          ]}
+          title={t("System configuration")}
+          meta={[{ property: "og:title", content: t("System configuration") }]}
         />
 
-        <H1>{ t('System configuration') }</H1>
+        <H1>{t("System configuration")}</H1>
 
         <SystemConfigurationForm
           initialValues={configuration}
-          onSubmit={values => (
-            this.props.updateConfiguration(values)
-          )}
+          onSubmit={values => this.props.updateConfiguration(values)}
         />
       </div>
     );

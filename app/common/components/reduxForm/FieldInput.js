@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getForm } from 'reducers';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getForm } from "reducers";
 
-import Input from '../Input';
+import Input from "../Input";
 
 let Field = ({
   component = Input,
@@ -12,7 +12,7 @@ let Field = ({
   children,
   // not pass to the input component
   formName,
-  dispatch, // eslint-disable-line
+  dispatch,
   formSubmitFailed,
   ...props
 }) =>

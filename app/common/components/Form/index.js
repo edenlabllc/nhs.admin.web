@@ -1,9 +1,9 @@
-import React from 'react';
-import withStyles from 'withStyles';
-import classnames from 'classnames';
-import Icon from 'components/Icon';
+import React from "react";
+import withStyles from "withStyles";
+import classnames from "classnames";
+import Icon from "components/Icon";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const FormComponent = props => (
   <form className={classnames(styles.form)} noValidate {...props} />
@@ -37,11 +37,11 @@ const FormBlockTitleComponent = ({ children, right, ...rest }) => (
 export const FormBlockTitle = withStyles(styles)(FormBlockTitleComponent);
 
 const sizeToClassName = size => {
-  const [part, count] = size.split('/');
+  const [part, count] = size.split("/");
   return styles[`column_${part}-${count}`];
 };
 
-const FormColumnComponent = ({ size, align = 'top', ...rest }) => (
+const FormColumnComponent = ({ size, align = "top", ...rest }) => (
   <div
     className={classnames(
       styles.column,
@@ -61,8 +61,8 @@ const FormButtonsComponent = props => (
 export const FormButtons = withStyles(styles)(FormButtonsComponent);
 
 const FormIconComponent = ({
-  icon = 'add',
-  color = 'green',
+  icon = "add",
+  color = "green",
   children,
   ...rest
 }) => (

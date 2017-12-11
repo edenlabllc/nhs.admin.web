@@ -1,21 +1,21 @@
-import { handleAction, combineActions } from 'redux-actions';
-import { API_URL } from 'config';
-import { normalize } from 'normalizr';
-import { createUrl } from 'helpers/url';
-import { employeesRequest } from 'schemas';
-import { invoke } from './api';
+import { handleAction, combineActions } from "redux-actions";
+import { API_URL } from "config";
+import { normalize } from "normalizr";
+import { createUrl } from "helpers/url";
+import { employeesRequest } from "schemas";
+import { invoke } from "./api";
 
 export const fetchEmployeesRequest = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/employee_requests`, options),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'employee_request/FETCH_REQUEST_LIST_REQUEST',
+      "employee_request/FETCH_REQUEST_LIST_REQUEST",
       {
-        type: 'employee_request/FETCH_REQUEST_LIST_SUCCESS',
+        type: "employee_request/FETCH_REQUEST_LIST_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -27,32 +27,32 @@ export const fetchEmployeesRequest = options =>
             .json()
             .then(json => json.paging || { cursors: {} })
       },
-      'employee_request/FETCH_REQUEST_LIST_FAILURE'
+      "employee_request/FETCH_REQUEST_LIST_FAILURE"
     ]
   });
 
 export const fetchEmployeeRequest = id =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/employee_requests/${id}`),
-    method: 'GET',
+    method: "GET",
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     types: [
-      'employee_request/FETCH_REQUEST_DETAILS_REQUEST',
+      "employee_request/FETCH_REQUEST_DETAILS_REQUEST",
       {
-        type: 'employee_request/FETCH_REQUEST_DETAILS_SUCCESS',
+        type: "employee_request/FETCH_REQUEST_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, employeesRequest))
       },
-      'employee_request/FETCH_REQUEST_DETAILS_FAILURE'
+      "employee_request/FETCH_REQUEST_DETAILS_FAILURE"
     ]
   });
 
 export default handleAction(
   combineActions(
-    'employee_request/FETCH_REQUEST_LIST_SUCCESS',
-    'employee_request/FETCH_REQUEST_DETAILS_SUCCESS'
+    "employee_request/FETCH_REQUEST_LIST_SUCCESS",
+    "employee_request/FETCH_REQUEST_DETAILS_SUCCESS"
   ),
   (state, action) => ({
     ...state,

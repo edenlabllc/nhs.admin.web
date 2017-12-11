@@ -1,41 +1,41 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import withStyles from 'withStyles';
-import { reduxForm, Field, getFormValues } from 'redux-form';
+import React from "react";
+import { connect } from "react-redux";
+import { translate } from "react-i18next";
+import withStyles from "withStyles";
+import { reduxForm, Field, getFormValues } from "redux-form";
 
-import FieldInput from 'components/reduxForm/FieldInput';
-import FieldCheckbox from 'components/reduxForm/FieldCheckbox';
-import { FormRow, FormColumn } from 'components/Form';
+import FieldInput from "components/reduxForm/FieldInput";
+import FieldCheckbox from "components/reduxForm/FieldCheckbox";
+import { FormRow, FormColumn } from "components/Form";
 
-import { SelectUniversal } from 'components/SelectUniversal';
-import Button from 'components/Button';
+import { SelectUniversal } from "components/SelectUniversal";
+import Button from "components/Button";
 
-import ShowWithScope from 'containers/blocks/ShowWithScope';
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
 import {
   reduxFormValidate,
   collectionOf,
   ErrorMessage
-} from 'react-nebo15-validate';
+} from "react-nebo15-validate";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 @translate()
 @reduxForm({
-  form: 'program-medication-update-form',
+  form: "program-medication-update-form",
   validate: reduxFormValidate({
     fixed: {
       required: true
     },
-    'reimbursement.reimbursement_amount': {
+    "reimbursement.reimbursement_amount": {
       required: true
     }
   })
 })
 @connect(state => ({
-  values: getFormValues('program-medication-update-form')(state)
+  values: getFormValues("program-medication-update-form")(state)
 }))
 export default class ProgramMedicationForm extends React.Component {
   render() {
@@ -67,7 +67,7 @@ export default class ProgramMedicationForm extends React.Component {
             <FormColumn>
               <Field
                 name="medication.name"
-                labelText="Торгова назва"
+                labelText="Торгівельне найменування"
                 component={FieldInput}
                 disabled
                 theme="disabled"
@@ -113,7 +113,7 @@ export default class ProgramMedicationForm extends React.Component {
               theme="disabled"
               disabled
             >
-              <ErrorMessage when="required">{t('Required field')}</ErrorMessage>
+              <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
             </Field>
           </div>
           <div>
@@ -134,14 +134,14 @@ export default class ProgramMedicationForm extends React.Component {
           <div>
             <Field
               name="medication_request_allowed"
-              labelText="Дозвіл на відпуск рецептів"
+              labelText="Дозвіл на створення рецептів"
               component={FieldCheckbox}
             />
           </div>
           <ShowWithScope scope="program_medication:write">
             <div>
               <Button type="submit" disabled={submitting}>
-                {submitting ? t('Saving...') : t('Оновити')}
+                {submitting ? t("Saving...") : t("Оновити")}
               </Button>
             </div>
           </ShowWithScope>

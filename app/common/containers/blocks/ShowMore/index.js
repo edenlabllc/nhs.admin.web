@@ -1,8 +1,8 @@
-import React from 'react';
-import classnames from 'classnames';
-import withStyles from 'withStyles';
+import React from "react";
+import classnames from "classnames";
+import withStyles from "withStyles";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 @withStyles(styles)
 export default class ShowMore extends React.Component {

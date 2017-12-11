@@ -1,16 +1,16 @@
-import React from 'react';
-import { compose } from 'redux';
-import withStyles from 'withStyles';
-import { connect } from 'react-redux';
-import Portal from 'react-portal';
+import React from "react";
+import { compose } from "redux";
+import withStyles from "withStyles";
+import { connect } from "react-redux";
+import Portal from "react-portal";
 
-import { dismissError } from 'redux/error';
+import { dismissError } from "redux/error";
 
-import ShowMore from 'containers/blocks/ShowMore';
+import ShowMore from "containers/blocks/ShowMore";
 
-import { H3, H5 } from 'components/Title';
+import { H3, H5 } from "components/Title";
 
-import styles from './styles.scss';
+import styles from "./styles.scss";
 
 const ErrorMessage = ({
   isErrored,

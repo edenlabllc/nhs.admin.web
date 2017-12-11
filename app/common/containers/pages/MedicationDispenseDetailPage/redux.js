@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { handleAction, createAction } from 'redux-actions';
+import { combineReducers } from "redux";
+import { handleAction, createAction } from "redux-actions";
 
-import * as fromMedicationDispenses from 'redux/medication-dispenses';
+import * as fromMedicationDispenses from "redux/medication-dispenses";
 
 export const showMedicationDispense = createAction(
-  'medicationDispenseDetailPage/SHOW_DISPENSE'
+  "medicationDispenseDetailPage/SHOW_DISPENSE"
 );
 
 export const fetchMedicationDispense = id => dispatch =>

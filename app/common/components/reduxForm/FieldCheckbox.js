@@ -1,7 +1,7 @@
-import React from 'react';
-import Checkbox from 'components/Checkbox';
+import React from "react";
+import Checkbox from "components/Checkbox";
 
-import FieldInput from './FieldInput';
+import FieldInput from "./FieldInput";
 
 const FieldCheckbox = props => (
   <FieldInput
