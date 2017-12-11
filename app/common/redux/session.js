@@ -4,8 +4,14 @@ import { AUTH_COOKIE_NAME } from "config";
 
 export const getToken = () => (dispatch, getState, { cookies }) =>
   cookies.get(AUTH_COOKIE_NAME, { path: "/" });
-export const setToken = token => (dispatch, getState, { cookies }) =>
-  cookies.set(AUTH_COOKIE_NAME, token, { path: "/" });
+export const setToken = token => (dispatch, getState, { cookies }) => {
+  const cookieOption = { path: "/" };
+
+  if (process.env.NODE_ENV !== "development") {
+    cookieOption.secure = true;
+  }
+  return cookies.set(AUTH_COOKIE_NAME, token, cookieOption);
+};
 export const removeToken = () => (dispatch, getState, { cookies }) =>
   cookies.remove(AUTH_COOKIE_NAME, { path: "/" });
 
