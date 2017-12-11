@@ -1,27 +1,30 @@
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions } from 'redux-actions';
 
-import { AUTH_COOKIE_NAME } from "config";
+import { AUTH_COOKIE_NAME } from 'config';
 
 export const getToken = () => (dispatch, getState, { cookies }) =>
-  cookies.get(AUTH_COOKIE_NAME, { path: "/" });
-export const setToken = token => (dispatch, getState, { cookies }) =>
-  cookies.set(AUTH_COOKIE_NAME, token, { path: "/" });
+  cookies.get(AUTH_COOKIE_NAME, { path: '/' });
+export const setToken = token => (dispatch, getState, { cookies }) => {
+  const cookieOption = { path: '/' };
+
+  if (process.env.NODE_ENV !== 'development') {
+    cookieOption.secure = true;
+  }
+  return cookies.set(AUTH_COOKIE_NAME, token, cookieOption);
+};
 export const removeToken = () => (dispatch, getState, { cookies }) =>
-  cookies.remove(AUTH_COOKIE_NAME, { path: "/" });
+  cookies.remove(AUTH_COOKIE_NAME, { path: '/' });
 
 export const isLoginned = () => dispatch =>
-  dispatch(getToken()).then(resp => {
-    console.log("Token from storage: ", resp);
-    return !!resp;
-  });
+  dispatch(getToken()).then(resp => !!resp);
 
-export const logoutAction = createAction("session/LOGOUT");
-export const setData = createAction("session/SET_DATA");
+export const logoutAction = createAction('session/LOGOUT');
+export const setData = createAction('session/SET_DATA');
 
 export const loadTokenFromStorage = () => (dispatch, getState, { cookies }) =>
   dispatch(
     setData({
-      token: cookies.get(AUTH_COOKIE_NAME, { path: "/" })
+      token: cookies.get(AUTH_COOKIE_NAME, { path: '/' })
     })
   );
 
