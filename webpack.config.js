@@ -13,7 +13,8 @@ const genConfig = webpackMerge(
     plugins: [
       new webpack.EnvironmentPlugin({
         NODE_ENV: "development",
-        APP_ENV: "local"
+        APP_ENV: "local",
+        BI_URL: null
       })
     ]
   },
