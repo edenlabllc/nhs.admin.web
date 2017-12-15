@@ -12,6 +12,8 @@ import { getGlobalSatistic } from "reducers";
 import { fetchGlobalStat } from "./redux";
 import styles from "./styles.scss";
 
+const { BI_URL } = process.env;
+
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch }) => Promise.all([dispatch(fetchGlobalStat())])
@@ -48,13 +50,15 @@ export default class DashboardPage extends React.Component {
           </div>
         </div>
 
-        <iframe
-          width="100%"
-          height="600"
-          src="https://app.powerbi.com/view?r=eyJrIjoiYTM5OGYzMjMtYjU3ZC00MjFjLWJlN2ItYjViNTY2MzkyMGQyIiwidCI6IjhjNzYwNTYxLTg0ZjUtNDYxNC05YjJkLTBkODU2ZmRjZWUyYSIsImMiOjl9"
-          frameBorder="0"
-          allowFullScreen
-        />
+        {BI_URL && (
+          <iframe
+            width="100%"
+            height="600"
+            src={BI_URL}
+            frameBorder="0"
+            allowFullScreen
+          />
+        )}
       </div>
     );
   }
