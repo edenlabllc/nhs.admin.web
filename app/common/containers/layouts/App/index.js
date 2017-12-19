@@ -4,7 +4,7 @@ import { translate } from "react-i18next";
 
 import ErrorMessage from "containers/blocks/ErrorMessage";
 
-const { APP_ENV } = process.env;
+const { APP_ENV = "local" } = process.env;
 
 const ENV_TITLE = {
   preprod: "[Pre-production]",
