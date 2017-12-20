@@ -2,12 +2,8 @@ const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const RobotstxtPlugin = require("robotstxt-webpack-plugin").default;
 
-const { NODE_ENV, APP_ENV } = process.env;
-
-const DEBUG = NODE_ENV !== "production";
-const NON_PROD = APP_ENV !== "production";
+const DEBUG = process.env.NODE_ENV !== "production";
 
 const extractStyles = new ExtractTextPlugin("[name].css?[hash]");
 
@@ -196,19 +192,6 @@ exports.setupI18n = () => ({
       }
     ]
   }
-});
-
-exports.setupRobots = () => ({
-  plugins: [
-    new RobotstxtPlugin({
-      policy: [
-        {
-          userAgent: "*",
-          [NON_PROD ? "disallow" : "allow"]: "/"
-        }
-      ]
-    })
-  ]
 });
 
 exports.setupProduction = () => ({
