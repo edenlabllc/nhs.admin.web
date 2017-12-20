@@ -1,7 +1,9 @@
 import puppeteer from "puppeteer";
 import config from "../config";
 
-describe("Login", () => {
+// This suite should be rewritten to test only OAuth 2 compliace instead of
+// testing whole authentication service UI
+xdescribe("Login", () => {
   it(
     "User can login",
     async () => {
