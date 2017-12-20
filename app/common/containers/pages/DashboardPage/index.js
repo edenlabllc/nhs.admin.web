@@ -12,7 +12,7 @@ import { getGlobalSatistic } from "reducers";
 import { fetchGlobalStat } from "./redux";
 import styles from "./styles.scss";
 
-const { BI_URL } = process.env;
+const { BI_URL } = global.process.env;
 
 @withStyles(styles)
 @provideHooks({
