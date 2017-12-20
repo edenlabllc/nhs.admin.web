@@ -1,6 +1,6 @@
 node_modules
 confs
-bin
+bin/ci
 scripts
 tests
 .md
