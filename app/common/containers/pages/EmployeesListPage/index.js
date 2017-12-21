@@ -74,7 +74,8 @@ const EmployeesListPage = ({ employees = [], paging = {}, location, t }) => (
           name: (
             <div>
               {item.party.last_name} {item.party.first_name}
-              <div>{item.party.second_name}</div>
+              <br />
+              {item.party.second_name}
             </div>
           ),
           position: (
