@@ -7,8 +7,10 @@ import {
 } from "react-nebo15-validate";
 
 import isUuidValid from "helpers/validators/uuid";
+import isUrlValid from "helpers/validators/url";
 
 addValidation("uuid", isUuidValid);
+addValidation("url", isUrlValid);
 
 @translate()
 export default class ErrorMessagesTranslated extends React.Component {
@@ -49,6 +51,7 @@ export default class ErrorMessagesTranslated extends React.Component {
           {t("Account, password combination is mismatch")}
         </ErrorMessage>
         <ErrorMessage when="uuid">Некоректний формат ID</ErrorMessage>
+        <ErrorMessage when="url">Некоректний формат URL</ErrorMessage>
       </ErrorMessages>
     );
   }

@@ -42,6 +42,10 @@ const terms = {
       required: true,
       min: 1,
       max: 28
+    },
+    bi_url: {
+      required: true,
+      url: true
     }
   })
 })
@@ -111,6 +115,13 @@ export default class ApiForm extends React.Component {
               type="number"
               name="billing_date"
               labelText={t("Billing date")}
+              component={FieldInput}
+            />
+          </div>
+          <div>
+            <Field
+              name="bi_url"
+              labelText={t("BI URL")}
               component={FieldInput}
             />
           </div>
