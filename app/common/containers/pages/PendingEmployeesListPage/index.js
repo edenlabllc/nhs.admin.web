@@ -15,7 +15,9 @@ import Pagination from "components/Pagination";
 import ShowBy from "containers/blocks/ShowBy";
 
 import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
 import SelectFilterField from "containers/forms/SelectFilterField";
+import CheckboxFilterField from "containers/forms/CheckboxFilterField";
 
 import { getEmployeesRequests, getDictionaryValues } from "reducers";
 
@@ -39,11 +41,25 @@ const PendingEmployeesListPage = ({
     <SearchForm
       fields={[
         {
+          component: SearchFilterField,
+          title: "Знайти співробітника",
+          filters: [
+            { name: "edrpou", title: t("By edrpou") },
+            { name: "legal_entity_name", title: "За назвою юр. особи" },
+            { name: "id", title: "За ID" }
+          ]
+        },
+        {
           component: SelectFilterField,
           title: t("Filter by status"),
           name: "status",
           defaultValue: "NEW",
           options: status.map(({ key, value }) => ({ name: key, title: value }))
+        },
+        {
+          component: CheckboxFilterField,
+          title: "Без ІПН",
+          name: "no_tax_id"
         }
       ]}
       location={location}

@@ -15,6 +15,7 @@ import Pagination from "components/Pagination";
 import ShowBy from "containers/blocks/ShowBy";
 import SearchForm from "containers/forms/SearchForm";
 import SearchFilterField from "containers/forms/SearchFilterField";
+import CheckboxFilterField from "containers/forms/CheckboxFilterField";
 
 import DictionaryValue from "containers/blocks/DictionaryValue";
 
@@ -50,6 +51,11 @@ const EmployeesListPage = ({ employees = [], paging = {}, location, t }) => (
               validate: uuidValidate
             }
           ]
+        },
+        {
+          component: CheckboxFilterField,
+          title: "Без ІПН",
+          name: "no_tax_id"
         }
       ]}
       location={location}
