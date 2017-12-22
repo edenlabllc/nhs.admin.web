@@ -11,6 +11,7 @@ import Line from "components/Line";
 import DataList from "components/DataList";
 import InlineList from "components/InlineList";
 import Button from "components/Button";
+import YesNo from "components/YesNo";
 
 import BackLink from "containers/blocks/BackLink";
 import DictionaryValue from "containers/blocks/DictionaryValue";
@@ -43,6 +44,7 @@ export default class EmployeeDetailPage extends React.Component {
           last_name,
           first_name,
           second_name,
+          no_tax_id,
           tax_id,
           birth_date,
           gender,
@@ -77,7 +79,8 @@ export default class EmployeeDetailPage extends React.Component {
               theme="small"
               list={[
                 { name: t("Full name"), value: fullName },
-                { name: t("Tax ID"), value: tax_id }
+                { name: "Без ІПН", value: <YesNo bool={no_tax_id} /> },
+                { name: "ІПН / Паспорт", value: tax_id }
               ]}
             />
           </div>

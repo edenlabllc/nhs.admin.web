@@ -10,6 +10,7 @@ import Line from "components/Line";
 import DataList from "components/DataList";
 import InlineList from "components/InlineList";
 import Button from "components/Button";
+import YesNo from "components/YesNo";
 
 import BackLink from "containers/blocks/BackLink";
 import DictionaryValue from "containers/blocks/DictionaryValue";
@@ -27,6 +28,8 @@ import styles from "./style.scss";
 export default class PendingEmployeeDetailPage extends React.Component {
   render() {
     const { employee = {}, t } = this.props;
+
+    console.log(employee);
 
     const fullName = `${employee.party.last_name} ${
       employee.party.first_name
@@ -83,6 +86,11 @@ export default class PendingEmployeeDetailPage extends React.Component {
                   )
                 },
                 { name: t("Full name"), value: fullName },
+                {
+                  name: "Без ІПН",
+                  value: <YesNo bool={employee.party.no_tax_id} />
+                },
+                { name: "ІПН / Паспорт", value: employee.party.tax_id },
                 {
                   name: t("Phones"),
                   value: (
