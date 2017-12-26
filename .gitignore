@@ -15,5 +15,6 @@ browserstack.err
 yarn.lock
 *.mo
 public/sitemap*.xml
+public/robots.txt
 logs
 stats.json

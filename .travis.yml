@@ -25,9 +25,9 @@ before_install:
 script:
 - npm run test || travis_terminate 1
 - npm run lint || travis_terminate 1
-- ./bin/version-increment.sh || travis_terminate 1
-- ./bin/build.sh || travis_terminate 1
-- ./bin/start.sh || travis_terminate 1
+- ./bin/ci/version-increment.sh || travis_terminate 1
+- ./bin/ci/build.sh || travis_terminate 1
+- ./bin/ci/start.sh || travis_terminate 1
 - sleep 5
 - docker ps
 - RUNNING_CONTAINERS=`docker ps | wc -l`; if [ "${RUNNING_CONTAINERS//[[:space:]]/}"
@@ -37,4 +37,4 @@ script:
 - sleep 5
 - ./bin/ci/push.sh
 - openssl aes-256-cbc -K $encrypted_fcc3a444b384_key -iv $encrypted_fcc3a444b384_iv -in eHealth-8110bd102a69.json.enc -out eHealth-8110bd102a69.json -d
-- sudo ./bin/deploy.sh || travis_terminate 1
+- sudo ./bin/ci/deploy.sh || travis_terminate 1

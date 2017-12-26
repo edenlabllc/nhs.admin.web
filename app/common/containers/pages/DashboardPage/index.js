@@ -7,22 +7,25 @@ import Helmet from "react-helmet";
 
 import { H1 } from "components/Title";
 
-import { getGlobalSatistic } from "reducers";
+import { fetchConfiguration } from "redux/configuration";
+import { getGlobalSatistic, getConfiguration } from "reducers";
 
 import { fetchGlobalStat } from "./redux";
 import styles from "./styles.scss";
 
 @withStyles(styles)
 @provideHooks({
-  fetch: ({ dispatch }) => Promise.all([dispatch(fetchGlobalStat())])
+  fetch: ({ dispatch }) =>
+    Promise.all([dispatch(fetchGlobalStat()), dispatch(fetchConfiguration())])
 })
 @connect(state => ({
-  globalStatistic: getGlobalSatistic(state)
+  globalStatistic: getGlobalSatistic(state),
+  configuration: getConfiguration(state)
 }))
 @translate()
 export default class DashboardPage extends React.Component {
   render() {
-    const { globalStatistic, t } = this.props;
+    const { globalStatistic, configuration: { bi_url }, t } = this.props;
 
     return (
       <div id="dashboard-page">
@@ -48,13 +51,15 @@ export default class DashboardPage extends React.Component {
           </div>
         </div>
 
-        <iframe
-          width="100%"
-          height="600"
-          src="https://app.powerbi.com/view?r=eyJrIjoiYTM5OGYzMjMtYjU3ZC00MjFjLWJlN2ItYjViNTY2MzkyMGQyIiwidCI6IjhjNzYwNTYxLTg0ZjUtNDYxNC05YjJkLTBkODU2ZmRjZWUyYSIsImMiOjl9"
-          frameBorder="0"
-          allowFullScreen
-        />
+        {bi_url && (
+          <iframe
+            src={bi_url}
+            width="100%"
+            height="600"
+            frameBorder="0"
+            allowFullScreen
+          />
+        )}
       </div>
     );
   }

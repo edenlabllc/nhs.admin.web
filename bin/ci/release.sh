@@ -7,7 +7,7 @@
 #   3. Upload changes to Docker Hub.
 #
 # Usage:
-# ./bin/release.sh -a DOCKER_HUB_ACCOUNT_NAME [-v RELEASE_VERSION -l -f]
+# ./bin/ci/release.sh -a DOCKER_HUB_ACCOUNT_NAME [-v RELEASE_VERSION -l -f]
 #   '-l' - create additional tag :latest.
 #   '-f' - force tag creating when git working tree is not empty.
 

@@ -24,7 +24,7 @@ server.set("views", path.join(__dirname, "views"));
 server.set("view engine", "ejs");
 
 const resources = {
-  js: [],
+  js: ["/static/env.js"],
   css: []
 };
 

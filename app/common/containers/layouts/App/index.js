@@ -4,11 +4,20 @@ import { translate } from "react-i18next";
 
 import ErrorMessage from "containers/blocks/ErrorMessage";
 
+const { APP_ENV = "local" } = global.process.env;
+
+const ENV_TITLE = {
+  preprod: "[Pre-production]",
+  demo: "[Demo]",
+  dev: "[Development]",
+  local: "[Local]"
+};
+
 const App = ({ t, children }) => (
   <div>
     <Helmet
       htmlAttributes={{ lang: "ru", amp: undefined }} // amp takes no value
-      titleTemplate="NHS - %s"
+      titleTemplate={[ENV_TITLE[APP_ENV], "NHS - %s"].filter(Boolean).join(" ")}
       defaultTitle={t("head-default-title")}
       link={[
         {

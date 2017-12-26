@@ -11,8 +11,9 @@ const genConfig = webpackMerge(
   {
     devtool: DEBUG ? "eval" : false,
     plugins: [
-      new webpack.DefinePlugin({
-        __DEV__: DEBUG
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: "development",
+        BI_URL: null
       })
     ]
   },
@@ -36,9 +37,6 @@ const config = webpackMerge(
     },
     plugins: [
       new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development")
-        },
         __CLIENT__: true
       }),
       new AssetsPlugin({
