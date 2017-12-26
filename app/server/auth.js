@@ -32,12 +32,15 @@ router.get(config.OAUTH_REDIRECT_PATH, (req, resp) => {
       resp.redirect(`/sign-in?error=${meta.code}`);
       return;
     }
-    const cookieOption = { secure: false };
+
+    const cookieOption = { secure: false, httpOnly: true };
     if (req.secure) {
       cookieOption.secure = true;
     }
 
     resp.cookie(config.AUTH_COOKIE_NAME, data.value, cookieOption);
+    resp.cookie("userId", data.user_id);
+
     resp.redirect(config.PRIVATE_INDEX_ROUTE);
   });
 });
