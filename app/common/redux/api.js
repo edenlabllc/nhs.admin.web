@@ -1,29 +1,17 @@
 import { CALL_API } from "redux-api-middleware";
-import { getToken } from "reducers";
 
-export const invoke = (config, { auth = true } = {}) => (
-  dispatch,
-  getState
-) => {
+export const invoke = (config, { auth = true } = {}) => dispatch => {
   const result = {
-    ...config
+    ...config,
+    credentials: auth ? "same-origin" : "omit" // https://www.npmjs.com/package/redux-api-middleware#rsaacredentials
   };
-
-  const authHeaders = {};
-
-  if (auth) {
-    const state = getState();
-    authHeaders.Authorization = `Bearer ${getToken(state)}`;
-  }
 
   result.headers = {
     "content-type": "application/json",
     pragma: "no-cache",
     "cache-control": "no-cache",
-    ...result.headers,
-    ...authHeaders
+    ...result.headers
   };
-
   if (typeof result.body !== "string") {
     result.body = JSON.stringify(result.body);
   }
