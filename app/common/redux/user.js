@@ -37,14 +37,6 @@ export const fetchUser = userId =>
     ]
   });
 
-export const getUserIdFromCookies = () => (dispatch, getState, { cookies }) =>
-  cookies.get("userId", { path: "/" });
-export const removeUserIdFromCookies = () => (
-  dispatch,
-  getState,
-  { cookies }
-) => cookies.remove("userId", { path: "/" });
-
 export default handleAction(
   combineActions(
     "user/FETCH_USER_SUCCESS",

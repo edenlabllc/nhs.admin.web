@@ -75,7 +75,7 @@ import { getUser, getScope } from "reducers";
 import { PUBLIC_INDEX_ROUTE } from "config";
 
 import { hasScope } from "helpers/scope";
-import { isLoginned, logout } from "redux/session";
+import { logout } from "redux/session";
 import { fetchUser, getUserIdFromCookies } from "redux/user";
 
 import ReimbursementReportPage from "../containers/pages/ReimbursementReport/index";
@@ -87,6 +87,9 @@ export const configureRoutes = ({ store }) => {
       if (!loginned) {
         replace({ pathname: PUBLIC_INDEX_ROUTE });
         return next();
+      }
+
+      if (!__CLIENT__) {
       }
 
       const currentState = store.getState();

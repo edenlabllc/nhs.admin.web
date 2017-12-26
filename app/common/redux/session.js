@@ -7,9 +7,6 @@ export const getToken = () => (dispatch, getState, { cookies }) => {
   return cookies.get(AUTH_COOKIE_NAME, { path: "/" });
 };
 
-export const isLoginned = () => dispatch =>
-  dispatch(getUserIdFromCookies()).then(resp => !!resp);
-
 export const logoutAction = createAction("session/LOGOUT");
 export const setData = createAction("session/SET_DATA");
 
