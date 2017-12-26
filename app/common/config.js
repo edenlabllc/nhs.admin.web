@@ -36,7 +36,7 @@ export const SCOPES = config.SCOPES || process.env.SCOPES || "";
 export const OAUTH_URL =
   config.OAUTH_URL ||
   process.env.OAUTH_URL ||
-  "http://auth.dev.ehealth.world/sign-in";
+  "http://auth-dev.ehealth.world/sign-in";
 export const OAUTH_REDIRECT_PATH =
   config.OAUTH_REDIRECT_PATH ||
   process.env.OAUTH_REDIRECT_PATH ||

@@ -14,7 +14,6 @@ import { stripProtocol } from "../common/helpers/url";
 
 import i18next from "../common/services/i18next";
 import * as config from "../common/config";
-import reimbursementReportDownload from "./internal-api/reimbursementReportDownload";
 
 const server = new Express();
 
@@ -47,12 +46,6 @@ server.locals.CONFIG = escape(JSON.stringify(config));
 
 server.use(cookieParser());
 server.use(i18nextMiddleware.handle(i18next));
-
-// Internal proxy endpoints for report download.
-server.get(
-  config.API_INTERNAL_PROXY + "/reimbursement_report_download",
-  reimbursementReportDownload
-);
 
 let cookieOptions = url.parse(config.API_HOST);
 cookieOptions.cookieRewrite = "." + stripProtocol(config.API_HOST);

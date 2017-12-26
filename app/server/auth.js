@@ -44,4 +44,9 @@ router.get(config.OAUTH_REDIRECT_PATH, (req, resp) => {
   });
 });
 
+router.delete("/logout", (req, resp) => {
+  resp.clearCookie(config.AUTH_COOKIE_NAME);
+  resp.status(204).send();
+});
+
 export default router;

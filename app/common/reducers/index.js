@@ -9,8 +9,6 @@ import loading from "redux/loading";
 import labels from "redux/labels";
 
 import session from "redux/session";
-import user from "redux/user";
-import auth from "redux/auth";
 import error from "redux/error";
 
 import dictionaries from "redux/dictionaries";
@@ -134,7 +132,6 @@ const pages = combineReducers({
 
 const data = combineReducers({
   labels,
-  user,
   dictionaries,
   clinics,
 
@@ -173,12 +170,11 @@ export default combineReducers({
   // external libraries
   form,
   routing,
-  loading,
-  auth
+  loading
 });
 
-export const getToken = state => state.session.token;
-export const getUser = state => state.data.user;
+export const isAuthorized = state => state.session.authorized;
+export const getScope = state => state.session.scope;
 
 export const getLocation = state => state.routing.locationBeforeTransitions;
 export const getForm = (state, formName) => state.form[formName];
@@ -241,8 +237,6 @@ export const getDeclarationsStatByArea = (state, id) =>
 export const getConfiguration = state => state.data.configuration;
 
 export const getReports = state => state.data.reports;
-
-export const getScope = state => (state.auth.details || {}).scope;
 
 export const getInnms = (state, ids) =>
   denormalize(ids, [schemas.innm], state.data);
