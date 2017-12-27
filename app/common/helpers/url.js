@@ -10,7 +10,3 @@ export const createUrl = (endpoint, options) => {
   });
   return Url.format(url);
 };
-
-export const stripProtocol = url => {
-  return url && url.replace(/(^\w+:|^)\/\//, "");
-};

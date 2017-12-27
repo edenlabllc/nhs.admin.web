@@ -1,7 +1,6 @@
 import Express from "express";
 import path from "path";
 import fs from "fs";
-import url from "url";
 import cookieParser from "cookie-parser";
 import proxy from "proxy-middleware";
 import i18nextMiddleware from "i18next-express-middleware";
@@ -10,7 +9,6 @@ import page from "./page";
 import seo from "./seo";
 import sitemap from "./sitemap";
 import auth from "./auth";
-import { stripProtocol } from "../common/helpers/url";
 
 import i18next from "../common/services/i18next";
 import * as config from "../common/config";
@@ -54,13 +52,8 @@ server.get(
   reimbursementReportDownload
 );
 
-let cookieOptions = url.parse(config.API_HOST);
-cookieOptions.cookieRewrite = "." + stripProtocol(config.API_HOST);
-server.use(config.API_PROXY_PATH, proxy(cookieOptions));
-
-cookieOptions = url.parse(config.MOCK_API_HOST);
-cookieOptions.cookieRewrite = "." + stripProtocol(config.API_HOST);
-server.use(config.MOCK_API_PROXY_PATH, proxy(cookieOptions));
+server.use(config.API_PROXY_PATH, proxy(config.API_HOST));
+server.use(config.MOCK_API_PROXY_PATH, proxy(config.MOCK_API_HOST));
 
 server.use(Express.static(path.join(__dirname, "../../public")));
 server.use("/static", Express.static(path.join(__dirname, "../../static")));
