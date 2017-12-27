@@ -79,7 +79,7 @@ msgstr "Статус"
 #, fuzzy
 #| msgid "Verification clinics"
 msgid "Verification"
-msgstr "Перевірка клінік"
+msgstr "Перевірка медичних закладiв"
 
 msgid "Action"
 msgstr "Дії"
@@ -163,10 +163,10 @@ msgid "Position"
 msgstr "Позиція"
 
 msgid "Clinic ID"
-msgstr "Ідентифікатор клініки"
+msgstr "Ідентифікатор медичного закладу"
 
 msgid "Go to clinic"
-msgstr "Перейти до клініки"
+msgstr "Перейти до медичного закладу"
 
 msgid "Registration address"
 msgstr "Адреса регістрації"
@@ -226,10 +226,10 @@ msgid "Pending employees"
 msgstr "Cпівробітники на розгляді"
 
 msgid "Clinics"
-msgstr "Клініки"
+msgstr "Медичні заклади"
 
 msgid "Clinics verification"
-msgstr "Підтвердження клініки"
+msgstr "Підтвердження МЗ"
 
 msgid "Reports"
 msgstr "Звіти"
@@ -353,10 +353,10 @@ msgstr ""
 "роллю або зателефонуйте до підтримки."
 
 msgid "Back to clinics list"
-msgstr "Повернутися до списку клінік"
+msgstr "Повернутися до списку медичних закладiв"
 
 msgid "Go to clinic employees list"
-msgstr "Перейти до списку співробітників клініки"
+msgstr "Перейти до списку співробітників медичного закладу"
 
 msgid "KVEDs"
 msgstr "КВЕДи"
@@ -410,22 +410,22 @@ msgid "Back to list"
 msgstr "Повернутися до списку"
 
 msgid "Approve clinic"
-msgstr "Підтвердити клініку"
+msgstr "Підтвердити медичний заклад"
 
 msgid "Cancel verification"
 msgstr "Скасувати підтвердження"
 
 msgid "Verify clinic {{name}}?"
-msgstr "Підтвердити клініку \"{{name}}\"?"
+msgstr "Підтвердити медичний заклад \"{{name}}\"?"
 
 msgid "Deactivate clinic {{name}}?"
-msgstr "Деактивувати клініку {{name}}?"
+msgstr "Деактивувати медичний заклад {{name}}?"
 
 msgid "Search clinic"
-msgstr "Шукати клініку"
+msgstr "Шукати медичний заклад"
 
 msgid "Find clinic"
-msgstr "Знайти клініку"
+msgstr "Знайти медичний заклад"
 
 msgid "By edrpou"
 msgstr "За ЄДРПОУ"
@@ -437,16 +437,16 @@ msgid "By settlement id"
 msgstr "За ID міста"
 
 msgid "Clinics verification search"
-msgstr "Пошук клініки для перевірки"
+msgstr "Пошук медичного закладу для перевірки"
 
 msgid "Search clinic for verification"
-msgstr "Пошук клініки для перевірки"
+msgstr "Пошук медичного закладу для перевірки"
 
 msgid "Go to clinics list"
-msgstr "Перейти до списку клінік"
+msgstr "Перейти до списку медичних закладiв"
 
 msgid "Verification clinics"
-msgstr "Перевірка клінік"
+msgstr "Перевірка медичних закладiв"
 
 msgid "Back to search page"
 msgstr "Повернутися до сторінки пошуку"
