@@ -36,7 +36,7 @@ export default class DateFilterField extends Component {
     const { initFields, filters, query } = this.props;
 
     const values = filters
-      .filter(({ name }) => query.hasOwnProperty(name))
+      .filter(({ name }) => Object.hasOwnProperty.call(query, name))
       .reduce((fields, { name }) => ({ ...fields, [name]: query[name] }), {});
 
     initFields(values);

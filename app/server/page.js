@@ -1,6 +1,5 @@
 import Set from "core-js/library/fn/set";
 import arrayFrom from "core-js/library/fn/array/from";
-import CookieDough from "cookie-dough";
 
 import React from "react";
 import ReactDOMServer from "react-dom/server";
@@ -38,8 +37,8 @@ export default () => (req, res, next) => {
   const memoryHistory = useRouterHistory(useQueries(createMemoryHistory))();
   const store = configureStore({
     history: memoryHistory,
-    cookies: new CookieDough(req),
-    i18n: req.i18n
+    i18n: req.i18n,
+    req
   });
   const history = syncHistoryWithStore(memoryHistory, store);
   const routes = configureRoutes({

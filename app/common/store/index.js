@@ -13,13 +13,13 @@ if (process.NODE_ENV !== "production") {
   middlewares.push(require("redux-freeze"));
 }
 
-export function configureStore({ history, cookies, i18n }, initialState) {
+export function configureStore({ history, i18n, req }, initialState) {
   const createStoreWithMiddleware = compose(
     applyMiddleware.apply(
       this,
       middlewares.concat([
         routerMiddleware(history),
-        thunkMiddleware.withExtraArgument({ cookies, i18n })
+        thunkMiddleware.withExtraArgument({ i18n, req })
       ])
     ),
     process.NODE_ENV !== "production" &&

@@ -68,7 +68,9 @@ export default class SearchFilterField extends Component {
     const { query, filters } = this.props;
 
     const [defaultFilter] = filters;
-    const filter = filters.find(({ name }) => query.hasOwnProperty(name));
+    const filter = filters.find(({ name }) =>
+      Object.hasOwnProperty.call(query, name)
+    );
 
     const { name } = filter || defaultFilter;
 

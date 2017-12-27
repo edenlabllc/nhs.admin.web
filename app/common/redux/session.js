@@ -2,9 +2,8 @@ import { createAction, handleActions } from "redux-actions";
 import { AUTH_COOKIE_NAME, API_URL } from "config";
 import { invoke } from "./api";
 
-export const getToken = () => (dispatch, getState, { cookies }) => {
-  return cookies.get(AUTH_COOKIE_NAME, { path: "/" });
-};
+export const getToken = () => (dispatch, getState, { req }) =>
+  req.cookies[AUTH_COOKIE_NAME];
 
 export const verifyToken = token =>
   invoke({
