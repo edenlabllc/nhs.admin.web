@@ -82,7 +82,8 @@ export default class Nav extends React.Component {
                       activeClassName={styles.active}
                     >
                       <Link id="pending-employees-nav" to="/pending-employees">
-                        {nl2br(t("Pending\n employees"))}
+                        Співробітники<br />
+                        на розгляді
                       </Link>
                     </NavItem>
                   </ul>

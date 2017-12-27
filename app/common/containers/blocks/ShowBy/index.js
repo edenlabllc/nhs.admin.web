@@ -47,7 +47,7 @@ export default class ShowBy extends Component {
 
     router.push({
       ...location,
-      query: { ...query, page_size }
+      query: { ...query, page_size, page: 1 }
     });
   }
 }
