@@ -15,16 +15,23 @@ import Pagination from "components/Pagination";
 import ShowBy from "containers/blocks/ShowBy";
 import SearchForm from "containers/forms/SearchForm";
 import SearchFilterField from "containers/forms/SearchFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
 import CheckboxFilterField from "containers/forms/CheckboxFilterField";
 
 import DictionaryValue from "containers/blocks/DictionaryValue";
 
-import { getEmployees } from "reducers";
+import { getEmployees, getDictionaryValues } from "reducers";
 import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchEmployees } from "./redux";
 
-const EmployeesListPage = ({ employees = [], paging = {}, location, t }) => (
+const EmployeesListPage = ({
+  employees = [],
+  status = [],
+  paging = {},
+  location,
+  t
+}) => (
   <div id="employees-list-page">
     <Helmet
       title={t("Employees")}
@@ -49,8 +56,19 @@ const EmployeesListPage = ({ employees = [], paging = {}, location, t }) => (
               name: "legal_entity_id",
               title: t("By legal entity"),
               validate: uuidValidate
+            },
+            {
+              name: "division_id",
+              title: "За ID підрозділу",
+              validate: uuidValidate
             }
           ]
+        },
+        {
+          component: SelectFilterField,
+          title: "Фільтрувати за статусом",
+          name: "status",
+          options: status.map(({ key, value }) => ({ name: key, title: value }))
         },
         {
           component: CheckboxFilterField,
@@ -126,6 +144,7 @@ export default compose(
   }),
   connect(state => ({
     ...state.pages.EmployeesListPage,
-    employees: getEmployees(state, state.pages.EmployeesListPage.employees)
+    employees: getEmployees(state, state.pages.EmployeesListPage.employees),
+    status: getDictionaryValues(state, "EMPLOYEE_STATUS")
   }))
 )(EmployeesListPage);

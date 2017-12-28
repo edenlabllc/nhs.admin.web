@@ -85,7 +85,8 @@ const PendingEmployeesListPage = ({
           name: (
             <div>
               {item.last_name} {item.first_name}
-              <div>{item.second_name}</div>
+              <br />
+              {item.second_name}
             </div>
           ),
           legalEntity: (

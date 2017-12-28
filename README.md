@@ -3,7 +3,7 @@
 [![Build Status](https://api.travis-ci.org/edenlabllc/nhs.admin.web.svg?branch=master)](https://travis-ci.org/edenlabllc/nhs.admin.web)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-Demo (dev): http://admin.dev.ehealth.world/
+Demo (dev): http://admin-dev.ehealth.world/
 
 API: [edenlabllc/ehealth.api](https://github.com/edenlabllc/ehealth.api)
 
@@ -31,7 +31,7 @@ Application supports these environment variables:
 | `CLIENT_ID`           | `e32e51ac-f720-4e42-adb3-67d504f3ad30`             | Front-End client id |
 | `CLIENT_SECRET`       | `ZzluaHd0V01lU1IwTnd4VkdBcUZHUT09`                 | Front-End client secret |
 | `SCOPES`              | `app:authorize legal_entity:read`                  | EHEALTH auth scopes |
-| `OAUTH_URL`           | `http://auth.dev.ehealth.world/sign-in`            | Front-End client id |
+| `OAUTH_URL`           | `http://auth-dev.ehealth.world/sign-in`            | Front-End client id |
 | `OAUTH_REDIRECT_PATH` | `/auth/redirect`             | Redirect path for create token in EHEALTH |
 
 
