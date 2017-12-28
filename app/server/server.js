@@ -50,6 +50,7 @@ server.use(i18nextMiddleware.handle(i18next));
 let cookieOptions = url.parse(config.API_HOST);
 cookieOptions.cookieRewrite = "." + stripProtocol(config.API_HOST);
 server.use(config.API_PROXY_PATH, proxy(cookieOptions));
+server.enable("trust proxy");
 
 cookieOptions = url.parse(config.MOCK_API_HOST);
 cookieOptions.cookieRewrite = "." + stripProtocol(config.API_HOST);
