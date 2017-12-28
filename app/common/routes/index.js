@@ -90,7 +90,6 @@ export const configureRoutes = ({ store }) => {
       // FIXME: We should handle case when there is no token passed
       const token = await store.dispatch(getToken());
       const { error } = await store.dispatch(verifyToken(token));
-
       if (error) {
         replace({ pathname: PUBLIC_INDEX_ROUTE });
       }

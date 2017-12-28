@@ -10,7 +10,6 @@ export const invoke = ({ body, headers, ...config }, { auth = true } = {}) => (
       ...config,
       body: typeof body === "string" ? body : JSON.stringify(body),
       headers: {
-        "Content-Type": "application/json",
         Pragma: "no-cache",
         "Cache-Control": "no-cache",
         Cookie: req ? req.headers.cookie : undefined, // use cookie from request in SSR mode
