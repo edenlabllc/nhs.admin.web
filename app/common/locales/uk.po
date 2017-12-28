@@ -120,6 +120,9 @@ msgstr "Повернутися до списку декларацій"
 msgid "Declaration ID"
 msgstr "Ідентифікатор декларації"
 
+msgid "Declaration Request ID"
+msgstr "Ідентифікатор запиту на створення декларації"
+
 msgid "Start date"
 msgstr "Дата початку"
 

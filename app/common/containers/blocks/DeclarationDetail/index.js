@@ -42,7 +42,18 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
 
       <Line />
 
-      <DataList list={[{ name: t("Declaration ID"), value: declaration.id }]} />
+      <DataList
+        list={[
+          {
+            name: t("Declaration ID"),
+            value: declaration.id
+          },
+          {
+            name: t("Declaration Request ID"),
+            value: declaration.declaration_request_id
+          }
+        ]}
+      />
 
       <Line width={630} />
 
