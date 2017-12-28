@@ -1,40 +1,46 @@
 import { createAction, handleActions } from "redux-actions";
+import { AUTH_COOKIE_NAME, API_URL } from "config";
+import { invoke } from "./api";
 
-import { AUTH_COOKIE_NAME } from "config";
+export const getToken = () => (dispatch, getState, { req }) =>
+  req.cookies[AUTH_COOKIE_NAME];
 
-export const getToken = () => (dispatch, getState, { cookies }) =>
-  cookies.get(AUTH_COOKIE_NAME, { path: "/" });
-export const setToken = token => (dispatch, getState, { cookies }) =>
-  cookies.set(AUTH_COOKIE_NAME, token, { path: "/" });
-export const removeToken = () => (dispatch, getState, { cookies }) =>
-  cookies.remove(AUTH_COOKIE_NAME, { path: "/" });
-
-export const isLoginned = () => dispatch =>
-  dispatch(getToken()).then(resp => {
-    console.log("Token from storage: ", resp);
-    return !!resp;
+export const verifyToken = token =>
+  invoke({
+    endpoint: `${API_URL}/admin/tokens/${token}/verify`,
+    method: "GET",
+    types: [
+      "session/VERIFY_TOKEN_REQUEST",
+      {
+        type: "session/VERIFY_TOKEN_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(({ data: { details: { scope } } }) => ({
+            authorized: true,
+            scope
+          }))
+      },
+      "session/VERIFY_TOKEN_FAILURE"
+    ]
   });
 
-export const logoutAction = createAction("session/LOGOUT");
-export const setData = createAction("session/SET_DATA");
-
-export const loadTokenFromStorage = () => (dispatch, getState, { cookies }) =>
-  dispatch(
-    setData({
-      token: cookies.get(AUTH_COOKIE_NAME, { path: "/" })
-    })
-  );
-
-export const logout = () => dispatch =>
-  dispatch(removeToken()).then(() => dispatch(logoutAction()));
-
-export const login = token => dispatch =>
-  dispatch([setToken(token), setData({ token })]);
+export const logout = () =>
+  invoke({
+    endpoint: "/logout",
+    method: "DELETE",
+    types: [
+      "session/LOGOUT_REQUEST",
+      "session/LOGOUT_SUCCESS",
+      "session/LOGOUT_FAILURE"
+    ]
+  });
 
 export default handleActions(
   {
-    [setData]: (state, action) => action.payload,
-    [logoutAction]: () => ({})
+    "session/VERIFY_TOKEN_SUCCESS": (state, action) => ({
+      ...state,
+      ...action.payload
+    }),
+    "session/LOGOUT_SUCCESS": () => ({})
   },
   {}
 );

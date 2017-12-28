@@ -32,14 +32,21 @@ router.get(config.OAUTH_REDIRECT_PATH, (req, resp) => {
       resp.redirect(`/sign-in?error=${meta.code}`);
       return;
     }
-    const cookieOption = { secure: false };
+
+    const cookieOption = { secure: false, httpOnly: true };
     if (req.secure) {
       cookieOption.secure = true;
     }
 
     resp.cookie(config.AUTH_COOKIE_NAME, data.value, cookieOption);
+
     resp.redirect(config.PRIVATE_INDEX_ROUTE);
   });
+});
+
+router.delete("/logout", (req, resp) => {
+  resp.clearCookie(config.AUTH_COOKIE_NAME);
+  resp.status(204).send();
 });
 
 export default router;

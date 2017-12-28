@@ -70,41 +70,33 @@ import ResetAuthenticationMethodPage from "containers/pages/ResetAuthenticationM
 import NotFoundPage from "containers/pages/NotFoundPage";
 import AccessDeniedPage from "containers/pages/AccessDeniedPage";
 
-import { getUser, getToken, getScope } from "reducers";
+import { isAuthorized, getScope } from "reducers";
 
 import { PUBLIC_INDEX_ROUTE } from "config";
 
 import { hasScope } from "helpers/scope";
-import { isLoginned, logout } from "redux/session";
-import { fetchUserData } from "redux/user";
+import { getToken, verifyToken } from "redux/session";
 
 import ReimbursementReportPage from "../containers/pages/ReimbursementReport/index";
 import InternalErrorPage from "../containers/pages/InternalErrorPage/index";
 
 export const configureRoutes = ({ store }) => {
-  const requireAuth = (nextState, replace, next) =>
-    store.dispatch(isLoginned()).then(loginned => {
-      if (!loginned) {
+  const requireAuth = async (nextState, replace, next) => {
+    if (__CLIENT__) {
+      if (!isAuthorized(store.getState())) {
         replace({ pathname: PUBLIC_INDEX_ROUTE });
-        return next();
       }
+    } else {
+      // FIXME: We should handle case when there is no token passed
+      const token = await store.dispatch(getToken());
+      const { error } = await store.dispatch(verifyToken(token));
+      if (error) {
+        replace({ pathname: PUBLIC_INDEX_ROUTE });
+      }
+    }
 
-      const currentState = store.getState();
-      const person = getUser(currentState);
-
-      if (person) return next();
-
-      return store
-        .dispatch(fetchUserData(getToken(currentState)))
-        .then(action => {
-          if (action.error) {
-            store.dispatch(logout());
-            replace({ pathname: PUBLIC_INDEX_ROUTE });
-          }
-
-          return next();
-        });
-    });
+    return next();
+  };
 
   const requireScope = requiredScope => (nextState, replace, next) => {
     if (!hasScope(requiredScope, getScope(store.getState()))) {

@@ -19,7 +19,7 @@ export const MOCK_API_HOST =
 export const SITEMAP_HOSTNAME =
   process.env.SITEMAP_HOSTNAME || "http://localhost:8080"; // used in sitemap
 export const LANG_COOKIE_NAME = "lang";
-export const AUTH_COOKIE_NAME = process.env.AUTH_COOKIE_NAME || "token";
+export const AUTH_COOKIE_NAME = process.env.AUTH_COOKIE_NAME || "authorization";
 
 export const API_PROXY_PATH = "/api";
 export const API_INTERNAL_PROXY = "/api-internal"; // For internal usage.
@@ -36,7 +36,7 @@ export const SCOPES = config.SCOPES || process.env.SCOPES || "";
 export const OAUTH_URL =
   config.OAUTH_URL ||
   process.env.OAUTH_URL ||
-  "http://auth.dev.ehealth.world/sign-in";
+  "http://auth-dev.ehealth.world/sign-in";
 export const OAUTH_REDIRECT_PATH =
   config.OAUTH_REDIRECT_PATH ||
   process.env.OAUTH_REDIRECT_PATH ||

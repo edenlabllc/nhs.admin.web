@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 import { AppContainer } from "react-hot-loader";
 
-import CookieDough from "cookie-dough";
-
 import { browserHistory, match } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
@@ -23,14 +21,7 @@ if (window.__REDUX_STATE__) {
   } catch (e) {}
 }
 
-const store = configureStore(
-  {
-    history: browserHistory,
-    cookies: CookieDough(),
-    i18n
-  },
-  reduxState
-);
+const store = configureStore({ history: browserHistory, i18n }, reduxState);
 
 const { dispatch, getState } = store;
 const history = syncHistoryWithStore(browserHistory, store);
