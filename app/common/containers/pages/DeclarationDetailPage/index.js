@@ -18,14 +18,15 @@ import { fetchDeclaration } from "./redux";
 @translate()
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
-    const promises = [dispatch(fetchDeclaration(id))];
-    const state = getState();
+    const canReadDocuments = hasScope(
+      "declaration_documents:read",
+      getScope(getState())
+    );
 
-    if (hasScope("declaration_documents:read", getScope(state))) {
-      promises.push(dispatch(getDeclarationImage(id)).catch(e => e));
-    }
-
-    return Promise.all(promises);
+    return Promise.all([
+      dispatch(fetchDeclaration(id)),
+      canReadDocuments && dispatch(getDeclarationImage(id))
+    ]);
   }
 })
 @connect((state, { params: { id } }) => ({
