@@ -8,10 +8,11 @@ import withStyles from "withStyles";
 import { H2 } from "components/Title";
 import Line from "components/Line";
 import Button, { ButtonsGroup } from "components/Button";
-import Gallery from "components/Gallery";
 import { Confirm } from "components/Popup";
 
 import DeclarationDetail from "containers/blocks/DeclarationDetail";
+import DeclarationScans from "containers/blocks/DeclarationScans";
+
 import ShowWithScope from "containers/blocks/ShowWithScope";
 
 import { getDeclaration, getScope } from "reducers";
@@ -77,15 +78,8 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <ShowWithScope scope="declaration_documents:read">
-          {declaration.images ? (
-            <div>
-              <H2>{t("Scans")}</H2>
-              <Gallery images={declaration.images} />
-              <Line />
-            </div>
-          ) : null}
-        </ShowWithScope>
+        <DeclarationScans declaration={declaration} />
+
         <ShowWithScope scope="declaration:write">
           <div>
             <ButtonsGroup>
