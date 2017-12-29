@@ -8,10 +8,11 @@ import withStyles from "withStyles";
 import { H2 } from "components/Title";
 import Line from "components/Line";
 import Button, { ButtonsGroup } from "components/Button";
-import Gallery from "components/Gallery";
 import { Confirm } from "components/Popup";
 
 import DeclarationDetail from "containers/blocks/DeclarationDetail";
+import DeclarationScans from "containers/blocks/DeclarationScans";
+
 import ShowWithScope from "containers/blocks/ShowWithScope";
 
 import { getDeclaration, getScope } from "reducers";
@@ -32,14 +33,15 @@ import styles from "./styles.scss";
 @withRouter
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
-    const promises = [dispatch(fetchDeclaration(id))];
-    const state = getState();
+    const canReadDocuments = hasScope(
+      "declaration_documents:read",
+      getScope(getState())
+    );
 
-    if (hasScope("declaration_documents:read", getScope(state))) {
-      promises.push(dispatch(getDeclarationImage(id)).catch(e => e));
-    }
-
-    return Promise.all(promises);
+    return Promise.all([
+      dispatch(fetchDeclaration(id)),
+      canReadDocuments && dispatch(getDeclarationImage(id))
+    ]);
   }
 })
 @connect(
@@ -77,15 +79,8 @@ export default class PendingDeclarationDetailPage extends React.Component {
 
         <Line />
 
-        <ShowWithScope scope="declaration_documents:read">
-          {declaration.images ? (
-            <div>
-              <H2>{t("Scans")}</H2>
-              <Gallery images={declaration.images} />
-              <Line />
-            </div>
-          ) : null}
-        </ShowWithScope>
+        <DeclarationScans declaration={declaration} />
+
         <ShowWithScope scope="declaration:write">
           <div>
             <ButtonsGroup>
