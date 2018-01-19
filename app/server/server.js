@@ -8,7 +8,6 @@ import i18nextMiddleware from "i18next-express-middleware";
 
 import page from "./page";
 import seo from "./seo";
-import sitemap from "./sitemap";
 import auth from "./auth";
 import { stripProtocol } from "../common/helpers/url";
 
@@ -64,7 +63,6 @@ server.use(
 );
 server.get("/api/not-found", (req, res) => res.status(404).send()); // for test
 
-server.use(sitemap);
 server.use(seo);
 server.use(auth);
 
