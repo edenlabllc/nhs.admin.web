@@ -6,7 +6,7 @@ import Helmet from "react-helmet";
 import { H1 } from "../../../components/Title/index";
 import DateFilterForm from "../../forms/DateFilterForm/index";
 import { createUrl } from "../../../helpers/url";
-import { API_HOST } from "../../../config";
+import { API_URL } from "../../../config";
 
 const FILTER_DATE = ["date_from_dispense", "date_to_dispense"];
 
@@ -42,7 +42,7 @@ export default class ReimbursementReportPage extends React.Component {
   onSubmit = ({ date_from_dispense, date_to_dispense }) => {
     if (!date_from_dispense || !date_to_dispense) return;
 
-    const url = createUrl(`${API_HOST}/api/reimbursement_report_download`, {
+    const url = createUrl(`${API_URL}/api/reimbursement_report_download`, {
       date_from_dispense,
       date_to_dispense
     });
