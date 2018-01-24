@@ -42,7 +42,7 @@ export default class ReimbursementReportPage extends React.Component {
   onSubmit = ({ date_from_dispense, date_to_dispense }) => {
     if (!date_from_dispense || !date_to_dispense) return;
 
-    const url = createUrl(`${API_URL}/api/reimbursement_report`, {
+    const url = createUrl(`${API_URL}/api/reimbursement_report_download`, {
       date_from_dispense,
       date_to_dispense
     });
