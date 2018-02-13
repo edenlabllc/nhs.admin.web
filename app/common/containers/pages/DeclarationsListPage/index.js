@@ -16,6 +16,7 @@ import Pagination from "components/Pagination";
 import ShowBy from "containers/blocks/ShowBy";
 import SearchForm from "containers/forms/SearchForm";
 import SearchFilterField from "containers/forms/SearchFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
 
 import { getDeclarations } from "reducers";
 import uuidValidate from "helpers/validators/uuid-validate";
@@ -23,6 +24,40 @@ import uuidValidate from "helpers/validators/uuid-validate";
 import { fetchDeclarations } from "./redux";
 
 const DATE_FORMAT = "DD.MM.YYYY hh:mm";
+
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    title: "Знайти декларацію",
+    filters: [
+      {
+        name: "id",
+        title: "За ID пацієнта",
+        validate: uuidValidate
+      },
+      {
+        name: "employee_id",
+        title: "За ID працівника",
+        validate: uuidValidate
+      },
+      {
+        name: "legal_entity_id",
+        title: "За ID юридичної особи",
+        validate: uuidValidate
+      }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    title: "Активні/Розірванію/Розірвані",
+    name: "is_active",
+    options: [
+      { title: "Активні", name: "active" },
+      { title: "Розірвані", name: "terminated" },
+      { title: "Розірвані", name: "closed" }
+    ]
+  }
+];
 
 const DeclarationsListPage = ({
   declarations = [],
@@ -40,27 +75,7 @@ const DeclarationsListPage = ({
 
     <div>
       <H2>{t("Search declaration")}</H2>
-      <SearchForm
-        fields={[
-          {
-            component: SearchFilterField,
-            title: t("Find declaration"),
-            filters: [
-              {
-                name: "employee_id",
-                title: t("By employee id"),
-                validate: uuidValidate
-              },
-              {
-                name: "legal_entity_id",
-                title: t("By legal entity"),
-                validate: uuidValidate
-              }
-            ]
-          }
-        ]}
-        location={location}
-      />
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <ListShowBy>
