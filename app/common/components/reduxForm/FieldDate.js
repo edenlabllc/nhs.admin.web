@@ -3,15 +3,12 @@ import Input from "components/Input";
 
 import FieldInput from "./FieldInput";
 
-const FieldDate = props => {
-  console.log("date", props);
-  return (
-    <FieldInput
-      component={Input}
-      pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-      {...props}
-    />
-  );
-};
+const FieldDate = props => (
+  <FieldInput
+    component={Input}
+    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    {...props}
+  />
+);
 
 export default FieldDate;
