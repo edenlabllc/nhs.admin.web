@@ -16,6 +16,7 @@ export default handleActions(
       "medications/DEACTIVATE_FAILURE",
       "medical_programs/DEACTIVATE_FAILURE",
       "black_list_users/DEACTIVATE_FAILURE",
+      "persons/FETCH_LIST_FAILURE",
 
       "program_medications/UPDATE_FAILURE"
     )]: (state, action) => action.payload,

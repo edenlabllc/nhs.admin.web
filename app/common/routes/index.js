@@ -67,6 +67,8 @@ import PartyUsersListPage from "containers/pages/PartyUsersListPage";
 
 import ResetAuthenticationMethodPage from "containers/pages/ResetAuthenticationMethodPage";
 
+import PersonSearchPage from "containers/pages/PersonSearchPage";
+
 import NotFoundPage from "containers/pages/NotFoundPage";
 import AccessDeniedPage from "containers/pages/AccessDeniedPage";
 
@@ -114,6 +116,9 @@ export const configureRoutes = ({ store }) => {
           <Route path="dictionaries">
             <IndexRoute component={DictionariesPage} />
             <Route path=":name" component={DictionaryPage} />
+          </Route>
+          <Route path="persons">
+            <IndexRoute component={PersonSearchPage} />
           </Route>
           <Route path="clinics" onEnter={requireScope(["legal_entity:read"])}>
             <IndexRoute component={ClinicsListPage} />

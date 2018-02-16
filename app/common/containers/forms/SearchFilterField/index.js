@@ -26,7 +26,7 @@ export default class SearchFilterField extends Component {
   }
 
   render() {
-    const { title, filters } = this.props;
+    const { title, filters, hasSelect = true } = this.props;
     const { activeFilter } = this.state;
 
     const { name, validate } = filters.find(
@@ -44,13 +44,15 @@ export default class SearchFilterField extends Component {
             validate={validate ? [validate] : undefined}
           />
         </div>
-        <div className={styles.search__select}>
-          <Select
-            active={activeFilter}
-            options={filters}
-            onChange={filter => this.setState({ activeFilter: filter })}
-          />
-        </div>
+        {hasSelect && (
+          <div className={styles.search__select}>
+            <Select
+              active={activeFilter}
+              options={filters}
+              onChange={filter => this.setState({ activeFilter: filter })}
+            />
+          </div>
+        )}
       </div>
     );
   }

@@ -34,6 +34,7 @@ import program_medications from "redux/program-medications";
 import medical_programs from "redux/medical-programs";
 import medication_requests from "redux/medication-requests";
 import medication_dispenses from "redux/medication-dispenses";
+import persons from "redux/persons";
 
 import Aside from "containers/blocks/Aside/redux";
 
@@ -82,6 +83,8 @@ import BlackListUserDetailPage from "containers/pages/BlackListUserDetailPage/re
 
 import PartyUsersListPage from "containers/pages/PartyUsersListPage/redux";
 
+import PersonSearchPage from "containers/pages/PersonSearchPage/redux";
+
 const blocks = combineReducers({
   Aside
 });
@@ -127,7 +130,9 @@ const pages = combineReducers({
   BlackUsersListPage,
   BlackListUserDetailPage,
 
-  PartyUsersListPage
+  PartyUsersListPage,
+
+  PersonSearchPage
 });
 
 const data = combineReducers({
@@ -158,7 +163,9 @@ const data = combineReducers({
   medical_programs,
 
   black_list_users,
-  party_users
+  party_users,
+
+  persons
 });
 
 export default combineReducers({
@@ -283,3 +290,6 @@ export const getBlackUser = (state, id) =>
 
 export const getPartyUsers = (state, ids) =>
   denormalize(ids, [schemas.party_user], state.data);
+
+export const getPersons = (state, ids) =>
+  denormalize(ids, [schemas.person], state.data);
