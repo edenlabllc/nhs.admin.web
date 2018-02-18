@@ -58,6 +58,16 @@ const SEARCH_FIELDS = [
     ]
   },
   {
+    component: SearchFilterField,
+    title: "Введіть tax_id",
+    hasSelect: false,
+    filters: [
+      {
+        name: "tax_id"
+      }
+    ]
+  },
+  {
     component: DateFilterField,
     title: "",
     filters: [
@@ -71,18 +81,10 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    title: "Введіть tax_id",
+    title: "380508887700",
     hasSelect: false,
-    filters: [
-      {
-        name: "tax_id"
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "Введіть телефон",
-    hasSelect: false,
+    hasLabel: true,
+    label: "Введіть телефон",
     filters: [
       {
         name: "mobile_phone"
@@ -142,7 +144,7 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
                 <Button
                   id={`show-declaration-detail-button-${id}`}
                   theme="link"
-                  to={`/declarations/${id}`}
+                  to={`/declarations/?person_id=${id}`}
                 >
                   Деталі
                 </Button>
