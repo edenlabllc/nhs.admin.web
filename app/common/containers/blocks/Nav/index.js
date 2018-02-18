@@ -43,6 +43,11 @@ export default class Nav extends React.Component {
               {t("Dashboard")}
             </Link>
           </NavItem>
+          <NavItem to="/persons" activeClassName={styles.active}>
+            <Link id="persons-nav" to="/persons">
+              Персони
+            </Link>
+          </NavItem>
           <ShowWithScope scope="declaration:read">
             <li>
               <ShowMore nav name={t("Declarations")}>

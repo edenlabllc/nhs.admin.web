@@ -49,12 +49,12 @@ const SEARCH_FIELDS = [
   },
   {
     component: SelectFilterField,
-    title: "Активні/Розірванію/Розірвані",
+    title: "Активні/Розірвані/Закриті",
     name: "is_active",
     options: [
       { title: "Активні", name: "active" },
       { title: "Розірвані", name: "terminated" },
-      { title: "Розірвані", name: "closed" }
+      { title: "Закриті", name: "closed" }
     ]
   }
 ];

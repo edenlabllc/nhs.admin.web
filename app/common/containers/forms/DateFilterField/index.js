@@ -17,7 +17,7 @@ export default class DateFilterField extends Component {
 
     return (
       <div className={styles.date}>
-        {filters.map(({ name, title, placeholder }) => (
+        {filters.map(({ name, title, placeholder, validate }) => (
           <div key={name} className={styles.date__filter}>
             <Field
               name={name}
@@ -25,6 +25,7 @@ export default class DateFilterField extends Component {
               dateFormat="YYYY-MM-DD"
               labelText={title}
               placeholder={placeholder}
+              validate={validate ? [validate] : undefined}
             />
           </div>
         ))}
