@@ -31,7 +31,7 @@ const SEARCH_FIELDS = [
     title: "Знайти декларацію",
     filters: [
       {
-        name: "id",
+        name: "person_id",
         title: "За ID пацієнта",
         validate: uuidValidate
       },
@@ -50,7 +50,7 @@ const SEARCH_FIELDS = [
   {
     component: SelectFilterField,
     title: "Активні/Розірвані/Закриті",
-    name: "is_active",
+    name: "status",
     options: [
       { title: "Активні", name: "active" },
       { title: "Розірвані", name: "terminated" },
