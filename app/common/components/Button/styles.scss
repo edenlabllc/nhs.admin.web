@@ -1,6 +1,6 @@
 $orange-bg-color: #ff5a00;
-$orange-bg-gradient-from: #ff5a00;
-$orange-bg-gradient-to: #f8752e;
+$orange-bg-gradient-from: #ff4800;
+$orange-bg-gradient-to: #ffa54d;
 $orange-border-color: #ff1800;
 
 $blue-bg-color: #22adf1;
@@ -25,7 +25,7 @@ $red-border-color: #d74472;
   color: #fff;
   background: $orange-bg-color
     linear-gradient(
-      180deg,
+      20deg,
       $orange-bg-gradient-from 0%,
       $orange-bg-gradient-to 100%
     );
@@ -41,9 +41,8 @@ $red-border-color: #d74472;
 
   &:hover {
     background-image: linear-gradient(
-      180deg,
-      $orange-bg-gradient-from 0%,
-      $orange-bg-gradient-to 100%
+      20deg,
+      $orange-bg-gradient-to 0% $orange-bg-gradient-from 100%
     );
   }
 

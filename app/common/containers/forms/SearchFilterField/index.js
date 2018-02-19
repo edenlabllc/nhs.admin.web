@@ -32,7 +32,6 @@ export default class SearchFilterField extends Component {
     const { name, validate } = filters.find(
       ({ name }) => name === activeFilter
     );
-    console.log(props);
 
     return (
       <div className={styles.search}>

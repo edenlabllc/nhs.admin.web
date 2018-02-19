@@ -77,7 +77,7 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    labelText: "ІНН особи",
+    labelText: "ІНН",
     placeholder: "ІНН особи",
     hasSelect: false,
     filters: [
