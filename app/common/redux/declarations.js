@@ -101,13 +101,13 @@ export const updateDeclaration = (id, body) =>
       "content-type": "application/json"
     },
     types: [
-      "dictionaries/UPDATE_REQUEST",
+      "declarations/UPDATE_REQUEST",
       {
-        type: "dictionaries/UPDATE_SUCCESS",
+        type: "declarations/UPDATE_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(resp => normalize(resp.data, declaration))
       },
-      "dictionaries/UPDATE_FAILURE"
+      "declarations/UPDATE_FAILURE"
     ],
     body
   });
@@ -138,13 +138,13 @@ export const rejectDeclaration = id =>
       "content-type": "application/json"
     },
     types: [
-      "dictionaries/REJECT_REQUEST",
+      "declarations/REJECT_REQUEST",
       {
-        type: "dictionaries/REJECT_SUCCESS",
+        type: "declarations/REJECT_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(resp => normalize(resp.data, declaration))
       },
-      "dictionaries/REJECT_FAILURE"
+      "declarations/REJECT_FAILURE"
     ]
   });
 
@@ -162,8 +162,23 @@ export const getDeclarationImage = id =>
         payload: (action, state, res) => res.json(),
         meta: () => ({ declaration_id: id })
       },
-      "dictionaries/GET_DECLARATION_IMAGE_FAILURE"
+      "declarations/GET_DECLARATION_IMAGE_FAILURE"
     ]
+  });
+
+export const terminateDeclaration = body =>
+  invoke({
+    endpoint: createUrl(`${API_URL}/api/declarations/terminate`),
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json"
+    },
+    types: [
+      "declarations/TERMINATE_DECLARATION_REQUEST",
+      "declarations/TERMINATE_DECLARATION_SUCCESS",
+      "declarations/TERMINATE_DECLARATION_FAILURE"
+    ],
+    body
   });
 
 export default handleActions(

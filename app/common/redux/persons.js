@@ -18,13 +18,7 @@ export const resetAuthMethod = id =>
     types: [
       "persons/RESET_AUTH_REQUEST",
       "persons/RESET_AUTH_SUCCESS",
-      {
-        type: "persons/RESET_AUTH_FAILURE",
-        payload: (action, state, res) =>
-          res.json().then(json => {
-            console.log(json);
-          })
-      }
+      "persons/RESET_AUTH_FAILURE"
     ]
   });
 

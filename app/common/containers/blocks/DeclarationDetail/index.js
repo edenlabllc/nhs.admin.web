@@ -10,6 +10,8 @@ import Line from "components/Line";
 import { H3 } from "components/Title";
 import DataList from "components/DataList";
 import InlineList from "components/InlineList";
+import Input from "components/Input";
+import Button from "components/Button";
 
 import BackLink from "containers/blocks/BackLink";
 import AddressesList from "containers/blocks/AddressesList";
@@ -20,7 +22,12 @@ import styles from "./styles.scss";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
-const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
+const DeclarationDetailPage = ({
+  declaration = {},
+  onTerminate,
+  router,
+  t
+}) => {
   const fullName = [
     declaration.person.last_name,
     declaration.person.first_name,
@@ -70,7 +77,26 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
           },
           {
             name: t("Status"),
-            value: declaration.status
+            value: (
+              <div>
+                {declaration.status === "terminated" ||
+                declaration.status === "closed" ? (
+                  <div>
+                    {declaration.status} <br />
+                    {`Причина: ${
+                      declaration.reason_description
+                        ? declaration.reason_description
+                        : "відсутня"
+                    }`}
+                  </div>
+                ) : (
+                  <div>
+                    {declaration.status}
+                    <TerminateForm onTerminate={onTerminate} />
+                  </div>
+                )}
+              </div>
+            )
           },
           {
             name: t("Scope"),
@@ -299,3 +325,28 @@ const DeclarationDetailPage = ({ declaration = {}, router, t }) => {
 export default compose(withRouter, withStyles(styles), translate())(
   DeclarationDetailPage
 );
+
+class TerminateForm extends React.Component {
+  state = {
+    input: ""
+  };
+  render() {
+    return (
+      <div className={styles.row}>
+        <div>
+          <Input onChange={e => this.setState({ input: e.target.value })} />
+        </div>
+        <div>
+          <Button
+            onClick={() => this.props.onTerminate(this.state.input)}
+            theme="border"
+            color="red"
+            size="small"
+          >
+            Деактивувати
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
