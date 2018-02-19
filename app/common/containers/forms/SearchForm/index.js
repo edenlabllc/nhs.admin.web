@@ -3,9 +3,9 @@ import { compose } from "redux";
 import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import { reduxForm, change, getFormValues } from "redux-form";
+import Button from "components/Button";
 
 import { FormRow, FormColumn } from "components/Form";
-import Button from "components/Button";
 
 import styles from "./styles.scss";
 
@@ -64,9 +64,9 @@ export default class SearchForm extends Component {
 const SearchFormComponent = ({ handleSubmit, children }) => (
   <form className={styles.form} onSubmit={handleSubmit}>
     <div className={styles.form__fields}>{children}</div>
-    <button className={styles.form__button} type="submit">
-      Пошук
-    </button>
+    <Button theme="fill" type="submit">
+      Застусувати пошук
+    </Button>
   </form>
 );
 

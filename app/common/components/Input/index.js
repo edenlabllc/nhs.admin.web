@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 import ErrorMessages from "components/ErrorMessages";
+import ColoredText from "components/ColoredText";
 
 import styles from "./styles.scss";
 
@@ -35,6 +36,7 @@ export const Input = ({
   component = inputComponent,
   theme = "gray",
   label_bold,
+  requiredStar = false,
   className,
   ...rest
 }) => {
@@ -75,6 +77,7 @@ export const Input = ({
             )}
           >
             {labelText}
+            {requiredStar && <ColoredText color="red">*</ColoredText>}
           </div>
         )}
         <span
