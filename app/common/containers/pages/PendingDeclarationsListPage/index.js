@@ -42,7 +42,7 @@ const PendingDeclarationsListPage = ({
         fields={[
           {
             component: SearchFilterField,
-            title: t("Find declaration"),
+            labelText: t("Find declaration"),
             filters: [
               {
                 name: "employee_id",

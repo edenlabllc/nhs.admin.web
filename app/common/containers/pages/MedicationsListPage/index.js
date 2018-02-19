@@ -26,7 +26,7 @@ import { fetchMedications } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти торгівельне найменування",
+    labelText: "Знайти торгівельне найменування",
     filters: [
       { name: "id", title: "за ID", validate: uuidValidate },
       {

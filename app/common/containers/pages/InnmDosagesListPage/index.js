@@ -26,7 +26,7 @@ import { fetchInnmDosages } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти лікарську форму",
+    labelText: "Знайти лікарську форму",
     filters: [
       {
         name: "id",

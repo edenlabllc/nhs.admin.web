@@ -26,7 +26,7 @@ import { fetchProgramMedications } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти учасника програми",
+    labelText: "Знайти учасника програми",
     filters: [
       {
         name: "medical_program_id",

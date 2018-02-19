@@ -28,7 +28,7 @@ const DATE_FORMAT = "DD.MM.YYYY hh:mm";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти декларацію",
+    labelText: "Знайти декларацію",
     filters: [
       {
         name: "person_id",

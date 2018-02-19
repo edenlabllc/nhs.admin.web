@@ -42,7 +42,7 @@ const PendingEmployeesListPage = ({
       fields={[
         {
           component: SearchFilterField,
-          title: "Знайти співробітника",
+          labelText: "Знайти співробітника",
           filters: [
             { name: "edrpou", title: t("By edrpou") },
             { name: "legal_entity_name", title: "За назвою юр. особи" },

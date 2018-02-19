@@ -25,7 +25,7 @@ import { fetchMedicationDispenses } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти відпуск",
+    labelText: "Знайти відпуск",
     filters: [
       { name: "id", title: "За ID", validate: uuidValidate },
       {
