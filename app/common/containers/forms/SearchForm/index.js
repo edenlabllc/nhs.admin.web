@@ -65,7 +65,7 @@ const SearchFormComponent = ({ handleSubmit, children }) => (
   <form className={styles.form} onSubmit={handleSubmit}>
     <div className={styles.form__fields}>{children}</div>
     <Button theme="fill" type="submit">
-      Застусувати пошук
+      Застосувати пошук
     </Button>
   </form>
 );

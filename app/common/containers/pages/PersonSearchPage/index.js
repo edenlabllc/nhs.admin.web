@@ -19,6 +19,7 @@ import DateFilterField from "containers/forms/DateFilterField";
 
 import { getPersons } from "reducers";
 import required from "helpers/validators/required-validate";
+import normalizePhone from "helpers/phone-normalize";
 
 import { fetchPersonsList } from "./redux";
 
@@ -87,10 +88,10 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    title: "380508887700",
+    labelText: "Номер мобільного телефону",
     hasSelect: false,
-    hasLabel: true,
-    label: "Введіть телефон",
+    prefix: "+380",
+    normalize: normalizePhone,
     filters: [
       {
         name: "mobile_phone"

@@ -26,31 +26,24 @@ export default class SearchFilterField extends Component {
   }
 
   render() {
-    const {
-      placeholder,
-      filters,
-      hasSelect = true,
-      labelText,
-      requiredStar
-    } = this.props;
+    const { filters, hasSelect = true, ...props } = this.props;
     const { activeFilter } = this.state;
 
     const { name, validate } = filters.find(
       ({ name }) => name === activeFilter
     );
+    console.log(props);
 
     return (
       <div className={styles.search}>
         <div className={styles.search__input}>
           <Field
-            name={name}
             type="text"
-            label_bold
-            requiredStar={requiredStar}
-            placeholder={placeholder}
-            labelText={labelText}
             component={FieldInput}
+            label_bold
             validate={validate ? [validate] : undefined}
+            {...props}
+            name={name}
           />
         </div>
         {hasSelect && (
