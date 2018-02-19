@@ -32,7 +32,7 @@ const ClinicsSearchPage = ({ location, t }) => (
         fields={[
           {
             component: SearchFilterField,
-            title: t("Find clinic"),
+            labelText: t("Find clinic"),
             filters: [
               { name: "edrpou", title: t("By edrpou") },
               {

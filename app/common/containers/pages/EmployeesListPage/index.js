@@ -44,7 +44,7 @@ const EmployeesListPage = ({
       fields={[
         {
           component: SearchFilterField,
-          title: t("Find employee"),
+          labelText: t("Find employee"),
           filters: [
             {
               name: "party_id",

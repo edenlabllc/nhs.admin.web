@@ -25,7 +25,7 @@ import { fetchInnms } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти МНН",
+    labelText: "Знайти МНН",
     filters: [
       { name: "id", title: "За ідентифікатором", validate: uuidValidate },
       { name: "sctid", title: "За sctid" },

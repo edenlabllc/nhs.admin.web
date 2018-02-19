@@ -13,16 +13,18 @@ export default class DateFilterField extends Component {
   }
 
   render() {
-    const { filters } = this.props;
+    const { filters, requiredStar = false } = this.props;
     return (
       <div className={filters.length > 1 ? styles.date : styles.date__single}>
-        {filters.map(({ name, title, placeholder, validate }) => (
+        {filters.map(({ name, labelText, placeholder, validate }) => (
           <div key={name} className={styles.date__filter}>
             <Field
+              label_bold
               name={name}
               component={FieldDate}
               dateFormat="YYYY-MM-DD"
-              labelText={title}
+              labelText={labelText}
+              requiredStar={requiredStar}
               placeholder={placeholder}
               validate={validate ? [validate] : undefined}
             />

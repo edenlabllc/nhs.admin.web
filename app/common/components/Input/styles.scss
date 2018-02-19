@@ -18,15 +18,15 @@ $errored: #ff1f44;
   border: 1px solid $default;
 
   &.active {
-    border-color: $focused;
+    border-color: $default;
 
     .prefix-wrapper,
     .postfix-wrapper {
-      color: $focused;
+      color: rgba(61, 61, 61, 0.5);
     }
 
     .required-label {
-      border-bottom-color: $focused;
+      border-bottom-color: $default;
     }
   }
 
@@ -89,7 +89,7 @@ input:-webkit-autofill {
   line-height: 32px;
   color: rgba(61, 61, 61, 0.5);
   border-right: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .postfix-wrapper {
@@ -99,7 +99,7 @@ input:-webkit-autofill {
   line-height: 32px;
   color: rgba(61, 61, 61, 0.5);
   border-left: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .label-text {
@@ -127,7 +127,7 @@ input:-webkit-autofill {
 .error-label {
   position: absolute;
   top: 100%;
-  right: 0;
+  right: -1px;
   padding: 8px 15px 7px 13px;
   color: #fff;
   background-color: $errored;

@@ -21,7 +21,7 @@ import { fetchPartyUsers } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти обліковий запис",
+    labelText: "Знайти обліковий запис",
     filters: [
       { name: "user_id", title: "За ID користувача", validate: uuidValidate },
       { name: "party_id", title: "За ID особи", validate: uuidValidate }

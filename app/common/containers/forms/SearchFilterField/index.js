@@ -26,13 +26,7 @@ export default class SearchFilterField extends Component {
   }
 
   render() {
-    const {
-      title,
-      filters,
-      hasSelect = true,
-      hasLabel = false,
-      label
-    } = this.props;
+    const { filters, hasSelect = true, ...props } = this.props;
     const { activeFilter } = this.state;
 
     const { name, validate } = filters.find(
@@ -44,11 +38,11 @@ export default class SearchFilterField extends Component {
         <div className={styles.search__input}>
           <Field
             type="text"
-            labelText={hasLabel && label}
-            placeholder={title}
-            name={name}
             component={FieldInput}
+            label_bold
             validate={validate ? [validate] : undefined}
+            {...props}
+            name={name}
           />
         </div>
         {hasSelect && (
