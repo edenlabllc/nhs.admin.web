@@ -14,9 +14,8 @@ export default class DateFilterField extends Component {
 
   render() {
     const { filters } = this.props;
-
     return (
-      <div className={styles.date}>
+      <div className={filters.length > 1 ? styles.date : styles.date__single}>
         {filters.map(({ name, title, placeholder, validate }) => (
           <div key={name} className={styles.date__filter}>
             <Field

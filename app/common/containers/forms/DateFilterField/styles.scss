@@ -2,9 +2,16 @@
   flex-basis: 100%;
   margin-top: 10px;
   display: flex;
+  z-index: 1000;
 
+  &__single,
   &__filter {
+    z-index: 1000;
     flex-basis: 50%;
     padding-right: 20px;
+  }
+
+  &__filter {
+    margin-top: 10px;
   }
 }
