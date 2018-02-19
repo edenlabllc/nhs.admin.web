@@ -19,6 +19,7 @@ import DateFilterField from "containers/forms/DateFilterField";
 
 import { getPersons } from "reducers";
 import required from "helpers/validators/required-validate";
+import normalizePhone from "helpers/phone-normalize";
 
 import { fetchPersonsList } from "./redux";
 
@@ -27,18 +28,9 @@ const DATE_FORMAT = "DD.MM.YYYY";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Введіть ім'я",
-    hasSelect: false,
-    filters: [
-      {
-        name: "first_name",
-        validate: required
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "Введіть прізвище",
+    labelText: "Прізвище",
+    placeholder: "Прізвище особи",
+    requiredStar: true,
     hasSelect: false,
     filters: [
       {
@@ -49,7 +41,21 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    title: "Введіть по-батькові",
+    labelText: "Ім'я",
+    placeholder: "Ім'я особи",
+    hasSelect: false,
+    requiredStar: true,
+    filters: [
+      {
+        name: "first_name",
+        validate: required
+      }
+    ]
+  },
+  {
+    component: SearchFilterField,
+    labelText: "По-батькові",
+    placeholder: "По-батькові особи",
     hasSelect: false,
     filters: [
       {
@@ -59,11 +65,11 @@ const SEARCH_FIELDS = [
   },
   {
     component: DateFilterField,
-    title: "",
+    requiredStar: true,
     filters: [
       {
         name: "birth_date",
-        title: "Дата народження",
+        labelText: "Дата народження",
         placeholder: "1990-01-01",
         validate: required
       }
@@ -71,7 +77,8 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    title: "Введіть tax_id",
+    labelText: "ІНН",
+    placeholder: "ІНН особи",
     hasSelect: false,
     filters: [
       {
@@ -81,10 +88,10 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    title: "380508887700",
+    labelText: "Номер мобільного телефону",
     hasSelect: false,
-    hasLabel: true,
-    label: "Введіть телефон",
+    prefix: "+380",
+    normalize: normalizePhone,
     filters: [
       {
         name: "mobile_phone"
@@ -94,16 +101,16 @@ const SEARCH_FIELDS = [
 ];
 
 const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
-  <div id="declarations-list-page">
+  <div id="persons-list-page">
     <Helmet
-      title="Персони"
-      meta={[{ property: "og:title", content: "Персони" }]}
+      title="Пошук осіб"
+      meta={[{ property: "og:title", content: "Пошук осіб" }]}
     />
 
-    <H1>Персони</H1>
+    <H1>Пошук осіб</H1>
 
     <div>
-      <H2>Пошук персони</H2>
+      <H2>Пошук особи</H2>
       <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 

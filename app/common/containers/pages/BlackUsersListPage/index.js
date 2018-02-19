@@ -26,7 +26,8 @@ import { fetchBlackListUsers } from "./redux";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    title: "Знайти користувача",
+    labelText: "Знайти користувача",
+    placeholder: "Знайти користувача",
     filters: [
       {
         name: "id",
