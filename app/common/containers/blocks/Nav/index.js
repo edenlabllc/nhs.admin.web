@@ -115,6 +115,11 @@ export default class Nav extends React.Component {
               {t("Reports")}
             </Link>
           </NavItem>
+          <NavItem to="registers" activeClassName={styles.active}>
+            <Link id="registers-nav" to="/registers">
+              Реєстри
+            </Link>
+          </NavItem>
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">
               {t("Dictionaries")}
@@ -228,6 +233,7 @@ export default class Nav extends React.Component {
               </ul>
             </ShowMore>
           </li>
+
           <li>
             <ShowMore nav name="Користувачі">
               <ul>

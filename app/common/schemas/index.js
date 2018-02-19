@@ -28,3 +28,4 @@ export const black_list_user = new schema.Entity("black_list_users");
 export const party_user = new schema.Entity("party_users");
 
 export const person = new schema.Entity("persons");
+export const register = new schema.Entity("registers");

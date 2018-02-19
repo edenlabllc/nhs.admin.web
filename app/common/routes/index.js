@@ -68,6 +68,7 @@ import PartyUsersListPage from "containers/pages/PartyUsersListPage";
 import ResetAuthenticationMethodPage from "containers/pages/ResetAuthenticationMethodPage";
 
 import PersonSearchPage from "containers/pages/PersonSearchPage";
+import RegistersPage from "containers/pages/RegistersPage";
 
 import NotFoundPage from "containers/pages/NotFoundPage";
 import AccessDeniedPage from "containers/pages/AccessDeniedPage";
@@ -233,6 +234,7 @@ export const configureRoutes = ({ store }) => {
             onEnter={requireScope(["global_parameters:read"])}
           />
           <Route path="reports" component={ReportsListPage} />
+          <Route path="registers" component={RegistersPage} />
           <Route
             path="reset-authentication-method"
             onEnter={requireScope(["person:reset_authentication_method"])}
