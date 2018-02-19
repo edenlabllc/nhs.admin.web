@@ -58,16 +58,6 @@ const SEARCH_FIELDS = [
     ]
   },
   {
-    component: SearchFilterField,
-    title: "Введіть tax_id",
-    hasSelect: false,
-    filters: [
-      {
-        name: "tax_id"
-      }
-    ]
-  },
-  {
     component: DateFilterField,
     title: "",
     filters: [
@@ -76,6 +66,16 @@ const SEARCH_FIELDS = [
         title: "Дата народження",
         placeholder: "1990-01-01",
         validate: required
+      }
+    ]
+  },
+  {
+    component: SearchFilterField,
+    title: "Введіть tax_id",
+    hasSelect: false,
+    filters: [
+      {
+        name: "tax_id"
       }
     ]
   },
@@ -130,9 +130,9 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
               last_name,
               second_name = "",
               birth_date,
-              tax_id = "-",
-              mobile_phone = "-",
-              birth_settlements = "-"
+              tax_id = "?",
+              mobile_phone = "?",
+              birth_settlements = "?"
             }) => ({
               id,
               person: <div>{`${first_name} ${last_name} ${second_name}`}</div>,
