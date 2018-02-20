@@ -7,7 +7,9 @@ import {
   collectionOf,
   ErrorMessage
 } from "react-nebo15-validate";
-import FieldInput from "components/reduxForm/FieldInput";
+import ReactFileReader from "react-file-reader";
+
+import FieldTextarea from "components/reduxForm/FieldTextarea";
 
 import Button from "components/Button";
 import { FormRow, FormColumn } from "components/Form";
@@ -34,21 +36,40 @@ import styles from "./styles.scss";
   values: getFormValues("register-upload-form")(state)
 }))
 export default class RegisterUploadForm extends React.Component {
+  state = {
+    file_name: null,
+    file: null
+  };
+
+  handleFiles = file => {
+    this.setState(() => ({
+      file: file.base64,
+      file_name: file.fileList[0].name
+    }));
+  };
+
+  onSubmit({ person_type, type, reason_description }) {
+    const { file, file_name } = this.state;
+    return this.props.onSubmit({
+      person_type: person_type.name,
+      type: type.name,
+      file: file.replace("data:text/csv;base64,", ""),
+      file_name,
+      reason_description
+    });
+  }
+
   render() {
-    const {
-      handleSubmit,
-      onSubmit = () => {},
-      data: { registerTypes },
-      submitting
-    } = this.props;
+    const { handleSubmit, data: { registerTypes } } = this.props;
+    const { file, file_name } = this.state;
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(v => this.onSubmit(v)).bind(this)}>
         <div className={styles.form}>
           <FormRow>
             <FormColumn>
               <Field
-                name="type"
+                name="person_type"
                 component={SelectUniversal}
                 labelText="Тип особи"
                 label_bold
@@ -65,7 +86,7 @@ export default class RegisterUploadForm extends React.Component {
           <FormRow>
             <FormColumn>
               <Field
-                name="person_type"
+                name="type"
                 component={SelectUniversal}
                 labelText="Тип файлу"
                 label_bold
@@ -81,10 +102,31 @@ export default class RegisterUploadForm extends React.Component {
           </FormRow>
           <FormRow>
             <FormColumn>
+              <Field
+                name="reason_description"
+                component={FieldTextarea}
+                labelText="Причина дії"
+              />
+            </FormColumn>
+          </FormRow>
+          <FormRow>
+            <FormColumn>
+              <ReactFileReader
+                fileTypes={[".csv"]}
+                base64={true}
+                multipleFiles={false}
+                handleFiles={this.handleFiles}
+              >
+                <Button color="blue">Завантажити файл</Button>
+              </ReactFileReader>
+            </FormColumn>
+          </FormRow>
+          <FormRow>
+            <FormColumn>
               <ShowWithScope scope="register:write">
                 <div>
-                  <Button type="submit" disabled={submitting}>
-                    {submitting ? "Збереження" : "Зберегти файл"}
+                  <Button type="submit" disabled={!file && !file_name}>
+                    {!file && !file_name ? "Завантажете файл" : "Зберегти файл"}
                   </Button>
                 </div>
               </ShowWithScope>

@@ -35,7 +35,7 @@ export default class RegisterUploadPage extends React.Component {
 
         <RegisterUploadForm
           data={{ registerTypes }}
-          onSubmit={v => uploadRegister(v).then(e => console.log(e))}
+          onSubmit={v => uploadRegister(v).then(e => console.log(e, v))}
         />
       </div>
     );

@@ -20,7 +20,7 @@ export default handleActions(
 
       "program_medications/UPDATE_FAILURE",
 
-      "registers / UPLOAD_FAILURE"
+      "registers/UPLOAD_FAILURE"
     )]: (state, action) => action.payload,
     [dismissError]: () => null
   },
