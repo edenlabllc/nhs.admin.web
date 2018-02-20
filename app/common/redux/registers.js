@@ -31,7 +31,7 @@ export const fetchRegisters = options =>
     ]
   });
 
-export const postRegisters = body =>
+export const uploadRegister = body =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/registers`),
     method: "POST",
@@ -39,10 +39,10 @@ export const postRegisters = body =>
       "content-type": "application/json"
     },
     types: [
-      "registers/CREATE_INNM_DOSAGES_REQUEST",
-      "registers/CREATE_SUCCESS",
+      "registers/UPLOAD_REQUEST",
+      "registers/UPLOAD_SUCCESS",
       {
-        type: "registers/CREATE_FAILURE",
+        type: "registers/UPLOAD_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
       }
     ],

@@ -68,7 +68,9 @@ import PartyUsersListPage from "containers/pages/PartyUsersListPage";
 import ResetAuthenticationMethodPage from "containers/pages/ResetAuthenticationMethodPage";
 
 import PersonSearchPage from "containers/pages/PersonSearchPage";
+
 import RegistersPage from "containers/pages/RegistersPage";
+import RegisterUploadPage from "containers/pages/RegisterUploadPage";
 
 import NotFoundPage from "containers/pages/NotFoundPage";
 import AccessDeniedPage from "containers/pages/AccessDeniedPage";
@@ -233,7 +235,10 @@ export const configureRoutes = ({ store }) => {
             component={SystemConfigurationPage}
             onEnter={requireScope(["global_parameters:read"])}
           />
-          <Route path="registers" component={RegistersPage} />
+          <Route path="registers" onEnter={requireScope(["register:read"])}>
+            <IndexRoute component={RegistersPage} />
+            <Route path="upload" component={RegisterUploadPage} />
+          </Route>
           <Route path="reports" component={ReportsListPage} />
           <Route
             path="reset-authentication-method"

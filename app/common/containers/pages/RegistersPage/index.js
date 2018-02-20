@@ -9,18 +9,19 @@ import { H1, H2 } from "components/Title";
 import { ListTable, ListShowBy } from "components/List";
 import Table from "components/Table";
 import ColoredText from "components/ColoredText";
+import { ListHeader } from "components/List";
 import Button from "components/Button";
 import Pagination from "components/Pagination";
 
 import ShowBy from "containers/blocks/ShowBy";
 import DictionaryValue from "containers/blocks/DictionaryValue";
-import SearchForm from "containers/forms/SearchForm";
-import SearchFilterField from "containers/forms/SearchFilterField";
-import DateFilterField from "containers/forms/DateFilterField";
+// import SearchForm from "containers/forms/SearchForm";
+// import SearchFilterField from "containers/forms/SearchFilterField";
+// import DateFilterField from "containers/forms/DateFilterField";
 
 import { getRegisters } from "reducers";
-import required from "helpers/validators/required-validate";
-
+// import required from "helpers/validators/required-validate";
+import { PERSON_TYPE } from "helpers/enums";
 import { fetchRegistersList } from "./redux";
 
 const DATE_FORMAT = "DD/MM/YYYY";
@@ -29,7 +30,21 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
   <div id="files-list-page">
     <Helmet title="Файли" meta={[{ property: "og:title", content: "Файли" }]} />
     {console.log(registers)}
-    <H1>Персони</H1>
+    <ListHeader
+      button={
+        <Button
+          to="/registers/upload"
+          theme="border"
+          size="small"
+          color="orange"
+          icon="add"
+        >
+          Завантажити файл
+        </Button>
+      }
+    >
+      <H1>Перелік файлів</H1>
+    </ListHeader>
 
     <div>
       <H2>Пошук файлу</H2>
@@ -74,7 +89,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
                 />
               ),
               file_name,
-              person_type,
+              person_type: PERSON_TYPE[person_type] || person_type,
               qty: (
                 <div>
                   {`Не знайдено:${not_found}`}

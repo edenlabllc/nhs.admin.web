@@ -109,6 +109,10 @@ $focused: #11d8fb;
 
   .label {
     margin-bottom: 11px;
+
+    &__bold {
+      font-weight: bold;
+    }
   }
 
   .list {
