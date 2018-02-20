@@ -31,7 +31,9 @@ export default class RegisterUploadPage extends React.Component {
             { property: "og:title", content: "Сторінка завантаження файлу" }
           ]}
         />
-        <BackLink onClick={() => router.goBack()}>Завантажити файл</BackLink>
+        <BackLink onClick={() => router.push("/registers")}>
+          Завантажити файл
+        </BackLink>
 
         <RegisterUploadForm
           data={{ registerTypes }}

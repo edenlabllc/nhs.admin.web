@@ -29,3 +29,4 @@ export const party_user = new schema.Entity("party_users");
 
 export const person = new schema.Entity("persons");
 export const register = new schema.Entity("registers");
+export const register_entry = new schema.Entity("register_entries");

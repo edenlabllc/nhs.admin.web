@@ -19,6 +19,7 @@ import employeesRequests from "redux/employees-requests";
 import black_list_users from "redux/black-list-users";
 import party_users from "redux/party-users";
 import registers from "redux/registers";
+import register_entries from "redux/register-entries";
 
 import {
   globalStat,
@@ -86,6 +87,7 @@ import PartyUsersListPage from "containers/pages/PartyUsersListPage/redux";
 
 import PersonSearchPage from "containers/pages/PersonSearchPage/redux";
 import RegistersPage from "containers/pages/RegistersPage/redux";
+import RegistersDetailPage from "containers/pages/RegistersDetailPage/redux";
 
 const blocks = combineReducers({
   Aside
@@ -135,7 +137,8 @@ const pages = combineReducers({
   PartyUsersListPage,
 
   PersonSearchPage,
-  RegistersPage
+  RegistersPage,
+  RegistersDetailPage
 });
 
 const data = combineReducers({
@@ -169,7 +172,8 @@ const data = combineReducers({
   party_users,
 
   persons,
-  registers
+  registers,
+  register_entries
 });
 
 export default combineReducers({
@@ -300,3 +304,8 @@ export const getPersons = (state, ids) =>
 
 export const getRegisters = (state, ids) =>
   denormalize(ids, [schemas.register], state.data);
+
+export const getRegisterEntry = (state, ids, register_id) =>
+  denormalize(ids, [schemas.register_entry], state.data).filter(
+    item => item.register_id === register_id
+  );

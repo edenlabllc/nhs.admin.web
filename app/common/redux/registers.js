@@ -2,7 +2,7 @@ import { handleAction, combineActions } from "redux-actions";
 import { API_URL } from "config";
 import { normalize } from "normalizr";
 import { createUrl } from "helpers/url";
-import { register } from "schemas";
+import { register, registers_entry } from "schemas";
 import { invoke } from "./api";
 
 export const fetchRegisters = options =>

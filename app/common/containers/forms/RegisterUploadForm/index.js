@@ -122,7 +122,7 @@ export default class RegisterUploadForm extends React.Component {
                 </Button>
                 {file_name && (
                   <span>
-                    <b>&nbsp;{`${file_name}*`}</b>
+                    <b>{` ${file_name}*`}</b>
                   </span>
                 )}
               </ReactFileReader>
