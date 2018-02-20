@@ -13,95 +13,27 @@ import Button from "components/Button";
 import Pagination from "components/Pagination";
 
 import ShowBy from "containers/blocks/ShowBy";
+import DictionaryValue from "containers/blocks/DictionaryValue";
 import SearchForm from "containers/forms/SearchForm";
 import SearchFilterField from "containers/forms/SearchFilterField";
 import DateFilterField from "containers/forms/DateFilterField";
 
-import { getPersgetRegistersons } from "reducers";
+import { getRegisters } from "reducers";
 import required from "helpers/validators/required-validate";
 
 import { fetchRegistersList } from "./redux";
 
-const DATE_FORMAT = "DD.MM.YYYY";
-
-const SEARCH_FIELDS = [
-  {
-    component: SearchFilterField,
-    title: "Введіть ім'я",
-    hasSelect: false,
-    filters: [
-      {
-        name: "first_name",
-        validate: required
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "Введіть прізвище",
-    hasSelect: false,
-    filters: [
-      {
-        name: "last_name",
-        validate: required
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "Введіть по-батькові",
-    hasSelect: false,
-    filters: [
-      {
-        name: "second_name"
-      }
-    ]
-  },
-  {
-    component: DateFilterField,
-    title: "",
-    filters: [
-      {
-        name: "birth_date",
-        title: "Дата народження",
-        placeholder: "1990-01-01",
-        validate: required
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "Введіть tax_id",
-    hasSelect: false,
-    filters: [
-      {
-        name: "tax_id"
-      }
-    ]
-  },
-  {
-    component: SearchFilterField,
-    title: "380508887700",
-    hasSelect: false,
-    hasLabel: true,
-    label: "Введіть телефон",
-    filters: [
-      {
-        name: "mobile_phone"
-      }
-    ]
-  }
-];
+const DATE_FORMAT = "DD/MM/YYYY";
 
 const RegistersPage = ({ registers = [], paging = {}, location }) => (
   <div id="files-list-page">
     <Helmet title="Файли" meta={[{ property: "og:title", content: "Файли" }]} />
-
+    {console.log(registers)}
     <H1>Персони</H1>
 
     <div>
       <H2>Пошук файлу</H2>
-      <SearchForm fields={SEARCH_FIELDS} location={location} />
+      {/*<SearchForm fields={SEARCH_FIELDS} location={location} />*/}
     </div>
 
     <div>
@@ -112,34 +44,50 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
       <ListTable id="files-table">
         <Table
           columns={[
-            { key: "id", title: "ID" },
-            { key: "file_name", title: "Назва" },
-            { key: "inserted_date", title: "Створено" },
-            { key: "status", title: "Статус" },
-            { key: "person_type", title: "person_type" },
-            { key: "type", title: "Тип" },
-            { key: "qty", title: "qty" },
-            { key: "errors", title: "errors" },
+            { key: "id", title: "ID Файлу" },
+            { key: "inserted_at", title: "Дата додавання" },
+            { key: "type", title: "Тип файлу" },
+            { key: "file_name", title: "Назва файлу" },
+            { key: "person_type", title: "Тип людини" },
+            { key: "qty", title: "Статистика", width: 150 },
+            { key: "errors", title: "Помилки" },
+            { key: "status", title: "Статус файлу" },
             { key: "action", title: "Дії" }
           ]}
           data={registers.map(
             ({
               id,
               file_name,
-              inserted_date,
+              inserted_at,
               status,
               person_type,
               type,
-              qty,
-              errors
+              errors,
+              qty: { errors: warnings, not_found, processing, total }
             }) => ({
               id,
+              inserted_at: format(inserted_at, DATE_FORMAT),
+              type: (
+                <DictionaryValue
+                  dictionary="REGISTER_TYPE"
+                  value={type.toUpperCase()}
+                />
+              ),
               file_name,
-              inserted_date,
-              status,
               person_type,
-              type,
-              qty,
+              qty: (
+                <div>
+                  {`Не знайдено:${not_found}`}
+                  <br />
+                  {`В процесі:${processing}`}
+                  <br />
+                  {`Помилок:${warnings}`}
+                  <br />
+                  {`Усьго записів:${total}`}
+                  <br />
+                </div>
+              ),
+              status,
               errors,
               action: (
                 <Button

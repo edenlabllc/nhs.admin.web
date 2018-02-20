@@ -233,8 +233,8 @@ export const configureRoutes = ({ store }) => {
             component={SystemConfigurationPage}
             onEnter={requireScope(["global_parameters:read"])}
           />
-          <Route path="reports" component={ReportsListPage} />
           <Route path="registers" component={RegistersPage} />
+          <Route path="reports" component={ReportsListPage} />
           <Route
             path="reset-authentication-method"
             onEnter={requireScope(["person:reset_authentication_method"])}
