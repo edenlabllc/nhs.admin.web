@@ -38,7 +38,6 @@ const RegistersDetailPage = ({
     />
 
     <H1>Записи файлів</H1>
-    {console.log(register_entries)}
     <div>
       <H2>Пошук файлу</H2>
       {/*<SearchForm fields={SEARCH_FIELDS} location={location} />*/}
