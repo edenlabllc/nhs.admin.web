@@ -117,7 +117,14 @@ export default class RegisterUploadForm extends React.Component {
                 multipleFiles={false}
                 handleFiles={this.handleFiles}
               >
-                <Button color="blue">Завантажити файл</Button>
+                <Button size="small" color="blue">
+                  Завантажити файл
+                </Button>
+                {file_name && (
+                  <span>
+                    <b>&nbsp;{`${file_name}*`}</b>
+                  </span>
+                )}
               </ReactFileReader>
             </FormColumn>
           </FormRow>
@@ -126,7 +133,7 @@ export default class RegisterUploadForm extends React.Component {
               <ShowWithScope scope="register:write">
                 <div>
                   <Button type="submit" disabled={!file && !file_name}>
-                    {!file && !file_name ? "Завантажете файл" : "Зберегти файл"}
+                    {!file && !file_name ? "Завантажте файл" : "Зберегти файл"}
                   </Button>
                 </div>
               </ShowWithScope>
