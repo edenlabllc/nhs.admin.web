@@ -14,6 +14,7 @@ class Select extends React.Component {
   static propTypes = {
     active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     labelText: PropTypes.string,
+    labelBold: PropTypes.bool,
     open: PropTypes.bool,
     multiple: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -101,6 +102,7 @@ class Select extends React.Component {
       placeholder,
       disabled,
       labelText,
+      labelBold = false,
       multiple
     } = this.props;
 
@@ -116,7 +118,11 @@ class Select extends React.Component {
     return (
       <OuterClick onClick={() => this.setState({ open: false })}>
         <section ref={ref => (this.selectNode = ref)} className={classNames}>
-          {labelText && <div className={styles.label}>{labelText}</div>}
+          {labelText && (
+            <div className={styles.label}>
+              {labelBold ? <b>{labelText}</b> : { labelText }}
+            </div>
+          )}
           <div
             onClick={() => this.setState({ open: !this.state.open })}
             className={styles.control}

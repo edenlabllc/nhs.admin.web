@@ -13,15 +13,17 @@ export default class SelectFilterField extends Component {
   }
 
   render() {
-    const { name, title, options } = this.props;
+    const { name, labelText, placeholder, options } = this.props;
 
     return (
       <div className={styles.select}>
         <Field
           component={FieldSelect}
           name={name}
-          placeholder={title}
+          labelText={labelText}
+          placeholder={placeholder}
           options={options}
+          labelBold
         />
       </div>
     );

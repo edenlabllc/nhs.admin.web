@@ -15,21 +15,81 @@ import Pagination from "components/Pagination";
 
 import ShowBy from "containers/blocks/ShowBy";
 import DictionaryValue from "containers/blocks/DictionaryValue";
-// import SearchForm from "containers/forms/SearchForm";
-// import SearchFilterField from "containers/forms/SearchFilterField";
-// import DateFilterField from "containers/forms/DateFilterField";
+
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
+import DateFilterField from "containers/forms/DateFilterField";
 
 import { getRegisters } from "reducers";
-// import required from "helpers/validators/required-validate";
-import { PERSON_TYPE } from "helpers/enums";
+import required from "helpers/validators/required-validate";
+import uuidValidate from "helpers/validators/uuid-validate";
+import { PERSON_TYPE, REGISTER_STATUS } from "helpers/enums";
 import { fetchRegistersList } from "./redux";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    labelText: "Пошук файлів",
+    placeholder: "Знайти файл",
+    filters: [
+      {
+        name: "id",
+        title: "За ID",
+        validate: uuidValidate
+      },
+      { name: "file_name", title: "За назвою файлу" }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Тип файлу",
+    placeholder: "Оберіть тип файлу",
+    name: "type",
+    detailed: true,
+    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
+  },
+  {
+    component: DateFilterField,
+    detailed: true,
+    filters: [
+      {
+        name: "inserted_at_from",
+        labelText: "Занесено від дати",
+        placeholder: "1990-01-01"
+      }
+    ]
+  },
+  {
+    component: DateFilterField,
+    detailed: true,
+    filters: [
+      {
+        name: "inserted_at_to",
+        labelText: "Занесено по дату",
+        placeholder: "1990-01-01"
+      }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Cтатус",
+    placeholder: "Новий/В обробці/Оброблений",
+    name: "status",
+    detailed: true,
+    options: [
+      { title: "Новий", name: "NEW" },
+      { title: "В обробці", name: "PROCESSING" },
+      { title: "Оброблений", name: "PROCESSED" }
+    ]
+  }
+];
+
 const RegistersPage = ({ registers = [], paging = {}, location }) => (
   <div id="files-list-page">
     <Helmet title="Файли" meta={[{ property: "og:title", content: "Файли" }]} />
-    {console.log(registers)}
     <ListHeader
       button={
         <Button
@@ -48,7 +108,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
 
     <div>
       <H2>Пошук файлу</H2>
-      {/*<SearchForm fields={SEARCH_FIELDS} location={location} />*/}
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <div>
@@ -102,7 +162,11 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
                   <br />
                 </div>
               ),
-              status,
+              status: (
+                <ColoredText color={REGISTER_STATUS[status].color}>
+                  <b>{REGISTER_STATUS[status].title}</b>
+                </ColoredText>
+              ),
               errors,
               action: (
                 <Button

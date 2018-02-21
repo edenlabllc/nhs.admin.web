@@ -18,7 +18,8 @@ export const icons = [
   "close",
   "envelope",
   "lock",
-  "back"
+  "back",
+  "search"
 ];
 
 const Icon = ({ name }) =>

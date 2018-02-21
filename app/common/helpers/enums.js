@@ -17,3 +17,18 @@ export const REGISTER_ENTITY_STATUS = {
     color: "green"
   }
 };
+
+export const REGISTER_STATUS = {
+  NEW: {
+    title: "Новий",
+    color: "green"
+  },
+  PROCESSING: {
+    title: "В обробці",
+    color: "yellow"
+  },
+  PROCESSED: {
+    title: "Оброблений",
+    color: "gray"
+  }
+};
