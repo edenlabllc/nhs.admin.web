@@ -71,7 +71,7 @@ import PersonSearchPage from "containers/pages/PersonSearchPage";
 
 import RegistersPage from "containers/pages/RegistersPage";
 import RegisterUploadPage from "containers/pages/RegisterUploadPage";
-import RegistersDetailPage from "containers/pages/RegistersDetailPage";
+import RegistersEntriesPage from "containers/pages/RegistersEntriesPage";
 
 import NotFoundPage from "containers/pages/NotFoundPage";
 import AccessDeniedPage from "containers/pages/AccessDeniedPage";
@@ -239,8 +239,8 @@ export const configureRoutes = ({ store }) => {
           <Route path="registers" onEnter={requireScope(["register:read"])}>
             <IndexRoute component={RegistersPage} />
             <Route path="upload" component={RegisterUploadPage} />
-            <Route path=":id" component={RegistersDetailPage} />
           </Route>
+          <Route path="registers-entries" component={RegistersEntriesPage} />
           <Route path="reports" component={ReportsListPage} />
           <Route
             path="reset-authentication-method"

@@ -87,7 +87,7 @@ import PartyUsersListPage from "containers/pages/PartyUsersListPage/redux";
 
 import PersonSearchPage from "containers/pages/PersonSearchPage/redux";
 import RegistersPage from "containers/pages/RegistersPage/redux";
-import RegistersDetailPage from "containers/pages/RegistersDetailPage/redux";
+import RegistersEntriesPage from "containers/pages/RegistersEntriesPage/redux";
 
 const blocks = combineReducers({
   Aside
@@ -138,7 +138,7 @@ const pages = combineReducers({
 
   PersonSearchPage,
   RegistersPage,
-  RegistersDetailPage
+  RegistersEntriesPage
 });
 
 const data = combineReducers({
@@ -305,7 +305,5 @@ export const getPersons = (state, ids) =>
 export const getRegisters = (state, ids) =>
   denormalize(ids, [schemas.register], state.data);
 
-export const getRegisterEntry = (state, ids, register_id) =>
-  denormalize(ids, [schemas.register_entry], state.data).filter(
-    item => item.register_id === register_id
-  );
+export const getRegisterEntry = (state, ids) =>
+  denormalize(ids, [schemas.register_entry], state.data);

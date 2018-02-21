@@ -21,12 +21,12 @@ import DictionaryValue from "containers/blocks/DictionaryValue";
 
 import { getRegisterEntry } from "reducers";
 // import required from "helpers/validators/required-validate";
-import { PERSON_TYPE } from "helpers/enums";
+import { PERSON_TYPE, REGISTER_ENTITY_STATUS } from "helpers/enums";
 import { fetchRegisterEntriesList } from "./redux";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
-const RegistersDetailPage = ({
+const RegistersEntriesPage = ({
   register_entries = [],
   paging = {},
   location
@@ -53,6 +53,8 @@ const RegistersDetailPage = ({
           columns={[
             { key: "id", title: "ID" },
             { key: "register_id", title: "ID Запису" },
+            { key: "file_name", title: "Назва файлу" },
+            { key: "type", title: "Тип файлу" },
             { key: "document_type", title: "Документ номер" },
             { key: "inserted_at", title: "Дата додавання" },
             { key: "status", title: "Статус запису" }
@@ -64,10 +66,19 @@ const RegistersDetailPage = ({
               document_type,
               document_number,
               inserted_at,
+              file_name,
+              type,
               status
             }) => ({
               id,
               register_id,
+              file_name,
+              type: (
+                <DictionaryValue
+                  dictionary="REGISTER_TYPE"
+                  value={type.toUpperCase()}
+                />
+              ),
               document_type: (
                 <div>
                   <DictionaryValue
@@ -80,10 +91,9 @@ const RegistersDetailPage = ({
               ),
               inserted_at: format(inserted_at, DATE_FORMAT),
               status: (
-                <DictionaryValue
-                  dictionary="STATUS"
-                  value={status.toUpperCase()}
-                />
+                <ColoredText color={REGISTER_ENTITY_STATUS[status].color}>
+                  <b>{REGISTER_ENTITY_STATUS[status].title}</b>
+                </ColoredText>
               )
             })
           )}
@@ -103,21 +113,19 @@ const RegistersDetailPage = ({
 
 export default compose(
   provideHooks({
-    fetch: ({ dispatch, params: { id }, location: { query } }) =>
+    fetch: ({ dispatch, location: { query } }) =>
       dispatch(
         fetchRegisterEntriesList({
           page_size: 10,
-          register_id: id,
           ...query
         })
       )
   }),
   connect((state, location) => ({
-    ...state.pages.RegistersDetailPage,
+    ...state.pages.RegistersEntriesPage,
     register_entries: getRegisterEntry(
       state,
-      state.pages.RegistersDetailPage.registerEntries,
-      location.params.id
+      state.pages.RegistersEntriesPage.registerEntries
     )
   }))
-)(RegistersDetailPage);
+)(RegistersEntriesPage);

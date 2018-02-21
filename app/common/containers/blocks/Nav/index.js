@@ -122,6 +122,13 @@ export default class Nav extends React.Component {
               </Link>
             </NavItem>
           </ShowWithScope>
+          <ShowWithScope scope="register_entry:read">
+            <NavItem to="registers-entries" activeClassName={styles.active}>
+              <Link id="registers-entries-nav" to="/registers-entries">
+                Записи реєстру
+              </Link>
+            </NavItem>
+          </ShowWithScope>
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">
               {t("Dictionaries")}
@@ -235,7 +242,6 @@ export default class Nav extends React.Component {
               </ul>
             </ShowMore>
           </li>
-
           <li>
             <ShowMore nav name="Користувачі">
               <ul>
