@@ -219,6 +219,7 @@ export class SelectUniversal extends React.Component {
       emptyText = "Not found",
       allowAddItem,
       onAddNewItem,
+      label_bold,
       children
     } = this.props;
 
@@ -236,7 +237,11 @@ export class SelectUniversal extends React.Component {
     const value = this.value;
     return (
       <section ref={ref => (this.selectNode = ref)} className={classNames}>
-        <div className={styles.label}>{labelText}</div>
+        <div
+          className={classnames(styles.label, label_bold && styles.label__bold)}
+        >
+          {labelText}
+        </div>
         <OuterClick
           onClick={() => (this.state.open || active) && this.onOuterClick()}
         >

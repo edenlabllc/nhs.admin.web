@@ -92,7 +92,10 @@ const DeclarationDetailPage = ({
                 ) : (
                   <div>
                     {declaration.status}
-                    <TerminateForm onTerminate={onTerminate} />
+
+                    <ShowWithScope scope="declaration:terminate">
+                      <TerminateForm onTerminate={onTerminate} />
+                    </ShowWithScope>
                   </div>
                 )}
               </div>

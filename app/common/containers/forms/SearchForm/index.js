@@ -12,26 +12,40 @@ import styles from "./styles.scss";
 @withRouter
 export default class SearchForm extends Component {
   state = {
-    initialValues: {}
+    initialValues: {},
+    showDetailedItems: false
   };
 
   render() {
     const { fields, location: { query }, handleSubmit } = this.props;
-    const { initialValues } = this.state;
+    const { initialValues, showDetailedItems } = this.state;
 
     return (
       <SearchFormContainer
         initialValues={initialValues}
         onSubmit={this.updateFilters}
       >
-        {fields.map(({ component: Field, ...props }, index) => (
-          <Field
-            key={index}
-            {...props}
-            query={query}
-            initFields={this.initFields}
-          />
-        ))}
+        {fields
+          .filter(item => !item.detailed || showDetailedItems)
+          .map(({ component: Field, detailed = false, ...props }, index) => (
+            <Field
+              key={index}
+              {...props}
+              query={query}
+              initFields={this.initFields}
+            />
+          ))}
+        <div className={styles.search}>
+          <Button
+            icon="search"
+            theme="link"
+            onClick={() =>
+              this.setState(() => ({ showDetailedItems: !showDetailedItems }))
+            }
+          >
+            Розширений пошук
+          </Button>
+        </div>
       </SearchFormContainer>
     );
   }

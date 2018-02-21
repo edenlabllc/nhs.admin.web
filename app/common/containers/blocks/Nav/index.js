@@ -115,6 +115,20 @@ export default class Nav extends React.Component {
               {t("Reports")}
             </Link>
           </NavItem>
+          <ShowWithScope scope="register:read">
+            <NavItem to="registers" activeClassName={styles.active}>
+              <Link id="registers-nav" to="/registers">
+                Реєстри
+              </Link>
+            </NavItem>
+          </ShowWithScope>
+          <ShowWithScope scope="register_entry:read">
+            <NavItem to="registers-entries" activeClassName={styles.active}>
+              <Link id="registers-entries-nav" to="/registers-entries">
+                Записи реєстру
+              </Link>
+            </NavItem>
+          </ShowWithScope>
           <NavItem to="dictionaries" activeClassName={styles.active}>
             <Link id="dictionaries-nav" to="/dictionaries">
               {t("Dictionaries")}
