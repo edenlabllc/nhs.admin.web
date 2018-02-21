@@ -138,7 +138,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               person_type,
               type,
               errors,
-              qty: { errors: warnings, not_found, processing, total }
+              qty: { total }
             }) => ({
               id,
               inserted_at: format(inserted_at, DATE_FORMAT),
@@ -152,14 +152,15 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               person_type: PERSON_TYPE[person_type] || person_type,
               qty: (
                 <div>
-                  {`Не знайдено:${not_found}`}
-                  <br />
-                  {`В процесі:${processing}`}
-                  <br />
-                  {`Помилок:${warnings}`}
-                  <br />
                   {`Усьго записів:${total}`}
                   <br />
+                  <Button
+                    id={`registers-errors-button-${id}`}
+                    theme="link"
+                    to={`/registers/${id}`}
+                  >
+                    Показати
+                  </Button>
                 </div>
               ),
               status: (
