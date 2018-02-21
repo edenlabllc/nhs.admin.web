@@ -10,21 +10,117 @@ import { ListTable, ListShowBy } from "components/List";
 import Table from "components/Table";
 import ColoredText from "components/ColoredText";
 import { ListHeader } from "components/List";
-import Button from "components/Button";
 import Pagination from "components/Pagination";
 
 import ShowBy from "containers/blocks/ShowBy";
 import DictionaryValue from "containers/blocks/DictionaryValue";
-// import SearchForm from "containers/forms/SearchForm";
-// import SearchFilterField from "containers/forms/SearchFilterField";
-// import DateFilterField from "containers/forms/DateFilterField";
+
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
+import DateFilterField from "containers/forms/DateFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
 
 import { getRegisterEntry } from "reducers";
-// import required from "helpers/validators/required-validate";
+
+import required from "helpers/validators/required-validate";
+import uuidValidate from "helpers/validators/uuid-validate";
+
 import { PERSON_TYPE, REGISTER_ENTITY_STATUS } from "helpers/enums";
 import { fetchRegisterEntriesList } from "./redux";
 
 const DATE_FORMAT = "DD/MM/YYYY";
+
+const SEARCH_FIELDS = [
+  {
+    component: SearchFilterField,
+    labelText: "Пошук файлів",
+    placeholder: "Знайти файл",
+    filters: [
+      {
+        name: "id",
+        title: "За ID",
+        validate: uuidValidate
+      },
+      { name: "register_id", title: "За ID реєстру" }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Cтатус",
+    placeholder: "Знайдено/В обробці/Не знайдено",
+    name: "status",
+    detailed: true,
+    options: [
+      { title: "Не знайдено", name: "NOT_MATCHED" },
+      { title: "В обробці", name: "PROCESSING" },
+      { title: "Знайдено", name: "MATCHED" }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Тип файлу",
+    placeholder: "Оберіть тип файлу",
+    name: "type",
+    detailed: true,
+    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
+  },
+  {
+    component: SearchFilterField,
+    labelText: "Номер файлу",
+    placeholder: "Введіть назву файлу",
+    hasSelect: false,
+    detailed: true,
+    requiredStar: true,
+    filters: [
+      {
+        name: "file_name"
+      }
+    ]
+  },
+  {
+    component: DateFilterField,
+    detailed: true,
+    filters: [
+      {
+        name: "inserted_at_from",
+        labelText: "Занесено від дати",
+        placeholder: "1990-01-01"
+      }
+    ]
+  },
+  {
+    component: DateFilterField,
+    detailed: true,
+    filters: [
+      {
+        name: "inserted_at_to",
+        labelText: "Занесено по дату",
+        placeholder: "1990-01-01"
+      }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Тип файлу",
+    placeholder: "Оберіть тип файлу",
+    name: "document_type",
+    detailed: true,
+    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
+  },
+  {
+    component: SearchFilterField,
+    labelText: "Номер документу",
+    placeholder: "Введіть номер документу",
+    hasSelect: false,
+    detailed: true,
+    requiredStar: true,
+    filters: [
+      {
+        name: "document_number"
+      }
+    ]
+  }
+];
 
 const RegistersEntriesPage = ({
   register_entries = [],
@@ -40,7 +136,7 @@ const RegistersEntriesPage = ({
     <H1>Записи файлів</H1>
     <div>
       <H2>Пошук файлу</H2>
-      {/*<SearchForm fields={SEARCH_FIELDS} location={location} />*/}
+      <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
     <div>
