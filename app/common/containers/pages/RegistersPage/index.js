@@ -181,7 +181,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               ),
               action: (
                 <Button
-                  id={`show-declaration-detail-button-${id}`}
+                  id={`show-registers-entries-button-${id}`}
                   theme="link"
                   to={`/registers-entries?register_id=${id}`}
                 >

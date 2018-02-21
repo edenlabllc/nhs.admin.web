@@ -3,6 +3,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { provideHooks } from "redial";
+import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
 import { H1, H2 } from "components/Title";
@@ -15,6 +16,8 @@ import Line from "components/Line";
 import { getRegisters } from "reducers";
 import { PERSON_TYPE, REGISTER_STATUS } from "helpers/enums";
 import { fetchRegisters } from "redux/registers";
+
+import styles from "./styles.scss";
 
 const RegistersErrorsPage = ({
   register = {},
@@ -31,15 +34,20 @@ const RegistersErrorsPage = ({
       Повернутися до переліку файлів
     </BackLink>
     <Line />
-    <div>
+    <ol>
       {register.errors &&
-        register.errors.map((item, key) => <div key={key}>{item}</div>)}
-    </div>
+        register.errors.map((item, key) => (
+          <li className={styles.li} key={key}>
+            {item}
+          </li>
+        ))}
+    </ol>
   </div>
 );
 
 export default compose(
   withRouter,
+  withStyles(styles),
   provideHooks({
     fetch: ({ dispatch, params: { id } }) =>
       dispatch(

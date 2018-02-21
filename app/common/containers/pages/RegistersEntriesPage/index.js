@@ -51,7 +51,7 @@ const SEARCH_FIELDS = [
     name: "status",
     detailed: true,
     options: [
-      { title: "Не знайдено", name: "NOT_MATCHED" },
+      { title: "Не знайдено", name: "NOT_FOUND" },
       { title: "В обробці", name: "PROCESSING" },
       { title: "Знайдено", name: "MATCHED" }
     ]
@@ -97,14 +97,6 @@ const SEARCH_FIELDS = [
         placeholder: "1990-01-01"
       }
     ]
-  },
-  {
-    component: SelectFilterField,
-    labelText: "Тип файлу",
-    placeholder: "Оберіть тип файлу",
-    name: "document_type",
-    detailed: true,
-    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
   },
   {
     component: SearchFilterField,
