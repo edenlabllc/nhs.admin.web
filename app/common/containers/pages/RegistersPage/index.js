@@ -32,7 +32,7 @@ const DATE_FORMAT = "DD/MM/YYYY";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    labelText: "Пошук файлів",
+    // labelText: "Пошук файлів",
     placeholder: "Знайти файл",
     filters: [
       {
@@ -57,7 +57,7 @@ const SEARCH_FIELDS = [
     filters: [
       {
         name: "inserted_at_from",
-        labelText: "Занесено від дати",
+        labelText: "Дата з",
         placeholder: "1990-01-01"
       }
     ]
@@ -68,7 +68,7 @@ const SEARCH_FIELDS = [
     filters: [
       {
         name: "inserted_at_to",
-        labelText: "Занесено по дату",
+        labelText: "Дата по",
         placeholder: "1990-01-01"
       }
     ]
@@ -138,7 +138,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               person_type,
               type,
               errors,
-              qty: { total }
+              qty: { errors: warnings, not_found, processing, total }
             }) => ({
               id,
               inserted_at: format(inserted_at, DATE_FORMAT),
@@ -152,8 +152,24 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               person_type: PERSON_TYPE[person_type] || person_type,
               qty: (
                 <div>
+                  {`Не знайдено:${not_found}`}
+                  <br />
+                  {`В процесі:${processing}`}
+                  <br />
+                  {`Помилок:${warnings}`}
+                  <br />
                   {`Усьго записів:${total}`}
                   <br />
+                </div>
+              ),
+              status: (
+                <ColoredText color={REGISTER_STATUS[status].color}>
+                  <b>{REGISTER_STATUS[status].title}</b>
+                </ColoredText>
+              ),
+              errors: (
+                <div>
+                  {errors.length}
                   <Button
                     id={`registers-errors-button-${id}`}
                     theme="link"
@@ -163,12 +179,6 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
                   </Button>
                 </div>
               ),
-              status: (
-                <ColoredText color={REGISTER_STATUS[status].color}>
-                  <b>{REGISTER_STATUS[status].title}</b>
-                </ColoredText>
-              ),
-              errors,
               action: (
                 <Button
                   id={`show-declaration-detail-button-${id}`}

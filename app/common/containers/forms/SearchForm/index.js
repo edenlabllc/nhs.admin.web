@@ -19,6 +19,7 @@ export default class SearchForm extends Component {
   render() {
     const { fields, location: { query }, handleSubmit } = this.props;
     const { initialValues, showDetailedItems } = this.state;
+    const showDetailedItemsButton = fields.filter(i => i.detailed).length > 1;
 
     return (
       <SearchFormContainer
@@ -35,17 +36,19 @@ export default class SearchForm extends Component {
               initFields={this.initFields}
             />
           ))}
-        <div className={styles.search}>
-          <Button
-            icon="search"
-            theme="link"
-            onClick={() =>
-              this.setState(() => ({ showDetailedItems: !showDetailedItems }))
-            }
-          >
-            Розширений пошук
-          </Button>
-        </div>
+        {showDetailedItemsButton && (
+          <div className={styles.search}>
+            <Button
+              icon="search"
+              theme="link"
+              onClick={() =>
+                this.setState(() => ({ showDetailedItems: !showDetailedItems }))
+              }
+            >
+              Розширений пошук
+            </Button>
+          </div>
+        )}
       </SearchFormContainer>
     );
   }

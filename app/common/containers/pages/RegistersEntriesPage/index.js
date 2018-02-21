@@ -33,7 +33,7 @@ const DATE_FORMAT = "DD/MM/YYYY";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    labelText: "Пошук файлів",
+    // labelText: "Пошук файлів",
     placeholder: "Знайти файл",
     filters: [
       {
@@ -70,7 +70,6 @@ const SEARCH_FIELDS = [
     placeholder: "Введіть назву файлу",
     hasSelect: false,
     detailed: true,
-    requiredStar: true,
     filters: [
       {
         name: "file_name"
@@ -83,7 +82,7 @@ const SEARCH_FIELDS = [
     filters: [
       {
         name: "inserted_at_from",
-        labelText: "Занесено від дати",
+        labelText: "Дата з",
         placeholder: "1990-01-01"
       }
     ]
@@ -94,7 +93,7 @@ const SEARCH_FIELDS = [
     filters: [
       {
         name: "inserted_at_to",
-        labelText: "Занесено по дату",
+        labelText: "Дата по",
         placeholder: "1990-01-01"
       }
     ]
@@ -113,7 +112,6 @@ const SEARCH_FIELDS = [
     placeholder: "Введіть номер документу",
     hasSelect: false,
     detailed: true,
-    requiredStar: true,
     filters: [
       {
         name: "document_number"
