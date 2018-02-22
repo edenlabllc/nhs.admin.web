@@ -82,7 +82,7 @@ export default class DeclarationDetailPage extends React.Component {
         <DeclarationScans declaration={declaration} />
 
         <Confirm
-          title="Деактивувати користувача?"
+          title="Деактивувати декларацію?"
           active={this.state.showTerminateConfirm}
           theme="error"
           cancel="Відмінити"
