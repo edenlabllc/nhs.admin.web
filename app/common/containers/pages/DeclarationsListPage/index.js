@@ -49,7 +49,8 @@ const SEARCH_FIELDS = [
   },
   {
     component: SelectFilterField,
-    title: "Активні/Розірвані/Закриті",
+    labelText: "Статус",
+    placeholder: "Активні/Розірвані/Закриті",
     name: "status",
     options: [
       { title: "Активні", name: "active" },
@@ -100,7 +101,7 @@ const DeclarationsListPage = ({
             end_date,
             status
           }) => ({
-            person: (
+            person: person && (
               <div>
                 {`${person.last_name} ${person.first_name} `}
                 <br />
