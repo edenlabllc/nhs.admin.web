@@ -57,26 +57,6 @@ const SEARCH_FIELDS = [
     ]
   },
   {
-    component: SelectFilterField,
-    labelText: "Тип файлу",
-    placeholder: "Оберіть тип файлу",
-    name: "type",
-    detailed: true,
-    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
-  },
-  {
-    component: SearchFilterField,
-    labelText: "Номер файлу",
-    placeholder: "Введіть назву файлу",
-    hasSelect: false,
-    detailed: true,
-    filters: [
-      {
-        name: "file_name"
-      }
-    ]
-  },
-  {
     component: DateFilterField,
     detailed: true,
     filters: [
@@ -108,6 +88,33 @@ const SEARCH_FIELDS = [
       {
         name: "document_number"
       }
+    ]
+  },
+  {
+    component: SelectFilterField,
+    labelText: "Тип документу",
+    placeholder: "Оберіть тип документу",
+    name: "document_type",
+    detailed: true,
+    options: [
+      {
+        name: "TEMPORARY_RESIDENCE_PERMIT",
+        title: "Посвідка про тимчасове проживання"
+      },
+      { name: "TEMPORARY_CERTIFICATE", title: "Посвідка на проживання" },
+      { name: "SSN", title: "Довідка про присвоєння ідентифікаційного коду" },
+      { name: "REFUGEE_CERTIFICATE", title: "Посвідка біженця" },
+      {
+        name: "PERMANENT_RESIDENCE_PERMIT",
+        title: "Посвідка про постійне проживання"
+      },
+      { name: "PASSPORT", title: "Паспорт" },
+      { name: "NATIONAL_ID", title: "Біометричний паспорт" },
+      {
+        name: "COMPLEMENTARY_PROTECTION_CERTIFICATE",
+        title: "Посвідчення особи, яка потребує додаткового захисту"
+      },
+      { name: "BIRTH_CERTIFICATE", title: "Свідоцтво про народження" }
     ]
   }
 ];
