@@ -91,6 +91,6 @@ const SearchFormContainer = compose(
   withStyles(styles),
   reduxForm({
     form: "search-form",
-    enableReinitialize: true
+    enableReinitialize: false
   })
 )(SearchFormComponent);
