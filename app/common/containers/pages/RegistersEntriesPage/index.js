@@ -114,7 +114,8 @@ const SEARCH_FIELDS = [
         name: "COMPLEMENTARY_PROTECTION_CERTIFICATE",
         title: "Посвідчення особи, яка потребує додаткового захисту"
       },
-      { name: "BIRTH_CERTIFICATE", title: "Свідоцтво про народження" }
+      { name: "BIRTH_CERTIFICATE", title: "Свідоцтво про народження" },
+      { name: "TAX_ID", title: "ІПН" }
     ]
   }
 ];
@@ -144,7 +145,7 @@ const RegistersEntriesPage = ({
       <ListTable id="files-table">
         <Table
           columns={[
-            { key: "id", title: "ID" },
+            { key: "id", title: "ID файлу" },
             { key: "register_id", title: "ID Запису" },
             { key: "file_name", title: "Назва файлу" },
             { key: "type", title: "Тип файлу" },

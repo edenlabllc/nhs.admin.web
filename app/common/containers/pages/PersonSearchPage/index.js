@@ -153,7 +153,7 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
                   theme="link"
                   to={`/declarations/?person_id=${id}`}
                 >
-                  Деталі
+                  Декларації
                 </Button>
               )
             })
