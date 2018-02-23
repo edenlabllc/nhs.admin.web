@@ -128,7 +128,7 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
             { key: "tax_id", title: "ІНН" },
             { key: "mobile_phone", title: "Телефон" },
             { key: "birth_settlements", title: "Місце народження" },
-            { key: "action", title: "Декларації" }
+            { key: "action", title: "Дії" }
           ]}
           data={persons.map(
             ({
@@ -153,7 +153,7 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
                   theme="link"
                   to={`/declarations/?person_id=${id}`}
                 >
-                  Деталі
+                  Декларації
                 </Button>
               )
             })
