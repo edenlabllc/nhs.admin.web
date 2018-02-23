@@ -128,7 +128,7 @@ const PersonSearchPage = ({ persons = [], paging = {}, location }) => (
             { key: "tax_id", title: "ІНН" },
             { key: "mobile_phone", title: "Телефон" },
             { key: "birth_settlements", title: "Місце народження" },
-            { key: "action", title: "Дії" }
+            { key: "action", title: "Декларації" }
           ]}
           data={persons.map(
             ({
