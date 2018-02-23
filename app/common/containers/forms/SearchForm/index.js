@@ -15,6 +15,13 @@ export default class SearchForm extends Component {
     initialValues: {},
     showDetailedItems: false
   };
+  componentWillReceiveProps(nextProps) {
+    if (!Object.keys(nextProps.location.query).length) {
+      this.setState(() => ({
+        initialValues: {}
+      }));
+    }
+  }
 
   render() {
     const { fields, location: { query }, handleSubmit } = this.props;
@@ -79,7 +86,13 @@ export default class SearchForm extends Component {
 }
 
 const SearchFormComponent = ({ handleSubmit, children }) => (
-  <form className={styles.form} onSubmit={handleSubmit}>
+  <form
+    className={styles.form}
+    onSubmit={v => {
+      console.log(v);
+      return handleSubmit(v).then(e => console.log(e));
+    }}
+  >
     <div className={styles.form__fields}>{children}</div>
     <Button theme="fill" type="submit">
       Застосувати пошук
@@ -91,6 +104,6 @@ const SearchFormContainer = compose(
   withStyles(styles),
   reduxForm({
     form: "search-form",
-    enableReinitialize: false
+    enableReinitialize: true
   })
 )(SearchFormComponent);
