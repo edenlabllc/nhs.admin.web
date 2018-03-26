@@ -29,6 +29,9 @@ const terms = {
     declaration_request_expiration: {
       required: true
     },
+    declaration_limit: {
+      required: true
+    },
     employee_request_expiration: {
       required: true
     },
@@ -73,6 +76,14 @@ export default class ApiForm extends React.Component {
               component={FieldInput}
             />
           </div>
+          <div>
+            <Field
+              name="declaration_limit"
+              labelText="Максимальна кількість декларацій"
+              component={FieldInput}
+            />
+          </div>
+
           <div>
             <Field
               name="declaration_request_expiration"
