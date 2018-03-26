@@ -7,38 +7,11 @@ import { getDictionary } from "reducers";
 
 import styles from "./styles.scss";
 
-const DOCUMENTS = {
-  "person.PASSPORT": "Паспорт",
-  "person.SSN": "Індивідуальний податковий номер",
-  "person.BIRTH_CERTIFICATE": "Свідоцтво про народження",
-
-  "PRIMARY.RELATIONSHIP.PASSPORT": "Довірена особа: Паспорт",
-  "confidant_person.0.PRIMARY.PASSPORT": "Довірена особа: Паспорт",
-  "confidant_person.0.PRIMARY.SSN":
-    "Довірена особа: Індивідуальний податковий номер",
-
-  "confidant_person.1.SECONDARY.RELATIONSHIP.PASSPORT":
-    "Додаткова Довірена особа: Паспорт",
-  "confidant_person.1.SECONDARY.PASSPORT": "Додаткова Довірена особа: Паспорт",
-  "confidant_person.1.SECONDARY.SSN":
-    "Додаткова Довірена особа: Індивідуальний податковий номер"
-};
-
 const PERSON_TYPE = {
   "person.": "",
   "confidant_person.0.PRIMARY.RELATIONSHIP.": "Перша довірена особа: ",
   "confidant_person.1.SECONDARY.RELATIONSHIP.": "Друга довірена особа: "
 };
-
-// TEMPORARY_RESIDENCE_PERMIT(pin): "Посвідка про тимчасове проживання"
-// TEMPORARY_CERTIFICATE(pin): "Посвідка на проживання"
-// SSN(pin): "Довідка про присвоєння ідентифікаційного коду"
-// REFUGEE_CERTIFICATE(pin): "Посвідка біженця"
-// PERMANENT_RESIDENCE_PERMIT(pin): "Посвідка про постійне проживання"
-// PASSPORT(pin): "Паспорт"
-// NATIONAL_ID(pin): "Біометричний паспорт"
-// COMPLEMENTARY_PROTECTION_CERTIFICATE(pin): "Посвідчення особи, яка потребує додаткового захисту"
-// BIRTH_CERTIFICATE(pin): "Свідоцтво про народження"
 
 @withStyles(styles)
 @connect(state => ({
