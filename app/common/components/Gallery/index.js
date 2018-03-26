@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import Lightbox from "react-images";
 import withStyles from "withStyles";
 import classnames from "classnames";
+import { getDictionary } from "reducers";
 
 import styles from "./styles.scss";
 
@@ -9,10 +11,12 @@ const DOCUMENTS = {
   "person.PASSPORT": "Паспорт",
   "person.SSN": "Індивідуальний податковий номер",
   "person.BIRTH_CERTIFICATE": "Свідоцтво про народження",
-  "confidant_person.0.PRIMARY.RELATIONSHIP.PASSPORT": "Довірена особа: Паспорт",
+
+  "PRIMARY.RELATIONSHIP.PASSPORT": "Довірена особа: Паспорт",
   "confidant_person.0.PRIMARY.PASSPORT": "Довірена особа: Паспорт",
   "confidant_person.0.PRIMARY.SSN":
     "Довірена особа: Індивідуальний податковий номер",
+
   "confidant_person.1.SECONDARY.RELATIONSHIP.PASSPORT":
     "Додаткова Довірена особа: Паспорт",
   "confidant_person.1.SECONDARY.PASSPORT": "Додаткова Довірена особа: Паспорт",
@@ -20,7 +24,26 @@ const DOCUMENTS = {
     "Додаткова Довірена особа: Індивідуальний податковий номер"
 };
 
+const PERSON_TYPE = {
+  "person.": "",
+  "confidant_person.0.PRIMARY.RELATIONSHIP.": "Перша довірена особа: ",
+  "confidant_person.1.SECONDARY.RELATIONSHIP.": "Друга довірена особа: "
+};
+
+// TEMPORARY_RESIDENCE_PERMIT(pin): "Посвідка про тимчасове проживання"
+// TEMPORARY_CERTIFICATE(pin): "Посвідка на проживання"
+// SSN(pin): "Довідка про присвоєння ідентифікаційного коду"
+// REFUGEE_CERTIFICATE(pin): "Посвідка біженця"
+// PERMANENT_RESIDENCE_PERMIT(pin): "Посвідка про постійне проживання"
+// PASSPORT(pin): "Паспорт"
+// NATIONAL_ID(pin): "Біометричний паспорт"
+// COMPLEMENTARY_PROTECTION_CERTIFICATE(pin): "Посвідчення особи, яка потребує додаткового захисту"
+// BIRTH_CERTIFICATE(pin): "Свідоцтво про народження"
+
 @withStyles(styles)
+@connect(state => ({
+  document_type: getDictionary(state, "DOCUMENT_TYPE")
+}))
 export default class Gallery extends React.Component {
   state = {
     lightboxIsOpen: false,
@@ -51,8 +74,17 @@ export default class Gallery extends React.Component {
     });
 
   render() {
-    const { images = [] } = this.props;
+    const { images = [], document_type } = this.props;
 
+    const MERGED_TYPES = {};
+    Object.keys(PERSON_TYPE).map(person_type =>
+      Object.keys(document_type.values).map(
+        item =>
+          (MERGED_TYPES[`${person_type}${item}`] = `${
+            PERSON_TYPE[person_type]
+          }${document_type.values[item]}`)
+      )
+    );
     return (
       <div>
         <ul className={styles.images}>
@@ -74,7 +106,7 @@ export default class Gallery extends React.Component {
                 }
               />
               <span className={styles.image__text}>
-                {DOCUMENTS[images[i].type]}
+                {MERGED_TYPES[images[i].type]}
               </span>
             </li>
           ))}
@@ -82,7 +114,7 @@ export default class Gallery extends React.Component {
         <Lightbox
           images={images.map(image => ({
             src: image.url,
-            caption: DOCUMENTS[image.type] || ""
+            caption: MERGED_TYPES[image.type] || ""
           }))}
           currentImage={this.state.currentImage}
           onClickPrev={() =>

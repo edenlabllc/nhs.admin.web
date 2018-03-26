@@ -15,11 +15,13 @@ import { getDeclarationImage } from "redux/declarations";
 export default class DeclarationScans extends React.Component {
   render() {
     const { declaration = {}, t } = this.props;
+    console.log(declaration.images);
     return (
       <ShowWithScope scope="declaration_documents:read">
         {declaration.images ? (
           <div>
             <H2>{t("Scans")}</H2>
+
             <Gallery images={declaration.images} />
             <Line />
           </div>
