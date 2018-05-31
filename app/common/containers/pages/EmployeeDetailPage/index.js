@@ -70,7 +70,9 @@ export default class EmployeeDetailPage extends React.Component {
         <Line />
 
         <div className={styles.main}>
-          <DataList list={[{ name: t("User ID"), value: id }]} />
+          <DataList
+            list={[{ name: "Ідентифікатор співробітника", value: id }]}
+          />
 
           <Line />
 
@@ -134,7 +136,7 @@ export default class EmployeeDetailPage extends React.Component {
           <DataList
             theme="min"
             list={[
-              { name: t("Employee ID"), value: partyId },
+              { name: "Ідентифікатор особи", value: partyId },
               {
                 name: t("Status"),
                 value: (
@@ -150,7 +152,7 @@ export default class EmployeeDetailPage extends React.Component {
               },
               {
                 name: t("End work date"),
-                value: format(end_date, "DD/MM/YYYY")
+                value: end_date ? format(end_date, "DD/MM/YYYY") : "-"
               },
               {
                 name: t("Position"),
