@@ -1,0 +1,15 @@
+{
+  "name": "@ehealth/react-iit-digital-signature",
+  "version": "0.31.0",
+  "private": true,
+  "description": "EUSignCP digital signature library React component bingings",
+  "main": "src",
+  "dependencies": {
+    "@ehealth/postmessage-client": "file:../postmessage-client",
+    "load-js": "^3.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}

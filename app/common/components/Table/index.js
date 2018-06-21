@@ -106,7 +106,7 @@ const Table = props => {
 const columnsType = PropTypes.arrayOf(
   PropTypes.shape({
     key: PropTypes.any.isRequired,
-    title: PropTypes.string,
+    title: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     align: PropTypes.oneOf(["left", "center", "right"]),
     colspan: PropTypes.number

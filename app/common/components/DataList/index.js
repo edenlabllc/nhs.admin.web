@@ -7,7 +7,7 @@ import styles from "./styles.scss";
 const DataList = ({ list = [], theme = "default" }) => (
   <dl className={classnames(styles.list, styles[`list_theme_${theme}`])}>
     {list
-      .filter(Boolean)
+      .filter(item => item.value)
       .reduce(
         (arr, item, index) =>
           arr.concat([

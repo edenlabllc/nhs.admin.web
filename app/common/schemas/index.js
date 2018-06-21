@@ -9,6 +9,7 @@ export const dictionary = new schema.Entity(
 
 export const clinic = new schema.Entity("clinics");
 export const declaration = new schema.Entity("declarations");
+export const contract = new schema.Entity("contracts");
 export const employee = new schema.Entity("employees");
 export const employeesRequest = new schema.Entity("employeesRequests");
 
