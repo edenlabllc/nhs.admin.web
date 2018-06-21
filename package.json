@@ -99,7 +99,7 @@
     "postcss-math": "0.0.8",
     "postcss-nested": "1.0.0",
     "precss": "1.4.0",
-    "print-iframe": "0.0.2",
+    "print-iframe": "0.0.3",
     "prop-types": "^15.6.0",
     "proxy-middleware": "0.15.0",
     "qs": "^6.5.0",
