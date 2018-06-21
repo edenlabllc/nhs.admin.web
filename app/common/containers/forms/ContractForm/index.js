@@ -59,12 +59,12 @@ const DeclineFormView = ({
             color="red"
             onClick={toggleDecline}
           >
-            {"Відміна"}
+            Відміна
           </Button>
         </div>
         <div className={styles.button}>
           <Button type="submit" theme="border" size="middle" color="red">
-            {"Відхилити, наклавши ЕЦП"}
+            Відхилити, наклавши ЕЦП
           </Button>
         </div>
       </div>
@@ -269,7 +269,6 @@ class ContractForm extends React.Component {
                       color="orange"
                       onClick={() => {
                         signData(data).then(signed_content => {
-                          debugger;
                           if (signed_content) {
                             approveContract(id, {
                               signed_content,
