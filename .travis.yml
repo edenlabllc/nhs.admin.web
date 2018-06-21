@@ -3,12 +3,12 @@ services:
 - docker
 cache:
   directories:
-  - ~/.nvm
+  - "~/.nvm"
   - node_modules
 notifications:
   slack:
     rooms:
-      - secure: "by2FK5PekG0NpieVKR8+fp5kkRikaTLm27q20bltEI93tWlLweIYwhLCzqUPqI1KUhHSO6eV/QKWmBt4Eap2RFWDJBGwpBvN5/NXitRyR3HTppNurxNXDbOVyLES2kydsoxR/gJWPZWF5Mdz+wFC+hYrpi9gT9nSIsx6hQD6pR+tUsAYs+JXocVZSVedLz2lqaaGhy0gbxZc4oLaeaM3v+Oy7Fm633SO8kovbUaznoewWgoEWy2FLV3+FtdYT3MBLtbIa0+iUTp8YIj8vD2nPFU39LTlyW7geZu/uGUcL1zgnfFq9mTtXSf45RpxJT/EMCarZmtu6XixVMjmA23PC95VI+5XIsdKW7asWcGF+TEGmkzcusyz1Vhj0HS6g323Z0BNV3bP5kx0ewjkhShJ0MaxFu18VmIOAYXgF9W9eWQAktNWNVm7AEWwOiRuFssESDd8xiWOILFSrwj4ZTGacna0+EizvgWft9TaFhpv4G3KhElmv1q2C8Fa3nbl1g3YNNX5T9xMhyplPzZ5y5nPtCqxle6krwRUdOL2SAxdjeSYS7xWcyzpY7OIy4IWUG9ocUjATcLzhQRp+dm0ysdRiuloMSZ00mQm6GItvlJi7WFgUzdkz+nGw/BmL+grTLGNm/8ReRFEuATdXOvxwqzzNdtFZvfO1eFSxObXujQpq0w="
+    - secure: by2FK5PekG0NpieVKR8+fp5kkRikaTLm27q20bltEI93tWlLweIYwhLCzqUPqI1KUhHSO6eV/QKWmBt4Eap2RFWDJBGwpBvN5/NXitRyR3HTppNurxNXDbOVyLES2kydsoxR/gJWPZWF5Mdz+wFC+hYrpi9gT9nSIsx6hQD6pR+tUsAYs+JXocVZSVedLz2lqaaGhy0gbxZc4oLaeaM3v+Oy7Fm633SO8kovbUaznoewWgoEWy2FLV3+FtdYT3MBLtbIa0+iUTp8YIj8vD2nPFU39LTlyW7geZu/uGUcL1zgnfFq9mTtXSf45RpxJT/EMCarZmtu6XixVMjmA23PC95VI+5XIsdKW7asWcGF+TEGmkzcusyz1Vhj0HS6g323Z0BNV3bP5kx0ewjkhShJ0MaxFu18VmIOAYXgF9W9eWQAktNWNVm7AEWwOiRuFssESDd8xiWOILFSrwj4ZTGacna0+EizvgWft9TaFhpv4G3KhElmv1q2C8Fa3nbl1g3YNNX5T9xMhyplPzZ5y5nPtCqxle6krwRUdOL2SAxdjeSYS7xWcyzpY7OIy4IWUG9ocUjATcLzhQRp+dm0ysdRiuloMSZ00mQm6GItvlJi7WFgUzdkz+nGw/BmL+grTLGNm/8ReRFEuATdXOvxwqzzNdtFZvfO1eFSxObXujQpq0w=
     on_success: always
 env:
   global:
@@ -16,8 +16,8 @@ env:
   - RELEASE_BRANCH="master"
   - DOCKER_HUB_ACCOUNT="edenlabllc"
   - MAIN_BRANCHES="master develop"
-  - secure: "jRBh330W/sl1EBmyXdd+zXSp1YIEShclxNI3KmLLu4W4nV4tXDDmKOO4O0adnVYRvV52xJYHTvEaR9Y8rse1xfhBr3rBkmcgCqsUav2pOnlH3E5hyn7yx++3jdMXyS9wle1+1U/4Ii5IAxvbVcSJiRwqMt9vD8CI13PDANU1dGTQTtc3ZyFrlJfB7rlu5Z6CR+acZtp84hwWzT77iEEoWo1h+jOlS3jc4EPqTySdIZighCzN7YUUx1+ItBX0wwnfXC5MeVTj/Kp5yaYYIGPa9JWWAmzNReqYEs5NvdFWPzazl2Bcj2OHTWyDpxuP5KJjjzYpTP7jHGDg1Hb/D0cRDSQn2LIOwfAuU9TYN5WRgoTrrilKSJqxhJ3cVxgmraGJtxNt57BHr3+43iv+1HRgnj+LsmFw+NT/iTuD/gtwM6rXOcubtui7t9eI4exJoXmyKnNM1ZoZi96znSJpemHp9+EfnPa6inPtxnNvdr1MApN6tVbu7Z71LVSAE3dAyxeJHyHRV/+uLZAL/wgICS3dxLCWp10QO5JPSsWeOnitaswqBBEe54pXXYdcIzHXaIkIltCXonw466ewue/LP0e8CXrb64EYNA0E+D1MLotH86sUfZnzEEW/GgiPiSCDBAmlEdhbyZ0i+xK5SOJrmsruBhCfklNnVZfi5SGbF72jPE4="
-  - secure: "n/Oaf9GLroBFFG/y7Ja7gfw5ouQqQQ0v1nkv5a+fFOwifKhwY4aLoaYap7BS7ixzHPJjNkTOaXLxfds09KX9u6r452Yu8ljAoOl0EegNO7lQmsAsmN4UQgyGj2/cGZdtqCnYmAAtNZ1QK2PEWZivRX1ujZuMq+yYG00maTY+wITrP6frwgELecRSqy5ucGBrTKPVlPhnbuosKvKwarvKTpuIiJ97q3Yz2s6I41GTl+CSjS6WyAB3MLtDU3vAWSxNpRplJI9PY2iZ7kbF22U0nnsHbnUqGLUj4EyRovqsWxVoFbRoUOWB+KPcR7ssvfRpps8mvbyy6blEQg1pH7R0Pb/Rae1ccS4/z6lT+x8jYZ8+75OjkQe72RIy/1kq2uaEnrv8rV2YDgilutHIuSzVkxtRd14ytH2Ho22fa3kN3lpkv0FlESL9uJUwudRX9Su3y8FQaMrcD3yUeBzjnhiqwvuDJIxHWngjvTgslKr7OP3EVEgvn27bDcu8TuDZliXjb8qBERMA7S6i+XeJ+H+qNHInLiOG8RLgVWjlVkk1+fU4ey166aWBTzn8k65TrPvadNvsZ9Zl/06WinzWX9PnKKrx04TDX+iEounmbocgfpxi5FvaOJOLIapJMLL7JVDS2iToLA3XdQXzhs7yKU7v8UQ+QYbLXx6rUl69zOX5TtU="
+  - secure: jRBh330W/sl1EBmyXdd+zXSp1YIEShclxNI3KmLLu4W4nV4tXDDmKOO4O0adnVYRvV52xJYHTvEaR9Y8rse1xfhBr3rBkmcgCqsUav2pOnlH3E5hyn7yx++3jdMXyS9wle1+1U/4Ii5IAxvbVcSJiRwqMt9vD8CI13PDANU1dGTQTtc3ZyFrlJfB7rlu5Z6CR+acZtp84hwWzT77iEEoWo1h+jOlS3jc4EPqTySdIZighCzN7YUUx1+ItBX0wwnfXC5MeVTj/Kp5yaYYIGPa9JWWAmzNReqYEs5NvdFWPzazl2Bcj2OHTWyDpxuP5KJjjzYpTP7jHGDg1Hb/D0cRDSQn2LIOwfAuU9TYN5WRgoTrrilKSJqxhJ3cVxgmraGJtxNt57BHr3+43iv+1HRgnj+LsmFw+NT/iTuD/gtwM6rXOcubtui7t9eI4exJoXmyKnNM1ZoZi96znSJpemHp9+EfnPa6inPtxnNvdr1MApN6tVbu7Z71LVSAE3dAyxeJHyHRV/+uLZAL/wgICS3dxLCWp10QO5JPSsWeOnitaswqBBEe54pXXYdcIzHXaIkIltCXonw466ewue/LP0e8CXrb64EYNA0E+D1MLotH86sUfZnzEEW/GgiPiSCDBAmlEdhbyZ0i+xK5SOJrmsruBhCfklNnVZfi5SGbF72jPE4=
+  - secure: jxQ5i8jOzOfSUYqArVwMw9C4aM9OyT98FfS1AqyISJlrHH2LNcWNDf+sSbxZ69YxGkjLFpCQEzCOYDsBs/3CPf0WtpsyLappCF5MR78U2zxhtXN9Ge6ZmfiY0kCs0kb23+jTh+Jxqpk65fGxtCD+jokS3vgPA+vEpxhXjH3b2dvowFTJDO1WKqy/DC2LUpL4yDqy/lbPIoht7nmpzdriyMukRXcIWL5fq+zSUeZW6mHEzHeWMviE5ShUfXPJOiUNF5nnIyz5nQnRBlgcw0vaJygdj7SAy9tLW7Rbue9+2tSvZ92zC6k+B3En4iV4FXH0SmUAs3BTc92NnsolM/oWtIibwnZ7HlcXvTMcRnuPY2OjaBnXdUaV0U9sUENE+hrVgG3SWHCOYR1gMi8lb3CVwPUavic3ckg2gWubxX/7bhMy16kDB/TByciiYlABaazwQQAgWZzKK9RLEXY05ZZEKqBdP/Rb6k7+0zGLPmyQPNS3BPkBKJpARF/vmXrlFqX3cOpxrTvPCN6XBsXefG32I4VfxvaFea/T9YA9Y6ulJhSR2sl5eTO3cRGbpsCkmpH0720YLxyd5t4SW585rPJo+Rn/XgDvt+NiL1zj2LKCpOtQM+q/RTIRCOhm9cD0nm6c1FlZbjrwoEQl95drAzVYCdSKgA77is8Mzxbdzo6inpY=
 node_js:
 - 7.5.0
 before_install:
@@ -25,9 +25,9 @@ before_install:
 script:
 - npm run test || travis_terminate 1
 - npm run lint || travis_terminate 1
-- ./bin/ci/version-increment.sh || travis_terminate 1
-- ./bin/ci/build.sh || travis_terminate 1
-- ./bin/ci/start.sh || travis_terminate 1
+- "./bin/ci/version-increment.sh || travis_terminate 1"
+- "./bin/ci/build.sh || travis_terminate 1"
+- "./bin/ci/start.sh || travis_terminate 1"
 - sleep 5
 - docker ps
 - RUNNING_CONTAINERS=`docker ps | wc -l`; if [ "${RUNNING_CONTAINERS//[[:space:]]/}"
@@ -35,6 +35,7 @@ script:
   --details --since 5h; exit 1; fi;
 - npm run e2e || travis_terminate 1
 - sleep 5
-- ./bin/ci/push.sh
-- openssl aes-256-cbc -K $encrypted_fcc3a444b384_key -iv $encrypted_fcc3a444b384_iv -in eHealth-8110bd102a69.json.enc -out eHealth-8110bd102a69.json -d
+- "./bin/ci/push.sh"
+- openssl aes-256-cbc -K $encrypted_fcc3a444b384_key -iv $encrypted_fcc3a444b384_iv
+  -in eHealth-8110bd102a69.json.enc -out eHealth-8110bd102a69.json -d
 - sudo ./bin/ci/deploy.sh || travis_terminate 1
