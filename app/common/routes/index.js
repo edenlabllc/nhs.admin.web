@@ -44,6 +44,12 @@ import MedicationsListPage from "containers/pages/MedicationsListPage";
 import MedicationCreatePage from "containers/pages/MedicationCreatePage";
 import MedicationDetailPage from "containers/pages/MedicationDetailPage";
 
+import ContractsListPage from "containers/pages/ContractsListPage";
+import ContractsDetailsPage from "containers/pages/ContractsDetailsPage";
+import ContractRequestsListPage from "containers/pages/ContractRequestsListPage";
+import ContractRequestsDetailsPage from "containers/pages/ContractRequestsDetailsPage";
+import DivisionEmployeesPage from "containers/pages/DivisionEmployeesPage";
+
 import MedicalProgramsListPage from "containers/pages/MedicalProgramsListPage";
 import MedicalProgramCreatePage from "containers/pages/MedicalProgramCreatePage";
 import MedicalProgramDetailPage from "containers/pages/MedicalProgramDetailPage";
@@ -207,6 +213,21 @@ export const configureRoutes = ({ store }) => {
             <Route path="create" component={MedicalProgramCreatePage} />
             <Route path=":id" component={MedicalProgramDetailPage} />
           </Route>
+          <Route path="contracts" onEnter={requireScope(["contract:read"])}>
+            <IndexRoute component={ContractsListPage} />
+            <Route path=":id" component={ContractsDetailsPage} />
+          </Route>
+          <Route
+            path="contract-requests"
+            onEnter={requireScope(["contract_request:read"])}
+          >
+            <IndexRoute component={ContractRequestsListPage} />
+            <Route path=":id" component={ContractRequestsDetailsPage} />
+          </Route>
+          <Route
+            path="contract-requests/:id/division-employees/:divisionId"
+            component={DivisionEmployeesPage}
+          />
           <Route
             path="program-medications"
             onEnter={requireScope(["program_medication:read"])}

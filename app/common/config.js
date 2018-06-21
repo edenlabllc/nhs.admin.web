@@ -12,7 +12,7 @@ export const HOSTNAME =
     ? window.location.origin
     : config.HOSTNAME || "http://localhost:8080";
 export const API_HOST =
-  config.API_HOST || process.env.API_HOST || "https://dev.ehealth.world";
+  config.API_HOST || process.env.API_HOST || "http://api.dev.asclepius.com.ua";
 export const MOCK_API_HOST =
   "http://private-anon-8b83c175a2-ehealthapi1.apiary-mock.com";
 
@@ -36,7 +36,11 @@ export const SCOPES = config.SCOPES || process.env.SCOPES || "";
 export const OAUTH_URL =
   config.OAUTH_URL ||
   process.env.OAUTH_URL ||
-  "http://auth-dev.ehealth.world/sign-in";
+  "http://auth.dev.asclepius.com.ua/sign-in";
+export const SIGN_URL =
+  config.SIGN_URL ||
+  process.env.SIGN_URL ||
+  "http://auth.dev.asclepius.com.ua/sign";
 export const OAUTH_REDIRECT_PATH =
   config.OAUTH_REDIRECT_PATH ||
   process.env.OAUTH_REDIRECT_PATH ||

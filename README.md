@@ -24,14 +24,14 @@ Application supports these environment variables:
 | Environment Variable  | Default Value           | Description |
 | --------------------- | ----------------------- | ----------- |
 | `PORT`                | `8080`                  | Node.js server port. |
-| `API_HOST`            | `http://dev.ehealth.world` | Ehealth API host. |
+| `API_HOST`            | `http://api.dev.asclepius.com.ua` | Ehealth API host. |
 | `SITEMAP_HOSTNAME`    | `http://localhost:8080` | URL will be used in sitemap generated urls |
 | `LANG_COOKIE_NAME`    | `lang`                  | Name of the cookie, where storing language variable |
 | `AUTH_COOKIE_NAME`    | `token`                  | Name of the cookie, where storing token variable |
 | `CLIENT_ID`           | `e32e51ac-f720-4e42-adb3-67d504f3ad30`             | Front-End client id |
 | `CLIENT_SECRET`       | `ZzluaHd0V01lU1IwTnd4VkdBcUZHUT09`                 | Front-End client secret |
 | `SCOPES`              | `app:authorize legal_entity:read`                  | EHEALTH auth scopes |
-| `OAUTH_URL`           | `http://auth-dev.ehealth.world/sign-in`            | Front-End client id |
+| `OAUTH_URL`           | `http://auth.dev.asclepius.com.ua/sign-in`         | Front-End client id |
 | `OAUTH_REDIRECT_PATH` | `/auth/redirect`             | Redirect path for create token in EHEALTH |
 
 

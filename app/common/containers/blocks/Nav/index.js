@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import classnames from "classnames";
-import nl2br from "react-nl2br";
 import { Link } from "react-router";
 import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
@@ -171,6 +170,29 @@ export default class Nav extends React.Component {
                   <NavItem to="medications" activeClassName={styles.active}>
                     <Link id="medications-nav" to="/medications">
                       Торгівельне <br /> найменування
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+              </ul>
+            </ShowMore>
+          </li>
+          <li>
+            <ShowMore nav name="Контракти">
+              <ul>
+                <ShowWithScope scope="contract:read">
+                  <NavItem to="contracts" activeClassName={styles.active}>
+                    <Link id="contracts-nav" to="/contracts">
+                      {t("Contracts")}
+                    </Link>
+                  </NavItem>
+                </ShowWithScope>
+                <ShowWithScope scope="contract_request:read">
+                  <NavItem
+                    to="contract-requests"
+                    activeClassName={styles.active}
+                  >
+                    <Link id="contract-requests-nav" to="/contract-requests">
+                      {t("Pending contracts")}
                     </Link>
                   </NavItem>
                 </ShowWithScope>

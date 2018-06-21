@@ -22,12 +22,12 @@ export default class NotFoundPage extends React.Component {
         />
         <div className={styles.error__main}>
           <H1>{t("Page Not Found")}</H1>
-          <p>
+          <div>
             {t("Requested page not found. Maybe you are looking for")}
             <Button theme="link" to="/">
               {t("Go to dashboard")}
             </Button>.
-          </p>
+          </div>
         </div>
       </section>
     );

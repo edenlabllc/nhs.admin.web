@@ -580,6 +580,15 @@ msgstr "Прийняти декларацію"
 msgid "Reject declaration?"
 msgstr "Відхилити декларацію"
 
+msgid "Pending contracts"
+msgstr "Запити на контракт"
+
+msgid "Contracts"
+msgstr "Перелік контрактів"
+
+msgid "Search contracts"
+msgstr "Пошук контрактів"
+
 #, fuzzy
 #| msgid "Back to employees list"
 msgid "Back to pending employees list"

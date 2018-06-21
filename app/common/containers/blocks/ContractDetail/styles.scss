@@ -1,0 +1,11 @@
+.grey {
+  opacity: 0.5;
+}
+.forwardLink {
+  float: right;
+}
+
+.link {
+  composes: forwardLink;
+  color: #5691f0;
+}

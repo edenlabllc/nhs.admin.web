@@ -14,6 +14,7 @@ import error from "redux/error";
 import dictionaries from "redux/dictionaries";
 import clinics from "redux/clinics";
 import declarations from "redux/declarations";
+import contracts from "redux/contracts";
 import employees from "redux/employees";
 import employeesRequests from "redux/employees-requests";
 import black_list_users from "redux/black-list-users";
@@ -50,6 +51,11 @@ import DeclarationDetailPage from "containers/pages/DeclarationDetailPage/redux"
 
 import PendingDeclarationDetailPage from "containers/pages/PendingDeclarationDetailPage/redux";
 import PendingDeclarationsListPage from "containers/pages/PendingDeclarationsListPage/redux";
+
+import ContractsListPage from "containers/pages/ContractsListPage/redux";
+import ContractsDetailsPage from "containers/pages/ContractsDetailsPage/redux";
+import ContractRequestsListPage from "containers/pages/ContractRequestsListPage/redux";
+import ContractRequestsDetailsPage from "containers/pages/ContractRequestsDetailsPage/redux";
 
 import EmployeesListPage from "containers/pages/EmployeesListPage/redux";
 import EmployeeDetailPage from "containers/pages/EmployeeDetailPage/redux";
@@ -104,6 +110,12 @@ const pages = combineReducers({
   EmployeesListPage,
   EmployeeDetailPage,
 
+  ContractsListPage,
+  ContractsDetailsPage,
+
+  ContractRequestsListPage,
+  ContractRequestsDetailsPage,
+
   PendingEmployeesListPage,
   PendingEmployeeDetailPage,
 
@@ -148,6 +160,8 @@ const data = combineReducers({
 
   declarations,
   declarationsStat,
+
+  contracts,
 
   employees,
   employeesRequests,
@@ -231,6 +245,11 @@ export const getDeclarations = (state, ids) =>
   denormalize(ids, [schemas.declaration], state.data);
 export const getDeclaration = (state, id) =>
   denormalize(id, schemas.declaration, state.data);
+
+export const getContracts = (state, ids) =>
+  denormalize(ids, [schemas.contract], state.data);
+export const getContract = (state, id) =>
+  denormalize(id, schemas.contract, state.data);
 
 export const getEmployees = (state, ids) =>
   denormalize(ids, [schemas.employee], state.data);

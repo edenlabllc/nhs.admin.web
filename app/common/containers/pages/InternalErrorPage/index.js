@@ -18,13 +18,13 @@ export default class InternalErrorPage extends React.Component {
         />
         <div className={styles.error__main}>
           <H1>{"Internal Error"}</H1>
-          <p>
+          <div>
             {"Sorry for this."}
             <br />
             <Button theme="link" to="/">
               {"Go to dashboard"}
             </Button>
-          </p>
+          </div>
         </div>
       </section>
     );
