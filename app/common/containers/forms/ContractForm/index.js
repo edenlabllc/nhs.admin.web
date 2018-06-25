@@ -268,10 +268,10 @@ class ContractForm extends React.Component {
                       size="middle"
                       color="orange"
                       onClick={() => {
-                        signData(data).then(signed_content => {
-                          if (signed_content) {
+                        signData(data).then(({ signedContent }) => {
+                          if (signedContent) {
                             approveContract(id, {
-                              signed_content,
+                              signed_content: signedContent,
                               signed_content_encoding: "base64"
                             });
                           }
@@ -291,13 +291,13 @@ class ContractForm extends React.Component {
             {({ signData }) => (
               <DeclineForm
                 onSubmit={async values => {
-                  const signed_content = await signData({
+                  const { signedContent } = await signData({
                     ...data,
                     status_reason: values.status_reason
                   });
-                  if (signed_content) {
+                  if (signedContent) {
                     declineContract(id, {
-                      signed_content,
+                      signed_content: signedContent,
                       signed_content_encoding: "base64"
                     });
                   }
@@ -310,11 +310,7 @@ class ContractForm extends React.Component {
       </div>
     );
   }
-  toggleDecline() {
-    this.setState({
-      decline: !this.state.decline
-    });
-  }
+  toggleDecline = () => this.setState({ decline: !this.state.decline });
 }
 
 export default compose(

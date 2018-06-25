@@ -110,13 +110,12 @@ class ContractRequestsDetailsPage extends React.Component {
                             size="middle"
                             color="orange"
                             onClick={() => {
-                              signData(contract).then(signed_content => {
-                                if (signed_content) {
+                              signData(contract).then(({ signedContent }) => {
+                                if (signedContent) {
                                   signNhs(id, {
-                                    signed_content,
+                                    signed_content: signedContent,
                                     signed_content_encoding: "base64"
                                   });
-                                  debugger;
                                 }
                               });
                             }}
