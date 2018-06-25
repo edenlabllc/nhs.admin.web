@@ -1,0 +1,30 @@
+.working-hours {
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    margin-bottom: 5px;
+  }
+
+  &__days {
+    flex-basis: 70px;
+  }
+
+  &__hours {
+    flex-basis: calc(100% - 70px);
+  }
+
+  &__hour {
+    display: inline-block;
+    width: 50px;
+
+    &-from {
+      text-align: right;
+    }
+
+    &-till {
+      text-align: left;
+    }
+  }
+}

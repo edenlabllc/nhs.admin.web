@@ -9,6 +9,7 @@ import printIframe from "print-iframe";
 import Line from "components/Line";
 import DataList from "components/DataList";
 import InlineList from "components/InlineList";
+import WorkingHours from "components/WorkingHours";
 import { H1 } from "components/Title";
 
 import BackLink from "containers/blocks/BackLink";
@@ -45,6 +46,7 @@ class ContractDetail extends React.Component {
     if (contract.external_contractors) {
       fec = contract.external_contractors[0];
     }
+    const contractorDivisions = contract.contractor_divisions.filter(Boolean);
     return (
       <div>
         <Helmet
@@ -80,7 +82,7 @@ class ContractDetail extends React.Component {
           list={[
             {
               name: "Статус запиту",
-              value: CONTRACT_STATUS[contract.status].title
+              value: contract.status && CONTRACT_STATUS[contract.status].title
             },
             {
               name: "Номер контракту",
@@ -98,46 +100,54 @@ class ContractDetail extends React.Component {
               contract.status === "DECLINE"
           })}
         >
-          <H1>I. Медзаклад</H1>
+          {contract.contractor_legal_entity && (
+            <div>
+              <H1>I. Медзаклад</H1>
 
-          <DataList
-            list={[
-              {
-                name: "ID медзакладу",
-                value: contract.contractor_legal_entity.id
-              },
-              {
-                name: "Назва",
-                value: contract.contractor_legal_entity.name
-              },
-              {
-                name: "Адреса",
-                value: (
-                  <AddressesList
-                    list={contract.contractor_legal_entity.addresses}
-                  />
-                )
-              },
-              {
-                name: "ЄДРПОУ",
-                value: contract.contractor_legal_entity.edrpou
-              }
-            ]}
-          />
-          <Line />
-          <DataList
-            list={[
-              {
-                name: "ID підписанта",
-                value: contract.contractor_owner.id
-              },
-              {
-                name: "Повне і'мя",
-                value: fullName(contract.contractor_owner.party)
-              }
-            ]}
-          />
-          <Line />
+              <DataList
+                list={[
+                  {
+                    name: "ID медзакладу",
+                    value: contract.contractor_legal_entity.id
+                  },
+                  {
+                    name: "Назва",
+                    value: contract.contractor_legal_entity.name
+                  },
+                  {
+                    name: "Адреса",
+                    value: (
+                      <AddressesList
+                        list={contract.contractor_legal_entity.addresses}
+                      />
+                    )
+                  },
+                  {
+                    name: "ЄДРПОУ",
+                    value: contract.contractor_legal_entity.edrpou
+                  }
+                ]}
+              />
+              <Line />
+            </div>
+          )}
+          {contract.contractor_owner && (
+            <div>
+              <DataList
+                list={[
+                  {
+                    name: "ID підписанта",
+                    value: contract.contractor_owner.id
+                  },
+                  {
+                    name: "Повне і'мя",
+                    value: fullName(contract.contractor_owner.party)
+                  }
+                ]}
+              />
+              <Line />
+            </div>
+          )}
           <DataList
             list={[
               {
@@ -151,14 +161,13 @@ class ContractDetail extends React.Component {
             ]}
           />
           <Line />
-          {contract.contractor_divisions &&
-          contract.contractor_divisions.length ? (
+          {contractorDivisions && contractorDivisions.length ? (
             <div>
               <H1>II. Додаток 2</H1>
               <div className={styles.forwardLink}>
                 <BackLink
                   to={`/contract-requests/${contract.id}/division-employees/${
-                    contract.contractor_divisions[0].id
+                    contractorDivisions[0].id
                   }`}
                   iconPosition={"right"}
                 >
@@ -170,31 +179,27 @@ class ContractDetail extends React.Component {
                 list={[
                   {
                     name: "ID відділення",
-                    value: contract.contractor_divisions[0].id
+                    value: contractorDivisions[0].id
                   },
                   {
                     name: "Назва",
-                    value: contract.contractor_divisions[0].name
+                    value: contractorDivisions[0].name
                   },
                   {
                     name: "Адреса",
                     value: (
-                      <AddressesList
-                        list={contract.contractor_divisions[0].addresses}
-                      />
+                      <AddressesList list={contractorDivisions[0].addresses} />
                     )
                   },
                   {
                     name: "Гірський регіон",
-                    value: contract.contractor_divisions[0].mountain_group
-                      ? "Так"
-                      : "Ні"
+                    value: contractorDivisions[0].mountain_group ? "Так" : "Ні"
                   },
                   {
                     name: "Телефон",
                     value: (
                       <InlineList
-                        list={contract.contractor_divisions[0].phones.map(
+                        list={contractorDivisions[0].phones.map(
                           item => item.number
                         )}
                       />
@@ -202,76 +207,87 @@ class ContractDetail extends React.Component {
                   },
                   {
                     name: "Email",
-                    value: contract.contractor_divisions[0].email
+                    value: contractorDivisions[0].email
                   },
                   {
                     name: "Графік роботи",
-                    value: contract.contractor_divisions[0].working_hours
+                    value: contractorDivisions[0].working_hours && (
+                      <WorkingHours
+                        workingHours={contractorDivisions[0].working_hours}
+                      />
+                    )
                   }
                 ]}
               />
-              {contract.contractor_divisions.length > 1 && (
-                <ShowMore
-                  name={`Показати інші відділення (${contract
-                    .contractor_divisions.length - 1})`}
-                  show_block
-                >
-                  {contract.contractor_divisions.map((i, key) => {
-                    if (key === 0) return null;
-                    return (
-                      <div key={key}>
-                        {key !== 0 && <Line />}
-                        <div className={styles.forwardLink}>
-                          <BackLink
-                            to={`/contract-requests/${
-                              contract.id
-                            }/division-employees/${i.id}`}
-                            iconPosition={"right"}
-                          >
-                            Показати співробітників
-                          </BackLink>
+              {contractorDivisions.length > 1 && (
+                <div>
+                  <Line />
+                  <ShowMore
+                    name={`Показати інші відділення (${contract
+                      .contractor_divisions.length - 1})`}
+                    show_block
+                  >
+                    {contractorDivisions.map((i, key) => {
+                      if (key === 0) return null;
+                      return (
+                        <div key={key}>
+                          {key !== 0 && <Line />}
+                          <div className={styles.forwardLink}>
+                            <BackLink
+                              to={`/contract-requests/${
+                                contract.id
+                              }/division-employees/${i.id}`}
+                              iconPosition={"right"}
+                            >
+                              Показати співробітників
+                            </BackLink>
+                          </div>
+                          <H1>Відділення</H1>
+                          <DataList
+                            list={[
+                              {
+                                name: "ID відділення",
+                                value: i.id
+                              },
+                              {
+                                name: "Назва",
+                                value: i.name
+                              },
+                              {
+                                name: "Адреса",
+                                value: <AddressesList list={i.addresses} />
+                              },
+                              {
+                                name: "Гірський регіон",
+                                value: i.mountain_group ? "Так" : "Ні"
+                              },
+                              {
+                                name: "Телефон",
+                                value: (
+                                  <InlineList
+                                    list={i.phones.map(item => item.number)}
+                                  />
+                                )
+                              },
+                              {
+                                name: "Email",
+                                value: i.email
+                              },
+                              {
+                                name: "Графік роботи",
+                                value: i.working_hours && (
+                                  <WorkingHours
+                                    workingHours={i.working_hours}
+                                  />
+                                )
+                              }
+                            ]}
+                          />
                         </div>
-                        <H1>Відділення</H1>
-                        <DataList
-                          list={[
-                            {
-                              name: "ID відділення",
-                              value: i.id
-                            },
-                            {
-                              name: "Назва",
-                              value: i.name
-                            },
-                            {
-                              name: "Адреса",
-                              value: <AddressesList list={i.addresses} />
-                            },
-                            {
-                              name: "Гірський регіон",
-                              value: i.mountain_group ? "Так" : "Ні"
-                            },
-                            {
-                              name: "Телефон",
-                              value: (
-                                <InlineList
-                                  list={i.phones.map(item => item.number)}
-                                />
-                              )
-                            },
-                            {
-                              name: "Email",
-                              value: i.email
-                            },
-                            {
-                              name: "Графік роботи",
-                              value: i.working_hours
-                            }
-                          ]}
-                        />
-                      </div>
-                    );
-                  })}
-                </ShowMore>
+                      );
+                    })}
+                  </ShowMore>
+                </div>
               )}
             </div>
           ) : null}
@@ -297,57 +313,46 @@ class ContractDetail extends React.Component {
                       name: "Відділення",
                       value: (
                         <div>
-                          <div>{getDivisionName(fec.divisions[0].id)}</div>
-                          <div>ID {fec.divisions[0].id}</div>
-                          <div>
-                            Послуга, що надається:{" "}
-                            {fec.divisions[0].medical_service}
+                          <div className={styles.divisionList}>
+                            <div>{getDivisionName(fec.divisions[0].id)}</div>
+                            <div>ID {fec.divisions[0].id}</div>
+                            <div>
+                              Послуга, що надається:{" "}
+                              {fec.divisions[0].medical_service}
+                            </div>
                           </div>
+                          {fec.divisions.length > 1 && (
+                            <ShowMore
+                              name={`Показати інші відділення (${fec.divisions
+                                .length - 1})`}
+                              show_block
+                            >
+                              {fec.divisions.map((item, key) => {
+                                if (key === 0) return null;
+                                return (
+                                  <div
+                                    key={key}
+                                    className={styles.divisionList}
+                                  >
+                                    <div>{getDivisionName(item.id)}</div>
+                                    <div>ID {item.id}</div>
+                                    <div>
+                                      Послуга, що надається:{" "}
+                                      {item.medical_service}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </ShowMore>
+                          )}
                         </div>
                       )
                     }
                   ]}
                 />
-                {fec.divisions.length > 1 && (
-                  <ShowMore
-                    name={`Показати інші відділення (${fec.divisions.length -
-                      1})`}
-                    show_block
-                  >
-                    {fec.divisions.map((item, key) => {
-                      if (key === 0) return null;
-                      return (
-                        <div key={key}>
-                          <br />
-                          <DataList
-                            list={[
-                              {
-                                name: "Відділення",
-                                value: (
-                                  <InlineList
-                                    list={fec.divisions.map(item => (
-                                      <div>
-                                        <div>{getDivisionName(item.id)}</div>
-                                        <div>ID {item.id}</div>
-                                        <div>
-                                          Послуга, що надається:{" "}
-                                          {item.medical_service}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  />
-                                )
-                              }
-                            ]}
-                          />
-                        </div>
-                      );
-                    })}
-                  </ShowMore>
-                )}
                 {contract.external_contractors.length > 1 && (
                   <div>
-                    <br />
+                    <Line />
                     <ShowMore
                       name={`Показати всіх підрядників (${contract
                         .external_contractors.length - 1})`}
@@ -356,7 +361,7 @@ class ContractDetail extends React.Component {
                       {contract.external_contractors.map((i, key) => {
                         if (key === 0) return null;
                         return (
-                          <div>
+                          <div key={key}>
                             <DataList
                               list={[
                                 {
@@ -374,62 +379,52 @@ class ContractDetail extends React.Component {
                                   name: "Відділення",
                                   value: (
                                     <div>
-                                      <div>
-                                        {getDivisionName(i.divisions[0].id)}
+                                      <div className={styles.divisionList}>
+                                        <div>
+                                          {getDivisionName(i.divisions[0].id)}
+                                        </div>
+                                        <div>ID {i.divisions[0].id}</div>
+                                        <div>
+                                          Послуга, що надається:{" "}
+                                          {i.divisions[0].medical_service}
+                                        </div>
                                       </div>
-                                      <div>ID {i.divisions[0].id}</div>
-                                      <div>
-                                        Послуга, що надається:{" "}
-                                        {i.divisions[0].medical_service}
-                                      </div>
+                                      {i.divisions.length > 1 && (
+                                        <ShowMore
+                                          name={`Показати інші відділення (${i
+                                            .divisions.length - 1})`}
+                                          show_block
+                                        >
+                                          {i.divisions.map((item, key) => {
+                                            if (key === 0) return null;
+                                            return (
+                                              <div
+                                                key={key}
+                                                className={styles.divisionList}
+                                              >
+                                                <div>
+                                                  {getDivisionName(item.id)}
+                                                </div>
+                                                <div>ID {item.id}</div>
+                                                <div>
+                                                  Послуга, що надається:{" "}
+                                                  {item.medical_service}
+                                                </div>
+                                              </div>
+                                            );
+                                          })}
+                                        </ShowMore>
+                                      )}
                                     </div>
                                   )
                                 }
                               ]}
                             />
-                            {i.divisions.length > 1 && (
-                              <ShowMore
-                                name={`Показати інші відділення (${i.divisions
-                                  .length - 1})`}
-                                show_block
-                              >
-                                {i.divisions.map((item, key) => {
-                                  if (key === 0) return null;
-                                  return (
-                                    <div key={key}>
-                                      {key !== 0 && <Line />}
-                                      <DataList
-                                        list={[
-                                          {
-                                            name: "Відділення",
-                                            value: (
-                                              <InlineList
-                                                list={i.divisions.map(item => (
-                                                  <div>
-                                                    <div>
-                                                      {getDivisionName(item.id)}
-                                                    </div>
-                                                    <div>ID {item.id}</div>
-                                                    <div>
-                                                      Послуга, що надається:{" "}
-                                                      {item.medical_service}
-                                                    </div>
-                                                  </div>
-                                                ))}
-                                              />
-                                            )
-                                          }
-                                        ]}
-                                      />
-                                    </div>
-                                  );
-                                })}
-                              </ShowMore>
-                            )}
                           </div>
                         );
                       })}
                     </ShowMore>
+                    <Line />
                   </div>
                 )}
               </div>
