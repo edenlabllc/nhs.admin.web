@@ -28,31 +28,30 @@ import { CONTRACT_STATUS } from "helpers/enums";
 const DATE_FORMAT = "DD.MM.YYYY hh:mm";
 
 const SEARCH_FIELDS = [
-  // {
-  //   component: SearchFilterField,
-  //   filters: [
-  //     {
-  //       name: "id",
-  //       title: "За ID",
-  //       validate: uuidValidate
-  //     },
-  //     {
-  //       name: "contract_number",
-  //       title: "За номером контракту",
-  //       validate: uuidValidate
-  //     },
-  //     {
-  //       name: "contractor_legal_entity_id",
-  //       title: "За ID надавача",
-  //       validate: uuidValidate
-  //     }
-  //   ]
-  // },
   {
     component: SearchFilterField,
-    // detailed: true,
+    filters: [
+      {
+        name: "id",
+        title: "За ID",
+        validate: uuidValidate
+      },
+      {
+        name: "contract_number",
+        title: "За номером контракту"
+      },
+      {
+        name: "contractor_legal_entity_id",
+        title: "За ID надавача",
+        validate: uuidValidate
+      }
+    ]
+  },
+  {
+    component: SearchFilterField,
+    detailed: true,
     hasSelect: false,
-    labelText: "ID договору",
+    labelText: "ID контракту",
     placeholder: "Введіть ID",
     filters: [
       {
@@ -63,20 +62,19 @@ const SEARCH_FIELDS = [
   },
   {
     component: SearchFilterField,
-    // detailed: true,
+    detailed: true,
     hasSelect: false,
     labelText: "За номером контракту",
     placeholder: "Введіть номер",
     filters: [
       {
-        name: "contract_number",
-        validate: uuidValidate
+        name: "contract_number"
       }
     ]
   },
   {
     component: SearchFilterField,
-    // detailed: true,
+    detailed: true,
     hasSelect: false,
     labelText: "За ID надавача",
     placeholder: "Введіть ID надавача",
@@ -100,8 +98,8 @@ const SEARCH_FIELDS = [
       { title: "Очікує на підписання від НСЗУ", name: "PENDING_NHS_SIGN" },
       { title: "Підписаний НСЗУ", name: "NHS_SIGNED" },
       { title: "Підписаний", name: "SIGNED" }
-    ]
-    // detailed: true
+    ],
+    detailed: true
   }
 ];
 
@@ -117,10 +115,10 @@ const ContractRequestsListPage = ({
       meta={[{ property: "og:title", content: t("Contracts") }]}
     />
 
-    <H1>{t("Contracts")}</H1>
+    <H1>Перелік запитів на контракти</H1>
 
     <div>
-      <H2>{t("Search contracts")}</H2>
+      <H2>Пошук запитів на контракти</H2>
       <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 

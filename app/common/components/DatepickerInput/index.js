@@ -19,6 +19,7 @@ export const Component = ({
 }) => (
   <DatePicker
     {...input}
+    locale="uk-UA"
     maxDate={maxDate}
     onChange={params => params && onChange(params.format(dateModelFormat))}
     onBlur={() => onBlur(value)}

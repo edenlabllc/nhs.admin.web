@@ -5,17 +5,17 @@
   line-height: 22px;
   font-size: 16px;
 
-  dt {
+  .dt {
     flex-basis: 150px;
     padding-right: 5px;
   }
 
-  dd {
+  .dd {
     flex-basis: calc(100% - 150px);
   }
 
-  dt,
-  dd {
+  .dt,
+  .dd {
     margin-bottom: 26px;
 
     &:last-of-type {
@@ -26,8 +26,8 @@
   &_theme_min {
     font-size: 14px;
 
-    dt,
-    dd {
+    .dt,
+    .dd {
       margin-bottom: 5px;
     }
   }

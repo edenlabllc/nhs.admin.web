@@ -5,7 +5,7 @@ import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
 import styles from "./styles.scss";
 
-const DEFAULT_PLACEHOLDER = "No data";
+const DEFAULT_PLACEHOLDER = "Немає даних";
 
 const TableRowComponent = ({ columns = [], data = {}, ...rest }) => (
   <tr {...rest}>

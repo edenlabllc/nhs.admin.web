@@ -37,8 +37,7 @@ const SEARCH_FIELDS = [
       },
       {
         name: "contract_number",
-        title: "За номером контракту",
-        validate: uuidValidate
+        title: "За номером контракту"
       },
       {
         name: "contractor_legal_entity_id",
@@ -68,8 +67,7 @@ const SEARCH_FIELDS = [
     placeholder: "Введіть номер",
     filters: [
       {
-        name: "contract_number",
-        validate: uuidValidate
+        name: "contract_number"
       }
     ]
   },
@@ -94,8 +92,7 @@ const SEARCH_FIELDS = [
     placeholder: "Введіть ЄДРПОУ",
     filters: [
       {
-        name: "edrpou",
-        validate: uuidValidate
+        name: "edrpou"
       }
     ]
   },
@@ -118,19 +115,14 @@ const SEARCH_FIELDS = [
         name: "date_from_start_date",
         labelText: "Дата початку дії договору",
         placeholder: "з 1990-01-01"
-      }
-    ]
-  },
-  {
-    component: DateFilterField,
-    detailed: true,
-    filters: [
+      },
       {
         name: "date_to_start_date",
         placeholder: "по 1990-01-01"
       }
     ]
   },
+
   {
     component: DateFilterField,
     detailed: true,
@@ -139,13 +131,7 @@ const SEARCH_FIELDS = [
         name: "date_from_end_date",
         labelText: "Кінцева дата дії договору",
         placeholder: "з 1990-01-01"
-      }
-    ]
-  },
-  {
-    component: DateFilterField,
-    detailed: true,
-    filters: [
+      },
       {
         name: "date_to_end_date",
         placeholder: "по 1990-01-01"
