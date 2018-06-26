@@ -211,7 +211,7 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
               format(start_date, DATE_FORMAT),
               format(end_date, DATE_FORMAT)
             ].join(" "),
-            status: (
+            status: status && (
               <ColoredText color={CONTRACT_STATUS[status].color}>
                 {CONTRACT_STATUS[status].title}
               </ColoredText>

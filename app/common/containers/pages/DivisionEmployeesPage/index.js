@@ -10,7 +10,8 @@ import DataList from "components/DataList";
 import BackLink from "containers/blocks/BackLink";
 import DictionaryValue from "containers/blocks/DictionaryValue";
 
-const DivisionEmployeesPage = ({ contract = {}, router, divisionId }) => {
+const DivisionEmployeesPage = ({ contract, router, divisionId }) => {
+  if (!contract) return null;
   const fullName = obj =>
     [obj.last_name, obj.first_name, obj.second_name].join(" ");
   const divisionEmployees = id =>

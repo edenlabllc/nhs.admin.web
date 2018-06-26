@@ -25,9 +25,11 @@ class ContractRequestsDetailsPage extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.contract.printout_content) {
+    if (nextProps.contract && nextProps.contract.printout_content) {
       const contractFrame = window.frames["contract"];
-      contractFrame.document.write(nextProps.contract.printout_content);
+      if (contractFrame) {
+        contractFrame.document.write(nextProps.contract.printout_content);
+      }
     }
   }
   render() {
@@ -38,6 +40,7 @@ class ContractRequestsDetailsPage extends React.Component {
       signNhs,
       params: { id }
     } = this.props;
+    if (!contract) return null;
     return (
       <div id="contract-detail-page">
         <ContractDetail
