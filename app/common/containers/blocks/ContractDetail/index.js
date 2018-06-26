@@ -39,8 +39,10 @@ class ContractDetail extends React.Component {
       [obj.last_name, obj.first_name, obj.second_name].join(" ");
 
     const getDivisionName = id => {
-      const { name } = contract.contractor_divisions.find(i => id === i.id);
-      return name;
+      if (contract.contractor_divisions.length) {
+        const { name } = contract.contractor_divisions.find(i => id === i.id);
+        return name;
+      }
     };
     let fec;
     if (contract.external_contractors) {
@@ -160,9 +162,9 @@ class ContractDetail extends React.Component {
               }
             ]}
           />
-          <Line />
           {contractorDivisions && contractorDivisions.length ? (
             <div>
+              <Line />
               <H1>II. Додаток 2</H1>
               <div className={styles.forwardLink}>
                 <BackLink

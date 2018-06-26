@@ -1,30 +1,29 @@
-.working-hours {
+.workingHours {
   font-variant-numeric: tabular-nums;
   display: flex;
   flex-wrap: wrap;
+}
 
-  > * {
-    margin-bottom: 5px;
-  }
+.days {
+  flex-basis: 70px;
+  margin-bottom: 5px;
+}
 
-  &__days {
-    flex-basis: 70px;
-  }
+.hours {
+  flex-basis: calc(100% - 70px);
+  margin-bottom: 5px;
+}
 
-  &__hours {
-    flex-basis: calc(100% - 70px);
-  }
+.hour {
+  display: inline-block;
+  width: 50px;
+}
+.hourFrom {
+  composes: hour;
+  text-align: right;
+}
 
-  &__hour {
-    display: inline-block;
-    width: 50px;
-
-    &-from {
-      text-align: right;
-    }
-
-    &-till {
-      text-align: left;
-    }
-  }
+.hourTill {
+  composes: hour;
+  text-align: left;
 }

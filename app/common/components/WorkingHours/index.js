@@ -15,24 +15,20 @@ const WEEK_DAYS = {
 };
 
 const WorkingHours = ({ workingHours }) => (
-  <dl className="working-hours">
+  <dl className={styles.workingHours}>
     {normalizeWorkingHours(workingHours).map(
       ([dayRanges, timeRanges], index) => [
-        <dt className="working-hours__days" key={`days-${index}`}>
+        <dt className={styles.days} key={`days-${index}`}>
           {dayRanges
             .map(range => range.map(day => WEEK_DAYS[day]).join(" — "))
             .join(", ")}
         </dt>,
-        <dd className="working-hours__hours" key={`hours-${index}`}>
+        <dd className={styles.hours} key={`hours-${index}`}>
           {timeRanges.map(([from, till], index) => (
             <div key={index}>
-              <span className="working-hours__hour working-hours__hour-from">
-                {from}
-              </span>
+              <span className={styles.hourFrom}>{from}</span>
               {" — "}
-              <span className="working-hours__hour working-hours__hour-till">
-                {till}
-              </span>
+              <span className={styles.hourTill}>{till}</span>
             </div>
           ))}
         </dd>

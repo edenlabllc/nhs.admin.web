@@ -78,16 +78,32 @@ export default class SearchForm extends Component {
   };
 }
 
-const SearchFormComponent = ({ handleSubmit, children }) => (
+const SearchFormComponent = ({ handleSubmit, reset, router, children }) => (
   <form className={styles.form} onSubmit={handleSubmit}>
     <div className={styles.form__fields}>{children}</div>
     <Button theme="fill" type="submit">
       Застосувати пошук
     </Button>
+    <div className={styles.form__button}>
+      <Button
+        onClick={() => {
+          reset();
+          router.push({
+            ...location,
+            query: {}
+          });
+        }}
+        theme="border"
+        type="button"
+      >
+        Скинути пошук
+      </Button>
+    </div>
   </form>
 );
 
 const SearchFormContainer = compose(
+  withRouter,
   withStyles(styles),
   reduxForm({
     form: "search-form",
