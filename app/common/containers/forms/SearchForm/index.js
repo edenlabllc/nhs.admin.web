@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { withRouter } from "react-router";
 import withStyles from "withStyles";
-import { reduxForm, change, getFormValues } from "redux-form";
+import { reduxForm } from "redux-form";
 import Button from "components/Button";
 
 import { FormRow, FormColumn } from "components/Form";
@@ -17,7 +17,7 @@ export default class SearchForm extends Component {
   };
 
   render() {
-    const { fields, location: { query }, handleSubmit } = this.props;
+    const { fields, location: { query }, router } = this.props;
     const { initialValues, showDetailedItems } = this.state;
     const showDetailedItemsButton = fields.filter(i => i.detailed).length > 1;
 
@@ -26,27 +26,97 @@ export default class SearchForm extends Component {
         initialValues={initialValues}
         onSubmit={this.updateFilters}
       >
-        {fields
-          .filter(item => !item.detailed || showDetailedItems)
-          .map(({ component: Field, detailed = false, ...props }, index) => (
-            <Field
-              key={index}
-              {...props}
-              query={query}
-              initFields={this.initFields}
-            />
-          ))}
-        {showDetailedItemsButton && (
-          <div className={styles.search}>
-            <Button
-              icon="search"
-              theme="link"
-              onClick={() =>
-                this.setState(() => ({ showDetailedItems: !showDetailedItems }))
-              }
-            >
-              Розширений пошук
-            </Button>
+        {({ reset }) => (
+          <div>
+            <div className={styles.inputs}>
+              {fields
+                .filter(item => !item.detailed)
+                .map(
+                  ({ component: Field, detailed = false, ...props }, index) => (
+                    <Field
+                      key={index}
+                      {...props}
+                      query={query}
+                      initFields={this.initFields}
+                    />
+                  )
+                )}
+            </div>
+            {showDetailedItemsButton && (
+              <div className={styles.search}>
+                <Button
+                  icon="search"
+                  theme="link"
+                  onClick={() =>
+                    this.setState(() => ({
+                      showDetailedItems: !showDetailedItems
+                    }))
+                  }
+                  type="button"
+                >
+                  Розширений пошук
+                </Button>
+              </div>
+            )}
+            <div className={styles.buttonGroup}>
+              <Button theme="fill" type="submit">
+                Застосувати пошук
+              </Button>
+              <div className={styles.button}>
+                <Button
+                  onClick={() => {
+                    reset();
+                    router.push({
+                      ...location,
+                      query: {}
+                    });
+                  }}
+                  theme="border"
+                  type="button"
+                >
+                  Скинути пошук
+                </Button>
+              </div>
+            </div>
+            {showDetailedItems && (
+              <div className={styles.fields}>
+                {fields
+                  .filter(item => item.detailed)
+                  .map(
+                    (
+                      { component: Field, detailed = true, ...props },
+                      index
+                    ) => (
+                      <Field
+                        key={index}
+                        {...props}
+                        query={query}
+                        initFields={this.initFields}
+                      />
+                    )
+                  )}
+                <div className={styles.buttonGroup}>
+                  <Button theme="fill" type="submit">
+                    Застосувати пошук
+                  </Button>
+                  <div className={styles.button}>
+                    <Button
+                      onClick={() => {
+                        reset();
+                        router.push({
+                          ...location,
+                          query: {}
+                        });
+                      }}
+                      theme="border"
+                      type="button"
+                    >
+                      Скинути пошук
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </SearchFormContainer>
@@ -75,30 +145,21 @@ export default class SearchForm extends Component {
       ...location,
       query: { ...nextQuery, page: 1 }
     });
+
+    this.setState(({ showDetailedItems }) => ({
+      showDetailedItems: !showDetailedItems
+    }));
   };
 }
 
-const SearchFormComponent = ({ handleSubmit, reset, router, children }) => (
+const SearchFormComponent = ({
+  handleSubmit,
+  children,
+  render = children,
+  reset
+}) => (
   <form className={styles.form} onSubmit={handleSubmit}>
-    <div className={styles.form__fields}>{children}</div>
-    <Button theme="fill" type="submit">
-      Застосувати пошук
-    </Button>
-    <div className={styles.form__button}>
-      <Button
-        onClick={() => {
-          reset();
-          router.push({
-            ...location,
-            query: {}
-          });
-        }}
-        theme="border"
-        type="button"
-      >
-        Скинути пошук
-      </Button>
-    </div>
+    {render({ reset })}
   </form>
 );
 

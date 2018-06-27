@@ -1,13 +1,36 @@
 .date {
   flex-basis: 100%;
-  margin-top: 10px;
   display: flex;
-  z-index: 1000;
-  align-items: baseline;
+  flex-flow: row nowrap;
+  margin-top: 10px;
+  padding-right: 20px;
+  align-items: flex-end;
+
+  @media screen and (min-width: 768px) {
+    flex-basis: 50%;
+  }
 }
-.single,
-.filter {
-  composes: date;
-  flex-basis: 50%;
-  padding-right: 10px;
+
+.input {
+  z-index: 1;
+  flex: 1 1 auto;
+}
+
+.inputs {
+  composes: input;
+  position: relative;
+  padding-left: 20px;
+  &:first-child {
+    padding-left: 0;
+    &:before {
+      display: none;
+    }
+  }
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+    line-height: 37px;
+    content: "-";
+  }
 }
