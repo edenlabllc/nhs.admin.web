@@ -1,22 +1,54 @@
 .form {
+  position: relative;
   margin-bottom: 20px;
+}
 
-  &__fields {
-    margin-bottom: 20px;
-    margin-right: -20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
+.fields {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 20px 0 20px 20px;
+  border: 1px solid #ddd;
+  margin: -50px 0 0 0;
+  background-color: #fff;
+  user-select: none;
+  &:after {
+    position: absolute;
+    top: 100%;
+    bottom: 0;
+    right: -1px;
+    left: -1px;
+    margin-top: 1px;
+    height: 1000px;
+    background: #fff;
+    opacity: 0.9;
+    content: "";
   }
+}
 
-  &__button {
-    display: inline-block;
-    margin-left: 20px;
-    vertical-align: middle;
-  }
+.buttonGroup {
+  flex-basis: 100%;
+  margin-top: 20px;
+}
+
+.button {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle;
 }
 
 .search {
   flex-basis: 100%;
-  margin-top: 20px;
+  margin: 10px 0;
+  user-select: none;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
 }

@@ -52,28 +52,6 @@ const SEARCH_FIELDS = [
     options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
   },
   {
-    component: DateFilterField,
-    detailed: true,
-    filters: [
-      {
-        name: "inserted_at_from",
-        labelText: "Дата з",
-        placeholder: "1990-01-01"
-      }
-    ]
-  },
-  {
-    component: DateFilterField,
-    detailed: true,
-    filters: [
-      {
-        name: "inserted_at_to",
-        labelText: "Дата по",
-        placeholder: "1990-01-01"
-      }
-    ]
-  },
-  {
     component: SelectFilterField,
     labelText: "Cтатус",
     placeholder: "Новий/В обробці/Оброблений",
@@ -83,6 +61,22 @@ const SEARCH_FIELDS = [
       { title: "Новий", name: "NEW" },
       { title: "В обробці", name: "PROCESSING" },
       { title: "Оброблений", name: "PROCESSED" }
+    ]
+  },
+  {
+    component: DateFilterField,
+    detailed: true,
+    filters: [
+      {
+        name: "inserted_at_from",
+        labelText: "Дата з",
+        placeholder: "1990-01-01"
+      },
+      {
+        name: "inserted_at_to",
+        labelText: "Дата по",
+        placeholder: "1990-01-01"
+      }
     ]
   }
 ];
