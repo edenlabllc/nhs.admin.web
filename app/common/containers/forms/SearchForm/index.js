@@ -146,9 +146,11 @@ export default class SearchForm extends Component {
       query: { ...nextQuery, page: 1 }
     });
 
-    this.setState(({ showDetailedItems }) => ({
-      showDetailedItems: !showDetailedItems
-    }));
+    if (this.state.showDetailedItems) {
+      this.setState(({ showDetailedItems }) => ({
+        showDetailedItems: !showDetailedItems
+      }));
+    }
   };
 }
 
