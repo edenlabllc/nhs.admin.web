@@ -9,14 +9,17 @@ import ContractDetail from "containers/blocks/ContractDetail";
 import { getContract } from "reducers";
 import { hasScope } from "helpers/scope";
 
-import { fetchContract } from "./redux";
+import { fetchContract, getContractPrintoutContent } from "./redux";
 
 class ContractDetailsPage extends React.Component {
   render() {
     const { contract = {} } = this.props;
     return (
       <div id="contract-detail-page">
-        <ContractDetail contract={contract} />
+        <ContractDetail
+          contract={contract}
+          getPrintoutContent={getContractPrintoutContent}
+        />
       </div>
     );
   }
@@ -28,7 +31,10 @@ export default compose(
     fetch: ({ dispatch, getState, params: { id } }) =>
       dispatch(fetchContract(id))
   }),
-  connect((state, { params: { id } }) => ({
-    contract: getContract(state, id)
-  }))
+  connect(
+    (state, { params: { id } }) => ({
+      contract: getContract(state, id)
+    }),
+    { getContractPrintoutContent }
+  )
 )(ContractDetailsPage);
