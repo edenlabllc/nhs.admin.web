@@ -114,11 +114,11 @@ const SEARCH_FIELDS = [
       {
         name: "date_from_start_date",
         labelText: "Дата початку дії договору",
-        placeholder: "з 1990-01-01"
+        placeholder: "з 01.01.1990"
       },
       {
         name: "date_to_start_date",
-        placeholder: "по 1990-01-01"
+        placeholder: "по 01.01.1990"
       }
     ]
   },
@@ -130,11 +130,11 @@ const SEARCH_FIELDS = [
       {
         name: "date_from_end_date",
         labelText: "Кінцева дата дії договору",
-        placeholder: "з 1990-01-01"
+        placeholder: "з 01.01.1990"
       },
       {
         name: "date_to_end_date",
-        placeholder: "по 1990-01-01"
+        placeholder: "по 01.01.1990"
       }
     ]
   }
