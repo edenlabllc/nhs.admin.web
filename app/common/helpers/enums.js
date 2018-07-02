@@ -65,9 +65,5 @@ export const CONTRACT_STATUS = {
   VERIFIED: {
     title: "Веріфікований",
     color: "blue"
-  },
-  TERMINATED: {
-    title: "Завершений",
-    color: "green"
   }
 };

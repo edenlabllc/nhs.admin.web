@@ -26,8 +26,9 @@ class ContractDetail extends React.Component {
     const { contract } = this.props;
     if (
       nextProps.contract.printout_content &&
-      nextProps.contract.printout_content !== contract.printout_content &&
-      (contract.status === "SIGNED" || contract.status === "NHS_SIGNED")
+      (contract.status === "SIGNED" ||
+        contract.status === "NHS_SIGNED" ||
+        contract.status === "PENDING_NHS_SIGN")
     ) {
       printIframe(nextProps.contract.printout_content);
     }
@@ -61,7 +62,9 @@ class ContractDetail extends React.Component {
         </BackLink>
 
         <Line />
-        {contract.status === "SIGNED" || contract.status === "NHS_SIGNED" ? (
+        {contract.status === "SIGNED" ||
+        contract.status === "NHS_SIGNED" ||
+        contract.status === "PENDING_NHS_SIGN" ? (
           contract.status === "NHS_SIGNED" || contract.status === "SIGNED" ? (
             <div className={styles.link}>
               <span onClick={() => printIframe(contract.printout_content)}>
