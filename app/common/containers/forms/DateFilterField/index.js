@@ -25,7 +25,7 @@ export default class DateFilterField extends Component {
               label_bold
               name={name}
               component={FieldDate}
-              dateFormat="YYYY-MM-DD"
+              dateFormat="DD.MM.YYYY"
               labelText={labelText}
               requiredStar={requiredStar}
               placeholder={placeholder}
