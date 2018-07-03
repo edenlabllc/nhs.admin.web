@@ -23,12 +23,10 @@ import styles from "./styles.scss";
 
 class ContractDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { contract } = this.props;
+    const { contract: { printout_content, status } } = this.props;
     if (
-      nextProps.contract.printout_content &&
-      (contract.status === "SIGNED" ||
-        contract.status === "NHS_SIGNED" ||
-        contract.status === "PENDING_NHS_SIGN")
+      nextProps.contract.printout_content !== printout_content &&
+      status === "PENDING_NHS_SIGN"
     ) {
       printIframe(nextProps.contract.printout_content);
     }
@@ -76,6 +74,9 @@ class ContractDetail extends React.Component {
               <span
                 onClick={() => {
                   getPrintoutContent(contract.id);
+                  if (contract.printout_content) {
+                    printIframe(contract.printout_content);
+                  }
                 }}
               >
                 Дивитись друковану форму
@@ -449,7 +450,9 @@ class ContractDetail extends React.Component {
                   },
                   {
                     name: "Ціна договору",
-                    value: `${contract.nhs_contract_price} грн`
+                    value: `${contract.nhs_contract_price.toLocaleString(
+                      "uk-UA"
+                    )} грн`
                   },
                   {
                     name: "Спосіб оплати",

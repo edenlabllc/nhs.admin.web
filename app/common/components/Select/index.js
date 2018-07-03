@@ -114,7 +114,7 @@ class Select extends React.Component {
       disabled && styles.disabled,
       multiple && styles.multiple
     );
-
+    if (!options.length) return null;
     return (
       <OuterClick onClick={() => this.setState({ open: false })}>
         <section ref={ref => (this.selectNode = ref)} className={classNames}>
