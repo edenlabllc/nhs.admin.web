@@ -20,7 +20,12 @@ export default handleActions(
 
       "program_medications/UPDATE_FAILURE",
 
-      "registers/UPLOAD_FAILURE"
+      "registers/UPLOAD_FAILURE",
+
+      "contracts/UPDATE_CONTRACT_FAILURE",
+      "contracts/DECLINE_CONTRACT_FAILURE",
+      "contracts/APPROVE_CONTRACT_FAILURE",
+      "contracts/SIGN_NHS_CONTRACT_FAILURE"
     )]: (state, action) => action.payload,
     [dismissError]: () => null
   },
