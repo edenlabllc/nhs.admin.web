@@ -24,11 +24,7 @@ import Button from "components/Button";
 import ShowWithScope from "containers/blocks/ShowWithScope";
 import { Signer } from "vendor/react-iit-digital-signature/src";
 
-import {
-  reduxFormValidate,
-  collectionOf,
-  ErrorMessage
-} from "react-nebo15-validate";
+import { reduxFormValidate } from "react-nebo15-validate";
 
 import styles from "./styles.scss";
 
@@ -81,6 +77,7 @@ const DeclineForm = compose(
 class ContractForm extends React.Component {
   state = {
     decline: false,
+    updateFormError: false,
     employees: []
   };
   async componentDidMount() {
@@ -99,7 +96,15 @@ class ContractForm extends React.Component {
   }
   render() {
     const {
-      contract: { id, contractor_legal_entity: { edrpou, id: cleId, name } },
+      contract: {
+        id,
+        contractor_legal_entity: { edrpou, id: cleId, name },
+        nhs_signer,
+        nhs_signer_base,
+        nhs_contract_price,
+        nhs_payment_method,
+        issue_city
+      },
       handleSubmit,
       onSubmit = () => {},
       submitting,
@@ -107,6 +112,7 @@ class ContractForm extends React.Component {
       declineContract,
       approveContract
     } = this.props;
+
     const { values: { BACKWARD, FORWARD } } = paymentMethod;
     const fullName = obj =>
       [obj.last_name, obj.first_name, obj.second_name].join(" ");
@@ -184,6 +190,11 @@ class ContractForm extends React.Component {
                 label_bold
               />
             </div>
+            {this.state.updateFormError && (
+              <div className={styles.error}>
+                Не всі поля заповнені. Заповніть будь-ласка поля
+              </div>
+            )}
           </div>
           <ShowWithScope scope="contract_request:update">
             <div className={styles.buttonGroup}>
@@ -194,6 +205,11 @@ class ContractForm extends React.Component {
                   color="orange"
                   type="submit"
                   disabled={submitting}
+                  onClick={() => {
+                    this.setState({
+                      updateFormError: false
+                    });
+                  }}
                 >
                   {submitting ? "Збереження" : "Зберегти зміни"}
                 </Button>
@@ -268,14 +284,26 @@ class ContractForm extends React.Component {
                       size="middle"
                       color="orange"
                       onClick={() => {
-                        signData(data).then(({ signedContent }) => {
-                          if (signedContent) {
-                            approveContract(id, {
-                              signed_content: signedContent,
-                              signed_content_encoding: "base64"
-                            });
-                          }
-                        });
+                        if (
+                          nhs_signer &&
+                          nhs_signer_base &&
+                          nhs_contract_price &&
+                          nhs_payment_method &&
+                          issue_city
+                        ) {
+                          signData(data).then(({ signedContent }) => {
+                            if (signedContent) {
+                              approveContract(id, {
+                                signed_content: signedContent,
+                                signed_content_encoding: "base64"
+                              });
+                            }
+                          });
+                        } else {
+                          this.setState({
+                            updateFormError: true
+                          });
+                        }
                       }}
                     >
                       Затвердити, наклавши ЕЦП
@@ -315,7 +343,24 @@ class ContractForm extends React.Component {
 
 export default compose(
   reduxForm({
-    form: "contract-request-update-form"
+    form: "contract-request-update-form",
+    validate: reduxFormValidate({
+      nhs_signer_id: {
+        required: true
+      },
+      nhs_signer_base: {
+        required: true
+      },
+      nhs_contract_price: {
+        required: true
+      },
+      nhs_payment_method: {
+        required: true
+      },
+      issue_city: {
+        required: true
+      }
+    })
   }),
   connect(
     state => ({

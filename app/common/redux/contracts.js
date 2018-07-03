@@ -122,7 +122,11 @@ export const updateContract = (id, body) =>
     },
     types: [
       "contracts/UPDATE_CONTRACT_REQUEST",
-      "contracts/UPDATE_CONTRACT_SUCCESS",
+      {
+        type: "contracts/UPDATE_CONTRACT_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
       {
         type: "contracts/UPDATE_CONTRACT_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
@@ -142,7 +146,11 @@ export const declineContract = (id, body) =>
     },
     types: [
       "contracts/DECLINE_CONTRACT_REQUEST",
-      "contracts/DECLINE_CONTRACT_SUCCESS",
+      {
+        type: "contracts/DECLINE_CONTRACT_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
       {
         type: "contracts/DECLINE_CONTRACT_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
@@ -162,7 +170,11 @@ export const approveContract = (id, body) =>
     },
     types: [
       "contracts/APPROVE_CONTRACT_REQUEST",
-      "contracts/APPROVE_CONTRACT_SUCCESS",
+      {
+        type: "contracts/APPROVE_CONTRACT_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
       {
         type: "contracts/APPROVE_CONTRACT_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
@@ -182,7 +194,11 @@ export const signNhs = (id, body) =>
     },
     types: [
       "contracts/SIGN_NHS_CONTRACT_REQUEST",
-      "contracts/SIGN_NHS_CONTRACT_SUCCESS",
+      {
+        type: "contracts/SIGN_NHS_CONTRACT_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
       {
         type: "contracts/SIGN_NHS_CONTRACT_FAILURE",
         payload: (action, state, res) => res.json().then(json => json.error)
@@ -210,16 +226,17 @@ export const fetchContractEmployees = options =>
 
 export default handleActions(
   {
-    [combineActions(
-      "contracts/FETCH_LIST_SUCCESS",
-      "contracts/CREATE_SUCCESS",
-      "contracts/UPDATE_SUCCESS"
-    )]: (state, action) => ({
+    "contracts/FETCH_LIST_SUCCESS": (state, action) => ({
       ...state,
       ...action.payload.entities.contracts,
       ...action.meta
     }),
-    "contracts/FETCH_DETAILS_SUCCESS": (state, action) => ({
+    [combineActions(
+      "contracts/UPDATE_CONTRACT_SUCCESS",
+      "contracts/DECLINE_CONTRACT_SUCCESS",
+      "contracts/APPROVE_CONTRACT_SUCCESS",
+      "contracts/SIGN_NHS_CONTRACT_SUCCESS"
+    )]: (state, action) => ({
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],

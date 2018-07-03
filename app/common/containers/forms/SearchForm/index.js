@@ -143,7 +143,7 @@ export default class SearchForm extends Component {
 
     router.push({
       ...location,
-      query: { ...nextQuery }
+      query: { ...nextQuery, page: 1 }
     });
 
     if (this.state.showDetailedItems) {
@@ -170,6 +170,6 @@ const SearchFormContainer = compose(
   withStyles(styles),
   reduxForm({
     form: "search-form",
-    enableReinitialize: true
+    enableReinitialize: false
   })
 )(SearchFormComponent);

@@ -32,7 +32,11 @@ class ContractRequestsDetailsPage extends React.Component {
       }
     }
   }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.contract !== this.props.contract;
+  }
   render() {
+    if (!this.props.contract) return null;
     const {
       contract,
       getContractPrintoutContent,
@@ -40,7 +44,13 @@ class ContractRequestsDetailsPage extends React.Component {
       signNhs,
       params: { id }
     } = this.props;
-    if (!contract) return null;
+    const {
+      nhs_signer,
+      nhs_signer_base,
+      nhs_contract_price,
+      nhs_payment_method,
+      issue_city
+    } = contract;
     return (
       <div id="contract-detail-page">
         <ContractDetail
@@ -51,6 +61,13 @@ class ContractRequestsDetailsPage extends React.Component {
           <ContractForm
             contract={contract}
             onSubmit={v => updateContract(id, v)}
+            initialValues={{
+              nhs_signer_id: (nhs_signer && nhs_signer.id) || "",
+              nhs_signer_base: nhs_signer_base || "",
+              nhs_contract_price: nhs_contract_price || "",
+              nhs_payment_method: nhs_payment_method || "",
+              issue_city: issue_city || ""
+            }}
             key="form"
           />
         )}
