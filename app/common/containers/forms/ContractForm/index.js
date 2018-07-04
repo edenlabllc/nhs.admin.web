@@ -20,6 +20,7 @@ import {
 
 import { SelectUniversal } from "components/SelectUniversal";
 import Button from "components/Button";
+import { reduxFormValidate } from "react-nebo15-validate";
 
 import ShowWithScope from "containers/blocks/ShowWithScope";
 import { Signer } from "vendor/react-iit-digital-signature/src";
@@ -341,7 +342,24 @@ class ContractForm extends React.Component {
 
 export default compose(
   reduxForm({
-    form: "contract-request-update-form"
+    form: "contract-request-update-form",
+    validate: reduxFormValidate({
+      nhs_signer_id: {
+        required: true
+      },
+      nhs_signer_base: {
+        required: true
+      },
+      nhs_contract_price: {
+        required: true
+      },
+      nhs_payment_method: {
+        required: true
+      },
+      issue_city: {
+        required: true
+      }
+    })
   }),
   connect(
     state => ({
