@@ -23,9 +23,11 @@ import styles from "./styles.scss";
 
 class ContractDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { contract: { printout_content, status } } = this.props;
+    const { contract: { status } } = this.props;
     if (
-      nextProps.contract.printout_content !== printout_content &&
+      !nextProps.isOpenSignForm &&
+      !this.props.isOpenSignForm &&
+      nextProps.contract.printout_content &&
       status === "PENDING_NHS_SIGN"
     ) {
       printIframe(nextProps.contract.printout_content);
@@ -71,14 +73,7 @@ class ContractDetail extends React.Component {
             </div>
           ) : (
             <div className={styles.link}>
-              <span
-                onClick={() => {
-                  getPrintoutContent(contract.id);
-                  if (contract.printout_content) {
-                    printIframe(contract.printout_content);
-                  }
-                }}
-              >
+              <span onClick={() => getPrintoutContent(contract.id)}>
                 Дивитись друковану форму
               </span>
             </div>
