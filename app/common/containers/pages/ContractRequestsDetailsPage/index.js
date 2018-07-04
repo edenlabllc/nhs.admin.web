@@ -57,7 +57,7 @@ class ContractRequestsDetailsPage extends React.Component {
         {contract.status === "PENDING_NHS_SIGN" && (
           <SignContract
             contract={contract}
-            signNhs={signNhs}
+            signNhs={this.props.signNhs}
             openSignForm={this.openSignForm}
             isOpenedSignForm={this.state.isOpenSignForm}
             getPrintoutContent={getContractPrintoutContent}
