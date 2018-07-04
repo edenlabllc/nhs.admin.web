@@ -5,6 +5,7 @@ import withStyles from "nebo15-isomorphic-style-loader/lib/withStyles";
 
 import Icon from "components/Icon";
 import OuterClick from "components/OuterClick";
+import ErrorMessages from "components/ErrorMessages";
 
 import styles from "./styles.scss";
 
@@ -103,7 +104,9 @@ class Select extends React.Component {
       disabled,
       labelText,
       labelBold = false,
-      multiple
+      multiple,
+      error,
+      children
     } = this.props;
 
     const activeItem = this.state.active || [];
@@ -123,9 +126,20 @@ class Select extends React.Component {
               {labelBold ? <b>{labelText}</b> : { labelText }}
             </div>
           )}
+          <span className={classnames(error && styles.error)}>
+            {error && (
+              <div className={styles["error-label"]}>
+                {typeof error === "string" ? (
+                  error
+                ) : (
+                  <ErrorMessages error={error}>{children}</ErrorMessages>
+                )}
+              </div>
+            )}
+          </span>
           <div
             onClick={() => this.setState({ open: !this.state.open })}
-            className={styles.control}
+            className={classnames(styles.control, error && styles.error)}
           >
             {multiple || (
               <div>
