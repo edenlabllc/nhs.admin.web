@@ -5,10 +5,11 @@ import { createUrl } from "helpers/url";
 import { innm_dosage } from "schemas";
 import { invoke } from "./api";
 
-export const fetchInnmDosages = options =>
+export const fetchInnmDosages = (options, { useCache = false } = {}) =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/innm_dosages`, options),
     method: "GET",
+    bailout: state => useCache && state.data.innm_dosages,
     headers: {
       "content-type": "application/json"
     },
