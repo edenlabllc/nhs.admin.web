@@ -5,10 +5,11 @@ import { createUrl } from "helpers/url";
 import { medical_program } from "schemas";
 import { invoke } from "./api";
 
-export const fetchMedicalPrograms = options =>
+export const fetchMedicalPrograms = (options, { useCache = false } = {}) =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/medical_programs`, options),
     method: "GET",
+    bailout: state => useCache && state.data.medical_programs,
     headers: {
       "content-type": "application/json"
     },

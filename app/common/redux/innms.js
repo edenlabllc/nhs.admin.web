@@ -5,10 +5,11 @@ import { createUrl } from "helpers/url";
 import { innm } from "schemas";
 import { invoke } from "./api";
 
-export const fetchInnms = options =>
+export const fetchInnms = (options, { useCache = false } = {}) =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/innms`, options),
     method: "GET",
+    bailout: state => useCache && state.data.innms,
     headers: {
       "content-type": "application/json"
     },

@@ -12,8 +12,8 @@ export default provideHooks({
   fetch: ({ dispatch }) =>
     Promise.all([
       dispatch(fetchDictionaries({}, { useCache: true })),
-      dispatch(fetchInnms()),
-      dispatch(fetchInnmDosages()),
-      dispatch(fetchMedicalPrograms())
+      dispatch(fetchInnms({}, { useCache: true })),
+      dispatch(fetchInnmDosages({}, { useCache: true })),
+      dispatch(fetchMedicalPrograms({}, { useCache: true }))
     ])
 })(PreloadData);
