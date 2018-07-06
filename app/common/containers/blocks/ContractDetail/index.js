@@ -320,7 +320,10 @@ class ContractDetail extends React.Component {
                             <div>ID {fec.divisions[0].id}</div>
                             <div>
                               Послуга, що надається:{" "}
-                              {fec.divisions[0].medical_service}
+                              <DictionaryValue
+                                dictionary="MEDICAL_SERVICE"
+                                value={fec.divisions[0].medical_service}
+                              />
                             </div>
                           </div>
                           {fec.divisions.length > 1 && (
@@ -340,7 +343,10 @@ class ContractDetail extends React.Component {
                                     <div>ID {item.id}</div>
                                     <div>
                                       Послуга, що надається:{" "}
-                                      {item.medical_service}
+                                      <DictionaryValue
+                                        dictionary="MEDICAL_SERVICE"
+                                        value={item.medical_service}
+                                      />
                                     </div>
                                   </div>
                                 );
@@ -388,7 +394,12 @@ class ContractDetail extends React.Component {
                                         <div>ID {i.divisions[0].id}</div>
                                         <div>
                                           Послуга, що надається:{" "}
-                                          {i.divisions[0].medical_service}
+                                          <DictionaryValue
+                                            dictionary="MEDICAL_SERVICE"
+                                            value={
+                                              i.divisions[0].medical_service
+                                            }
+                                          />
                                         </div>
                                       </div>
                                       {i.divisions.length > 1 && (
@@ -410,7 +421,10 @@ class ContractDetail extends React.Component {
                                                 <div>ID {item.id}</div>
                                                 <div>
                                                   Послуга, що надається:{" "}
-                                                  {item.medical_service}
+                                                  <DictionaryValue
+                                                    dictionary="MEDICAL_SERVICE"
+                                                    value={item.medical_service}
+                                                  />
                                                 </div>
                                               </div>
                                             );
