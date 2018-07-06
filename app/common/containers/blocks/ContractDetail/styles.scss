@@ -16,13 +16,16 @@
 }
 
 .docLinkWrapper {
-  margin-bottom: 7px;
+  margin-bottom: 10px;
+  font-size: 26px;
 }
 
 .docLink {
+  margin-left: 15px;
   font-size: 14px;
   color: #22a4ff;
   text-decoration: none;
+  vertical-align: middle;
   &:hover {
     text-decoration: underline;
   }

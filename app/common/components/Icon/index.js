@@ -11,6 +11,7 @@ export const icons = [
   "arrow-down",
   "check-right",
   "add",
+  "pdf",
   "doc",
   "trash",
   "nebo15",
