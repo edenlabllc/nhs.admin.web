@@ -142,8 +142,14 @@ const ContractRequestsListPage = ({
             title: "Номер контракту"
           },
           {
-            key: "dates",
-            title: "Дата дії контракту з по"
+            key: "startDate",
+            title: "Діє з",
+            width: 105
+          },
+          {
+            key: "endDate",
+            title: "Діє по",
+            width: 105
           },
           { key: "status", title: "Статус" },
           { key: "action", title: "Дія", width: 100 }
@@ -161,10 +167,8 @@ const ContractRequestsListPage = ({
             id,
             legalEntityId: contractor_legal_entity_id,
             contractNumber: contract_number,
-            dates: [
-              format(start_date, DATE_FORMAT),
-              format(end_date, DATE_FORMAT)
-            ].join(" "),
+            startDate: format(start_date, DATE_FORMAT),
+            endDate: format(end_date, DATE_FORMAT),
             status: (
               <ColoredText color={CONTRACT_STATUS[status].color}>
                 {CONTRACT_STATUS[status].title}

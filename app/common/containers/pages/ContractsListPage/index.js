@@ -24,7 +24,7 @@ import uuidValidate from "helpers/validators/uuid-validate";
 import { CONTRACT_STATUS } from "helpers/enums";
 import { fetchContracts } from "./redux";
 
-const DATE_FORMAT = "DD.MM.YYYY hh:mm";
+const DATE_FORMAT = "DD.MM.YYYY";
 
 const SEARCH_FIELDS = [
   {
@@ -174,8 +174,14 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             title: "Номер контракту"
           },
           {
-            key: "dates",
-            title: "Дата дії контракту з по"
+            key: "startDate",
+            title: "Діє з",
+            width: 105
+          },
+          {
+            key: "endDate",
+            title: "Діє по",
+            width: 105
           },
           { key: "status", title: "Статус" },
           { key: "action", title: "Дія", width: 100 }
@@ -193,10 +199,8 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             id,
             legalEntityId: contractor_legal_entity_id,
             contractNumber: contract_number,
-            dates: [
-              format(start_date, DATE_FORMAT),
-              format(end_date, DATE_FORMAT)
-            ].join(" "),
+            startDate: format(start_date, DATE_FORMAT),
+            endDate: format(end_date, DATE_FORMAT),
             status: status && (
               <ColoredText color={CONTRACT_STATUS[status].color}>
                 {CONTRACT_STATUS[status].title}
