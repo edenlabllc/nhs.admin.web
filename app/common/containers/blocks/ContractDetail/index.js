@@ -6,6 +6,7 @@ import Helmet from "react-helmet";
 import classnames from "classnames";
 import printIframe from "print-iframe";
 
+import Icon from "components/Icon";
 import Line from "components/Line";
 import DataList from "components/DataList";
 import InlineList from "components/InlineList";
@@ -432,22 +433,18 @@ class ContractDetail extends React.Component {
             )}
           {contract.urgent && contract.urgent.length ? (
             <div>
-              <ShowMore
-                name={`Показати документи (${contract.urgent.length})`}
-                show_block
-              >
-                {contract.urgent.map((item, i) => (
-                  <div className={styles.docLinkWrapper} key={i}>
-                    <a
-                      className={styles.docLink}
-                      href={item.url}
-                      target="_blank"
-                    >
-                      {item.type}
-                    </a>
-                  </div>
-                ))}
-              </ShowMore>
+              <H1>Документи</H1>
+              {contract.urgent.map((item, i) => (
+                <div className={styles.docLinkWrapper} key={i}>
+                  <Icon name="pdf" />
+                  <a className={styles.docLink} href={item.url} target="_blank">
+                    <DictionaryValue
+                      dictionary="CONTRACT_DOCUMENT"
+                      value={item.type}
+                    />
+                  </a>
+                </div>
+              ))}
               <Line />
             </div>
           ) : null}
