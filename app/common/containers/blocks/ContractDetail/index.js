@@ -220,9 +220,9 @@ class ContractDetail extends React.Component {
                   }
                 ]}
               />
+              <Line />
               {contractorDivisions.length > 1 && (
                 <div>
-                  <Line />
                   <ShowMore
                     name={`Показати інші відділення (${contract
                       .contractor_divisions.length - 1})`}
@@ -232,7 +232,7 @@ class ContractDetail extends React.Component {
                       if (key === 0) return null;
                       return (
                         <div key={key}>
-                          {key !== 0 && <Line />}
+                          {key !== 1 && <Line />}
                           <div className={styles.forwardLink}>
                             <BackLink
                               to={`/contract-requests/${
@@ -430,9 +430,29 @@ class ContractDetail extends React.Component {
                 )}
               </div>
             )}
+          {contract.urgent && contract.urgent.length ? (
+            <div>
+              <ShowMore
+                name={`Показати документи (${contract.urgent.length})`}
+                show_block
+              >
+                {contract.urgent.map((item, i) => (
+                  <div className={styles.docLinkWrapper} key={i}>
+                    <a
+                      className={styles.docLink}
+                      href={item.url}
+                      target="_blank"
+                    >
+                      {item.type}
+                    </a>
+                  </div>
+                ))}
+              </ShowMore>
+              <Line />
+            </div>
+          ) : null}
           {contract.nhs_signer && (
             <div>
-              <Line />
               <DataList
                 list={[
                   {

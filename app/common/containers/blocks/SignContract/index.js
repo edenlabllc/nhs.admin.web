@@ -22,6 +22,7 @@ export default class SignContract extends React.Component {
       isOpenedSignForm,
       openSignForm
     } = this.props;
+    delete contract.urgent;
     return (
       <div>
         <Button

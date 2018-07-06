@@ -14,3 +14,16 @@
 .divisionList {
   margin-bottom: 10px;
 }
+
+.docLinkWrapper {
+  margin-bottom: 7px;
+}
+
+.docLink {
+  font-size: 14px;
+  color: #22a4ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
