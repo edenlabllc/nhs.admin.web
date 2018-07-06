@@ -1,0 +1,96 @@
+import React from "react";
+import { compose } from "redux";
+import { reduxForm, Field } from "redux-form";
+
+import Button from "components/Button";
+import FieldTextarea from "components/reduxForm/FieldTextarea";
+
+import ShowWithScope from "containers/blocks/ShowWithScope";
+
+import styles from "./styles.scss";
+
+const TerminateFormView = ({
+  toggleTerminate,
+  terminateContract,
+  values,
+  handleSubmit
+}) => {
+  return (
+    <form id="contract-terminate-form" onSubmit={handleSubmit}>
+      <br />
+      <div className={styles.form}>
+        <div>
+          <div className={styles.label}>Причина відхилення запиту</div>
+          <Field
+            name="status_reason"
+            component={FieldTextarea}
+            placeholder="Будь ласка, вкажіть причину"
+          />
+        </div>
+      </div>
+      <div className={styles.buttonGroup}>
+        <div className={styles.button}>
+          <Button
+            theme="border"
+            size="middle"
+            color="red"
+            onClick={toggleTerminate}
+          >
+            Відміна
+          </Button>
+        </div>
+        <div className={styles.button}>
+          <Button type="submit" size="middle" color="red">
+            Завершити контракт
+          </Button>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+const TerminateForm = compose(
+  reduxForm({
+    form: "contract-terminate-form"
+  })
+)(TerminateFormView);
+
+export default class TerminateContractForm extends React.Component {
+  state = {
+    terminate: false
+  };
+  render() {
+    const { id, terminateContract } = this.props;
+    return (
+      <ShowWithScope scope="contract:terminate">
+        <div>
+          <div className={styles.button}>
+            <Button
+              size="middle"
+              color="red"
+              type="button"
+              onClick={() =>
+                this.setState({
+                  terminate: !this.state.terminate
+                })
+              }
+            >
+              Завершити контракт
+            </Button>
+          </div>
+          {this.state.terminate && (
+            <TerminateForm
+              onSubmit={async values => {
+                terminateContract(id, {
+                  status_reason: values.status_reason
+                });
+              }}
+              toggleTerminate={this.toggleTerminate}
+            />
+          )}
+        </div>
+      </ShowWithScope>
+    );
+  }
+  toggleTerminate = () => this.setState({ terminate: !this.state.terminate });
+}

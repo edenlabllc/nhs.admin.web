@@ -215,6 +215,28 @@ export const signNhs = (id, body) =>
     body
   });
 
+export const terminateContract = (id, body) =>
+  invoke({
+    endpoint: createUrl(`${API_URL}/api/contracts/${id}/actions/terminate`),
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json"
+    },
+    types: [
+      "contracts/TERMINATE_CONTRACT",
+      {
+        type: "contracts/TERMINATE_CONTRACT_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
+      {
+        type: "contracts/TERMINATE_CONTRACT_FAILURE",
+        payload: (action, state, res) => res.json().then(json => json.error)
+      }
+    ],
+    body
+  });
+
 export const fetchContractEmployees = options =>
   invoke({
     endpoint: createUrl(`${API_URL}/api/employees`, options),
@@ -243,7 +265,8 @@ export default handleActions(
       "contracts/UPDATE_CONTRACT_SUCCESS",
       "contracts/DECLINE_CONTRACT_SUCCESS",
       "contracts/APPROVE_CONTRACT_SUCCESS",
-      "contracts/SIGN_NHS_CONTRACT_SUCCESS"
+      "contracts/SIGN_NHS_CONTRACT_SUCCESS",
+      "contracts/TERMINATE_CONTRACT_SUCCESS"
     )]: (state, action) => ({
       ...state,
       [action.payload.result]: {

@@ -5,21 +5,34 @@ import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 
 import ContractDetail from "containers/blocks/ContractDetail";
+import TerminateContractForm from "containers/forms/TerminateContractForm";
 
 import { getContract } from "reducers";
+import { terminateContract } from "redux/contracts";
+
 import { hasScope } from "helpers/scope";
 
 import { fetchContract, getContractPrintoutContent } from "./redux";
 
 class ContractDetailsPage extends React.Component {
   render() {
-    const { contract = {} } = this.props;
+    const {
+      contract = {},
+      getContractPrintoutContent,
+      terminateContract
+    } = this.props;
     return (
       <div id="contract-detail-page">
         <ContractDetail
           contract={contract}
           getPrintoutContent={getContractPrintoutContent}
         />
+        {contract.status === "VERIFIED" && (
+          <TerminateContractForm
+            id={contract.id}
+            terminateContract={terminateContract}
+          />
+        )}
       </div>
     );
   }
@@ -35,6 +48,6 @@ export default compose(
     (state, { params: { id } }) => ({
       contract: getContract(state, id)
     }),
-    { getContractPrintoutContent }
+    { getContractPrintoutContent, terminateContract }
   )
 )(ContractDetailsPage);
