@@ -106,6 +106,14 @@ export default class SearchForm extends Component {
                 </Button>
               </div>
             </div>
+            <div
+              className={styles.overlay}
+              onClick={() =>
+                this.setState(({ showDetailedItems }) => ({
+                  showDetailedItems: !showDetailedItems
+                }))
+              }
+            />
           </div>
         )}
       </SearchFormContainer>

@@ -16,18 +16,19 @@
   margin: -50px 0 0 0;
   background-color: #fff;
   user-select: none;
-  &:after {
-    position: absolute;
-    top: 100%;
-    bottom: 0;
-    right: -1px;
-    left: -1px;
-    margin-top: 1px;
-    height: 1000px;
-    background: #fff;
-    opacity: 0.9;
-    content: "";
-  }
+}
+
+.overlay {
+  position: absolute;
+  top: 100%;
+  bottom: 0;
+  right: -1px;
+  left: -1px;
+  margin-top: 1px;
+  height: 1000px;
+  background: #fff;
+  opacity: 0.9;
+  content: "";
 }
 
 .buttonGroup {
