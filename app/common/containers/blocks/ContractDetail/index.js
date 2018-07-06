@@ -438,7 +438,10 @@ class ContractDetail extends React.Component {
                 <div className={styles.docLinkWrapper} key={i}>
                   <Icon name="pdf" />
                   <a className={styles.docLink} href={item.url} target="_blank">
-                    {item.type}
+                    <DictionaryValue
+                      dictionary="CONTRACT_DOCUMENT"
+                      value={item.type}
+                    />
                   </a>
                 </div>
               ))}
