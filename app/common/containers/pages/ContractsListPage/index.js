@@ -18,6 +18,7 @@ import SearchForm from "containers/forms/SearchForm";
 import SearchFilterField from "containers/forms/SearchFilterField";
 import SelectFilterField from "containers/forms/SelectFilterField";
 import DateFilterField from "containers/forms/DateFilterField";
+import CheckboxFilterField from "containers/forms/CheckboxFilterField";
 
 import { getContracts } from "reducers";
 import uuidValidate from "helpers/validators/uuid-validate";
@@ -45,6 +46,12 @@ const SEARCH_FIELDS = [
         validate: uuidValidate
       }
     ]
+  },
+  {
+    component: CheckboxFilterField,
+    title: "Призупинений",
+    name: "is_suspended",
+    fullWidth: true
   },
   {
     component: SearchFilterField,
@@ -194,7 +201,8 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             contractor_legal_entity_id,
             start_date,
             end_date,
-            status
+            status,
+            is_suspended
           }) => ({
             id,
             legalEntityId: contractor_legal_entity_id,
@@ -203,7 +211,8 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             endDate: format(end_date, DATE_FORMAT),
             status: status && (
               <ColoredText color={CONTRACT_STATUS[status].color}>
-                {CONTRACT_STATUS[status].title}
+                {CONTRACT_STATUS[status].title}{" "}
+                {is_suspended && "та призупинений"}
               </ColoredText>
             ),
             action: (

@@ -67,7 +67,7 @@ export const fetchContractRequest = id =>
     types: [
       "contracts/FETCH_DETAILS_REQUEST",
       {
-        type: "contracts/FETCH_DETAILS_SUCCESS",
+        type: "contracts/FETCH_CONTRACT_REQUEST_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res
             .clone()
@@ -93,7 +93,7 @@ export const fetchContract = id =>
     types: [
       "contracts/FETCH_DETAILS_REQUEST",
       {
-        type: "contracts/FETCH_DETAILS_SUCCESS",
+        type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, contract))
       },
@@ -252,12 +252,19 @@ export default handleActions(
         ...action.meta
       }
     }),
-    "contracts/FETCH_DETAILS_SUCCESS": (state, action) => ({
+    "contracts/FETCH_CONTRACT_REQUEST_DETAILS_SUCCESS": (state, action) => ({
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],
         ...action.payload.entities.contracts[action.payload.result],
-        urgent: [...action.meta]
+        urgent: [...action.meta.documents]
+      }
+    }),
+    "contracts/FETCH_CONTRACT_DETAILS_SUCCESS": (state, action) => ({
+      ...state,
+      [action.payload.result]: {
+        ...state[action.payload.result],
+        ...action.payload.entities.contracts[action.payload.result]
       }
     })
   },
