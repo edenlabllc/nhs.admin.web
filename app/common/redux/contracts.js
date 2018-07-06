@@ -69,7 +69,15 @@ export const fetchContractRequest = id =>
       {
         type: "contracts/FETCH_DETAILS_SUCCESS",
         payload: (action, state, res) =>
-          res.json().then(json => normalize(json.data, contract))
+          res
+            .clone()
+            .json()
+            .then(json => normalize(json.data, contract)),
+        meta: (action, state, res) =>
+          res
+            .clone()
+            .json()
+            .then(json => json.urgent)
       },
       "contractsRequests/FETCH_DETAILS_FAILURE"
     ]
@@ -249,7 +257,7 @@ export default handleActions(
       [action.payload.result]: {
         ...state[action.payload.result],
         ...action.payload.entities.contracts[action.payload.result],
-        ...action.meta
+        urgent: [...action.meta]
       }
     })
   },

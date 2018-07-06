@@ -25,7 +25,7 @@ import { fetchContractRequests } from "./redux";
 
 import { CONTRACT_STATUS } from "helpers/enums";
 
-const DATE_FORMAT = "DD.MM.YYYY hh:mm";
+const DATE_FORMAT = "DD.MM.YYYY";
 
 const SEARCH_FIELDS = [
   {
