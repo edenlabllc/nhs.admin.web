@@ -290,7 +290,10 @@ class ContractForm extends React.Component {
                           nhs_payment_method &&
                           issue_city
                         ) {
-                          signData(data).then(({ signedContent }) => {
+                          signData({
+                            ...data,
+                            next_status: "APPROVED"
+                          }).then(({ signedContent }) => {
                             if (signedContent) {
                               approveContract(id, {
                                 signed_content: signedContent,
@@ -320,6 +323,7 @@ class ContractForm extends React.Component {
                 onSubmit={async values => {
                   const { signedContent } = await signData({
                     ...data,
+                    next_status: "DECLINED",
                     status_reason: values.status_reason
                   });
                   if (signedContent) {
