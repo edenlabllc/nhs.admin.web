@@ -190,6 +190,10 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             title: "Діє по",
             width: 105
           },
+          {
+            key: "suspended",
+            title: "Дія контракту"
+          },
           { key: "status", title: "Статус" },
           { key: "action", title: "Дія", width: 100 }
         ]}
@@ -209,10 +213,10 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
             contractNumber: contract_number,
             startDate: format(start_date, DATE_FORMAT),
             endDate: format(end_date, DATE_FORMAT),
+            suspended: is_suspended && "Призупинено",
             status: status && (
               <ColoredText color={CONTRACT_STATUS[status].color}>
-                {CONTRACT_STATUS[status].title}{" "}
-                {is_suspended && "та призупинений"}
+                {CONTRACT_STATUS[status].title}
               </ColoredText>
             ),
             action: (

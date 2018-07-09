@@ -83,11 +83,12 @@ class ContractDetail extends React.Component {
         <DataList
           list={[
             {
+              name: <b>Дія контракту</b>,
+              value: contract.is_suspended && <b>Призупинено</b>
+            },
+            {
               name: "Статус запиту",
-              value: contract.status && [
-                CONTRACT_STATUS[contract.status].title,
-                contract.is_suspended && " та призупинений"
-              ]
+              value: contract.status && CONTRACT_STATUS[contract.status].title
             },
             {
               name: "Номер контракту",

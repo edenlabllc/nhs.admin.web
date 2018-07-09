@@ -14,6 +14,17 @@ export default class SignContract extends React.Component {
       }
     }
   }
+  componentDidMount() {
+    const { contract } = this.props;
+    /*Ugly ugly hack. We need to modify backend to avoid this*/
+    delete contract.urgent;
+    delete contract.contract_id;
+    delete contract.contractor_legal_entity_id;
+    delete contract.contractor_owner_id;
+    delete contract.nhs_legal_entity_id;
+    delete contract.nhs_signer_id;
+    delete contract.status_reason;
+  }
   render() {
     const {
       contract,
@@ -22,7 +33,7 @@ export default class SignContract extends React.Component {
       isOpenedSignForm,
       openSignForm
     } = this.props;
-    delete contract.urgent;
+
     return (
       <div>
         <Button
