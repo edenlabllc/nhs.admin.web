@@ -95,13 +95,21 @@ export const fetchContract = id =>
       {
         type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
         payload: (action, state, res) =>
-          res.json().then(json => normalize(json.data, contract))
+          res
+            .clone()
+            .json()
+            .then(json => normalize(json.data, contract)),
+        meta: (action, state, res) =>
+          res
+            .clone()
+            .json()
+            .then(json => json.urgent)
       },
       "contracts/FETCH_DETAILS_FAILURE"
     ]
   });
 
-export const getContractPrintoutContent = id =>
+export const getContractRequestPrintoutContent = id =>
   invoke({
     endpoint: createUrl(
       `${API_URL}/api/contract_requests/${id}/printout_content/`
@@ -113,7 +121,25 @@ export const getContractPrintoutContent = id =>
     types: [
       "contracts/FETCH_DETAILS_REQUEST",
       {
-        type: "contracts/FETCH_DETAILS_SUCCESS",
+        type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
+        payload: (action, state, res) =>
+          res.json().then(json => normalize(json.data, contract))
+      },
+      "contracts/FETCH_DETAILS_FAILURE"
+    ]
+  });
+
+export const getContractPrintoutContent = id =>
+  invoke({
+    endpoint: createUrl(`${API_URL}/api/contracts/${id}/printout_content/`),
+    method: "GET",
+    headers: {
+      "content-type": "application/json"
+    },
+    types: [
+      "contracts/FETCH_DETAILS_REQUEST",
+      {
+        type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, contract))
       },
@@ -287,7 +313,8 @@ export default handleActions(
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],
-        ...action.payload.entities.contracts[action.payload.result]
+        ...action.payload.entities.contracts[action.payload.result],
+        urgent: [...action.meta.documents]
       }
     })
   },

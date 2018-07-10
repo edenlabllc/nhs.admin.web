@@ -12,7 +12,10 @@ import ContractForm from "containers/forms/ContractForm";
 import { getContract } from "reducers";
 import { updateContract, signNhs } from "redux/contracts";
 
-import { fetchContractRequest, getContractPrintoutContent } from "./redux";
+import {
+  fetchContractRequest,
+  getContractRequestPrintoutContent
+} from "./redux";
 
 class ContractRequestsDetailsPage extends React.Component {
   state = {
@@ -22,7 +25,7 @@ class ContractRequestsDetailsPage extends React.Component {
     if (!this.props.contract) return null;
     const {
       contract,
-      getContractPrintoutContent,
+      getContractRequestPrintoutContent,
       updateContract,
       params: { id }
     } = this.props;
@@ -37,8 +40,9 @@ class ContractRequestsDetailsPage extends React.Component {
       <div id="contract-detail-page">
         <ContractDetail
           contract={contract}
-          getPrintoutContent={getContractPrintoutContent}
+          getPrintoutContent={getContractRequestPrintoutContent}
           isOpenSignForm={this.state.isOpenSignForm}
+          type="contractRequest"
         />
         {contract.status === "NEW" && (
           <ContractForm
@@ -60,7 +64,7 @@ class ContractRequestsDetailsPage extends React.Component {
             signNhs={this.props.signNhs}
             openSignForm={this.openSignForm}
             isOpenedSignForm={this.state.isOpenSignForm}
-            getPrintoutContent={getContractPrintoutContent}
+            getPrintoutContent={getContractRequestPrintoutContent}
           />
         )}
       </div>
@@ -83,6 +87,6 @@ export default compose(
     (state, { params: { id } }) => ({
       contract: getContract(state, id)
     }),
-    { getContractPrintoutContent, updateContract, signNhs }
+    { getContractRequestPrintoutContent, updateContract, signNhs }
   )
 )(ContractRequestsDetailsPage);

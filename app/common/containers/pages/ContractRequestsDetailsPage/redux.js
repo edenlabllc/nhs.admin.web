@@ -7,7 +7,7 @@ export const showContract = createAction(
 );
 
 export const getContract = createAction(
-  "getContractPrintoutContent/GET_CONTRACT"
+  "getContractRequestPrintoutContent/GET_CONTRACT"
 );
 
 export const fetchContractRequest = id => dispatch =>
@@ -16,8 +16,8 @@ export const fetchContractRequest = id => dispatch =>
     return dispatch(showContract(action.payload.result));
   });
 
-export const getContractPrintoutContent = id => dispatch =>
-  dispatch(fromContracts.getContractPrintoutContent(id)).then(action => {
+export const getContractRequestPrintoutContent = id => dispatch =>
+  dispatch(fromContracts.getContractRequestPrintoutContent(id)).then(action => {
     if (action.error) throw action;
     return dispatch(getContract(action.payload.result));
   });

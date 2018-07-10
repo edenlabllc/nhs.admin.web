@@ -5,7 +5,7 @@ import * as fromContracts from "redux/contracts";
 export const showContract = createAction("contractDetailsPage/SHOW_CONTRACT");
 
 export const getContract = createAction(
-  "getContractPrintoutContent/GET_CONTRACT"
+  "getContractRequestPrintoutContent/GET_CONTRACT"
 );
 export const fetchContract = id => dispatch =>
   dispatch(fromContracts.fetchContract(id)).then(action => {
