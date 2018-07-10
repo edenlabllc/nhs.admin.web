@@ -41,7 +41,9 @@ export default class SignContract extends React.Component {
           color="orange"
           type="button"
           onClick={() => {
-            getPrintoutContent(contract.id);
+            if (!isOpenedSignForm) {
+              getPrintoutContent(contract.id);
+            }
             openSignForm();
           }}
         >

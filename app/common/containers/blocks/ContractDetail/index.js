@@ -22,21 +22,30 @@ import { CONTRACT_STATUS } from "helpers/enums";
 
 import styles from "./styles.scss";
 
+const PrintLink = ({ action, printoutContent, id }) => (
+  <div className={styles.link}>
+    <span onClick={() => action(id || printoutContent)}>
+      Дивитись друковану форму
+    </span>
+  </div>
+);
+
 class ContractDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const { contract: { status } } = this.props;
+    const { contract: { status }, type } = this.props;
     if (
-      !nextProps.isOpenSignForm &&
-      !this.props.isOpenSignForm &&
-      nextProps.contract.printout_content &&
-      status === "PENDING_NHS_SIGN"
+      (!nextProps.isOpenSignForm &&
+        !this.props.isOpenSignForm &&
+        nextProps.contract.printout_content &&
+        status === "PENDING_NHS_SIGN") ||
+      (nextProps.contract.printout_content && type === "contract")
     ) {
       printIframe(nextProps.contract.printout_content);
     }
   }
   render() {
     if (!this.props.contract) return null;
-    const { contract = {}, getPrintoutContent, router } = this.props;
+    const { contract = {}, getPrintoutContent, router, type } = this.props;
     const fullName = obj =>
       [obj.last_name, obj.first_name, obj.second_name].join(" ");
 
@@ -63,23 +72,22 @@ class ContractDetail extends React.Component {
         </BackLink>
 
         <Line />
-        {contract.status === "SIGNED" ||
-        contract.status === "NHS_SIGNED" ||
-        contract.status === "PENDING_NHS_SIGN" ? (
-          contract.status === "NHS_SIGNED" || contract.status === "SIGNED" ? (
-            <div className={styles.link}>
-              <span onClick={() => printIframe(contract.printout_content)}>
-                Дивитись друковану форму
-              </span>
-            </div>
-          ) : (
-            <div className={styles.link}>
-              <span onClick={() => getPrintoutContent(contract.id)}>
-                Дивитись друковану форму
-              </span>
-            </div>
-          )
-        ) : null}
+        {type === "contractRequest" ? (
+          contract.status === "SIGNED" ||
+          contract.status === "NHS_SIGNED" ||
+          contract.status === "PENDING_NHS_SIGN" ? (
+            contract.status === "NHS_SIGNED" || contract.status === "SIGNED" ? (
+              <PrintLink
+                action={printIframe}
+                printoutContent={contract.printout_content}
+              />
+            ) : (
+              <PrintLink action={getPrintoutContent} id={contract.id} />
+            )
+          ) : null
+        ) : (
+          <PrintLink action={getPrintoutContent} id={contract.id} />
+        )}
         <DataList
           list={[
             {

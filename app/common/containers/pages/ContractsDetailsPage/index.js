@@ -25,6 +25,7 @@ class ContractDetailsPage extends React.Component {
       <div id="contract-detail-page">
         <ContractDetail
           contract={contract}
+          type="contract"
           getPrintoutContent={getContractPrintoutContent}
         />
         {contract.status === "VERIFIED" && (
