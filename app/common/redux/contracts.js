@@ -119,13 +119,13 @@ export const getContractRequestPrintoutContent = id =>
       "content-type": "application/json"
     },
     types: [
-      "contracts/FETCH_DETAILS_REQUEST",
+      "contracts/FETCH_PRINT_REQUEST",
       {
-        type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
+        type: "contracts/FETCH_PRINT_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, contract))
       },
-      "contracts/FETCH_DETAILS_FAILURE"
+      "contracts/FETCH_PRINT_FAILURE"
     ]
   });
 
@@ -137,13 +137,13 @@ export const getContractPrintoutContent = id =>
       "content-type": "application/json"
     },
     types: [
-      "contracts/FETCH_DETAILS_REQUEST",
+      "contracts/FETCH_PRINT_REQUEST",
       {
-        type: "contracts/FETCH_CONTRACT_DETAILS_SUCCESS",
+        type: "contracts/FETCH_PRINT_DETAILS_SUCCESS",
         payload: (action, state, res) =>
           res.json().then(json => normalize(json.data, contract))
       },
-      "contracts/FETCH_DETAILS_FAILURE"
+      "contracts/FETCH_PRINT_FAILURE"
     ]
   });
 
@@ -301,7 +301,10 @@ export default handleActions(
         ...action.meta
       }
     }),
-    "contracts/FETCH_CONTRACT_REQUEST_DETAILS_SUCCESS": (state, action) => ({
+    [combineActions(
+      "contracts/FETCH_CONTRACT_REQUEST_DETAILS_SUCCESS",
+      "contracts/FETCH_CONTRACT_DETAILS_SUCCESS"
+    )]: (state, action) => ({
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],
@@ -309,12 +312,11 @@ export default handleActions(
         urgent: [...action.meta.documents]
       }
     }),
-    "contracts/FETCH_CONTRACT_DETAILS_SUCCESS": (state, action) => ({
+    "contracts/FETCH_PRINT_DETAILS_SUCCESS": (state, action) => ({
       ...state,
       [action.payload.result]: {
         ...state[action.payload.result],
-        ...action.payload.entities.contracts[action.payload.result],
-        urgent: [...action.meta.documents]
+        ...action.payload.entities.contracts[action.payload.result]
       }
     })
   },
