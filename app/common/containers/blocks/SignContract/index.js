@@ -6,6 +6,9 @@ import Button from "components/Button";
 import styles from "./styles.scss";
 
 export default class SignContract extends React.Component {
+  state = {
+    contract: {}
+  };
   componentWillReceiveProps(nextProps) {
     if (nextProps.contract && nextProps.contract.printout_content) {
       const contractFrame = window.frames["contract"];
@@ -24,16 +27,16 @@ export default class SignContract extends React.Component {
     delete contract.nhs_legal_entity_id;
     delete contract.nhs_signer_id;
     delete contract.status_reason;
+    this.setState({ contract });
   }
   render() {
     const {
-      contract,
       getPrintoutContent,
       signNhs,
       isOpenedSignForm,
       openSignForm
     } = this.props;
-
+    const { contract } = this.state;
     return (
       <div>
         <Button
