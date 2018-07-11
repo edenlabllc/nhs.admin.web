@@ -16,6 +16,12 @@ export default class SignContract extends React.Component {
         contractFrame.document.write(nextProps.contract.printout_content);
       }
     }
+    this.setState({
+      contract: {
+        ...this.props.contract,
+        printout_content: nextProps.contract.printout_content
+      }
+    });
   }
   componentDidMount() {
     const { contract } = this.props;
