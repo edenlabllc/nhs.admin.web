@@ -16,16 +16,16 @@ export default class SignContract extends React.Component {
         contractFrame.document.write(nextProps.contract.printout_content);
       }
     }
-    this.setState({
+    this.setState(({ contract }) => ({
       contract: {
-        ...this.props.contract,
+        ...contract,
         printout_content: nextProps.contract.printout_content
       }
-    });
+    }));
   }
   componentDidMount() {
     const { contract } = this.props;
-    /*Ugly ugly hack. We need to modify backend to avoid this*/
+    /*TODO: Ugly ugly hack. We need to modify backend to avoid this*/
     delete contract.urgent;
     delete contract.contract_id;
     delete contract.contractor_legal_entity_id;
