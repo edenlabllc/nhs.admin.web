@@ -48,8 +48,13 @@ const PrintLink = ({
 
 class ContractDetail extends React.Component {
   componentWillMount() {
-    const { contract: { id }, getPrintoutContent } = this.props;
-    getPrintoutContent(id);
+    const { contract: { id, status }, getPrintoutContent, type } = this.props;
+    if (
+      type === "contract" ||
+      (type === "contractRequest" && status === "PENDING_NHS_SIGN")
+    ) {
+      getPrintoutContent(id);
+    }
   }
   render() {
     if (!this.props.contract) return null;
