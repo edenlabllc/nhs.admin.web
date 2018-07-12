@@ -22,26 +22,34 @@ import { CONTRACT_STATUS } from "helpers/enums";
 
 import styles from "./styles.scss";
 
-const PrintLink = ({ action, printoutContent, id }) => (
-  <div className={styles.link}>
-    <span onClick={() => action(id || printoutContent)}>
-      Дивитись друковану форму
-    </span>
-  </div>
-);
+const PrintLink = ({
+  printIframe,
+  printoutContent,
+  id,
+  getPrintoutContent
+}) => {
+  if (printoutContent) {
+    return (
+      <div className={styles.link}>
+        <span onClick={() => printIframe(printoutContent)}>
+          Дивитись друковану форму
+        </span>
+      </div>
+    );
+  }
+  return (
+    <div className={styles.link}>
+      <span onClick={() => getPrintoutContent(id)}>
+        Дивитись друковану форму
+      </span>
+    </div>
+  );
+};
 
 class ContractDetail extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    const { contract: { status }, type } = this.props;
-    if (
-      (!nextProps.isOpenSignForm &&
-        !this.props.isOpenSignForm &&
-        nextProps.contract.printout_content &&
-        status === "PENDING_NHS_SIGN") ||
-      (nextProps.contract.printout_content && type === "contract")
-    ) {
-      printIframe(nextProps.contract.printout_content);
-    }
+  componentWillMount() {
+    const { contract: { id }, getPrintoutContent } = this.props;
+    getPrintoutContent(id);
   }
   render() {
     if (!this.props.contract) return null;
@@ -78,11 +86,16 @@ class ContractDetail extends React.Component {
           contract.status === "PENDING_NHS_SIGN" ? (
             contract.status === "NHS_SIGNED" || contract.status === "SIGNED" ? (
               <PrintLink
-                action={printIframe}
+                printIframe={printIframe}
                 printoutContent={contract.printout_content}
               />
             ) : (
-              <PrintLink action={getPrintoutContent} id={contract.id} />
+              <PrintLink
+                printIframe={printIframe}
+                getPrintoutContent={getPrintoutContent}
+                id={contract.id}
+                printoutContent={contract.printout_content}
+              />
             )
           ) : null
         ) : (
