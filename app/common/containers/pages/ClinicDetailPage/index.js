@@ -60,7 +60,8 @@ export default class ClinicDetailPage extends React.Component {
   }
 
   render() {
-    const { clinic = {}, t } = this.props;
+    const { clinic, t } = this.props;
+    if (!clinic) return null;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
     return (
@@ -122,7 +123,7 @@ export default class ClinicDetailPage extends React.Component {
                 value: (
                   <div>
                     {clinic.kveds.map((name, key) => (
-                      <p>
+                      <p key={key}>
                         <DictionaryValue
                           dictionary="KVEDS"
                           value={name}
