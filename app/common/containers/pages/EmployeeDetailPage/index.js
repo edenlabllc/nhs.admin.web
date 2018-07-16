@@ -38,7 +38,7 @@ export default class EmployeeDetailPage extends React.Component {
         start_date,
         end_date,
         position,
-        doctor,
+        doctor = "",
         party: {
           id: partyId,
           last_name,
