@@ -9,6 +9,9 @@ import DataList from "components/DataList";
 
 import BackLink from "containers/blocks/BackLink";
 import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
+
+import styles from "./style.scss";
 
 const DivisionEmployeesPage = ({ contract, router, divisionId }) => {
   if (!contract) return null;
@@ -44,7 +47,21 @@ const DivisionEmployeesPage = ({ contract, router, divisionId }) => {
               },
               {
                 name: "ID",
-                value: i.employee.id
+                value: (
+                  <div className={styles.row}>
+                    <div>{i.employee.id}</div>
+                    <ShowWithScope scope="employee:read">
+                      <div className={styles.right}>
+                        <BackLink
+                          iconPosition="right"
+                          to={`/employees/${i.employee.id}`}
+                        >
+                          Перейти до працівника
+                        </BackLink>
+                      </div>
+                    </ShowWithScope>
+                  </div>
+                )
               },
               {
                 name: "Спеціальність",
