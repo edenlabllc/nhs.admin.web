@@ -17,6 +17,7 @@ import BackLink from "containers/blocks/BackLink";
 import ShowMore from "containers/blocks/ShowMore";
 import AddressesList from "containers/blocks/AddressesList";
 import DictionaryValue from "containers/blocks/DictionaryValue";
+import ShowWithScope from "containers/blocks/ShowWithScope";
 
 import { CONTRACT_STATUS } from "helpers/enums";
 
@@ -144,7 +145,23 @@ class ContractDetail extends React.Component {
                 list={[
                   {
                     name: "ID медзакладу",
-                    value: contract.contractor_legal_entity.id
+                    value: (
+                      <div className={styles.row}>
+                        <div>{contract.contractor_legal_entity.id}</div>
+                        <ShowWithScope scope="legal_entity:read">
+                          <div className={styles.right}>
+                            <BackLink
+                              iconPosition="right"
+                              to={`/clinics/${
+                                contract.contractor_legal_entity.id
+                              }`}
+                            >
+                              Перейти до медичного закладу
+                            </BackLink>
+                          </div>
+                        </ShowWithScope>
+                      </div>
+                    )
                   },
                   {
                     name: "Назва",
@@ -196,7 +213,21 @@ class ContractDetail extends React.Component {
                 list={[
                   {
                     name: "ID підписанта",
-                    value: contract.contractor_owner.id
+                    value: (
+                      <div className={styles.row}>
+                        <div>{contract.contractor_owner.id}</div>
+                        <ShowWithScope scope="employee:read">
+                          <div className={styles.right}>
+                            <BackLink
+                              iconPosition="right"
+                              to={`/employees/${contract.contractor_owner.id}`}
+                            >
+                              Перейти до працівника
+                            </BackLink>
+                          </div>
+                        </ShowWithScope>
+                      </div>
+                    )
                   },
                   {
                     name: "Повне і'мя",
@@ -369,12 +400,26 @@ class ContractDetail extends React.Component {
                   },
                   {
                     name: "Заклад",
-                    value: (
-                      <div>
-                        {fec.legal_entity_name && (
-                          <div>{fec.legal_entity_name}</div>
-                        )}
-                        <div>ID {fec.legal_entity_id}</div>
+                    value: fec.legal_entity_id && (
+                      <div className={styles.row}>
+                        <div>
+                          <div>
+                            {fec.legal_entity_name && (
+                              <div>{fec.legal_entity_name}</div>
+                            )}
+                            <div>ID {fec.legal_entity_id}</div>
+                          </div>
+                        </div>
+                        <ShowWithScope scope="legal_entity:read">
+                          <div className={styles.right}>
+                            <BackLink
+                              iconPosition="right"
+                              to={`/clinics/${fec.legal_entity_id}`}
+                            >
+                              Перейти до медичного закладу
+                            </BackLink>
+                          </div>
+                        </ShowWithScope>
                       </div>
                     )
                   }
@@ -541,9 +586,21 @@ class ContractDetail extends React.Component {
                   {
                     name: "Підписант зі сторони замовника",
                     value: (
-                      <div>
-                        <div>{fullName(contract.nhs_signer.party)}</div>
-                        <div>ID {contract.nhs_signer.id}</div>
+                      <div className={styles.row}>
+                        <div>
+                          <div>{fullName(contract.nhs_signer.party)}</div>
+                          <div>ID {contract.nhs_signer.id}</div>
+                        </div>
+                        <ShowWithScope scope="employee:read">
+                          <div className={styles.right}>
+                            <BackLink
+                              iconPosition="right"
+                              to={`/employees/${contract.nhs_signer.id}`}
+                            >
+                              Перейти до працівника
+                            </BackLink>
+                          </div>
+                        </ShowWithScope>
                       </div>
                     )
                   },
