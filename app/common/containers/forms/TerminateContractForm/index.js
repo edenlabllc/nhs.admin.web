@@ -1,6 +1,7 @@
 import React from "react";
 import { compose } from "redux";
 import { reduxForm, Field } from "redux-form";
+import { reduxFormValidate } from "react-nebo15-validate";
 
 import Button from "components/Button";
 import FieldTextarea from "components/reduxForm/FieldTextarea";
@@ -24,7 +25,7 @@ const TerminateFormView = ({
           <Field
             name="status_reason"
             component={FieldTextarea}
-            placeholder="Будь ласка, вкажіть причину"
+            placeholder="Будь ласка, вкажіть причину (обов’язкове поле)"
           />
         </div>
       </div>
@@ -51,7 +52,12 @@ const TerminateFormView = ({
 
 const TerminateForm = compose(
   reduxForm({
-    form: "contract-terminate-form"
+    form: "contract-terminate-form",
+    validate: reduxFormValidate({
+      status_reason: {
+        required: true
+      }
+    })
   })
 )(TerminateFormView);
 
