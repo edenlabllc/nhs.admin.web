@@ -175,7 +175,7 @@ export default class EmployeeDetailPage extends React.Component {
               icon="back"
               block
             >
-              {t("Back to list")}
+              Повернутися
             </Button>
           </div>
         </div>
