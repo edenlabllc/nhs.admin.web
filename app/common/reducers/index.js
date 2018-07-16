@@ -21,13 +21,15 @@ import black_list_users from "redux/black-list-users";
 import party_users from "redux/party-users";
 import registers from "redux/registers";
 import register_entries from "redux/register-entries";
+import capitation_reports from "redux/capitation-reports";
+import capitation_reports_list from "redux/capitation-reports-list";
 
 import {
   globalStat,
   detailStat,
   declarationsStat,
   reports
-} from "redux/reports";
+} from "redux/dashboard";
 
 import configuration from "redux/configuration";
 import innms from "redux/innms";
@@ -56,6 +58,8 @@ import ContractsListPage from "containers/pages/ContractsListPage/redux";
 import ContractsDetailsPage from "containers/pages/ContractsDetailsPage/redux";
 import ContractRequestsListPage from "containers/pages/ContractRequestsListPage/redux";
 import ContractRequestsDetailsPage from "containers/pages/ContractRequestsDetailsPage/redux";
+
+import ReportsListPage from "containers/pages/ReportsListPage/redux";
 
 import EmployeesListPage from "containers/pages/EmployeesListPage/redux";
 import EmployeeDetailPage from "containers/pages/EmployeeDetailPage/redux";
@@ -116,6 +120,8 @@ const pages = combineReducers({
   ContractRequestsListPage,
   ContractRequestsDetailsPage,
 
+  ReportsListPage,
+
   PendingEmployeesListPage,
   PendingEmployeeDetailPage,
 
@@ -171,6 +177,8 @@ const data = combineReducers({
 
   configuration,
   reports,
+  capitation_reports,
+  capitation_reports_list,
 
   innms,
   innm_dosages,
@@ -271,6 +279,11 @@ export const getDeclarationsStatByArea = (state, id) =>
 export const getConfiguration = state => state.data.configuration;
 
 export const getReports = state => state.data.reports;
+
+export const getCapitationReports = (state, ids) =>
+  denormalize(ids, [schemas.capitation_report], state.data);
+export const getCapitationReportsList = (state, ids) =>
+  denormalize(ids, [schemas.capitation_reports_list], state.data);
 
 export const getInnms = (state, ids) =>
   denormalize(ids, [schemas.innm], state.data);
