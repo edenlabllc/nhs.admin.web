@@ -1,29 +1,81 @@
 import React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
-import { H1 } from "components/Title";
-
+import ShowBy from "containers/blocks/ShowBy";
+import SearchForm from "containers/forms/SearchForm";
+import SearchFilterField from "containers/forms/SearchFilterField";
+import SelectFilterField from "containers/forms/SelectFilterField";
 import ReportsList from "containers/blocks/ReportsList";
 
-import { getReports } from "reducers";
+import { H1, H2 } from "components/Title";
+import { ListShowBy } from "components/List";
 
-import { fetchReports } from "redux/reports";
+import { getCapitationReports, getCapitationReportsList } from "reducers";
+import { fetchCapitationReports, fetchCapitationReportsList } from "./redux";
+import uuidValidate from "helpers/validators/uuid-validate";
 
-@withRouter
-@translate()
-@provideHooks({
-  fetch: ({ dispatch }) => dispatch(fetchReports())
-})
-@connect(state => ({
-  reports: getReports(state)
-}))
-export default class ReportsListPage extends React.Component {
+class ReportsListPage extends React.Component {
+  searchFields = () => {
+    const selectArray = [];
+    this.props.capitation_reports_list.map(item => {
+      selectArray.push({ title: item.billing_date, name: item.id });
+    });
+    return [
+      {
+        component: SearchFilterField,
+        filters: [
+          {
+            name: "edrpou",
+            title: "За ЄДРПОУ"
+          },
+          {
+            name: "report_id",
+            title: "За ID звіту",
+            validate: uuidValidate
+          }
+        ]
+      },
+      {
+        component: SearchFilterField,
+        detailed: true,
+        hasSelect: false,
+        labelText: "За ЄДРПОУ",
+        placeholder: "Введіть ЄДРПОУ",
+        filters: [
+          {
+            name: "edrpou"
+          }
+        ]
+      },
+      {
+        component: SearchFilterField,
+        detailed: true,
+        hasSelect: false,
+        labelText: "За ID звіту",
+        placeholder: "Введіть ID",
+        filters: [
+          {
+            name: "report_id",
+            validate: uuidValidate
+          }
+        ]
+      },
+      {
+        component: SelectFilterField,
+        labelText: "За датою",
+        placeholder: "2018-07-01",
+        name: "report_id",
+        options: selectArray,
+        detailed: true
+      }
+    ];
+  };
   render() {
-    const { reports = [], t } = this.props;
+    const { capitation_reports = [], t, paging = {}, location } = this.props;
 
     return (
       <div id="clinics-list-page">
@@ -34,8 +86,43 @@ export default class ReportsListPage extends React.Component {
 
         <H1>{t("Reports")}</H1>
 
-        <ReportsList reports={reports} />
+        <div>
+          <H2>Пошук звітів</H2>
+          <SearchForm fields={this.searchFields()} location={location} />
+        </div>
+
+        <ListShowBy>
+          <ShowBy location={location} />
+        </ListShowBy>
+
+        <ReportsList
+          reports={capitation_reports}
+          paging={paging}
+          location={location}
+        />
       </div>
     );
   }
 }
+
+export default compose(
+  translate(),
+  provideHooks({
+    fetch: ({ dispatch, location: { query } }) =>
+      Promise.all([
+        dispatch(fetchCapitationReports({ page_size: 5, ...query })),
+        dispatch(fetchCapitationReportsList({}))
+      ])
+  }),
+  connect(state => ({
+    ...state.pages.ReportsListPage,
+    capitation_reports: getCapitationReports(
+      state,
+      state.pages.ReportsListPage.capitation_reports
+    ),
+    capitation_reports_list: getCapitationReportsList(
+      state,
+      state.pages.ReportsListPage.capitation_reports_list
+    )
+  }))
+)(ReportsListPage);

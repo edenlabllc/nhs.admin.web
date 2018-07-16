@@ -47,7 +47,7 @@ const PopupComponent = ({
 );
 
 PopupComponent.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.element,
   active: PropTypes.bool,
   theme: PropTypes.oneOf(["error", "success"]),
   onClose: PropTypes.func,

@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import { handleAction, createAction } from "redux-actions";
-import * as fromReports from "redux/reports";
+import * as fromDashboard from "redux/dashboard";
 
 export const showGlobalStat = createAction("dashboardPage/SHOW_GLOBAL");
 export const showDetailStat = createAction("dashboardPage/SHOW_DETAIL");
 
 export const fetchGlobalStat = () => dispatch =>
   dispatch(
-    fromReports.fetchGlobalStat({
+    fromDashboard.fetchGlobalStat({
       from_date: new Date(2015, 6, 1),
       to_date: new Date()
     })
@@ -17,7 +17,7 @@ export const fetchGlobalStat = () => dispatch =>
   });
 
 export const fetchDetailStat = () => dispatch =>
-  dispatch(fromReports.fetchDetailStat()).then(action => {
+  dispatch(fromDashboard.fetchDetailStat()).then(action => {
     if (action.error) throw action;
     return dispatch(showDetailStat(action.payload.result));
   });
