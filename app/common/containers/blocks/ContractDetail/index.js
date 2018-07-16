@@ -119,6 +119,10 @@ class ContractDetail extends React.Component {
             {
               name: "Номер контракту",
               value: contract.contract_number
+            },
+            {
+              name: "ID контракту",
+              value: contract.id
             }
           ]}
         />
@@ -163,6 +167,29 @@ class ContractDetail extends React.Component {
               <Line />
             </div>
           )}
+          {contract.contractor_payment_details && (
+            <div>
+              <H1>Реквізити надавача</H1>
+
+              <DataList
+                list={[
+                  {
+                    name: "Розрахунковий рахунок",
+                    value: contract.contractor_payment_details.payer_account
+                  },
+                  {
+                    name: "Назва банку",
+                    value: contract.contractor_payment_details.bank_name
+                  },
+                  {
+                    name: "МФО",
+                    value: contract.contractor_payment_details.MFO
+                  }
+                ]}
+              />
+              <Line />
+            </div>
+          )}
           {contract.contractor_owner && (
             <div>
               <DataList
@@ -174,6 +201,10 @@ class ContractDetail extends React.Component {
                   {
                     name: "Повне і'мя",
                     value: fullName(contract.contractor_owner.party)
+                  },
+                  {
+                    name: "Що діє на підставі",
+                    value: contract.contractor_base
                   }
                 ]}
               />
@@ -335,6 +366,17 @@ class ContractDetail extends React.Component {
                     value: `№${fec.contract.number} від ${
                       fec.contract.issued_at
                     } по ${fec.contract.expires_at}`
+                  },
+                  {
+                    name: "Заклад",
+                    value: (
+                      <div>
+                        {fec.legal_entity_name && (
+                          <div>{fec.legal_entity_name}</div>
+                        )}
+                        <div>ID {fec.legal_entity_id}</div>
+                      </div>
+                    )
                   }
                 ]}
               />
@@ -493,8 +535,17 @@ class ContractDetail extends React.Component {
               <DataList
                 list={[
                   {
+                    name: "Замовник",
+                    value: contract.nhs_legal_entity.name
+                  },
+                  {
                     name: "Підписант зі сторони замовника",
-                    value: fullName(contract.nhs_signer.party)
+                    value: (
+                      <div>
+                        <div>{fullName(contract.nhs_signer.party)}</div>
+                        <div>ID {contract.nhs_signer.id}</div>
+                      </div>
+                    )
                   },
                   {
                     name: "Що діє на підставі",

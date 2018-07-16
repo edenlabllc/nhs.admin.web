@@ -32,7 +32,6 @@ export default class SignContract extends React.Component {
     delete contract.contractor_owner_id;
     delete contract.nhs_legal_entity_id;
     delete contract.nhs_signer_id;
-    delete contract.status_reason;
     this.setState({ contract });
   }
   render() {
