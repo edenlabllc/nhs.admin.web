@@ -47,7 +47,7 @@ const PopupComponent = ({
 );
 
 PopupComponent.propTypes = {
-  title: PropTypes.element,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   active: PropTypes.bool,
   theme: PropTypes.oneOf(["error", "success"]),
   onClose: PropTypes.func,
@@ -81,7 +81,7 @@ const AlertComponent = props => {
 };
 
 AlertComponent.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   ok: PropTypes.string,
   active: PropTypes.bool,
   theme: PropTypes.oneOf(["error", "success"]),
@@ -122,7 +122,7 @@ const ConfirmComponent = props => {
 };
 
 ConfirmComponent.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   confirm: PropTypes.string,
   cancel: PropTypes.string,
   active: PropTypes.bool,
