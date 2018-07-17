@@ -53,7 +53,7 @@ msgid "No"
 msgstr "Ні"
 
 msgid "ap."
-msgstr "вул."
+msgstr "кв."
 
 msgid "Region"
 msgstr "Область"

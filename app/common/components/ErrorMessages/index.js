@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import {
   addValidation,
   ErrorMessages,
@@ -12,43 +11,38 @@ import isUrlValid from "helpers/validators/url";
 addValidation("uuid", isUuidValid);
 addValidation("url", isUrlValid);
 
-@translate()
 export default class ErrorMessagesTranslated extends React.Component {
   render() {
-    const { children, t, ...rest } = this.props;
+    const { children, ...rest } = this.props;
     return (
       <ErrorMessages {...rest}>
         {children}
-        <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
-        <ErrorMessage when="email">{t("Invalid email format")}</ErrorMessage>
-        <ErrorMessage when="userName">{t("Invalid surname")}</ErrorMessage>
+        <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+        <ErrorMessage when="email">Невірний формат Email</ErrorMessage>
+        <ErrorMessage when="userName">Невірне прізвище</ErrorMessage>
         <ErrorMessage when="maxLength">
-          {t("Length must be less than <%= params %>")}
+          {`Довжина має бути менше ніж ${this.props.error.maxLength}`}
         </ErrorMessage>
-        <ErrorMessage when="card_number">
-          {t("Invalid card number")}
-        </ErrorMessage>
+        <ErrorMessage when="card_number">Невірний номер карти</ErrorMessage>
         <ErrorMessage when="uniqueCardName">
-          {t("Card with such names already exist")}
+          Карта з такою назвою вже існує
         </ErrorMessage>
         <ErrorMessage when="uniqueCardNumber">
-          {t("Card with such number already exist")}
+          Карта з таким номером вже існує
         </ErrorMessage>
         <ErrorMessage when="cardType">
-          {t("Support only {{types}} cards", {
-            types:
-              this.props.error.cardType && this.props.error.cardType.join(", ")
-          })}
+          {`Ми підтримуємо тільки картки ${this.props.error.cardType &&
+            this.props.error.cardType.join(", ")}`}
         </ErrorMessage>
         <ErrorMessage when="min">
-          {t("Minimal value is <%= params %>")}
+          {`Мінімальне значення ${this.props.error.min}`}
         </ErrorMessage>
         <ErrorMessage when="max">
-          {t("Maximum value is <%= params %>")}
+          {`Максимальне значення ${this.props.error.max}`}
         </ErrorMessage>
 
         <ErrorMessage when="accountPasswordMismatch">
-          {t("Account, password combination is mismatch")}
+          Невірний e-mail або пароль
         </ErrorMessage>
         <ErrorMessage when="uuid">Некоректний формат ID</ErrorMessage>
         <ErrorMessage when="url">Некоректний формат URL</ErrorMessage>
