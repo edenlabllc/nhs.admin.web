@@ -72,7 +72,7 @@ export default class ClinicDetailPage extends React.Component {
         />
 
         <BackLink onClick={() => this.props.router.goBack()}>
-          {t("Back to clinics list")}
+          Повернутися
         </BackLink>
 
         <Line />
@@ -264,7 +264,7 @@ export default class ClinicDetailPage extends React.Component {
                 icon="back"
                 block
               >
-                {t("Back to list")}
+                Повернутися
               </Button>
             </div>
             {!clinic.nhs_verified &&
