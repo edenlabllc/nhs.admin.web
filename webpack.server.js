@@ -1,13 +1,11 @@
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const DashboardPlugin = require("webpack-dashboard/plugin");
 
 const config = require("./webpack.config");
 
 const port = 3030;
 
 const compiler = webpack(config[0]);
-compiler.apply(new DashboardPlugin());
 
 new WebpackDevServer(compiler, {
   publicPath: config[0].output.publicPath,

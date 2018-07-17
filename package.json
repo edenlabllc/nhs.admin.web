@@ -14,7 +14,6 @@
     "prestart": "bin/runtime/inject-env-vars.js && bin/runtime/create-robots-txt.js",
     "start": "node static/server.js",
     "build": "webpack",
-    "stats": "NODE_ENV=production webpack-dashboard -- node webpack.server.js",
     "test": "jest app --silent",
     "test:debug": "jest app --no-cache",
     "e2e": "jest e2e --runInBand",
@@ -151,7 +150,6 @@
     "prettier": "1.8.2",
     "puppeteer": "1.6.0",
     "react-test-renderer": "^16.1.1",
-    "webpack-dashboard": "2.0.0",
     "webpack-dev-server": "2.11.1"
   }
 }
