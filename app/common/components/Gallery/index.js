@@ -15,7 +15,8 @@ const PERSON_TYPE = {
 
 @withStyles(styles)
 @connect(state => ({
-  document_type: getDictionary(state, "DOCUMENT_TYPE")
+  document_type: getDictionary(state, "DOCUMENT_TYPE"),
+  document_relationship_type: getDictionary(state, "DOCUMENT_RELATIONSHIP_TYPE")
 }))
 export default class Gallery extends React.Component {
   state = {
@@ -47,15 +48,23 @@ export default class Gallery extends React.Component {
     });
 
   render() {
-    const { images = [], document_type } = this.props;
+    const {
+      images = [],
+      document_type,
+      document_relationship_type
+    } = this.props;
+    const mergedDocs = {
+      ...document_relationship_type.values,
+      ...document_type.values
+    };
 
     const MERGED_TYPES = {};
     Object.keys(PERSON_TYPE).map(person_type =>
-      Object.keys(document_type.values).map(
+      Object.keys(mergedDocs).map(
         item =>
           (MERGED_TYPES[`${person_type}${item}`] = `${
             PERSON_TYPE[person_type]
-          }${document_type.values[item]}`)
+          }${mergedDocs[item]}`)
       )
     );
     return (
