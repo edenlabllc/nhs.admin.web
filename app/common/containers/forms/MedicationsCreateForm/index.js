@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import {
   reduxFormValidate,
@@ -24,7 +23,6 @@ import RenderIngredient from "./renderIngredient";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "medications-create-form",
   validate: reduxFormValidate({
@@ -139,7 +137,6 @@ export default class MedicationsCreateForm extends React.Component {
       onSubmit = () => {},
       onSearchInnmsDosages = () => {},
       submitting,
-      t,
       disabled = false,
       data,
       values = {}
@@ -183,9 +180,7 @@ export default class MedicationsCreateForm extends React.Component {
                   title: data.medication_form.values[key]
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>
@@ -220,9 +215,7 @@ export default class MedicationsCreateForm extends React.Component {
                     title: i.name
                   }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn align="baseline">
@@ -256,9 +249,7 @@ export default class MedicationsCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="1/3">
@@ -271,9 +262,7 @@ export default class MedicationsCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>
@@ -305,9 +294,7 @@ export default class MedicationsCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="1/3">
@@ -318,9 +305,7 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Кількість"
                 placeholder="30"
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="1/3" align="bottom">
@@ -333,9 +318,7 @@ export default class MedicationsCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>
@@ -348,9 +331,7 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Упаковка кількість"
                 postfix={container__active}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="4/5">
@@ -361,9 +342,7 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Упаковка мінімальна кількість"
                 postfix={container__active}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
               <FormColumn />
             </FormColumn>
@@ -393,7 +372,7 @@ export default class MedicationsCreateForm extends React.Component {
                   title: data.countries.values[key]
                 }))}
             >
-              <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
+              <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
             </Field>
           </FormRow>
           <FormRow>
@@ -403,7 +382,7 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Виробник"
               placeholder="Введіть виробника"
             >
-              <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
+              <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
             </Field>
           </FormRow>
           <div className={styles.title}>&#8548;. Реєстраційне посвідчення</div>
@@ -415,9 +394,7 @@ export default class MedicationsCreateForm extends React.Component {
                 labelText="Номер реєстраційного посвідчення"
                 placeholder="Номер реєстраційного посвідчення"
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>

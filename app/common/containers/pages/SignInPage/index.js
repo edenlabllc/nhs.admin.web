@@ -1,7 +1,6 @@
 import React from "react";
 import withStyles from "withStyles";
 import { withRouter } from "react-router";
-import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
 import { OAUTH_URL, SCOPES, CLIENT_ID, OAUTH_REDIRECT_URL } from "config";
@@ -10,16 +9,15 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 export default class SignInPage extends React.Component {
   render() {
-    const { t, location: { query } } = this.props;
+    const { location: { query } } = this.props;
 
     return (
       <section className={styles.main} id="sign-in-page">
         <Helmet
-          title={t("Sign in")}
-          meta={[{ property: "og:title", content: t("Sign in") }]}
+          title="Вхід"
+          meta={[{ property: "og:title", content: "Вхід" }]}
         />
 
         <div className={styles.main__content}>
@@ -27,9 +25,7 @@ export default class SignInPage extends React.Component {
             <img src="/images/nhs-logo.svg" alt="Logo" />
           </header>
           {query.error && (
-            <section className={styles.error}>
-              {t("Auth error {{code}}", { code: query.error })}
-            </section>
+            <section className={styles.error}>Помилка отримання токена</section>
           )}
           <article className={styles.form}>
             <a
@@ -38,7 +34,7 @@ export default class SignInPage extends React.Component {
                 SCOPES
               }&redirect_uri=${OAUTH_REDIRECT_URL}`}
             >
-              {t("Enter with EHEALTH")}
+              Увійти за допомогою EHEALTH
             </a>
           </article>
         </div>

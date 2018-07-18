@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
@@ -25,33 +24,32 @@ import { fetchDeclarations } from "./redux";
 const PendingDeclarationsListPage = ({
   declarations = [],
   paging = {},
-  location,
-  t
+  location
 }) => (
   <div id="pending-declarations-list-page">
     <Helmet
-      title={t("Pending declarations")}
-      meta={[{ property: "og:title", content: t("Pending declarations") }]}
+      title="Декларації на розгляді"
+      meta={[{ property: "og:title", content: "Декларації на розгляді" }]}
     />
 
-    <H1>{t("Pending declarations")}</H1>
+    <H1>Декларації на розгляді</H1>
 
     <div>
-      <H2>{t("Search declaration")}</H2>
+      <H2>Шукати декларацію</H2>
       <SearchForm
         fields={[
           {
             component: SearchFilterField,
-            labelText: t("Find declaration"),
+            labelText: "Знайти декларацію",
             filters: [
               {
                 name: "employee_id",
-                title: t("By employee id"),
+                title: "За ідентифікатором працівника",
                 validate: uuidValidate
               },
               {
                 name: "legal_entity_id",
-                title: t("By legal entity"),
+                title: "За ID юридичної особи",
                 validate: uuidValidate
               }
             ]
@@ -68,10 +66,10 @@ const PendingDeclarationsListPage = ({
     <ListTable id="declarations-table">
       <Table
         columns={[
-          { key: "person", title: t("Person") },
-          { key: "legalEntity", title: t("Legal entity") },
-          { key: "dates", title: t("Dates"), width: 150 },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "person", title: "Людина" },
+          { key: "legalEntity", title: "Юридична/Фізична особа" },
+          { key: "dates", title: "Дати", width: 150 },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={declarations.map(item => ({
           person: item.person ? (
@@ -87,7 +85,7 @@ const PendingDeclarationsListPage = ({
               {item.legal_entity.name}
               <br />
               <ColoredText color="gray">
-                {t("EDRPOU")}: {item.legal_entity.edrpou}
+                ЕДРПОУ: {item.legal_entity.edrpou}
               </ColoredText>
             </div>
           ) : (
@@ -103,7 +101,7 @@ const PendingDeclarationsListPage = ({
               theme="link"
               to={`/pending-declarations/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -122,7 +120,6 @@ const PendingDeclarationsListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
@@ -12,7 +11,6 @@ import Line from "components/Line";
 import { createMedicalProgram } from "redux/medical-programs";
 
 @withRouter
-@translate()
 @connect(null, { createMedicalProgram })
 export default class MedicalProgramCreatePage extends React.Component {
   render() {

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { reduxForm, Field, FieldArray, getFormValues } from "redux-form";
 import {
   collectionOf,
@@ -24,7 +23,6 @@ import ShowWithScope from "containers/blocks/ShowWithScope";
 
 const getValues = getFormValues("dictionary-form");
 
-@translate()
 @reduxForm({
   form: "dictionary-form",
   validate: reduxFormValidate({
@@ -92,15 +90,15 @@ export default class DictionaryForm extends React.Component {
     return JSON.stringify(values) !== JSON.stringify(this.state.savedValues);
   }
   render() {
-    const { handleSubmit, readOnly, submitting, t } = this.props;
+    const { handleSubmit, readOnly, submitting } = this.props;
 
     return (
       <Form onSubmit={handleSubmit(this.onSubmit)}>
-        <FormBlock title={t("General")}>
+        <FormBlock title="Загальне">
           <FormRow>
             <Field
               name="is_active"
-              labelText={t("Is active")}
+              labelText="Активний"
               component={FieldCheckbox}
               disabled={readOnly}
             />
@@ -117,8 +115,8 @@ export default class DictionaryForm extends React.Component {
             <ButtonsGroup>
               <Button type="submit" disabled={!this.isChanged}>
                 {submitting
-                  ? t("Saving...")
-                  : this.isChanged ? t("Save Dictionary") : t("Saved")}
+                  ? "Збереження..."
+                  : this.isChanged ? "Зберегти словник" : "Збережено"}
               </Button>
             </ButtonsGroup>
           </ShowWithScope>
@@ -128,16 +126,16 @@ export default class DictionaryForm extends React.Component {
   }
 }
 
-const labelFields = translate()(({ fields, readOnly, t }) => (
-  <FormBlock title={t("Labels")}>
+const labelFields = ({ fields, readOnly }) => (
+  <FormBlock title="Мітки">
     {fields.map((item, index) => (
       <FormRow key={index}>
         <FormColumn>
           <Field
             name={item}
-            labelText={index === 0 && t("Name")}
+            labelText={index === 0 && "Назва"}
             component={FieldInput}
-            placeholder={t("Label name")}
+            placeholder="Назва тегу"
             readOnly={readOnly}
           />
         </FormColumn>
@@ -151,7 +149,7 @@ const labelFields = translate()(({ fields, readOnly, t }) => (
                 onClick={() => fields.remove(index)}
                 tabIndex={-1}
               >
-                {t("Remove")}
+                Видалити
               </Button>
             </FormColumn>
           )}
@@ -167,33 +165,33 @@ const labelFields = translate()(({ fields, readOnly, t }) => (
             size="small"
             onClick={() => fields.push()}
           >
-            {t("Add Item")}
+            Додати
           </Button>
         </FormButtons>
       )}
     </ShowWithScope>
   </FormBlock>
-));
+);
 
-const renderFields = translate()(({ fields, readOnly, meta, t }) => (
-  <FormBlock title={t("Values")}>
+const renderFields = ({ fields, readOnly, meta }) => (
+  <FormBlock title="Значення">
     {fields.map((item, index) => (
       <FormRow key={index}>
         <FormColumn>
           <Field
             name={`${item}.key`}
-            labelText={index === 0 && t("Key")}
+            labelText={index === 0 && "Ключ"}
             component={FieldInput}
-            placeholder={t("Item key")}
+            placeholder="Ключ елемента"
             readOnly={readOnly}
           />
         </FormColumn>
         <FormColumn>
           <Field
             name={`${item}.value`}
-            labelText={index === 0 && t("Description")}
+            labelText={index === 0 && "Опис"}
             component={FieldInput}
-            placeholder={t("Item description")}
+            placeholder="Опис елемента"
             readOnly={readOnly}
           />
         </FormColumn>
@@ -207,7 +205,7 @@ const renderFields = translate()(({ fields, readOnly, meta, t }) => (
                 onClick={() => fields.remove(index)}
                 tabIndex={-1}
               >
-                {t("Remove")}
+                Видалити
               </Button>
             </FormColumn>
           )}
@@ -223,7 +221,7 @@ const renderFields = translate()(({ fields, readOnly, meta, t }) => (
             size="small"
             onClick={() => fields.push({})}
           >
-            {t("Add Item")}
+            Додати
           </Button>
         </FormButtons>
       )}
@@ -232,10 +230,10 @@ const renderFields = translate()(({ fields, readOnly, meta, t }) => (
       <FormError>
         <ErrorMessages error={meta.error}>
           <ErrorMessage when="uniqueKey">
-            {t("You have not unique values in key: <%= params %>")}
+            {`Не унікальні значення в ключі: ${meta.error.uniqueKey}`}
           </ErrorMessage>
         </ErrorMessages>
       </FormError>
     )}
   </FormBlock>
-));
+);

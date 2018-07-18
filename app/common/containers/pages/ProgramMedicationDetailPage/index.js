@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
@@ -26,7 +25,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchProgramMedication(id))
 })
@@ -35,7 +33,7 @@ import styles from "./styles.scss";
 }))
 export default class ProgramMedicationDetailPage extends React.Component {
   render() {
-    const { program_medication = {}, t } = this.props;
+    const { program_medication = {} } = this.props;
 
     return (
       <div id="program-medication-detail-page">
@@ -54,7 +52,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
         <div className={styles.row}>
           <div>
             <DataList
-              list={[{ name: t("ID Учасника"), value: program_medication.id }]}
+              list={[{ name: "ID Учасника", value: program_medication.id }]}
             />
           </div>
         </div>
@@ -63,7 +61,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
           <DataList
             list={[
               {
-                name: t("Торгівельне найменування"),
+                name: "Торгівельне найменування",
                 value: (
                   <div>
                     <div>
@@ -85,7 +83,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
                           program_medication.medication.ingredients[0].dosage
                             .denumerator_value
                         } `}
-                        {`${t("містить")}
+                        {`містить
                           ${
                             program_medication.medication.ingredients[0].dosage
                               .numerator_value
@@ -150,7 +148,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t("Медична програма"),
+                  name: "Медична програма",
                   value: (
                     <div>
                       {program_medication.medical_program.name}
@@ -171,7 +169,7 @@ export default class ProgramMedicationDetailPage extends React.Component {
             <DataList
               list={[
                 {
-                  name: t("Сума відшкодування"),
+                  name: "Сума відшкодування",
                   value: (
                     <div>
                       {program_medication.reimbursement.type === "fixed" &&

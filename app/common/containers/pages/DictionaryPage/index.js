@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -15,7 +14,6 @@ import { fetchDictionaries, updateDictionary } from "redux/dictionaries";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { name } }) =>
     dispatch(fetchDictionaries({ name }))
@@ -72,20 +70,20 @@ export default class DictionariesPage extends React.Component {
   }
 
   render() {
-    const { dictionary, params, t } = this.props;
+    const { dictionary, params } = this.props;
 
     return (
       <FormPageWrapper
         id="dictionary-edit-page"
-        title={t("Edit {{name}} dictionary", { name: params.name })}
+        title={`Редагувати ${params.name} словник`}
         back="/dictionaries"
       >
         <Helmet
-          title={t("Edit {{name}} dictionary", { name: params.name })}
+          title={`Редагувати ${params.name} словник`}
           meta={[
             {
               property: "og:title",
-              content: t("Edit {{name}} dictionary", { name: params.name })
+              content: `Редагувати ${params.name} словник`
             }
           ]}
         />

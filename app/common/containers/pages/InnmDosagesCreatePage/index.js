@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
@@ -12,7 +11,6 @@ import { getDictionary, getInnms } from "reducers";
 import { onSubmit, onChangeSearchInnm } from "./redux";
 
 @withRouter
-@translate()
 @connect(
   state => ({
     innms: getInnms(state, state.pages.InnmDosagesCreatePage.innms),
@@ -24,7 +22,6 @@ import { onSubmit, onChangeSearchInnm } from "./redux";
 export default class InnmDosagesCreatePage extends React.Component {
   render() {
     const {
-      t,
       router,
       innms = [],
       medication_unit = [],

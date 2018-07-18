@@ -1,6 +1,5 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { translate } from "react-i18next";
 
 import ErrorMessage from "containers/blocks/ErrorMessage";
 
@@ -13,12 +12,12 @@ const ENV_TITLE = {
   local: "[Local]"
 };
 
-const App = ({ t, children }) => (
+const App = ({ children }) => (
   <div>
     <Helmet
       htmlAttributes={{ lang: "ru", amp: undefined }} // amp takes no value
       titleTemplate={[ENV_TITLE[APP_ENV], "NHS - %s"].filter(Boolean).join(" ")}
-      defaultTitle={t("head-default-title")}
+      defaultTitle="Панель управління"
       link={[
         {
           rel: "apple-touch-icon",
@@ -48,10 +47,10 @@ const App = ({ t, children }) => (
       meta={[
         { charset: "utf-8" },
         { name: "format-detection", content: "telephone=no" },
-        { name: "description", content: t("head-description") },
-        { property: "og:title", content: t("head-og-title") },
+        { name: "description", content: "NHS - Панель управління" },
+        { property: "og:title", content: "Панель управління" },
         { property: "og:site_name", content: "NHS" },
-        { property: "og:description", content: t("head-og-description") },
+        { property: "og:description", content: "NHS - Панель управління" },
         { name: "apple-mobile-web-app-title", content: "NHS" },
         { name: "application-name", content: "NHS" },
         { name: "msapplication-TileColor", content: "#2b5797" },
@@ -71,4 +70,4 @@ const App = ({ t, children }) => (
   </div>
 );
 
-export default translate()(App);
+export default App;

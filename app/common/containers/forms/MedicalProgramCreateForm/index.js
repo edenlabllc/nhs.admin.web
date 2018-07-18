@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import { reduxForm, Field, getFormValues } from "redux-form";
 
@@ -14,7 +13,6 @@ import { reduxFormValidate } from "react-nebo15-validate";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "medical-program-form",
   validate: reduxFormValidate({
@@ -32,7 +30,6 @@ export default class MedicalProgramCreateForm extends React.Component {
       handleSubmit,
       onSubmit = () => {},
       submitting,
-      t,
       disabled
     } = this.props;
 
@@ -52,7 +49,7 @@ export default class MedicalProgramCreateForm extends React.Component {
             <ShowWithScope scope="medical_program:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t("Saving...") : t("Створити Медичну програму")}
+                  {submitting ? "Збереження..." : "Створити Медичну програму"}
                 </Button>
               </div>
             </ShowWithScope>

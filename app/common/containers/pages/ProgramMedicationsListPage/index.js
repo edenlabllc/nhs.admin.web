@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -59,8 +58,7 @@ const SEARCH_FIELDS = [
 const ProgramMedicationsListPage = ({
   program_medications = [],
   paging,
-  location,
-  t
+  location
 }) => (
   <div id="medication-list-page">
     <Helmet
@@ -105,7 +103,7 @@ const ProgramMedicationsListPage = ({
           { key: "manufacturer", title: "Виробник" },
           { key: "reimbursement_amount", title: "Сума Відшкодування" },
           { key: "status", title: "Активний" },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={program_medications.map(item => ({
           medical_program_id: <div>{item.medical_program.id}</div>,
@@ -143,7 +141,7 @@ const ProgramMedicationsListPage = ({
               theme="link"
               to={`/program-medications/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -162,7 +160,6 @@ const ProgramMedicationsListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchProgramMedications({ page_size: 5, ...query }))

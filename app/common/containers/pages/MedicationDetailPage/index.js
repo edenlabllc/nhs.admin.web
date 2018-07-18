@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import format from "date-fns/format";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
@@ -26,7 +25,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchMedication(id))
 })
@@ -51,7 +49,7 @@ export default class MedicationDetailPage extends React.Component {
   }
 
   render() {
-    const { medication = {}, t } = this.props;
+    const { medication = {} } = this.props;
 
     return (
       <div id="medication-detail-page">
@@ -65,7 +63,7 @@ export default class MedicationDetailPage extends React.Component {
           ]}
         />
         <BackLink onClick={() => this.props.router.push("/medications")}>
-          {t("Back to list")}
+          Повернутися до списку
         </BackLink>
         <Line />
         <div className={styles.row}>
@@ -76,7 +74,7 @@ export default class MedicationDetailPage extends React.Component {
           />
         </div>
         <Line width={630} />
-        <DataList list={[{ name: t("Name"), value: medication.name }]} />
+        <DataList list={[{ name: "Назва", value: medication.name }]} />
         <Line width={630} />
         <DataList
           list={[
@@ -118,7 +116,7 @@ export default class MedicationDetailPage extends React.Component {
                           medication.ingredients[0].dosage.denumerator_unit
                         }
                       />
-                      {`${t(" містить")} ${
+                      {` містить ${
                         medication.ingredients[0].dosage.numerator_value
                       } `}
                       <DictionaryValue
@@ -245,7 +243,7 @@ export default class MedicationDetailPage extends React.Component {
                   icon="back"
                   block
                 >
-                  {t("Back to list")}
+                  Повернутися до списку
                 </Button>
               </div>
               {
@@ -268,13 +266,11 @@ export default class MedicationDetailPage extends React.Component {
           </div>
         )}
         <Confirm
-          title={t("Деактивувати торгівельне найменування {{name}}?", {
-            name: medication.name
-          })}
+          title={`Деактивувати торгівельне найменування ${medication.name}?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t("Cancel")}
-          confirm={t("Yes")}
+          cancel="Скасувати"
+          confirm="Так"
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateMedication()}
         />

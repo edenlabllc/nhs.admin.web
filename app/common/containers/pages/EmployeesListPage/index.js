@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
@@ -29,32 +28,31 @@ const EmployeesListPage = ({
   employees = [],
   status = [],
   paging = {},
-  location,
-  t
+  location
 }) => (
   <div id="employees-list-page">
     <Helmet
-      title={t("Employees")}
-      meta={[{ property: "og:title", content: t("Employees") }]}
+      title="Співробітники"
+      meta={[{ property: "og:title", content: "Співробітники" }]}
     />
 
-    <H1>{t("Employees")}</H1>
+    <H1>Співробітники</H1>
 
     <SearchForm
       fields={[
         {
           component: SearchFilterField,
-          labelText: t("Find employee"),
+          labelText: "Знайти співробітника",
           filters: [
             {
               name: "party_id",
-              title: t("By party id"),
+              title: "За party ID",
               validate: uuidValidate
             },
-            { name: "edrpou", title: t("By edrpou") },
+            { name: "edrpou", title: "За ЄДРПОУ" },
             {
               name: "legal_entity_id",
-              title: t("By legal entity"),
+              title: "За ID юридичної особи",
               validate: uuidValidate
             },
             {
@@ -86,11 +84,11 @@ const EmployeesListPage = ({
     <ListTable id="employees-table">
       <Table
         columns={[
-          { key: "date", title: t("Date registration") },
-          { key: "name", title: t("Employee name") },
-          { key: "position", title: t("Position") },
-          { key: "legalEntity", title: t("Legal entity") },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "date", title: "Дата реєстрації" },
+          { key: "name", title: "Ім'я працівника" },
+          { key: "position", title: "Позиція" },
+          { key: "legalEntity", title: "Юридична/Фізична особа" },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={employees.map(item => ({
           key: item.id,
@@ -108,9 +106,7 @@ const EmployeesListPage = ({
           legalEntity: (
             <div>
               <p>{item.legal_entity.name}</p>
-              <small>
-                {t("edrpou")} {item.legal_entity.edrpou}
-              </small>
+              <small>ЕДРПОУ {item.legal_entity.edrpou}</small>
             </div>
           ),
           action: (
@@ -119,7 +115,7 @@ const EmployeesListPage = ({
               theme="link"
               to={`/employees/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -137,7 +133,6 @@ const EmployeesListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchEmployees({ page_size: 5, ...query }))

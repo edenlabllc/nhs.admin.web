@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -18,7 +17,6 @@ import {
 
 import { fetchDictionaries } from "redux/dictionaries";
 
-@translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchDictionaries())
 })
@@ -37,29 +35,29 @@ export default class DictionariesPage extends React.Component {
   };
 
   render() {
-    const { dictionaries = {}, names = [], labels = [], t } = this.props;
+    const { dictionaries = {}, names = [], labels = [] } = this.props;
 
     return (
       <div id="dictionaries-page">
         <Helmet
-          title={t("Dictionaries")}
-          meta={[{ property: "og:title", content: t("Dictionaries") }]}
+          title="Словники"
+          meta={[{ property: "og:title", content: "Словники" }]}
         />
 
-        <H1>{t("Dictionaries")}</H1>
+        <H1>Словники</H1>
 
         <div>
           <ListFilter>
             <div>
               <Select
-                placeholder={t("Filter by name")}
-                options={[{ name: null, title: t("All") }, ...names]}
+                placeholder="Фільтрувати за назвою"
+                options={[{ name: null, title: "Усі" }, ...names]}
                 onChange={name => this.setState({ name })}
               />
             </div>
             <div>
               <Select
-                placeholder={t("Filter by label")}
+                placeholder="Фільтрувати за тегом"
                 options={labels.map(name => ({ name, title: name }))}
                 multiple
                 onChange={label => this.setState({ label })}
@@ -67,13 +65,13 @@ export default class DictionariesPage extends React.Component {
             </div>
           </ListFilter>
 
-          <p>{t("Select dictionary to edit")}</p>
+          <p>Виберіть словник для редагування</p>
 
           <ListTable id="templates-table">
             <Table
               columns={[
-                { key: "name", title: t("Dictionary Name") },
-                { key: "edit", title: t("Edit") }
+                { key: "name", title: "Назва словника" },
+                { key: "edit", title: "Редагувати" }
               ]}
               data={Object.keys(dictionaries)
                 .filter(
@@ -93,7 +91,7 @@ export default class DictionariesPage extends React.Component {
                       theme="link"
                       to={`/dictionaries/${dictionaryName}`}
                     >
-                      {t("View Dictionary")}
+                      Переглянути словник
                     </Button>
                   )
                 }))}

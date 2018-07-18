@@ -1,6 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next";
 
-const YesNo = ({ bool, t }) => <span>{bool ? t("Yes") : t("No")}</span>;
+const YesNo = ({ bool }) => <span>{bool ? "Так" : "Ні"}</span>;
 
-export default translate()(YesNo);
+export default YesNo;

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import { reduxForm, Field, getFormValues } from "redux-form";
 
@@ -19,7 +18,6 @@ const terms = {
 };
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "system-configuration-form",
   validate: reduxFormValidate({
@@ -62,7 +60,7 @@ export default class ApiForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, initialValues, onSubmit, submitting, t } = this.props;
+    const { handleSubmit, initialValues, onSubmit, submitting } = this.props;
 
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +68,7 @@ export default class ApiForm extends React.Component {
           <div>
             <Field
               name="declaration_term"
-              labelText={`${t("Declaration term")} (${
+              labelText={`Термін декларації (${
                 terms[initialValues.declaration_term_unit]
               })`}
               component={FieldInput}
@@ -87,7 +85,7 @@ export default class ApiForm extends React.Component {
           <div>
             <Field
               name="declaration_request_expiration"
-              labelText={`${t("Declaration request expiration")} (${
+              labelText={`Термін дії запиту декларації (${
                 terms[initialValues.declaration_request_term_unit]
               })`}
               component={FieldInput}
@@ -96,7 +94,7 @@ export default class ApiForm extends React.Component {
           <div>
             <Field
               name="employee_request_expiration"
-              labelText={`${t("Employee request expiration")} (${
+              labelText={`Термін дії запиту співробітників (${
                 terms[initialValues.employee_request_term_unit]
               })`}
               component={FieldInput}
@@ -105,7 +103,7 @@ export default class ApiForm extends React.Component {
           <div>
             <Field
               name="verification_request_expiration"
-              labelText={`${t("Verification request expiration")} (${
+              labelText={`Термін дії запиту перевірки (${
                 terms[initialValues.verification_request_term_unit]
               })`}
               component={FieldInput}
@@ -115,7 +113,7 @@ export default class ApiForm extends React.Component {
             <Field
               type="number"
               name="adult_age"
-              labelText={t("Adult age")}
+              labelText="Дорослий вік"
               component={FieldInput}
             />
           </div>
@@ -125,21 +123,17 @@ export default class ApiForm extends React.Component {
               max="28"
               type="number"
               name="billing_date"
-              labelText={t("Billing date")}
+              labelText="Дата розрахунку"
               component={FieldInput}
             />
           </div>
           <div>
-            <Field
-              name="bi_url"
-              labelText={t("BI URL")}
-              component={FieldInput}
-            />
+            <Field name="bi_url" labelText="BI URL" component={FieldInput} />
           </div>
           <ShowWithScope scope="global_parameters:write">
             <div>
               <Button type="submit" disabled={!this.isChanged || submitting}>
-                {submitting ? t("Saving...") : t("Save config")}
+                {submitting ? "Збереження..." : "Зберегти конфігурацію"}
               </Button>
             </div>
           </ShowWithScope>

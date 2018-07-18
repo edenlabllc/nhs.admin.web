@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -20,33 +19,33 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import { fetchClinics } from "./redux";
 
-const ClinicsListPage = ({ clinics = [], paging, location, t }) => (
+const ClinicsListPage = ({ clinics = [], paging, location }) => (
   <div id="clinics-list-page">
     <Helmet
-      title={t("Clinics")}
-      meta={[{ property: "og:title", content: t("Clinics") }]}
+      title="Медичні заклади"
+      meta={[{ property: "og:title", content: "Медичні заклади" }]}
     />
 
-    <H1>{t("Clinics")}</H1>
+    <H1>Медичні заклади</H1>
 
     <div>
-      <H2>{t("Search clinic")}</H2>
+      <H2>Шукати медичний заклад</H2>
 
       <SearchForm
         fields={[
           {
             component: SearchFilterField,
-            labelText: t("Find clinic"),
+            labelText: "Знайти медичний заклад",
             filters: [
-              { name: "edrpou", title: t("By edrpou") },
+              { name: "edrpou", title: "За ЄДРПОУ" },
               {
                 name: "legal_entity_id",
-                title: t("By legal entity"),
+                title: "За ID юридичної особи",
                 validate: uuidValidate
               },
               {
                 name: "settlement_id",
-                title: t("By settlement id"),
+                title: "За ID міста",
                 validate: uuidValidate
               }
             ]
@@ -74,7 +73,6 @@ const ClinicsListPage = ({ clinics = [], paging, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchClinics({ page_size: 5, ...query }))

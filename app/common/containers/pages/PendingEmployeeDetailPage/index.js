@@ -1,7 +1,6 @@
 import React from "react";
 import format from "date-fns/format";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -20,14 +19,13 @@ import { fetchEmployee } from "./redux";
 import styles from "./style.scss";
 
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id))
 })
 @connect(state => state.pages.PendingEmployeeDetailPage)
 export default class PendingEmployeeDetailPage extends React.Component {
   render() {
-    const { employee = {}, t } = this.props;
+    const { employee = {} } = this.props;
 
     const fullName = `${employee.party.last_name} ${
       employee.party.first_name
@@ -36,14 +34,14 @@ export default class PendingEmployeeDetailPage extends React.Component {
     return (
       <div id="pending-employee-detail-page">
         <Helmet
-          title={`${t("Employee")} - ${fullName}`}
+          title={`Співробітник - ${fullName}`}
           meta={[
-            { property: "og:title", content: `${t("Employee")} - ${fullName}` }
+            { property: "og:title", content: `Співробітник - ${fullName}` }
           ]}
         />
 
         <BackLink to="/pending-employees">
-          {t("Back to pending employees list")}
+          Повернутися до списку співробітників
         </BackLink>
 
         <Line />
@@ -51,13 +49,13 @@ export default class PendingEmployeeDetailPage extends React.Component {
         <div className={styles.main}>
           <DataList
             list={[
-              { name: t("Employee request ID"), value: employee.id },
+              { name: "Ідентифікатор ", value: employee.id },
               {
-                name: t("Date registration"),
+                name: "Дата реєстрації",
                 value: format(employee.inserted_at, "DD/MM/YYYY")
               },
               {
-                name: t("Employee type"),
+                name: "Тип працівника",
                 value: (
                   <DictionaryValue
                     dictionary="EMPLOYEE_TYPE"
@@ -75,7 +73,7 @@ export default class PendingEmployeeDetailPage extends React.Component {
               theme="small"
               list={[
                 {
-                  name: t("Position"),
+                  name: "Позиція",
                   value: (
                     <DictionaryValue
                       dictionary="POSITION"
@@ -83,14 +81,14 @@ export default class PendingEmployeeDetailPage extends React.Component {
                     />
                   )
                 },
-                { name: t("Full name"), value: fullName },
+                { name: "Повне Ім’я", value: fullName },
                 {
                   name: "Без ІПН",
                   value: <YesNo bool={employee.party.no_tax_id} />
                 },
                 { name: "ІПН / Паспорт", value: employee.party.tax_id },
                 {
-                  name: t("Phones"),
+                  name: "Телефони",
                   value: (
                     <InlineList
                       list={employee.party.phones.map(item => item.number)}
@@ -106,9 +104,15 @@ export default class PendingEmployeeDetailPage extends React.Component {
           <DataList
             theme="min"
             list={[
-              { name: t("legal entity id"), value: employee.legal_entity_id },
-              { name: t("Legal entity"), value: employee.legal_entity_name },
-              { name: t("edrpou"), value: employee.edrpou }
+              {
+                name: "Ідентифікатор Юридичної/Фізичної особи",
+                value: employee.legal_entity_id
+              },
+              {
+                name: "Юридична/Фізична особа",
+                value: employee.legal_entity_name
+              },
+              { name: "ЕДРПОУ", value: employee.edrpou }
             ]}
           />
 
@@ -120,7 +124,7 @@ export default class PendingEmployeeDetailPage extends React.Component {
               icon="back"
               block
             >
-              {t("Back to list")}
+              Повернутися до списку
             </Button>
           </div>
         </div>

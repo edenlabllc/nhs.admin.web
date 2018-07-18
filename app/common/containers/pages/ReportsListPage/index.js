@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -75,16 +74,16 @@ class ReportsListPage extends React.Component {
     ];
   };
   render() {
-    const { capitation_reports = [], t, paging = {}, location } = this.props;
+    const { capitation_reports = [], paging = {}, location } = this.props;
 
     return (
       <div id="clinics-list-page">
         <Helmet
-          title={t("Reports")}
-          meta={[{ property: "og:title", content: t("Reports") }]}
+          title="Звіти"
+          meta={[{ property: "og:title", content: "Звіти" }]}
         />
 
-        <H1>{t("Reports")}</H1>
+        <H1>Звіти</H1>
 
         <div>
           <H2>Пошук звітів</H2>
@@ -106,7 +105,6 @@ class ReportsListPage extends React.Component {
 }
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       Promise.all([

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -25,7 +24,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchMedicalProgram(id))
 })
@@ -55,15 +53,15 @@ export default class MedicalProgramDetailPage extends React.Component {
   }
 
   render() {
-    const { medical_program = {}, t } = this.props;
+    const { medical_program = {} } = this.props;
     return (
       <div id="medical-program-detail-page">
         <Helmet
-          title={t("Medication detail")}
-          meta={[{ property: "og:title", content: t("Medication detail") }]}
+          title="Деталі медичної програми"
+          meta={[{ property: "og:title", content: "Деталі медичної програми" }]}
         />
         <BackLink onClick={() => this.props.router.push("/medical-programs")}>
-          {t("Back to list")}
+          Повернутися до списку
         </BackLink>
         <br />
         <br />
@@ -91,7 +89,7 @@ export default class MedicalProgramDetailPage extends React.Component {
                   icon="back"
                   block
                 >
-                  {t("Back to list")}
+                  Повернутися до списку
                 </Button>
               </div>
               {
@@ -116,13 +114,11 @@ export default class MedicalProgramDetailPage extends React.Component {
         )}
 
         <Confirm
-          title={t("Деактивувати медичну програму {{name}}?", {
-            name: medical_program.name
-          })}
+          title={`Деактивувати медичну програму ${medical_program.name}?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t("Cancel")}
-          confirm={t("Yes")}
+          cancel="Скасувати"
+          confirm="Так"
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateMedicalProgram()}
         />

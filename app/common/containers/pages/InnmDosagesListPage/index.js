@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -38,11 +37,11 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const InnmDosagesListPage = ({ innm_dosages = [], paging, location, t }) => (
+const InnmDosagesListPage = ({ innm_dosages = [], paging, location }) => (
   <div id="innm-dosages-list-page">
     <Helmet
       title="Лікарські форми"
-      meta={[{ property: "og:title", content: t("Лікарські форми") }]}
+      meta={[{ property: "og:title", content: "Лікарські форми" }]}
     />
     <ListHeader
       button={
@@ -72,11 +71,11 @@ const InnmDosagesListPage = ({ innm_dosages = [], paging, location, t }) => (
     <ListTable id="innm-dosages-table">
       <Table
         columns={[
-          { key: "id", title: t("ID") },
-          { key: "name", title: t("Назва") },
-          { key: "form", title: t("Форма") },
-          { key: "active", title: t("Активна") },
-          { key: "action", title: t("Деталі /Деактивація"), width: 150 }
+          { key: "id", title: "ID" },
+          { key: "name", title: "Назва" },
+          { key: "form", title: "Форма" },
+          { key: "active", title: "Активна" },
+          { key: "action", title: "Деталі /Деактивація", width: 150 }
         ]}
         data={innm_dosages.map(item => ({
           id: <div>{item.id}</div>,
@@ -93,7 +92,7 @@ const InnmDosagesListPage = ({ innm_dosages = [], paging, location, t }) => (
               theme="link"
               to={`/innm-dosages/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -112,7 +111,6 @@ const InnmDosagesListPage = ({ innm_dosages = [], paging, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchInnmDosages({ page_size: 5, ...query }))

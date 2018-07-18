@@ -7,7 +7,6 @@ import {
   getFormSyncErrors,
   getFormSubmitErrors
 } from "redux-form";
-import { translate } from "react-i18next";
 
 import FieldInput from "components/reduxForm/FieldInput";
 import Icon from "components/Icon";
@@ -17,7 +16,6 @@ import { reduxFormValidate } from "react-nebo15-validate";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @connect(state => ({
   errors: {
     ...getFormSyncErrors("sign-in-form")(state),
@@ -38,7 +36,7 @@ import styles from "./styles.scss";
 })
 export default class SignInForm extends React.Component {
   render() {
-    const { handleSubmit, submitting, t, errors = {} } = this.props;
+    const { handleSubmit, submitting, errors = {} } = this.props;
 
     return (
       <form className={styles.main} onSubmit={handleSubmit}>
@@ -68,7 +66,7 @@ export default class SignInForm extends React.Component {
         <div>
           <Field
             type="password"
-            placeholder={t("Password")}
+            placeholder="Пароль"
             name="password"
             component={FieldInput}
             prefix={<Icon name="lock" />}
@@ -76,7 +74,7 @@ export default class SignInForm extends React.Component {
         </div>
         <div>
           <button className={styles.button} type="submit" disabled={submitting}>
-            {t("Enter")}
+            Увійти
           </button>
         </div>
       </form>

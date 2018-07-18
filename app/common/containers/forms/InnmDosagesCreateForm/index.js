@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import {
   reduxFormValidate,
@@ -22,7 +21,6 @@ import RenderIngredient from "./renderIngredient";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "inns-dosages-create-form",
   validate: reduxFormValidate({
@@ -103,7 +101,6 @@ export default class InnmDosagesCreateForm extends React.Component {
       onSubmit = () => {},
       onSearchInnms = () => {},
       submitting,
-      t,
       disabled = false,
       data
     } = this.props;
@@ -166,9 +163,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                     title: i.name
                   }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn align="baseline">
@@ -202,9 +197,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
             <FormColumn size="1/3">
@@ -217,9 +210,7 @@ export default class InnmDosagesCreateForm extends React.Component {
                   name: i
                 }))}
               >
-                <ErrorMessage when="required">
-                  {t("Required field")}
-                </ErrorMessage>
+                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>
@@ -239,7 +230,7 @@ export default class InnmDosagesCreateForm extends React.Component {
             <ShowWithScope scope="innm_dosage:write">
               <div>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? t("Додаємо...") : "Додати лікарську форму"}
+                  {submitting ? "Додаємо..." : "Додати лікарську форму"}
                 </Button>
               </div>
             </ShowWithScope>

@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -35,12 +34,9 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const InnmsListPage = ({ innms = [], paging, location, t }) => (
+const InnmsListPage = ({ innms = [], paging, location }) => (
   <div id="innms-list-page">
-    <Helmet
-      title={t("МНН")}
-      meta={[{ property: "og:title", content: t("МНН") }]}
-    />
+    <Helmet title="МНН" meta={[{ property: "og:title", content: "МНН" }]} />
 
     <ListHeader
       button={
@@ -55,7 +51,7 @@ const InnmsListPage = ({ innms = [], paging, location, t }) => (
         </Button>
       }
     >
-      <H1>{t("МНН")}</H1>
+      <H1>МНН</H1>
     </ListHeader>
 
     <div>
@@ -70,12 +66,12 @@ const InnmsListPage = ({ innms = [], paging, location, t }) => (
     <ListTable id="innms-table">
       <Table
         columns={[
-          { key: "id", title: t("id") },
-          { key: "name", title: t("Назва МНН") },
-          { key: "name_original", title: t("Оригінальна назва МНН") },
-          { key: "sctid", title: t("SCTID") },
-          { key: "active", title: t("Активна") },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "id", title: "id" },
+          { key: "name", title: "Назва МНН" },
+          { key: "name_original", title: "Оригінальна назва МНН" },
+          { key: "sctid", title: "SCTID" },
+          { key: "active", title: "Активна" },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={innms.map(item => ({
           id: <div>{item.id}</div>,
@@ -89,7 +85,7 @@ const InnmsListPage = ({ innms = [], paging, location, t }) => (
               theme="link"
               to={`/innms/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -108,7 +104,6 @@ const InnmsListPage = ({ innms = [], paging, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchInnms({ page_size: 5, ...query }))

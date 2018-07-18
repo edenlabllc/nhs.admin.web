@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
@@ -60,22 +59,17 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const DeclarationsListPage = ({
-  declarations = [],
-  paging = {},
-  location,
-  t
-}) => (
+const DeclarationsListPage = ({ declarations = [], paging = {}, location }) => (
   <div id="declarations-list-page">
     <Helmet
-      title={t("Declarations")}
-      meta={[{ property: "og:title", content: t("Declarations") }]}
+      title="Декларації"
+      meta={[{ property: "og:title", content: "Декларації" }]}
     />
 
-    <H1>{t("Declarations")}</H1>
+    <H1>Декларації</H1>
 
     <div>
-      <H2>{t("Search declaration")}</H2>
+      <H2>Шукати декларацію</H2>
       <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
@@ -86,11 +80,11 @@ const DeclarationsListPage = ({
     <ListTable id="declarations-table">
       <Table
         columns={[
-          { key: "person", title: t("Person") },
-          { key: "legalEntity", title: t("Legal entity") },
-          { key: "dates", title: t("Dates"), width: 150 },
-          { key: "status", title: t("Status") },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "person", title: "Людина" },
+          { key: "legalEntity", title: "Юридична/Фізична особа" },
+          { key: "dates", title: "Дати", width: 150 },
+          { key: "status", title: "Статус" },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={declarations.map(
           ({
@@ -115,7 +109,7 @@ const DeclarationsListPage = ({
                     {legal_entity.name}
                     <br />
                     <ColoredText color="gray">
-                      {t("EDRPOU")}: {legal_entity.edrpou}
+                      ЕДРПОУ: {legal_entity.edrpou}
                     </ColoredText>
                   </div>
                 )}
@@ -132,7 +126,7 @@ const DeclarationsListPage = ({
                 theme="link"
                 to={`/declarations/${id}`}
               >
-                {t("Details")}
+                Детально
               </Button>
             )
           })
@@ -151,7 +145,6 @@ const DeclarationsListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchDeclarations({ page_size: 5, ...query }))

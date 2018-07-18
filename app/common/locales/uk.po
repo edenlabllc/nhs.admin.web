@@ -265,7 +265,7 @@ msgid "Is active"
 msgstr "Активний"
 
 msgid "Saving..."
-msgstr "Збереження…"
+msgstr "Збереження..."
 
 msgid "Save Dictionary"
 msgstr "Зберегти словник"

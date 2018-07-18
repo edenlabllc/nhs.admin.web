@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 
 import { H2 } from "components/Title";
@@ -18,7 +17,6 @@ import { getDeclarationImage, terminateDeclaration } from "redux/declarations";
 import { fetchDeclaration } from "./redux";
 
 @withRouter
-@translate()
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
     const canReadDocuments = hasScope(

@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
@@ -27,16 +26,15 @@ const PendingEmployeesListPage = ({
   employees = [],
   status = [],
   paging = {},
-  location,
-  t
+  location
 }) => (
   <div id="pending-employees-list-page">
     <Helmet
-      title={t("Pending employees")}
-      meta={[{ property: "og:title", content: t("Pending Employees") }]}
+      title="Cпівробітники на розгляді"
+      meta={[{ property: "og:title", content: "Cпівробітники на розгляді" }]}
     />
 
-    <H1>{t("Pending Employees")}</H1>
+    <H1>Cпівробітники на розгляді</H1>
 
     <SearchForm
       fields={[
@@ -44,14 +42,14 @@ const PendingEmployeesListPage = ({
           component: SearchFilterField,
           labelText: "Знайти співробітника",
           filters: [
-            { name: "edrpou", title: t("By edrpou") },
+            { name: "edrpou", title: "За ЄДРПОУ" },
             { name: "legal_entity_name", title: "За назвою юр. особи" },
             { name: "id", title: "За ID" }
           ]
         },
         {
           component: SelectFilterField,
-          title: t("Filter by status"),
+          title: "Фільтрувати за назвою",
           name: "status",
           defaultValue: "NEW",
           options: status.map(({ key, value }) => ({ name: key, title: value }))
@@ -72,11 +70,11 @@ const PendingEmployeesListPage = ({
     <ListTable id="pending-employees-table">
       <Table
         columns={[
-          { key: "id", title: t("ID") },
-          { key: "date", title: t("Date registration") },
-          { key: "name", title: t("Employee name") },
-          { key: "legalEntity", title: t("Legal entity") },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "id", title: "ID" },
+          { key: "date", title: "Дата реєстрації" },
+          { key: "name", title: "Ім'я працівника" },
+          { key: "legalEntity", title: "Юридична/Фізична особа" },
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={employees.map(item => ({
           key: item.id,
@@ -92,9 +90,7 @@ const PendingEmployeesListPage = ({
           legalEntity: (
             <div>
               <p>{item.legal_entity_name}</p>
-              <small>
-                {t("edrpou")} {item.edrpou}
-              </small>
+              <small>ЕДРПОУ {item.edrpou}</small>
             </div>
           ),
           action: (
@@ -103,7 +99,7 @@ const PendingEmployeesListPage = ({
               theme="link"
               to={`/pending-employees/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -122,7 +118,6 @@ const PendingEmployeesListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchEmployeesRequest({ page_size: 5, status: "NEW", ...query }))

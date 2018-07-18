@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
@@ -27,7 +26,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchInnmsDosages(id))
 })
@@ -52,7 +50,7 @@ export default class InnmDosagesDetailPage extends React.Component {
   }
 
   render() {
-    const { innm_dosage = {}, t } = this.props;
+    const { innm_dosage = {} } = this.props;
 
     return (
       <div id="innm-dosages-detail-page">
@@ -90,7 +88,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                           innm_dosage.ingredients[0].dosage.denumerator_unit
                         }
                       />
-                      {`${t(" містить")} ${
+                      {` містить ${
                         innm_dosage.ingredients[0].dosage.numerator_value
                       } `}
                       <DictionaryValue
@@ -173,7 +171,7 @@ export default class InnmDosagesDetailPage extends React.Component {
                   icon="back"
                   block
                 >
-                  {t("Back to list")}
+                  Повернутися до списку
                 </Button>
               </div>
               {
@@ -200,8 +198,8 @@ export default class InnmDosagesDetailPage extends React.Component {
           title={`Деактивувати лікарську форму ${innm_dosage.name}?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t("Cancel")}
-          confirm={t("Yes")}
+          cancel="Скасувати"
+          confirm="Так"
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateInnmDosage()}
         />
