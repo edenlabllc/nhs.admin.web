@@ -57,7 +57,9 @@ export default class RenderIngredient extends React.Component {
                       title: i.name
                     }))}
                 >
-                  <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+                  <ErrorMessage when="required">
+                    Обов&#700;язкове поле
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
               <FormColumn align="baseline">
@@ -92,7 +94,9 @@ export default class RenderIngredient extends React.Component {
                     name: i
                   }))}
                 >
-                  <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+                  <ErrorMessage when="required">
+                    Обов&#700;язкове поле
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
               <FormColumn size="1/3">
@@ -105,7 +109,9 @@ export default class RenderIngredient extends React.Component {
                     name: i
                   }))}
                 >
-                  <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+                  <ErrorMessage when="required">
+                    Обов&#700;язкове поле
+                  </ErrorMessage>
                 </Field>
               </FormColumn>
             </FormRow>

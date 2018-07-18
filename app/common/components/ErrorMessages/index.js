@@ -17,7 +17,7 @@ export default class ErrorMessagesTranslated extends React.Component {
     return (
       <ErrorMessages {...rest}>
         {children}
-        <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+        <ErrorMessage when="required">Обов&#700;язкове поле</ErrorMessage>
         <ErrorMessage when="email">Невірний формат Email</ErrorMessage>
         <ErrorMessage when="userName">Невірне прізвище</ErrorMessage>
         <ErrorMessage when="maxLength">

@@ -71,7 +71,9 @@ export default class ProgramMedicationCreateForm extends React.Component {
                     name: i.id
                   }))}
               >
-                <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+                <ErrorMessage when="required">
+                  Обов&#700;язкове поле
+                </ErrorMessage>
               </Field>
             </FormColumn>
           </FormRow>

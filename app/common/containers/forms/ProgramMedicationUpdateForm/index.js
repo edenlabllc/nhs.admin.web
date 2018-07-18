@@ -110,7 +110,7 @@ export default class ProgramMedicationForm extends React.Component {
               theme="disabled"
               disabled
             >
-              <ErrorMessage when="required">Обов'язкове поле</ErrorMessage>
+              <ErrorMessage when="required">Обов&#700;язкове поле</ErrorMessage>
             </Field>
           </div>
           <div>
