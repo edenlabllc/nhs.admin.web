@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -36,8 +35,7 @@ const SEARCH_FIELDS = [
 const MedicalProgramsListPage = ({
   medical_programs = [],
   paging,
-  location,
-  t
+  location
 }) => (
   <div id="medication-list-page">
     <Helmet
@@ -75,7 +73,7 @@ const MedicalProgramsListPage = ({
           { key: "id", title: "ID\n медичної програми" },
           { key: "name", title: "Назва медичної програми" },
           { key: "status", title: "Статус програми" },
-          { key: "action", title: t("Action"), width: 100 }
+          { key: "action", title: "Дії", width: 100 }
         ]}
         data={medical_programs
           .sort(
@@ -99,7 +97,7 @@ const MedicalProgramsListPage = ({
                 theme="link"
                 to={`/medical-programs/${item.id}`}
               >
-                {t("Details")}
+                Детально
               </Button>
             )
           }))}
@@ -118,7 +116,6 @@ const MedicalProgramsListPage = ({
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchMedicalPrograms({ page_size: 5, ...query }))

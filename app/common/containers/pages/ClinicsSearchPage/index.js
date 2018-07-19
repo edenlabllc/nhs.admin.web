@@ -1,6 +1,5 @@
 import React from "react";
 import { compose } from "redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -14,35 +13,38 @@ import uuidValidate from "helpers/validators/uuid-validate";
 
 import styles from "./styles.scss";
 
-const ClinicsSearchPage = ({ location, t }) => (
+const ClinicsSearchPage = ({ location }) => (
   <div id="clinics-search-page">
     <Helmet
-      title={t("Clinics verification search")}
+      title="Пошук медичного закладу для перевірки"
       meta={[
-        { property: "og:title", content: t("Clinics verification search") }
+        {
+          property: "og:title",
+          content: "Пошук медичного закладу для перевірки"
+        }
       ]}
     />
 
-    <H1>{t("Clinics verification")}</H1>
+    <H1>Підтвердження МЗ</H1>
 
-    <H2>{t("Search clinic for verification")}</H2>
+    <H2>Пошук медичного закладу для перевірки</H2>
 
     <div className={styles.search}>
       <SearchForm
         fields={[
           {
             component: SearchFilterField,
-            labelText: t("Find clinic"),
+            labelText: "Знайти медичний заклад",
             filters: [
-              { name: "edrpou", title: t("By edrpou") },
+              { name: "edrpou", title: "За ЄДРПОУ" },
               {
                 name: "legal_entity_id",
-                title: t("By legal entity"),
+                title: "За ID юридичної особи",
                 validate: uuidValidate
               },
               {
                 name: "settlement_id",
-                title: t("By settlement id"),
+                title: "За ID міста",
                 validate: uuidValidate
               }
             ]
@@ -53,10 +55,10 @@ const ClinicsSearchPage = ({ location, t }) => (
     </div>
     <div>
       <Button to="/clinics" theme="link">
-        <span className={styles.link}>{t("Go to clinics list")}</span>
+        <span className={styles.link}>Перейти до списку медичних закладiв</span>
       </Button>
     </div>
   </div>
 );
 
-export default compose(withStyles(styles), translate())(ClinicsSearchPage);
+export default compose(withStyles(styles))(ClinicsSearchPage);

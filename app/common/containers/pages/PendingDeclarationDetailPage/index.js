@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 
@@ -29,7 +28,6 @@ import { fetchDeclaration } from "./redux";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @withRouter
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
@@ -71,7 +69,7 @@ export default class PendingDeclarationDetailPage extends React.Component {
   }
 
   render() {
-    const { declaration = {}, t } = this.props;
+    const { declaration = {} } = this.props;
 
     return (
       <div id="declaration-detail-page">
@@ -89,32 +87,32 @@ export default class PendingDeclarationDetailPage extends React.Component {
                 onClick={() => this.setState({ showRejectConfirm: true })}
                 color="red"
               >
-                {t("Reject")}
+                Відхилити
               </Button>
               <Button
                 theme="border"
                 onClick={() => this.setState({ showApproveConfirm: true })}
                 color="green"
               >
-                {t("Accept")}
+                Прийняти
               </Button>
             </ButtonsGroup>
             <Confirm
-              title={t("Approve declaration?")}
+              title="Прийняти декларацію?"
               active={this.state.showApproveConfirm}
               theme="success"
-              cancel={t("Cancel")}
-              confirm={t("Yes")}
+              cancel="Скасувати"
+              confirm="Так"
               onCancel={() => this.setState({ showApproveConfirm: false })}
               onConfirm={() => this.approve()}
             />
 
             <Confirm
-              title={t("Reject declaration?")}
+              title="Відхилити декларацію?"
               active={this.state.showRejectConfirm}
               theme="error"
-              cancel={t("Cancel")}
-              confirm={t("Yes")}
+              cancel="Скасувати"
+              confirm="Так"
               onCancel={() => this.setState({ showRejectConfirm: false })}
               onConfirm={() => this.reject()}
             />

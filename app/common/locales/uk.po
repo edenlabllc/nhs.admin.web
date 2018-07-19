@@ -53,7 +53,7 @@ msgid "No"
 msgstr "Ні"
 
 msgid "ap."
-msgstr "вул."
+msgstr "кв."
 
 msgid "Region"
 msgstr "Область"
@@ -265,7 +265,7 @@ msgid "Is active"
 msgstr "Активний"
 
 msgid "Saving..."
-msgstr "Збереження…"
+msgstr "Збереження..."
 
 msgid "Save Dictionary"
 msgstr "Зберегти словник"

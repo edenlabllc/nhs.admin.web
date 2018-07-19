@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 
 import { H3 } from "components/Title";
 import Line from "components/Line";
@@ -10,14 +9,13 @@ import ShowMore from "containers/blocks/ShowMore";
 import DictionaryValue from "containers/blocks/DictionaryValue";
 
 const DoctorDetails = ({
-  t,
   doctor: { educations = [], qualifications = [] }
 }) => (
-  <ShowMore name={t("Show documents")} show_block>
+  <ShowMore name="Показати документи" show_block>
     {/* TODO: It will be better to display emptiness messages here in case
         if there are no educations or qualifications */}
     {educations.length > 0 && [
-      <H3 key="title">{t("Educations")}</H3>,
+      <H3 key="title">Освіта</H3>,
       <BlocksList key="blockList">
         {educations.map(
           (
@@ -47,7 +45,7 @@ const DoctorDetails = ({
                   <DictionaryValue
                     dictionary="EDUCATION_DEGREE"
                     value={degree}
-                  />, {t("diploma")}: {diploma_number}
+                  />, диплом: {diploma_number}
                 </ColoredText>
               </div>
             </li>
@@ -58,7 +56,7 @@ const DoctorDetails = ({
     ]}
 
     {qualifications.length > 0 && [
-      <H3 key="h3">{t("Qualifications")}</H3>,
+      <H3 key="h3">Кваліфікація</H3>,
       <BlocksList key="blockList">
         {qualifications.map(
           (
@@ -81,7 +79,7 @@ const DoctorDetails = ({
                   <DictionaryValue
                     dictionary="SPEC_QUALIFICATION_TYPE"
                     value={type}
-                  />, {t("certificate")}: {certificate_number}
+                  />, сертифікат: {certificate_number}
                 </ColoredText>
               </div>
             </li>
@@ -92,4 +90,4 @@ const DoctorDetails = ({
   </ShowMore>
 );
 
-export default translate()(DoctorDetails);
+export default DoctorDetails;

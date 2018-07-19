@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
@@ -30,7 +29,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) =>
     Promise.all([dispatch(fetchClinic(id))])
@@ -60,7 +58,7 @@ export default class ClinicDetailPage extends React.Component {
   }
 
   render() {
-    const { clinic, t } = this.props;
+    const { clinic } = this.props;
     if (!clinic) return null;
     const { accreditation, licenses } = clinic.medical_service_provider;
 
@@ -79,7 +77,11 @@ export default class ClinicDetailPage extends React.Component {
 
         <div className={styles.row}>
           <div>
-            <DataList list={[{ name: t("Clinic ID"), value: clinic.id }]} />
+            <DataList
+              list={[
+                { name: "Ідентифікатор медичного закладу", value: clinic.id }
+              ]}
+            />
           </div>
           <ShowWithScope scope="employee:read">
             <div className={styles.right}>
@@ -87,7 +89,7 @@ export default class ClinicDetailPage extends React.Component {
                 iconPosition="right"
                 to={`/employees?legal_entity_id=${clinic.id}`}
               >
-                {t("Go to clinic employees list")}
+                Перейти до списку співробітників медичного закладу
               </BackLink>
             </div>
           </ShowWithScope>
@@ -98,28 +100,28 @@ export default class ClinicDetailPage extends React.Component {
         <div className={styles.bold}>
           <DataList
             list={[
-              { name: t("Full name"), value: clinic.name },
-              { name: t("edrpou"), value: clinic.edrpou },
+              { name: "Повне Ім’я", value: clinic.name },
+              { name: "ЕДРПОУ", value: clinic.edrpou },
               {
-                name: t("Registration address"),
+                name: "Адреса регістрації",
                 value: (
                   <div className={styles.address}>
                     <p>
                       {clinic.addresses[0].zip}, {clinic.addresses[0].area}{" "}
-                      {t("area")}, {t("city")} {clinic.addresses[0].settlement},
+                      область, місто {clinic.addresses[0].settlement},
                     </p>
                     <p>
                       {clinic.addresses[0].street},{" "}
                       {clinic.addresses[0].building}
                     </p>
                     <small>
-                      {t("Residense address is equal to registration address")}
+                      Фактична адреса співпадає з адресою реєстрації
                     </small>
                   </div>
                 )
               },
               {
-                name: t("KVEDs"),
+                name: "КВЕДи",
                 value: (
                   <div>
                     {clinic.kveds.map((name, key) => (
@@ -143,8 +145,8 @@ export default class ClinicDetailPage extends React.Component {
         <DataList
           theme="min"
           list={[
-            { name: t("Short name"), value: clinic.short_name },
-            { name: t("Public name"), value: clinic.public_name }
+            { name: "Скорочена назва", value: clinic.short_name },
+            { name: "Публічна назва", value: clinic.public_name }
           ]}
         />
 
@@ -154,7 +156,7 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t("Property type"),
+              name: "Тип властності",
               value: (
                 <DictionaryValue
                   dictionary="OWNER_PROPERTY_TYPE"
@@ -162,7 +164,7 @@ export default class ClinicDetailPage extends React.Component {
                 />
               )
             },
-            { name: t("Type"), value: clinic.type }
+            { name: "Тип", value: clinic.type }
           ]}
         />
 
@@ -172,12 +174,12 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t("Phones"),
+              name: "Телефони",
               value: (
                 <InlineList list={clinic.phones.map(item => item.number)} />
               )
             },
-            { name: t("Email"), value: clinic.email }
+            { name: "Email", value: clinic.email }
           ]}
         />
 
@@ -187,21 +189,21 @@ export default class ClinicDetailPage extends React.Component {
           theme="min"
           list={[
             {
-              name: t("License and accreditation"),
+              name: "Ліцензії та акредитації",
               value: (
-                <ShowMore name={t("Show documents")}>
+                <ShowMore name="Показати документи">
                   {accreditation && (
                     <div>
-                      <H3>{t("Accreditation")}</H3>
+                      <H3>Акредитація</H3>
                       <DataList
                         theme="min"
                         list={[
                           {
-                            name: t("Order No."),
+                            name: "Номер замовлення",
                             value: <Upper>{accreditation.order_no}</Upper>
                           },
                           {
-                            name: t("Category"),
+                            name: "Категорія",
                             value: (
                               <DictionaryValue
                                 dictionary="ACCREDITATION_CATEGORY"
@@ -210,15 +212,15 @@ export default class ClinicDetailPage extends React.Component {
                             )
                           },
                           {
-                            name: t("Expiry date"),
+                            name: "Термін придатності",
                             value: accreditation.expiry_date
                           },
                           {
-                            name: t("Issued date"),
+                            name: "Випущено",
                             value: accreditation.issued_date
                           },
                           {
-                            name: t("Order date"),
+                            name: "Дата замовлення",
                             value: accreditation.order_date
                           }
                         ]}
@@ -227,7 +229,7 @@ export default class ClinicDetailPage extends React.Component {
                     </div>
                   )}
 
-                  <H3>{t("Licenses")}</H3>
+                  <H3>Ліцензії</H3>
 
                   <BlocksList>
                     {licenses.map((item, i) => (
@@ -239,7 +241,7 @@ export default class ClinicDetailPage extends React.Component {
                           </ColoredText>
                         </p>
                         <div>
-                          {t("Issued")}: {item.issued_date}, {t("expiry")}:{" "}
+                          Виданий: {item.issued_date}, закінчується:{" "}
                           {item.expiry_date}
                         </div>
                         <ColoredText color="gray">{item.issued_by}</ColoredText>
@@ -278,7 +280,7 @@ export default class ClinicDetailPage extends React.Component {
                       icon="check-right"
                       block
                     >
-                      {t("Approve clinic")}
+                      Підтвердити медичний заклад
                     </Button>
                   </div>
                 </ShowWithScope>
@@ -297,7 +299,7 @@ export default class ClinicDetailPage extends React.Component {
                     icon="close"
                     block
                   >
-                    {t("Cancel verification")}
+                    Скасувати підтвердження
                   </Button>
                 </div>
               </div>
@@ -305,21 +307,21 @@ export default class ClinicDetailPage extends React.Component {
           )}
         </div>
         <Confirm
-          title={t("Verify clinic {{name}}?", { name: clinic.name })}
+          title={`Підтвердити медичний заклад "${clinic.name}"?`}
           active={this.state.showVerifyConfirm}
           theme="success"
-          cancel={t("Cancel")}
-          confirm={t("Yes")}
+          cancel="Скасувати"
+          confirm="Так"
           onCancel={() => this.setState({ showVerifyConfirm: false })}
           onConfirm={() => this.verifyClinic()}
         />
 
         <Confirm
-          title={t("Deactivate clinic {{name}}?", { name: clinic.name })}
+          title={`Деактивувати медичний заклад "${clinic.name}"?`}
           active={this.state.showDeactivateConfirm}
           theme="error"
-          cancel={t("Cancel")}
-          confirm={t("Yes")}
+          cancel="Скасувати"
+          confirm="Так"
           onCancel={() => this.setState({ showDeactivateConfirm: false })}
           onConfirm={() => this.deactivateClinic()}
         />

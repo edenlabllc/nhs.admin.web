@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import classnames from "classnames";
 import { withRouter } from "react-router";
 import withStyles from "withStyles";
-import { translate } from "react-i18next";
 
 import styles from "./styles.scss";
 
-@translate()
 @withStyles(styles)
 @withRouter
 export default class ShowBy extends Component {
@@ -19,12 +17,12 @@ export default class ShowBy extends Component {
   };
 
   render() {
-    const { counts, t } = this.props;
+    const { counts } = this.props;
     const { page_size } = this.state;
 
     return (
       <div className={styles.main}>
-        <span className={styles.text}>{t("Show by")}</span>
+        <span className={styles.text}>Показати по</span>
         {counts.map(count => (
           <button
             key={count}

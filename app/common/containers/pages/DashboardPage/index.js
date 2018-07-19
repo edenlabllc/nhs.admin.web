@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -22,32 +21,31 @@ import styles from "./styles.scss";
   globalStatistic: getGlobalSatistic(state),
   configuration: getConfiguration(state)
 }))
-@translate()
 export default class DashboardPage extends React.Component {
   render() {
-    const { globalStatistic, configuration: { bi_url }, t } = this.props;
+    const { globalStatistic, configuration: { bi_url } } = this.props;
 
     return (
       <div id="dashboard-page">
         <Helmet
-          title={t("Dashboard")}
-          meta={[{ property: "og:title", content: t("Dashboard") }]}
+          title="Статистика"
+          meta={[{ property: "og:title", content: "Статистика" }]}
         />
 
-        <H1>{t("Dashboard")}</H1>
+        <H1>Статистика</H1>
 
         <div className={styles.global}>
           <div>
             <div className={styles.count}>{globalStatistic.declarations}</div>
-            {t("Declarations")}
+            Декларації
           </div>
           <div>
             <div className={styles.count}>{globalStatistic.doctors}</div>
-            {t("Doctors")}
+            Лікарі
           </div>
           <div>
             <div className={styles.count}>{globalStatistic.msps}</div>
-            {t("Medical system providers")}
+            Провайдери медичної системи
           </div>
         </div>
 

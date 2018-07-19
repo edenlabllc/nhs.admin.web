@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 import format from "date-fns/format";
@@ -147,17 +146,17 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
+const ContractsListPage = ({ contracts = [], paging = {}, location }) => (
   <div id="contracts-list-page">
     <Helmet
-      title={t("Contracts")}
-      meta={[{ property: "og:title", content: t("Contracts") }]}
+      title="Перелік контрактів"
+      meta={[{ property: "og:title", content: "Перелік контрактів" }]}
     />
 
-    <H1>{t("Contracts")}</H1>
+    <H1>Перелік контрактів</H1>
 
     <div>
-      <H2>{t("Search contracts")}</H2>
+      <H2>Пошук контрактів</H2>
       <SearchForm fields={SEARCH_FIELDS} location={location} />
     </div>
 
@@ -225,7 +224,7 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
                 theme="link"
                 to={`/contracts/${id}`}
               >
-                {t("Details")}
+                Детально
               </Button>
             )
           })
@@ -244,7 +243,6 @@ const ContractsListPage = ({ contracts = [], paging = {}, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchContracts({ page_size: 5, ...query }))

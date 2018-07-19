@@ -3,7 +3,6 @@ import format from "date-fns/format";
 import { compose } from "redux";
 import { withRouter } from "react-router";
 import withStyles from "withStyles";
-import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
 import Line from "components/Line";
@@ -22,12 +21,7 @@ import styles from "./styles.scss";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
-const DeclarationDetailPage = ({
-  declaration = {},
-  onTerminate,
-  router,
-  t
-}) => {
+const DeclarationDetailPage = ({ declaration = {}, onTerminate, router }) => {
   const fullName = [
     declaration.person.last_name,
     declaration.person.first_name,
@@ -37,14 +31,12 @@ const DeclarationDetailPage = ({
   return (
     <div>
       <Helmet
-        title={`${t("Declaration")} ${fullName}`}
-        meta={[
-          { property: "og:title", content: `${t("Declaration")} ${fullName}` }
-        ]}
+        title={`Декларація ${fullName}`}
+        meta={[{ property: "og:title", content: `Декларація ${fullName}` }]}
       />
 
       <BackLink onClick={() => router.goBack()}>
-        {t("Back to declarations list")}
+        Повернутися до списку декларацій
       </BackLink>
 
       <Line />
@@ -52,11 +44,11 @@ const DeclarationDetailPage = ({
       <DataList
         list={[
           {
-            name: t("Declaration ID"),
+            name: "Ідентифікатор декларації",
             value: declaration.id
           },
           {
-            name: t("Declaration Request ID"),
+            name: "Ідентифікатор запиту на створення декларації",
             value: declaration.declaration_request_id
           }
         ]}
@@ -68,15 +60,15 @@ const DeclarationDetailPage = ({
         theme="min"
         list={[
           {
-            name: t("Start date"),
+            name: "Дата початку",
             value: format(declaration.start_date, DATE_FORMAT)
           },
           {
-            name: t("End date"),
+            name: "Кінцева дата",
             value: format(declaration.end_date, DATE_FORMAT)
           },
           {
-            name: t("Status"),
+            name: "Статус",
             value: (
               <div>
                 {declaration.status === "terminated" ||
@@ -102,7 +94,7 @@ const DeclarationDetailPage = ({
             )
           },
           {
-            name: t("Scope"),
+            name: "Область дії",
             value: (
               <DictionaryValue
                 dictionary="SPECIALITY_TYPE"
@@ -116,7 +108,9 @@ const DeclarationDetailPage = ({
       <Line />
 
       <DataList
-        list={[{ name: t("Division ID"), value: declaration.division.id }]}
+        list={[
+          { name: "Ідентифікатор відділення", value: declaration.division.id }
+        ]}
       />
 
       <Line width={630} />
@@ -125,7 +119,7 @@ const DeclarationDetailPage = ({
         theme="min"
         list={[
           {
-            name: t("Division type"),
+            name: "Тип відділення",
             value: (
               <DictionaryValue
                 dictionary="DIVISION_TYPE"
@@ -133,9 +127,9 @@ const DeclarationDetailPage = ({
               />
             )
           },
-          { name: t("Division name"), value: declaration.division.name },
+          { name: "Назва відділення", value: declaration.division.name },
           {
-            name: t("Phones"),
+            name: "Телефони",
             value: (
               <InlineList
                 list={(declaration.division.phones || []).map(
@@ -144,9 +138,9 @@ const DeclarationDetailPage = ({
               />
             )
           },
-          { name: t("Email"), value: declaration.division.email },
+          { name: "Email", value: declaration.division.email },
           {
-            name: t("Addresses"),
+            name: "Адреси",
             value: <AddressesList list={declaration.division.addresses} />
           }
         ]}
@@ -157,7 +151,12 @@ const DeclarationDetailPage = ({
       <div className={styles.row}>
         <div>
           <DataList
-            list={[{ name: t("Employee ID"), value: declaration.employee.id }]}
+            list={[
+              {
+                name: "Ідентифікатор працівника",
+                value: declaration.employee.id
+              }
+            ]}
           />
         </div>
         <ShowWithScope scope="employee:read">
@@ -166,7 +165,7 @@ const DeclarationDetailPage = ({
               iconPosition="right"
               to={`/employees/${declaration.employee.id}`}
             >
-              {t("Go to employee")}
+              Перейти до працівника
             </BackLink>
           </div>
         </ShowWithScope>
@@ -180,14 +179,14 @@ const DeclarationDetailPage = ({
             theme="min"
             list={[
               {
-                name: t("Full name"),
+                name: "Повне Ім’я",
                 value: `${declaration.employee.party.last_name} ${
                   declaration.employee.party.first_name
                 } ${declaration.employee.party.second_name}`
               },
-              { name: t("Tax ID"), value: declaration.employee.party.tax_id },
+              { name: "ІНН", value: declaration.employee.party.tax_id },
               {
-                name: t("Position"),
+                name: "Позиція",
                 value: (
                   <DictionaryValue
                     dictionary="POSITION"
@@ -206,7 +205,10 @@ const DeclarationDetailPage = ({
         <div>
           <DataList
             list={[
-              { name: t("Clinic ID"), value: declaration.legal_entity.id }
+              {
+                name: "Ідентифікатор медичного закладу",
+                value: declaration.legal_entity.id
+              }
             ]}
           />
         </div>
@@ -216,7 +218,7 @@ const DeclarationDetailPage = ({
               iconPosition="right"
               to={`/clinics/${declaration.legal_entity.id}`}
             >
-              {t("Go to clinic")}
+              Перейти до медичного закладу
             </BackLink>
           </div>
         </ShowWithScope>
@@ -226,19 +228,18 @@ const DeclarationDetailPage = ({
 
       <DataList
         list={[
-          { name: t("Full name"), value: declaration.legal_entity.name },
-          { name: t("edrpou"), value: declaration.legal_entity.edrpou },
+          { name: "Повне Ім’я", value: declaration.legal_entity.name },
+          { name: "ЕДРПОУ", value: declaration.legal_entity.edrpou },
           {
-            name: t("Registration address"),
+            name: "Адреса регістрації",
             value: (
               <div className={styles.address}>
                 {declaration.legal_entity.addresses && (
                   <div>
                     <p>
                       {declaration.legal_entity.addresses[0].zip},{" "}
-                      {declaration.legal_entity.addresses[0].area} {t("area")},{" "}
-                      {t("city")}{" "}
-                      {declaration.legal_entity.addresses[0].settlement},
+                      {declaration.legal_entity.addresses[0].area} область,{" "}
+                      місто {declaration.legal_entity.addresses[0].settlement},
                     </p>
                     <p>
                       {declaration.legal_entity.addresses[0].street},&nbsp;
@@ -246,9 +247,7 @@ const DeclarationDetailPage = ({
                     </p>
                   </div>
                 )}
-                <small>
-                  {t("Residense address is equal to registration address")}
-                </small>
+                <small>Фактична адреса співпадає з адресою реєстрації</small>
               </div>
             )
           }
@@ -259,7 +258,9 @@ const DeclarationDetailPage = ({
 
       {declaration.person.id && (
         <DataList
-          list={[{ name: t("Person ID"), value: declaration.person.id }]}
+          list={[
+            { name: "Ідентифікатор людини", value: declaration.person.id }
+          ]}
         />
       )}
 
@@ -267,12 +268,12 @@ const DeclarationDetailPage = ({
         theme="min"
         list={[
           {
-            name: t("Person name"),
+            name: "Повне Ім’я",
             value: fullName
           },
-          { name: t("Tax ID"), value: declaration.person.tax_id },
+          { name: "ІНН", value: declaration.person.tax_id },
           {
-            name: t("Phones"),
+            name: "Телефони",
             value: (
               <InlineList
                 list={(declaration.person.phones || []).map(
@@ -290,11 +291,11 @@ const DeclarationDetailPage = ({
         theme="min"
         list={[
           {
-            name: t("Birth date"),
+            name: "Дата народження",
             value: format(declaration.person.birth_date, "DD/MM/YYYY")
           },
           {
-            name: t("Birth place"),
+            name: "Народжений в",
             value: [
               declaration.person.birth_country,
               declaration.person.birth_settlement
@@ -308,7 +309,7 @@ const DeclarationDetailPage = ({
       {declaration.person.documents && (
         <div>
           <Line />
-          <H3>{t("Documents")}:</H3>
+          <H3>Документи:</H3>
 
           <DataList
             theme="min"
@@ -325,9 +326,7 @@ const DeclarationDetailPage = ({
   );
 };
 
-export default compose(withRouter, withStyles(styles), translate())(
-  DeclarationDetailPage
-);
+export default compose(withRouter, withStyles(styles))(DeclarationDetailPage);
 
 class TerminateForm extends React.Component {
   state = {

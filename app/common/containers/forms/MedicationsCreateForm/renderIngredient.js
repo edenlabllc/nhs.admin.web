@@ -1,6 +1,5 @@
 import React from "react";
 import { Field } from "redux-form";
-import { translate } from "react-i18next";
 import { ErrorMessage } from "react-nebo15-validate";
 
 import FieldInput from "components/reduxForm/FieldInput";
@@ -11,7 +10,6 @@ import { FormRow, FormColumn } from "components/Form";
 import Button from "components/Button";
 import Line from "components/Line";
 
-@translate()
 export default class RenderIngredient extends React.Component {
   state = {
     innms_search: ""
@@ -22,7 +20,6 @@ export default class RenderIngredient extends React.Component {
       fields,
       meta: { error, submitFailed },
       data,
-      t,
       onSearchInnmsDosages = () => {},
       onSearchChange = () => {}
     } = this.props;
@@ -61,7 +58,7 @@ export default class RenderIngredient extends React.Component {
                     }))}
                 >
                   <ErrorMessage when="required">
-                    {t("Required field")}
+                    Обов&#700;язкове поле
                   </ErrorMessage>
                 </Field>
               </FormColumn>
@@ -98,7 +95,7 @@ export default class RenderIngredient extends React.Component {
                   }))}
                 >
                   <ErrorMessage when="required">
-                    {t("Required field")}
+                    Обов&#700;язкове поле
                   </ErrorMessage>
                 </Field>
               </FormColumn>
@@ -113,7 +110,7 @@ export default class RenderIngredient extends React.Component {
                   }))}
                 >
                   <ErrorMessage when="required">
-                    {t("Required field")}
+                    Обов&#700;язкове поле
                   </ErrorMessage>
                 </Field>
               </FormColumn>

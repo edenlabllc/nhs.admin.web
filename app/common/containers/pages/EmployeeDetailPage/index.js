@@ -1,7 +1,6 @@
 import React from "react";
 import format from "date-fns/format";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
 import withStyles from "withStyles";
@@ -22,7 +21,6 @@ import { fetchEmployee } from "./redux";
 import styles from "./style.scss";
 
 @withStyles(styles)
-@translate()
 @withRouter
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id))
@@ -31,7 +29,6 @@ import styles from "./style.scss";
 export default class EmployeeDetailPage extends React.Component {
   render() {
     const {
-      t,
       employee: {
         id,
         status,
@@ -59,13 +56,15 @@ export default class EmployeeDetailPage extends React.Component {
     return (
       <div id="employee-detail-page">
         <Helmet
-          title={`${t("Employee")} - ${fullName}`}
+          title={`Співробітник - ${fullName}`}
           meta={[
-            { property: "og:title", content: `${t("Employee")} - ${fullName}` }
+            { property: "og:title", content: `Співробітник - ${fullName}` }
           ]}
         />
 
-        <BackLink to="/employees">{t("Back to employees list")}</BackLink>
+        <BackLink to="/employees">
+          Повернутися до списку співробітників
+        </BackLink>
 
         <Line />
 
@@ -80,7 +79,7 @@ export default class EmployeeDetailPage extends React.Component {
             <DataList
               theme="small"
               list={[
-                { name: t("Full name"), value: fullName },
+                { name: "Повне Ім’я", value: fullName },
                 { name: "Без ІПН", value: <YesNo bool={no_tax_id} /> },
                 { name: "ІПН / Паспорт", value: tax_id }
               ]}
@@ -93,11 +92,11 @@ export default class EmployeeDetailPage extends React.Component {
             theme="min"
             list={[
               {
-                name: t("Birth date"),
+                name: "Дата народження",
                 value: format(birth_date, "DD/MM/YYYY")
               },
               {
-                name: t("Sex"),
+                name: "Стать",
                 value: <DictionaryValue dictionary="GENDER" value={gender} />
               }
             ]}
@@ -109,11 +108,11 @@ export default class EmployeeDetailPage extends React.Component {
             theme="min"
             list={[
               {
-                name: t("Phones"),
+                name: "Телефони",
                 value: <InlineList list={phones.map(item => item.number)} />
               },
               {
-                name: t("Documents"),
+                name: "Документи",
                 value: (
                   <ul className={styles.docs}>
                     {documents.map(({ number, type }) => (
@@ -138,7 +137,7 @@ export default class EmployeeDetailPage extends React.Component {
             list={[
               { name: "Ідентифікатор особи", value: partyId },
               {
-                name: t("Status"),
+                name: "Статус",
                 value: (
                   <DictionaryValue
                     dictionary="EMPLOYEE_STATUS"
@@ -147,21 +146,21 @@ export default class EmployeeDetailPage extends React.Component {
                 )
               },
               {
-                name: t("Start work date"),
+                name: "Дата початку роботи",
                 value: format(start_date, "DD/MM/YYYY")
               },
               {
-                name: t("End work date"),
+                name: "Дата завершення роботи",
                 value: end_date ? format(end_date, "DD/MM/YYYY") : "-"
               },
               {
-                name: t("Position"),
+                name: "Позиція",
                 value: (
                   <DictionaryValue dictionary="POSITION" value={position} />
                 )
               },
               doctor && {
-                name: t("Education and qualifications"),
+                name: "Навчання та кваліфікація",
                 value: <DoctorDetails doctor={doctor} />
               }
             ]}

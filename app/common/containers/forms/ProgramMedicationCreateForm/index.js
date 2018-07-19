@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import { reduxForm, Field, getFormValues } from "redux-form";
 import {
@@ -19,7 +18,6 @@ import ShowWithScope from "containers/blocks/ShowWithScope";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "program-medication-create-form",
   validate: reduxFormValidate({
@@ -41,7 +39,6 @@ export default class ProgramMedicationCreateForm extends React.Component {
       onSubmit = () => {},
       data = [],
       submitting,
-      t,
       disabled = false,
       create,
       initialValues = {}
@@ -75,7 +72,7 @@ export default class ProgramMedicationCreateForm extends React.Component {
                   }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -91,7 +88,7 @@ export default class ProgramMedicationCreateForm extends React.Component {
           <ShowWithScope scope="program_medication:write">
             <div>
               <Button type="submit" disabled={submitting}>
-                {submitting ? t("Saving...") : t("Створити")}
+                {submitting ? "Збереження..." : "Створити"}
               </Button>
             </div>
           </ShowWithScope>

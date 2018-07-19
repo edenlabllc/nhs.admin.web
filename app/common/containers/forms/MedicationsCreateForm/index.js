@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import withStyles from "withStyles";
 import {
   reduxFormValidate,
@@ -24,7 +23,6 @@ import RenderIngredient from "./renderIngredient";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @reduxForm({
   form: "medications-create-form",
   validate: reduxFormValidate({
@@ -139,7 +137,6 @@ export default class MedicationsCreateForm extends React.Component {
       onSubmit = () => {},
       onSearchInnmsDosages = () => {},
       submitting,
-      t,
       disabled = false,
       data,
       values = {}
@@ -184,7 +181,7 @@ export default class MedicationsCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -221,7 +218,7 @@ export default class MedicationsCreateForm extends React.Component {
                   }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -257,7 +254,7 @@ export default class MedicationsCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -272,7 +269,7 @@ export default class MedicationsCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -306,7 +303,7 @@ export default class MedicationsCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -319,7 +316,7 @@ export default class MedicationsCreateForm extends React.Component {
                 placeholder="30"
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -334,7 +331,7 @@ export default class MedicationsCreateForm extends React.Component {
                 }))}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -349,7 +346,7 @@ export default class MedicationsCreateForm extends React.Component {
                 postfix={container__active}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>
@@ -362,7 +359,7 @@ export default class MedicationsCreateForm extends React.Component {
                 postfix={container__active}
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
               <FormColumn />
@@ -393,7 +390,7 @@ export default class MedicationsCreateForm extends React.Component {
                   title: data.countries.values[key]
                 }))}
             >
-              <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
+              <ErrorMessage when="required">Обов&#700;язкове поле</ErrorMessage>
             </Field>
           </FormRow>
           <FormRow>
@@ -403,7 +400,7 @@ export default class MedicationsCreateForm extends React.Component {
               labelText="Виробник"
               placeholder="Введіть виробника"
             >
-              <ErrorMessage when="required">{t("Required field")}</ErrorMessage>
+              <ErrorMessage when="required">Обов&#700;язкове поле</ErrorMessage>
             </Field>
           </FormRow>
           <div className={styles.title}>&#8548;. Реєстраційне посвідчення</div>
@@ -416,7 +413,7 @@ export default class MedicationsCreateForm extends React.Component {
                 placeholder="Номер реєстраційного посвідчення"
               >
                 <ErrorMessage when="required">
-                  {t("Required field")}
+                  Обов&#700;язкове поле
                 </ErrorMessage>
               </Field>
             </FormColumn>

@@ -1,10 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { translate } from "react-i18next";
 
 import { Confirm } from "components/Popup";
 
-@translate()
 @withRouter
 export default class ConfirmFormChanges extends React.Component {
   state = {
@@ -42,20 +40,18 @@ export default class ConfirmFormChanges extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
-
     return (
       <Confirm
-        title={t("You have unsaved changes")}
+        title="У вас є незбережені зміни"
         active={this.state.showConfirm}
         theme="error"
-        confirm={t("Ok")}
-        cancel={t("Cancel")}
+        confirm="Добре"
+        cancel="Скасувати"
         id="confirm-leave"
         onCancel={() => this.setState({ showConfirm: false })}
         onConfirm={() => this.confirmLocation()}
       >
-        {t("Are you sure want to leave this page?")}
+        Ви впевнені, що хочете залишити цю сторінку?
       </Confirm>
     );
   }

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -16,7 +15,6 @@ import { fetchConfiguration } from "./redux";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch }) => dispatch(fetchConfiguration())
 })
@@ -28,15 +26,15 @@ import styles from "./styles.scss";
 )
 export default class SystemConfigurationPage extends React.Component {
   render() {
-    const { configuration = {}, t } = this.props;
+    const { configuration = {} } = this.props;
     return (
       <div id="system-configuration-page">
         <Helmet
-          title={t("System configuration")}
-          meta={[{ property: "og:title", content: t("System configuration") }]}
+          title="Конфігурація системи"
+          meta={[{ property: "og:title", content: "Конфігурація системи" }]}
         />
 
-        <H1>{t("System configuration")}</H1>
+        <H1>Конфігурація системи</H1>
 
         <SystemConfigurationForm
           initialValues={configuration}

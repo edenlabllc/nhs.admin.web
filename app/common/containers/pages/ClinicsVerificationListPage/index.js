@@ -2,7 +2,6 @@ import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
-import { translate } from "react-i18next";
 import Helmet from "react-helmet";
 
 import { H1 } from "components/Title";
@@ -18,18 +17,18 @@ import { getClinics } from "reducers";
 
 import { fetchClinics } from "./redux";
 
-const ClinicsVerificationListPage = ({ clinics = [], paging, location, t }) => (
+const ClinicsVerificationListPage = ({ clinics = [], paging, location }) => (
   <div id="clinics-verification-list-page">
     <Helmet
-      title={t("Verification clinics")}
-      meta={[{ property: "og:title", content: t("Verification clinics") }]}
+      title="Перевірка медичних закладiв"
+      meta={[{ property: "og:title", content: "Перевірка медичних закладiв" }]}
     />
 
     <BackLink to="/clinics-verification" detached>
-      {t("Back to search page")}
+      Повернутися до сторінки пошуку
     </BackLink>
 
-    <H1>{t("Verification clinics")}</H1>
+    <H1>Перевірка медичних закладiв</H1>
 
     <ShowBy location={location} />
 
@@ -48,7 +47,6 @@ const ClinicsVerificationListPage = ({ clinics = [], paging, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchClinics({ ...query, nhs_verified: false }))

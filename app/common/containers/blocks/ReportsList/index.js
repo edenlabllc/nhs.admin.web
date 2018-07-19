@@ -1,6 +1,5 @@
 import React from "react";
 import format from "date-fns/format";
-import { translate } from "react-i18next";
 
 import Pagination from "components/Pagination";
 import { ListTable } from "components/List";
@@ -43,14 +42,13 @@ const capitationData = [
   }
 ];
 
-@translate()
 export default class ReportsList extends React.Component {
   state = {
     isOpenedPopup: false,
     capitationDetail: {}
   };
   render() {
-    const { reports, t, paging } = this.props;
+    const { reports, paging } = this.props;
     if (!reports) return null;
     const {
       capitationDetail: { report = [], contracts = [] },
@@ -109,7 +107,7 @@ export default class ReportsList extends React.Component {
                     })
                   }
                 >
-                  {t("Details")}
+                  Детально
                 </Button>
               )
             }))}

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -21,7 +20,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchInnm(id))
 })
@@ -30,7 +28,7 @@ import styles from "./styles.scss";
 }))
 export default class InnmDetailPage extends React.Component {
   render() {
-    const { innm = {}, t } = this.props;
+    const { innm = {} } = this.props;
 
     return (
       <div id="innm-detail-page">
@@ -56,7 +54,7 @@ export default class InnmDetailPage extends React.Component {
               icon="back"
               block
             >
-              {t("Back to list")}
+              Повернутися до списку
             </Button>
           </FormColumn>
           <FormColumn />

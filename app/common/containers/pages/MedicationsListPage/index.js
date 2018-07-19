@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { provideHooks } from "redial";
 import Helmet from "react-helmet";
 
@@ -40,7 +39,7 @@ const SEARCH_FIELDS = [
   }
 ];
 
-const MedicationsListPage = ({ medications = [], paging, location, t }) => (
+const MedicationsListPage = ({ medications = [], paging, location }) => (
   <div id="medication-list-page">
     <Helmet
       title="Торгівельні найменування"
@@ -75,12 +74,12 @@ const MedicationsListPage = ({ medications = [], paging, location, t }) => (
     <ListTable id="medication-table">
       <Table
         columns={[
-          { key: "id", title: t("ID") },
-          { key: "innm_dosage_id", title: t("ID лікарської форми") },
-          { key: "name", title: t("Торгівельне найменування") },
-          { key: "form", title: t("Форма /Виробник") },
-          { key: "active", title: t("Активна") },
-          { key: "action", title: t("Детально / Деактивація"), width: 200 }
+          { key: "id", title: "ID" },
+          { key: "innm_dosage_id", title: "ID лікарської форми" },
+          { key: "name", title: "Торгівельне найменування" },
+          { key: "form", title: "Форма /Виробник" },
+          { key: "active", title: "Активна" },
+          { key: "action", title: "Детально / Деактивація", width: 200 }
         ]}
         data={medications.map(item => ({
           id: <div>{item.id}</div>,
@@ -102,7 +101,7 @@ const MedicationsListPage = ({ medications = [], paging, location, t }) => (
               theme="link"
               to={`/medications/${item.id}`}
             >
-              {t("Details")}
+              Детально
             </Button>
           )
         }))}
@@ -121,7 +120,6 @@ const MedicationsListPage = ({ medications = [], paging, location, t }) => (
 );
 
 export default compose(
-  translate(),
   provideHooks({
     fetch: ({ dispatch, location: { query } }) =>
       dispatch(fetchMedications({ page_size: 5, ...query }))

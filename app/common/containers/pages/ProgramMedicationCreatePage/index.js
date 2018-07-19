@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
@@ -16,7 +15,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @connect(
   (state, { params: { id } }) => ({
     medical_programs: state.data.medical_programs || []

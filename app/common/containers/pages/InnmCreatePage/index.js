@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
 import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
@@ -12,11 +11,10 @@ import Line from "components/Line";
 import { createInnm } from "redux/innms";
 
 @withRouter
-@translate()
 @connect(null, { createInnm })
 export default class InnmCreatePage extends React.Component {
   render() {
-    const { createInnm = () => {}, t, router } = this.props;
+    const { createInnm = () => {}, router } = this.props;
 
     return (
       <div id="innm-create-page">

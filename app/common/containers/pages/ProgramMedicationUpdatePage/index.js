@@ -1,5 +1,4 @@
 import React from "react";
-import { translate } from "react-i18next";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
 import { withRouter } from "react-router";
@@ -18,7 +17,6 @@ import styles from "./styles.scss";
 
 @withRouter
 @withStyles(styles)
-@translate()
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchProgramMedication(id))
 })
@@ -30,7 +28,7 @@ import styles from "./styles.scss";
 )
 export default class ProgramMedicationUpdatePage extends React.Component {
   render() {
-    const { program_medication = {}, onUpdate, t } = this.props;
+    const { program_medication = {}, onUpdate } = this.props;
 
     return (
       <div id="program-medication-update-page">
