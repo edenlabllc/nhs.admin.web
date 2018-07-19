@@ -400,21 +400,21 @@ class ContractDetail extends React.Component {
                   },
                   {
                     name: "Заклад",
-                    value: fec.legal_entity_id && (
+                    value: fec.legal_entity.id && (
                       <div className={styles.row}>
                         <div>
                           <div>
-                            {fec.legal_entity_name && (
-                              <div>{fec.legal_entity_name}</div>
+                            {fec.legal_entity.name && (
+                              <div>{fec.legal_entity.name}</div>
                             )}
-                            <div>ID {fec.legal_entity_id}</div>
+                            <div>ID {fec.legal_entity.id}</div>
                           </div>
                         </div>
                         <ShowWithScope scope="legal_entity:read">
                           <div className={styles.right}>
                             <BackLink
                               iconPosition="right"
-                              to={`/clinics/${fec.legal_entity_id}`}
+                              to={`/clinics/${fec.legal_entity.id}`}
                             >
                               Перейти до медичного закладу
                             </BackLink>
