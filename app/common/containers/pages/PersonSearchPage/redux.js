@@ -5,14 +5,11 @@ import { fetchPersons } from "redux/persons";
 export const showPersons = createAction("personSearchPage/SHOW_PERSONS");
 export const pagingPersons = createAction("personSearchPage/ADD_PAGING");
 
-export const fetchPersonsList = ({
-  mobile_phone = "",
-  ...options
-}) => dispatch =>
+export const fetchPersonsList = ({ ...options }) => dispatch =>
   dispatch(
     fetchPersons({
-      mobile_phone: `380${mobile_phone.replace(/\s/g, "")}`,
-      ...options
+      ...options,
+      ...checkPhone(options.mobile_phone)
     })
   ).then(action => {
     if (action.error && action.payload.status !== 422) {
@@ -24,6 +21,11 @@ export const fetchPersonsList = ({
       dispatch(pagingPersons(action.meta || {}))
     ];
   });
+
+const checkPhone = phone => {
+  if (!phone) return {};
+  return { mobile_phone: `380${phone.replace(/\s/g, "")}` };
+};
 
 const persons = handleAction(
   showPersons,
