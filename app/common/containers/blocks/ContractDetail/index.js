@@ -105,7 +105,7 @@ class ContractDetail extends React.Component {
             )
           ) : null
         ) : (
-          <PrintLink action={getPrintoutContent} id={contract.id} />
+          <PrintLink getPrintoutContent={getPrintoutContent} id={contract.id} />
         )}
         <DataList
           list={[
@@ -258,131 +258,62 @@ class ContractDetail extends React.Component {
             <div>
               <Line />
               <H1>II. Додаток 2</H1>
-              <div className={styles.forwardLink}>
-                <BackLink
-                  to={`/contract-requests/${contract.id}/division-employees/${
-                    contractorDivisions[0].id
-                  }`}
-                  iconPosition={"right"}
-                >
-                  Показати співробітників
-                </BackLink>
+              <div>
+                {contractorDivisions.map((i, key) => (
+                  <div key={key}>
+                    {key !== 0 && <Line />}
+                    <div className={styles.forwardLink}>
+                      <BackLink
+                        to={`/contract-requests/${
+                          contract.id
+                        }/division-employees/${i.id}`}
+                        iconPosition={"right"}
+                      >
+                        Показати співробітників
+                      </BackLink>
+                    </div>
+                    <H1>Відділення</H1>
+                    <DataList
+                      list={[
+                        {
+                          name: "ID відділення",
+                          value: i.id
+                        },
+                        {
+                          name: "Назва",
+                          value: i.name
+                        },
+                        {
+                          name: "Адреса",
+                          value: <AddressesList list={i.addresses} />
+                        },
+                        {
+                          name: "Гірський регіон",
+                          value: i.mountain_group ? "Так" : "Ні"
+                        },
+                        {
+                          name: "Телефон",
+                          value: (
+                            <InlineList
+                              list={i.phones.map(item => item.number)}
+                            />
+                          )
+                        },
+                        {
+                          name: "Email",
+                          value: i.email
+                        },
+                        {
+                          name: "Графік роботи",
+                          value: i.working_hours && (
+                            <WorkingHours workingHours={i.working_hours} />
+                          )
+                        }
+                      ]}
+                    />
+                  </div>
+                ))}
               </div>
-              <H1>Відділення</H1>
-              <DataList
-                list={[
-                  {
-                    name: "ID відділення",
-                    value: contractorDivisions[0].id
-                  },
-                  {
-                    name: "Назва",
-                    value: contractorDivisions[0].name
-                  },
-                  {
-                    name: "Адреса",
-                    value: (
-                      <AddressesList list={contractorDivisions[0].addresses} />
-                    )
-                  },
-                  {
-                    name: "Гірський регіон",
-                    value: contractorDivisions[0].mountain_group ? "Так" : "Ні"
-                  },
-                  {
-                    name: "Телефон",
-                    value: (
-                      <InlineList
-                        list={contractorDivisions[0].phones.map(
-                          item => item.number
-                        )}
-                      />
-                    )
-                  },
-                  {
-                    name: "Email",
-                    value: contractorDivisions[0].email
-                  },
-                  {
-                    name: "Графік роботи",
-                    value: contractorDivisions[0].working_hours && (
-                      <WorkingHours
-                        workingHours={contractorDivisions[0].working_hours}
-                      />
-                    )
-                  }
-                ]}
-              />
-              <Line />
-              {contractorDivisions.length > 1 && (
-                <div>
-                  <ShowMore
-                    name={`Показати інші відділення (${contract
-                      .contractor_divisions.length - 1})`}
-                    show_block
-                  >
-                    {contractorDivisions.map((i, key) => {
-                      if (key === 0) return null;
-                      return (
-                        <div key={key}>
-                          {key !== 1 && <Line />}
-                          <div className={styles.forwardLink}>
-                            <BackLink
-                              to={`/contract-requests/${
-                                contract.id
-                              }/division-employees/${i.id}`}
-                              iconPosition={"right"}
-                            >
-                              Показати співробітників
-                            </BackLink>
-                          </div>
-                          <H1>Відділення</H1>
-                          <DataList
-                            list={[
-                              {
-                                name: "ID відділення",
-                                value: i.id
-                              },
-                              {
-                                name: "Назва",
-                                value: i.name
-                              },
-                              {
-                                name: "Адреса",
-                                value: <AddressesList list={i.addresses} />
-                              },
-                              {
-                                name: "Гірський регіон",
-                                value: i.mountain_group ? "Так" : "Ні"
-                              },
-                              {
-                                name: "Телефон",
-                                value: (
-                                  <InlineList
-                                    list={i.phones.map(item => item.number)}
-                                  />
-                                )
-                              },
-                              {
-                                name: "Email",
-                                value: i.email
-                              },
-                              {
-                                name: "Графік роботи",
-                                value: i.working_hours && (
-                                  <WorkingHours
-                                    workingHours={i.working_hours}
-                                  />
-                                )
-                              }
-                            ]}
-                          />
-                        </div>
-                      );
-                    })}
-                  </ShowMore>
-                </div>
-              )}
             </div>
           ) : null}
           {contract.external_contractors &&
@@ -575,63 +506,64 @@ class ContractDetail extends React.Component {
               <Line />
             </div>
           ) : null}
-          {contract.nhs_signer && (
-            <div>
-              <DataList
-                list={[
-                  {
-                    name: "Замовник",
-                    value: contract.nhs_legal_entity.name
-                  },
-                  {
-                    name: "Підписант зі сторони замовника",
-                    value: (
-                      <div className={styles.row}>
-                        <div>
-                          <div>{fullName(contract.nhs_signer.party)}</div>
-                          <div>ID {contract.nhs_signer.id}</div>
-                        </div>
-                        <ShowWithScope scope="employee:read">
-                          <div className={styles.right}>
-                            <BackLink
-                              iconPosition="right"
-                              to={`/employees/${contract.nhs_signer.id}`}
-                            >
-                              Перейти до працівника
-                            </BackLink>
+          {contract.status !== "NEW" &&
+            contract.nhs_signer && (
+              <div>
+                <DataList
+                  list={[
+                    {
+                      name: "Замовник",
+                      value: contract.nhs_legal_entity.name
+                    },
+                    {
+                      name: "Підписант зі сторони замовника",
+                      value: (
+                        <div className={styles.row}>
+                          <div>
+                            <div>{fullName(contract.nhs_signer.party)}</div>
+                            <div>ID {contract.nhs_signer.id}</div>
                           </div>
-                        </ShowWithScope>
-                      </div>
-                    )
-                  },
-                  {
-                    name: "Що діє на підставі",
-                    value: contract.nhs_signer_base
-                  },
-                  {
-                    name: "Ціна договору",
-                    value: `${contract.nhs_contract_price.toLocaleString(
-                      "uk-UA"
-                    )} грн`
-                  },
-                  {
-                    name: "Спосіб оплати",
-                    value: (
-                      <DictionaryValue
-                        dictionary="CONTRACT_PAYMENT_METHOD"
-                        value={contract.nhs_payment_method}
-                      />
-                    )
-                  },
-                  {
-                    name: "Місто укладення договору",
-                    value: contract.issue_city
-                  }
-                ]}
-              />
-              <Line />
-            </div>
-          )}
+                          <ShowWithScope scope="employee:read">
+                            <div className={styles.right}>
+                              <BackLink
+                                iconPosition="right"
+                                to={`/employees/${contract.nhs_signer.id}`}
+                              >
+                                Перейти до працівника
+                              </BackLink>
+                            </div>
+                          </ShowWithScope>
+                        </div>
+                      )
+                    },
+                    {
+                      name: "Що діє на підставі",
+                      value: contract.nhs_signer_base
+                    },
+                    {
+                      name: "Ціна договору",
+                      value: `${contract.nhs_contract_price.toLocaleString(
+                        "uk-UA"
+                      )} грн`
+                    },
+                    {
+                      name: "Спосіб оплати",
+                      value: (
+                        <DictionaryValue
+                          dictionary="CONTRACT_PAYMENT_METHOD"
+                          value={contract.nhs_payment_method}
+                        />
+                      )
+                    },
+                    {
+                      name: "Місто укладення договору",
+                      value: contract.issue_city
+                    }
+                  ]}
+                />
+                <Line />
+              </div>
+            )}
         </div>
       </div>
     );
