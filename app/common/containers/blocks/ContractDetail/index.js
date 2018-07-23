@@ -73,7 +73,9 @@ class ContractDetail extends React.Component {
     if (contract.external_contractors) {
       fec = contract.external_contractors[0];
     }
-    const contractorDivisions = contract.contractor_divisions.filter(Boolean);
+    const contractorDivisions =
+      contract.contractor_divisions &&
+      contract.contractor_divisions.filter(Boolean);
     return (
       <div>
         <Helmet
@@ -105,7 +107,10 @@ class ContractDetail extends React.Component {
             )
           ) : null
         ) : (
-          <PrintLink getPrintoutContent={getPrintoutContent} id={contract.id} />
+          <PrintLink
+            printoutContent={contract.printout_content}
+            printIframe={printIframe}
+          />
         )}
         <DataList
           list={[
