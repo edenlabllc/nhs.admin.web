@@ -326,171 +326,82 @@ class ContractDetail extends React.Component {
             <div>
               <Line />
               <H1>Підрядники</H1>
-              <DataList
-                list={[
-                  {
-                    name: "Номер договору",
-                    value: `№${fec.contract.number} від ${
-                      fec.contract.issued_at
-                    } по ${fec.contract.expires_at}`
-                  },
-                  {
-                    name: "Заклад",
-                    value: fec.legal_entity.id && (
-                      <div className={styles.row}>
-                        <div>
-                          <div>
-                            {fec.legal_entity.name && (
-                              <div>{fec.legal_entity.name}</div>
-                            )}
-                            <div>ID {fec.legal_entity.id}</div>
-                          </div>
-                        </div>
-                        <ShowWithScope scope="legal_entity:read">
-                          <div className={styles.right}>
-                            <BackLink
-                              iconPosition="right"
-                              to={`/clinics/${fec.legal_entity.id}`}
-                            >
-                              Перейти до медичного закладу
-                            </BackLink>
-                          </div>
-                        </ShowWithScope>
-                      </div>
-                    )
-                  }
-                ]}
-              />
-              <br />
-              <DataList
-                list={[
-                  {
-                    name: "Відділення",
-                    value: (
-                      <div>
-                        <div className={styles.divisionList}>
-                          <div>{getDivisionName(fec.divisions[0].id)}</div>
-                          <div>ID {fec.divisions[0].id}</div>
-                          <div>
-                            Послуга, що надається:{" "}
-                            <DictionaryValue
-                              dictionary="MEDICAL_SERVICE"
-                              value={fec.divisions[0].medical_service}
-                            />
-                          </div>
-                        </div>
-                        {fec.divisions.length > 1 && (
-                          <ShowMore
-                            name={`Показати інші відділення (${fec.divisions
-                              .length - 1})`}
-                            show_block
-                          >
-                            {fec.divisions.map((item, key) => {
-                              if (key === 0) return null;
-                              return (
-                                <div key={key} className={styles.divisionList}>
-                                  <div>{getDivisionName(item.id)}</div>
-                                  <div>ID {item.id}</div>
+              <div>
+                {contract.external_contractors.map((i, key) => {
+                  return (
+                    <div key={key}>
+                      {key !== 0 && <Line />}
+                      <DataList
+                        list={[
+                          {
+                            name: "Номер договору",
+                            value: `№${i.contract.number} від ${
+                              i.contract.issued_at
+                            } по ${i.contract.expires_at}`
+                          },
+                          {
+                            name: "Заклад",
+                            value: i.legal_entity.id && (
+                              <div className={styles.row}>
+                                <div>
                                   <div>
-                                    Послуга, що надається:{" "}
-                                    <DictionaryValue
-                                      dictionary="MEDICAL_SERVICE"
-                                      value={item.medical_service}
-                                    />
+                                    {i.legal_entity.name && (
+                                      <div>{i.legal_entity.name}</div>
+                                    )}
+                                    <div>ID {i.legal_entity.id}</div>
                                   </div>
                                 </div>
-                              );
-                            })}
-                          </ShowMore>
-                        )}
-                      </div>
-                    )
-                  }
-                ]}
-              />
-              {contract.external_contractors.length > 1 && (
-                <div>
-                  <Line />
-                  <ShowMore
-                    name={`Показати всіх підрядників (${contract
-                      .external_contractors.length - 1})`}
-                    show_block
-                  >
-                    {contract.external_contractors.map((i, key) => {
-                      if (key === 0) return null;
-                      return (
-                        <div key={key}>
-                          {key !== 1 && <Line />}
-                          <DataList
-                            list={[
-                              {
-                                name: "Номер договору",
-                                value: `№${i.contract.number} від ${
-                                  i.contract.issued_at
-                                } по ${i.contract.expires_at}`
-                              }
-                            ]}
-                          />
-                          <br />
-                          <DataList
-                            list={[
-                              {
-                                name: "Відділення",
-                                value: (
-                                  <div>
-                                    <div className={styles.divisionList}>
-                                      <div>
-                                        {getDivisionName(i.divisions[0].id)}
-                                      </div>
-                                      <div>ID {i.divisions[0].id}</div>
-                                      <div>
-                                        Послуга, що надається:{" "}
-                                        <DictionaryValue
-                                          dictionary="MEDICAL_SERVICE"
-                                          value={i.divisions[0].medical_service}
-                                        />
-                                      </div>
-                                    </div>
-                                    {i.divisions.length > 1 && (
-                                      <ShowMore
-                                        name={`Показати інші відділення (${i
-                                          .divisions.length - 1})`}
-                                        show_block
-                                      >
-                                        {i.divisions.map((item, key) => {
-                                          if (key === 0) return null;
-                                          return (
-                                            <div
-                                              key={key}
-                                              className={styles.divisionList}
-                                            >
-                                              <div>
-                                                {getDivisionName(item.id)}
-                                              </div>
-                                              <div>ID {item.id}</div>
-                                              <div>
-                                                Послуга, що надається:{" "}
-                                                <DictionaryValue
-                                                  dictionary="MEDICAL_SERVICE"
-                                                  value={item.medical_service}
-                                                />
-                                              </div>
-                                            </div>
-                                          );
-                                        })}
-                                      </ShowMore>
-                                    )}
+                                <ShowWithScope scope="legal_entity:read">
+                                  <div className={styles.right}>
+                                    <BackLink
+                                      iconPosition="right"
+                                      to={`/clinics/${i.legal_entity.id}`}
+                                    >
+                                      Перейти до медичного закладу
+                                    </BackLink>
                                   </div>
-                                )
-                              }
-                            ]}
-                          />
-                        </div>
-                      );
-                    })}
-                  </ShowMore>
-                </div>
-              )}
+                                </ShowWithScope>
+                              </div>
+                            )
+                          }
+                        ]}
+                      />
+                      <br />
+                      <DataList
+                        list={[
+                          {
+                            name: "Відділення",
+                            value: (
+                              <div>
+                                <div>
+                                  {i.divisions.map((item, key) => {
+                                    return (
+                                      <div
+                                        key={key}
+                                        className={styles.divisionList}
+                                      >
+                                        <div>{getDivisionName(item.id)}</div>
+                                        <div>ID {item.id}</div>
+                                        <div>
+                                          Послуга, що надається:{" "}
+                                          <DictionaryValue
+                                            dictionary="MEDICAL_SERVICE"
+                                            value={item.medical_service}
+                                          />
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )
+                          }
+                        ]}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ) : null}
           {contract.urgent && contract.urgent.length ? (
