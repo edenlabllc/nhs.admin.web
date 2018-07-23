@@ -79,7 +79,8 @@ class ContractRequestsDetailsPage extends React.Component {
 export default compose(
   withRouter,
   provideHooks({
-    fetch: ({ dispatch, params: { id } }) => dispatch(fetchContractRequest(id))
+    fetch: ({ dispatch, params: { id } }) =>
+      typeof window !== "undefined" && dispatch(fetchContractRequest(id))
   }),
   connect(
     (state, { params: { id } }) => ({
