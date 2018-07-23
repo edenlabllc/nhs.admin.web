@@ -69,10 +69,6 @@ class ContractDetail extends React.Component {
         return name;
       }
     };
-    let fec;
-    if (contract.external_contractors) {
-      fec = contract.external_contractors[0];
-    }
     const contractorDivisions =
       contract.contractor_divisions &&
       contract.contractor_divisions.filter(Boolean);
