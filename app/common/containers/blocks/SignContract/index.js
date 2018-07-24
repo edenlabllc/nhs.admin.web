@@ -66,16 +66,6 @@ export default class SignContract extends React.Component {
             >
               {({ signData }) => (
                 <div>
-                  <div>
-                    <br />
-                    <b>
-                      {"Увага!\n" +
-                        "Затверджуючи запит, ПІДТВЕРДЖУЄТЕ дійсність намірів, " +
-                        "а також те, що він не носить характеру мнимого та удаваного " +
-                        "і не є правочином зловмисним, а також що зміст правочину " +
-                        "ВІДПОВІДАЄ ВАШІЇЙ ВОЛІ ТА ПІДПИСАНИЙ ОСОБИСТО ВАМИ."}
-                    </b>
-                  </div>
                   <br />
                   <div className={styles.buttonGroup}>
                     <div className={styles.button}>
