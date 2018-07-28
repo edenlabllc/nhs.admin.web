@@ -16,7 +16,7 @@ import { FormRow, FormColumn } from "components/Form";
 import { SelectUniversal } from "components/SelectUniversal";
 
 import ShowWithScope from "containers/blocks/ShowWithScope";
-import { PERSON_TYPE } from "helpers/enums";
+import { ENTITY_TYPE } from "helpers/enums";
 
 import styles from "./styles.scss";
 
@@ -27,7 +27,7 @@ import styles from "./styles.scss";
     type: {
       required: true
     },
-    person_type: {
+    entity_type: {
       required: true
     }
   })
@@ -48,10 +48,10 @@ export default class RegisterUploadForm extends React.Component {
     }));
   };
 
-  onSubmit({ person_type, type, reason_description }) {
+  onSubmit({ entity_type, type, reason_description }) {
     const { file, file_name } = this.state;
     return this.props.onSubmit({
-      person_type: person_type.name,
+      entity_type: entity_type.name,
       type: type.name,
       file: file.replace("data:text/csv;base64,", ""),
       file_name,
@@ -69,14 +69,14 @@ export default class RegisterUploadForm extends React.Component {
           <FormRow>
             <FormColumn>
               <Field
-                name="person_type"
+                name="entity_type"
                 component={SelectUniversal}
-                labelText="Тип особи"
+                labelText="Тип суб'єкта"
                 label_bold
-                placeholder="Оберіть тип особи"
-                options={Object.keys(PERSON_TYPE).map(key => ({
+                placeholder="Оберіть тип суб'єкта'"
+                options={Object.keys(ENTITY_TYPE).map(key => ({
                   name: key,
-                  title: PERSON_TYPE[key]
+                  title: ENTITY_TYPE[key]
                 }))}
               >
                 <ErrorMessage when="required">Обов'якове поле</ErrorMessage>
