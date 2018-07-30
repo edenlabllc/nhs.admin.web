@@ -14,6 +14,7 @@ import FieldTextarea from "components/reduxForm/FieldTextarea";
 import Button from "components/Button";
 import { FormRow, FormColumn } from "components/Form";
 import { SelectUniversal } from "components/SelectUniversal";
+import LoadingDot from "components/LoadingDot";
 
 import ShowWithScope from "containers/blocks/ShowWithScope";
 import { ENTITY_TYPE } from "helpers/enums";
@@ -38,7 +39,8 @@ import styles from "./styles.scss";
 export default class RegisterUploadForm extends React.Component {
   state = {
     file_name: null,
-    file: null
+    file: null,
+    pending: false
   };
 
   handleFiles = file => {
@@ -50,13 +52,19 @@ export default class RegisterUploadForm extends React.Component {
 
   onSubmit({ entity_type, type, reason_description }) {
     const { file, file_name } = this.state;
-    return this.props.onSubmit({
-      entity_type: entity_type.name,
-      type: type.name,
-      file: file.replace("data:text/csv;base64,", ""),
-      file_name,
-      reason_description
-    });
+    return this.props
+      .onSubmit({
+        entity_type: entity_type.name,
+        type: type.name,
+        file: file.replace("data:text/csv;base64,", ""),
+        file_name,
+        reason_description
+      })
+      .then(resp =>
+        this.setState({
+          pending: false
+        })
+      );
   }
 
   render() {
@@ -64,7 +72,12 @@ export default class RegisterUploadForm extends React.Component {
     const { file, file_name } = this.state;
 
     return (
-      <form onSubmit={handleSubmit(v => this.onSubmit(v)).bind(this)}>
+      <form
+        onSubmit={handleSubmit(v => {
+          this.setState({ pending: true });
+          return this.onSubmit(v);
+        })}
+      >
         <div className={styles.form}>
           <FormRow>
             <FormColumn>
@@ -136,7 +149,17 @@ export default class RegisterUploadForm extends React.Component {
                     type="submit"
                     disabled={!file && !file_name && submitting}
                   >
-                    {!file && !file_name ? "Завантажте файл" : "Зберегти файл"}
+                    {this.state.pending && (
+                      <div>
+                        Зачекайте. Йде завантаження файлу{" "}
+                        <LoadingDot align="center" />
+                      </div>
+                    )}
+                    {!file && !file_name && "Завантажте файл"}
+                    {!this.state.pending &&
+                      file &&
+                      file_name &&
+                      "Зберегти файл"}
                   </Button>
                 </div>
               </ShowWithScope>

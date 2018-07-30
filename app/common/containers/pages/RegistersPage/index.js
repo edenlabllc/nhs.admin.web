@@ -165,18 +165,19 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               ),
               errors: (
                 <div>
-                  {errors.length && (
-                    <div>
-                      {errors.length}
-                      <Button
-                        id={`registers-errors-button-${id}`}
-                        theme="link"
-                        to={`/registers/${id}`}
-                      >
-                        Показати
-                      </Button>
-                    </div>
-                  )}
+                  {errors &&
+                    errors.length && (
+                      <div>
+                        {errors.length}
+                        <Button
+                          id={`registers-errors-button-${id}`}
+                          theme="link"
+                          to={`/registers/${id}`}
+                        >
+                          Показати
+                        </Button>
+                      </div>
+                    )}
                 </div>
               ),
               action: (
