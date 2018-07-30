@@ -134,7 +134,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               entity_type,
               type,
               errors,
-              qty: { errors: warnings, not_found, processing, total }
+              qty: { errors: warnings, not_found, processed, total }
             }) => ({
               id,
               inserted_at: format(inserted_at, DATE_FORMAT),
@@ -148,13 +148,13 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               entity_type: ENTITY_TYPE[entity_type] || entity_type,
               qty: (
                 <div>
-                  {`Не знайдено:${not_found}`}
+                  {`Не знайдено: ${not_found}`}
                   <br />
-                  {`В процесі:${processing}`}
+                  {`Оброблено: ${processed}`}
                   <br />
-                  {`Помилок:${warnings}`}
+                  {`Помилок: ${warnings}`}
                   <br />
-                  {`Усьго записів:${total}`}
+                  {`Усьго записів: ${total}`}
                   <br />
                 </div>
               ),
