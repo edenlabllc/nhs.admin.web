@@ -60,7 +60,7 @@ export default class RegisterUploadForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, data: { registerTypes } } = this.props;
+    const { handleSubmit, data: { registerTypes }, submitting } = this.props;
     const { file, file_name } = this.state;
 
     return (
@@ -132,7 +132,10 @@ export default class RegisterUploadForm extends React.Component {
             <FormColumn>
               <ShowWithScope scope="register:write">
                 <div>
-                  <Button type="submit" disabled={!file && !file_name}>
+                  <Button
+                    type="submit"
+                    disabled={!file && !file_name && submitting}
+                  >
                     {!file && !file_name ? "Завантажте файл" : "Зберегти файл"}
                   </Button>
                 </div>
