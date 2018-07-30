@@ -5,16 +5,20 @@ export const ENTITY_TYPE = {
 };
 
 export const REGISTER_ENTITY_STATUS = {
-  PROCESSING: {
-    title: "В обробці",
-    color: "yellow"
+  ERROR: {
+    title: "Помилка",
+    color: "red"
+  },
+  PROCESSED: {
+    title: "Оброблено",
+    color: "green"
   },
   NOT_FOUND: {
     title: "Не знайдено",
     color: "red"
   },
   MATCHED: {
-    title: "Знайдено",
+    title: "Оброблено",
     color: "green"
   }
 };
@@ -24,9 +28,9 @@ export const REGISTER_STATUS = {
     title: "Новий",
     color: "green"
   },
-  PROCESSING: {
-    title: "В обробці",
-    color: "yellow"
+  INVALID: {
+    title: "Не валідний",
+    color: "red"
   },
   PROCESSED: {
     title: "Оброблений",
