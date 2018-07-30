@@ -70,7 +70,7 @@ const SEARCH_FIELDS = [
       {
         name: "birth_date",
         labelText: "Дата народження",
-        placeholder: "1990-01-01",
+        placeholder: "01.01.1990",
         validate: required
       }
     ]
