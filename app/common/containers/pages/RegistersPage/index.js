@@ -24,7 +24,7 @@ import DateFilterField from "containers/forms/DateFilterField";
 import { getRegisters } from "reducers";
 import required from "helpers/validators/required-validate";
 import uuidValidate from "helpers/validators/uuid-validate";
-import { PERSON_TYPE, REGISTER_STATUS } from "helpers/enums";
+import { ENTITY_TYPE, REGISTER_STATUS } from "helpers/enums";
 import { fetchRegistersList } from "./redux";
 
 const DATE_FORMAT = "DD/MM/YYYY";
@@ -32,7 +32,6 @@ const DATE_FORMAT = "DD/MM/YYYY";
 const SEARCH_FIELDS = [
   {
     component: SearchFilterField,
-    // labelText: "Пошук файлів",
     placeholder: "Знайти файл",
     filters: [
       {
@@ -49,7 +48,10 @@ const SEARCH_FIELDS = [
     placeholder: "Оберіть тип файлу",
     name: "type",
     detailed: true,
-    options: [{ title: "Реєстрація смерті", name: "DEATH_REGISTRATION" }]
+    options: [
+      { title: "Реєстрація смерті", name: "DEATH_REGISTRATION" },
+      { title: "Шахрайство", name: "FRAUD" }
+    ]
   },
   {
     component: SelectFilterField,
@@ -117,7 +119,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
             { key: "inserted_at", title: "Дата додавання" },
             { key: "type", title: "Тип файлу" },
             { key: "file_name", title: "Назва файлу" },
-            { key: "person_type", title: "Тип людини" },
+            { key: "entity_type", title: "Тип суб'єкта" },
             { key: "qty", title: "Статистика", width: 150 },
             { key: "errors", title: "Помилки" },
             { key: "status", title: "Статус файлу" },
@@ -129,7 +131,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               file_name,
               inserted_at,
               status,
-              person_type,
+              entity_type,
               type,
               errors,
               qty: { errors: warnings, not_found, processing, total }
@@ -143,7 +145,7 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
                 />
               ),
               file_name,
-              person_type: PERSON_TYPE[person_type] || person_type,
+              entity_type: ENTITY_TYPE[entity_type] || entity_type,
               qty: (
                 <div>
                   {`Не знайдено:${not_found}`}
@@ -163,14 +165,18 @@ const RegistersPage = ({ registers = [], paging = {}, location }) => (
               ),
               errors: (
                 <div>
-                  {errors.length}
-                  <Button
-                    id={`registers-errors-button-${id}`}
-                    theme="link"
-                    to={`/registers/${id}`}
-                  >
-                    Показати
-                  </Button>
+                  {errors.length && (
+                    <div>
+                      {errors.length}
+                      <Button
+                        id={`registers-errors-button-${id}`}
+                        theme="link"
+                        to={`/registers/${id}`}
+                      >
+                        Показати
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ),
               action: (

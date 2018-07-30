@@ -1,6 +1,7 @@
-export const PERSON_TYPE = {
+export const ENTITY_TYPE = {
   patient: "Пацієнт",
-  employee: "Лікар"
+  employee: "Лікар",
+  declaration: "Декларація"
 };
 
 export const REGISTER_ENTITY_STATUS = {
