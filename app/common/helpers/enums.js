@@ -18,7 +18,7 @@ export const REGISTER_ENTITY_STATUS = {
     color: "red"
   },
   MATCHED: {
-    title: "Оброблено",
+    title: "Виконано",
     color: "green"
   }
 };

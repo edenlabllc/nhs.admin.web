@@ -47,13 +47,14 @@ const SEARCH_FIELDS = [
   {
     component: SelectFilterField,
     labelText: "Cтатус",
-    placeholder: "Знайдено/В обробці/Не знайдено",
+    placeholder: "Помилка/Не знайдено/Оброблено/Виконано",
     name: "status",
     detailed: true,
     options: [
+      { title: "Помилка", name: "ERROR" },
       { title: "Не знайдено", name: "NOT_FOUND" },
-      { title: "В обробці", name: "PROCESSING" },
-      { title: "Знайдено", name: "MATCHED" }
+      { title: "Оброблено", name: "PROCESSED" },
+      { title: "Виконано", name: "MATCHED" }
     ]
   },
   {
