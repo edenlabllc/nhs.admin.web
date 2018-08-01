@@ -214,7 +214,7 @@ export const isAuthorized = state => state.session.authorized;
 export const getScope = state => state.session.scope;
 
 export const getLocation = state => state.routing.locationBeforeTransitions;
-export const getForm = (state, formName) => state.form[formName];
+export const getForm = (state, formName) => state.form[formName] || {};
 
 export const getTemplate = (state, id) =>
   denormalize(id, schemas.template, state.data);
