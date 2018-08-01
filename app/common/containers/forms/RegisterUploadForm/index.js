@@ -131,7 +131,7 @@ export default class RegisterUploadForm extends React.Component {
                 handleFiles={this.handleFiles}
               >
                 <Button size="small" color="blue">
-                  Завантажити файл
+                  Обрати файл
                 </Button>
                 {file_name && (
                   <span>
@@ -141,30 +141,33 @@ export default class RegisterUploadForm extends React.Component {
               </ReactFileReader>
             </FormColumn>
           </FormRow>
-          <FormRow>
-            <FormColumn>
-              <ShowWithScope scope="register:write">
-                <div>
-                  <Button
-                    type="submit"
-                    disabled={!file && !file_name && submitting}
-                  >
-                    {this.state.pending && (
-                      <div>
-                        Зачекайте. Йде завантаження файлу{" "}
-                        <LoadingDot align="center" />
-                      </div>
-                    )}
-                    {!file && !file_name && "Завантажте файл"}
-                    {!this.state.pending &&
-                      file &&
-                      file_name &&
-                      "Зберегти файл"}
-                  </Button>
-                </div>
-              </ShowWithScope>
-            </FormColumn>
-          </FormRow>
+
+          {file &&
+            file_name && (
+              <FormRow>
+                <FormColumn>
+                  <ShowWithScope scope="register:write">
+                    <div>
+                      <Button
+                        type="submit"
+                        disabled={!file && !file_name && submitting}
+                      >
+                        {this.state.pending && (
+                          <div>
+                            Зачекайте. Йде завантаження файлу{" "}
+                            <LoadingDot align="center" />
+                          </div>
+                        )}
+                        {!this.state.pending &&
+                          file &&
+                          file_name &&
+                          "Завантажити файл"}
+                      </Button>
+                    </div>
+                  </ShowWithScope>
+                </FormColumn>
+              </FormRow>
+            )}
         </div>
       </form>
     );
