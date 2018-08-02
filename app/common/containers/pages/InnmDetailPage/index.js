@@ -48,7 +48,7 @@ export default class InnmDetailPage extends React.Component {
         <FormRow>
           <FormColumn>
             <Button
-              onClick={() => this.props.router.push("/medications")}
+              onClick={() => this.props.router.push("/innms")}
               theme="border"
               color="blue"
               icon="back"
