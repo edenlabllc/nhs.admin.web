@@ -170,7 +170,7 @@ export default class MedicationDetailPage extends React.Component {
           list={[
             {
               name: "Країна, Виробник",
-              value: (
+              value: medication.manufacturer && (
                 <div>
                   <span>
                     <DictionaryValue
@@ -185,7 +185,7 @@ export default class MedicationDetailPage extends React.Component {
             },
             {
               name: "Упаковка",
-              value: (
+              value: medication.container && (
                 <div>
                   <span>
                     {`${medication.container.numerator_value} `}
