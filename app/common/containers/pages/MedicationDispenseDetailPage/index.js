@@ -120,8 +120,8 @@ const MedicationDispenseDetailPage = ({
           },
           { name: "ІНН", value: person.tax_id },
           {
-            name: "Дата народження",
-            value: format(person.birth_date, "DD/MM/YYYY")
+            name: "Вік (роки)",
+            value: person.age
           }
         ]}
       />
