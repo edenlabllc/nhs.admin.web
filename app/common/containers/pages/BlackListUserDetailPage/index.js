@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
@@ -20,7 +19,6 @@ import { fetchBlackListUser } from "./redux";
 import { getBlackUser } from "reducers";
 import { deactivateBlackListUser } from "redux/black-list-users";
 
-@withRouter
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchBlackListUser(id))
 })

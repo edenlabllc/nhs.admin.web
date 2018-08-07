@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -22,7 +21,6 @@ import { deactivateMedicalProgram } from "redux/medical-programs";
 
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchMedicalProgram(id))

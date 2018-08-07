@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
 import { H1 } from "components/Title";
@@ -10,7 +9,6 @@ import Line from "components/Line";
 
 import { createMedicalProgram } from "redux/medical-programs";
 
-@withRouter
 @connect(null, { createMedicalProgram })
 export default class MedicalProgramCreatePage extends React.Component {
   render() {

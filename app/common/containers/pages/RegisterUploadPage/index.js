@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
 import { H1 } from "components/Title";
@@ -12,7 +11,6 @@ import Button from "components/Button";
 import { uploadRegister } from "redux/registers";
 import { getDictionaryValues } from "reducers";
 
-@withRouter
 @connect(
   state => ({
     registerTypes: getDictionaryValues(state, "REGISTER_TYPE")

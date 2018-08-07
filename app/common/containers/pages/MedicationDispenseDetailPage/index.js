@@ -1,6 +1,5 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
@@ -180,7 +179,6 @@ const MedicationDispenseDetailPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, params: { id } }) =>
       dispatch(fetchMedicationDispense(id))

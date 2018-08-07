@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
-import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -13,7 +12,6 @@ import ProgramMedicationCreateForm from "containers/forms/ProgramMedicationCreat
 import { onCreate } from "./redux";
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
 @connect(
   (state, { params: { id } }) => ({

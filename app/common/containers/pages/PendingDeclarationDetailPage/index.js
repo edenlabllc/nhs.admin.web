@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 
@@ -28,7 +27,6 @@ import { fetchDeclaration } from "./redux";
 import styles from "./styles.scss";
 
 @withStyles(styles)
-@withRouter
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
     const canReadDocuments = hasScope(

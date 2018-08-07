@@ -1,7 +1,5 @@
 import React from "react";
-import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
 import Line from "components/Line";
@@ -88,11 +86,8 @@ const DivisionEmployeesPage = ({ contract, router, divisionId }) => {
   );
 };
 
-export default compose(
-  withRouter,
-  connect((state, { params: { id, divisionId } }) => ({
-    id,
-    divisionId,
-    contract: state.data.contracts[id]
-  }))
-)(DivisionEmployeesPage);
+export default connect((state, { params: { id, divisionId } }) => ({
+  id,
+  divisionId,
+  contract: state.data.contracts[id]
+}))(DivisionEmployeesPage);
