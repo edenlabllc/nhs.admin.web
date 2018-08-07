@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
-import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -10,21 +9,23 @@ import { Confirm } from "components/Popup";
 import BackLink from "containers/blocks/BackLink";
 import ProgramMedicationCreateForm from "containers/forms/ProgramMedicationCreateForm";
 
-import { onCreate } from "./redux";
+import { onCreate, fetchMedicalPrograms } from "./redux";
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
+@provideHooks({
+  fetch: ({ dispatch, location: { query } }) =>
+    dispatch(fetchMedicalPrograms({ page_size: 50, ...query }))
+})
 @connect(
-  (state, { params: { id } }) => ({
-    medical_programs: state.data.medical_programs || []
+  state => ({
+    medical_programs: state.data.medical_programs
   }),
   { onCreate }
 )
 export default class ProgramMedicationCreatePage extends React.Component {
   render() {
     const { medical_programs = {}, onCreate = () => {} } = this.props;
-
     return (
       <div id="program-medication-update-page">
         <Helmet
@@ -43,7 +44,7 @@ export default class ProgramMedicationCreatePage extends React.Component {
         <H3>Створення учасника медичної програми</H3>
         <ProgramMedicationCreateForm
           onSubmit={onCreate}
-          data={medical_programs}
+          data={medical_programs || []}
         />
       </div>
     );

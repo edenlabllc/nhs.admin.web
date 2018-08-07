@@ -6,7 +6,7 @@ import styles from "./styles.scss";
 
 const DataList = ({ list = [], theme = "default" }) => (
   <dl className={classnames(styles.list, styles[`list_theme_${theme}`])}>
-    {list.filter(item => item.value).reduce(
+    {list.filter(item => !!item && item.value).reduce(
       (arr, item, index) =>
         arr.concat([
           <dt className={styles.dt} key={`dt-${index}`}>

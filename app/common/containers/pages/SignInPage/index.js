@@ -1,13 +1,11 @@
 import React from "react";
 import withStyles from "withStyles";
-import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
 import { OAUTH_URL, SCOPES, CLIENT_ID, OAUTH_REDIRECT_URL } from "config";
 
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
 export default class SignInPage extends React.Component {
   render() {

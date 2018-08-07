@@ -1,6 +1,5 @@
 import React from "react";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
@@ -119,8 +118,8 @@ const MedicationRequestDetailPage = ({
             value: person.second_name
           },
           {
-            name: "Дата народження",
-            value: format(person.birth_date, "DD/MM/YYYY")
+            name: "Вік (роки)",
+            value: person.age
           }
         ]}
       />
@@ -157,7 +156,6 @@ const MedicationRequestDetailPage = ({
 );
 
 export default compose(
-  withRouter,
   provideHooks({
     fetch: ({ dispatch, params: { id } }) =>
       dispatch(fetchMedicationRequest(id))

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
-import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -23,7 +22,6 @@ import { getProgramMedication } from "reducers";
 import { fetchProgramMedication } from "./redux";
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchProgramMedication(id))

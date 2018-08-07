@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import Helmet from "react-helmet";
 
 import BackLink from "containers/blocks/BackLink";
@@ -10,7 +9,6 @@ import { getDictionary, getInnms } from "reducers";
 
 import { onSubmit, onChangeSearchInnm } from "./redux";
 
-@withRouter
 @connect(
   state => ({
     innms: getInnms(state, state.pages.InnmDosagesCreatePage.innms),

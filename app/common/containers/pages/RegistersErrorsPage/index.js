@@ -1,7 +1,6 @@
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
@@ -46,7 +45,6 @@ const RegistersErrorsPage = ({
 );
 
 export default compose(
-  withRouter,
   withStyles(styles),
   provideHooks({
     fetch: ({ dispatch, params: { id } }) =>

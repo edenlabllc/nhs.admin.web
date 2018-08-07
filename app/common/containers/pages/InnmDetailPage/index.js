@@ -6,7 +6,6 @@ import Helmet from "react-helmet";
 
 import { H1 } from "components/Title";
 import InnmForm from "containers/forms/InnmForm";
-import { withRouter } from "react-router";
 import BackLink from "containers/blocks/BackLink";
 import Line from "components/Line";
 import Button from "components/Button";
@@ -18,7 +17,6 @@ import { fetchInnm } from "./redux";
 
 import styles from "./styles.scss";
 
-@withRouter
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchInnm(id))

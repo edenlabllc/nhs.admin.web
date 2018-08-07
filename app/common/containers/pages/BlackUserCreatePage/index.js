@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-import { withRouter } from "react-router";
 
 import BackLink from "containers/blocks/BackLink";
 import Line from "components/Line";
@@ -9,7 +8,6 @@ import BlackUserCreateForm from "containers/forms/BlackUserCreateForm";
 
 import { onSubmit } from "./redux";
 
-@withRouter
 @connect(null, { onSubmit })
 export default class BlackUserCreatePage extends React.Component {
   render() {

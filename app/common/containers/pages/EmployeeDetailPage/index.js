@@ -2,7 +2,6 @@ import React from "react";
 import format from "date-fns/format";
 import { connect } from "react-redux";
 import { provideHooks } from "redial";
-import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -21,7 +20,6 @@ import { fetchEmployee } from "./redux";
 import styles from "./style.scss";
 
 @withStyles(styles)
-@withRouter
 @provideHooks({
   fetch: ({ dispatch, params: { id } }) => dispatch(fetchEmployee(id))
 })
