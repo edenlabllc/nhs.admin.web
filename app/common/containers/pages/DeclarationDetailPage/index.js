@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { provideHooks } from "redial";
 
 import { H2 } from "components/Title";
@@ -16,7 +15,6 @@ import { getDeclarationImage, terminateDeclaration } from "redux/declarations";
 
 import { fetchDeclaration } from "./redux";
 
-@withRouter
 @provideHooks({
   fetch: ({ dispatch, getState, params: { id } }) => {
     const canReadDocuments = hasScope(
@@ -67,12 +65,13 @@ export default class DeclarationDetailPage extends React.Component {
   }
 
   render() {
-    const { declaration = {} } = this.props;
+    const { declaration = {}, router } = this.props;
     return (
       <div id="declaration-detail-page">
         <DeclarationDetail
           declaration={declaration}
           onTerminate={this.onTerminate}
+          router={router}
         />
 
         <Line />

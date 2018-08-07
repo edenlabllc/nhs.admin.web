@@ -1,7 +1,6 @@
 import React from "react";
 import format from "date-fns/format";
 import { compose } from "redux";
-import { withRouter } from "react-router";
 import withStyles from "withStyles";
 import Helmet from "react-helmet";
 
@@ -21,7 +20,7 @@ import styles from "./styles.scss";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
-const DeclarationDetailPage = ({ declaration = {}, onTerminate, router }) => {
+const DeclarationDetail = ({ declaration = {}, onTerminate, router }) => {
   const fullName = [
     declaration.person.last_name,
     declaration.person.first_name,
@@ -326,7 +325,7 @@ const DeclarationDetailPage = ({ declaration = {}, onTerminate, router }) => {
   );
 };
 
-export default compose(withRouter, withStyles(styles))(DeclarationDetailPage);
+export default withStyles(styles)(DeclarationDetail);
 
 class TerminateForm extends React.Component {
   state = {
