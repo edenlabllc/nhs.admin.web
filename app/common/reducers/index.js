@@ -89,6 +89,7 @@ import MedicalProgramDetailPage from "containers/pages/MedicalProgramDetailPage/
 import ProgramMedicationsListPage from "containers/pages/ProgramMedicationsListPage/redux";
 import ProgramMedicationUpdatePage from "containers/pages/ProgramMedicationUpdatePage/redux";
 import ProgramMedicationDetailPage from "containers/pages/ProgramMedicationDetailPage/redux";
+import ProgramMedicationCreatePage from "containers/pages/ProgramMedicationCreatePage/redux";
 
 import BlackUsersListPage from "containers/pages/BlackUsersListPage/redux";
 import BlackListUserDetailPage from "containers/pages/BlackListUserDetailPage/redux";
@@ -142,6 +143,7 @@ const pages = combineReducers({
   ProgramMedicationsListPage,
   ProgramMedicationUpdatePage,
   ProgramMedicationDetailPage,
+  ProgramMedicationCreatePage,
 
   MedicationRequestsListPage,
   MedicationRequestDetailPage,
