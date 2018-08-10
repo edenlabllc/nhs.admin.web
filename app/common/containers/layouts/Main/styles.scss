@@ -264,3 +264,9 @@ html {
 :global(.break-all) {
   word-break: break-all;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

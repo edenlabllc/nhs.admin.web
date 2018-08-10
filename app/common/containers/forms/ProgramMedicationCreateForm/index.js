@@ -33,6 +33,9 @@ import styles from "./styles.scss";
   values: getFormValues("program-medication-create-form")(state)
 }))
 export default class ProgramMedicationCreateForm extends React.Component {
+  state = {
+    medical_program_search: ""
+  };
   render() {
     const {
       handleSubmit,
@@ -63,9 +66,21 @@ export default class ProgramMedicationCreateForm extends React.Component {
                 name="medical_program"
                 labelText="Медична программа"
                 component={SelectUniversal}
+                searchable
+                onChangeSearch={v =>
+                  this.setState({
+                    medical_program_search: v.toLowerCase()
+                  })
+                }
                 options={Object.values(data)
                   .filter(i => i.id)
                   .filter(i => i.is_active)
+                  .filter(
+                    i =>
+                      new RegExp(this.state.medical_program_search).test(
+                        i.name.toLowerCase()
+                      ) === true
+                  )
                   .map(i => ({
                     title: i.name,
                     name: i.id

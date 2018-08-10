@@ -15,7 +15,9 @@ import styles from "./styles.scss";
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchMedicalPrograms({ page_size: 50, ...query }))
+    dispatch(
+      fetchMedicalPrograms({ page_size: 100, is_active: true, ...query })
+    )
 })
 @connect(
   state => ({
