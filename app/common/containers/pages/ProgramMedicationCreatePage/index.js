@@ -27,10 +27,7 @@ import styles from "./styles.scss";
 )
 export default class ProgramMedicationCreatePage extends React.Component {
   render() {
-    const {
-      medical_programs = {},
-      onCreate = () => {}
-    } = this.props;
+    const { medical_programs = {}, onCreate = () => {} } = this.props;
     return (
       <div id="program-medication-update-page">
         <Helmet
