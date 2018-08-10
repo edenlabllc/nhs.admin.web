@@ -15,17 +15,23 @@ import styles from "./styles.scss";
 @withStyles(styles)
 @provideHooks({
   fetch: ({ dispatch, location: { query } }) =>
-    dispatch(fetchMedicalPrograms({ page_size: 50, ...query }))
+    dispatch(
+      fetchMedicalPrograms({ page_size: 100, is_active: true, ...query })
+    )
 })
 @connect(
   state => ({
     medical_programs: state.data.medical_programs
   }),
-  { onCreate }
+  { onCreate, fetchMedicalPrograms }
 )
 export default class ProgramMedicationCreatePage extends React.Component {
   render() {
-    const { medical_programs = {}, onCreate = () => {} } = this.props;
+    const {
+      medical_programs = {},
+      onCreate = () => {},
+      fetchMedicalPrograms
+    } = this.props;
     return (
       <div id="program-medication-update-page">
         <Helmet
