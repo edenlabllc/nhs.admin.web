@@ -23,14 +23,13 @@ import styles from "./styles.scss";
   state => ({
     medical_programs: state.data.medical_programs
   }),
-  { onCreate, fetchMedicalPrograms }
+  { onCreate }
 )
 export default class ProgramMedicationCreatePage extends React.Component {
   render() {
     const {
       medical_programs = {},
-      onCreate = () => {},
-      fetchMedicalPrograms
+      onCreate = () => {}
     } = this.props;
     return (
       <div id="program-medication-update-page">
