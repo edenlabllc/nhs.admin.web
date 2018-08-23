@@ -13,6 +13,10 @@ const PERSON_TYPE = {
   "confidant_person.1.SECONDARY.RELATIONSHIP.": "Друга довірена особа: "
 };
 
+const TAX_ID = {
+  tax_id: "ІПН"
+};
+
 @withStyles(styles)
 @connect(state => ({
   document_type: getDictionary(state, "DOCUMENT_TYPE"),
@@ -55,9 +59,9 @@ export default class Gallery extends React.Component {
     } = this.props;
     const mergedDocs = {
       ...document_relationship_type.values,
-      ...document_type.values
+      ...document_type.values,
+      ...TAX_ID
     };
-
     const MERGED_TYPES = {};
     Object.keys(PERSON_TYPE).map(person_type =>
       Object.keys(mergedDocs).map(
