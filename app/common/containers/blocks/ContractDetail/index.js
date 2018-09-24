@@ -104,8 +104,10 @@ class ContractDetail extends React.Component {
           ) : null
         ) : (
           <PrintLink
-            printoutContent={contract.printout_content}
             printIframe={printIframe}
+            getPrintoutContent={getPrintoutContent}
+            id={contract.id}
+            printoutContent={contract.printout_content}
           />
         )}
         <DataList
